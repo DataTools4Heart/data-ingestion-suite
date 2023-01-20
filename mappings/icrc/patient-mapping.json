@@ -1,0 +1,35 @@
+{
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
+  "name": "patient-mapping",
+  "title": "Mapping of patient table to DT4H Patient FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/Patient"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Patient",
+          "id": "{{mpp:getHashedId('Patient', id_patient.toString())}}",
+          "meta": {
+            "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/Patient"],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "active": true,
+          "identifier": [
+            {
+              "use": "official",
+              "system": "{{%sourceSystem.sourceUri}}",
+              "value": "{{id_patient.toString()}}"
+            }
+          ],
+          "gender": "{{ iif(sex=0, 'male', 'female') }}",
+          "birthDate": "{{birth.toDate()}}"
+        }
+      }
+    }
+  ]
+}

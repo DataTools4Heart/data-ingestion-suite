@@ -1,0 +1,46 @@
+{
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
+  "name": "condition-mapping",
+  "title": "Mapping of diagnosis table to DT4H Condition FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/PatientDiagnosis"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Condition",
+          "id": "{{mpp:getHashedId('Condition', id.toString())}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/Condition"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "clinicalStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code": "active"
+              }
+            ]
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/sid/icd-10",
+                "code": "{{code_dot}}",
+                "display": "{{? name_english}}"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "onsetDateTime": "{{date_stamp}}"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+source_code,target_code,target_display,code_system
+"CHOL","2093-3","Cholesterol [Mass/volume] in Serum or Plasma"
+"HBA1C","4548-4","Hemoglobin A1c/Hemoglobin.total in Blood"
+"KREA","38483-4","Creatinin, blood sample"
+"KREAU","2161-8","Creatinin, urine sample"
+"HB","718-7","Hemoglobin A1c/Hemoglobin.total in Blood"
+"HDL","2085-9","Cholesterol in HDL [Mass/volume] in Serum or Plasma"
+"LDLV","2089-1","Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation"
+"MAU","1754-1","Albumin, urine sample"
+"MAUKREA","32294-1","Urine albumin to creatinine ratio"
+"PBNP","71425-3","N-terminal pro-brain natriuretic peptide, blood sample"
+"TG","3043-7","Triglycerides, blood sample"
+
+
+

@@ -1,0 +1,186 @@
+{
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
+  "name": "ecg-mapping",
+  "title": "Mapping of the ecg_mortara table to the DT4H Electrocardiograph FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/PatientDiagnosis"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Observation",
+          "id": "{{mpp:getHashedId('Observation', id.toString() + '_electrocardiograph')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/Electrocardiograph"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "procedure"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "34534-8",
+                "display": "12 lead EKG panel"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "effectiveDateTime": "{{date_exec.toString().replace(' ','T') + 'Z'}}",
+          "encounter": "{{? mpp:createFhirReferenceWithHashedId('Encounter', id_visit.toString())}}",
+          "component": [
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8625-6",
+                    "display": "P-R Interval"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{pr_duration}}",
+                "system": "http://unitsofmeasure.org",
+                "code": "ms",
+                "unit": "ms"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8633-0",
+                    "display": "QRS duration"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{qrs_duration}}",
+                "system": "http://unitsofmeasure.org",
+                "code": "ms",
+                "unit": "ms"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8634-8",
+                    "display": "Q-T interval"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{qt}}",
+                "system": "http://unitsofmeasure.org",
+                "code": "ms",
+                "unit": "ms"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8636-3",
+                    "display": "Q-T interval corrected"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{qtc}}",
+                "system": "http://unitsofmeasure.org",
+                "code": "ms",
+                "unit": "ms"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8626-4",
+                    "display": "P wave axis"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{p_axis}}",
+                "system": "http://unitsofmeasure.org",
+                "code": "deg",
+                "unit": "deg"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8632-2",
+                    "display": "QRS axis"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{qrs_axis}}",
+                "system": "http://unitsofmeasure.org",
+                "code": "deg",
+                "unit": "deg"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8638-9",
+                    "display": "T wave axis"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{t_axis}}",
+                "system": "http://unitsofmeasure.org",
+                "code": "deg",
+                "unit": "deg"
+              }
+            },
+            {
+              "{{#interpretation}}": "{{ iif(inter_text != '', inter_text, {}) }}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://loinc.org",
+                      "code": "8601-7",
+                      "display": "EKG impression"
+                    }
+                  ]
+                },
+                "valueString": "{{%interpretation}}"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

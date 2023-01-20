@@ -1,0 +1,38 @@
+{
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
+  "name": "procedure-mapping",
+  "title": "Mapping of the patient.procedure_oper table to DT4H Procedure FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/Procedure"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Procedure",
+          "id": "{{mpp:getHashedId('Procedure', id.toString())}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/Procedure"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "completed",
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "TODO: information is not available"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "performedDateTime": "{{date_stamp}}"
+        }
+      }
+    }
+  ]
+}

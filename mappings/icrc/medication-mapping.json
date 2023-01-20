@@ -1,0 +1,42 @@
+{
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
+  "name": "medication-mapping",
+  "title": "Mapping of medication table to DT4H Medication Used FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/Medication"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "MedicationStatement",
+          "id": "{{mpp:getHashedId('Medication', id_patient_drug.toString())}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/MedicationUsed"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.whocc.no/atc",
+                "code": "{{atc_who}}",
+                "display": "{{? name}}"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "effectivePeriod": {
+            "start": "{{date_from}}",
+            "end": "{{? date_to}}"
+          }
+        }
+      }
+    }
+  ]
+}

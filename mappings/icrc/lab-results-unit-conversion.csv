@@ -1,0 +1,12 @@
+source_code,source_unit,target_unit,conversion_function
+CHOL,mmol/l,mmol/L,$this
+HBA1C,mmol/mol,%,($this / 10.929) + 2.15
+KREA,µmol/l,mg/L,$this * 0.1131
+KREAU,mmol/l,mg/L,$this * 113.12
+HB,g/l,g/dL,$this * 0.1
+HDL,mmol/l,mmol/L,$this
+LDLV,mmol/l,mmol/L,$this
+MAU,mg/l,mcg/L,$this * 1000
+MAUKREA,mg/mmol,mg/g,$this * 8.85
+PBNP,ng/l,pg/mL,$this
+TG,mmol/l,mmol/L,$this
