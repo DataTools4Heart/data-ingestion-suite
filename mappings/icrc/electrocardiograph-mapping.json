@@ -16,7 +16,7 @@
           "id": "{{mpp:getHashedId('Observation', id.toString() + '_electrocardiograph')}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/Electrocardiograph"
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Electrocardiograph"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },

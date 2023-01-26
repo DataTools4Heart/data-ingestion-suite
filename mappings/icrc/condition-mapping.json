@@ -16,7 +16,7 @@
           "id": "{{mpp:getHashedId('Condition', id.toString())}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/Condition"
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },

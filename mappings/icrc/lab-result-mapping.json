@@ -26,7 +26,7 @@
           "id": "{{mpp:getHashedId('Observation', id.toString() + '_lab_result')}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/LabResult"
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },

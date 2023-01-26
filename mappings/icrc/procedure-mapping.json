@@ -16,7 +16,7 @@
           "id": "{{mpp:getHashedId('Procedure', id.toString())}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/Procedure"
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },
