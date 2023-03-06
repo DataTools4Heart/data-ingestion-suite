@@ -1,15 +1,17 @@
 source_code,target_code,target_display,code_system
-"CHOL","2093-3","Cholesterol [Mass/volume] in Serum or Plasma"
-"HBA1C","4548-4","Hemoglobin A1c/Hemoglobin.total in Blood"
-"KREA","38483-4","Creatinin, blood sample"
-"KREAU","2161-8","Creatinin, urine sample"
-"HB","718-7","Hemoglobin A1c/Hemoglobin.total in Blood"
-"HDL","2085-9","Cholesterol in HDL [Mass/volume] in Serum or Plasma"
-"LDLV","2089-1","Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation"
-"MAU","1754-1","Albumin, urine sample"
-"MAUKREA","32294-1","Urine albumin to creatinine ratio"
-"PBNP","71425-3","N-terminal pro-brain natriuretic peptide, blood sample"
-"TG","3043-7","Triglycerides, blood sample"
+"CHOL","14647-2","Cholesterol [Moles/volume] in Serum or Plasma","http://loinc.org"
+"CRP_","30522-7","C reactive protein [Mass/volume] in Serum or Plasma by High sensitivity method","http://loinc.org"
+"HB","718-7","Hemoglobin A1c/Hemoglobin.total in Blood","http://loinc.org"
+"HBA1C","4548-4","Hemoglobin A1c/Hemoglobin.total in Blood","http://loinc.org"
+"HDL","2085-9","Cholesterol in HDL [Mass/volume] in Serum or Plasma","http://loinc.org"
+"KREA","2160-0","Creatinin, blood sample","http://loinc.org"
+"KREAU","2161-8","Creatinin, urine sample","http://loinc.org"
+"LDLV","22748-8"," Cholesterol in LDL [Moles/volume] in Serum or Plasma","http://loinc.org"
+"MAU","1754-1","Albumin, urine sample","http://loinc.org"
+"MAUKREA","32294-1","Urine albumin to creatinine ratio","http://loinc.org"
+"PBNP","33762-6","Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Serum or Plasma","http://loinc.org"
+"TG","14927-8","Triglyceride [Moles/volume] in Serum or Plasma","http://loinc.org"
+"UREA","14937-7","Urea nitrogen [Moles/volume] in Serum or Plasma","http://loinc.org"
 
 
 
