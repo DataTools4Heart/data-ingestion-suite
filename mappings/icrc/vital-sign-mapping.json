@@ -13,7 +13,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id_visit.toString() + '_weight')}}",
+          "id": "{{mpp:getHashedId('Observation', id_encounter.toString() + '_weight')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -48,7 +48,7 @@
             "code": "kg",
             "unit": "kg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_visit.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
         }
       }
     },
@@ -58,7 +58,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id_visit.toString() + '_height')}}",
+          "id": "{{mpp:getHashedId('Observation', id_encounter.toString() + '_height')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -93,7 +93,7 @@
             "code": "cm",
             "unit": "cm"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_visit.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
         }
       }
     },
@@ -103,7 +103,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id_visit.toString() + '_pressure_sys')}}",
+          "id": "{{mpp:getHashedId('Observation', id_encounter.toString() + '_pressure_sys')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -138,7 +138,7 @@
             "code": "mmHg",
             "unit": "mmHg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_visit.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
         }
       }
     },
@@ -148,7 +148,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id_visit.toString() + '_pressure_dia')}}",
+          "id": "{{mpp:getHashedId('Observation', id_encounter.toString() + '_pressure_dia')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -183,7 +183,7 @@
             "code": "mm[Hg]",
             "unit": "mmHg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_visit.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
         }
       }
     },
@@ -193,7 +193,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id_visit.toString() + '_heart_rate')}}",
+          "id": "{{mpp:getHashedId('Observation', id_encounter.toString() + '_heart_rate')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -228,7 +228,7 @@
             "code": "{beats}/min",
             "unit": "bpm"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_visit.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
         }
       }
     }

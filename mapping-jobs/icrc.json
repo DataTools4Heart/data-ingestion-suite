@@ -13,9 +13,9 @@
   "sinkSettings": {
     "jsonClass": "FhirRepositorySinkSettings",
     "fhirRepoUrl": "http://localhost:8081/fhir",
-    "errorHandling": "halt"
+    "errorHandling": "continue"
   },
-  "mappingErrorHandling": "halt",
+  "mappingErrorHandling": "continue",
   "mappings": [
     {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
@@ -31,7 +31,7 @@
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
-          "tableName": "patient.visit"
+          "tableName": "patient.encounter"
         }
       }
     },
@@ -40,7 +40,7 @@
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
-          "tableName": "patient.visit"
+          "tableName": "patient.encounter"
         }
       }
     },
