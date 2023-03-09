@@ -50,7 +50,7 @@
               {
                 "{{#tc}}": "{{mpp:getConcept(%labResultsConceptMap, lab_code, 'target_code')}}",
                 "{{?}}": {
-                  "system": "{{? mpp:getConcept(%labResultsConceptMap, lab_code, 'code_system')}}",
+                  "system": "http://loinc.org",
                   "code": "{{%tc}}",
                   "display": "{{? mpp:getConcept(%labResultsConceptMap, lab_code, 'target_display')}}"
                 }
