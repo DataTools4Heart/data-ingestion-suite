@@ -28,12 +28,13 @@
           ],
           "gender": "{{ iif(sex=0, 'male', 'female') }}",
           "birthDate": "{{birth.toDate()}}",
-          "extension": [
-            {
+          "extension": {
+            "{{#ethnicity}}": "{{ iif(ethnicity != '', ethnicity, {}) }}",
+            "{{?}}": {
               "url": "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient_Ethnicity",
               "value": "{{ethnicity}}"
             }
-          ]
+          }
         }
       }
     }
