@@ -1,0 +1,63 @@
+{
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
+  "name": "lab-result-mapping",
+  "title": "Mapping of lab results to DT4H Symptom FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/Symptom"
+  }],
+  "context": {
+    "symptomsConceptMap":  {
+      "category": "concept-map",
+      "url": "./symptoms-concept-map.csv"
+    }
+  },
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Observation",
+          "id": "{{mpp:getHashedId('Observation', id.toString() + '_symptom')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Symptom"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "survey"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "https://datatools4heart.eu/icrc/Symptom",
+                "code": "{{name}}"
+              },
+              {
+                "{{#tc}}": "{{mpp:getConcept(%symptomsConceptMap, id_symptom.toString(), 'target_code')}}",
+                "{{?}}": {
+                  "system": "http://snomed.info/sct",
+                  "code": "{{%tc}}",
+                  "display": "{{? mpp:getConcept(%symptomsConceptMap, id_symptom.toString(), 'target_display')}}"
+                }
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "encounter": "{{? mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}"
+        }
+      }
+    }
+  ]
+}

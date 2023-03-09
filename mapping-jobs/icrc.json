@@ -97,6 +97,15 @@
           "query": "SELECT a.id_patient, a.\"time_stamp\", eb.* FROM echo.echo_basic eb INNER JOIN patient.activity a ON eb.id_activity = a.id_activity"
         }
       }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "SELECT s.id, s.id_symptom, e.id_patient, sd.\"name\", e.id_encounter, e.\"time_stamp\" FROM patient.symptom s, patient.symptom_dict sd, patient.encounter e WHERE s.id_symptom = sd.id AND s.id_encounter = e.id_encounter"
+        }
+      }
     }
   ]
 }
