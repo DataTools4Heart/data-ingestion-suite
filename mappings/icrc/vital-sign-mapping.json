@@ -8,6 +8,11 @@
   }],
   "mapping": [
     {
+      "precondition": {
+        "name": "notNull",
+        "language": "text/fhirpath",
+        "expression": "weight.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -53,6 +58,11 @@
       }
     },
     {
+      "precondition": {
+        "name": "notNull",
+        "language": "text/fhirpath",
+        "expression": "height.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -98,6 +108,11 @@
       }
     },
     {
+      "precondition": {
+        "name": "notNull",
+        "language": "text/fhirpath",
+        "expression": "pressure_sys.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -143,6 +158,11 @@
       }
     },
     {
+      "precondition": {
+        "name": "notNull",
+        "language": "text/fhirpath",
+        "expression": "pressure_dia.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -188,6 +208,11 @@
       }
     },
     {
+      "precondition": {
+        "name": "notNull",
+        "language": "text/fhirpath",
+        "expression": "heart_rate.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -227,6 +252,56 @@
             "system": "http://unitsofmeasure.org",
             "code": "{beats}/min",
             "unit": "bpm"
+          },
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
+        }
+      }
+    },
+    {
+      "precondition": {
+        "name": "notNull",
+        "language": "text/fhirpath",
+        "expression": "oxy_sat.exists()"
+      },
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Observation",
+          "id": "{{mpp:getHashedId('Observation', id_encounter.toString() + '_oxygen_saturation')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "vital-signs"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2708-6",
+                "display": "Oxygen saturation in Arterial blood"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "valueQuantity": {
+            "value": "{{oxy_sat}}",
+            "system": "http://unitsofmeasure.org",
+            "code": "%",
+            "unit": "%"
           },
           "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
         }
