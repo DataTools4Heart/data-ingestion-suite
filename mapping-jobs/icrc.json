@@ -106,6 +106,15 @@
           "query": "SELECT s.id, s.id_symptom, e.id_patient, sd.\"name\", e.id_encounter, e.\"time_stamp\" FROM patient.symptom s, patient.symptom_dict sd, patient.encounter e WHERE s.id_symptom = sd.id AND s.id_encounter = e.id_encounter"
         }
       }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "SELECT id, id_patient, date_from, date_to, dose FROM patient.addiction a WHERE a.id_dict = 1"
+        }
+      }
     }
   ]
 }

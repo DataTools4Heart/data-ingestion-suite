@@ -42,15 +42,11 @@
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "effectivePeriod": {
-            "start":"{{time_stamp.toString().replace(' ','T') + 'Z'}}"
+            "start":"{{date_from}}",
+            "end": "{{date_to}}"
           },
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://snomed.info/sct",
-                "code": "TODO: will be completed when the information is available"
-              }
-            ]
+          "valueQuantity": {
+            "value": "{{dose}}"
           }
         }
       }
