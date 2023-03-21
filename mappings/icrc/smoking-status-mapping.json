@@ -43,7 +43,7 @@
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "effectivePeriod": {
             "start":"{{date_from}}",
-            "end": "{{date_to}}"
+            "end": "{{? date_to}}"
           },
           "valueQuantity": {
             "value": "{{dose}}"
