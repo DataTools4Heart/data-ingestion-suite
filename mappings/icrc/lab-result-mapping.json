@@ -16,8 +16,20 @@
       "url": "./lab-results-unit-conversion.csv"
     }
   },
+  "variable": [
+    {
+      "name": "labCode",
+      "language": "text/fhirpath",
+      "expression": "mpp:getConcept(%labResultsConceptMap, lab_code).first()"
+    }
+  ],
   "mapping": [
     {
+      "precondition": {
+        "name": "labCodeMappingDefined",
+        "language": "text/fhirpath",
+        "expression": "labCode.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
