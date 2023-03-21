@@ -115,6 +115,15 @@
           "query": "SELECT id, id_patient, date_from, date_to, dose FROM patient.addiction a WHERE a.id_dict = 1"
         }
       }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "SELECT id_encounter, id_patient, nyha, time_stamp FROM patient.encounter"
+        }
+      }
     }
   ]
 }
