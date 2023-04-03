@@ -67,7 +67,7 @@
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
-          "query": "SELECT m.id_patient_drug, m.id_patient, m.date_from, m.date_to, dc.atc_who, dc.\"name\" FROM patient.medication m inner join drug_dict.drug_com dc ON m.id_drug = dc.id"
+          "query": "SELECT m.id_patient_drug, m.id_patient, m.date_from, m.date_to, m.dose, dc.atc_who, dc.\"name\" FROM patient.medication m inner join drug_dict.drug_com dc ON m.id_drug = dc.id"
         }
       }
     },

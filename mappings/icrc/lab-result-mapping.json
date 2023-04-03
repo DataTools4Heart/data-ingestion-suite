@@ -18,9 +18,9 @@
   },
   "variable": [
     {
-      "name": "labCode",
+      "name": "labLoincCode",
       "language": "text/fhirpath",
-      "expression": "mpp:getConcept(%labResultsConceptMap, lab_code).first()"
+      "expression": "mpp:getConcept(%labResultsConceptMap, lab_code)"
     }
   ],
   "mapping": [
@@ -28,7 +28,7 @@
       "precondition": {
         "name": "labCodeMappingDefined",
         "language": "text/fhirpath",
-        "expression": "labCode.exists()"
+        "expression": "%labLoincCode.exists()"
       },
       "expression": {
         "name": "result",

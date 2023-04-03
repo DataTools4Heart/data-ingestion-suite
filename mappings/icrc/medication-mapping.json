@@ -34,7 +34,18 @@
           "effectivePeriod": {
             "start": "{{date_from}}",
             "end": "{{? date_to}}"
-          }
+          },
+          "dosage": [
+            {
+              "doseAndRate": [
+                {
+                  "doseQuantity": {
+                    "value": "{{dose}}"
+                  }
+                }
+              ]
+            }
+          ]
         }
       }
     }
