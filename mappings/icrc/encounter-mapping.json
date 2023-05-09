@@ -1,4 +1,5 @@
 {
+  "id": "icrc-encounter-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
   "name": "encounter-mapping",
   "title": "Mapping of encounter table to DT4H Encounter FHIR profile",
@@ -32,7 +33,8 @@
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "period": {
-            "start": "{{time_stamp.toString().replace(' ','T') + 'Z'}}"
+            "start": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+            "end": "{{(time_stamp.toString().replace(' ','T') + 'Z').toDateTime() + 7 days}}"
           }
         }
       }
