@@ -1,4 +1,5 @@
 {
+  "id": "icrc-patient-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
   "name": "patient-mapping",
   "title": "Mapping of patient table to DT4H Patient FHIR profile",

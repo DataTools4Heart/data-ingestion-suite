@@ -1,4 +1,5 @@
 {
+  "id": "icrc-smoking-status-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
   "name": "smoking-status-mapping",
   "title": "Mapping of smoking addictions defined in the addiction table to DT4H Smoking Status FHIR profile",

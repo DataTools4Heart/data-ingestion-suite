@@ -1,4 +1,5 @@
 {
+  "id": "icrc-vital-sign-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
   "name": "vital-sign-mapping",
   "title": "Mapping of vital signs defined in the encounter table to DT4H Vital Sign FHIR profile",
