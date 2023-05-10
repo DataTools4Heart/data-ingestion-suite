@@ -47,9 +47,13 @@
     {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
       "sourceContext": {
-        "source": {
+        "labResults": {
           "jsonClass": "SqlSource",
           "query": "SELECT lh.exec_date, ld.id, ld.value, ld.unit, hc.lab_code, a.id_patient FROM lab.lab_data ld INNER JOIN lab.lab_header lh ON ld.id_lab_header = lh.id INNER JOIN lab.his_code hc ON ld.id_his_code = hc.id INNER JOIN patient.activity a ON a.id_activity = lh.id_activity"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "patient.encounter"
         }
       }
     },
@@ -65,9 +69,13 @@
     {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
       "sourceContext": {
-        "source": {
+        "medications": {
           "jsonClass": "SqlSource",
           "query": "SELECT m.id_patient_drug, m.id_patient, m.date_from, m.date_to, m.dose, dc.atc_who, dc.\"name\" FROM patient.medication m inner join drug_dict.drug_com dc ON m.id_drug = dc.id"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "patient.encounter"
         }
       }
     },
@@ -83,18 +91,26 @@
     {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
       "sourceContext": {
-        "source": {
+        "ecgs": {
           "jsonClass": "SqlSource",
-          "query": "SELECT em.id, min(a.id_patient) AS id_patient, min(em.date_exec) AS date_exec, min(em.pr_duration) AS pr_duration, min(em.qrs_duration) AS qrs_duration, min(em.qt) AS qt, min(em.qtc) AS qtc, min(p_axis) AS p_axis, min(qrs_axis) AS qrs_axis, min(t_axis) AS t_axis, string_agg(nullif(mi.inter_text, ''), ' || ') AS inter_text FROM ecg.ecg_mortara em INNER JOIN patient.activity a ON em.id_activity = a.id_activity INNER JOIN ecg.mortara_interpret mi ON em.id = mi.id_ecg group by em.id"
+          "query": "SELECT em.id, a.id_patient, em.date_exec, em.pr_duration, em.qrs_duration, em.qt, em.qtc, p_axis, qrs_axis, t_axis, inter_text FROM ecg.ecg_mortara em INNER JOIN patient.activity a ON em.id_activity = a.id_activity INNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text FROM ecg.mortara_interpret GROUP BY id_ecg) as mi ON em.id = mi.id_ecg"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "patient.encounter"
         }
       }
     },
     {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
       "sourceContext": {
-        "source": {
+        "echos": {
           "jsonClass": "SqlSource",
           "query": "SELECT a.id_patient, a.\"time_stamp\", eb.* FROM echo.echo_basic eb INNER JOIN patient.activity a ON eb.id_activity = a.id_activity"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "patient.encounter"
         }
       }
     },

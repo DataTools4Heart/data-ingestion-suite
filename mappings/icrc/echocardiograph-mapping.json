@@ -3,12 +3,32 @@
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
   "name": "ecg-mapping",
   "title": "Mapping of the echo tables to the DT4H Echocardiograph FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/PatientDiagnosis"
-  }],
+  "source": [
+    {
+      "alias": "echos",
+      "url": "https://datatools4heart.eu/icrc/Echocardiogram",
+      "joinOn": ["id_patient"]
+    },
+    {
+      "alias": "encounters",
+      "url": "https://datatools4heart.eu/icrc/Encounter",
+      "joinOn": ["id_patient"]
+    }
+  ],
+  "variable": [
+    {
+      "name": "relatedEncounter",
+      "language": "text/fhirpath",
+      "expression": "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= (%context.time_stamp.replace(' ','T') + 'Z').toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > (%context.time_stamp.replace(' ','T') + 'Z').toDate()).first()"
+    }
+  ],
   "mapping": [
     {
+      "precondition": {
+        "name": "relatedEncounterExist",
+        "language": "text/fhirpath",
+        "expression": "%relatedEncounter.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -43,7 +63,7 @@
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
-          "encounter": "{{? mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id_encounter.toString())}}",
           "component": [
             {
               "code": {

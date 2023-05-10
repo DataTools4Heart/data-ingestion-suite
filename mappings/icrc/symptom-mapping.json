@@ -13,8 +13,20 @@
       "url": "./symptoms-concept-map.csv"
     }
   },
+  "variable": [
+    {
+      "name": "snomedCode",
+      "language": "text/fhirpath",
+      "expression": "mpp:getConcept(%symptomsConceptMap, id_symptom.toString(), 'target_code')"
+    }
+  ],
   "mapping": [
     {
+      "precondition": {
+        "name": "snomedCodeExists",
+        "language": "text/fhirpath",
+        "expression": "%snomedCode.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -45,17 +57,14 @@
                 "code": "{{name}}"
               },
               {
-                "{{#tc}}": "{{mpp:getConcept(%symptomsConceptMap, id_symptom.toString(), 'target_code')}}",
-                "{{?}}": {
-                  "system": "http://snomed.info/sct",
-                  "code": "{{%tc}}",
-                  "display": "{{? mpp:getConcept(%symptomsConceptMap, id_symptom.toString(), 'target_display')}}"
-                }
+                "system": "http://snomed.info/sct",
+                "code": "{{%snomedCode}}",
+                "display": "{{? mpp:getConcept(%symptomsConceptMap, id_symptom.toString(), 'target_display')}}"
               }
             ]
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "encounter": "{{? mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}"
         }
       }

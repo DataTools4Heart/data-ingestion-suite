@@ -3,12 +3,32 @@
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
   "name": "medication-mapping",
   "title": "Mapping of medication table to DT4H Medication Used FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/Medication"
-  }],
+  "source": [
+    {
+      "alias": "medications",
+      "url": "https://datatools4heart.eu/icrc/Medication",
+      "joinOn": ["id_patient"]
+    },
+    {
+      "alias": "encounters",
+      "url": "https://datatools4heart.eu/icrc/Encounter",
+      "joinOn": ["id_patient"]
+    }
+  ],
+  "variable": [
+    {
+      "name": "relatedEncounter",
+      "language": "text/fhirpath",
+      "expression": "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= %context.date_from.toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > %context.date_from.toDate()).first()"
+    }
+  ],
   "mapping": [
     {
+      "precondition": {
+        "name": "relatedEncounterExists",
+        "language": "text/fhirpath",
+        "expression": "%relatedEncounter.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -36,7 +56,7 @@
             "start": "{{date_from}}",
             "end": "{{? date_to}}"
           },
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', '108')}}",
+          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id_encounter.toString())}}",
           "dosage": {
             "dose": {
               "value": "{{dose}}"

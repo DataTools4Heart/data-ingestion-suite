@@ -3,10 +3,18 @@
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
   "name": "lab-result-mapping",
   "title": "Mapping of lab results to DT4H Lab Result FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/LabResult"
-  }],
+  "source": [
+    {
+      "alias": "labResults",
+      "url": "https://datatools4heart.eu/icrc/LabResult",
+      "joinOn": ["id_patient"]
+    },
+    {
+      "alias": "encounters",
+      "url": "https://datatools4heart.eu/icrc/Encounter",
+      "joinOn": ["id_patient"]
+    }
+  ],
   "context": {
     "labResultsConceptMap":  {
       "category": "concept-map",
@@ -22,14 +30,19 @@
       "name": "labLoincCode",
       "language": "text/fhirpath",
       "expression": "mpp:getConcept(%labResultsConceptMap, lab_code)"
+    },
+    {
+      "name": "relatedEncounter",
+      "language": "text/fhirpath",
+      "expression": "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= (%context.exec_date.replace(' ','T') + 'Z').toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > (%context.exec_date.replace(' ','T') + 'Z').toDate()).first()"
     }
   ],
   "mapping": [
     {
       "precondition": {
-        "name": "labCodeMappingDefined",
+        "name": "loincCodeAndRelatedEncounterExist",
         "language": "text/fhirpath",
-        "expression": "%labLoincCode.exists()"
+        "expression": "%labLoincCode.exists() and %relatedEncounter.exists()"
       },
       "expression": {
         "name": "result",
@@ -71,6 +84,7 @@
             ]
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id_encounter.toString())}}",
           "effectiveDateTime": "{{exec_date.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, lab_code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit))}}"
         }
