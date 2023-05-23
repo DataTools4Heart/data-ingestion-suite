@@ -22,8 +22,8 @@ class ICRCMappingFunctions(context: FhirPathEnvironment, current: Seq[FhirPathRe
    * @param dataExpr String data such that byte representation of each 2 consecutive characters represents a number.
    * @return Space separated numbers concatenated in a string
    */
-  @FhirPathFunction(documentation = " Decodes the given data and converts it to an array of space separated numbers. The output would be like '123 456 123'. Ex: icrc:convertAndReturnQuantity(%data)",
-    insertText = "icrc:createTimeSeriesData(<dataExpr>)", detail = "icrc", label = "icrc:createTimeSeriesData", kind = "Function", returnType = Seq("string"), inputType = Seq("string"))
+  @FhirPathFunction(documentation = " Decodes the given data and converts it to an array of space separated numbers. The output would be like '123 456 123'. Ex: icrc:createTimeSeriesData(%data)",
+    insertText = "icrc:createTimeSeriesData(<dataExpr>)", detail = "icrc", label = "icrc:createTimeSeriesData", kind = "Method", returnType = Seq("string"), inputType = Seq("string"))
   def createTimeSeriesData(dataExpr: ExpressionContext): Seq[FhirPathResult] = {
     val dataResult = new FhirPathExpressionEvaluator(context, current).visit(dataExpr)
     if (dataResult.length > 1 || !dataResult.head.isInstanceOf[FhirPathString]) {
