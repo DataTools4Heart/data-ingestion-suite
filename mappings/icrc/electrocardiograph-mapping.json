@@ -198,6 +198,246 @@
                 },
                 "valueString": "{{%interpretation}}"
               }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "aVF",
+                    "display": "Raw lead aVF data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(avf)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "aVL",
+                    "display": "Raw lead aVL data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(avl)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "aVR",
+                    "display": "Raw lead aVR data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(avr)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "I",
+                    "display": "Raw lead I data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(i)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "II",
+                    "display": "Raw lead II data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(ii)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "III",
+                    "display": "Raw lead III data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(iii)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "V1",
+                    "display": "Raw lead V1 data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(v1)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "V2",
+                    "display": "Raw lead V2 data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(v2)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "V3",
+                    "display": "Raw lead V3 data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(v3)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "V4",
+                    "display": "Raw lead V4 data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(v4)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "V5",
+                    "display": "Raw lead V5 data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(v5)}}"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
+                    "code": "V6",
+                    "display": "Raw lead V6 data"
+                  }
+                ]
+              },
+              "valueSampledData": {
+                "origin": {
+                  "value": 0
+                },
+                "period": "{{1 / sample_freq * 1000}}",
+                "factor": 0.0025,
+                "dimensions": 1,
+                "data": "{{icrc:createTimeSeriesData(v6)}}"
+              }
             }
           ]
         }
