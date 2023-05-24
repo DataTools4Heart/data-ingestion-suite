@@ -65,7 +65,8 @@
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}"
+          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "valueBoolean": true
         }
       }
     }
