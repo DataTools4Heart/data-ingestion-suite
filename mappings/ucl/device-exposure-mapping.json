@@ -1,0 +1,69 @@
+{
+  "id": "device-exposure-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/device-exposure-mapping",
+  "name": "device-exposure-mapping",
+  "title": "Mapping of omop device exposure to AIC-DeviceUseStatement FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://some-url-for-metadata-purposes"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "DeviceUseStatement",
+          "id": "{{mpp:getHashedId('DeviceUseStatement',device_exposure_id.toString())}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "{{iif(device_exposure_end_datetime.exists() or device_exposure_end_date.exists(), 'completed', 'active')}}",
+          "identifier": [
+            {
+              "use": "official",
+              "system": "{{%sourceSystem.sourceUri}}",
+              "value": "{{device_exposure_id.toString()}}"
+            }
+          ],
+          "source": "{{? mpp:createFhirReferenceWithHashedId('Practitioner', provider_id.toString())}}",
+          "subject": "{{? mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+          "timingPeriod": {
+            "start": "{{? iif(device_exposure_start_datetime.empty(), device_exposure_start_date, device_exposure_start_datetime.utl:toFhirDateTime())}}",
+            "end": "{{? iif(device_exposure_end_datetime.empty(), device_exposure_end_date, device_exposure_end_datetime.utl:toFhirDateTime())}}"
+          },
+          "device": "{{? mpp:createFhirReferenceWithHashedId('Device', unique_device_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString())}}"
+        }
+      }
+    },
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Device",
+          "id": "{{mpp:getHashedId('Device', unique_device_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString())}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "identifier": [
+            {
+              "use": "official",
+              "system": "{{%sourceSystem.sourceUri}}",
+              "value": "{{unique_device_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString()}}"
+            }
+          ],
+          "type": {
+            "coding": [
+              {
+                "code": "{{? concept_code}}",
+                "system": "{{? vocabulary_id}}",
+                "display": "{{? concept_name}}"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

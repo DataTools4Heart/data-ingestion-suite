@@ -1,0 +1,120 @@
+{
+  "id": "ucl-mapping-job",
+  "sourceSettings": {
+    "source": {
+      "jsonClass": "SqlSourceSettings",
+      "name": "omop-source",
+      "sourceUri": "https://datatools4heart.eu/tofhir-mappings/omop-data",
+      "databaseUrl": "jdbc:postgresql://localhost:5432/omopdatav2",
+      "username": "postgres",
+      "password": "postgres"
+    }
+  },
+  "sinkSettings": {
+    "jsonClass": "FhirRepositorySinkSettings",
+    "fhirRepoUrl": "http://localhost:8081/fhir",
+    "writeErrorHandling": "halt"
+  },
+  "mappingErrorHandling": "halt",
+  "mappings": [
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/procedure-occurrence-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select po.procedure_occurrence_id, po.visit_occurrence_id, po.person_id, c.concept_code, c.vocabulary_id, c.concept_name, po.procedure_date, po.procedure_datetime, po.provider_id, c2.concept_code as po_type_concept_code, c2.vocabulary_id as po_type_vocabulary_id, c2.concept_name as po_type_concept_name from procedure_occurrence po left join concept c on po.procedure_concept_id = c.concept_id left join concept c2 on po.procedure_type_concept_id = c2.concept_id  "
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/care-site-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select cs.care_site_id, cs.care_site_name, c.concept_id,  c.concept_code, c.vocabulary_id, c.concept_name, l.address_1, l.address_2, l.city, l.state, l.zip, l.county,  c2.concept_name as country from care_site cs, location l, concept c, concept c2 where cs.location_id = l.location_id and cs.place_of_service_concept_id = c.concept_id and l.country_concept_id = c2.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/location-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select * from location l, concept c where l.country_concept_id = c.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/person-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select p.person_id, p.gender_concept_id, p.provider_id, p.care_site_id, DATE(CONCAT(p.year_of_birth, '-', p.month_of_birth, '-', coalesce(p.day_of_birth, '01'))) as birthdate, p.birth_datetime, l.address_1, l.address_2, l.city, l.state, l.zip, c2.concept_code as ethnicity_concept_code, c2.vocabulary_id as ethnicity_vocab_id, c2.concept_name as ethnicity_concept_name from person p left join location l on p.location_id = l.location_id left join concept c2 on p.ethnicity_concept_id = c2.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/condition-occurrence-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select co.condition_occurrence_id, co.provider_id, co.visit_occurrence_id, c.concept_code as condition_status_concept_code, c.vocabulary_id as condition_status_concept_vocab_id, c.concept_name as condition_status_concept_name, co.person_id, c2.concept_code as condition_concept_code, c2.vocabulary_id as condition_concept_vocab_id, c2.concept_name as condition_concept_name, co.condition_start_date, co.condition_start_datetime, co.condition_end_date, co.condition_end_datetime, co.stop_reason, c3.concept_code as type_concept_code, c3.vocabulary_id as type_vocab_id, c3.concept_name as type_concept_name from condition_occurrence co left join concept c on co.condition_status_concept_id = c.concept_id left join concept c2 on co.condition_concept_id = c2.concept_id left join concept c3 on co.condition_type_concept_id = c3.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/observation-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select o.observation_id, o.provider_id, o.visit_occurrence_id, o.person_id, c.concept_code as unit_code, c.vocabulary_id as unit_vocab_id, c.concept_name as unit_name, o.value_as_number, c2.concept_code, c2.vocabulary_id, c2.concept_name, o.observation_date, o.observation_datetime, o.value_as_string, c3.concept_code as value_as_concept_code, c3.vocabulary_id as value_as_vocab_id, c3.concept_name as value_as_concept_name from observation o left join concept c on o.unit_concept_id = c.concept_id left join concept c2 on o.observation_concept_id = c2.concept_id left join concept c3 on o.value_as_concept_id = c3.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/measurement-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select m.measurement_id, m.provider_id, m.visit_occurrence_id, m.person_id, c.concept_code as unit_code, c.vocabulary_id as unit_vocab_id, c.concept_name as unit_name, m.value_as_number, c2.concept_code, c2.vocabulary_id, c2.concept_name, m.range_low, m.range_high, m.measurement_date, m.measurement_datetime, c3.concept_code as value_as_concept_code, c3.vocabulary_id as value_as_vocab_id, c3.concept_name as value_as_concept_name from measurement m left join concept c on m.unit_concept_id = c.concept_id left join concept c2 on m.measurement_concept_id = c2.concept_id left join concept c3 on m.value_as_concept_id = c3.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/death-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select d.person_id, d.death_date, d.death_datetime, c.concept_code as type_concept_code, c.vocabulary_id as type_vocab_id, c.concept_name as type_concept_name, c2.concept_code as cause_concept_code, c2.vocabulary_id as cause_vocab_id, c2.concept_name as cause_concept_name from death d left join concept c on d.death_type_concept_id = c.concept_id left join concept c2 on d.cause_concept_id = c2.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/drug-exposure-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select de.drug_exposure_id, de.stop_reason, de.refills, de.quantity, de.days_supply, de.lot_number, de.sig, c.concept_code as route_concept_code, c.vocabulary_id as route_vocab_id, c.concept_name as route_concept_name, de.provider_id, de.visit_occurrence_id, de.drug_source_value, de.person_id, c2.concept_code as drug_concept_code, c2.vocabulary_id as drug_vocab_id, c2.concept_name as drug_concept_name, de.drug_exposure_start_date, de.drug_exposure_start_datetime, de.drug_exposure_end_date, de.drug_exposure_end_datetime, de.verbatim_end_date from drug_exposure de left join concept c on de.route_concept_id = c.concept_id left join concept c2 on de.drug_concept_id = c2.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/visit-occurrence-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select vo.visit_occurrence_id, vo.care_site_id, vo.preceding_visit_occurrence_id, vo.person_id, c.concept_code, c.vocabulary_id, c.concept_name, vo.visit_start_date, vo.visit_start_datetime, vo.visit_end_date, vo.visit_end_datetime, vo.provider_id, c2.concept_code as admitted_from_concept_code, c2.vocabulary_id as admitted_from_concept_vocab_id, c2.concept_name as admitted_from_concept_name, c3.concept_code as discharged_to_concept_code, c3.vocabulary_id as discharged_to_concept_vocab_id, c3.concept_name as discharged_to_concept_name, c4.concept_code as v_type_concept_code, c4.vocabulary_id as v_type_concept_vocab_id, c4.concept_name as v_type_concept_name, co.condition_occurrence_id  from visit_occurrence vo left join condition_occurrence co  on vo.visit_occurrence_id  = co.visit_occurrence_id   left join concept c on vo.visit_concept_id = c.concept_id left join concept c2 on vo.admitted_from_concept_id = c2.concept_id left join concept c3 on vo.discharged_to_concept_id = c3.concept_id left join concept c4 on vo.visit_type_concept_id = c4.concept_id"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/visit-occurrence-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select vo.visit_occurrence_id, vo.care_site_id, vo.preceding_visit_occurrence_id, vo.person_id, c.concept_code, c.vocabulary_id, c.concept_name, vo.visit_start_date, vo.visit_start_datetime, vo.visit_end_date, vo.visit_end_datetime, vo.provider_id, c2.concept_code as admitted_from_concept_code, c2.vocabulary_id as admitted_from_concept_vocab_id, c2.concept_name as admitted_from_concept_name, c3.concept_code as discharged_to_concept_code, c3.vocabulary_id as discharged_to_concept_vocab_id, c3.concept_name as discharged_to_concept_name, c4.concept_code as v_type_concept_code, c4.vocabulary_id as v_type_concept_vocab_id, c4.concept_name as v_type_concept_name, co.condition_occurrence_id  from visit_occurrence vo left join condition_occurrence co  on vo.visit_occurrence_id  = co.visit_occurrence_id   left join concept c on vo.visit_concept_id = c.concept_id left join concept c2 on vo.admitted_from_concept_id = c2.concept_id left join concept c3 on vo.discharged_to_concept_id = c3.concept_id left join concept c4 on vo.visit_type_concept_id = c4.concept_id"
+        }
+      }
+    }
+  ]
+}
