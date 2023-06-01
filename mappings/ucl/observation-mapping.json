@@ -2,7 +2,7 @@
   "id": "observation-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/omop/observation-mapping",
   "name": "observation-mapping",
-  "title": "Mapping of omop observation to AIC-Observation FHIR profile",
+  "title": "Mapping of omop observation to FHIR Observation resource",
   "source": [{
       "alias": "source",
       "url": "https://some-url-for-metadata-purposes"

@@ -1,8 +1,8 @@
 {
-  "id": "condition-occurrence-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/condition-occurrence-mapping",
-  "name": "condition-occurrence-mapping",
-  "title": "Mapping of omop condition-occurrence to AIC-Condition FHIR profile",
+  "id": "condition-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/condition-mapping",
+  "name": "condition-mapping",
+  "title": "Mapping of omop condition-occurrence to DT4H-Condition FHIR profile",
   "source": [{
       "alias": "source",
       "url": "https://some-url-for-metadata-purposes"

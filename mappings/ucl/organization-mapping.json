@@ -1,8 +1,8 @@
 {
-  "id": "care-site-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/care-site-mapping",
-  "name": "care-site-mapping",
-  "title": "Mapping of omop care-site to AIC-Organization FHIR profile",
+  "id": "organization-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/organization-mapping",
+  "name": "organization-mapping",
+  "title": "Mapping of omop care-site to FHIR Organization resource",
   "source": [{
     "alias": "source",
     "url": "https://some-url-for-metadata-purposes"

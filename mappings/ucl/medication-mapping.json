@@ -1,8 +1,8 @@
 {
-  "id": "drug-exposure-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/drug-exposure-mapping",
-  "name": "drug-exposure-mapping",
-  "title": "Mapping of omop drug exposure to AIC-MedicationStatement FHIR profile",
+  "id": "medication-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/medication-mapping",
+  "name": "medication-mapping",
+  "title": "Mapping of omop drug exposure to FHIR Medication, MedicationStatement and MedicationRequest resources",
   "source": [{
     "alias": "source",
     "url": "https://some-url-for-metadata-purposes"

@@ -1,8 +1,8 @@
 {
-  "id": "death-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/death-mapping",
-  "name": "death-mapping",
-  "title": "Mapping of omop death to AIC-AdverseEvent FHIR profile",
+  "id": "adverse-event-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/adverse-event-mapping",
+  "name": "adverse-event-mapping",
+  "title": "Mapping of omop death to FHIR AdverseEvent resource",
   "source": [{
     "alias": "source",
     "url": "https://some-url-for-metadata-purposes"

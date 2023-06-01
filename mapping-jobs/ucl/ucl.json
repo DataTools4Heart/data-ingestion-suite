@@ -18,7 +18,7 @@
   "mappingErrorHandling": "halt",
   "mappings": [
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/procedure-occurrence-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/procedure-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
@@ -27,7 +27,7 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/care-site-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/organization-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
@@ -45,7 +45,7 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/person-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/patient-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
@@ -54,7 +54,7 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/condition-occurrence-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/condition-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
@@ -72,7 +72,7 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/measurement-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/observation-measurement-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
@@ -81,7 +81,7 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/death-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/adverse-event-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
@@ -90,7 +90,7 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/drug-exposure-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/medication-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
@@ -99,16 +99,7 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/visit-occurrence-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select vo.visit_occurrence_id, vo.care_site_id, vo.preceding_visit_occurrence_id, vo.person_id, c.concept_code, c.vocabulary_id, c.concept_name, vo.visit_start_date, vo.visit_start_datetime, vo.visit_end_date, vo.visit_end_datetime, vo.provider_id, c2.concept_code as admitted_from_concept_code, c2.vocabulary_id as admitted_from_concept_vocab_id, c2.concept_name as admitted_from_concept_name, c3.concept_code as discharged_to_concept_code, c3.vocabulary_id as discharged_to_concept_vocab_id, c3.concept_name as discharged_to_concept_name, c4.concept_code as v_type_concept_code, c4.vocabulary_id as v_type_concept_vocab_id, c4.concept_name as v_type_concept_name, co.condition_occurrence_id  from visit_occurrence vo left join condition_occurrence co  on vo.visit_occurrence_id  = co.visit_occurrence_id   left join concept c on vo.visit_concept_id = c.concept_id left join concept c2 on vo.admitted_from_concept_id = c2.concept_id left join concept c3 on vo.discharged_to_concept_id = c3.concept_id left join concept c4 on vo.visit_type_concept_id = c4.concept_id"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/visit-occurrence-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/omop/encounter-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",

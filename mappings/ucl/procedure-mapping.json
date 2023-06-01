@@ -1,8 +1,8 @@
 {
-  "id": "procedure-occurrence-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/procedure-occurrence-mapping",
-  "name": "procedure-occurrence-mapping",
-  "title": "Mapping of omop procedure occurrence to AIC-Procedure FHIR profile",
+  "id": "procedure-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/procedure-mapping",
+  "name": "procedure-mapping",
+  "title": "Mapping of omop procedure occurrence to DT4H-Procedure FHIR profile",
   "source": [{
     "alias": "source",
     "url": "https://some-url-for-metadata-purposes"

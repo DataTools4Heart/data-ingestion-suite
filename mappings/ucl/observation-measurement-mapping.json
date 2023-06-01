@@ -1,8 +1,8 @@
 {
-  "id": "measurement-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/measurement-mapping",
-  "name": "measurement-mapping",
-  "title": "Mapping of omop measurement to AIC-Observation FHIR profile",
+  "id": "observation-measurement-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/observation-measurement-mapping",
+  "name": "observation-measurement-mapping",
+  "title": "Mapping of omop measurement to FHIR Observation resource",
   "source": [{
       "alias": "source",
       "url": "https://some-url-for-metadata-purposes"

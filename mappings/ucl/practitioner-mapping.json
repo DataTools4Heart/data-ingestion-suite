@@ -1,8 +1,8 @@
 {
-  "id": "provider-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/provider-mapping",
-  "name": "provider-mapping",
-  "title": "Mapping of omop provider to AIC-Practitioner FHIR profile",
+  "id": "practitioner-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/practitioner-mapping",
+  "name": "practitioner-mapping",
+  "title": "Mapping of omop provider to FHIR Practitioner resource",
   "source": [{
     "alias": "source",
     "url": "https://some-url-for-metadata-purposes"

@@ -2,7 +2,7 @@
   "id": "specimen-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/omop/specimen-mapping",
   "name": "specimen-mapping",
-  "title": "Mapping of omop specimen to AIC-Specimen FHIR profile",
+  "title": "Mapping of omop specimen to DT4H-BloodSpecimen FHIR profile",
   "source": [
     {
       "alias": "source",

@@ -1,8 +1,8 @@
 {
-  "id": "visit-occurrence-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/visit-occurrence-mapping",
-  "name": "visit-occurrence-mapping",
-  "title": "Mapping of omop visit-occurrence to AIC-Encounter FHIR profile",
+  "id": "encounter-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/omop/encounter-mapping",
+  "name": "encounter-mapping",
+  "title": "Mapping of omop visit-occurrence to DT4H-Encounter FHIR profile",
   "source": [{
       "alias": "source",
     "url": "https://some-url-for-metadata-purposes"
