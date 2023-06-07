@@ -20,7 +20,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Encounter",
-          "id": "{{mpp:getHashedId('Encounter', id_encounter.toString())}}",
+          "id": "{{mpp:getHashedId('Encounter', 'icrc_' + id_encounter.toString())}}",
           "meta": {
             "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter"],
             "source": "{{%sourceSystem.sourceUri}}"

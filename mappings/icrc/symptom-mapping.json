@@ -17,7 +17,7 @@
     {
       "name": "snomedCode",
       "language": "text/fhirpath",
-      "expression": "mpp:getConcept(%symptomsConceptMap, id_symptom.toString(), 'target_code')"
+      "expression": "mpp:getConcept(%symptomsConceptMap, 'icrc_' + id_symptom.toString(), 'target_code')"
     }
   ],
   "mapping": [

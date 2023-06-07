@@ -14,7 +14,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id.toString() + '_smoking_status')}}",
+          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id.toString() + '_smoking_status')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-SmokingStatus"
