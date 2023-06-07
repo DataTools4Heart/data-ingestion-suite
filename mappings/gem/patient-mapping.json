@@ -1,0 +1,43 @@
+{
+  "id": "gem-patient-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
+  "name": "patient-mapping",
+  "title": "Mapping of GEM's angrafica table to DT4H Patient FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/gem/Angrafica"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Patient",
+          "id": "{{mpp:getHashedId('Patient', codice_sanitario + '_gem')}}",
+          "meta": {
+            "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient"],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "active": true,
+          "identifier": [
+            {
+              "use": "official",
+              "system": "{{%sourceSystem.sourceUri}}",
+              "value": "{{codice_sanitario}}"
+            }
+          ],
+          "gender": "{{ iif(sex='M', 'male', 'female') }}",
+          "birthDate": "{{data_nascita}}",
+          "extension": {
+            "{{#ethnicity}}": "{{ iif(ethnicity != '', ethnicity, {}) }}",
+            "{{?}}": {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient_Ethnicity",
+              "value": "{{ethnicity}}"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

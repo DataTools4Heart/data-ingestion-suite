@@ -1,0 +1,5 @@
+source_code,source_unit,target_unit,conversion_function
+5060,ng/mL,mcg/L,$this
+5016,mg/dL,mmol/L,$this*0.0555
+5066,mEq/L,mmol/L,$this
+5077,mEq/L,mmol/L,$this

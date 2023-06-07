@@ -1,0 +1,47 @@
+{
+  "id": "gem-condition-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
+  "name": "condition-mapping",
+  "title": "Mapping of GEM's patologie table to the DT4H Condition FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/gem/Patologie"
+  }],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Condition",
+          "id": "{{mpp:getHashedId('Condition', id + '_gem')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "clinicalStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code": "active"
+              }
+            ]
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/sid/icd-10",
+                "code": "{{code_dot}} TODO",
+                "display": "{{? name_english}} TODO"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
+          "onsetDateTime": "{{data_in}}"
+        }
+      }
+    }
+  ]
+}
