@@ -1,0 +1,34 @@
+{
+  "id": "umcu-mapping-job",
+  "sourceSettings": {
+    "source": {
+      "jsonClass": "SqlSourceSettings",
+      "name": "icrc-db-source",
+      "sourceUri": "https://datatools4heart.eu/data-ingestion-suite/umcu-data",
+      "databaseUrl": "jdbc:postgresql://localhost:5432/",
+      "username": "postgres",
+      "password": "password"
+    }
+  },
+  "sinkSettings": {
+    "jsonClass": "FhirRepositorySinkSettings",
+    "fhirRepoUrl": "http://localhost:8081/fhir",
+    "errorHandling": "continue"
+  },
+  "mappingErrorHandling": "halt",
+  "mappings": [
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
+      "sourceContext": {
+        "labResults": {
+          "jsonClass": "SqlSource",
+          "query": "lab_selectie"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "patient.encounter"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "gem-medication-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
+  "name": "medication-mapping",
+  "title": "Mapping of Gemelli medications to DT4H Medication Administration FHIR profile",
+  "source": [
+    {
+      "alias": "medications",
+      "url": "https://datatools4heart.eu/umcu/Medicatie",
+      "joinOn": ["pseudoid_voorkeur"]
+    },
+    {
+      "alias": "encounters",
+      "url": "https://datatools4heart.eu/umcu/TODO",
+      "joinOn": ["pseudoid_voorkeur"]
+    }
+  ],
+  "variable": [
+    {
+      "name": "relatedEncounter",
+      "language": "text/fhirpath",
+      "expression": "TODO %encounters.where(data_in.toDate() <= %context.data.toDate() and data_out.toDate() >= %context.data.toDate()).first()"
+    }
+  ],
+  "mapping": [
+    {
+      "precondition": {
+        "name": "relatedEncounterExists",
+        "language": "text/fhirpath",
+        "expression": "%relatedEncounter.exists()"
+      },
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "MedicationAdministration",
+          "id": "{{mpp:getHashedId('Medication', id + '_gem')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
+            ],
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.whocc.no/atc",
+                "code": "{{med_ZIatc}}",
+                "display": "{{? med_label}}"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', pseudoid_voorkeur)}}",
+          "effectivePeriod": {
+            "start": "{{med_start_dt}}",
+            "end": "{{med_stop_dt}}"
+          },
+          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id)}}",
+          "dosage": {
+            "dose": {
+              "value": "{{med_totdosis}}"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
