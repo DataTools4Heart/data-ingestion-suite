@@ -61,9 +61,9 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "effectiveDateTime": "{{date_exec.toString().replace(' ','T') + 'Z'}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id_encounter.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + %relatedEncounter.id_encounter.toString())}}",
           "component": [
             {
               "code": {

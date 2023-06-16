@@ -46,7 +46,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{weight}}",
@@ -54,7 +54,7 @@
             "code": "kg",
             "unit": "kg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
         }
       }
     },
@@ -96,7 +96,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{height}}",
@@ -104,7 +104,7 @@
             "code": "cm",
             "unit": "cm"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
         }
       }
     },
@@ -146,7 +146,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{pressure_sys}}",
@@ -154,7 +154,7 @@
             "code": "mmHg",
             "unit": "mmHg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
         }
       }
     },
@@ -196,7 +196,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{pressure_dia}}",
@@ -204,7 +204,7 @@
             "code": "mm[Hg]",
             "unit": "mmHg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
         }
       }
     },
@@ -246,7 +246,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{heart_rate}}",
@@ -254,7 +254,7 @@
             "code": "{beats}/min",
             "unit": "bpm"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
         }
       }
     },
@@ -296,7 +296,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{oxy_sat}}",
@@ -304,7 +304,7 @@
             "code": "%",
             "unit": "%"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
         }
       }
     }

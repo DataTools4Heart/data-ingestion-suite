@@ -83,8 +83,8 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id_encounter.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + %relatedEncounter.id_encounter.toString())}}",
           "effectiveDateTime": "{{exec_date.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, lab_code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit))}}"
         }

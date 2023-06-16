@@ -1,6 +1,6 @@
 {
   "id": "gem-medication-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/umcu/medication-mapping",
   "name": "medication-mapping",
   "title": "Mapping of Gemelli medications to DT4H Medication Administration FHIR profile",
   "source": [

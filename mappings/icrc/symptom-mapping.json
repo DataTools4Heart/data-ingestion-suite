@@ -32,7 +32,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id.toString() + '_symptom')}}",
+          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id.toString() + '_symptom')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Symptom"
@@ -63,8 +63,8 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}",
           "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
           "valueBoolean": true
         }
