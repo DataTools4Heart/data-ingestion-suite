@@ -1,5 +1,21 @@
 source_code,source_unit,target_unit,conversion_function
 5060,ng/mL,mcg/L,$this
-5016,mg/dL,mmol/L,$this*0.0555
+5016,mg/dL,mmol/L,$this * 0.0555
+5036E,g/L,mcg/L,$this * 1000000
+5038,mg/dL,mmol/L,$this * 0.0555
+5055G,g/L,mcg/L,$this * 1000000
 5066,mEq/L,mmol/L,$this
 5077,mEq/L,mmol/L,$this
+5092E,g/L,mcg/L,$this * 1000000
+5112,mmol/mol,d/dL,$this * 1.61134386078
+5151,mg/dL,mmol/L,$this * 0.0555
+5152,mg/dL,mmol/L,$this * 0.0555
+5202,mg/dL,mcg/L,$this * 10000
+5227A,mg/dL,mcg/L,$this * 10000
+5228,mg/dL,mcg/L,$this * 10000
+5245.5209,g/L,mg/L,$this * 1000
+5505,g/L,mcg/L,$this * 1000000
+5689,mg/dL,mg/L,$this * 10
+5749,mg/dL,mmol/L,$this * 0.0555
+5864,ng/L,ng/mL,$this / 1000
+8001a,g/dL,g/L,$this * 10

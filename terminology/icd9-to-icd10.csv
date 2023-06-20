@@ -1,0 +1,2 @@
+source_system,source_code,target_system,target_code,target_display
+http://terminology.hl7.org/CodeSystem/icd9cm,200.00,http://hl7.org/fhir/sid/icd-10,C83.3,"Diffuse large B-cell lymphoma"

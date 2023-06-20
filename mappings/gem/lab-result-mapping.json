@@ -1,7 +1,7 @@
 {
-  "id": "gem-labresult-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/gem/lab-result-mapping",
-  "name": "lab-result-mapping",
+  "id": "gem-lab-result-vital-sign-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mappings",
+  "name": "lab-result-vital-sign-mappings",
   "title": "Mapping of Gemelli lab results to DT4H Lab Result FHIR profile",
   "source": [
     {
@@ -34,7 +34,7 @@
     {
       "name": "relatedEncounter",
       "language": "text/fhirpath",
-      "expression": "%encounters.where(data_in.toDate() <= (%context.data_ora_esame.replace(' ','T') + 'Z').toDate() and data_out.toDate() >= (%context.data_ora_esame.replace(' ','T') + 'Z').toDate()).first()"
+      "expression": "TODO %encounters.where(data_in.toDate() <= (%context.data_ora_esame.replace(' ','T') + 'Z').toDate() and data_out.toDate() >= (%context.data_ora_esame.replace(' ','T') + 'Z').toDate()).first()"
     }
   ],
   "mapping": [
@@ -49,10 +49,10 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id + '_lab_result_gem')}}",
+          "id": "{{mpp:getHashedId('Observation', 'gem_' + id + '_lab_result')}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult"
+              "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign')}}"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },
@@ -62,7 +62,7 @@
               "coding": [
                 {
                   "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                  "code": "laboratory"
+                  "code": "{{iif(category = 'LAB_RESULTS', 'laboratory', 'vital-signs')}}"
                 }
               ]
             }
@@ -74,18 +74,15 @@
                 "code": "{{codice_esame}}"
               },
               {
-                "{{#tc}}": "{{mpp:getConcept(%labResultsConceptMap, codice_esame, 'target_code')}}",
-                "{{?}}": {
-                  "system": "http://loinc.org",
-                  "code": "{{%tc}}",
-                  "display": "{{? mpp:getConcept(%labResultsConceptMap, codice_esame, 'target_display')}}"
-                }
+                "system": "http://loinc.org",
+                "code": "{{mpp:getConcept(%labResultsConceptMap, codice_esame, 'target_code')}}",
+                "display": "{{? mpp:getConcept(%labResultsConceptMap, codice_esame, 'target_display')}}"
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id.toString())}}",
-          "effectiveDateTime": "{{data_ora_esame.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'gem_' + codice_sanitario)}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'gem_' + %relatedEncounter.id)}}",
+          "effectiveDateTime": "{{TODO data_ora_esame.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, codice_esame, value, unita_misura).nav:orElse(utl:createFhirQuantity(value, unita_misura))}}"
         }
       }

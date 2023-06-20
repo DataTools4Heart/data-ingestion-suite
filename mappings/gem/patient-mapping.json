@@ -14,7 +14,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Patient",
-          "id": "{{mpp:getHashedId('Patient', codice_sanitario + '_gem')}}",
+          "id": "{{mpp:getHashedId('Patient', 'gem_' + codice_sanitario)}}",
           "meta": {
             "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient"],
             "source": "{{%sourceSystem.sourceUri}}"

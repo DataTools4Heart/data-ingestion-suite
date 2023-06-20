@@ -2,7 +2,7 @@
   "id": "gem-medication-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
   "name": "medication-mapping",
-  "title": "Mapping of Gemelli medications to DT4H Medication Used FHIR profile",
+  "title": "Mapping of Gemelli medications to DT4H Medication Administered FHIR profile",
   "source": [
     {
       "alias": "medications",
@@ -34,7 +34,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "MedicationAdministration",
-          "id": "{{mpp:getHashedId('Medication', id + '_gem')}}",
+          "id": "{{mpp:getHashedId('Medication', 'gem_' + id)}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
@@ -51,14 +51,14 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'gem_' + codice_sanitario)}}",
           "effectivePeriod": {
             "start": "{{data}}"
           },
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id)}}",
+          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'gem_' + %relatedEncounter.id)}}",
           "dosage": {
             "dose": {
-              "value": "{{dose}}"
+              "value": "{{TODO dose}}"
             }
           }
         }

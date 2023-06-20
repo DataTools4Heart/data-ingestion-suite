@@ -20,7 +20,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Encounter",
-          "id": "{{mpp:getHashedId('Encounter', id)}}",
+          "id": "{{mpp:getHashedId('Encounter', 'gem_' + id)}}",
           "meta": {
             "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter"],
             "source": "{{%sourceSystem.sourceUri}}"
@@ -31,11 +31,18 @@
             "code": "{{mpp:getConcept(%encounterClassConceptMap, d_evento, 'target_code')}}",
             "display": "{{mpp:getConcept(%encounterClassConceptMap, d_evento, 'target_display')}}"
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'gem_' + codice_sanitario)}}",
           "period": {
             "start": "{{data_in + 'T' + in_time_hour + ':' + in_time_minute + ':00Z'}}",
             "end": "{{(data_out + 'T' + out_time_hour + ':' + out_time_minute + ':00Z'}}"
-          }
+          },
+          "reasonCode": [
+            {
+              "coding": [
+                "{{trms:translateToCoding(nosografico, 'http://terminology.hl7.org/CodeSystem/icd9cm','https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10')}}"
+              ]
+            }
+          ]
         }
       }
     }
