@@ -1,11 +1,11 @@
 {
-  "id": "icrc-patient-mapping",
+  "id": "patient-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
   "name": "patient-mapping",
   "title": "Mapping of patient table to DT4H Patient FHIR profile",
   "source": [{
     "alias": "source",
-    "url": "xxx"
+    "url": "https://datatools4heart.eu/icrc/Patient"
   }],
   "mapping": [
     {
@@ -14,9 +14,9 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Patient",
-          "id": "{{mpp:getHashedId('Patient', 'icrc_' + id_patient.toString())}}",
+          "id": "{{mpp:getHashedId('Patient', id.toString())}}",
           "meta": {
-            "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient"],
+            "profile":["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient"],
             "source": "{{%sourceSystem.sourceUri}}"
           },
           "active": true,
@@ -24,17 +24,14 @@
             {
               "use": "official",
               "system": "{{%sourceSystem.sourceUri}}",
-              "value": "{{id_patient.toString()}}"
+              "value": "{{id.toString()}}"
             }
           ],
-          "gender": "{{ iif(sex=0, 'male', 'female') }}",
-          "birthDate": "{{birth.toDate()}}",
-          "extension": {
-            "{{#ethnicity}}": "{{ iif(ethnicity != '', ethnicity, {}) }}",
-            "{{?}}": {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient_Ethnicity",
-              "value": "{{ethnicity}}"
-            }
+          "gender": "{{iif(gender=0, 'male', iif(gender=1, 'female', 'unknown'))}}",
+          "birthDate": "{{birth_date.toDate()}}",
+          "deceasedDateTime": {
+            "{{#deceasedDate}}": "{{decease_date}}",
+            "{{?}}": "{{%deceasedDate}}"
           }
         }
       }

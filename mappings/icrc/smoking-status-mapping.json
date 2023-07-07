@@ -1,12 +1,14 @@
 {
-  "id": "icrc-smoking-status-mapping",
+  "id": "smoking-status-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
   "name": "smoking-status-mapping",
-  "title": "Mapping of smoking addictions defined in the addiction table to DT4H Smoking Status FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/PatientAddiction"
-  }],
+  "title": "Mapping of icrc smoking status to DT4H Smoking Status FHIR profile",
+  "source": [
+    {
+      "alias": "source",
+      "url": "https://datatools4heart.eu/icrc/PatientAddiction"
+    }
+  ],
   "mapping": [
     {
       "expression": {
@@ -14,7 +16,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id.toString() + '_smoking_status')}}",
+          "id": "{{mpp:getHashedId('Observation', subject.toString() + date_from.toString() + smoking_status.toString())}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-SmokingStatus"
@@ -41,13 +43,19 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
           "effectivePeriod": {
-            "start":"{{date_from}}",
+            "start": "{{date_from}}",
             "end": "{{? date_to}}"
           },
-          "valueQuantity": {
-            "value": "{{dose}}"
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "{{smoking_status}}",
+                "display": "{{name}}"
+              }
+            ]
           }
         }
       }

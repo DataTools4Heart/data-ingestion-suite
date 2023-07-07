@@ -1,65 +1,50 @@
 {
-  "id": "icrc-medication-mapping",
+  "id": "medication-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
   "name": "medication-mapping",
-  "title": "Mapping of medication table to DT4H Medication Used FHIR profile",
-  "source": [
-    {
-      "alias": "medications",
-      "url": "https://datatools4heart.eu/icrc/Medication",
-      "joinOn": ["id_patient"]
-    },
-    {
-      "alias": "encounters",
-      "url": "https://datatools4heart.eu/icrc/Encounter",
-      "joinOn": ["id_patient"]
-    }
-  ],
-  "variable": [
-    {
-      "name": "relatedEncounter",
-      "language": "text/fhirpath",
-      "expression": "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= %context.date_from.toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > %context.date_from.toDate()).first()"
-    }
-  ],
+  "title": "Mapping of icrc medication data to DT4H MedicationAdministration FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/Medication"
+  }],
   "mapping": [
     {
       "precondition": {
-        "name": "relatedEncounterExists",
+        "name": "encounterExists",
         "language": "text/fhirpath",
-        "expression": "%relatedEncounter.exists()"
+        "expression": "encounter.exists()"
       },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "MedicationAdministration",
-          "id": "{{mpp:getHashedId('Medication', 'icrc_' + id_patient_drug.toString())}}",
+          "id": "{{mpp:getHashedId('MedicationAdministration', subject.toString() + encounter.toString() + code_atc.toString())}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },
-          "status": "completed",
+          "status": "{{iif(date_to.exists(), 'completed', 'in-progress')}}",
           "medicationCodeableConcept": {
             "coding": [
               {
                 "system": "http://www.whocc.no/atc",
-                "code": "{{atc_who}}",
-                "display": "{{? name}}"
+                "code": "{{code_atc}}",
+                "display": "{{? name_en}}"
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
           "effectivePeriod": {
             "start": "{{date_from}}",
             "end": "{{? date_to}}"
           },
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + %relatedEncounter.id_encounter.toString())}}",
+          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
           "dosage": {
             "dose": {
-              "value": "{{dose}}"
+              "value": "{{dosage}}"
             }
           }
         }

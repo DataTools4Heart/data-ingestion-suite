@@ -1,0 +1,10 @@
+source_code,target_code,code_system
+planned,planned,http://terminology.hl7.org/CodeSystem/encounter-status
+in-progress,in-progress,http://terminology.hl7.org/CodeSystem/encounter-status
+on-hold,onleave,http://terminology.hl7.org/CodeSystem/encounter-status
+discharged,in-progress,http://terminology.hl7.org/CodeSystem/encounter-status
+completed,finished,http://terminology.hl7.org/CodeSystem/encounter-status
+cancelled,cancelled,http://terminology.hl7.org/CodeSystem/encounter-status
+discontinued,cancelled,http://terminology.hl7.org/CodeSystem/encounter-status
+entered-in-error,entered-in-error,http://terminology.hl7.org/CodeSystem/encounter-status
+unknown,unknown,http://terminology.hl7.org/CodeSystem/encounter-status

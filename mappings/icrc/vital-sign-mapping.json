@@ -1,8 +1,8 @@
 {
-  "id": "icrc-vital-sign-mapping",
+  "id": "vital-sign-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
   "name": "vital-sign-mapping",
-  "title": "Mapping of vital signs defined in the encounter table to DT4H Vital Sign FHIR profile",
+  "title": "Mapping of icrc vital signs to DT4H Vital Sign FHIR profile",
   "source": [{
     "alias": "source",
     "url": "https://datatools4heart.eu/icrc/PatientVitalSign"
@@ -19,7 +19,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id_encounter.toString() + '_weight')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_weight')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -46,15 +46,15 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "effectiveDateTime": "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{weight}}",
             "system": "http://unitsofmeasure.org",
             "code": "kg",
             "unit": "kg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}"
         }
       }
     },
@@ -69,7 +69,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id_encounter.toString() + '_height')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_height')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -96,15 +96,15 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "effectiveDateTime": "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{height}}",
             "system": "http://unitsofmeasure.org",
             "code": "cm",
             "unit": "cm"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}"
         }
       }
     },
@@ -112,14 +112,14 @@
       "precondition": {
         "name": "notNull",
         "language": "text/fhirpath",
-        "expression": "pressure_sys.exists()"
+        "expression": "systolic_pressure.exists()"
       },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id_encounter.toString() + '_pressure_sys')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_systolic_pressure')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -146,15 +146,15 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "effectiveDateTime": "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
-            "value": "{{pressure_sys}}",
+            "value": "{{systolic_pressure}}",
             "system": "http://unitsofmeasure.org",
             "code": "mmHg",
             "unit": "mmHg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}"
         }
       }
     },
@@ -162,14 +162,14 @@
       "precondition": {
         "name": "notNull",
         "language": "text/fhirpath",
-        "expression": "pressure_dia.exists()"
+        "expression": "diastolic_pressure.exists()"
       },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id_encounter.toString() + '_pressure_dia')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_diastolic_pressure')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -196,15 +196,15 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "effectiveDateTime": "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
-            "value": "{{pressure_dia}}",
+            "value": "{{diastolic_pressure}}",
             "system": "http://unitsofmeasure.org",
             "code": "mm[Hg]",
             "unit": "mmHg"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}"
         }
       }
     },
@@ -219,7 +219,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id_encounter.toString() + '_heart_rate')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_heart_rate')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -246,15 +246,15 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "effectiveDateTime": "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
             "value": "{{heart_rate}}",
             "system": "http://unitsofmeasure.org",
             "code": "{beats}/min",
             "unit": "bpm"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}"
         }
       }
     },
@@ -262,14 +262,14 @@
       "precondition": {
         "name": "notNull",
         "language": "text/fhirpath",
-        "expression": "oxy_sat.exists()"
+        "expression": "spo2.exists()"
       },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id_encounter.toString() + '_oxygen_saturation')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_oxygen_saturation')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -296,15 +296,15 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "effectiveDateTime": "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
           "valueQuantity": {
-            "value": "{{oxy_sat}}",
+            "value": "{{spo2}}",
             "system": "http://unitsofmeasure.org",
             "code": "%",
             "unit": "%"
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}"
         }
       }
     }

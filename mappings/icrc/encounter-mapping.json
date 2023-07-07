@@ -1,16 +1,20 @@
 {
-  "id": "icrc-encounter-mapping",
+  "id": "encounter-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
   "name": "encounter-mapping",
-  "title": "Mapping of encounter table to DT4H Encounter FHIR profile",
+  "title": "Mapping of icrc encounter data to DT4H-Encounter FHIR profile",
   "source": [{
     "alias": "source",
     "url": "https://datatools4heart.eu/icrc/Visit"
   }],
   "context": {
+    "encounterStatusConceptMap": {
+      "category": "concept-map",
+      "url": "./encounter-status-concept-map.csv"
+    },
     "encounterClassConceptMap": {
       "category": "concept-map",
-      "url": "./encounter-class-concept-map.csv"
+      "url": "./encounter-class-codes.csv"
     }
   },
   "mapping": [
@@ -20,22 +24,40 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Encounter",
-          "id": "{{mpp:getHashedId('Encounter', 'icrc_' + id_encounter.toString())}}",
+          "id": "{{mpp:getHashedId('Encounter', id_encounter.toString())}}",
           "meta": {
-            "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter"],
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter"
+            ],
             "source": "{{%sourceSystem.sourceUri}}"
           },
-          "status": "finished",
+          "identifier": [
+            {
+              "use": "official",
+              "system": "{{%sourceSystem.sourceUri}}",
+              "value": "{{id_encounter.toString()}}"
+            }
+          ],
+          "status": "{{mpp:getConcept(%encounterStatusConceptMap, status, 'target_code')}}",
+          "subject": "{{? mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
           "class": {
+            "code": "{{class}}",
             "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-            "code": "{{mpp:getConcept(%encounterClassConceptMap, id_class.toString(), 'target_code')}}",
-            "display": "{{mpp:getConcept(%encounterClassConceptMap, id_class.toString(), 'target_display')}}"
+            "display": "{{? mpp:getConcept(%encounterClassConceptMap, class, 'target_display')}}"
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
           "period": {
-            "start": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
-            "end": "{{(time_stamp.toString().replace(' ','T') + 'Z').toDateTime() + 7 days}}"
-          }
+            "start": "{{begin_date.toDate()}}",
+            "end": "{{end_date.toDate()}}"
+          },
+          "reasonCode": [{
+            "coding": [
+              {
+                "code": "{{? reason_code}}",
+                "system": "http://hl7.org/fhir/sid/icd-10",
+                "display": "{{? name_english}}"
+              }
+            ]
+          }]
         }
       }
     }

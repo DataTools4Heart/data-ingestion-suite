@@ -1,12 +1,14 @@
 {
-  "id": "icrc-procedure-mapping",
+  "id": "procedure-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
   "name": "procedure-mapping",
-  "title": "Mapping of the patient.procedure_oper table to DT4H Procedure FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/Procedure"
-  }],
+  "title": "Mapping of the icrc patient.procedure_profile view to DT4H Procedure FHIR profile",
+  "source": [
+    {
+      "alias": "source",
+      "url": "https://datatools4heart.eu/icrc/Procedure"
+    }
+  ],
   "mapping": [
     {
       "expression": {
@@ -14,7 +16,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Procedure",
-          "id": "{{mpp:getHashedId('Procedure', 'icrc_' + id.toString())}}",
+          "id": "{{mpp:getHashedId('Procedure', subject.toString() + observation.toString())}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
@@ -23,15 +25,67 @@
           },
           "status": "completed",
           "code": {
+            "{{#sc}}": "{{snomed_code}}",
+            "{{?}}": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "{{%sc}}"
+                }
+              ]
+            }
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "performedDateTime": "{{performed.toString().replace(' ','T') + 'Z'}}",
+          "reasonReference": [
+            "{{mpp:createFhirReferenceWithHashedId('Observation', observation.toString())}}"
+          ],
+          "outcome": {
+            "{{#oc}}": "{{outcome.toString()}}",
+            "{{?}}": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "{{%oc}}"
+                }
+              ]
+            }
+          },
+          "report": [
+            {
+              "{{#report}}": "{{report}}",
+              "{{?}}": "{{mpp:createFhirReferenceWithHashedId('DiagnosticReport', report.toString()}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "precondition": {
+        "name": "reportExists",
+        "language": "text/fhirpath",
+        "expression": "report.exists()"
+      },
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "DiagnosticReport",
+          "id": "{{mpp:getHashedId('DiagnosticReport', report.toString()}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "final",
+          "code": {
             "coding": [
               {
-                "system": "http://snomed.info/sct",
-                "code": "TODO: information is not available"
+                "system": "http://loinc.org",
+                "code": "28570-0",
+                "display": "Procedure note"
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "performedDateTime": "{{date_stamp}}"
+          "conclusion": "{{report}}"
         }
       }
     }
