@@ -11,6 +11,35 @@
   ],
   "mapping": [
     {
+      "precondition": {
+        "name": "reportExists",
+        "language": "text/fhirpath",
+        "expression": "report.exists()"
+      },
+      "expression": {
+        "name": "relatedDiagnosticReport",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "DiagnosticReport",
+          "id": "{{mpp:getHashedId('DiagnosticReport', utl:uuid()}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "28570-0",
+                "display": "Procedure note"
+              }
+            ]
+          },
+          "conclusion": "{{report}}"
+        }
+      }
+    },
+    {
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
@@ -54,40 +83,14 @@
           "report": [
             {
               "{{#report}}": "{{report}}",
-              "{{?}}": "{{mpp:createFhirReferenceWithHashedId('DiagnosticReport', report.toString()}}"
+              "{{?}}": {
+                "reference": "{{'DiagnosticReport/' + %relatedDiagnosticReport.id.toString()}}"
+              }
             }
           ]
         }
       }
-    },
-    {
-      "precondition": {
-        "name": "reportExists",
-        "language": "text/fhirpath",
-        "expression": "report.exists()"
-      },
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "DiagnosticReport",
-          "id": "{{mpp:getHashedId('DiagnosticReport', report.toString()}}",
-          "meta": {
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "final",
-          "code": {
-            "coding": [
-              {
-                "system": "http://loinc.org",
-                "code": "28570-0",
-                "display": "Procedure note"
-              }
-            ]
-          },
-          "conclusion": "{{report}}"
-        }
-      }
     }
+
   ]
 }

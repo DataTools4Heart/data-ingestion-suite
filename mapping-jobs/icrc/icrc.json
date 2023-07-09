@@ -108,6 +108,32 @@
           "query": "select * from patient.patient"
         }
       }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
+      "sourceContext": {
+        "ecgs": {
+          "jsonClass": "SqlSource",
+          "query": "SELECT em.id, a.id_patient, date_exec, sample_freq, pr_duration, qrs_duration, qt, qtc, p_axis, qrs_axis, t_axis, inter_text, aVF, aVL, aVR, I, II, III, V1, V2, V3, V4, V5, V6 FROM ecg.ecg_mortara em INNER JOIN (SELECT id_ecg, raw_data[1] AS aVF, raw_data[2] AS aVL, raw_data[3] AS aVR, raw_data[4] AS I, raw_data[5] AS II, raw_data[6] AS III, raw_data[7] AS V1, raw_data[8] AS V2, raw_data[9] AS V3, raw_data[10] AS V4, raw_data[11] AS V5, raw_data[12] AS V6 from (select id_ecg, array_agg(c_data order by c_name) AS raw_data from ecg.mortara_channel_data mcd group by id_ecg) AS mcd_agg) AS mcd ON em.id = mcd.id_ecg INNER JOIN patient.activity a ON em.id_activity = a.id_activity INNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text FROM ecg.mortara_interpret GROUP BY id_ecg) AS mi ON em.id = mi.id_ecg"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "patient.encounter"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
+      "sourceContext": {
+        "echos": {
+          "jsonClass": "SqlSource",
+          "query": "SELECT a.id_patient, a.\"time_stamp\", eb.* FROM echo.echo_basic eb INNER JOIN patient.activity a ON eb.id_activity = a.id_activity"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "patient.encounter"
+        }
+      }
     }
   ]
 }
