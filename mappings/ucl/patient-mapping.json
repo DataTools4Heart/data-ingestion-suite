@@ -1,56 +1,35 @@
 {
-  "id": "patient-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/patient-mapping",
-  "name": "patient-mapping",
-  "title": "Mapping of omop person to DT4H-Patient FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://some-url-for-metadata-purposes"
-  }],
-  "mapping": [
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Patient",
-          "id": "{{mpp:getHashedId('Patient',person_id.toString())}}",
-          "meta": {
-            "profile":["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient"],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "active": true,
-          "identifier": [
-            {
-              "use": "official",
-              "system": "{{%sourceSystem.sourceUri}}",
-              "value": "{{person_id.toString()}}"
-            }
-          ],
-          "generalPractitioner": [
-            "{{? mpp:createFhirReferenceWithHashedId('Practitioner', provider_id.toString())}}"
-          ],
-          "managingOrganization": "{{? mpp:createFhirReferenceWithHashedId('Organization', care_site_id.toString())}}",
-          "gender": "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
-          "birthDate": "{{iif(birthdate.empty(), birth_datetime.utl:toFhirDateTime(), birthdate)}}",
-          "address": [{
-            "line": ["{{? address_1}}", "{{? address_2}}"],
-            "city": "{{? city}}",
-            "state": "{{? state}}",
-            "postalCode": "{{? zip}}"
-          }],
-          "extension": [
-            {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-PatientEthnicity",
-              "valueCoding": {
-                "system": "{{? ethnicity_vocab_id}}",
-                "code": "{{? ethnicity_concept_code }}",
-                "display": "{{? ethnicity_concept_name}}"
-              }
-            }
-          ]
-        }
+  "id" : "patient-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
+  "name" : "patient-mapping",
+  "title" : "Mapping from OMOP person to the DT4h-Patient profile",
+  "source" : [ {
+    "alias" : "omopPerson",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Person",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "resourceType" : "Patient",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient" ],
+          "source" : "{{%sourceSystem.sourceUri}}"
+        },
+        "extension" : [ {
+          "url" : "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-PatientEthnicity",
+          "@sliceName" : "ethnicity"
+        } ],
+        "gender" : "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
+        "birthDate" : "{{iif(birthdate.empty(), birth_datetime.utl:toFhirDateTime(), birthdate)}}",
+        "deceasedDateTime" : "{{? death_datetime}}",
+        "active" : true,
+        "id" : "{{mpp:getHashedId('Patient',person_id.toString())}}"
       }
     }
-  ]
+  } ]
 }

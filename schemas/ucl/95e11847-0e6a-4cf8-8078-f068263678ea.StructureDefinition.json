@@ -1,0 +1,69 @@
+{
+  "id" : "95e11847-0e6a-4cf8-8078-f068263678ea",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+  "name" : "OMOP-ProcedureOccurrence",
+  "status" : "draft",
+  "fhirVersion" : "4.0.1",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "OMOP-ProcedureOccurrence",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "OMOP-ProcedureOccurrence",
+      "path" : "OMOP-ProcedureOccurrence",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.person_id",
+      "path" : "OMOP-ProcedureOccurrence.person_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.vocabulary_id",
+      "path" : "OMOP-ProcedureOccurrence.vocabulary_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.concept_code",
+      "path" : "OMOP-ProcedureOccurrence.concept_code",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.concept_name",
+      "path" : "OMOP-ProcedureOccurrence.concept_name",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_datetime",
+      "path" : "OMOP-ProcedureOccurrence.procedure_datetime",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    } ]
+  }
+}

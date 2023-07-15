@@ -1,0 +1,36 @@
+{
+  "id" : "cause-of-death-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
+  "name" : "cause-of-death-mapping",
+  "title" : "Mapping of OMOP death to the DT4H-CauseOfDeath profile",
+  "source" : [ {
+    "alias" : "omopDeath",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Death",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "resourceType" : "Observation",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-CauseOfDeath" ]
+        },
+        "status" : "final",
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "68343-3",
+            "@sliceName" : "loincCauseOfDeathCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "effectiveDateTime" : "{{death_datetime}}",
+        "valueCodeableConcept" : "{{utl:createFhirCodeableConcept('http://hl7.org/fhir/sid/icd-10', concept_code, concept_name)}}"
+      }
+    }
+  } ]
+}

@@ -1,132 +1,43 @@
 {
-  "id": "medication-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/medication-mapping",
-  "name": "medication-mapping",
-  "title": "Mapping of omop drug exposure to FHIR Medication, MedicationStatement and MedicationRequest resources",
-  "source": [{
-    "alias": "source",
-    "url": "https://some-url-for-metadata-purposes"
-  }],
-  "mapping": [
-    {
-      "precondition": {
-        "name": "isEndDateLaterThanStartDate",
-        "language": "text/fhirpath",
-        "expression": "drug_exposure_end_datetime > drug_exposure_start_datetime"
-      },
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "MedicationStatement",
-          "id": "{{mpp:getHashedId('MedicationStatement',drug_exposure_id.toString())}}",
-          "meta": {
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "identifier": [
-            {
-              "use": "official",
-              "system": "{{%sourceSystem.sourceUri}}",
-              "value": "{{drug_exposure_id.toString()}}"
-            }
-          ],
-          "status": "completed",
-          "statusReason":  {
-            "coding": [
-              {
-                "display": "{{? stop_reason}}"
-              }
-            ]
-          },
-          "context": "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-          "subject": "{{? mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "effectivePeriod": {
-            "start": "{{? iif(drug_exposure_start_datetime.empty(), drug_exposure_start_date, drug_exposure_start_datetime.utl:toFhirDateTime())}}",
-            "end": "{{? iif(drug_exposure_end_datetime.empty(), drug_exposure_end_date, drug_exposure_end_datetime.utl:toFhirDateTime())}}"
-          },
-          "basedOn": ["{{? mpp:createFhirReferenceWithHashedId('MedicationRequest', drug_exposure_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString())}}"],
-          "medicationReference": "{{? mpp:createFhirReferenceWithHashedId('Medication', drug_exposure_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString())}}"
+  "id" : "medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
+  "name" : "medication-mapping",
+  "title" : "Mapping of OMOP drug exposure to the DT4H medication administration profile",
+  "source" : [ {
+    "alias" : "omopDrugExposure",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-DrugExposure",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "resourceType" : "MedicationAdministration",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ]
+        },
+        "status" : "",
+        "medicationCodeableConcept" : "{{utl:createFhirCodeableConcept(iif(vocabulary_id = 'RxNorm', 'RxNorm', 'http://www.whocc.no/atc'), concept_code, concept_name)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "context" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "effectivePeriod" : {
+          "start" : "{{drug_exposure_start_datetime}}",
+          "end" : "{{? drug_exposure_end_datetime}}"
+        },
+        "dosage" : {
+          "dose" : {
+            "value" : "{{quantity}}"
+          }
         }
       }
     },
-    {
-      "precondition": {
-        "name": "drugExists",
-        "language": "text/fhirpath",
-        "expression": "drug_concept_id.exists()"
-      },
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Medication",
-          "id": "{{mpp:getHashedId('Medication',drug_concept_id.toString())}}",
-          "meta": {
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "identifier": [
-            {
-              "use": "official",
-              "system": "{{drug_vocab_id}}",
-              "value": "{{drug_concept_id.toString()}}"
-            }
-          ],
-          "batch": {
-            "lotNumber": "{{? lot_number}}"
-          },
-          "code": "{{? utl:createFhirCodeableConcept(drug_vocab_id, drug_concept_code, drug_concept_name)}}",
-          "ingredient": [{
-            "itemCodeableConcept": "{{? utl:createFhirCodeableConcept(drug_vocab_id, drug_concept_code, drug_concept_name)}}"
-          }]
-        }
-      }
-    },
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "MedicationRequest",
-          "id": "{{mpp:getHashedId('MedicationRequest', drug_exposure_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString())}}",
-          "meta": {
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "unknown",
-          "identifier": [
-            {
-              "use": "official",
-              "system": "{{%sourceSystem.sourceUri}}",
-              "value": "{{drug_exposure_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString()}}"
-            }
-          ],
-          "medicationReference": "{{? mpp:createFhirReferenceWithHashedId('Medication', drug_exposure_id.toString() & provider_id.toString() & visit_occurrence_id.toString() & person_id.toString())}}",
-          "intent": "proposal",
-          "subject": "{{? mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "dispenseRequest": {
-            "numberOfRepeatsAllowed": "{{? refills}}",
-            "quantity": {
-              "value": "{{? quantity}}"
-            },
-            "expectedSupplyDuration": {
-              "{{#ds}}": "{{days_supply}}",
-              "{{?}}": {
-                "system": "http://unitsofmeasure.org",
-                "code" : "d",
-                "unit" : "days",
-                "value": "{{%ds}}"
-              }
-            },
-            "validityPeriod": {
-              "end": "{{? verbatim_end_date}}"
-            }
-          },
-          "dosageInstruction": [{
-            "text": "{{? sig}}",
-            "route": "{{? utl:createFhirCodeableConcept(route_vocab_id, route_concept_code, route_concept_name)}}"
-          }],
-          "requester": "{{? mpp:createFhirReferenceWithHashedId('Practitioner', provider_id.toString())}}"
-        }
-      }
+    "precondition" : {
+      "name" : "mandatoryElementsExist",
+      "language" : "text/fhirpath",
+      "expression" : "quantity.exists()"
     }
-  ]
+  } ]
 }

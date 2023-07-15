@@ -1,0 +1,200 @@
+[ {
+  "id" : "icrc",
+  "name" : "icrc",
+  "url" : "https://www.icrc.com",
+  "description" : "",
+  "schemas" : [ ],
+  "mappings" : [ {
+    "id" : "icrc-patient-mapping",
+    "name" : "patient-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping"
+  }, {
+    "id" : "icrc-condition-mapping",
+    "name" : "condition-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping"
+  }, {
+    "id" : "icrc-vital-sign-mapping",
+    "name" : "vital-sign-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping"
+  }, {
+    "id" : "icrc-labresult-mapping",
+    "name" : "lab-result-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping"
+  }, {
+    "id" : "icrc-procedure-mapping",
+    "name" : "procedure-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping"
+  }, {
+    "id" : "icrc-nyha-mapping",
+    "name" : "nyha-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping"
+  }, {
+    "id" : "icrc-encounter-mapping",
+    "name" : "encounter-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping"
+  }, {
+    "id" : "icrc-echocardiograph-mapping",
+    "name" : "ecg-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping"
+  }, {
+    "id" : "icrc-medication-mapping",
+    "name" : "medication-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping"
+  }, {
+    "id" : "icrc-symptom-mapping",
+    "name" : "lab-result-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping"
+  }, {
+    "id" : "icrc-electrocardiograph-mapping",
+    "name" : "ecg-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping"
+  }, {
+    "id" : "icrc-smoking-status-mapping",
+    "name" : "smoking-status-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping"
+  } ],
+  "mappingContexts" : [ ],
+  "mappingJobs" : [ {
+    "id" : "icrc-mapping-job",
+    "name" : ""
+  } ]
+}, {
+  "id" : "umcu",
+  "name" : "umcu",
+  "url" : "https://www.umcu.com",
+  "description" : "",
+  "schemas" : [ ],
+  "mappings" : [ {
+    "id" : "umcu-labresult-mapping",
+    "name" : "lab-result-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping"
+  }, {
+    "id" : "umcu-condition-mapping",
+    "name" : "condition-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/umcu/condition-mapping"
+  }, {
+    "id" : "gem-medication-mapping",
+    "name" : "medication-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/umcu/medication-mapping"
+  } ],
+  "mappingContexts" : [ ],
+  "mappingJobs" : [ {
+    "id" : "umcu-mapping-job",
+    "name" : ""
+  } ]
+}, {
+  "id" : "gem",
+  "name" : "gem",
+  "url" : "https://www.gem.com",
+  "description" : "",
+  "schemas" : [ ],
+  "mappings" : [ {
+    "id" : "gem-encounter-mapping",
+    "name" : "encounter-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping"
+  }, {
+    "id" : "gem-condition-mapping",
+    "name" : "condition-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping"
+  }, {
+    "id" : "gem-lab-result-vital-sign-mapping",
+    "name" : "lab-result-vital-sign-mappings",
+    "url" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mappings"
+  }, {
+    "id" : "gem-nyha-mapping",
+    "name" : "nyha-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/gem/nyha-mapping"
+  }, {
+    "id" : "gem-medication-mapping",
+    "name" : "medication-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping"
+  }, {
+    "id" : "gem-patient-mapping",
+    "name" : "patient-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping"
+  } ],
+  "mappingContexts" : [ ],
+  "mappingJobs" : [ {
+    "id" : "gem-mapping-job",
+    "name" : ""
+  } ]
+}, {
+  "id" : "ucl",
+  "name" : "ucl",
+  "url" : "https://www.ucl.com",
+  "description" : "",
+  "schemas" : [ {
+    "id" : "edd2b467-eb3c-46cb-9d85-1bd25a61500d",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Observation",
+    "type" : "OMOP-Observation",
+    "name" : "OMOP-Observation"
+  }, {
+    "id" : "cc0fa505-e5e3-4a66-8c86-301371d88a34",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-DrugExposure",
+    "type" : "OMOP-DrugExposure",
+    "name" : "OMOP-DrugExposure"
+  }, {
+    "id" : "95e11847-0e6a-4cf8-8078-f068263678ea",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+    "type" : "OMOP-ProcedureOccurrence",
+    "name" : "OMOP-ProcedureOccurrence"
+  }, {
+    "id" : "b35d724c-4b4c-4594-8155-6d6a0d011337",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Death",
+    "type" : "OMOP-Death",
+    "name" : "OMOP-Death"
+  }, {
+    "id" : "ae7db1b7-db4f-4163-a209-e20e146fea8e",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
+    "type" : "OMOP-VisitOccurrence",
+    "name" : "OMOP-VisitOccurrence"
+  }, {
+    "id" : "b4bff363-d666-4353-bdf1-405f20c42ab6",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Person",
+    "type" : "OMOP-Person",
+    "name" : "OMOP-Person"
+  }, {
+    "id" : "0a4ab300-89d9-42ac-aa5a-9be417318ef1",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Condition",
+    "type" : "OMOP-Condition",
+    "name" : "OMOP-Condition"
+  } ],
+  "mappings" : [ {
+    "id" : "medication-mapping",
+    "name" : "medication-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping"
+  }, {
+    "id" : "procedure-mapping",
+    "name" : "procedure-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping"
+  }, {
+    "id" : "cause-of-death-mapping",
+    "name" : "cause-of-death-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping"
+  }, {
+    "id" : "patient-mapping",
+    "name" : "patient-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping"
+  }, {
+    "id" : "vital-sign-mapping",
+    "name" : "vital-sign-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping"
+  }, {
+    "id" : "condition-mapping",
+    "name" : "condition-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping"
+  }, {
+    "id" : "encounter-mapping",
+    "name" : "encounter-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/encounter-mapping"
+  }, {
+    "id" : "lab-results-mapping",
+    "name" : "lab-results-mapping",
+    "url" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping"
+  } ],
+  "mappingContexts" : [ "lab-results-concept-map", "lab-result-unit-conversion", "encounter-class-concept-map", "vital-sign-concept-map" ],
+  "mappingJobs" : [ {
+    "id" : "ucl-mapping-job",
+    "name" : ""
+  } ]
+} ]

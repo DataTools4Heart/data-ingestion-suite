@@ -1,54 +1,42 @@
 {
-  "id": "procedure-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/omop/procedure-mapping",
-  "name": "procedure-mapping",
-  "title": "Mapping of omop procedure occurrence to DT4H-Procedure FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://some-url-for-metadata-purposes"
-  }],
-  "mapping": [
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Procedure",
-          "id": "{{mpp:getHashedId('Procedure', procedure_occurrence_id.toString())}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "completed",
-          "identifier": [
-            {
-              "use": "official",
-              "system": "{{%sourceSystem.sourceUri}}",
-              "value": "{{procedure_occurrence_id.toString()}}"
-            }
-          ],
-          "encounter": "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-          "subject": "{{? mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "code": {
-            "coding": [
-              {
-                "code": "{{? concept_code}}",
-                "system": "http://snomed.info/sct",
-                "display": "{{? concept_name}}"
-              }
-            ]
-          },
-          "performedDateTime": "{{? iif(procedure_datetime.empty(), procedure_date, procedure_datetime.utl:toFhirDateTime()}}",
-          "performer": [
-            {
-              "actor": "{{? mpp:createFhirReferenceWithHashedId('Practitioner', provider_id.toString())}}"
-            }
-          ],
-          "category": "{{? utl:createFhirCodeableConcept('http://snomed.info/sct', po_type_concept_code, po_type_concept_name)}}"
-        }
+  "id" : "procedure-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
+  "name" : "procedure-mapping",
+  "title" : "Mapping of OMOP procedure occurrence to the DT4H-Procedure profile",
+  "source" : [ {
+    "alias" : "omopProcedure",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "resourceType" : "Procedure",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
+        },
+        "status" : "completed",
+        "category" : {
+          "coding" : [ {
+            "system" : "",
+            "code" : "",
+            "@sliceName" : "snomedCode"
+          } ]
+        },
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "{{concept_code}}",
+            "@sliceName" : "icdCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "performedDateTime" : "{{procedure_datetime}}"
       }
     }
-  ]
+  } ]
 }

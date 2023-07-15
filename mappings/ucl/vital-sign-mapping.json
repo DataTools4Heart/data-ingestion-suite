@@ -1,0 +1,59 @@
+{
+  "id" : "vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
+  "name" : "vital-sign-mapping",
+  "title" : "Mapping of OMOP observation to DT4H Vital Sign profile",
+  "source" : [ {
+    "alias" : "omopObservation",
+    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Observation",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "vitalSignConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/ucl/vitalSignConceptMap"
+    }
+  },
+  "variable" : [ {
+    "name" : "vitalSignConcept",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%vitalSignConceptMap, observation_concept_id.toString())"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "resourceType" : "Observation",
+        "id" : "{{mpp:getHashedId('Observation', observation_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign" ]
+        },
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs"
+          } ],
+          "@sliceName" : "hl7Category"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{%vitalSignConcept.target_code}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "effectiveDateTime" : "{{iif(observation_datetime.empty(),observation_date,observation_datetime)}}",
+        "valueQuantity" : "{{utl:createFhirQuantity(value_as_number, unit)}}"
+      }
+    },
+    "precondition" : {
+      "name" : "isVitalSignObservation",
+      "language" : "text/fhirpath",
+      "expression" : "%vitalSignConcept.exists()"
+    }
+  } ]
+}

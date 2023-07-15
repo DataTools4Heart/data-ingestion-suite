@@ -1,0 +1,13 @@
+[ {
+  "id" : "DT4HTerminologyService",
+  "name" : "DT4HTerminologyService",
+  "description" : "DT4H Terminology Service",
+  "conceptMaps" : [ {
+    "id" : "icd9toicd10.csv",
+    "name" : "icd9toicd10.csv",
+    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10",
+    "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
+    "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+  } ],
+  "codeSystems" : [ ]
+} ]
