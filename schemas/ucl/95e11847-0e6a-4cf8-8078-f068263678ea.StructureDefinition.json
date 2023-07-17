@@ -1,7 +1,7 @@
 {
   "id" : "95e11847-0e6a-4cf8-8078-f068263678ea",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
   "name" : "OMOP-ProcedureOccurrence",
   "status" : "draft",
   "fhirVersion" : "4.0.1",

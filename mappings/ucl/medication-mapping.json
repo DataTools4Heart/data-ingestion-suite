@@ -5,7 +5,7 @@
   "title" : "Mapping of OMOP drug exposure to the DT4H medication administration profile",
   "source" : [ {
     "alias" : "omopDrugExposure",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-DrugExposure",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
     "joinOn" : [ ]
   } ],
   "context" : { },

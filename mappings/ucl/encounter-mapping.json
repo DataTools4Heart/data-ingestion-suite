@@ -5,7 +5,7 @@
   "title" : "Mapping of OMOP visit occurrence to the DT4H-Encounter profile",
   "source" : [ {
     "alias" : "omopVisitOccurrence",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
     "joinOn" : [ ]
   } ],
   "context" : {

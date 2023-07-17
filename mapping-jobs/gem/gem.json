@@ -30,11 +30,55 @@
   "mappingErrorHandling": "halt",
   "mappings": [
     {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "tableName": "angrafica"
+        }
+      }
+    },
+    {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
           "query": "SELECT *, to_char(ora_in, 'HH24') as in_time_hour, to_char(ora_in, 'MI') as in_time_minute, to_char(ora_out, 'HH24') as out_time_hour, to_char(ora_out, 'MI') as out_time_minute FROM elenco_contatti"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mappings",
+      "sourceContext": {
+        "measurements": {
+          "jsonClass": "SqlSource",
+          "tableName": "diariomisure"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "elenco_contatti"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
+      "sourceContext": {
+        "medications": {
+          "jsonClass": "SqlSource",
+          "tableName": "farmaci"
+        },
+        "encounters": {
+          "jsonClass": "SqlSource",
+          "tableName": "elenco_contatti"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
+      "sourceContext": {
+        "conditions": {
+          "jsonClass": "SqlSource",
+          "tableName": "patologie"
         }
       }
     }

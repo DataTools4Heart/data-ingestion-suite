@@ -5,7 +5,7 @@
   "title" : "Mapping from OMOP person to the DT4h-Patient profile",
   "source" : [ {
     "alias" : "omopPerson",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Person",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
     "joinOn" : [ ]
   } ],
   "context" : { },

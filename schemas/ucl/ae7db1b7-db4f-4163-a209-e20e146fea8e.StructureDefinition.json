@@ -1,7 +1,7 @@
 {
   "id" : "ae7db1b7-db4f-4163-a209-e20e146fea8e",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
   "name" : "OMOP-VisitOccurrence",
   "status" : "draft",
   "fhirVersion" : "4.0.1",

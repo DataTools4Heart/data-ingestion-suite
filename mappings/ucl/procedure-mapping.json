@@ -5,7 +5,7 @@
   "title" : "Mapping of OMOP procedure occurrence to the DT4H-Procedure profile",
   "source" : [ {
     "alias" : "omopProcedure",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
     "joinOn" : [ ]
   } ],
   "context" : { },

@@ -1,7 +1,7 @@
 {
   "id" : "cc0fa505-e5e3-4a66-8c86-301371d88a34",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-DrugExposure",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
   "name" : "OMOP-DrugExposure",
   "status" : "draft",
   "fhirVersion" : "4.0.1",

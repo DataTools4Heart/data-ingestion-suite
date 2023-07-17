@@ -1,7 +1,7 @@
 {
   "id" : "b4bff363-d666-4353-bdf1-405f20c42ab6",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Person",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
   "name" : "OMOP-Person",
   "status" : "draft",
   "fhirVersion" : "4.0.1",

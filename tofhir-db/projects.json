@@ -121,41 +121,41 @@
 }, {
   "id" : "ucl",
   "name" : "ucl",
-  "url" : "https://www.ucl.com",
+  "url" : "https://www.ucl.ac.uk",
   "description" : "",
   "schemas" : [ {
     "id" : "edd2b467-eb3c-46cb-9d85-1bd25a61500d",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Observation",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Observation",
     "type" : "OMOP-Observation",
     "name" : "OMOP-Observation"
   }, {
     "id" : "cc0fa505-e5e3-4a66-8c86-301371d88a34",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-DrugExposure",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
     "type" : "OMOP-DrugExposure",
     "name" : "OMOP-DrugExposure"
   }, {
     "id" : "95e11847-0e6a-4cf8-8078-f068263678ea",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
     "type" : "OMOP-ProcedureOccurrence",
     "name" : "OMOP-ProcedureOccurrence"
   }, {
     "id" : "b35d724c-4b4c-4594-8155-6d6a0d011337",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Death",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
     "type" : "OMOP-Death",
     "name" : "OMOP-Death"
   }, {
     "id" : "ae7db1b7-db4f-4163-a209-e20e146fea8e",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
     "type" : "OMOP-VisitOccurrence",
     "name" : "OMOP-VisitOccurrence"
   }, {
     "id" : "b4bff363-d666-4353-bdf1-405f20c42ab6",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Person",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
     "type" : "OMOP-Person",
     "name" : "OMOP-Person"
   }, {
     "id" : "0a4ab300-89d9-42ac-aa5a-9be417318ef1",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Condition",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
     "type" : "OMOP-Condition",
     "name" : "OMOP-Condition"
   } ],

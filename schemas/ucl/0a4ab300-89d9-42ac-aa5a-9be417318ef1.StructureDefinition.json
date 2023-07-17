@@ -1,7 +1,7 @@
 {
   "id" : "0a4ab300-89d9-42ac-aa5a-9be417318ef1",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Condition",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
   "name" : "OMOP-Condition",
   "status" : "draft",
   "fhirVersion" : "4.0.1",

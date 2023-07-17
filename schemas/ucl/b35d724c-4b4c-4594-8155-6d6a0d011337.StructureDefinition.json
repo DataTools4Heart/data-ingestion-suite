@@ -1,7 +1,7 @@
 {
   "id" : "b35d724c-4b4c-4594-8155-6d6a0d011337",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Death",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
   "name" : "OMOP-Death",
   "status" : "draft",
   "fhirVersion" : "4.0.1",

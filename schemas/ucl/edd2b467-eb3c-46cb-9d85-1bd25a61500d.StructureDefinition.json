@@ -1,7 +1,7 @@
 {
   "id" : "edd2b467-eb3c-46cb-9d85-1bd25a61500d",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Observation",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Observation",
   "name" : "OMOP-Observation",
   "status" : "draft",
   "fhirVersion" : "4.0.1",

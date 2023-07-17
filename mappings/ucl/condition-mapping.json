@@ -5,7 +5,7 @@
   "title" : "Mapping of OMOP condition occurrence to the DT4H-Condition FHIR profile",
   "source" : [ {
     "alias" : "omopCondition",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Condition",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
     "joinOn" : [ ]
   } ],
   "context" : { },

@@ -5,7 +5,7 @@
   "title" : "Mapping of OMOP observation to the DT4H-LabResult profile",
   "source" : [ {
     "alias" : "omopObservation",
-    "url" : "https://www.ucl.com/fhir/StructureDefinition/OMOP-Observation",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Observation",
     "joinOn" : [ ]
   } ],
   "context" : {
