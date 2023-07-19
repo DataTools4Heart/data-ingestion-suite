@@ -11,12 +11,18 @@
     "labResultUnitConversion": {
       "category": "unit-conversion",
       "url": "./lab-results-unit-conversion.csv"
+    },
+    "labResultCodes": {
+      "category": "concept-map",
+      "url": "./lab-result-codes.csv"
     }
   },
   "mapping": [
     {
       "precondition": {
-        "TODO": "add condition if code exists in ValueSet"
+        "name": "codeExistsInDT4HLabResultCodes",
+        "language": "text/fhirpath",
+        "expression": "mpp:getConcept(%labResultCodes, code).exists()"
       },
       "expression": {
         "name": "result",

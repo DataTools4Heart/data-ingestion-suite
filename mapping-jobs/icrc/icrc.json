@@ -42,7 +42,7 @@
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
-          "query": "SELECT e.id_patient AS subject,\n    lc.code_loinc AS code,\n    o.id_encounter AS encounter,\n    l.exec_date AS effective_date,\n    ld.value,\n    ld.unit \n   FROM patient.lab l\n     JOIN lab.lab_data ld ON l.id = ld.id_lab\n     JOIN patient.observation o ON l.id_observation = o.id\n     JOIN lab.lab_code lc ON ld.id_lab_code = lc.id\n     JOIN patient.encounter e ON o.id_encounter = e.id\n     JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text"
+          "query": "SELECT e.id_patient AS subject, lc.code_loinc AS code, o.id_encounter AS encounter, l.exec_date AS effective_date, ld.value, ld.unit FROM patient.lab l  JOIN lab.lab_data ld ON l.id = ld.id_lab  JOIN patient.observation o ON l.id_observation = o.id  JOIN lab.lab_code lc ON ld.id_lab_code = lc.id  JOIN patient.encounter e ON o.id_encounter = e.id  JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text"
         }
       }
     },
@@ -69,7 +69,7 @@
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
-          "query": "select cp.*, icd10.name_english from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code"
+          "query": "select cp.*, icd10.name_english, icd10.code_dot from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code"
         }
       }
     },
