@@ -1,5 +1,5 @@
 {
-  "id": "nyha-mapping",
+  "id": "icrc-nyha-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
   "name": "nyha-mapping",
   "title": "Mapping of New York Heart Assessment evaluations in the encounter table to DT4H NYHA FHIR profile",

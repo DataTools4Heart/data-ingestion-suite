@@ -1,5 +1,5 @@
 {
-  "id": "procedure-mapping",
+  "id": "icrc-procedure-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
   "name": "procedure-mapping",
   "title": "Mapping of the icrc patient.procedure_profile view to DT4H Procedure FHIR profile",
@@ -54,15 +54,12 @@
           },
           "status": "completed",
           "code": {
-            "{{#sc}}": "{{snomed_code}}",
-            "{{?}}": {
-              "coding": [
-                {
-                  "system": "http://snomed.info/sct",
-                  "code": "{{%sc}}"
-                }
-              ]
-            }
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "{{snomed_code}}"
+              }
+            ]
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
           "performedDateTime": "{{performed.toString().replace(' ','T') + 'Z'}}",

@@ -1,5 +1,5 @@
 {
-  "id": "symptom-mapping",
+  "id": "icrc-symptom-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
   "name": "symptom-mapping",
   "title": "Mapping of icrc symptoms to DT4H Symptom FHIR profile",

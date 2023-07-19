@@ -1,5 +1,5 @@
 {
-  "id": "encounter-mapping",
+  "id": "icrc-encounter-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
   "name": "encounter-mapping",
   "title": "Mapping of icrc encounter data to DT4H-Encounter FHIR profile",

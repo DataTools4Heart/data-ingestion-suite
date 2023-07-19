@@ -1,5 +1,5 @@
 {
-  "id": "vital-sign-mapping",
+  "id": "icrc-vital-sign-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
   "name": "vital-sign-mapping",
   "title": "Mapping of icrc vital signs to DT4H Vital Sign FHIR profile",

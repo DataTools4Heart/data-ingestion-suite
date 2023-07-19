@@ -7,7 +7,7 @@
       "sourceUri": "https://datatools4heart.eu/data-ingestion-suite/icrc-data",
       "databaseUrl": "jdbc:postgresql://localhost:5432/icrc",
       "username": "postgres",
-      "password": "password"
+      "password": "postgres"
     }
   },
   "sinkSettings": {
@@ -20,74 +20,11 @@
   },
   "mappings": [
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
-          "query": "select * from dt4h.nyha_profile"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select ssp.*, ss.\"name\" from dt4h.smoking_status_profile ssp left join standard_dict.smoking_status ss on ssp.smoking_status = ss.code"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select * from dt4h.procedure_profile"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select mp.*, atc.name_en from dt4h.medication_profile mp left join standard_dict.atc atc on mp.code_atc = atc.code"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select cp.*, icd10.name_english from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select sp.*, sc.\"text\" from dt4h.symptom_profile sp left join standard_dict.snomed_ct sc on sp.code = sc.sctid"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select * from dt4h.vital_sign_profile"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "SELECT e.id_patient AS subject,\n    lc.code_loinc AS code,\n    o.id_encounter AS encounter,\n    l.exec_date AS effective_date,\n    ld.value,\n    ld.unit \n   FROM patient.lab l\n     JOIN lab.lab_data ld ON l.id = ld.id_lab\n     JOIN patient.observation o ON l.id_observation = o.id\n     JOIN lab.lab_code lc ON ld.id_lab_code = lc.id\n     JOIN patient.encounter e ON o.id_encounter = e.id\n     JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text"
+          "query": "select * from patient.patient"
         }
       }
     },
@@ -101,11 +38,65 @@
       }
     },
     {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
       "sourceContext": {
         "source": {
           "jsonClass": "SqlSource",
-          "query": "select * from patient.patient"
+          "query": "SELECT e.id_patient AS subject,\n    lc.code_loinc AS code,\n    o.id_encounter AS encounter,\n    l.exec_date AS effective_date,\n    ld.value,\n    ld.unit \n   FROM patient.lab l\n     JOIN lab.lab_data ld ON l.id = ld.id_lab\n     JOIN patient.observation o ON l.id_observation = o.id\n     JOIN lab.lab_code lc ON ld.id_lab_code = lc.id\n     JOIN patient.encounter e ON o.id_encounter = e.id\n     JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select * from dt4h.vital_sign_profile"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select sp.*, sc.\"text\" from dt4h.symptom_profile sp left join standard_dict.snomed_ct sc on sp.code = sc.sctid"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select cp.*, icd10.name_english from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select mp.*, atc.name_en from dt4h.medication_profile mp left join standard_dict.atc atc on mp.code_atc = atc.code"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select * from dt4h.procedure_profile"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select ssp.*, ss.\"name\" from dt4h.smoking_status_profile ssp left join standard_dict.smoking_status ss on ssp.smoking_status = ss.code"
         }
       }
     },
@@ -128,6 +119,15 @@
         "encounters": {
           "jsonClass": "SqlSource",
           "tableName": "patient.encounter"
+        }
+      }
+    },
+    {
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
+      "sourceContext": {
+        "source": {
+          "jsonClass": "SqlSource",
+          "query": "select * from dt4h.nyha_profile"
         }
       }
     }

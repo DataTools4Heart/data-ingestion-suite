@@ -1,5 +1,5 @@
 {
-  "id": "smoking-status-mapping",
+  "id": "icrc-smoking-status-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
   "name": "smoking-status-mapping",
   "title": "Mapping of icrc smoking status to DT4H Smoking Status FHIR profile",

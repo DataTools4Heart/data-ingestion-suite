@@ -1,5 +1,5 @@
 {
-  "id": "medication-mapping",
+  "id": "icrc-medication-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
   "name": "medication-mapping",
   "title": "Mapping of icrc medication data to DT4H MedicationAdministration FHIR profile",
