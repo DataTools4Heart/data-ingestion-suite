@@ -19,7 +19,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_weight')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + efective_datetime.toString() + '_weight')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -69,7 +69,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_height')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + efective_datetime.toString() + '_height')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -119,7 +119,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_systolic_pressure')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + efective_datetime.toString() + '_systolic_pressure')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -169,7 +169,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_diastolic_pressure')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + efective_datetime.toString() + '_diastolic_pressure')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -219,7 +219,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_heart_rate')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + efective_datetime.toString() + '_heart_rate')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
@@ -269,7 +269,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', encounter.toString() + '_oxygen_saturation')}}",
+          "id": "{{mpp:getHashedId('Observation', encounter.toString() + efective_datetime.toString() + '_oxygen_saturation')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign"
