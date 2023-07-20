@@ -1,5 +1,5 @@
 {
-  "id": "icrc-condition-mapping",
+  "id": "condition-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
   "name": "condition-mapping",
   "title": "Mapping of icrc condition data to the DT4H Condition FHIR profile",

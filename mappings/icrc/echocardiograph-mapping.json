@@ -1,5 +1,5 @@
 {
-  "id": "icrc-echocardiograph-mapping",
+  "id": "echocardiograph-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
   "name": "ecg-mapping",
   "title": "Mapping of the echo tables to the DT4H Echocardiograph FHIR profile",

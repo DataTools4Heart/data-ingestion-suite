@@ -1,5 +1,5 @@
 {
-  "id": "icrc-lab-result-mapping",
+  "id": "lab-result-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
   "name": "lab-result-mapping",
   "title": "Mapping of icrc lab results to DT4H Lab Result FHIR profile",

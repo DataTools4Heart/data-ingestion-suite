@@ -1,5 +1,5 @@
 {
-  "id": "icrc-procedure-mapping",
+  "id": "procedure-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
   "name": "procedure-mapping",
   "title": "Mapping of the icrc patient.procedure_profile view to DT4H Procedure FHIR profile",

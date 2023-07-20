@@ -1,5 +1,5 @@
 {
-  "id": "icrc-electrocardiograph-mapping",
+  "id": "electrocardiograph-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
   "name": "ecg-mapping",
   "title": "Mapping of the ecg_mortara table to the DT4H Electrocardiograph FHIR profile",
