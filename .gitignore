@@ -5,3 +5,4 @@ application.conf
 **/logs/*
 .idea/
 **/target
+tofhir-db

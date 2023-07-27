@@ -9,27 +9,39 @@
     "joinOn" : [ ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [
+    {
+      "name": "atcIngredientCodes",
+      "language": "text/fhirpath",
+      "expression": "rxn:getMedicationDetails(concept_code).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
+    }
+  ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "MedicationAdministration",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ]
-        },
-        "status" : "",
-        "medicationCodeableConcept" : "{{utl:createFhirCodeableConcept(iif(vocabulary_id = 'RxNorm', 'RxNorm', 'http://www.whocc.no/atc'), concept_code, concept_name)}}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "context" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "effectivePeriod" : {
-          "start" : "{{drug_exposure_start_datetime}}",
-          "end" : "{{? drug_exposure_end_datetime}}"
-        },
-        "dosage" : {
-          "dose" : {
-            "value" : "{{quantity}}"
+        "{{#ingredient}}": "{{%atcIngredientCodes}}",
+        "{{*}}": {
+          "resourceType": "MedicationAdministration",
+          "id" : "{{mpp:getHashedId('MedicationAdministration', drug_exposure_id.toString() & '_' & %ingredient)}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
+            ]
+          },
+          "status": "completed",
+          "medicationCodeableConcept": "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %ingredient, concept_name)}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+          "effectivePeriod": {
+            "start": "{{drug_exposure_start_datetime}}",
+            "end": "{{? drug_exposure_end_datetime}}"
+          },
+          "dosage": {
+            "dose": {
+              "value": "{{quantity}}"
+            }
           }
         }
       }
@@ -37,7 +49,7 @@
     "precondition" : {
       "name" : "mandatoryElementsExist",
       "language" : "text/fhirpath",
-      "expression" : "quantity.exists()"
+      "expression" : "%atcIngredientCodes.exists() and quantity.exists()"
     }
   } ]
 }

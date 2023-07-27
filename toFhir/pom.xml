@@ -38,6 +38,10 @@
             <groupId>io.onfhir</groupId>
             <artifactId>tofhir-engine_${scala.binary.version}</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.onfhir</groupId>
+            <artifactId>tofhir-rxnorm_${scala.binary.version}</artifactId>
+        </dependency>
 
         <!-- onFHIR dependencies -->
         <dependency>
@@ -125,6 +129,11 @@
             <dependency>
                 <groupId>io.onfhir</groupId>
                 <artifactId>tofhir-engine_${scala.binary.version}</artifactId>
+                <version>${tofhir.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.onfhir</groupId>
+                <artifactId>tofhir-rxnorm_${scala.binary.version}</artifactId>
                 <version>${tofhir.version}</version>
             </dependency>
 

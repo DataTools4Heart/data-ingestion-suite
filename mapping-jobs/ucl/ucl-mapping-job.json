@@ -29,67 +29,11 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
-    "sourceContext" : {
-      "omopCondition" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select\n\tcondition_occurrence_id,\n\tcondition_concept_id,\n\tcondition_start_date,\n\tcondition_start_datetime,\n\tperson_id,\n\tvisit_occurrence_id,\n\ticd10cm_code[1] as vocabulary_id,\n\ticd10cm_code[2] as concept_code,\n\ticd10cm_code[3] as concept_name\nfrom\n\t(\n\tselect\n\t\tcondition_occurrence_id,\n\t\tcondition_concept_id,\n\t\tcondition_start_date,\n\t\tcondition_start_datetime,\n\t\tperson_id,\n\t\tvisit_occurrence_id,\n\t\tcase\n\t\t\t-- if the concept is an ICD concept, return it directly\n\t\t\twhen c.vocabulary_id like 'ICD%' then array[c.vocabulary_id,\n\t\t\tc.concept_code,\n\t\t\tc.concept_name]\n\t\t\t-- if the concept is not an ICD one. \n\t\t\telse (\n\t\t\tselect\n\t\t\t\t\tarray[c1.vocabulary_id,\n\t\t\t\t\tc1.concept_code,\n\t\t\t\t\tc1.concept_name]\n\t\t\tfrom\n\t\t\t\t\tconcept c1\n\t\t\tjoin concept_relationship cr on\n\t\t\t\t\tcr.concept_id_1 = c1.concept_id\n\t\t\tjoin concept c2 on\n\t\t\t\t\tcr.concept_id_2 = c2.concept_id\n\t\t\t-- we are looking for a relationship such as \"concept_id_1:ICD10 code\" -> Maps to -> \"concept_id_2:Some other vocubulary(most likely snomed)\"\n\t\t\t-- this is because \"Maps to\" relationships are in the form of ICD -> SNOMED\n\t\t\twhere\n\t\t\t\t(c1.vocabulary_id like 'ICD10%')\n\t\t\t\tand relationship_id = 'Maps to'\n\t\t\t\tand (c2.concept_id = c.concept_id --\n\t\t\t\t\tor\n\t\t\t\t\t--if the concept.id is snomed code and there is a relation icd10 \n\t\t\t\t\tc2.concept_id in (\n\t\t\t\t\tselect\n\t\t\t\t\t\t\tcr2.concept_id_2\n\t\t\t\t\tfrom\n\t\t\t\t\t\t\tconcept_relationship cr2\n\t\t\t\t\twhere\n\t\t\t\t\t\t\tcr2.concept_id_1 = c.concept_id --if the target concept of the mapping is the same as with the concept id of the condition\n\t\t\t\t\t\tand (cr2.relationship_id = 'Is a' --we try to expand the search with equivalent codes\n\t\t\t\t\t\t\tor cr2.relationship_id = 'Concept same_as to'\n\t\t\t\t\t\t\tor cr2.relationship_id = 'Maps to')))\n\t\t\tlimit 1\n\t\t\t)\n\t\tend as icd10cm_code\n\tfrom\n\t\tcondition_occurrence co,\n\t\tconcept c\n\twhere\n\t\tco.condition_concept_id = c.concept_id) as t"
-      }
-    }
-  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
     "sourceContext" : {
       "omopDrugExposure" : {
         "jsonClass" : "SqlSource",
-        "query" : "select de.drug_exposure_id, de.person_id, de.drug_exposure_start_datetime, de.drug_exposure_end_datetime, de.quantity, de.visit_occurrence_id, c.vocabulary_id, c.concept_code, c.concept_name\nfrom drug_exposure de\njoin concept c on de.drug_concept_id = c.concept_id\nwhere quantity is not null"
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
-    "sourceContext" : {
-      "omopProcedure" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select po.person_id, c.vocabulary_id, c.concept_code, c.concept_name, procedure_datetime\nfrom procedure_occurrence po\njoin concept c on po.procedure_concept_id = c.concept_id"
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
-    "sourceContext" : {
-      "omopDeath" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select\n\tperson_id,\n\tdeath_datetime,\n\tc2.vocabulary_id,\n\tc2.concept_code,\n\tc2.concept_name\nfrom\n\t(\n\tselect\n\t\td.person_id,\n\t\td.death_datetime,\n\t\tcase\n\t\t\twhen c.vocabulary_id like 'ICD%' then c.concept_id\n\t\t\telse (\n\t\t\tselect\n\t\t\t\t\tc1.concept_id\n\t\t\tfrom\n\t\t\t\t\tconcept c1\n\t\t\tjoin concept_relationship cr on\n\t\t\t\t\tcr.concept_id_1 = c1.concept_id\n\t\t\tjoin concept c2 on\n\t\t\t\t\tcr.concept_id_2 = c2.concept_id\n\t\t\twhere\n\t\t\t\t(c1.vocabulary_id like 'ICD10%')\n\t\t\t\tand relationship_id = 'Maps to'\n\t\t\t\tand (c2.concept_id = c.concept_id\n\t\t\t\t\tor\n\t\t\t\t\tc2.concept_id in (\n\t\t\t\t\tselect\n\t\t\t\t\t\t\tcr2.concept_id_2\n\t\t\t\t\tfrom\n\t\t\t\t\t\t\tconcept_relationship cr2\n\t\t\t\t\twhere\n\t\t\t\t\t\t\tcr2.concept_id_1 = c.concept_id\n\t\t\t\t\t\tand (cr2.relationship_id = 'Is a'\n\t\t\t\t\t\t\tor cr2.relationship_id = 'Concept same_as to'\n\t\t\t\t\t\t\tor cr2.relationship_id = 'Maps to')))\n\t\t\tlimit 1\n\t\t\t)\n\t\tend as cause_id\n\tfrom\n\t\tdeath d,\n\t\tconcept c\n\twhere\t\n\t\td.cause_concept_id = c.concept_id\n) as t,\n\tconcept c2\nwhere\n\tt.cause_id = c2.concept_id"
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/encounter-mapping",
-    "sourceContext" : {
-      "omopVisitOccurrence" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select\n\tvisit_occurrence_id,\n\tvisit_concept_id,\n\tperson_id,\n\tvisit_start_datetime,\n\tvisit_end_datetime,\n        c2.vocabulary_id,\n\tc2.concept_code,\n\tc2.concept_name\nfrom\n\t(\n\tselect\n\t\tvo.visit_occurrence_id,\n\t\tvo.visit_concept_id,\n\t\tvo.person_id,\n\t\tvo.visit_start_datetime,\n\t\tvo.visit_end_datetime,\n\t\tcase\n\t\t\twhen c.vocabulary_id like 'ICD%' then c.concept_id\n\t\t\telse (\n\t\t\tselect\n\t\t\t\t\tc1.concept_id\n\t\t\tfrom\n\t\t\t\t\tconcept c1\n\t\t\tjoin concept_relationship cr on\n\t\t\t\t\tcr.concept_id_1 = c1.concept_id\n\t\t\tjoin concept c2 on\n\t\t\t\t\tcr.concept_id_2 = c2.concept_id\n\t\t\twhere\n\t\t\t\t(c1.vocabulary_id like 'ICD10%')\n\t\t\t\tand relationship_id = 'Maps to'\n\t\t\t\tand (c2.concept_id = c.concept_id\n\t\t\t\t\tor\n\t\t\t\t\tc2.concept_id in (\n\t\t\t\t\tselect\n\t\t\t\t\t\t\tcr2.concept_id_2\n\t\t\t\t\tfrom\n\t\t\t\t\t\t\tconcept_relationship cr2\n\t\t\t\t\twhere\n\t\t\t\t\t\t\tcr2.concept_id_1 = c.concept_id\n\t\t\t\t\t\tand (cr2.relationship_id = 'Is a'\n\t\t\t\t\t\t\tor cr2.relationship_id = 'Concept same_as to'\n\t\t\t\t\t\t\tor cr2.relationship_id = 'Maps to')))\n\t\t\tlimit 1\n\t\t\t)\n\t\tend as reasonCode\n\tfrom\n\t\tvisit_occurrence vo,\n\t\tcondition_occurrence co,\n\t\tconcept c\n\twhere\n\t\tco.visit_occurrence_id = vo.visit_occurrence_id\n\t\tand co.condition_concept_id = c.concept_id \n) as t,\n\tconcept c2\nwhere\n\tt.reasonCode = c2.concept_id"
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
-    "sourceContext" : {
-      "omopPerson" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select p.person_id, p.gender_concept_id, p.care_site_id, DATE(CONCAT(p.year_of_birth, '-', p.month_of_birth, '-', coalesce(p.day_of_birth, '01'))) as birthdate, p.birth_datetime, c.concept_code as ethnicity_concept_code, c.vocabulary_id as ethnicity_vocab_id, c.concept_name as ethnicity_concept_name, death_datetime \nfrom person p left join concept c on p.ethnicity_concept_id = c.concept_id left join death d on p.person_id = d.person_id"
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
-    "sourceContext" : {
-      "omopObservation" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select o.observation_id, o.observation_concept_id, o.unit_concept_id, c.concept_code as unit, o.visit_occurrence_id, o.person_id, o.value_as_number, o.observation_date, o.observation_datetime from observation o left join concept c on c.concept_id = o.unit_concept_id where o.value_as_number is not null"
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
-    "sourceContext" : {
-      "omopObservation" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select o.observation_id, o.observation_concept_id, o.unit_concept_id, c.concept_code as unit, o.visit_occurrence_id, o.person_id, o.value_as_number, o.observation_date, o.observation_datetime from observation o left join concept c on c.concept_id = o.unit_concept_id where o.value_as_number is not null"
+        "query" : "select de.drug_exposure_id, de.person_id, de.drug_exposure_start_datetime, de.drug_exposure_end_datetime, de.quantity, de.visit_occurrence_id, c.vocabulary_id, c.concept_code, c.concept_name\nfrom drug_exposure de, concept c\nwhere de.drug_concept_id = c.concept_id and quantity is not null and visit_occurrence_id is not null"
       }
     }
   } ],
