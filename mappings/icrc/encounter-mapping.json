@@ -46,8 +46,8 @@
             "display": "{{? mpp:getConcept(%encounterClassConceptMap, class, 'target_display')}}"
           },
           "period": {
-            "start": "{{begin_date.toDate()}}",
-            "end": "{{end_date.toDate()}}"
+            "start": "{{begin_date}}",
+            "end": "{{end_date}}"
           },
           "reasonCode": [{
             "coding": [

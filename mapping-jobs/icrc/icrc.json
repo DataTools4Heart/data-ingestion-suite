@@ -7,7 +7,7 @@
       "sourceUri": "https://datatools4heart.eu/data-ingestion-suite/icrc-data",
       "databaseUrl": "jdbc:postgresql://localhost:5432/icrc",
       "username": "postgres",
-      "password": "postgres"
+      "password": "password"
     }
   },
   "sinkSettings": {
