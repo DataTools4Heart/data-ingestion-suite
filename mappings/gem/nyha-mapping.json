@@ -20,7 +20,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'gem_' + id + '_nyha')}}",
+          "id": "{{mpp:getHashedId('Observation', id + '_nyha')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-NewYorkHeartAssessment"
@@ -47,7 +47,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'gem_' + codice_sanitario)}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
           "effectiveDateTime": "{{data_in}}",
           "valueCodeableConcept": {
             "coding": [

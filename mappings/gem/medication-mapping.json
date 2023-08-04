@@ -34,7 +34,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "MedicationAdministration",
-          "id": "{{mpp:getHashedId('Medication', 'gem_' + id)}}",
+          "id": "{{mpp:getHashedId('Medication', id)}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
@@ -51,11 +51,11 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'gem_' + codice_sanitario)}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
           "effectivePeriod": {
             "start": "{{data}}"
           },
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'gem_' + %relatedEncounter.id)}}",
+          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id)}}",
           "dosage": {
             "dose": {
               "value": "{{TODO dose}}"
