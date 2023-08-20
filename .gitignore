@@ -6,3 +6,4 @@ application.conf
 .idea/
 **/target
 tofhir-db
+checkpoint
