@@ -1,5 +1,5 @@
 {
-  "id": "gem-patient-mapping",
+  "id": "patient-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
   "name": "patient-mapping",
   "title": "Mapping of GEM's angrafica table to DT4H Patient FHIR profile",

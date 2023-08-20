@@ -1,68 +1,58 @@
 {
-  "id": "gem-medication-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
-  "name": "medication-mapping",
-  "title": "Mapping of Gemelli medications to DT4H Medication Administered FHIR profile",
-  "source": [
-    {
-      "alias": "medications",
-      "url": "https://datatools4heart.eu/gem/Farmaci",
-      "joinOn": ["codice_sanitario"]
-    },
-    {
-      "alias": "encounters",
-      "url": "https://datatools4heart.eu/gem/Elenco_Contatti",
-      "joinOn": ["codice_sanitario"]
-    }
-  ],
-  "variable": [
-    {
-      "name": "relatedEncounter",
-      "language": "text/fhirpath",
-      "expression": "%encounters.where(data_in.toDate() <= %context.data.toDate() and data_out.toDate() >= %context.data.toDate()).first()"
-    }
-  ],
-  "mapping": [
-    {
-      "precondition": {
-        "name": "relatedEncounterExists",
-        "language": "text/fhirpath",
-        "expression": "%relatedEncounter.exists()"
-      },
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "MedicationAdministration",
-          "id": "{{mpp:getHashedId('Medication', id)}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "completed",
-          "medicationCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://www.whocc.no/atc",
-                "code": "{{atc}}",
-                "display": "{{? termine}}"
-              }
-            ]
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
-          "effectivePeriod": {
-            "start": "{{data}}"
-          },
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id)}}",
-          "dosage": {
-            "dose": {
-              "value": "{{TODO dose}}"
-            }
+  "id" : "medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
+  "name" : "medication-mapping",
+  "title" : "Mapping of GEM's farmaci table to DT4H Medication Administered FHIR profile",
+  "source" : [ {
+    "alias" : "medications",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/Farmaci",
+    "joinOn" : [ "codice_sanitario" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "joinOn" : [ "codice_sanitario" ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(data_in.toDate() <= %context.data.toDate() and data_out.toDate() >= %context.data.toDate()).first()"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "resourceType" : "MedicationAdministration",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ],
+          "source" : "{{%sourceSystem.sourceUri}}"
+        },
+        "status" : "completed",
+        "medicationCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://www.whocc.no/atc",
+            "code" : "{{atc}}",
+            "display" : "{{? termine}}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
+        "context" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
+        "effectivePeriod" : {
+          "start" : "{{data}}"
+        },
+        "dosage" : {
+          "dose" : {
+            "value" : "-1"
           }
-        }
+        },
+        "id" : "{{mpp:getHashedId('Medication', codice_sanitario.toString() & data.toString() & atc)}}"
       }
+    },
+    "precondition" : {
+      "name" : "relatedEncounterExists",
+      "language" : "text/fhirpath",
+      "expression" : "%relatedEncounter.exists()"
     }
-  ]
+  } ]
 }

@@ -1,43 +1,52 @@
 {
-  "id": "gem-condition-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
-  "name": "condition-mapping",
-  "title": "Mapping of GEM's patologie table to the DT4H Condition FHIR profile",
-  "source": [{
-    "alias": "conditions",
-    "url": "https://datatools4heart.eu/gem/Patologie"
-  }],
-  "mapping": [
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Condition",
-          "id": "{{mpp:getHashedId('Condition', id)}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "clinicalStatus": {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                "code": "active"
-              }
-            ]
-          },
-          "code": {
-            "coding": [
-              "{{trms:translateToCoding(icd9_code, 'http://terminology.hl7.org/CodeSystem/icd9cm','https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10')}}"
-            ]
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
-          "onsetDateTime": "{{data_in}}"
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Mapping of GEM's patologie table to the DT4H Condition FHIR profile",
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/patologie",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#conditionCode}}" : "{{icd9_codes.utl:split(',')}}",
+        "{{*}}" : {
+          "{{#translatedCode}}" : "{{trms:translateToCoding(%conditionCode, 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code.first()}}",
+          "{{?}}" : {
+            "resourceType" : "Condition",
+            "id" : "{{mpp:getHashedId('Condition', data_in.toString() & %conditionCode)}}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition" ],
+              "source" : "{{%sourceSystem.sourceUri}}"
+            },
+            "clinicalStatus" : {
+              "coding" : [ {
+                "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code" : "active"
+              } ]
+            },
+            "code" : {
+              "coding" : [ {
+                "system" : "http://hl7.org/fhir/sid/icd-10",
+                "code" : "{{%translatedCode}}"
+              } ]
+            },
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
+            "onsetDateTime" : "{{data_in.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', 'Europe/Rome')}}"
+          }
         }
       }
+    },
+    "precondition" : {
+      "name" : "isCondition",
+      "language" : "text/fhirpath",
+      "expression" : "status = 1 and patologia != 'ABITUDINE_TABAGICA'"
     }
-  ]
+  } ]
 }

@@ -1,0 +1,472 @@
+{
+  "id": "1113a585-7c2a-4e07-b42c-d4175555b974",
+  "resourceType": "StructureDefinition",
+  "url": "https://datatools4heart.eu/fhir/schemas/gem/Ecocardio",
+  "name": "Echocardiograph",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "logical",
+  "abstract": false,
+  "type": "Echocardiograph",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "differential": {
+    "element": [
+      {
+        "id": "Echocardiograph",
+        "path": "Echocardiograph",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Element"
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.codice_sanitario",
+        "path": "Echocardiograph.codice_sanitario",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "string",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.dataerogazione",
+        "path": "Echocardiograph.dataerogazione",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "string",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.FunzioneDiastolica_RapportoEA",
+        "path": "Echocardiograph.FunzioneDiastolica_RapportoEA",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.FunzioneDiastolica_RapportoEE",
+        "path": "Echocardiograph.FunzioneDiastolica_RapportoEE",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaA",
+        "path": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaA",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaE",
+        "path": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaE",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Valvolatricuspide_TAPSE",
+        "path": "Echocardiograph.Valvolatricuspide_TAPSE",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_DiametroDiastolicoIndic",
+        "path": "Echocardiograph.Ventricolosinistro_DiametroDiastolicoIndic",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_DiametroSistolicoIndic",
+        "path": "Echocardiograph.Ventricolosinistro_DiametroSistolicoIndic",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_DiametroTeleDiastolico",
+        "path": "Echocardiograph.Ventricolosinistro_DiametroTeleDiastolico",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_DiametroTeleSistolico",
+        "path": "Echocardiograph.Ventricolosinistro_DiametroTeleSistolico",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_FrazionediEiezione",
+        "path": "Echocardiograph.Ventricolosinistro_FrazionediEiezione",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTD",
+        "path": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTD",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTDIndic",
+        "path": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTDIndic",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_SettoInterventricolareSpessoreTD",
+        "path": "Echocardiograph.Ventricolosinistro_SettoInterventricolareSpessoreTD",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_SettointerventricolarespessoreTDIndicM",
+        "path": "Echocardiograph.Ventricolosinistro_SettointerventricolarespessoreTDIndicM",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_StrokeVolumeIndex",
+        "path": "Echocardiograph.Ventricolosinistro_StrokeVolumeIndex",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_VolumeTeleDiastolico",
+        "path": "Echocardiograph.Ventricolosinistro_VolumeTeleDiastolico",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_VolumeTeleDiastolicoInd",
+        "path": "Echocardiograph.Ventricolosinistro_VolumeTeleDiastolicoInd",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_VolumeTeleSistolico",
+        "path": "Echocardiograph.Ventricolosinistro_VolumeTeleSistolico",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_VolumeTeleSistolicoInd",
+        "path": "Echocardiograph.Ventricolosinistro_VolumeTeleSistolicoInd",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTS",
+        "path": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTS",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTSIndic",
+        "path": "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTSIndic",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolodestro_Accorciamentofrazionale",
+        "path": "Echocardiograph.Ventricolodestro_Accorciamentofrazionale",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_DiametroInternoTD",
+        "path": "Echocardiograph.Ventricolosinistro_DiametroInternoTD",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaELATTDI",
+        "path": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaELATTDI",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaESETTTDI",
+        "path": "Echocardiograph.FunzioneDiastolica_VelocitPiccoOndaESETTTDI",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_HeartRate",
+        "path": "Echocardiograph.Ventricolosinistro_HeartRate",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolosinistro_SettoInterventricolareSpessoreTS",
+        "path": "Echocardiograph.Ventricolosinistro_SettoInterventricolareSpessoreTS",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.VenaCava_DiametroMax",
+        "path": "Echocardiograph.VenaCava_DiametroMax",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.VenaCava_DiametroMin",
+        "path": "Echocardiograph.VenaCava_DiametroMin",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolodestro_DiametroTeleDiastolico",
+        "path": "Echocardiograph.Ventricolodestro_DiametroTeleDiastolico",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.Ventricolodestro_DiametroTeleDiastolicoIndic",
+        "path": "Echocardiograph.Ventricolodestro_DiametroTeleDiastolicoIndic",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Echocardiograph.VentricolosinistroSettointerventricolarespessoresistolicoIndicM",
+        "path": "Echocardiograph.VentricolosinistroSettointerventricolarespessoresistolicoIndicM",
+        "max": "1",
+        "type": [
+          {
+            "code": "decimal",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/decimal"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,50 +1,92 @@
 {
-  "id": "gem-encounter-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
-  "name": "encounter-mapping",
-  "title": "Mapping of GEM's elenco_contatti table to DT4H Encounter FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/gem/Elenco_Contatti"
-  }],
-  "context": {
-    "encounterClassConceptMap": {
-      "category": "concept-map",
-      "url": "./encounter-class-concept-map.csv"
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Mapping of GEM's elenco_contatti table to DT4H Encounter FHIR profile",
+  "source" : [ {
+    "alias" : "encounterMain",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "joinOn" : [ "codice_sanitario", "nosografico" ]
+  }, {
+    "alias" : "encounterDetails",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
+    "joinOn" : [ "codice_sanitario", "nosografico_adt" ]
+  } ],
+  "context" : {
+    "encounterClassConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/gem/encounter-class-concept-map.csv"
     }
   },
-  "mapping": [
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Encounter",
-          "id": "{{mpp:getHashedId('Encounter', id)}}",
-          "meta": {
-            "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter"],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "finished",
-          "class": {
-            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-            "code": "{{mpp:getConcept(%encounterClassConceptMap, d_evento, 'target_code')}}",
-            "display": "{{mpp:getConcept(%encounterClassConceptMap, d_evento, 'target_display')}}"
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
-          "period": {
-            "start": "{{data_in + 'T' + in_time_hour + ':' + in_time_minute + ':00Z'}}",
-            "end": "{{(data_out + 'T' + out_time_hour + ':' + out_time_minute + ':00Z'}}"
-          },
-          "reasonCode": [
-            {
-              "coding": [
-                "{{trms:translateToCoding(nosografico, 'http://terminology.hl7.org/CodeSystem/icd9cm','https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10')}}"
-              ]
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "resourceType" : "Encounter",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter" ],
+          "source" : "{{%sourceSystem.sourceUri}}"
+        },
+        "class" : {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code" : "{{mpp:getConcept(%encounterClassConceptMap, d_evento, 'target_code')}}",
+          "display" : "{{mpp:getConcept(%encounterClassConceptMap, d_evento, 'target_display')}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
+        "period" : {
+          "start" : "{{data_in & 'T' & ora_in & ':00+02:00'}}",
+          "end" : "{{data_out & 'T' & ora_out & ':00+02:00'}}"
+        },
+        "reasonCode" : {
+          "{{#reasonCodeVar}}" : "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.diag' & $this.toString() & '_icd9cm.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select('diag' & $this.toString() & '_icd9cm')}}",
+          "{{*}}" : {
+            "coding" : {
+              "{{#codingVar}}" : "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.' & %reasonCodeVar), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code}}",
+              "{{?}}" : [ {
+                "system" : "http://hl7.org/fhir/sid/icd-10",
+                "code" : "{{%codingVar.first()}}",
+                "@sliceName" : "icd10code"
+              } ]
             }
-          ]
+          }
+        },
+        "status" : "finished",
+        "id" : "{{mpp:getHashedId('Encounter', nosografico)}}"
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "procedure",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#ind}}": "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.proc' & $this.toString() & '.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select($this.toString())}}",
+        "{{*}}": {
+          "{{#translatedCode}}": "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code.first()}}",
+          "{{?}}": {
+            "resourceType": "Procedure",
+            "meta": {
+              "profile": [
+                "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
+              ]
+            },
+            "status": "completed",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/sid/icd-10",
+                  "code": "{{%translatedCode}}",
+                  "@sliceName": "icdCode"
+                }
+              ]
+            },
+            "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
+            "performedDateTime": "{{utl:evaluateExpression('%encounterDetails.dataproc' & %ind)}}",
+            "id": "{{mpp:getHashedId('Procedure', codice_sanitario & utl:evaluateExpression('%encounterDetails.dataproc' & %ind).toString() & %ind) }}"
+          }
         }
       }
     }
-  ]
+  } ]
 }

@@ -1,0 +1,4 @@
+codice_sanitario,patologia,status,data_in,icd9_codes
+"1",ARITMIA,1,2019-01-01,"2800,570"
+"1",ABITUDINE_TABAGICA,0,2010-01-01,
+
