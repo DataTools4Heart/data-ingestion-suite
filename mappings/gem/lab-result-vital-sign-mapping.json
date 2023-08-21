@@ -61,7 +61,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
-        "effectiveDateTime" : "{{data_ora_esame.toString().replace(' ','T') + ':+02:00'}}",
+        "effectiveDateTime" : "{{data_ora_esame.toString().replace(' ','T') + ':00+02:00'}}",
         "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultUnitConversion, codice_esame, value, unita_misura), utl:createFhirQuantity(value, unita_misura, 'http://unitsofmeasure.org', unita_misura))}}",
         "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & data_ora_esame & codice_esame)}}"
       }

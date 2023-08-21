@@ -43,7 +43,7 @@
         },
         "dosage" : {
           "dose" : {
-            "value" : "-1"
+            "value" : 123456789
           }
         },
         "id" : "{{mpp:getHashedId('Medication', codice_sanitario.toString() & data.toString() & atc)}}"

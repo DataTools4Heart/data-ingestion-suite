@@ -16,6 +16,10 @@
     "echoCodeMappings" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/gem/echo-code-mappings.csv"
+    },
+    "nyhaMappings" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/gem/nyha-mappings.csv"
     }
   },
   "variable" : [ {
@@ -55,7 +59,7 @@
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{nyha_max.split(' ').last().split('-').last()}}"
+            "code" : "{{mpp:getConcept(%nyhaMappings, nyha_max.split(' ').last().split('-').last(), 'target_code')}}"
           } ]
         },
         "id" : "{{mpp:getHashedId('Observation', codice_sanitario & date.toString() & '_nyha')}}"

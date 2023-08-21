@@ -13,7 +13,8 @@
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
     "fhirRepoUrl" : "http://localhost:8081/fhir",
-    "returnMinimal" : true
+    "returnMinimal" : true,
+    "errorHandling": "continue"
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
@@ -36,7 +37,7 @@
         "options" : { }
       }
     }
-  },{
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
     "sourceContext" : {
       "encounterMain" : {
@@ -102,7 +103,8 @@
       "echo" : {
         "jsonClass" : "FileSystemSource",
         "path" : "ecocardio.csv",
-        "options" : { }
+        "options" : { },
+        "preprocessSql" : "SELECT * FROM\n\t(SELECT \n\t\t codice_sanitario, dataerogazione, regexp_replace(concat(mssite, '_', measurename), '[\\\\\\\\W]+', '') as code, measuervalue \n\t FROM echo\n\t)\n\tPIVOT (LAST(measuervalue) as value FOR code in ('FunzioneDiastolica_RapportoEA','FunzioneDiastolica_RapportoEE','FunzioneDiastolica_VelocitPiccoOndaA','FunzioneDiastolica_VelocitPiccoOndaE','Valvolatricuspide_TAPSE','Ventricolosinistro_DiametroDiastolicoIndic','Ventricolosinistro_DiametroSistolicoIndic','Ventricolosinistro_DiametroTeleDiastolico','Ventricolosinistro_DiametroTeleSistolico','Ventricolosinistro_FrazionediEiezione','Ventricolosinistro_ParetePosterioreSpessoreTD','Ventricolosinistro_ParetePosterioreSpessoreTDIndic','Ventricolosinistro_SettoInterventricolareSpessoreTD','Ventricolosinistro_SettointerventricolarespessoreTDIndicM','Ventricolosinistro_StrokeVolumeIndex','Ventricolosinistro_VolumeTeleDiastolico','Ventricolosinistro_VolumeTeleDiastolicoInd','Ventricolosinistro_VolumeTeleSistolico','Ventricolosinistro_VolumeTeleSistolicoInd','Ventricolosinistro_ParetePosterioreSpessoreTS','Ventricolosinistro_ParetePosterioreSpessoreTSIndic','Ventricolodestro_Accorciamentofrazionale','Ventricolosinistro_DiametroInternoTD','FunzioneDiastolica_VelocitPiccoOndaELATTDI','FunzioneDiastolica_VelocitPiccoOndaESETTTDI','Ventricolosinistro_HeartRate','Ventricolosinistro_SettoInterventricolareSpessoreTS','VenaCava_DiametroMax','VenaCava_DiametroMin','Ventricolodestro_DiametroTeleDiastolico','Ventricolodestro_DiametroTeleDiastolicoIndic','VentricolosinistroSettointerventricolarespessoresistolicoIndicM'\n\t))\n"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
