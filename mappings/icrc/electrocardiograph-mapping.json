@@ -203,8 +203,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "aVF",
+                    "system": "http://loinc.org",
+                    "code": "LP7383-5",
                     "display": "Raw lead aVF data"
                   }
                 ]
@@ -223,8 +223,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "aVL",
+                    "system": "http://loinc.org",
+                    "code": "LP7384-3",
                     "display": "Raw lead aVL data"
                   }
                 ]
@@ -243,8 +243,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "aVR",
+                    "system": "http://loinc.org",
+                    "code": "LP7385-0",
                     "display": "Raw lead aVR data"
                   }
                 ]
@@ -263,8 +263,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "I",
+                    "system": "http://loinc.org",
+                    "code": "LP7386-8",
                     "display": "Raw lead I data"
                   }
                 ]
@@ -283,8 +283,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "II",
+                    "system": "http://loinc.org",
+                    "code": "LP7387-6",
                     "display": "Raw lead II data"
                   }
                 ]
@@ -303,8 +303,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "III",
+                    "system": "http://loinc.org",
+                    "code": "LP7388-4",
                     "display": "Raw lead III data"
                   }
                 ]
@@ -323,8 +323,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "V1",
+                    "system": "http://loinc.org",
+                    "code": "LP7389-2",
                     "display": "Raw lead V1 data"
                   }
                 ]
@@ -343,8 +343,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "V2",
+                    "system": "http://loinc.org",
+                    "code": "LP7390-0",
                     "display": "Raw lead V2 data"
                   }
                 ]
@@ -363,8 +363,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "V3",
+                    "system": "http://loinc.org",
+                    "code": "LP7391-8",
                     "display": "Raw lead V3 data"
                   }
                 ]
@@ -383,8 +383,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "V4",
+                    "system": "http://loinc.org",
+                    "code": "LP7392-6",
                     "display": "Raw lead V4 data"
                   }
                 ]
@@ -403,8 +403,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "V5",
+                    "system": "http://loinc.org",
+                    "code": "LP7393-4",
                     "display": "Raw lead V5 data"
                   }
                 ]
@@ -423,8 +423,8 @@
               "code": {
                 "coding": [
                   {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-12-lead-codes",
-                    "code": "V6",
+                    "system": "http://loinc.org",
+                    "code": "LP7394-2",
                     "display": "Raw lead V6 data"
                   }
                 ]
