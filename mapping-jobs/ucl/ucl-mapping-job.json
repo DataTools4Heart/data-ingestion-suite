@@ -38,6 +38,8 @@
       }
     }
   } ],
-  "mappingErrorHandling" : "continue",
+  "dataProcessingSettings": {
+    "mappingErrorHandling": "continue"
+  },
   "useFhirSinkAsIdentityService" : false
 }

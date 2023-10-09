@@ -1,5 +1,5 @@
 {
-  "id": "umcu-mapping-job",
+  "id": "umcu",
   "sourceSettings": {
     "source": {
       "jsonClass": "SqlSourceSettings",
@@ -15,7 +15,9 @@
     "fhirRepoUrl": "http://localhost:8081/fhir",
     "errorHandling": "continue"
   },
-  "mappingErrorHandling": "halt",
+  "dataProcessingSettings": {
+    "mappingErrorHandling": "halt"
+  },
   "mappings": [
     {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
