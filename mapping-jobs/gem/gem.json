@@ -12,13 +12,13 @@
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://localhost:8081/fhir",
-    "returnMinimal" : true,
-    "errorHandling": "continue"
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "errorHandling" : "continue",
+    "returnMinimal" : true
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
-    "folderPath" : "/terminology-systems/DT4HTerminologyService",
+    "folderPath" : "./terminology-systems/DT4HTerminologyService",
     "conceptMapFiles" : [ {
       "id" : "icd9toicd10.csv",
       "name" : "icd9toicd10.csv",
@@ -34,6 +34,7 @@
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "angrafica.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -43,11 +44,13 @@
       "encounterMain" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
         "options" : { }
       },
       "encounterDetails" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dettaglio_contatti.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -57,11 +60,13 @@
       "labResults" : {
         "jsonClass" : "FileSystemSource",
         "path" : "diariomisure.csv",
+        "fileFormat" : "csv",
         "options" : { }
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -71,6 +76,7 @@
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -80,11 +86,13 @@
       "medications" : {
         "jsonClass" : "FileSystemSource",
         "path" : "farmaci.csv",
+        "fileFormat" : "csv",
         "options" : { }
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -94,6 +102,7 @@
       "patology" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -103,12 +112,14 @@
       "echo" : {
         "jsonClass" : "FileSystemSource",
         "path" : "ecocardio.csv",
+        "fileFormat" : "csv",
         "options" : { },
         "preprocessSql" : "SELECT * FROM\n\t(SELECT \n\t\t codice_sanitario, dataerogazione, regexp_replace(concat(mssite, '_', measurename), '[\\\\\\\\W]+', '') as code, measuervalue \n\t FROM echo\n\t)\n\tPIVOT (LAST(measuervalue) as value FOR code in ('FunzioneDiastolica_RapportoEA','FunzioneDiastolica_RapportoEE','FunzioneDiastolica_VelocitPiccoOndaA','FunzioneDiastolica_VelocitPiccoOndaE','Valvolatricuspide_TAPSE','Ventricolosinistro_DiametroDiastolicoIndic','Ventricolosinistro_DiametroSistolicoIndic','Ventricolosinistro_DiametroTeleDiastolico','Ventricolosinistro_DiametroTeleSistolico','Ventricolosinistro_FrazionediEiezione','Ventricolosinistro_ParetePosterioreSpessoreTD','Ventricolosinistro_ParetePosterioreSpessoreTDIndic','Ventricolosinistro_SettoInterventricolareSpessoreTD','Ventricolosinistro_SettointerventricolarespessoreTDIndicM','Ventricolosinistro_StrokeVolumeIndex','Ventricolosinistro_VolumeTeleDiastolico','Ventricolosinistro_VolumeTeleDiastolicoInd','Ventricolosinistro_VolumeTeleSistolico','Ventricolosinistro_VolumeTeleSistolicoInd','Ventricolosinistro_ParetePosterioreSpessoreTS','Ventricolosinistro_ParetePosterioreSpessoreTSIndic','Ventricolodestro_Accorciamentofrazionale','Ventricolosinistro_DiametroInternoTD','FunzioneDiastolica_VelocitPiccoOndaELATTDI','FunzioneDiastolica_VelocitPiccoOndaESETTTDI','Ventricolosinistro_HeartRate','Ventricolosinistro_SettoInterventricolareSpessoreTS','VenaCava_DiametroMax','VenaCava_DiametroMin','Ventricolodestro_DiametroTeleDiastolico','Ventricolodestro_DiametroTeleDiastolicoIndic','VentricolosinistroSettointerventricolarespessoresistolicoIndicM'\n\t))\n"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -118,11 +129,13 @@
       "nyha" : {
         "jsonClass" : "FileSystemSource",
         "path" : "nyha.csv",
+        "fileFormat" : "csv",
         "options" : { }
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
@@ -132,10 +145,15 @@
       "anagrafica" : {
         "jsonClass" : "FileSystemSource",
         "path" : "angrafica.csv",
+        "fileFormat" : "csv",
         "options" : { }
       }
     }
   } ],
-  "mappingErrorHandling" : "continue",
+  "dataProcessingSettings" : {
+    "mappingErrorHandling" : "continue",
+    "saveErroneousRecords" : true,
+    "archiveMode" : "off"
+  },
   "useFhirSinkAsIdentityService" : false
 }

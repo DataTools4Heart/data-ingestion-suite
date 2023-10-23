@@ -1,5 +1,6 @@
 {
   "id" : "ucl-mapping-job",
+  "name" : "ucl-mapping-job",
   "sourceSettings" : {
     "source" : {
       "jsonClass" : "SqlSourceSettings",
@@ -13,8 +14,8 @@
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
     "fhirRepoUrl" : "http://localhost:8081/fhir",
-    "returnMinimal" : true,
-    "errorHandling": "continue"
+    "errorHandling" : "continue",
+    "returnMinimal" : true
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
