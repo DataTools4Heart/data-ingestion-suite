@@ -1,40 +1,22 @@
 {
-  "id": "icrc-electrocardiograph-mapping",
+  "id": "electrocardiograph-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
   "name": "ecg-mapping",
   "title": "Mapping of the ecg_mortara table to the DT4H Electrocardiograph FHIR profile",
   "source": [
     {
       "alias": "ecgs",
-      "url": "https://datatools4heart.eu/icrc/Electrocardiograph",
-      "joinOn": ["id_patient"]
-    },
-    {
-      "alias": "encounters",
-      "url": "https://datatools4heart.eu/icrc/Encounter",
-      "joinOn": ["id_patient"]
-    }
-  ],
-  "variable": [
-    {
-      "name": "relatedEncounter",
-      "language": "text/fhirpath",
-      "expression": "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= (%context.date_exec.replace(' ','T') + 'Z').toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > (%context.date_exec.replace(' ','T') + 'Z').toDate()).first()"
+      "url": "https://datatools4heart.eu/icrc/Electrocardiograph"
     }
   ],
   "mapping": [
     {
-      "precondition": {
-        "name": "relatedEncounterExist",
-        "language": "text/fhirpath",
-        "expression": "%relatedEncounter.exists()"
-      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id.toString() + '_electrocardiograph')}}",
+          "id": "{{mpp:getHashedId('Observation', id.toString() + '_electrocardiograph')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Electrocardiograph"
@@ -61,9 +43,9 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "effectiveDateTime": "{{date_exec.toString().replace(' ','T') + 'Z'}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + %relatedEncounter.id_encounter.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter_id.toString())}}",
           "component": [
             {
               "code": {

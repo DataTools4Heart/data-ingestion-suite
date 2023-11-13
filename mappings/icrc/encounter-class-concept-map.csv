@@ -1,5 +1,0 @@
-source_code,target_code,target_display,code_system
-1,IMP,inpatient encounter,http://terminology.hl7.org/CodeSystem/v3-ActCode
-2,AMB,ambulatory,http://terminology.hl7.org/CodeSystem/v3-ActCode
-3,EMER,emergency,http://terminology.hl7.org/CodeSystem/v3-ActCode
-4,AMB,ambulatory,http://terminology.hl7.org/CodeSystem/v3-ActCode

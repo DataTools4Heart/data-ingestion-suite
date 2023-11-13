@@ -1,5 +1,5 @@
 {
-  "id": "icrc-nyha-mapping",
+  "id": "nyha-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
   "name": "nyha-mapping",
   "title": "Mapping of New York Heart Assessment evaluations in the encounter table to DT4H NYHA FHIR profile",
@@ -15,12 +15,17 @@
   },
   "mapping": [
     {
+      "precondition": {
+        "name": "nyhaValueExists",
+        "language": "text/fhirpath",
+        "expression": "value.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id_encounter.toString() + '_nyha')}}",
+          "id": "{{mpp:getHashedId('Observation', subject.toString() + effective_datetime.toString() + value.toString() + '_nyha')}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-NewYorkHeartAssessment"
@@ -47,18 +52,18 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "effectiveDateTime": "{{effective_datetime.toString().replace(' ','T') + 'Z'}}",
           "valueCodeableConcept": {
             "coding": [
               {
                 "system": "http://loinc.org",
-                "code": "{{mpp:getConcept(%nyhaValuesConceptMap, nyha.toString(), 'target_code')}}",
-                "display": "{{mpp:getConcept(%nyhaValuesConceptMap, nyha.toString(), 'target_display')}}"
+                "code": "{{mpp:getConcept(%nyhaValuesConceptMap, value.toString(), 'target_code')}}",
+                "display": "{{mpp:getConcept(%nyhaValuesConceptMap, value.toString(), 'target_display')}}"
               }
             ]
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + id_encounter.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', subject.toString())}}"
         }
       }
     }

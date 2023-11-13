@@ -1,20 +1,56 @@
 {
-  "id": "icrc-procedure-mapping",
+  "id": "procedure-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
   "name": "procedure-mapping",
-  "title": "Mapping of the patient.procedure_oper table to DT4H Procedure FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/Procedure"
-  }],
+  "title": "Mapping of the icrc patient.procedure_profile view to DT4H Procedure FHIR profile",
+  "source": [
+    {
+      "alias": "source",
+      "url": "https://datatools4heart.eu/icrc/Procedure"
+    }
+  ],
   "mapping": [
     {
+      "precondition": {
+        "name": "reportExists",
+        "language": "text/fhirpath",
+        "expression": "report.exists()"
+      },
+      "expression": {
+        "name": "relatedDiagnosticReport",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "DiagnosticReport",
+          "id": "{{mpp:getHashedId('DiagnosticReport', utl:uuid()}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "28570-0",
+                "display": "Procedure note"
+              }
+            ]
+          },
+          "conclusion": "{{report}}"
+        }
+      }
+    },
+    {
+      "precondition": {
+        "name": "codeMustExist",
+        "language": "text/fhirpath",
+        "expression": "snomed_code.exists()"
+      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Procedure",
-          "id": "{{mpp:getHashedId('Procedure', 'icrc_' + id.toString())}}",
+          "id": "{{mpp:getHashedId('Procedure', subject.toString() + snomed_code.toString() + performed.toString())}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
@@ -26,14 +62,37 @@
             "coding": [
               {
                 "system": "http://snomed.info/sct",
-                "code": "TODO: information is not available"
+                "code": "{{snomed_code}}"
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "performedDateTime": "{{date_stamp}}"
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "performedDateTime": "{{performed.toString().replace(' ','T') + 'Z'}}",
+          "reasonReference": [
+            "{{mpp:createFhirReferenceWithHashedId('Observation', observation.toString())}}"
+          ],
+          "outcome": {
+            "{{#oc}}": "{{outcome.toString()}}",
+            "{{?}}": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "{{%oc}}"
+                }
+              ]
+            }
+          },
+          "report": [
+            {
+              "{{#report}}": "{{report}}",
+              "{{?}}": {
+                "reference": "{{'DiagnosticReport/' + %relatedDiagnosticReport.id.toString()}}"
+              }
+            }
+          ]
         }
       }
     }
+
   ]
 }

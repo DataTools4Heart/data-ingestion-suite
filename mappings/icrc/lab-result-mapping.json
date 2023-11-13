@@ -1,59 +1,37 @@
 {
-  "id": "icrc-labresult-mapping",
+  "id": "lab-result-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
   "name": "lab-result-mapping",
-  "title": "Mapping of lab results to DT4H Lab Result FHIR profile",
-  "source": [
-    {
-      "alias": "labResults",
-      "url": "https://datatools4heart.eu/icrc/LabResult",
-      "joinOn": ["id_patient"]
-    },
-    {
-      "alias": "encounters",
-      "url": "https://datatools4heart.eu/icrc/Encounter",
-      "joinOn": ["id_patient"]
-    }
-  ],
+  "title": "Mapping of icrc lab results to DT4H Lab Result FHIR profile",
+  "source": [{
+    "alias": "source",
+    "url": "https://datatools4heart.eu/icrc/LabResult"
+  }],
   "context": {
-    "labResultsConceptMap":  {
-      "category": "concept-map",
-      "url": "./lab-results-concept-map.csv"
-    },
     "labResultUnitConversion": {
       "category": "unit-conversion",
       "url": "./lab-results-unit-conversion.csv"
+    },
+    "labResultCodes": {
+      "category": "concept-map",
+      "url": "./lab-result-codes.csv"
     }
   },
-  "variable": [
-    {
-      "name": "labLoincCode",
-      "language": "text/fhirpath",
-      "expression": "mpp:getConcept(%labResultsConceptMap, lab_code)"
-    },
-    {
-      "name": "relatedEncounter",
-      "language": "text/fhirpath",
-      "expression": "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= (%context.exec_date.replace(' ','T') + 'Z').toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > (%context.exec_date.replace(' ','T') + 'Z').toDate()).first()"
-    }
-  ],
   "mapping": [
     {
       "precondition": {
-        "name": "loincCodeAndRelatedEncounterExist",
+        "name": "codeExistsInDT4HLabResultCodes",
         "language": "text/fhirpath",
-        "expression": "%labLoincCode.exists() and %relatedEncounter.exists()"
+        "expression": "mpp:getConcept(%labResultCodes, code).exists()"
       },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', 'icrc_' + id.toString() + '_lab_result')}}",
+          "id": "{{mpp:getHashedId('Observation', subject.toString() + encounter.toString() + code.toString() + effective_date.toString())}}",
           "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult"
-            ],
+            "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult"],
             "source": "{{%sourceSystem.sourceUri}}"
           },
           "status": "final",
@@ -70,23 +48,16 @@
           "code": {
             "coding": [
               {
-                "system": "https://datatools4heart.eu/icrc/LabResult",
-                "code": "{{lab_code}}"
-              },
-              {
-                "{{#tc}}": "{{mpp:getConcept(%labResultsConceptMap, lab_code, 'target_code')}}",
-                "{{?}}": {
-                  "system": "http://loinc.org",
-                  "code": "{{%tc}}",
-                  "display": "{{? mpp:getConcept(%labResultsConceptMap, lab_code, 'target_display')}}"
-                }
+                "system": "http://loinc.org",
+                "code": "{{code}}",
+                "display": "{{? long_common_name}}"
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', 'icrc_' + %relatedEncounter.id_encounter.toString())}}",
-          "effectiveDateTime": "{{exec_date.toString().replace(' ','T') + 'Z'}}",
-          "valueQuantity": "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, lab_code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit))}}"
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
+          "effectiveDateTime": "{{effective_date}}",
+          "valueQuantity": "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit))}}"
         }
       }
     }

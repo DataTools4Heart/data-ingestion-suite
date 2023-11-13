@@ -1,0 +1,12 @@
+source_code,target_display,code_system
+AMB,ambulatory,http://terminology.hl7.org/CodeSystem/v3-ActCode
+EMER,emergency,http://terminology.hl7.org/CodeSystem/v3-ActCode
+FLD,field,http://terminology.hl7.org/CodeSystem/v3-ActCode
+HH,home health,http://terminology.hl7.org/CodeSystem/v3-ActCode
+IMP,inpatient encounter,http://terminology.hl7.org/CodeSystem/v3-ActCode
+ACUTE,inpatient acute,http://terminology.hl7.org/CodeSystem/v3-ActCode
+NONAC,inpatient non-acute,http://terminology.hl7.org/CodeSystem/v3-ActCode
+OBSENC,observation encounter,http://terminology.hl7.org/CodeSystem/v3-ActCode
+PRENC,pre-admission,http://terminology.hl7.org/CodeSystem/v3-ActCode
+SS,short stay,http://terminology.hl7.org/CodeSystem/v3-ActCode
+VR,virtual,http://terminology.hl7.org/CodeSystem/v3-ActCode

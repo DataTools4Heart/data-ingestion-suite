@@ -1,8 +1,8 @@
 {
-  "id": "icrc-condition-mapping",
+  "id": "condition-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
   "name": "condition-mapping",
-  "title": "Mapping of diagnosis table to DT4H Condition FHIR profile",
+  "title": "Mapping of icrc condition data to the DT4H Condition FHIR profile",
   "source": [{
     "alias": "source",
     "url": "https://datatools4heart.eu/icrc/Diagnosis"
@@ -14,7 +14,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Condition",
-          "id": "{{mpp:getHashedId('Condition', 'icrc_' + id.toString())}}",
+          "id": "{{mpp:getHashedId('Condition', subject.toString() + on_set_datetime.toString() + code.toString())}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition"
@@ -38,8 +38,8 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', 'icrc_' + id_patient.toString())}}",
-          "onsetDateTime": "{{date_stamp}}"
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "onsetDateTime": "{{on_set_datetime}}"
         }
       }
     }
