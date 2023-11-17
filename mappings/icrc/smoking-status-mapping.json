@@ -12,7 +12,7 @@
   "context": {
     "smokingStatusConceptMap": {
       "category": "concept-map",
-      "url": "./smoking-status-concept-map.csv"
+      "url": "$CONTEXT_REPO/icrc/smoking-status-concept-map.csv"
     }
   },
   "mapping": [

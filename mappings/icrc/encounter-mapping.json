@@ -10,11 +10,11 @@
   "context": {
     "encounterStatusConceptMap": {
       "category": "concept-map",
-      "url": "./encounter-status-concept-map.csv"
+      "url": "$CONTEXT_REPO/icrc/encounter-status-concept-map.csv"
     },
     "encounterClassConceptMap": {
       "category": "concept-map",
-      "url": "./encounter-class-codes.csv"
+      "url": "$CONTEXT_REPO/icrc/encounter-class-codes.csv"
     }
   },
   "mapping": [

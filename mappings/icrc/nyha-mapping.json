@@ -10,7 +10,7 @@
   "context": {
     "nyhaValuesConceptMap": {
       "category": "concept-map",
-      "url": "./nyha-values-concept-map.csv"
+      "url": "$CONTEXT_REPO/icrc/nyha-values-concept-map.csv"
     }
   },
   "mapping": [

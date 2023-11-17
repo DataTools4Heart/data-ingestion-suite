@@ -10,11 +10,11 @@
   "context": {
     "labResultUnitConversion": {
       "category": "unit-conversion",
-      "url": "./lab-results-unit-conversion.csv"
+      "url": "$CONTEXT_REPO/icrc/lab-results-unit-conversion.csv"
     },
     "labResultCodes": {
       "category": "concept-map",
-      "url": "./lab-result-codes.csv"
+      "url": "$CONTEXT_REPO/icrc/lab-result-codes.csv"
     }
   },
   "mapping": [

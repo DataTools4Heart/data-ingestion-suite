@@ -1,5 +1,5 @@
 {
-  "id": "umcu-labresult-mapping",
+  "id": "lab-result-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping",
   "name": "lab-result-mapping",
   "title": "Mapping of lab results to DT4H Lab Result FHIR profile",
@@ -18,11 +18,11 @@
   "context": {
     "labResultsConceptMap":  {
       "category": "concept-map",
-      "url": "./lab-results-concept-map.csv"
+      "url": "$CONTEXT_REPO/umcu//lab-results-concept-map.csv"
     },
     "labResultUnitConversion": {
       "category": "unit-conversion",
-      "url": "./lab-results-unit-conversion.csv"
+      "url": "$CONTEXT_REPO/umcu/lab-results-unit-conversion.csv"
     }
   },
   "variable": [

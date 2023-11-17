@@ -5,14 +5,14 @@
       "jsonClass" : "SqlSourceSettings",
       "name" : "icrc-data",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/icrc-data",
-      "databaseUrl" : "jdbc:postgresql://localhost:5432/icrcv2",
+      "databaseUrl" : "jdbc:postgresql://localhost:5432/icrc",
       "username" : "postgres",
-      "password" : "postgres"
+      "password" : "password"
     }
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "fhirRepoUrl" : "http://localhost:8081/fhir",
     "returnMinimal" : true
   },
   "mappings" : [ {
