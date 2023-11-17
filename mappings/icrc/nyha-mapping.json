@@ -5,7 +5,7 @@
   "title": "Mapping of New York Heart Assessment evaluations in the encounter table to DT4H NYHA FHIR profile",
   "source": [{
     "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/NYHA"
+    "url": "https://datatools4heart.eu/fhir/schemas/icrc/nyha"
   }],
   "context": {
     "nyhaValuesConceptMap": {
@@ -63,7 +63,7 @@
               }
             ]
           },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', subject.toString())}}"
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}"
         }
       }
     }

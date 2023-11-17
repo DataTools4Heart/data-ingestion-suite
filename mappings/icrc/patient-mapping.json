@@ -5,7 +5,7 @@
   "title": "Mapping of patient table to DT4H Patient FHIR profile",
   "source": [{
     "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/Patient"
+    "url": "https://datatools4heart.eu/fhir/schemas/icrc/patient"
   }],
   "mapping": [
     {

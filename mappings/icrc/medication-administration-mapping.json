@@ -1,11 +1,11 @@
 {
-  "id": "medication-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
-  "name": "medication-mapping",
-  "title": "Mapping of icrc medication data to DT4H MedicationAdministration FHIR profile",
+  "id": "medication-administration-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
+  "name": "medication-administration- mapping",
+  "title": "Mapping of icrc medication administration data to DT4H MedicationAdministration FHIR profile",
   "source": [{
     "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/Medication"
+    "url": "https://datatools4heart.eu/fhir/schemas/icrc/medicationadministration"
   }],
   "mapping": [
     {

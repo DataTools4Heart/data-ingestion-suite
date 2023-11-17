@@ -5,8 +5,14 @@
   "title": "Mapping of icrc symptoms to DT4H Symptom FHIR profile",
   "source": [{
     "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/Symptom"
+    "url": "https://datatools4heart.eu/fhir/schemas/icrc/symptom"
   }],
+  "context": {
+    "smyptomsConceptMap": {
+      "category": "concept-map",
+      "url": "./symptoms-concept-map.csv"
+    }
+  },
   "mapping": [
     {
       "precondition": {
@@ -42,7 +48,7 @@
               {
                 "system": "http://snomed.info/sct",
                 "code": "{{code}}",
-                "display": "{{? text)}}"
+                "display": "{{ mpp:getConcept(%smyptomsConceptMap, code, 'target_display') )}}"
               }
             ]
           },

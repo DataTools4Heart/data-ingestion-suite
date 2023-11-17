@@ -5,7 +5,7 @@
   "title": "Mapping of icrc condition data to the DT4H Condition FHIR profile",
   "source": [{
     "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/Diagnosis"
+    "url": "https://datatools4heart.eu/fhir/schemas/icrc/condition"
   }],
   "mapping": [
     {

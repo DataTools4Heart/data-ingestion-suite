@@ -6,51 +6,22 @@
   "source": [
     {
       "alias": "source",
-      "url": "https://datatools4heart.eu/icrc/Procedure"
+      "url": "https://datatools4heart.eu/fhir/schemas/icrc/procedure"
     }
   ],
   "mapping": [
     {
       "precondition": {
-        "name": "reportExists",
-        "language": "text/fhirpath",
-        "expression": "report.exists()"
-      },
-      "expression": {
-        "name": "relatedDiagnosticReport",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "DiagnosticReport",
-          "id": "{{mpp:getHashedId('DiagnosticReport', utl:uuid()}}",
-          "meta": {
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "final",
-          "code": {
-            "coding": [
-              {
-                "system": "http://loinc.org",
-                "code": "28570-0",
-                "display": "Procedure note"
-              }
-            ]
-          },
-          "conclusion": "{{report}}"
-        }
-      }
-    },
-    {
-      "precondition": {
         "name": "codeMustExist",
         "language": "text/fhirpath",
-        "expression": "snomed_code.exists()"
+        "expression": "code.exists()"
       },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Procedure",
-          "id": "{{mpp:getHashedId('Procedure', subject.toString() + snomed_code.toString() + performed.toString())}}",
+          "id": "{{mpp:getHashedId('Procedure', id.toString())}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
@@ -61,34 +32,16 @@
           "code": {
             "coding": [
               {
-                "system": "http://snomed.info/sct",
-                "code": "{{snomed_code}}"
+                "system": "http://hl7.org/fhir/sid/icd-10",
+                "code": "{{code}}",
+                "display": "{{ name_english }}"
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-          "performedDateTime": "{{performed.toString().replace(' ','T') + 'Z'}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "performedDateTime": "{{diag_dt.toString().replace(' ','T') + 'Z'}}",
           "reasonReference": [
-            "{{mpp:createFhirReferenceWithHashedId('Observation', observation.toString())}}"
-          ],
-          "outcome": {
-            "{{#oc}}": "{{outcome.toString()}}",
-            "{{?}}": {
-              "coding": [
-                {
-                  "system": "http://snomed.info/sct",
-                  "code": "{{%oc}}"
-                }
-              ]
-            }
-          },
-          "report": [
-            {
-              "{{#report}}": "{{report}}",
-              "{{?}}": {
-                "reference": "{{'DiagnosticReport/' + %relatedDiagnosticReport.id.toString()}}"
-              }
-            }
+            "{{mpp:createFhirReferenceWithHashedId('Observation', ref_observation.toString())}}"
           ]
         }
       }
