@@ -7,40 +7,25 @@
     {
       "alias": "echos",
       "url": "https://datatools4heart.eu/icrc/Echocardiogram",
-      "joinOn": ["id_patient"]
-    },
-    {
-      "alias": "encounters",
-      "url": "https://datatools4heart.eu/icrc/Encounter",
-      "joinOn": ["id_patient"]
+      "joinOn": []
     }
   ],
-  "variable": [
-    {
-      "name": "relatedEncounter",
-      "language": "text/fhirpath",
-      "expression": "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= (%context.time_stamp.replace(' ','T') + 'Z').toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > (%context.time_stamp.replace(' ','T') + 'Z').toDate()).first()"
-    }
-  ],
+  "context": {},
+  "variable": [],
   "mapping": [
     {
-      "precondition": {
-        "name": "relatedEncounterExist",
-        "language": "text/fhirpath",
-        "expression": "%relatedEncounter.exists()"
-      },
       "expression": {
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
-          "resourceType": "Observation",
           "id": "{{mpp:getHashedId('Observation', id.toString() + '_echocardiograph')}}",
           "meta": {
+            "source": "{{%sourceSystem.sourceUri}}",
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Echocardiograph"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
+            ]
           },
+          "resourceType": "Observation",
           "status": "final",
           "category": [
             {
@@ -49,7 +34,8 @@
                   "system": "http://terminology.hl7.org/CodeSystem/observation-category",
                   "code": "procedure"
                 }
-              ]
+              ],
+              "@sliceName": "hl7Category"
             }
           ],
           "code": {
@@ -57,13 +43,14 @@
               {
                 "system": "http://loinc.org",
                 "code": "34552-0",
-                "display": "Cardiac 2D echo panel"
+                "display": "Cardiac 2D echo panel",
+                "@sliceName": "loincCode"
               }
             ]
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "effectiveDateTime": "{{time_stamp.toString().replace(' ','T') + 'Z'}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id_encounter.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+          "effectiveDateTime": "{{date_exec.toString().replace(' ','T') + 'Z'}}",
           "component": [
             {
               "code": {
@@ -77,9 +64,162 @@
               },
               "valueQuantity": {
                 "value": "{{lv_ef}}",
+                "unit": "%",
                 "system": "http://unitsofmeasure.org",
-                "code": "%",
-                "unit": "%"
+                "code": "%"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "18083-6",
+                    "display": "Left ventricular Internal diameter minor axis diastole by US 2D"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{lv_idd}}",
+                "unit": "mm",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "79969-2",
+                    "display": "Interventricular septum Thickness at end diastole by US 2D"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{ivs}}",
+                "unit": "mm",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "18085-1",
+                    "display": "Left ventricular Internal diameter minor axis systole by US 2D"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{lv_ids}}",
+                "unit": "mm",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "29468-6",
+                    "display": "Left atrial Diameter anterior-posterior systole by US 2D"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{ls}}",
+                "unit": "mm",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "75988-6",
+                    "display": "Left ventricular End diastolic volume"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{edv}}",
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "75989-4",
+                    "display": "Left ventricular End systolic volume"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{esv}}",
+                "unit": "mL",
+                "system": "http://unitsofmeasure.org",
+                "code": "mL"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "79971-8",
+                    "display": "Interventricular septum thickness at end systole by US 2D"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{ivss}}",
+                "unit": "mm",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "77903-3",
+                    "display": "Tricuspid valve annulus Excursion distance during systole by US.M-mode"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{tapse}}",
+                "unit": "cm",
+                "system": "http://unitsofmeasure.org",
+                "code": "cm"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "80032-6",
+                    "display": "Left ventricular posterior wall Thickness at end diastole by US 2D"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": "{{lv_pwd}}",
+                "unit": "mm",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm"
               }
             }
           ]

@@ -44,7 +44,7 @@
             ]
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "effectiveDateTime": "{{date_exec.toString().replace(' ','T') + 'Z'}}",
+          "effectiveDateTime": "{{exec_date.toString().replace(' ','T') + 'Z'}}",
           "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter_id.toString())}}",
           "component": [
             {
@@ -198,7 +198,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(avf)}}"
+                "data": "{{cst:createTimeSeriesData(avf)}}"
               }
             },
             {
@@ -218,7 +218,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(avl)}}"
+                "data": "{{cst:createTimeSeriesData(avl)}}"
               }
             },
             {
@@ -238,7 +238,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(avr)}}"
+                "data": "{{cst:createTimeSeriesData(avr)}}"
               }
             },
             {
@@ -258,7 +258,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(i)}}"
+                "data": "{{cst:createTimeSeriesData(i)}}"
               }
             },
             {
@@ -278,7 +278,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(ii)}}"
+                "data": "{{cst:createTimeSeriesData(ii)}}"
               }
             },
             {
@@ -298,7 +298,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(iii)}}"
+                "data": "{{cst:createTimeSeriesData(iii)}}"
               }
             },
             {
@@ -318,7 +318,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(v1)}}"
+                "data": "{{cst:createTimeSeriesData(v1)}}"
               }
             },
             {
@@ -338,7 +338,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(v2)}}"
+                "data": "{{cst:createTimeSeriesData(v2)}}"
               }
             },
             {
@@ -358,7 +358,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(v3)}}"
+                "data": "{{cst:createTimeSeriesData(v3)}}"
               }
             },
             {
@@ -378,7 +378,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(v4)}}"
+                "data": "{{cst:createTimeSeriesData(v4)}}"
               }
             },
             {
@@ -398,7 +398,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(v5)}}"
+                "data": "{{cst:createTimeSeriesData(v5)}}"
               }
             },
             {
@@ -418,7 +418,7 @@
                 "period": "{{1 / sample_freq * 1000}}",
                 "factor": 0.0025,
                 "dimensions": 1,
-                "data": "{{icrc:createTimeSeriesData(v6)}}"
+                "data": "{{cst:createTimeSeriesData(v6)}}"
               }
             }
           ]

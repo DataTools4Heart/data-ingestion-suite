@@ -28,11 +28,7 @@
     "sourceContext" : {
       "echos" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT a.id_patient, a.\"time_stamp\", eb.* FROM echo.echo_basic eb INNER JOIN patient.activity a ON eb.id_activity = a.id_activity"
-      },
-      "encounters" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "patient.encounter"
+        "query" : "select eb.*, o.id_encounter, e.id_patient from heart_echo.echo_basic eb inner join patient.observation o on eb.id_observation = o.id inner join patient.encounter e on e.id = o.id_encounter"
       }
     }
   }, {
