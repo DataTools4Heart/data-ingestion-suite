@@ -2,62 +2,69 @@
   "id" : "lab-results-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
   "name" : "lab-results-mapping",
-  "title" : "Mapping of OMOP observation to the DT4H-LabResult profile",
+  "title" : "Mapping from OMOP Measurement to the DT4H LabResult profile",
   "source" : [ {
-    "alias" : "omopObservation",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Observation",
+    "alias" : "omopMeasurement",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Measurement",
     "joinOn" : [ ]
   } ],
   "context" : {
-    "labResultConceptMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/lab-results-concept-map"
-    },
     "unitConversionMap" : {
       "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/ucl/lab-result-unit-conversion"
+      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion"
+    },
+    "labResults" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion"
     }
   },
   "variable" : [ {
     "name" : "labCode",
     "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%labResultConceptMap, observation_concept_id.toString())"
+    "expression" : "trms:translateToCoding(measurement_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc')"
+  }, {
+    "name" : "isLabResult",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%labResults, measurement_concept_id.toString()).exists()"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Observation",
-        "id" : "{{mpp:getHashedId('Observation', observation_id.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult" ],
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
         "status" : "final",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
             "code" : "laboratory",
             "display" : "Laboratory result"
-          } ]
+          } ],
+          "@sliceName" : "hl7Category"
         } ],
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
         "code" : {
           "coding" : [ {
-            "code" : "{{%labCode.target_code}}",
-            "system" : "http://loinc.org"
+            "system" : "http://loinc.org",
+            "code" : "{{%labCode.code}}",
+            "display" : "{{? %labCode.display}}",
+            "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{iif(observation_datetime.empty(), observation_date, observation_datetime)}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%unitConversionMap, %labCode.source_code, value_as_number, unit_concept_id.toString().nav:orElse(utl:createFhirQuantity(value_as_number, unit))}}"
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "effectiveDateTime" : "{{iif(measurement_datetime.empty(), measurement_date, measurement_datetime)}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%unitConversionMap, measurement_concept_id.toString(), value_as_number, unit_concept_id.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult" ]
+        },
+        "resourceType" : "Observation"
       }
     },
     "precondition" : {
-      "name" : "isValidLabResult",
+      "name" : "isLabResult",
       "language" : "text/fhirpath",
-      "expression" : "%labCode.exists()"
+      "expression" : "%isLabResult"
     }
   } ]
 }

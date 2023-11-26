@@ -9,34 +9,36 @@
     "joinOn" : [ ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "icd10Code",
+    "language" : "text/fhirpath",
+    "expression" : "trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').code"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Procedure",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
-        },
         "status" : "completed",
-        "category" : {
-          "coding" : [ {
-            "system" : "",
-            "code" : "",
-            "@sliceName" : "snomedCode"
-          } ]
-        },
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
-            "code" : "{{concept_code}}",
+            "code" : "{{%icd10Code}}",
             "@sliceName" : "icdCode"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "performedDateTime" : "{{procedure_datetime}}"
+        "performedDateTime" : "{{procedure_datetime}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
+        },
+        "resourceType" : "Procedure"
       }
+    },
+    "precondition" : {
+      "name" : "isValidProcedure",
+      "language" : "text/fhirpath",
+      "expression" : "%icd10Code.exists()"
     }
   } ]
 }

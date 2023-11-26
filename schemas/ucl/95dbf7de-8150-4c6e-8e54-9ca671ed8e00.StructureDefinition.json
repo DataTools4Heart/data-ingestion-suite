@@ -1,27 +1,27 @@
 {
-  "id" : "edd2b467-eb3c-46cb-9d85-1bd25a61500d",
+  "id" : "95dbf7de-8150-4c6e-8e54-9ca671ed8e00",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Observation",
-  "name" : "OMOP-Observation",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Measurement",
+  "name" : "OMOP-Measurement",
   "status" : "draft",
   "fhirVersion" : "4.0.1",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "OMOP-Observation",
+  "type" : "OMOP-Measurement",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "OMOP-Observation",
-      "path" : "OMOP-Observation",
+      "id" : "OMOP-Measurement",
+      "path" : "OMOP-Measurement",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "OMOP-Observation.observation_id",
-      "path" : "OMOP-Observation.observation_id",
+      "id" : "OMOP-Measurement.measurement_id",
+      "path" : "OMOP-Measurement.measurement_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.person_id",
-      "path" : "OMOP-Observation.person_id",
+      "id" : "OMOP-Measurement.person_id",
+      "path" : "OMOP-Measurement.person_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.observation_concept_id",
-      "path" : "OMOP-Observation.observation_concept_id",
+      "id" : "OMOP-Measurement.measurement_concept_id",
+      "path" : "OMOP-Measurement.measurement_concept_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -47,17 +47,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.observation_date",
-      "path" : "OMOP-Observation.observation_date",
-      "min" : 1,
+      "id" : "OMOP-Measurement.measurement_date",
+      "path" : "OMOP-Measurement.measurement_date",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.observation_type_concept_id",
-      "path" : "OMOP-Observation.observation_type_concept_id",
+      "id" : "OMOP-Measurement.measurement_type_concept_id",
+      "path" : "OMOP-Measurement.measurement_type_concept_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -65,35 +65,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.observation_datetime",
-      "path" : "OMOP-Observation.observation_datetime",
-      "min" : 1,
+      "id" : "OMOP-Measurement.measurement_datetime",
+      "path" : "OMOP-Measurement.measurement_datetime",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.value_as_number",
-      "path" : "OMOP-Observation.value_as_number",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "OMOP-Observation.value_as_string",
-      "path" : "OMOP-Observation.value_as_string",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "OMOP-Observation.value_as_concept_id",
-      "path" : "OMOP-Observation.value_as_concept_id",
+      "id" : "OMOP-Measurement.operator_concept_id",
+      "path" : "OMOP-Measurement.operator_concept_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -101,8 +83,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.unit_concept_id",
-      "path" : "OMOP-Observation.unit_concept_id",
+      "id" : "OMOP-Measurement.value_as_number",
+      "path" : "OMOP-Measurement.value_as_number",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "OMOP-Measurement.value_as_concept_id",
+      "path" : "OMOP-Measurement.value_as_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Measurement.unit_concept_id",
+      "path" : "OMOP-Measurement.unit_concept_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -110,17 +110,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.provider_id",
-      "path" : "OMOP-Observation.provider_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "OMOP-Observation.visit_occurrence_id",
-      "path" : "OMOP-Observation.visit_occurrence_id",
+      "id" : "OMOP-Measurement.range_low",
+      "path" : "OMOP-Measurement.range_low",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -128,8 +119,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.observation_source_value",
-      "path" : "OMOP-Observation.observation_source_value",
+      "id" : "OMOP-Measurement.range_high",
+      "path" : "OMOP-Measurement.range_high",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -137,17 +128,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.observation_source_concept_id",
-      "path" : "OMOP-Observation.observation_source_concept_id",
+      "id" : "OMOP-Measurement.visit_occurrence_id",
+      "path" : "OMOP-Measurement.visit_occurrence_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "OMOP-Observation.unit_source_value",
-      "path" : "OMOP-Observation.unit_source_value",
+      "id" : "OMOP-Measurement.measurement_source_value",
+      "path" : "OMOP-Measurement.measurement_source_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Measurement.unit_source_value",
+      "path" : "OMOP-Measurement.unit_source_value",
       "min" : 0,
       "max" : "1",
       "type" : [ {

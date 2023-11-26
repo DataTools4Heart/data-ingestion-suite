@@ -1,12 +1,12 @@
 {
-  "id" : "gem",
-  "name" : "gem",
+  "id" : "226d387a-32d9-40bb-9c13-50fcaa5087d9",
+  "name" : "ucl-mapping-job",
   "sourceSettings" : {
     "source" : {
       "jsonClass" : "FileSystemSourceSettings",
-      "name" : "gem-source",
-      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/gem-data",
-      "dataFolderPath" : "test-data/gem",
+      "name" : "ucl-data",
+      "sourceUri" : "http://datatools4heart.eu/data-ingestion-suite/ucl-data",
+      "dataFolderPath" : "test-data/ucl",
       "asStream" : false
     }
   },
@@ -18,7 +18,7 @@
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
-    "folderPath" : "./terminology-systems/DT4HTerminologyService",
+    "folderPath" : "/terminology-systems/DT4HTerminologyService",
     "conceptMapFiles" : [ {
       "id" : "icd9toicd10.csv",
       "name" : "icd9toicd10.csv",
@@ -65,122 +65,93 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
     "sourceContext" : {
-      "source" : {
+      "omopPerson" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "angrafica.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
-    "sourceContext" : {
-      "encounterMain" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
+        "path" : "PERSON.csv",
         "fileFormat" : "csv",
         "options" : { }
       },
-      "encounterDetails" : {
+      "omopDeath" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "dettaglio_contatti.csv",
+        "path" : "DEATH.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/encounter-mapping",
     "sourceContext" : {
-      "labResults" : {
+      "omopVisitOccurrence" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "diariomisure.csv",
+        "path" : "VISIT_OCCURRENCE.csv",
         "fileFormat" : "csv",
         "options" : { }
       },
-      "encounters" : {
+      "omopConditionOccurrence" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
+        "path" : "CONDITION_OCCURRENCE.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
     "sourceContext" : {
-      "source" : {
+      "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "patologie.csv",
+        "path" : "MEASUREMENT.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
     "sourceContext" : {
-      "medications" : {
+      "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "farmaci.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
+        "path" : "MEASUREMENT.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
     "sourceContext" : {
-      "patology" : {
+      "omopCondition" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "patologie.csv",
+        "path" : "CONDITION_OCCURRENCE.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
     "sourceContext" : {
-      "echo" : {
+      "omopDrugExposure" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "ecocardio.csv",
-        "fileFormat" : "csv",
-        "options" : { },
-        "preprocessSql" : "SELECT * FROM\n\t(SELECT \n\t\t codice_sanitario, dataerogazione, regexp_replace(concat(mssite, '_', measurename), '[\\\\\\\\W]+', '') as code, measuervalue \n\t FROM echo\n\t)\n\tPIVOT (LAST(measuervalue) as value FOR code in ('FunzioneDiastolica_RapportoEA','FunzioneDiastolica_RapportoEE','FunzioneDiastolica_VelocitPiccoOndaA','FunzioneDiastolica_VelocitPiccoOndaE','Valvolatricuspide_TAPSE','Ventricolosinistro_DiametroDiastolicoIndic','Ventricolosinistro_DiametroSistolicoIndic','Ventricolosinistro_DiametroTeleDiastolico','Ventricolosinistro_DiametroTeleSistolico','Ventricolosinistro_FrazionediEiezione','Ventricolosinistro_ParetePosterioreSpessoreTD','Ventricolosinistro_ParetePosterioreSpessoreTDIndic','Ventricolosinistro_SettoInterventricolareSpessoreTD','Ventricolosinistro_SettointerventricolarespessoreTDIndicM','Ventricolosinistro_StrokeVolumeIndex','Ventricolosinistro_VolumeTeleDiastolico','Ventricolosinistro_VolumeTeleDiastolicoInd','Ventricolosinistro_VolumeTeleSistolico','Ventricolosinistro_VolumeTeleSistolicoInd','Ventricolosinistro_ParetePosterioreSpessoreTS','Ventricolosinistro_ParetePosterioreSpessoreTSIndic','Ventricolodestro_Accorciamentofrazionale','Ventricolosinistro_DiametroInternoTD','FunzioneDiastolica_VelocitPiccoOndaELATTDI','FunzioneDiastolica_VelocitPiccoOndaESETTTDI','Ventricolosinistro_HeartRate','Ventricolosinistro_SettoInterventricolareSpessoreTS','VenaCava_DiametroMax','VenaCava_DiametroMin','Ventricolodestro_DiametroTeleDiastolico','Ventricolodestro_DiametroTeleDiastolicoIndic','VentricolosinistroSettointerventricolarespessoresistolicoIndicM'\n\t))\n"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
+        "path" : "DRUG_EXPOSURE.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
     "sourceContext" : {
-      "nyha" : {
+      "omopProcedure" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "nyha.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
+        "path" : "PROCEDURE_OCCURRENCE.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
     "sourceContext" : {
-      "anagrafica" : {
+      "omopDeath" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "angrafica.csv",
+        "path" : "DEATH.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
@@ -188,7 +159,7 @@
   } ],
   "dataProcessingSettings" : {
     "mappingErrorHandling" : "continue",
-    "saveErroneousRecords" : true,
+    "saveErroneousRecords" : false,
     "archiveMode" : "off"
   },
   "useFhirSinkAsIdentityService" : false

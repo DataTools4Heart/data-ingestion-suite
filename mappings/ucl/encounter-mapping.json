@@ -6,7 +6,11 @@
   "source" : [ {
     "alias" : "omopVisitOccurrence",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
-    "joinOn" : [ ]
+    "joinOn" : [ "visit_occurrence_id" ]
+  }, {
+    "alias" : "omopConditionOccurrence",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
+    "joinOn" : [ "visit_occurrence_id" ]
   } ],
   "context" : {
     "encounterClassConceptMap" : {
@@ -18,17 +22,16 @@
     "name" : "encounterClass",
     "language" : "text/fhirpath",
     "expression" : "mpp:getConcept(%encounterClassConceptMap, visit_concept_id.toString())"
+  }, {
+    "name" : "reasonCode",
+    "language" : "text/fhirpath",
+    "expression" : "trms:translateToCoding(%omopConditionOccurrence.first().condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').code.first())"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Encounter",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter" ],
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
         "class" : {
           "system" : "{{%encounterClass.code_system}}",
           "code" : "{{%encounterClass.target_code}}"
@@ -39,14 +42,28 @@
           "end" : "{{? iif(visit_end_datetime.empty(), visit_end_date, visit_end_datetime)}}"
         },
         "reasonCode" : [ {
-          "coding" : "{{utl:createFhirCoding('http://hl7.org/fhir/sid/icd-10', concept_code, concept_name)}}"
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "{{%reasonCode}}",
+            "@sliceName" : "icd10code"
+          } ]
         } ],
         "diagnosis" : [ {
           "condition" : "{{? mpp:createFhirReferenceWithHashedId('Condition', condition_occurrence_id.toString())}}"
         } ],
         "status" : "finished",
-        "id" : "{{mpp:getHashedId('Encounter', visit_occurrence_id.toString())}}"
+        "id" : "{{mpp:getHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter" ]
+        },
+        "resourceType" : "Encounter"
       }
+    },
+    "precondition" : {
+      "name" : "reasonCodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "%reasonCode.exists()"
     }
   } ]
 }

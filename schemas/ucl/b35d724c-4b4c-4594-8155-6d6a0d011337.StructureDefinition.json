@@ -31,34 +31,52 @@
     }, {
       "id" : "OMOP-Death.death_datetime",
       "path" : "OMOP-Death.death_datetime",
-      "min" : 1,
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.death_date",
+      "path" : "OMOP-Death.death_date",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.death_type_concept_id",
+      "path" : "OMOP-Death.death_type_concept_id",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "OMOP-Death.concept_code",
-      "path" : "OMOP-Death.concept_code",
-      "min" : 1,
+      "id" : "OMOP-Death.cause_concept_id",
+      "path" : "OMOP-Death.cause_concept_id",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "OMOP-Death.vocabulary_id",
-      "path" : "OMOP-Death.vocabulary_id",
-      "min" : 1,
+      "id" : "OMOP-Death.cause_source_value",
+      "path" : "OMOP-Death.cause_source_value",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "OMOP-Death.concept_name",
-      "path" : "OMOP-Death.concept_name",
-      "min" : 1,
+      "id" : "OMOP-Death.cause_source_concept_id",
+      "path" : "OMOP-Death.cause_source_concept_id",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",

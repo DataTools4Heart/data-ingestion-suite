@@ -4,31 +4,34 @@
   "name" : "vital-sign-mapping",
   "title" : "Mapping of OMOP observation to DT4H Vital Sign profile",
   "source" : [ {
-    "alias" : "omopObservation",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Observation",
+    "alias" : "omopMeasurement",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Measurement",
     "joinOn" : [ ]
   } ],
   "context" : {
-    "vitalSignConceptMap" : {
+    "vitalSignUnitConversion" : {
+      "category" : "unit-conversion",
+      "url" : "$CONTEXT_REPO/ucl/vital-signs-unit-conversion.csv"
+    },
+    "vitalSigns" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/vitalSignConceptMap"
+      "url" : "$CONTEXT_REPO/ucl/vital-signs-unit-conversion.csv"
     }
   },
   "variable" : [ {
     "name" : "vitalSignConcept",
     "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%vitalSignConceptMap, observation_concept_id.toString())"
+    "expression" : "trms:translateToCoding(measurement_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc')"
+  }, {
+    "name" : "isVitalSign",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%vitalSigns, measurement_concept_id.toString()).exists()"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Observation",
-        "id" : "{{mpp:getHashedId('Observation', observation_id.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign" ]
-        },
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -40,20 +43,26 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{%vitalSignConcept.target_code}}",
+            "code" : "{{%vitalSignConcept.code}}",
+            "display" : "{{? %vitalSignConcept.display}}",
             "@sliceName" : "loincCode"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "effectiveDateTime" : "{{iif(observation_datetime.empty(),observation_date,observation_datetime)}}",
-        "valueQuantity" : "{{utl:createFhirQuantity(value_as_number, unit)}}"
+        "effectiveDateTime" : "{{iif(measurement_datetime.empty(),measurement_date,measurement_datetime)}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%vitalSignUnitConversion, measurement_concept_id.toString() , value_as_number, unit_concept_id.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign" ]
+        },
+        "resourceType" : "Observation"
       }
     },
     "precondition" : {
-      "name" : "isVitalSignObservation",
+      "name" : "isVitalSign",
       "language" : "text/fhirpath",
-      "expression" : "%vitalSignConcept.exists()"
+      "expression" : "%isVitalSign"
     }
   } ]
 }

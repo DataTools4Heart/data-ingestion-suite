@@ -12,17 +12,13 @@
   "variable" : [ {
     "name" : "code",
     "language" : "text/fhirpath",
-    "expression" : "iif(vocabulary_id.startsWith('ICD10'),utl:createFhirCoding('http://hl7.org/fhir/sid/icd-10', concept_code, concept_name),trms:translateToCoding(concept_code.replace('.', ''), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10'))"
+    "expression" : "iif(condition_source_value.empty() or condition_source_value = 'NA', trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10').code.first(), condition_source_value)"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Condition",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition" ]
-        },
         "clinicalStatus" : {
           "coding" : [ {
             "@sliceName" : "fhirCode"
@@ -31,14 +27,18 @@
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
-            "code" : "{{%code.code}}",
+            "code" : "{{%code}}",
             "@sliceName" : "icd10Code"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "onsetDateTime" : "{{condition_start_datetime}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "id" : "{{mpp:getHashedId('Condition', condition_occurrence_id.toString())}}"
+        "onsetDateTime" : "{{iif(measurement_datetime.empty(), condition_start_date, condition_start_datetime)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "id" : "{{mpp:getHashedId('Condition', condition_occurrence_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition" ]
+        },
+        "resourceType" : "Condition"
       }
     },
     "precondition" : {

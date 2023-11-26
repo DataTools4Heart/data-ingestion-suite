@@ -1,0 +1,7 @@
+"observation_concept_id","source_unit","target_unit","conversion_function"
+"40762499","8554","%","$this"
+"3036277","8582","cm","$this"
+"3025315","8504","kg","$this / 1000"
+"4154790","8876","mmHg","$this"
+"4152194","8876","mmHg","$this"
+"4239408","0","bpm","$this"

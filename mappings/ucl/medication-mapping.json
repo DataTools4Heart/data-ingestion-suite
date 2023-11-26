@@ -9,40 +9,43 @@
     "joinOn" : [ ]
   } ],
   "context" : { },
-  "variable" : [
-    {
-      "name": "atcIngredientCodes",
-      "language": "text/fhirpath",
-      "expression": "rxn:getMedicationDetails(concept_code).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
-    }
-  ],
+  "variable" : [ {
+    "name" : "rxNormCode",
+    "language" : "text/fhirpath",
+    "expression" : "trms:translateToCoding(drug_concept_id.toString(),'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm').code"
+  }, {
+    "name" : "atcIngredientCodes",
+    "language" : "text/fhirpath",
+    "expression" : "rxn:getMedicationDetails(%rxNormCode).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#ingredient}}": "{{%atcIngredientCodes}}",
-        "{{*}}": {
-          "resourceType": "MedicationAdministration",
-          "id" : "{{mpp:getHashedId('MedicationAdministration', drug_exposure_id.toString() & '_' & %ingredient)}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
-            ]
+        "{{#ingredient}}" : "{{%atcIngredientCodes}}",
+        "{{*}}" : {
+          "status" : "completed",
+          "medicationCodeableConcept" : {
+            "{{#medicationCodeableConceptVar}}" : "{{%atcIngredientCodes}}",
+            "{{?}}" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %medicationCodeableConceptVar, {})}}"
           },
-          "status": "completed",
-          "medicationCodeableConcept": "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %ingredient, concept_name)}}",
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-          "effectivePeriod": {
-            "start": "{{drug_exposure_start_datetime}}",
-            "end": "{{? drug_exposure_end_datetime}}"
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+          "context" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+          "effectivePeriod" : {
+            "start" : "{{drug_exposure_start_datetime}}",
+            "end" : "{{? drug_exposure_end_datetime}}"
           },
-          "dosage": {
-            "dose": {
-              "value": "{{quantity}}"
+          "dosage" : {
+            "dose" : {
+              "value" : "{{quantity.toDecimal()}}"
             }
-          }
+          },
+          "id" : "{{mpp:getHashedId('MedicationAdministration', drug_exposure_id.toString() & '_' & %ingredient)}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ]
+          },
+          "resourceType" : "MedicationAdministration"
         }
       }
     },

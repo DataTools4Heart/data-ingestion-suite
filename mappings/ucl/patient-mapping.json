@@ -6,7 +6,11 @@
   "source" : [ {
     "alias" : "omopPerson",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
-    "joinOn" : [ ]
+    "joinOn" : [ "person_id" ]
+  }, {
+    "alias" : "omopDeath",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
+    "joinOn" : [ "person_id" ]
   } ],
   "context" : { },
   "variable" : [ ],
@@ -15,20 +19,20 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Patient",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient" ],
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
         "extension" : [ {
           "url" : "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-PatientEthnicity",
           "@sliceName" : "ethnicity"
         } ],
         "gender" : "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
-        "birthDate" : "{{iif(birthdate.empty(), birth_datetime.utl:toFhirDateTime(), birthdate)}}",
+        "birthDate" : "{{iif(birthdate.empty(), birth_datetime, birthdate)}}",
         "deceasedDateTime" : "{{? death_datetime}}",
         "active" : true,
-        "id" : "{{mpp:getHashedId('Patient',person_id.toString())}}"
+        "id" : "{{mpp:getHashedId('Patient',person_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient" ]
+        },
+        "resourceType" : "Patient"
       }
     }
   } ]
