@@ -25,7 +25,7 @@
   }, {
     "name" : "reasonCode",
     "language" : "text/fhirpath",
-    "expression" : "trms:translateToCoding(%omopConditionOccurrence.first().condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').code.first())"
+    "expression" : "%omopConditionOccurrence.first().condition_source_value"
   } ],
   "mapping" : [ {
     "expression" : {
