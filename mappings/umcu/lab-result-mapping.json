@@ -18,7 +18,7 @@
   "context": {
     "labResultsConceptMap":  {
       "category": "concept-map",
-      "url": "$CONTEXT_REPO/umcu//lab-results-concept-map.csv"
+      "url": "$CONTEXT_REPO/umcu/lab-results-concept-map.csv"
     },
     "labResultUnitConversion": {
       "category": "unit-conversion",
