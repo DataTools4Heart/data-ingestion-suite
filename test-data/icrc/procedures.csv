@@ -1,0 +1,11 @@
+"id","diag_dt","ref_observation","id_clinical_status","id_patient","code_icd_10","code","name_english","all"
+393057,2017-02-17 02:00:00,296589,99,57092,I489,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393086,2010-04-08 01:00:00,296616,99,15617,I48,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393106,2013-11-27 01:00:00,296637,99,15617,I480,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393113,2013-11-27 01:00:00,296647,99,15617,I481,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393121,2015-04-16 01:00:00,296656,99,15617,I489,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393128,2015-11-26 01:00:00,296663,99,15617,I489,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393136,2016-01-11 01:00:00,296671,99,15617,I489,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393148,2016-01-12 01:00:00,296682,99,15617,I489,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393161,2016-01-31 01:00:00,296702,99,15617,I484,I48,Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H),true
+393192,2016-02-02 01:00:00,296736,99,15617,Z950,Z950,Presence of cardiac pacemaker,false
