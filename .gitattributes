@@ -1,1 +1,2 @@
 terminology-systems/DT4HTerminologyService/* filter=lfs diff=lfs merge=lfs -text
+tofhir-db/DT4HTerminologyService/* filter=lfs diff=lfs merge=lfs -text

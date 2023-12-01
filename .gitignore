@@ -5,5 +5,5 @@ application.conf
 **/logs/*
 .idea/
 **/target
-tofhir-db
+tofhir-db/projects.json
 checkpoint

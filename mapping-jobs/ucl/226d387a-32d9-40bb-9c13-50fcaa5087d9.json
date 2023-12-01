@@ -18,7 +18,7 @@
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
-    "folderPath" : "/terminology-systems/DT4HTerminologyService",
+    "folderPath" : "/tofhir-db/DT4HTerminologyService",
     "conceptMapFiles" : [ {
       "id" : "icd9toicd10.csv",
       "name" : "icd9toicd10.csv",
