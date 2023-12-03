@@ -2,6 +2,7 @@
 *.bat
 *.sh
 application.conf
+log-service.conf
 **/logs/*
 .idea/
 **/target
