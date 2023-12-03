@@ -9,7 +9,7 @@ services:
     networks:
       - tofhir-network
     volumes:
-      - '../tofhir-docker-logs:/usr/local/tofhir/logs'
+      - '../../tofhir-docker-logs:/usr/local/tofhir/logs'
   tofhir-server:
     image: srdc/tofhir-server:latest
     container_name: tofhir
@@ -25,8 +25,8 @@ services:
     networks:
       - tofhir-network
     volumes:
-      - './data-ingestion-suite:/usr/local/tofhir/conf'
-      - './tofhir-docker-logs:/usr/local/tofhir/logs'
+      - '../../data-ingestion-suite:/usr/local/tofhir/conf'
+      - '../../tofhir-docker-logs:/usr/local/tofhir/logs'
   tofhir-web:
     image: srdc/tofhir-web:dt4h
     container_name: tofhir-web
