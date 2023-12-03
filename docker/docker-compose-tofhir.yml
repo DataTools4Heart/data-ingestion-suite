@@ -28,7 +28,7 @@ services:
       - '../../data-ingestion-suite:/usr/local/tofhir/conf'
       - '../../tofhir-docker-logs:/usr/local/tofhir/logs'
   tofhir-web:
-    image: srdc/tofhir-web:dt4h
+    image: nexus.srdc.com.tr:18445/srdc/tofhir-web:dt4h
     container_name: tofhir-web
     ports:
       - "8082:80"
