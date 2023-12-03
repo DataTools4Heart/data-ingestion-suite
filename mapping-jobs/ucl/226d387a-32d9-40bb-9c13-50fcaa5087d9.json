@@ -12,13 +12,13 @@
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
     "errorHandling" : "continue",
     "returnMinimal" : true
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
-    "folderPath" : "/terminology-systems/DT4HTerminologyService",
+    "folderPath" : "./terminology-systems/DT4HTerminologyService",
     "conceptMapFiles" : [ {
       "id" : "icd9toicd10.csv",
       "name" : "icd9toicd10.csv",
