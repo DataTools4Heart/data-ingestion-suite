@@ -61,6 +61,12 @@
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-snomed",
       "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
       "targetValueSetUrl" : "http://snomed.info/sct"
+    }, {
+      "id" : "snomedToIcd10Pcs.csv",
+      "name" : "snomedToIcd10Pcs.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs",
+      "sourceValueSetUrl" : "http://snomed.info/sct",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
     } ],
     "codeSystemFiles" : [ ]
   },

@@ -32,7 +32,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "onsetDateTime" : "{{iif(measurement_datetime.empty(), condition_start_date, condition_start_datetime)}}",
+        "onsetDateTime" : "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime)}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
         "id" : "{{mpp:getHashedId('Condition', condition_occurrence_id.toString())}}",
         "meta" : {
