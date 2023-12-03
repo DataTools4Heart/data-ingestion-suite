@@ -1,5 +1,5 @@
 {
-  "id": "umcu-condition-mapping",
+  "id": "condition-mapping",
   "url": "https://datatools4heart.eu/fhir/mappings/umcu/condition-mapping",
   "name": "condition-mapping",
   "title": "Mapping of UPOD diagnose table to the DT4H Condition FHIR profile",

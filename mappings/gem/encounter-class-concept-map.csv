@@ -1,4 +1,0 @@
-source_code,target_code,target_display,code_system
-Ricovero,IMP,inpatient encounter,http://terminology.hl7.org/CodeSystem/v3-ActCode
-Ambulatorio,AMB,ambulatory,http://terminology.hl7.org/CodeSystem/v3-ActCode
-Pronto Soccorso,EMER,emergency,http://terminology.hl7.org/CodeSystem/v3-ActCode

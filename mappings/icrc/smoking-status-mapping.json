@@ -6,9 +6,15 @@
   "source": [
     {
       "alias": "source",
-      "url": "https://datatools4heart.eu/icrc/PatientAddiction"
+      "url": "https://datatools4heart.eu/fhir/schemas/icrc/smokingstatus"
     }
   ],
+  "context": {
+    "smokingStatusConceptMap": {
+      "category": "concept-map",
+      "url": "$CONTEXT_REPO/icrc/smoking-status-concept-map.csv"
+    }
+  },
   "mapping": [
     {
       "expression": {
@@ -16,7 +22,7 @@
         "language": "application/fhir-template+json",
         "value": {
           "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', subject.toString() + date_from.toString() + smoking_status.toString())}}",
+          "id": "{{mpp:getHashedId('Observation', id_patient.toString() + date_from.toString() + code_loinc.toString())}}",
           "meta": {
             "profile": [
               "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-SmokingStatus"
@@ -43,7 +49,7 @@
               }
             ]
           },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "effectivePeriod": {
             "start": "{{date_from}}",
             "end": "{{? date_to}}"
@@ -52,8 +58,8 @@
             "coding": [
               {
                 "system": "http://loinc.org",
-                "code": "{{smoking_status}}",
-                "display": "{{name}}"
+                "code": "{{code_loinc}}",
+                "display": "{{mpp:getConcept(%smokingStatusConceptMap, code_loinc, 'target_display')}}"
               }
             ]
           }

@@ -5,16 +5,16 @@
   "title": "Mapping of icrc lab results to DT4H Lab Result FHIR profile",
   "source": [{
     "alias": "source",
-    "url": "https://datatools4heart.eu/icrc/LabResult"
+    "url": "https://datatools4heart.eu/fhir/schemas/icrc/labresult"
   }],
   "context": {
     "labResultUnitConversion": {
       "category": "unit-conversion",
-      "url": "./lab-results-unit-conversion.csv"
+      "url": "$CONTEXT_REPO/icrc/lab-results-unit-conversion.csv"
     },
     "labResultCodes": {
       "category": "concept-map",
-      "url": "./lab-result-codes.csv"
+      "url": "$CONTEXT_REPO/icrc/lab-result-codes.csv"
     }
   },
   "mapping": [
@@ -50,7 +50,7 @@
               {
                 "system": "http://loinc.org",
                 "code": "{{code}}",
-                "display": "{{? long_common_name}}"
+                "display": "{{ mpp:getConcept(%labResultCodes, code, 'source_display') }}"
               }
             ]
           },

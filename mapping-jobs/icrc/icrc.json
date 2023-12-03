@@ -1,135 +1,122 @@
 {
-  "id": "icrc",
-  "sourceSettings": {
-    "source": {
-      "jsonClass": "SqlSourceSettings",
-      "name": "icrc-data",
-      "sourceUri": "https://datatools4heart.eu/data-ingestion-suite/icrc-data",
-      "databaseUrl": "jdbc:postgresql://localhost:5432/icrc",
-      "username": "postgres",
-      "password": "password"
+  "id" : "icrc",
+  "name" : "icrc",
+  "sourceSettings" : {
+    "source" : {
+      "jsonClass" : "SqlSourceSettings",
+      "name" : "icrc-data",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/icrc-data",
+      "databaseUrl" : "jdbc:postgresql://localhost:5432/icrcv3",
+      "username" : "postgres",
+      "password" : "password"
     }
   },
-  "sinkSettings": {
-    "jsonClass": "FhirRepositorySinkSettings",
-    "fhirRepoUrl": "http://localhost:8081/fhir",
-    "writeErrorHandling": "halt"
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
   },
-  "dataProcessingSettings": {
-    "mappingErrorHandling": "halt"
-  },
-  "mappings": [
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select * from patient.patient"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select encounter.*, icd10.name_english from dt4h.encounter_profile encounter LEFT JOIN standard_dict.icd_10 icd10 ON encounter.reason_code = icd10.code"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "SELECT e.id_patient AS subject, lc.code_loinc AS code, o.id_encounter AS encounter, l.exec_date AS effective_date, ld.value, ld.unit FROM patient.lab l  JOIN lab.lab_data ld ON l.id = ld.id_lab  JOIN patient.observation o ON l.id_observation = o.id  JOIN lab.lab_code lc ON ld.id_lab_code = lc.id  JOIN patient.encounter e ON o.id_encounter = e.id  JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select * from dt4h.vital_sign_profile"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select sp.*, sc.\"text\" from dt4h.symptom_profile sp left join standard_dict.snomed_ct sc on sp.code = sc.sctid"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select cp.*, icd10.name_english, icd10.code_dot from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/medication-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select mp.*, atc.name_en from dt4h.medication_profile mp left join standard_dict.atc atc on mp.code_atc = atc.code"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select * from dt4h.procedure_profile"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select ssp.*, ss.\"name\" from dt4h.smoking_status_profile ssp left join standard_dict.smoking_status ss on ssp.smoking_status = ss.code"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
-      "sourceContext": {
-        "ecgs": {
-          "jsonClass": "SqlSource",
-          "query": "SELECT ecg.id, e.id_patient, e.id as encounter_id, date_exec, sample_freq, pr_duration, qrs_duration, qt, qtc, p_axis, qrs_axis, t_axis, inter_text, aVF, aVL, aVR, I, II, III, V1, V2, V3, V4, V5, V6 \nFROM ecg.ecg ecg INNER JOIN (\n\tSELECT id_ecg, raw_data[1] AS aVF, raw_data[2] AS aVL, raw_data[3] AS aVR, raw_data[4] AS I, raw_data[5] AS II, raw_data[6] AS III, raw_data[7] AS V1, raw_data[8] AS V2, raw_data[9] AS V3, raw_data[10] AS V4, raw_data[11] AS V5, raw_data[12] AS V6 \n\tfrom (select id_ecg, array_agg(c_data order by c_name) AS raw_data from ecg.mortara_channel_data mcd group by id_ecg) AS mcd_agg\n) AS mcd ON ecg.id = mcd.id_ecg \nINNER JOIN patient.observation o ON ecg.id_observation = o.id \nINNER JOIN patient.encounter e ON e.id = o.id_encounter\nINNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text FROM ecg.mortara_interpret GROUP BY id_ecg) AS mi ON ecg.id = mi.id_ecg"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
-      "sourceContext": {
-        "echos": {
-          "jsonClass": "SqlSource",
-          "query": "SELECT a.id_patient, a.\"time_stamp\", eb.* FROM echo.echo_basic eb INNER JOIN patient.activity a ON eb.id_activity = a.id_activity"
-        },
-        "encounters": {
-          "jsonClass": "SqlSource",
-          "tableName": "patient.encounter"
-        }
-      }
-    },
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
-      "sourceContext": {
-        "source": {
-          "jsonClass": "SqlSource",
-          "query": "select * from dt4h.nyha_profile"
-        }
+  "mappings" : [ {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select cp.*, icd10.name_english from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code"
       }
     }
-  ]
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
+    "sourceContext" : {
+      "echos" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select eb.*, o.id_encounter, e.id_patient from heart_echo.echo_basic eb inner join patient.observation o on eb.id_observation = o.id inner join patient.encounter e on e.id = o.id_encounter"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
+    "sourceContext" : {
+      "ecgs" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT ecg.id, e.id_patient, e.id as encounter_id, exec_date, sample_freq, pr_duration, qrs_duration, qt, qtc, p_axis, qrs_axis, t_axis, inter_text, aVF, aVL, aVR, I, II, III, V1, V2, V3, V4, V5, V6 \nFROM ecg.ecg ecg INNER JOIN (\n\tSELECT id_ecg, raw_data[1] AS aVF, raw_data[2] AS aVL, raw_data[3] AS aVR, raw_data[4] AS I, raw_data[5] AS II, raw_data[6] AS III, raw_data[7] AS V1, raw_data[8] AS V2, raw_data[9] AS V3, raw_data[10] AS V4, raw_data[11] AS V5, raw_data[12] AS V6 \n\tfrom (select id_ecg, array_agg(c_data order by c_name) AS raw_data from ecg.mortara_typical_data mcd group by id_ecg) AS mcd_agg\n) AS mcd ON ecg.id = mcd.id_ecg \nINNER JOIN patient.observation o ON ecg.id_observation = o.id \nINNER JOIN patient.encounter e ON e.id = o.id_encounter\nINNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text FROM ecg.mortara_interpret GROUP BY id_ecg) AS mi ON ecg.id = mi.id_ecg"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select encounter.*, icd10.name_english from dt4h.encounter_profile encounter LEFT JOIN standard_dict.icd_10 icd10 ON encounter.reason_code = icd10.code"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT e.id_patient AS subject, lc.code_loinc AS code, o.id_encounter AS encounter, l.exec_date AS effective_date, ld.value, ld.unit FROM patient.lab l  JOIN lab.lab_data ld ON l.id = ld.id_lab  JOIN patient.observation o ON l.id_observation = o.id  JOIN lab.lab_code lc ON ld.id_lab_code = lc.id  JOIN patient.encounter e ON o.id_encounter = e.id  JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select mp.*, atc.name_en from dt4h.medication_profile mp left join standard_dict.atc atc on mp.code_atc = atc.code"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from dt4h.nyha_profile"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from patient.patient"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from dt4h.procedure_profile"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from dt4h.smoking_status_profile"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from dt4h.symptom_profile"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from dt4h.vital_sign_profile"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "mappingErrorHandling" : "continue",
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
 }
