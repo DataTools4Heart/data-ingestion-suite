@@ -26,12 +26,12 @@ class ICRCIntegrationTest extends MappingTestSpec {
 
   val schemaLoader: IFhirSchemaLoader = new SchemaFolderLoader(Paths.get("schemas/icrc").toAbsolutePath.toUri)
 
-  val dataSourceSettings = Map("source" -> FileSystemSourceSettings("test-source-1", "https://www.fnusa-icrc.org", Paths.get("test-data/icrc").toAbsolutePath.toString))
+  val dataSourceSettings = Map("source" -> FileSystemSourceSettings("test-source-icrc", "https://www.fnusa-icrc.org", Paths.get("test-data/icrc").toAbsolutePath.toString))
 
   val fhirMappingJobManager = new FhirMappingJobManager(mappingRepository, contextLoader, schemaLoader, functionLibraries, sparkSession, ErrorHandlingType.HALT, runningJobRegistry)
 
   val fhirSinkSetting: FhirRepositorySinkSettings = FhirRepositorySinkSettings(fhirRepoUrl = sys.env.getOrElse("FHIR_REPO_URL", "http://localhost:8080/fhir"), errorHandling = Some(fhirWriteErrorHandling))
-  implicit val actorSystem = ActorSystem("Pilot1IntegrationTest")
+  implicit val actorSystem = ActorSystem("ICRCIntegrationTest")
 
   val onFhirClient = OnFhirNetworkClient.apply(fhirSinkSetting.fhirRepoUrl)
 
@@ -50,6 +50,12 @@ class ICRCIntegrationTest extends MappingTestSpec {
     mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
     sourceContext = Map("source" -> FileSystemSource(path = "conditions.csv"))
   )
+
+  val echocardiographMappingTask =
+    FhirMappingTask(
+      mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
+      sourceContext = Map("echos" -> FileSystemSource(path = "echocardiograph.csv"))
+    )
 
   val electrocardiographMappingTask =
     FhirMappingTask(
@@ -131,6 +137,85 @@ class ICRCIntegrationTest extends MappingTestSpec {
     assume(fhirServerIsAvailable)
     fhirMappingJobManager
       .executeMappingJob(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(conditionMappingTask)), sourceSettings = dataSourceSettings, sinkSettings = fhirSinkSetting)
+      .map(unit =>
+        unit shouldBe()
+      )
+  }
+
+  "echocardiograph mapping" should "map test data" in {
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(echocardiographMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+      val results = mappingResults.map(r => {
+        r.mappedResource shouldBe defined
+        val resource = r.mappedResource.get.parseJson
+        resource shouldBe a[Resource]
+        resource
+      })
+      results.length shouldBe 1
+
+      (results.apply(0) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "32232")
+      (results.apply(0) \ "encounter" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Encounter", "223394")
+      (results.apply(0) \ "effectiveDateTime").extract[String] shouldBe "2003-12-01"
+
+      (results.apply(0) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "34552-0"
+      (results.apply(0) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Cardiac 2D echo panel"
+
+      (results.apply(0) \ "component").extract[JArray].arr.length shouldBe 10
+      ((results.apply(0) \ "component")(0) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "8806-2"
+      ((results.apply(0) \ "component")(0) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Left ventricular Ejection fraction by 2D echo"
+      ((results.apply(0) \ "component")(0) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.531425152
+      ((results.apply(0) \ "component")(0) \ "valueQuantity" \ "unit").extract[String] shouldBe "%"
+
+      ((results.apply(0) \ "component")(1) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "18083-6"
+      ((results.apply(0) \ "component")(1) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Left ventricular Internal diameter minor axis diastole by US 2D"
+      ((results.apply(0) \ "component")(1) \ "valueQuantity" \ "value").extract[Int] shouldBe 1
+      ((results.apply(0) \ "component")(1) \ "valueQuantity" \ "unit").extract[String] shouldBe "mm"
+
+      ((results.apply(0) \ "component")(2) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "79969-2"
+      ((results.apply(0) \ "component")(2) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Interventricular septum Thickness at end diastole by US 2D"
+      ((results.apply(0) \ "component")(2) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.828838592
+      ((results.apply(0) \ "component")(2) \ "valueQuantity" \ "unit").extract[String] shouldBe "mm"
+
+      ((results.apply(0) \ "component")(3) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "18085-1"
+      ((results.apply(0) \ "component")(3) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Left ventricular Internal diameter minor axis systole by US 2D"
+      ((results.apply(0) \ "component")(3) \ "valueQuantity" \ "value").extract[Int] shouldBe 1
+      ((results.apply(0) \ "component")(3) \ "valueQuantity" \ "unit").extract[String] shouldBe "mm"
+
+      ((results.apply(0) \ "component")(4) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "29468-6"
+      ((results.apply(0) \ "component")(4) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Left atrial Diameter anterior-posterior systole by US 2D"
+      ((results.apply(0) \ "component")(4) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.1173482752
+      ((results.apply(0) \ "component")(4) \ "valueQuantity" \ "unit").extract[String] shouldBe "mm"
+
+      ((results.apply(0) \ "component")(5) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "75988-6"
+      ((results.apply(0) \ "component")(5) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Left ventricular End diastolic volume"
+      ((results.apply(0) \ "component")(5) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.1051116864
+      ((results.apply(0) \ "component")(5) \ "valueQuantity" \ "unit").extract[String] shouldBe "mL"
+
+      ((results.apply(0) \ "component")(6) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "75989-4"
+      ((results.apply(0) \ "component")(6) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Left ventricular End systolic volume"
+      ((results.apply(0) \ "component")(6) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.415748384
+      ((results.apply(0) \ "component")(6) \ "valueQuantity" \ "unit").extract[String] shouldBe "mL"
+
+      ((results.apply(0) \ "component")(7) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "79971-8"
+      ((results.apply(0) \ "component")(7) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Interventricular septum thickness at end systole by US 2D"
+      ((results.apply(0) \ "component")(7) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.980712
+      ((results.apply(0) \ "component")(7) \ "valueQuantity" \ "unit").extract[String] shouldBe "mm"
+
+      ((results.apply(0) \ "component")(8) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "77903-3"
+      ((results.apply(0) \ "component")(8) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Tricuspid valve annulus Excursion distance during systole by US.M-mode"
+      ((results.apply(0) \ "component")(8) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.180802032
+      ((results.apply(0) \ "component")(8) \ "valueQuantity" \ "unit").extract[String] shouldBe "cm"
+
+      ((results.apply(0) \ "component")(9) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "80032-6"
+      ((results.apply(0) \ "component")(9) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Left ventricular posterior wall Thickness at end diastole by US 2D"
+      ((results.apply(0) \ "component")(9) \ "valueQuantity" \ "value").extract[Double] shouldBe 0.1510482944
+      ((results.apply(0) \ "component")(9) \ "valueQuantity" \ "unit").extract[String] shouldBe "mm"
+    }
+  }
+
+  it should "map test data and write it to FHIR repo successfully" in {
+    assume(fhirServerIsAvailable)
+    fhirMappingJobManager
+      .executeMappingJob(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(echocardiographMappingTask)), sourceSettings = dataSourceSettings, sinkSettings = fhirSinkSetting)
       .map(unit =>
         unit shouldBe()
       )
