@@ -1,6 +1,5 @@
 *.jar
 *.bat
-*.sh
 application.conf
 log-service.conf
 **/logs/*
