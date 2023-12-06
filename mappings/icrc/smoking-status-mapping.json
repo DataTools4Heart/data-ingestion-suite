@@ -12,7 +12,7 @@
   "context": {
     "smokingStatusConceptMap": {
       "category": "concept-map",
-      "url": "$CONTEXT_REPO/icrc/smoking-status-concept-map.csv"
+      "url": "$CONTEXT_REPO/icrc/smoking-status-loinc-to-snomed-map.csv"
     }
   },
   "mapping": [
@@ -37,7 +37,8 @@
                   "system": "http://terminology.hl7.org/CodeSystem/observation-category",
                   "code": "social-history"
                 }
-              ]
+              ],
+              "@sliceName": "socialHistory"
             }
           ],
           "code": {
@@ -45,7 +46,8 @@
               {
                 "system": "http://loinc.org",
                 "code": "72166-2",
-                "display": "Tobacco smoking status"
+                "display": "Tobacco smoking status",
+                "@sliceName": "loincCode"
               }
             ]
           },
@@ -57,8 +59,8 @@
           "valueCodeableConcept": {
             "coding": [
               {
-                "system": "http://loinc.org",
-                "code": "{{code_loinc}}",
+                "system": "http://snomed.info/sct",
+                "code": "{{mpp:getConcept(%smokingStatusConceptMap, code_loinc, 'target_code')}}",
                 "display": "{{mpp:getConcept(%smokingStatusConceptMap, code_loinc, 'target_display')}}"
               }
             ]

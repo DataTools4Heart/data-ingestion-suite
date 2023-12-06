@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.onfhir</groupId>
-    <artifactId>tofhir-dt4h-functions_${scala.binary.version}</artifactId>
+    <artifactId>tofhir-dt4h_dt4h-functions_${scala.binary.version}</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -16,6 +16,7 @@
 
         <scala.version>2.13.10</scala.version>
         <scala.binary.version>2.13</scala.binary.version>
+        <scalatest.version>3.1.4</scalatest.version>
 
         <!--Dependency versions-->
         <scala-logging.version>3.9.4</scala-logging.version>
@@ -28,31 +29,46 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}</version>
         </dependency>
 
+        <!-- For Unit testing -->
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.binary.version}</artifactId>
+            <version>${scalatest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- toFHIR dependencies -->
         <dependency>
             <groupId>io.onfhir</groupId>
             <artifactId>tofhir-engine_${scala.binary.version}</artifactId>
+            <version>${tofhir.version}</version>
         </dependency>
         <dependency>
             <groupId>io.onfhir</groupId>
             <artifactId>tofhir-rxnorm_${scala.binary.version}</artifactId>
+            <version>${tofhir.version}</version>
         </dependency>
 
         <!-- onFHIR dependencies -->
         <dependency>
             <groupId>io.onfhir</groupId>
             <artifactId>onfhir-path_${scala.binary.version}</artifactId>
+            <version>${onfhir.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
-        <!--        <testSourceDirectory>src/test/scala</testSourceDirectory>-->
+        <!--<testSourceDirectory>src/test/scala</testSourceDirectory>-->
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -110,42 +126,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- Scala Library itself-->
-            <dependency>
-                <groupId>org.scala-lang</groupId>
-                <artifactId>scala-library</artifactId>
-                <version>${scala.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.scala-lang</groupId>
-                <artifactId>scala-reflect</artifactId>
-                <version>${scala.version}</version>
-            </dependency>
-
-            <!-- toFHIR dependencies -->
-            <dependency>
-                <groupId>io.onfhir</groupId>
-                <artifactId>tofhir-engine_${scala.binary.version}</artifactId>
-                <version>${tofhir.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.onfhir</groupId>
-                <artifactId>tofhir-rxnorm_${scala.binary.version}</artifactId>
-                <version>${tofhir.version}</version>
-            </dependency>
-
-            <!-- onFHIR dependencies -->
-            <dependency>
-                <groupId>io.onfhir</groupId>
-                <artifactId>onfhir-path_${scala.binary.version}</artifactId>
-                <version>${onfhir.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
 
     <distributionManagement>
         <snapshotRepository>
