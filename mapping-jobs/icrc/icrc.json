@@ -6,9 +6,9 @@
       "jsonClass" : "SqlSourceSettings",
       "name" : "icrc-data",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/icrc-data",
-      "databaseUrl" : "jdbc:postgresql://localhost:5432/icrcv3",
+      "databaseUrl" : "jdbc:postgresql://localhost:5432/icrc",
       "username" : "postgres",
-      "password" : "password"
+      "password" : "postgres"
     }
   },
   "sinkSettings" : {

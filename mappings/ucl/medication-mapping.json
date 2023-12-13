@@ -52,7 +52,7 @@
     "precondition" : {
       "name" : "mandatoryElementsExist",
       "language" : "text/fhirpath",
-      "expression" : "%atcIngredientCodes.exists() and quantity.exists()"
+      "expression" : "%atcIngredientCodes.exists() and quantity.exists() and quantity != 'NA'"
     }
   } ]
 }

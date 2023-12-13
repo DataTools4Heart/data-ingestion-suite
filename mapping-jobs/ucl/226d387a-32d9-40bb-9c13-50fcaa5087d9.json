@@ -12,7 +12,7 @@
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://onfhir:8080/fhir",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
     "errorHandling" : "continue",
     "returnMinimal" : true
   },
