@@ -35,6 +35,11 @@
         },
         "resourceType" : "Observation"
       }
+    },
+    "precondition" : {
+      "name" : "causeExists",
+      "language" : "text/fhirpath",
+      "expression" : "(cause_concept_id.exists() and cause_concept_id != 'NA') or (cause_source_value.exists() and cause_source_value != 'NA')"
     }
   } ]
 }

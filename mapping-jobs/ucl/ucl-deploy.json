@@ -1,6 +1,6 @@
 {
-  "id" : "226d387a-32d9-40bb-9c13-50fcaa5087d9",
-  "name" : "ucl-mapping-job",
+  "id" : "ucl-deploy",
+  "name" : "ucl-deploy",
   "sourceSettings" : {
     "source" : {
       "jsonClass" : "FileSystemSourceSettings",

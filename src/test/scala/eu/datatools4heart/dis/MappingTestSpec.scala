@@ -5,6 +5,7 @@ import io.tofhir.common.util.CustomMappingFunctionsFactory
 import io.tofhir.engine.config.ErrorHandlingType.ErrorHandlingType
 import io.tofhir.engine.config.{ErrorHandlingType, ToFhirConfig}
 import io.tofhir.engine.execution.RunningJobRegistry
+import io.tofhir.rxnorm.RxNormApiFunctionLibraryFactory
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.scalatest.{Inside, Inspectors, OptionValues}
@@ -33,6 +34,7 @@ class MappingTestSpec extends AsyncFlatSpec with should.Matchers with
       FhirPathAggFunctionsFactory.defaultPrefix -> FhirPathAggFunctionsFactory,
       FhirPathIdentityServiceFunctionsFactory.defaultPrefix -> FhirPathIdentityServiceFunctionsFactory,
       FhirPathTerminologyServiceFunctionsFactory.defaultPrefix -> FhirPathTerminologyServiceFunctionsFactory,
+      "rxn" -> new RxNormApiFunctionLibraryFactory("https://rxnav.nlm.nih.gov", 10),
       "cst" -> new CustomMappingFunctionsFactory()
     )
   }

@@ -5,5 +5,5 @@ log-service.conf
 **/logs/*
 .idea/
 **/target
-tofhir-db
+projects.json
 checkpoint

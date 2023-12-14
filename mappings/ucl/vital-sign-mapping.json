@@ -62,7 +62,7 @@
     "precondition" : {
       "name" : "isVitalSign",
       "language" : "text/fhirpath",
-      "expression" : "%isVitalSign"
+      "expression" : "%isVitalSign and vitalSignConcept.exists()"
     }
   } ]
 }
