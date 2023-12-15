@@ -50,7 +50,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
-        "effectiveDateTime" : "{{dataerogazione.toString().replace(' ','T') + '+02:00'}}",
+        "effectiveDateTime" : "{{dataerogazione.toDateTime()}}",
         "component" : {
           "{{#gemCode}}" : "{{('FunzioneDiastolica_RapportoEA'|'FunzioneDiastolica_RapportoEE'|'FunzioneDiastolica_VelocitPiccoOndaA'|'FunzioneDiastolica_VelocitPiccoOndaE'|'Valvolatricuspide_TAPSE'|'Ventricolosinistro_DiametroDiastolicoIndic'|'Ventricolosinistro_DiametroSistolicoIndic'|'Ventricolosinistro_DiametroTeleDiastolico'|'Ventricolosinistro_DiametroTeleSistolico'|'Ventricolosinistro_FrazionediEiezione'|'Ventricolosinistro_ParetePosterioreSpessoreTD'|'Ventricolosinistro_ParetePosterioreSpessoreTDIndic'|'Ventricolosinistro_SettoInterventricolareSpessoreTD'|'Ventricolosinistro_SettointerventricolarespessoreTDIndicM'|'Ventricolosinistro_StrokeVolumeIndex'|'Ventricolosinistro_VolumeTeleDiastolico'|'Ventricolosinistro_VolumeTeleDiastolicoInd'|'Ventricolosinistro_VolumeTeleSistolico'|'Ventricolosinistro_VolumeTeleSistolicoInd'|'Ventricolosinistro_ParetePosterioreSpessoreTS'|'Ventricolosinistro_ParetePosterioreSpessoreTSIndic'|'Ventricolodestro_Accorciamentofrazionale'|'Ventricolosinistro_DiametroInternoTD'|'FunzioneDiastolica_VelocitPiccoOndaELATTDI'|'FunzioneDiastolica_VelocitPiccoOndaESETTTDI'|'Ventricolosinistro_HeartRate'|'Ventricolosinistro_SettoInterventricolareSpessoreTS'|'VenaCava_DiametroMax'|'VenaCava_DiametroMin'|'Ventricolodestro_DiametroTeleDiastolico'|'Ventricolodestro_DiametroTeleDiastolicoIndic'|'VentricolosinistroSettointerventricolarespessoresistolicoIndicM')}}",
           "{{*}}" : {
@@ -59,7 +59,8 @@
               "{{#value}}" : "{{utl:evaluateExpression(%gemCode)}}",
               "{{?}}" : {
                 "code" : {
-                  "coding" : [ "{{utl:createFhirCoding(%echoCode.code_system, %echoCode.target_code, %echoCode.target_display)}}" ]
+                  "coding" : [ "{{utl:createFhirCoding(%echoCode.code_system, %echoCode.target_code, %echoCode.target_display)}}" ],
+                  "@sliceName" : "echoMetric"
                 },
                 "valueQuantity" : {
                   "value" : "{{%value}}",

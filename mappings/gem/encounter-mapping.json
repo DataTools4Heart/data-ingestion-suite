@@ -61,29 +61,25 @@
       "name" : "procedure",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#ind}}": "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.proc' & $this.toString() & '.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select($this.toString())}}",
-        "{{*}}": {
-          "{{#translatedCode}}": "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code.first()}}",
-          "{{?}}": {
-            "resourceType": "Procedure",
-            "meta": {
-              "profile": [
-                "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
-              ]
+        "{{#ind}}" : "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.proc' & $this.toString() & '.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select($this.toString())}}",
+        "{{*}}" : {
+          "{{#translatedCode}}" : "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code.first()}}",
+          "{{?}}" : {
+            "status" : "completed",
+            "code" : {
+              "coding" : [ {
+                "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+                "code" : "{{%translatedCode}}",
+                "@sliceName" : "icdCode"
+              } ]
             },
-            "status": "completed",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/sid/icd-10",
-                  "code": "{{%translatedCode}}",
-                  "@sliceName": "icdCode"
-                }
-              ]
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
+            "performedDateTime" : "{{utl:evaluateExpression('%encounterDetails.dataproc' & %ind)}}",
+            "id" : "{{mpp:getHashedId('Procedure', codice_sanitario & utl:evaluateExpression('%encounterDetails.dataproc' & %ind).toString() & %ind) }}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
             },
-            "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
-            "performedDateTime": "{{utl:evaluateExpression('%encounterDetails.dataproc' & %ind)}}",
-            "id": "{{mpp:getHashedId('Procedure', codice_sanitario & utl:evaluateExpression('%encounterDetails.dataproc' & %ind).toString() & %ind) }}"
+            "resourceType" : "Procedure"
           }
         }
       }
