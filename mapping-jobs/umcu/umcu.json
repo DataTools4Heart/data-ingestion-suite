@@ -12,12 +12,9 @@
   },
   "sinkSettings": {
     "jsonClass": "FhirRepositorySinkSettings",
-    "fhirRepoUrl": "http://localhost:8081/fhir",
-    "errorHandling": "continue"
+    "fhirRepoUrl": "http://localhost:8081/fhir"
   },
-  "dataProcessingSettings": {
-    "mappingErrorHandling": "halt"
-  },
+  "dataProcessingSettings": {},
   "mappings": [
     {
       "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",

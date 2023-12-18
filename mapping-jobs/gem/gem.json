@@ -13,7 +13,6 @@
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
     "fhirRepoUrl" : "http://localhost:8080/fhir",
-    "errorHandling" : "continue",
     "returnMinimal" : true
   },
   "terminologyServiceSettings" : {
@@ -187,7 +186,6 @@
     }
   } ],
   "dataProcessingSettings" : {
-    "mappingErrorHandling" : "continue",
     "saveErroneousRecords" : true,
     "archiveMode" : "off"
   },
