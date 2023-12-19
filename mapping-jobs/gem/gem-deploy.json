@@ -1,0 +1,195 @@
+{
+  "id" : "gem-deploy",
+  "name" : "gem-deploy",
+  "sourceSettings" : {
+    "source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "gem-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/gem-data",
+      "dataFolderPath" : "test-data/gem",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
+    "errorHandling" : "continue",
+    "returnMinimal" : true
+  },
+  "terminologyServiceSettings" : {
+    "jsonClass" : "LocalFhirTerminologyServiceSettings",
+    "folderPath" : "./terminology-systems/DT4HTerminologyService",
+    "conceptMapFiles" : [ {
+      "id" : "icd9toicd10.csv",
+      "name" : "icd9toicd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10",
+      "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "snomedToIcd10.csv",
+      "name" : "snomedToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10",
+      "sourceValueSetUrl" : "http://snomed.info/sct",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "omopToIcd10.csv",
+      "name" : "omopToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "omopToRxNorm.csv",
+      "name" : "omopToRxNorm.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://www.nlm.nih.gov/research/umls/rxnorm"
+    }, {
+      "id" : "omopToIcd10Pcs.csv",
+      "name" : "omopToIcd10Pcs.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+    }, {
+      "id" : "omopToLoinc.csv",
+      "name" : "omopToLoinc.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://loinc.org"
+    }, {
+      "id" : "omopToSnomed.csv",
+      "name" : "omopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
+    } ],
+    "codeSystemFiles" : [ ]
+  },
+  "mappings" : [ {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "angrafica.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
+    "sourceContext" : {
+      "encounterMain" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "encounterDetails" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "dettaglio_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "sourceContext" : {
+      "labResults" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "diariomisure.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "patologie.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
+    "sourceContext" : {
+      "medications" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "farmaci.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
+    "sourceContext" : {
+      "patology" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "patologie.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
+    "sourceContext" : {
+      "echo" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ecocardio.csv",
+        "fileFormat" : "csv",
+        "options" : { },
+        "preprocessSql" : "SELECT * FROM\n\t(SELECT \n\t\t codice_sanitario, dataerogazione, regexp_replace(concat(mssite, '_', measurename), '[\\\\\\\\W]+', '') as code, measuervalue \n\t FROM echo\n\t)\n\tPIVOT (LAST(measuervalue) as value FOR code in ('FunzioneDiastolica_RapportoEA','FunzioneDiastolica_RapportoEE','FunzioneDiastolica_VelocitPiccoOndaA','FunzioneDiastolica_VelocitPiccoOndaE','Valvolatricuspide_TAPSE','Ventricolosinistro_DiametroDiastolicoIndic','Ventricolosinistro_DiametroSistolicoIndic','Ventricolosinistro_DiametroTeleDiastolico','Ventricolosinistro_DiametroTeleSistolico','Ventricolosinistro_FrazionediEiezione','Ventricolosinistro_ParetePosterioreSpessoreTD','Ventricolosinistro_ParetePosterioreSpessoreTDIndic','Ventricolosinistro_SettoInterventricolareSpessoreTD','Ventricolosinistro_SettointerventricolarespessoreTDIndicM','Ventricolosinistro_StrokeVolumeIndex','Ventricolosinistro_VolumeTeleDiastolico','Ventricolosinistro_VolumeTeleDiastolicoInd','Ventricolosinistro_VolumeTeleSistolico','Ventricolosinistro_VolumeTeleSistolicoInd','Ventricolosinistro_ParetePosterioreSpessoreTS','Ventricolosinistro_ParetePosterioreSpessoreTSIndic','Ventricolodestro_Accorciamentofrazionale','Ventricolosinistro_DiametroInternoTD','FunzioneDiastolica_VelocitPiccoOndaELATTDI','FunzioneDiastolica_VelocitPiccoOndaESETTTDI','Ventricolosinistro_HeartRate','Ventricolosinistro_SettoInterventricolareSpessoreTS','VenaCava_DiametroMax','VenaCava_DiametroMin','Ventricolodestro_DiametroTeleDiastolico','Ventricolodestro_DiametroTeleDiastolicoIndic','VentricolosinistroSettointerventricolarespessoresistolicoIndicM'\n\t))\n"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/nyha-mapping",
+    "sourceContext" : {
+      "nyha" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "nyha.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
+    "sourceContext" : {
+      "anagrafica" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "angrafica.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "mappingErrorHandling" : "continue",
+    "saveErroneousRecords" : true,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}
