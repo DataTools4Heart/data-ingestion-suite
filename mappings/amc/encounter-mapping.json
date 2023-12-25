@@ -1,0 +1,37 @@
+{
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Mapping of AMC's Opnametraject table to DT4H-Enconter FHIR profile",
+  "source" : [ {
+    "alias" : "encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "class" : {
+          "system" : "",
+          "code" : ""
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid)}}",
+        "period" : {
+          "start" : "{{OpnameDatum}}",
+          "end" : "{{OntslagDatum}}"
+        },
+        "reasonCode" : "",
+        "status" : "",
+        "id" : "{{mpp:mpp:getHashedId('Encounter', pseudo_id)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter" ]
+        },
+        "resourceType" : "Encounter"
+      }
+    }
+  } ]
+}

@@ -1,0 +1,39 @@
+{
+  "id" : "lab-result-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/lab-result-mapping",
+  "name" : "lab-result-mapping",
+  "title" : "Mapping of AMC's Labuitslag table to DT4H-LabResult FHIR profile",
+  "source" : [ {
+    "alias" : "LabResult",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/labresult",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "@sliceName" : "hl7Category"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "subject" : "",
+        "encounter" : "",
+        "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    }
+  } ]
+}

@@ -1,0 +1,43 @@
+{
+  "id" : "procedure-surgery-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
+  "name" : "procedure-surgery-mapping",
+  "title" : "Mapping of AMC's VoorgeschiedenisChirurgie table to DT4H-Procedure FHIR profile",
+  "source" : [ {
+    "alias" : "SurgeryHistory",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/surgeryhistory",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "completed",
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+            "code" : "{{ChirurgischeVoorgeschiedenisCode}}",
+            "@sliceName" : "icdCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid.toString())}}",
+        "performedDateTime" : "{{ iif(ProcedureEindDatum.exists() and ProcedureEindDatum != 'NA', ProcedureEindDatum, ProcedureStartDatum) }}",
+        "category" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "387713003",
+            "display" : "Surgical procedure (procedure)"
+          } ]
+        },
+        "id" : "{{mpp:getHashedId('Procedure', pseudo_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
+        },
+        "resourceType" : "Procedure"
+      }
+    }
+  } ]
+}

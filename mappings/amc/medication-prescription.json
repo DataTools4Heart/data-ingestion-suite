@@ -1,0 +1,40 @@
+{
+  "id" : "medication-prescription",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
+  "name" : "medication-prescription",
+  "title" : "Mapping of AMC's MedicatieVoorschrift table to DT4H-MedicationAdministration FHIR profile",
+  "source" : [ {
+    "alias" : "MedicationPrescription",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationprescription",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "completed",
+        "medicationCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://www.whocc.no/atc",
+            "code" : "{{ATCKlasseCode}}",
+            "display" : "{{ATCKlasse}}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId.toString())}}",
+        "context" : "",
+        "effectivePeriod" : {
+          "start" : "{{StartDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{StopDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+        },
+        "id" : "{{mpp:getHashedId('Patient', PatientContactId.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration"
+      }
+    }
+  } ]
+}

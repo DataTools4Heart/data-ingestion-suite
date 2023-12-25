@@ -1,0 +1,123 @@
+{
+  "id" : "4d048368-842d-4830-910c-19518bc7a3eb",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/surgeryhistory",
+  "name" : "SurgeryHistory",
+  "status" : "draft",
+  "fhirVersion" : "4.0.1",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "SurgeryHistory",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "SurgeryHistory",
+      "path" : "SurgeryHistory",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "SurgeryHistory.pseudo_id",
+      "path" : "SurgeryHistory.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.RegistratieDatum",
+      "path" : "SurgeryHistory.RegistratieDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.ProcedureStartDatum",
+      "path" : "SurgeryHistory.ProcedureStartDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.ProcedureEindDatum",
+      "path" : "SurgeryHistory.ProcedureEindDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.ChirurgischeVoorgeschiedenisCode",
+      "path" : "SurgeryHistory.ChirurgischeVoorgeschiedenisCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.ChirurgischeVoorgeschiedenis",
+      "path" : "SurgeryHistory.ChirurgischeVoorgeschiedenis",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.Bron",
+      "path" : "SurgeryHistory.Bron",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.ziekenhuislocatie",
+      "path" : "SurgeryHistory.ziekenhuislocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.TypeCode",
+      "path" : "SurgeryHistory.TypeCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.Patientcontactid",
+      "path" : "SurgeryHistory.Patientcontactid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "SurgeryHistory.uitgifteDT",
+      "path" : "SurgeryHistory.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    } ]
+  }
+}

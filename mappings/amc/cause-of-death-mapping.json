@@ -1,0 +1,35 @@
+{
+  "id" : "cause-of-death-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
+  "name" : "cause-of-death-mapping",
+  "title" : "Mapping of AMC's OverlijdensRegistratie table to DT4H-CauseOfDeath FHIR profile",
+  "source" : [ {
+    "alias" : "CauseOfDeath",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/causeofdeath",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "68343-3",
+            "display" : "Primary cause of death",
+            "@sliceName" : "loincCauseOfDeathCode"
+          } ]
+        },
+        "subject" : "",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation"
+      }
+    }
+  } ]
+}

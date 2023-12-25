@@ -1,0 +1,40 @@
+{
+  "id" : "procedure-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+  "name" : "procedure-mapping",
+  "title" : "Mapping of AMC's OKVerrichtingUitgevoerd table to DT4H-Procedure FHIR profile",
+  "source" : [ {
+    "alias" : "Procedure",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/procedure",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "completed",
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+            "code" : "{{VerrichtingCode}}",
+            "display" : "{{Verrichting}}",
+            "@sliceName" : "icdCode"
+          } ]
+        },
+        "subject" : "",
+        "performedDateTime" : {
+          "{{#performedDateTimeVar}}" : "{{iif(ZittingStartDatum.exists() and ZittingStartDatum != 'NA', ZittingStartDatum, {})}}",
+          "{{?}}" : "{{ZittingStartDatum}}"
+        },
+        "id" : "{{mpp:getHashedId('Procedure', pseudo_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
+        },
+        "resourceType" : "Procedure"
+      }
+    }
+  } ]
+}
