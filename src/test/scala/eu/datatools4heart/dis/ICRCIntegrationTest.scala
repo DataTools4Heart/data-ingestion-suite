@@ -5,7 +5,6 @@ import akka.http.scaladsl.model.StatusCodes
 import io.onfhir.api.Resource
 import io.onfhir.client.OnFhirNetworkClient
 import io.onfhir.util.JsonFormatter._
-import io.tofhir.engine.config.ErrorHandlingType
 import io.tofhir.engine.mapping._
 import io.tofhir.engine.model._
 import io.tofhir.engine.util.FhirMappingUtility
@@ -28,9 +27,9 @@ class ICRCIntegrationTest extends MappingTestSpec {
 
   val dataSourceSettings = Map("source" -> FileSystemSourceSettings("test-source-icrc", "https://www.fnusa-icrc.org", Paths.get("test-data/icrc").toAbsolutePath.toString))
 
-  val fhirMappingJobManager = new FhirMappingJobManager(mappingRepository, contextLoader, schemaLoader, functionLibraries, sparkSession, ErrorHandlingType.HALT, runningJobRegistry)
+  val fhirMappingJobManager = new FhirMappingJobManager(mappingRepository, contextLoader, schemaLoader, functionLibraries, sparkSession, runningJobRegistry)
 
-  val fhirSinkSetting: FhirRepositorySinkSettings = FhirRepositorySinkSettings(fhirRepoUrl = sys.env.getOrElse("FHIR_REPO_URL", "http://localhost:8080/fhir"), errorHandling = Some(fhirWriteErrorHandling))
+  val fhirSinkSetting: FhirRepositorySinkSettings = FhirRepositorySinkSettings(fhirRepoUrl = sys.env.getOrElse("FHIR_REPO_URL", "http://localhost:8080/fhir"))
   implicit val actorSystem = ActorSystem("ICRCIntegrationTest")
 
   val onFhirClient = OnFhirNetworkClient.apply(fhirSinkSetting.fhirRepoUrl)
@@ -44,7 +43,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
     sourceSettings = dataSourceSettings,
     sinkSettings = fhirSinkSetting,
     mappings = Seq.empty,
-    dataProcessingSettings = DataProcessingSettings(mappingErrorHandling = ErrorHandlingType.CONTINUE, saveErroneousRecords = false, archiveMode = ArchiveModes.OFF))
+    dataProcessingSettings = DataProcessingSettings(saveErroneousRecords = false, archiveMode = ArchiveModes.OFF))
 
   val conditionMappingTask = FhirMappingTask(
     mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",

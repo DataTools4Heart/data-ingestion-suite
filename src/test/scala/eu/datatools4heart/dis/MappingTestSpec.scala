@@ -2,8 +2,7 @@ package eu.datatools4heart.dis
 
 import io.onfhir.path.{FhirPathAggFunctionsFactory, FhirPathIdentityServiceFunctionsFactory, FhirPathNavFunctionsFactory, FhirPathTerminologyServiceFunctionsFactory, FhirPathUtilFunctionsFactory, IFhirPathFunctionLibraryFactory}
 import io.tofhir.common.util.CustomMappingFunctionsFactory
-import io.tofhir.engine.config.ErrorHandlingType.ErrorHandlingType
-import io.tofhir.engine.config.{ErrorHandlingType, ToFhirConfig}
+import io.tofhir.engine.config.ToFhirConfig
 import io.tofhir.engine.execution.RunningJobRegistry
 import io.tofhir.rxnorm.RxNormApiFunctionLibraryFactory
 import org.apache.spark.SparkConf
@@ -15,8 +14,6 @@ import org.scalatest.matchers.should
 class MappingTestSpec extends AsyncFlatSpec with should.Matchers with
   OptionValues with Inside with Inspectors {
 
-  val mappingErrorHandling: ErrorHandlingType = ErrorHandlingType.HALT
-  val fhirWriteErrorHandling: ErrorHandlingType = ErrorHandlingType.HALT
 
   val sparkConf: SparkConf = new SparkConf()
     .setAppName(ToFhirConfig.sparkAppName)
