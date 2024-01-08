@@ -21,6 +21,7 @@
       "Condition" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Probleemlijst.tsv",
+        "fileFormat" : "tsv",
         "options" : { }
       }
     }
@@ -30,6 +31,7 @@
       "EncounterEmergency" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_SEHtraject.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
@@ -41,6 +43,7 @@
       "LabResult" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Labuitslag.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
@@ -52,6 +55,7 @@
       "MedicationAdministration" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieToediening.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
@@ -63,6 +67,7 @@
       "patient" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Patient.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
@@ -74,6 +79,7 @@
       "Procedure" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OKVerrichtingUitgevoerd.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
@@ -85,6 +91,7 @@
       "SurgeryHistory" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisChirurgie.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
@@ -96,6 +103,7 @@
       "VitalSign" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingVitaleGegevens.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
@@ -107,6 +115,7 @@
       "O2Saturation" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Metingo2Saturatie.tsv",
+        "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
         }
