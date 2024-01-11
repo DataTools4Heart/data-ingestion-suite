@@ -17,15 +17,8 @@
       "value" : {
         "resourceType" : "Patient",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient" ],
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ],
           "source" : "{{%sourceSystem.sourceUri}}"
-        },
-        "extension" : {
-          "{{#ethnicity}}" : "{{ iif(ethnicity != '', ethnicity, {}) }}",
-          "{{?}}" : [ {
-            "url" : "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Ethnicity",
-            "@sliceName" : "ethnicity"
-          } ]
         },
         "gender" : "{{ iif(sex='M', 'male', 'female') }}",
         "birthDate" : "{{data_nascita}}",

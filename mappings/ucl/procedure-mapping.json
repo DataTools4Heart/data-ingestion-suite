@@ -23,14 +23,15 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "status" : "completed",
+        "category" : "",
         "code" : {
           "coding" : [ "{{trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs').first()}}" ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "performedDateTime" : "{{iif(procedure_datetime.empty(), procedure_date, procedure_datetime)}}",
+        "occurrenceDateTime" : "{{iif(procedure_datetime.empty(), procedure_date, procedure_datetime)}}",
+        "status" : "completed",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
         },
         "resourceType" : "Procedure"
       }
@@ -47,7 +48,8 @@
       "value" : {
         "clinicalStatus" : {
           "coding" : [ {
-            "@sliceName" : "fhirCode"
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "active"
           } ]
         },
         "code" : {
@@ -58,7 +60,7 @@
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
         "id" : "{{mpp:getHashedId('Condition', 'Procedure' & procedure_occurrence_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },
         "resourceType" : "Condition"
       }

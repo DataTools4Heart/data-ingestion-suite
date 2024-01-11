@@ -15,19 +15,14 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Observation",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-CauseOfDeath" ]
-        },
         "status" : "final",
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
             "code" : "68343-3",
-            "@sliceName" : "loincCauseOfDeathCode"
+            "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "effectiveDateTime" : "{{data_out_ultimo_contatto)}}",
         "valueCodeableConcept" : {
           "coding" : [ {
@@ -35,7 +30,12 @@
             "code" : "NA"
           } ]
         },
-        "id" : "{{codice_sanitario.toString()}}"
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
+        "id" : "{{codice_sanitario.toString()}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation"
       }
     },
     "precondition" : {

@@ -22,26 +22,27 @@
           "id": "{{mpp:getHashedId('MedicationAdministration', subject.toString() + encounter.toString() + code_atc.toString() + date_from.toString())}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },
           "status": "{{iif(date_to.exists(), 'completed', 'in-progress')}}",
-          "medicationCodeableConcept": {
-            "coding": [
-              {
+          "medication" : {
+            "concept" : {
+              "coding" : [ {
                 "system": "http://www.whocc.no/atc",
                 "code": "{{code_atc}}",
-                "display": "{{? name_en}}"
-              }
-            ]
+                "display": "{{? name_en}}",
+                "@sliceName" : "atcCode"
+              } ]
+            }
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-          "effectivePeriod": {
+          "occurencePeriod": {
             "start": "{{date_from}}",
             "end": "{{? date_to}}"
           },
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
           "dosage": {
             "dose": {
               "value": "{{dosage}}"

@@ -19,8 +19,7 @@
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "procedure",
-            "@sliceName" : "hl7Category"
+            "code" : "procedure"
           } ]
         } ],
         "code" : {
@@ -48,7 +47,7 @@
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
-          "@sliceName" : "qrsComplexVentriclesByEkg"
+          "@sliceName" : "prInterval"
         }, {
           "code" : {
             "coding" : [ {
@@ -63,7 +62,7 @@
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
-          "@sliceName" : "pWaveAtriumByEkg"
+          "@sliceName" : "qrsDuration"
         }, {
           "code" : {
             "coding" : [ {
@@ -78,7 +77,7 @@
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
-          "@sliceName" : "prInterval"
+          "@sliceName" : "qtInterval"
         }, {
           "code" : {
             "coding" : [ {
@@ -93,7 +92,7 @@
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
-          "@sliceName" : "qrsDuration"
+          "@sliceName" : "qtIntervalCorrected"
         }, {
           "code" : {
             "coding" : [ {
@@ -108,7 +107,7 @@
             "system" : "http://unitsofmeasure.org",
             "code" : "deg"
           },
-          "@sliceName" : "qtInterval"
+          "@sliceName" : "pAxis"
         }, {
           "code" : {
             "coding" : [ {
@@ -123,7 +122,7 @@
             "system" : "http://unitsofmeasure.org",
             "code" : "deg"
           },
-          "@sliceName" : "qtIntervalCorrected"
+          "@sliceName" : "rAxis"
         }, {
           "code" : {
             "coding" : [ {
@@ -138,7 +137,7 @@
             "system" : "http://unitsofmeasure.org",
             "code" : "deg"
           },
-          "@sliceName" : "pWaveAxis"
+          "@sliceName" : "tAxis"
         }, {
           "{{#interpretation}}" : "{{ iif(inter_text != '', inter_text, {}) }}",
           "{{?}}" : {
@@ -150,8 +149,7 @@
               } ]
             },
             "valueString" : "{{%interpretation}}"
-          },
-          "@sliceName" : "qrsAxis"
+          }
         }, {
           "code" : {
             "coding" : [ {
@@ -169,7 +167,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(avf)}}"
           },
-          "@sliceName" : "tWaveAxis"
+          "@sliceName" : "leadAVF"
         }, {
           "code" : {
             "coding" : [ {
@@ -187,7 +185,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(avl)}}"
           },
-          "@sliceName" : "ekgImpression"
+          "@sliceName" : "leadAVL"
         }, {
           "code" : {
             "coding" : [ {
@@ -205,7 +203,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(avr)}}"
           },
-          "@sliceName" : "rhythmType"
+          "@sliceName" : "leadAVR"
         }, {
           "code" : {
             "coding" : [ {
@@ -223,7 +221,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(i)}}"
           },
-          "@sliceName" : "signsOfStElevation"
+          "@sliceName" : "leadI"
         }, {
           "code" : {
             "coding" : [ {
@@ -241,7 +239,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(ii)}}"
           },
-          "@sliceName" : "signsOfIschemiaWithoutStElevation"
+          "@sliceName" : "leadII"
         }, {
           "code" : {
             "coding" : [ {
@@ -259,7 +257,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(iii)}}"
           },
-          "@sliceName" : "leadI"
+          "@sliceName" : "leadIII"
         }, {
           "code" : {
             "coding" : [ {
@@ -277,7 +275,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v1)}}"
           },
-          "@sliceName" : "leadII"
+          "@sliceName" : "leadV1"
         }, {
           "code" : {
             "coding" : [ {
@@ -295,7 +293,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v2)}}"
           },
-          "@sliceName" : "leadIII"
+          "@sliceName" : "leadV2"
         }, {
           "code" : {
             "coding" : [ {
@@ -313,7 +311,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v3)}}"
           },
-          "@sliceName" : "leadAVR"
+          "@sliceName" : "leadV3"
         }, {
           "code" : {
             "coding" : [ {
@@ -331,7 +329,7 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v4)}}"
           },
-          "@sliceName" : "leadAVL"
+          "@sliceName" : "leadV4"
         }, {
           "code" : {
             "coding" : [ {
@@ -349,98 +347,13 @@
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v5)}}"
           },
-          "@sliceName" : "leadAVF"
+          "@sliceName" : "leadV5"
         }, {
           "code" : {
             "coding" : [ {
               "system" : "http://loinc.org",
               "code" : "LP7394-2",
               "display" : "Raw lead V6 data"
-            } ]
-          },
-          "valueSampledData" : {
-            "origin" : {
-              "value" : 0
-            },
-            "period" : "{{1 / sample_freq * 1000}}",
-            "factor" : 0.0025,
-            "dimensions" : 1,
-            "data" : "{{cst:createTimeSeriesData(v1)}}"
-          },
-          "@sliceName" : "leadV1"
-        }, {
-          "code" : {
-            "coding" : [ {
-              "system" : "http://loinc.org",
-              "code" : "LP7390-0"
-            } ]
-          },
-          "valueSampledData" : {
-            "origin" : {
-              "value" : 0
-            },
-            "period" : "{{1 / sample_freq * 1000}}",
-            "factor" : 0.0025,
-            "dimensions" : 1,
-            "data" : "{{cst:createTimeSeriesData(v2)}}"
-          },
-          "@sliceName" : "leadV2"
-        }, {
-          "code" : {
-            "coding" : [ {
-              "system" : "http://loinc.org",
-              "code" : "LP7391-8"
-            } ]
-          },
-          "valueSampledData" : {
-            "origin" : {
-              "value" : 0
-            },
-            "period" : "{{1 / sample_freq * 1000}}",
-            "factor" : 0.0025,
-            "dimensions" : 1,
-            "data" : "{{cst:createTimeSeriesData(v3)}}"
-          },
-          "@sliceName" : "leadV3"
-        }, {
-          "code" : {
-            "coding" : [ {
-              "system" : "http://loinc.org",
-              "code" : "LP7392-6"
-            } ]
-          },
-          "valueSampledData" : {
-            "origin" : {
-              "value" : 0
-            },
-            "period" : "{{1 / sample_freq * 1000}}",
-            "factor" : 0.0025,
-            "dimensions" : 1,
-            "data" : "{{cst:createTimeSeriesData(v4)}}"
-          },
-          "@sliceName" : "leadV4"
-        }, {
-          "code" : {
-            "coding" : [ {
-              "system" : "http://loinc.org",
-              "code" : "LP7393-4"
-            } ]
-          },
-          "valueSampledData" : {
-            "origin" : {
-              "value" : 0
-            },
-            "period" : "{{1 / sample_freq * 1000}}",
-            "factor" : 0.0025,
-            "dimensions" : 1,
-            "data" : "{{cst:createTimeSeriesData(v5)}}"
-          },
-          "@sliceName" : "leadV5"
-        }, {
-          "code" : {
-            "coding" : [ {
-              "system" : "http://loinc.org",
-              "code" : "LP7394-2"
             } ]
           },
           "valueSampledData" : {
@@ -457,7 +370,7 @@
         "id" : "{{mpp:getHashedId('Observation', id.toString() + '_electrocardiograph')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Electrocardiograph" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
         },
         "resourceType" : "Observation"
       }

@@ -1,47 +1,43 @@
 {
-  "id": "condition-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
-  "name": "condition-mapping",
-  "title": "Mapping of icrc condition data to the DT4H Condition FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/fhir/schemas/icrc/condition"
-  }],
-  "mapping": [
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Condition",
-          "id": "{{mpp:getHashedId('Condition', subject.toString() + on_set_datetime.toString() + code.toString())}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "clinicalStatus": {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                "code": "active"
-              }
-            ]
-          },
-          "code": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/sid/icd-10",
-                "code": "{{code_dot}}",
-                "display": "{{? name_english}}"
-              }
-            ]
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-          "onsetDateTime": "{{on_set_datetime}}"
-        }
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Mapping of icrc condition data to the DT4H Condition FHIR profile",
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/condition",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "{{code_dot}}",
+            "display" : "{{? name_english}}",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "onsetDateTime" : "{{on_set_datetime}}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "active"
+          } ]
+        },
+        "id" : "{{mpp:getHashedId('Condition', subject.toString() + on_set_datetime.toString() + code.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
       }
     }
-  ]
+  } ]
 }

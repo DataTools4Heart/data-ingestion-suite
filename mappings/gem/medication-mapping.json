@@ -23,30 +23,31 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "MedicationAdministration",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ],
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
-        "status" : "completed",
-        "medicationCodeableConcept" : {
-          "coding" : [ {
-            "system" : "http://www.whocc.no/atc",
-            "code" : "{{atc}}",
-            "display" : "{{? termine}}"
-          } ]
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{atc}}",
+              "display" : "{{? termine}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-        "context" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
-        "effectivePeriod" : {
-          "start" : "{{data}}"
-        },
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
+        "occurenceDateTime" : "{{data}}",
+        "status" : "completed",
         "dosage" : {
           "dose" : {
             "value" : 123456789
           }
         },
-        "id" : "{{mpp:getHashedId('Medication', codice_sanitario.toString() & data.toString() & atc)}}"
+        "id" : "{{mpp:getHashedId('Medication', codice_sanitario.toString() & data.toString() & atc)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration"
       }
     },
     "precondition" : {

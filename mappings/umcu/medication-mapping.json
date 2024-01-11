@@ -37,26 +37,29 @@
           "id": "{{mpp:getHashedId('Medication', 'umcu_' + id)}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration"
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },
           "status": "completed",
-          "medicationCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://www.whocc.no/atc",
-                "code": "{{med_ZIatc}}",
-                "display": "{{? med_label}}"
-              }
-            ]
+          "medication" : {
+            "concept" : {
+              "coding": [
+                {
+                  "system": "http://www.whocc.no/atc",
+                  "code": "{{med_ZIatc}}",
+                  "display": "{{? med_label}}",
+                  "@sliceName" : "atcCode"
+                }
+              ]
+            }
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', pseudoid_voorkeur)}}",
-          "effectivePeriod": {
+          "occurencePeriod": {
             "start": "{{med_start_dt}}",
             "end": "{{med_stop_dt}}"
           },
-          "context": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id)}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id)}}",
           "dosage": {
             "dose": {
               "value": "{{med_totdosis}}"

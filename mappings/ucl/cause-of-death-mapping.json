@@ -21,17 +21,17 @@
             "system" : "http://loinc.org",
             "code" : "68343-3",
             "display" : "Primary cause of death",
-            "@sliceName" : "loincCauseOfDeathCode"
+            "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
         "effectiveDateTime" : "{{iif(death_datetime.empty(), death_date, death_datetime)}}",
         "valueCodeableConcept" : {
           "coding" : "{{* iif(cause_source_value.empty() or cause_source_value = 'NA', trms:translateToCoding(cause_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10').first(), utl:createFhirCoding('http://hl7.org/fhir/sid/icd-10', cause_source_value, {}))}}"
         },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
         "id" : "{{mpp:getHashedId('Observation', 'Death' & person_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-CauseOfDeath" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
         },
         "resourceType" : "Observation"
       }

@@ -1,46 +1,42 @@
 {
-  "id": "condition-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/umcu/condition-mapping",
-  "name": "condition-mapping",
-  "title": "Mapping of UPOD diagnose table to the DT4H Condition FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/umcu/Diagnosis"
-  }],
-  "mapping": [
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Condition",
-          "id": "{{mpp:getHashedId('Condition', 'umcu_' + id TODO)}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "clinicalStatus": {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                "code": "active"
-              }
-            ]
-          },
-          "code": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/sid/icd-10",
-                "code": "diag_code"
-              }
-            ]
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', pseudoid_voorkeru)}}",
-          "onsetDateTime": "{{diag_start_dt}}"
-        }
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Mapping of UPOD diagnose table to the DT4H Condition FHIR profile",
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/umcu/Diagnosis",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "diag_code",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudoid_voorkeru)}}",
+        "onsetDateTime" : "{{diag_start_dt}}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "active"
+          } ]
+        },
+        "id" : "{{mpp:getHashedId('Condition', 'umcu_' + id TODO)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
       }
     }
-  ]
+  } ]
 }
