@@ -237,7 +237,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
       (results.apply(0) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "34534-8"
       (results.apply(0) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "12 lead EKG panel"
 
-      (results.apply(1) \ "component").extract[JArray].arr.length shouldBe 25
+      (results.apply(1) \ "component").extract[JArray].arr.length shouldBe 20
       ((results.apply(1) \ "component")(0) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "8625-6"
       ((results.apply(1) \ "component")(0) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "P-R Interval"
       ((results.apply(1) \ "component")(0) \ "valueQuantity" \ "value").extract[Int] shouldBe -255
@@ -303,11 +303,11 @@ class ICRCIntegrationTest extends MappingTestSpec {
       (results.apply(1) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "66789")
 
       (results.apply(9) \ "status").extract[String] shouldBe "finished"
-      (results.apply(5) \ "class" \ "code").extract[String] shouldBe "AMB"
-      (results.apply(5) \ "class" \ "display").extract[String] shouldBe "ambulatory"
+      (((results.apply(5) \ "class")(0) \ "coding")(0) \ "code").extract[String] shouldBe "AMB"
+      (((results.apply(5) \ "class")(0) \ "coding")(0) \ "display").extract[String] shouldBe "ambulatory"
 
-      (results.apply(6) \ "period" \ "start").extract[String] shouldBe "2013-04-18"
-      (results.apply(6) \ "period" \ "end").extract[String] shouldBe "2013-04-18"
+      (results.apply(6) \ "actualPeriod" \ "start").extract[String] shouldBe "2013-04-18"
+      (results.apply(6) \ "actualPeriod" \ "end").extract[String] shouldBe "2013-04-18"
     }
   }
 
@@ -361,13 +361,13 @@ class ICRCIntegrationTest extends MappingTestSpec {
       })
       results.length shouldBe 10
       (results.apply(2) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "23912")
-      (results.apply(2) \ "context" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Encounter", "213538")
+      (results.apply(2) \ "encounter" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Encounter", "213538")
 
-      (results.apply(2) \ "medicationCodeableConcept" \ "coding" \ "code").extract[Seq[String]].head shouldBe "R06AX13"
-      (results.apply(2) \ "medicationCodeableConcept" \ "coding" \ "display").extract[Seq[String]].head shouldBe "LORATADINE"
+      (results.apply(2) \ "medication" \ "concept" \ "coding" \ "code").extract[Seq[String]].head shouldBe "R06AX13"
+      (results.apply(2) \ "medication" \ "concept" \ "coding" \ "display").extract[Seq[String]].head shouldBe "LORATADINE"
 
-      (results.apply(1) \ "effectivePeriod" \ "start").extract[String] shouldBe "2015-01-11"
-      (results.apply(1) \ "effectivePeriod" \ "end").extract[String] shouldBe "2015-01-11"
+      (results.apply(1) \ "occurencePeriod" \ "start").extract[String] shouldBe "2015-01-11"
+      (results.apply(1) \ "occurencePeriod" \ "end").extract[String] shouldBe "2015-01-11"
       (results.apply(2) \ "dosage" \ "dose" \ "value").extract[Int] shouldBe 20
     }
   }
@@ -398,7 +398,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
       (results.apply(0) \ "valueCodeableConcept" \ "coding" \ "code").extract[Seq[String]].head shouldBe "LA28405-1"
       (results.apply(0) \ "valueCodeableConcept" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Class-II"
 
-      (results.apply(1) \ "meta" \ "profile").extract[Seq[String]].head shouldBe "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-NewYorkHeartAssessment"
+      (results.apply(1) \ "meta" \ "profile").extract[Seq[String]].head shouldBe "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment"
 
       (results.apply(1) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "88020-3"
       (results.apply(1) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Functional capacity NYHA"
@@ -451,8 +451,8 @@ class ICRCIntegrationTest extends MappingTestSpec {
       results.length shouldBe 10
       (results.apply(0) \ "id").extract[String] shouldBe FhirMappingUtility.getHashedId("Procedure", "393057")
       (results.apply(0) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "57092")
-      (results.apply(0) \ "reasonReference" \ "reference").extract[Seq[String]].head shouldBe FhirMappingUtility.getHashedReference("Observation", "296589")
-      (results.apply(0) \ "performedDateTime").extract[String] shouldBe "2017-02-17T02:00:00Z"
+      ((results.apply(0) \ "reason")(0) \ "reference" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Observation", "296589")
+      (results.apply(0) \ "occurrenceDateTime").extract[String] shouldBe "2017-02-17T02:00:00Z"
 
       (results.apply(1) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "I48"
       (results.apply(1) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Atrial fibrillation and flutter (referred in relation to the rhythm correction in DT4H)"
