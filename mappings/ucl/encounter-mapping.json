@@ -43,7 +43,7 @@
           "start" : "{{? iif(visit_start_datetime.empty(), visit_start_date, visit_start_datetime)}}",
           "end" : "{{? iif(visit_end_datetime.empty(), visit_end_date, visit_end_datetime)}}"
         },
-        "status" : "finished",
+        "status" : "completed",
         "reason" : [ {
           "value" : [ {
             "concept" : {

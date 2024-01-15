@@ -41,7 +41,7 @@
           } ]
         },
         "effectiveDateTime" : "{{effective_date}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit))}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit, 'http://unitsofmeasure.org', code))}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
         "id" : "{{mpp:getHashedId('Observation', subject.toString() + encounter.toString() + code.toString() + effective_date.toString())}}",

@@ -23,7 +23,11 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "category" : "",
+        "category": {
+          "coding": [{
+            "TODO": "procedure category is required now after CDM upgrade"
+          }]
+        },
         "code" : {
           "coding" : [ "{{trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs').first()}}" ]
         },

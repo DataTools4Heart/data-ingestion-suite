@@ -44,6 +44,7 @@
           "coding" : [ {
             "system" : "http://loinc.org",
             "code" : "34552-0",
+            "display" : "Cardiac 2D echo panel",
             "@sliceName" : "loincCode"
           } ]
         },

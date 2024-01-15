@@ -36,7 +36,7 @@
           "start" : "{{data_in & 'T' & ora_in & ':00+02:00'}}",
           "end" : "{{data_out & 'T' & ora_out & ':00+02:00'}}"
         },
-        "status" : "finished",
+        "status" : "completed",
         "reason" : {
           "{{#reasonCodeVar}}" : "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.diag' & $this.toString() & '_icd9cm.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select('diag' & $this.toString() & '_icd9cm')}}",
           "{{*}}" : {

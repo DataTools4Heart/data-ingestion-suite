@@ -186,7 +186,7 @@
     }
   } ],
   "dataProcessingSettings" : {
-    "saveErroneousRecords" : true,
+    "saveErroneousRecords" : false,
     "archiveMode" : "off"
   },
   "useFhirSinkAsIdentityService" : false

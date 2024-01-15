@@ -21,7 +21,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select cp.*, icd10.name_english from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code"
+        "query" : "select cp.*, icd10.name_english from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code limit 10"
       }
     }
   }, {
@@ -45,7 +45,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select encounter.*, icd10.name_english from dt4h.encounter_profile encounter LEFT JOIN standard_dict.icd_10 icd10 ON encounter.reason_code = icd10.code"
+        "query" : "select encounter.*, icd10.name_english from dt4h.encounter_profile encounter LEFT JOIN standard_dict.icd_10 icd10 ON encounter.reason_code = icd10.code limit 10"
       }
     }
   }, {
@@ -53,7 +53,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT e.id_patient AS subject, lc.code_loinc AS code, o.id_encounter AS encounter, l.exec_date AS effective_date, ld.value, ld.unit FROM patient.lab l  JOIN lab.lab_data ld ON l.id = ld.id_lab  JOIN patient.observation o ON l.id_observation = o.id  JOIN lab.lab_code lc ON ld.id_lab_code = lc.id  JOIN patient.encounter e ON o.id_encounter = e.id  JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text"
+        "query" : "SELECT e.id_patient AS subject, lc.code_loinc AS code, o.id_encounter AS encounter, l.exec_date AS effective_date, ld.value, ld.unit FROM patient.lab l  JOIN lab.lab_data ld ON l.id = ld.id_lab  JOIN patient.observation o ON l.id_observation = o.id  JOIN lab.lab_code lc ON ld.id_lab_code = lc.id  JOIN patient.encounter e ON o.id_encounter = e.id  JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text limit 20"
       }
     }
   }, {
@@ -61,7 +61,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select mp.*, atc.name_en from dt4h.medication_profile mp left join standard_dict.atc atc on mp.code_atc = atc.code"
+        "query" : "select mp.*, atc.name_en from dt4h.medication_profile mp left join standard_dict.atc atc on mp.code_atc = atc.code limit 10"
       }
     }
   }, {
@@ -69,7 +69,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.nyha_profile"
+        "query" : "select * from dt4h.nyha_profile limit 10"
       }
     }
   }, {
@@ -77,7 +77,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from patient.patient"
+        "query" : "select * from patient.patient limit 10"
       }
     }
   }, {
@@ -85,7 +85,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.procedure_profile"
+        "query" : "select * from dt4h.procedure_profile limit 10"
       }
     }
   }, {
@@ -109,7 +109,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.vital_sign_profile"
+        "query" : "select * from dt4h.vital_sign_profile limit 10"
       }
     }
   } ],
