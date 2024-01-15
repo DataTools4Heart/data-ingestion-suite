@@ -15,14 +15,17 @@
       "name" : "o2",
       "language" : "application/fhir-template+json",
       "value" : {
-        "status" : "final",
-        "category" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "vital-signs"
-          } ],
-          "@sliceName" : "hl7Category"
-        } ],
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
@@ -31,8 +34,6 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid.toString())}}",
-        "encounter" : "",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
           "value" : "{{o2Saturatie}}",
@@ -40,9 +41,11 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "%"
         },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid.toString())}}",
+        "status" : "final",
         "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() + '_o2')}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation"
       }

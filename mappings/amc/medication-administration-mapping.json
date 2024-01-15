@@ -15,19 +15,22 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "status" : "completed",
-        "medicationCodeableConcept" : {
-          "coding" : [ {
-            "system" : "http://www.whocc.no/atc",
-            "code" : "{{ATCKlasseCode}}",
-            "display" : "{{ATCKlasse}}"
-          } ]
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ATCKlasseCode}}",
+              "display" : "{{ATCKlasse}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId.toString())}}",
-        "context" : "{{mpp:createFhirReferenceWithHashedId('Encounter', OpnameTrajectId.toString())}}",
-        "effectivePeriod" : {
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', OpnameTrajectId.toString())}}",
+        "occurencePeriod" : {
           "start" : "{{ToedieningsDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
+        "status" : "completed",
         "dosage" : {
           "dose" : {
             "{{#doseVar}}" : "{{iif(ToegediendeHoeveelheid.exists() and ToegediendeHoeveelheid != 'NA', ToegediendeHoeveelheid , {})}}",
@@ -39,7 +42,7 @@
         },
         "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
         },
         "resourceType" : "MedicationAdministration"
       }

@@ -15,23 +15,25 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "status" : "completed",
-        "medicationCodeableConcept" : {
-          "coding" : [ {
-            "system" : "http://www.whocc.no/atc",
-            "code" : "{{ATCKlasseCode}}",
-            "display" : "{{ATCKlasse}}"
-          } ]
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ATCKlasseCode}}",
+              "display" : "{{ATCKlasse}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId.toString())}}",
-        "context" : "",
-        "effectivePeriod" : {
+        "occurencePeriod" : {
           "start" : "{{StartDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
           "end" : "{{StopDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
+        "status" : "completed",
         "id" : "{{mpp:getHashedId('Patient', PatientContactId.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
         },
         "resourceType" : "MedicationAdministration"
       }

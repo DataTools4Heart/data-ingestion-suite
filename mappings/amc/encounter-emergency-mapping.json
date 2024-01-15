@@ -15,21 +15,22 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "class" : {
-          "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-          "code" : "EMER",
-          "display" : "emergency"
-        },
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "EMER",
+            "display" : "emergency"
+          } ]
+        } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid.toString())}}",
-        "period" : {
+        "actualPeriod" : {
           "start" : "{{SEHOpnameDatum}}",
           "end" : "{{SEHVertrekDatum}}"
         },
-        "reasonCode" : "",
-        "status" : "finished",
+        "status" : "completed",
         "id" : "{{mpp:getHashedId('Encounter', pseudo_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },
         "resourceType" : "Encounter"
       }

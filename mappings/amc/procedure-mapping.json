@@ -15,7 +15,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "status" : "completed",
+        "category" : "",
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
@@ -25,13 +25,14 @@
           } ]
         },
         "subject" : "",
-        "performedDateTime" : {
-          "{{#performedDateTimeVar}}" : "{{iif(ZittingStartDatum.exists() and ZittingStartDatum != 'NA', ZittingStartDatum, {})}}",
+        "occurrenceDateTime" : {
+          "{{#occurrenceDateTimeVar}}" : "{{iif(ZittingStartDatum.exists() and ZittingStartDatum != 'NA', ZittingStartDatum, {})}}",
           "{{?}}" : "{{ZittingStartDatum}}"
         },
+        "status" : "completed",
         "id" : "{{mpp:getHashedId('Procedure', pseudo_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
         },
         "resourceType" : "Procedure"
       }

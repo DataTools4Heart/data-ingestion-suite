@@ -15,20 +15,16 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "class" : {
-          "system" : "",
-          "code" : ""
-        },
+        "class" : "",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid)}}",
-        "period" : {
+        "actualPeriod" : {
           "start" : "{{OpnameDatum}}",
           "end" : "{{OntslagDatum}}"
         },
-        "reasonCode" : "",
-        "status" : "",
+        "status" : "completed",
         "id" : "{{mpp:mpp:getHashedId('Encounter', pseudo_id)}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Encounter" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },
         "resourceType" : "Encounter"
       }

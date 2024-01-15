@@ -16,21 +16,29 @@
       "language" : "application/fhir-template+json",
       "value" : {
         "status" : "final",
-        "category" : [ {
-          "@sliceName" : "hl7Category"
-        } ],
+        "category" : [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "",
-        "encounter" : "",
         "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "subject" : "",
+        "encounter" : "TODO",
         "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
         },
         "resourceType" : "Observation"
       }
