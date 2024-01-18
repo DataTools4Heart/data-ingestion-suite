@@ -34,8 +34,11 @@
           } ]
         },
         "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
-        "subject" : "",
-        "encounter" : "TODO",
+        "subject" : "TODO",
+        "valueQuantity": {
+            "value": "{{UitslagNumeriek}}",
+            "unit": "{{UitslagEenheid}}"
+        },
         "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]

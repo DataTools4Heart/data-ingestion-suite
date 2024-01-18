@@ -16,6 +16,16 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
+    "sourceContext" : {
+      "CauseOfDeath" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_OverlijdensRegistratie.tsv",
+        "fileFormat" : "tsv",
+        "options" : { }
+      }
+    }
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
     "sourceContext" : {
       "Condition" : {
@@ -74,9 +84,9 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/schemas/amc/procedure-surgery-mapping",
     "sourceContext" : {
-      "Procedure" : {
+      "ProcedureSurgery" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OKVerrichtingUitgevoerd.tsv",
         "fileFormat" : "tsv",
@@ -86,11 +96,11 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
     "sourceContext" : {
-      "SurgeryHistory" : {
+      "Procedure" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VoorgeschiedenisChirurgie.tsv",
+        "path" : "Datatools4heart_VerrichtingUitgevoerd.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"

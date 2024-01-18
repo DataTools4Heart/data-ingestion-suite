@@ -2,7 +2,7 @@
   "id" : "medication-prescription",
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
   "name" : "medication-prescription",
-  "title" : "Mapping of AMC's MedicatieVoorschrift table to DT4H-MedicationAdministration FHIR profile",
+  "title" : "Mapping of AMC's MedicatieVoorschrift table to HFR-Prescription FHIR profile",
   "source" : [ {
     "alias" : "MedicationPrescription",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationprescription",
@@ -19,23 +19,23 @@
           "concept" : {
             "coding" : [ {
               "system" : "http://www.whocc.no/atc",
-              "code" : "{{ATCKlasseCode}}",
+              "code" : "{{ATCCode}}",
               "display" : "{{ATCKlasse}}",
               "@sliceName" : "atcCode"
             } ]
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId.toString())}}",
-        "occurencePeriod" : {
+        "effectivePeriod" : {
           "start" : "{{StartDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
-          "end" : "{{StopDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+          "end" : "{{? StopDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
-        "status" : "completed",
-        "id" : "{{mpp:getHashedId('Patient', PatientContactId.toString())}}",
+        "status" : "recorded",
+        "id" : "{{mpp:getHashedId('MedicationStatement', pseudo_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
         },
-        "resourceType" : "MedicationAdministration"
+        "resourceType" : "MedicationStatement"
       }
     }
   } ]
