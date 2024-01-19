@@ -49,8 +49,7 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "%"
             }
-          },
-          "@sliceName" : "echoParameter"
+          }
         }, {
           "{{#componentVar}}" : "{{lv_idd}}",
           "{{?}}" : {
