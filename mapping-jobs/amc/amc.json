@@ -36,11 +36,11 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
     "sourceContext" : {
-      "Encounter" : {
+      "EncounterEmergency" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Opnametraject.tsv",
+        "path" : "Datatools4heart_SEHtraject.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
@@ -48,11 +48,11 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
     "sourceContext" : {
-      "EncounterEmergency" : {
+      "Encounter" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_SEHtraject.tsv",
+        "path" : "Datatools4heart_Opnametraject.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
@@ -108,18 +108,6 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
-    "sourceContext" : {
-      "ProcedureSurgery" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_OKVerrichtingUitgevoerd.tsv",
-        "fileFormat" : "tsv",
-        "options" : {
-          "sep" : "\\t"
-        }
-      }
-    }
-  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
     "sourceContext" : {
       "Procedure" : {
@@ -132,11 +120,59 @@
       }
     }
   }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
+    "sourceContext" : {
+      "ProcedureSurgery" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_OKVerrichtingUitgevoerd.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
     "sourceContext" : {
       "SmokingStatus" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Tabakgebruik.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bmi-mapping",
+    "sourceContext" : {
+      "BMI" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingBMI.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
+    "sourceContext" : {
+      "BP" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingBloeddruk.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-mapping",
+    "sourceContext" : {
+      "Length" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingLichaamsLengte.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
@@ -161,6 +197,30 @@
       "O2Saturation" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Metingo2Saturatie.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-weight-mapping",
+    "sourceContext" : {
+      "Weight" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingLichaamsGewicht.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
+    "sourceContext" : {
+      "HeartRate" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingHartfrequentie.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"

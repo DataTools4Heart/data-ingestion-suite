@@ -39,7 +39,7 @@
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensLengte.toDecimal()}}",
+          "value" : "{{VitaleGegevensLengte}}",
           "unit" : "cm",
           "system" : "http://unitsofmeasure.org",
           "code" : "cm"
@@ -85,7 +85,7 @@
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensGewicht.toDecimal()}}",
+          "value" : "{{VitaleGegevensGewicht}}",
           "unit" : "kg",
           "system" : "http://unitsofmeasure.org",
           "code" : "kg"
@@ -131,7 +131,7 @@
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensBMIberekening.toDecimal()}}",
+          "value" : "{{VitaleGegevensBMIberekening}}",
           "unit" : "kg/m2",
           "system" : "http://unitsofmeasure.org",
           "code" : "kg/m2"
@@ -177,7 +177,7 @@
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensPolsslag.toDecimal()}}",
+          "value" : "{{VitaleGegevensPolsslag}}",
           "unit" : "bpm",
           "system" : "http://unitsofmeasure.org",
           "code" : "bpm"
