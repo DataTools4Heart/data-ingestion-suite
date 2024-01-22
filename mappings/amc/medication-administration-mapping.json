@@ -25,8 +25,8 @@
             } ]
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', OpnameTrajectId.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId.toString())}}",
         "occurencePeriod" : {
           "start" : "{{ToedieningsDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
@@ -35,12 +35,12 @@
           "dose" : {
             "{{#doseVar}}" : "{{iif(ToegediendeHoeveelheid.exists() and ToegediendeHoeveelheid != 'NA', ToegediendeHoeveelheid , {})}}",
             "{{?}}" : {
-              "value" : "{{ToegediendeHoeveelheid.toDecimal()}}",
+              "value" : "{{ToegediendeHoeveelheid}}",
               "unit" : "{{? ToegediendeHoeveelheidEenheid}}"
             }
           }
         },
-        "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id.toString())}}",
+        "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id & ToedieningsDatumTijd)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
         },

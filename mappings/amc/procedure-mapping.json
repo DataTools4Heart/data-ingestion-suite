@@ -1,7 +1,7 @@
 {
   "id" : "procedure-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
-  "name" : "procedure-surgery-mapping",
+  "name" : "procedure-mapping",
   "title" : "Mapping of AMC's VerrichtingUitgevoerd table to DT4H-Procedure FHIR profile",
   "source" : [ {
     "alias" : "Procedure",
@@ -25,15 +25,15 @@
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
-            "code" : "{{VerrichtingCode}}",
+            "code" : "TODO code mappings are required: {{VerrichtingCode}}",
             "display" : "{{Verrichting}}",
             "@sliceName" : "icdCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id)}}",
         "occurrenceDateTime" : "{{Verrichtingdatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "status" : "completed",
-        "id" : "{{mpp:getHashedId('Procedure', pseudo_id.toString())}}",
+        "id" : "{{mpp:getHashedId('Procedure', Pseudo_id & Verrichtingdatum)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
         },

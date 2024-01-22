@@ -36,6 +36,18 @@
       }
     }
   }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
+    "sourceContext" : {
+      "Encounter" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Opnametraject.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
     "sourceContext" : {
       "EncounterEmergency" : {
@@ -72,6 +84,18 @@
       }
     }
   }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
+    "sourceContext" : {
+      "MedicationPrescription" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedicatieVoorschrift.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
     "sourceContext" : {
       "patient" : {
@@ -84,7 +108,7 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/schemas/amc/procedure-surgery-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
     "sourceContext" : {
       "ProcedureSurgery" : {
         "jsonClass" : "FileSystemSource",
@@ -101,6 +125,18 @@
       "Procedure" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VerrichtingUitgevoerd.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
+    "sourceContext" : {
+      "SmokingStatus" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Tabakgebruik.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"

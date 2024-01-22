@@ -25,7 +25,8 @@
             } ]
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "effectivePeriod" : {
           "start" : "{{StartDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
           "end" : "{{? StopDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"

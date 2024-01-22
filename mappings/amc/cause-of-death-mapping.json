@@ -38,8 +38,8 @@
             "code" : "{{VermoedelijkeDoodsoorzaak}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid)}}",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
         },

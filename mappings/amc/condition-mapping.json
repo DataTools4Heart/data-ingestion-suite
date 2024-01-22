@@ -22,7 +22,8 @@
             "@sliceName" : "icd10Code"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id)}}",
+        "encounter": "{{mpp:createFhirReferenceWithHashedId('Patient', PatientContactId)}}",
         "onsetDateTime" : "{{ConstateringsDatum}}",
         "abatementDateTime" : "{{? iif(PatientProbleemstatus = 'Actief', {}, SluitDatum) }}",
         "clinicalStatus" : {

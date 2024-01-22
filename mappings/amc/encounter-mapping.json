@@ -4,25 +4,36 @@
   "name" : "encounter-mapping",
   "title" : "Mapping of AMC's Opnametraject table to DT4H-Enconter FHIR profile",
   "source" : [ {
-    "alias" : "encounter",
+    "alias" : "Encounter",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
     "joinOn" : [ ]
   } ],
-  "context" : { },
+  "context" : {
+    "encounterClassMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/encounter-class-concept-map.csv"
+    }
+  },
   "variable" : [ ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "class" : "",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid)}}",
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "{{mpp:getConcept(%encounterClassMap, Opnametype, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%encounterClassMap, Opnametype, 'target_display')}}"
+          } ]
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "actualPeriod" : {
           "start" : "{{OpnameDatum}}",
           "end" : "{{OntslagDatum}}"
         },
         "status" : "completed",
-        "id" : "{{mpp:mpp:getHashedId('Encounter', pseudo_id)}}",
+        "id" : "{{mpp:getHashedId('Encounter', Patientcontactid)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },

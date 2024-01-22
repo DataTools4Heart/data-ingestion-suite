@@ -16,13 +16,13 @@
       "language" : "application/fhir-template+json",
       "value" : {
         "status" : "final",
-        "category" : [
+        "category": [
           {
             "coding": [
               {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
                 "code": "laboratory",
-                "display": "Laboratory"
+                "display": "Laboratory",
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category"
               }
             ]
           }
@@ -30,16 +30,19 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
+            "code" : "TODO code needs to be converted: {{BepalingCode}}",
             "@sliceName" : "loincCode"
           } ]
         },
         "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
-        "subject" : "TODO",
-        "valueQuantity": {
-            "value": "{{UitslagNumeriek}}",
-            "unit": "{{UitslagEenheid}}"
+        "valueQuantity" : {
+          "value" : "{{UitslagNumeriek}}",
+          "unit" : "{{UitslagEenheid}}",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "TODO"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & UitslagDatumtijd)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
         },

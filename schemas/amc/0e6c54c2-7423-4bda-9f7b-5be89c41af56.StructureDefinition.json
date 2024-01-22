@@ -25,8 +25,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationPrescription.pseudo_id",
@@ -34,8 +34,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationPrescription.Ziekenhuislocatie",
@@ -52,8 +52,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationPrescription.PatientContactId",
@@ -61,8 +61,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationPrescription.SpecialismeCode",

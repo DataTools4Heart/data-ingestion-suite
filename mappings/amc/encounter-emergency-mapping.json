@@ -22,13 +22,13 @@
             "display" : "emergency"
           } ]
         } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Patientcontactid.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "actualPeriod" : {
           "start" : "{{SEHOpnameDatum}}",
           "end" : "{{SEHVertrekDatum}}"
         },
         "status" : "completed",
-        "id" : "{{mpp:getHashedId('Encounter', pseudo_id.toString())}}",
+        "id" : "{{mpp:getHashedId('Encounter', Patientcontactid)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },

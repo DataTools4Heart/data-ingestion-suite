@@ -25,8 +25,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "VitalSignO2Saturation.ZiekenhuisLocatie",
@@ -88,8 +88,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "VitalSignO2Saturation.uitgifteDT",

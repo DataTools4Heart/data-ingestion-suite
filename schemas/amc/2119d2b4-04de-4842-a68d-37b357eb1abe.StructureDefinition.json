@@ -20,17 +20,35 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Procedure.pseudo_id",
-      "path" : "Procedure.pseudo_id",
+      "id" : "Procedure.Pseudo_id",
+      "path" : "Procedure.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.ZittingStartDatum",
-      "path" : "Procedure.ZittingStartDatum",
+      "id" : "Procedure.VerrichtingId",
+      "path" : "Procedure.VerrichtingId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.Verrichtingdatum",
+      "path" : "Procedure.Verrichtingdatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "Procedure.VerrichtingCode",
+      "path" : "Procedure.VerrichtingCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -47,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.VerrichtingCode",
-      "path" : "Procedure.VerrichtingCode",
+      "id" : "Procedure.Ziekenhuislocatie",
+      "path" : "Procedure.Ziekenhuislocatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -56,17 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.DbcDiagnose",
-      "path" : "Procedure.DbcDiagnose",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Procedure.DbcDiagnosecode",
-      "path" : "Procedure.DbcDiagnosecode",
+      "id" : "Procedure.PatientContactId",
+      "path" : "Procedure.PatientContactId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -74,17 +83,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Procedure.ZorgtrajectOmschrijving",
-      "path" : "Procedure.ZorgtrajectOmschrijving",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Procedure.AantalGekoppeldeSubtrajecten",
-      "path" : "Procedure.AantalGekoppeldeSubtrajecten",
+      "id" : "Procedure.LeeftijdInJarenOpMomentVanVerrichting",
+      "path" : "Procedure.LeeftijdInJarenOpMomentVanVerrichting",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -92,8 +92,35 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Procedure.AantalOKVerrichtingenUitgevoerd",
-      "path" : "Procedure.AantalOKVerrichtingenUitgevoerd",
+      "id" : "Procedure.SubtrajectId",
+      "path" : "Procedure.SubtrajectId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.OKZittingsnummer",
+      "path" : "Procedure.OKZittingsnummer",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.OrderId",
+      "path" : "Procedure.OrderId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.ZorgactiviteitCode",
+      "path" : "Procedure.ZorgactiviteitCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -101,8 +128,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Procedure.IsHoofdverrichting",
-      "path" : "Procedure.IsHoofdverrichting",
+      "id" : "Procedure.Zorgactiviteit",
+      "path" : "Procedure.Zorgactiviteit",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -110,8 +137,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.Lateraliteit",
-      "path" : "Procedure.Lateraliteit",
+      "id" : "Procedure.ZorgprofielKlasseCode",
+      "path" : "Procedure.ZorgprofielKlasseCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.ZorgprofielKlasse",
+      "path" : "Procedure.ZorgprofielKlasse",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -119,8 +155,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.HoofdoperateurPanelSpecialisme",
-      "path" : "Procedure.HoofdoperateurPanelSpecialisme",
+      "id" : "Procedure.AanvragendSpecialismeCode",
+      "path" : "Procedure.AanvragendSpecialismeCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -128,8 +164,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.HoofdoperateurPanelOKSpecialisme",
-      "path" : "Procedure.HoofdoperateurPanelOKSpecialisme",
+      "id" : "Procedure.AanvragendSpecialismeAfkorting",
+      "path" : "Procedure.AanvragendSpecialismeAfkorting",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -137,8 +173,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.HoofdoperateurPanelSubspecialisme",
-      "path" : "Procedure.HoofdoperateurPanelSubspecialisme",
+      "id" : "Procedure.AanvragendSpecialisme",
+      "path" : "Procedure.AanvragendSpecialisme",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -146,13 +182,148 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.ziekenhuislocatie",
-      "path" : "Procedure.ziekenhuislocatie",
+      "id" : "Procedure.AanvragendSubSpecialismeCode",
+      "path" : "Procedure.AanvragendSubSpecialismeCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.AanvragendSubSpecialismeAfkorting",
+      "path" : "Procedure.AanvragendSubSpecialismeAfkorting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.AanvragendSubSpecialisme",
+      "path" : "Procedure.AanvragendSubSpecialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendSpecialismeCode",
+      "path" : "Procedure.UitvoerendSpecialismeCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendSpecialismeAfkorting",
+      "path" : "Procedure.UitvoerendSpecialismeAfkorting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendSpecialisme",
+      "path" : "Procedure.UitvoerendSpecialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendSubSpecialismeCode",
+      "path" : "Procedure.UitvoerendSubSpecialismeCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendSubSpecialismeAfkorting",
+      "path" : "Procedure.UitvoerendSubSpecialismeAfkorting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendSubSpecialisme",
+      "path" : "Procedure.UitvoerendSubSpecialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendWerkplekId",
+      "path" : "Procedure.UitvoerendWerkplekId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendWerkplekAfkorting",
+      "path" : "Procedure.UitvoerendWerkplekAfkorting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.UitvoerendWerkplek",
+      "path" : "Procedure.UitvoerendWerkplek",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.AantalVerrichtingen",
+      "path" : "Procedure.AantalVerrichtingen",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.Bronmodule",
+      "path" : "Procedure.Bronmodule",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.Bron",
+      "path" : "Procedure.Bron",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.DCMVerverstDatumTijd",
+      "path" : "Procedure.DCMVerverstDatumTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
       "id" : "Procedure.uitgifteDT",

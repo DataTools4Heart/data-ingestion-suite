@@ -25,8 +25,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationAdministration.VoorschriftId",
@@ -34,8 +34,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationAdministration.PatientContactId",
@@ -43,8 +43,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationAdministration.OpnameTrajectId",
@@ -52,8 +52,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationAdministration.ToedieningsDatumTijd",
@@ -115,8 +115,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "MedicationAdministration.ToegediendeHoeveelheidEenheid",
