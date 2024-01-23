@@ -1,0 +1,42 @@
+{
+  "id" : "condition-medical-diagnosis-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
+  "name" : "condition-medical-diagnosis-mapping",
+  "title" : "Mapping of AMC's MedischeDiagnose table to DT4H-Condition FHIR profile",
+  "source" : [ {
+    "alias" : "MedicalDiagnosis",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicaldiagnosis",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "{{DiagnoseCode}}",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "onsetDateTime" : "{{DiagnoseContactDatum.utl:toFhirDate('yyyy-MM-dd')}}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "TODO: ask if these are active, inactive or unknown"
+          } ]
+        },
+        "id" : "{{mpp:getHashedId('Condition', pseudo_id & PatientContactId & DiagnoseContactDatum)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    }
+  } ]
+}

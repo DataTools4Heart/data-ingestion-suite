@@ -36,6 +36,18 @@
       }
     }
   }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
+    "sourceContext" : {
+      "MedicalDiagnosis" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedischeDiagnose.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
     "sourceContext" : {
       "EncounterEmergency" : {
@@ -168,6 +180,18 @@
       }
     }
   }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
+    "sourceContext" : {
+      "HeartRate" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingHartfrequentie.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-mapping",
     "sourceContext" : {
       "Length" : {
@@ -216,11 +240,11 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
     "sourceContext" : {
-      "HeartRate" : {
+      "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingHartfrequentie.tsv",
+        "path" : "Datatools4heart_EcgMeting.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
