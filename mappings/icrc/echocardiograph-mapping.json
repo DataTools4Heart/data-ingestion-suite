@@ -16,12 +16,17 @@
       "language" : "application/fhir-template+json",
       "value" : {
         "status" : "final",
-        "category" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "procedure"
-          } ]
-        } ],
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "imaging",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",

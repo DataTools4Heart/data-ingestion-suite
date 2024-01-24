@@ -1,11 +1,11 @@
 {
-  "id" : "electrocardiograph-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
-  "name" : "electro-mapping",
+  "id" : "ECG-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/ECG-mapping",
+  "name" : "ECG-mapping",
   "title" : "Mapping of the ecg_mortara table to the DT4H Electrocardiograph FHIR profile",
   "source" : [ {
-    "alias" : "ecgs",
-    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/electrocardiograph",
+    "alias" : "ecg",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/ECG",
     "joinOn" : [ ]
   } ],
   "context" : { },
@@ -19,7 +19,8 @@
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "procedure"
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
           } ]
         } ],
         "code" : {
@@ -43,7 +44,7 @@
           },
           "valueQuantity" : {
             "value" : "{{pr_duration}}",
-            "unit" : "ms",
+            "unit" : "millisecond",
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
@@ -58,7 +59,7 @@
           },
           "valueQuantity" : {
             "value" : "{{qrs_duration}}",
-            "unit" : "ms",
+            "unit" : "millisecond",
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
@@ -73,7 +74,7 @@
           },
           "valueQuantity" : {
             "value" : "{{qt}}",
-            "unit" : "ms",
+            "unit" : "millisecond",
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
@@ -81,18 +82,46 @@
         }, {
           "code" : {
             "coding" : [ {
-              "system" : "http://loinc.org",
-              "code" : "8636-3",
-              "display" : "Q-T interval corrected"
+              "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula",
+              "code" : "bazett"
             } ]
           },
           "valueQuantity" : {
-            "value" : "{{qtc}}",
-            "unit" : "ms",
+            "value" : "{{qtb}}",
+            "unit" : "millisecond",
             "system" : "http://unitsofmeasure.org",
             "code" : "ms"
           },
-          "@sliceName" : "qtIntervalCorrected"
+          "@sliceName" : "qtIntervalCorrectedBazett"
+        }, {
+          "code" : {
+            "coding" : [ {
+              "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula",
+              "code" : "frederica"
+            } ]
+          },
+          "valueQuantity" : {
+            "value" : "{{qtf}}",
+            "unit" : "millisecond",
+            "system" : "http://unitsofmeasure.org",
+            "code" : "ms"
+          },
+          "@sliceName" : "qtIntervalCorrectedFrederica"
+        }, {
+          "code" : {
+            "coding" : [ {
+              "system" : "http://loinc.org",
+              "code" : "8897-1",
+              "display" : "QRS complex Ventricles by EKG"
+            } ]
+          },
+          "valueQuantity" : {
+            "value" : "{{num_qrs}}",
+            "unit" : "Count",
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{Count}"
+          },
+          "@sliceName" : "qrsComplexCount"
         }, {
           "code" : {
             "coding" : [ {
@@ -103,7 +132,7 @@
           },
           "valueQuantity" : {
             "value" : "{{p_axis}}",
-            "unit" : "deg",
+            "unit" : "degree",
             "system" : "http://unitsofmeasure.org",
             "code" : "deg"
           },
@@ -118,7 +147,7 @@
           },
           "valueQuantity" : {
             "value" : "{{qrs_axis}}",
-            "unit" : "deg",
+            "unit" : "degree",
             "system" : "http://unitsofmeasure.org",
             "code" : "deg"
           },
@@ -133,7 +162,7 @@
           },
           "valueQuantity" : {
             "value" : "{{t_axis}}",
-            "unit" : "deg",
+            "unit" : "degree",
             "system" : "http://unitsofmeasure.org",
             "code" : "deg"
           },
@@ -162,7 +191,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(avf)}}"
@@ -180,7 +210,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(avl)}}"
@@ -198,7 +229,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(avr)}}"
@@ -216,7 +248,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(i)}}"
@@ -234,7 +267,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(ii)}}"
@@ -252,7 +286,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(iii)}}"
@@ -270,7 +305,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v1)}}"
@@ -288,7 +324,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v2)}}"
@@ -306,7 +343,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v3)}}"
@@ -324,7 +362,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v4)}}"
@@ -342,7 +381,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v5)}}"
@@ -360,7 +400,8 @@
             "origin" : {
               "value" : 0
             },
-            "period" : "{{1 / sample_freq * 1000}}",
+            "interval" : "{{1 / sample_freq * 1000}}",
+            "intervalUnit": "s",
             "factor" : 0.0025,
             "dimensions" : 1,
             "data" : "{{cst:createTimeSeriesData(v6)}}"

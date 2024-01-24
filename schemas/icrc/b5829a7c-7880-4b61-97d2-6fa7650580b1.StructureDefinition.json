@@ -1,27 +1,27 @@
 {
-  "id" : "32d6fe2c-af21-4812-bed2-d0ace0fe36e7",
+  "id" : "b5829a7c-7880-4b61-97d2-6fa7650580b1",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/icrc/electrocardiograph",
-  "name" : "Electrocardiograph",
+  "url" : "https://datatools4heart.eu/fhir/schemas/icrc/ECG",
+  "name" : "ECG",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Electrocardiograph",
+  "type" : "ECG",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Electrocardiograph",
-      "path" : "Electrocardiograph",
+      "id" : "ECG",
+      "path" : "ECG",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Electrocardiograph.id",
-      "path" : "Electrocardiograph.id",
+      "id" : "ECG.id",
+      "path" : "ECG.id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.id_patient",
-      "path" : "Electrocardiograph.id_patient",
+      "id" : "ECG.id_patient",
+      "path" : "ECG.id_patient",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.encounter_id",
-      "path" : "Electrocardiograph.encounter_id",
+      "id" : "ECG.encounter_id",
+      "path" : "ECG.encounter_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -47,8 +47,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.exec_date",
-      "path" : "Electrocardiograph.exec_date",
+      "id" : "ECG.exec_date",
+      "path" : "ECG.exec_date",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -56,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.sample_freq",
-      "path" : "Electrocardiograph.sample_freq",
+      "id" : "ECG.sample_freq",
+      "path" : "ECG.sample_freq",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -65,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.pr_duration",
-      "path" : "Electrocardiograph.pr_duration",
+      "id" : "ECG.num_qrs",
+      "path" : "ECG.num_qrs",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -74,8 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.qrs_duration",
-      "path" : "Electrocardiograph.qrs_duration",
+      "id" : "ECG.pr_duration",
+      "path" : "ECG.pr_duration",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,8 +83,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.qt",
-      "path" : "Electrocardiograph.qt",
+      "id" : "ECG.qrs_duration",
+      "path" : "ECG.qrs_duration",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -92,8 +92,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.qtc",
-      "path" : "Electrocardiograph.qtc",
+      "id" : "ECG.qt",
+      "path" : "ECG.qt",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -101,8 +101,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.p_axis",
-      "path" : "Electrocardiograph.p_axis",
+      "id" : "ECG.qtc",
+      "path" : "ECG.qtc",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -110,8 +110,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.qrs_axis",
-      "path" : "Electrocardiograph.qrs_axis",
+      "id" : "ECG.qtb",
+      "path" : "ECG.qtb",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -119,8 +119,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.t_axis",
-      "path" : "Electrocardiograph.t_axis",
+      "id" : "ECG.qtf",
+      "path" : "ECG.qtf",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -128,8 +128,35 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.inter_text",
-      "path" : "Electrocardiograph.inter_text",
+      "id" : "ECG.p_axis",
+      "path" : "ECG.p_axis",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "ECG.qrs_axis",
+      "path" : "ECG.qrs_axis",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "ECG.t_axis",
+      "path" : "ECG.t_axis",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "ECG.inter_text",
+      "path" : "ECG.inter_text",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -137,8 +164,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.avf",
-      "path" : "Electrocardiograph.avf",
+      "id" : "ECG.avf",
+      "path" : "ECG.avf",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -146,8 +173,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.avl",
-      "path" : "Electrocardiograph.avl",
+      "id" : "ECG.avl",
+      "path" : "ECG.avl",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -155,8 +182,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.avr",
-      "path" : "Electrocardiograph.avr",
+      "id" : "ECG.avr",
+      "path" : "ECG.avr",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -164,8 +191,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.i",
-      "path" : "Electrocardiograph.i",
+      "id" : "ECG.i",
+      "path" : "ECG.i",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -173,8 +200,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.ii",
-      "path" : "Electrocardiograph.ii",
+      "id" : "ECG.ii",
+      "path" : "ECG.ii",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -182,8 +209,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.iii",
-      "path" : "Electrocardiograph.iii",
+      "id" : "ECG.iii",
+      "path" : "ECG.iii",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -191,8 +218,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.v1",
-      "path" : "Electrocardiograph.v1",
+      "id" : "ECG.v1",
+      "path" : "ECG.v1",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -200,8 +227,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.v2",
-      "path" : "Electrocardiograph.v2",
+      "id" : "ECG.v2",
+      "path" : "ECG.v2",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -209,8 +236,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.v3",
-      "path" : "Electrocardiograph.v3",
+      "id" : "ECG.v3",
+      "path" : "ECG.v3",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -218,8 +245,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.v4",
-      "path" : "Electrocardiograph.v4",
+      "id" : "ECG.v4",
+      "path" : "ECG.v4",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -227,8 +254,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.v5",
-      "path" : "Electrocardiograph.v5",
+      "id" : "ECG.v5",
+      "path" : "ECG.v5",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -236,8 +263,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Electrocardiograph.v6",
-      "path" : "Electrocardiograph.v6",
+      "id" : "ECG.v6",
+      "path" : "ECG.v6",
       "min" : 0,
       "max" : "1",
       "type" : [ {
