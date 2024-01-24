@@ -28,7 +28,7 @@
         "clinicalStatus" : {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
-            "code" : "TODO: ask if these are active, inactive or unknown"
+            "code" : "active"
           } ]
         },
         "id" : "{{mpp:getHashedId('Condition', pseudo_id & PatientContactId & DiagnoseContactDatum)}}",

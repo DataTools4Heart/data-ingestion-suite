@@ -124,7 +124,7 @@
             },
             "valueQuantity" : {
               "value" : "{{QTc_Bazett_in_medianbeat}}",
-              "unit" : "milisecond",
+              "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             }
@@ -141,7 +141,7 @@
             },
             "valueQuantity" : {
               "value" : "{{QTcFredericia_in_rest}}",
-              "unit" : "milisecond",
+              "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             }
@@ -158,7 +158,7 @@
             },
             "valueQuantity" : {
               "value" : "{{QTcFramingham_in_rest}}",
-              "unit" : "milisecond",
+              "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             }
