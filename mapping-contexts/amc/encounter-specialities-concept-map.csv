@@ -1,0 +1,30 @@
+source_code,target_code,target_display,code_system
+Allergologie,408439002,Allergy - specialty,http://snomed.info/sct
+Anaesthesiologie,394577000,Anesthesiology,http://snomed.info/sct
+Cardio thoracale chirurgie,394603008,Cardiothoracic surgery,http://snomed.info/sct
+Cardiologie,394579002,Cardiology,http://snomed.info/sct
+Chirurgie,257556004,Surgery,http://snomed.info/sct
+Dermatologie,394582007,Dermatology,http://snomed.info/sct
+Geriatrie,3531000175102,Geriatric service,http://snomed.info/sct
+Interne geneeskunde,419192003,Internal medicine,http://snomed.info/sct
+"Keel-,neus-en oorheelkunde",394604002,"Ear, nose and throat surgery",http://snomed.info/sct
+Kindergeneeskunde,394537008,Pediatric specialty,http://snomed.info/sct
+Klinische genetica,394580004,Clinical genetics,http://snomed.info/sct
+Longziekten,418112009,Pulmonary medicine,http://snomed.info/sct
+"Maag-,darm-en leverziekten",394584008,Gastroenterology,http://snomed.info/sct
+Neurochirurgie,394610002,Neurosurgery,http://snomed.info/sct
+Neurologie,394591006,Neurology,http://snomed.info/sct
+Nucleaire geneeskunde,394649004,Nuclear medicine - specialty,http://snomed.info/sct
+Oogheelkunde,394594003,Ophthalmology,http://snomed.info/sct
+Orthopedie,394801008,Trauma and orthopedics,http://snomed.info/sct
+"Overige artsen, niet nader gespecificeerd",,,http://snomed.info/sct
+"Overige artsen, SEH-arts",773568002,Emergency medicine,http://snomed.info/sct
+Plastische chirurgie,394611003,Plastic surgery - specialty,http://snomed.info/sct
+Psychiatrie,394587001,Psychiatry,http://snomed.info/sct
+Radiologie,394914008,Radiology - specialty,http://snomed.info/sct
+Radiotherapie,419815003,Radiation oncology,http://snomed.info/sct
+Reumatologie,394810000,Rheumatology,http://snomed.info/sct
+Revalidatie,,,http://snomed.info/sct
+Tandartsspecialisten mondziekten en kaakchirurgie,408465003,Oral and maxillofacial surgery,http://snomed.info/sct
+Urologie,394612005,Urology,http://snomed.info/sct
+Vrouwenziekten,394586005,Gynecology,http://snomed.info/sct

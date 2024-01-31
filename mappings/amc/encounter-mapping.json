@@ -12,10 +12,35 @@
     "encounterClassMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/amc/encounter-class-concept-map.csv"
+    },
+    "encounterSpecialitiesConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/encounter-specialities-concept-map.csv"
     }
   },
   "variable" : [ ],
   "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "type" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/organization-type",
+            "code" : "prov",
+            "display" : "Healthcare Provider"
+          } ],
+          "@sliceName" : "hfrOrganizationType"
+        } ],
+        "name" : "{{ziekenhuislocatie}}",
+        "id" : "{{mpp:getHashedId('Organization', ziekenhuislocatie)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Organization" ]
+        },
+        "resourceType" : "Organization"
+      }
+    }
+  }, {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -26,6 +51,16 @@
             "code" : "{{mpp:getConcept(%encounterClassMap, Opnametype, 'target_code')}}",
             "display" : "{{mpp:getConcept(%encounterClassMap, Opnametype, 'target_display')}}"
           } ]
+        } ],
+        "serviceProvider" : "{{mpp:createFhirReferenceWithHashedId('Organization', ziekenhuislocatie)}}",
+        "serviceType" : [ {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://snomed.info/sct",
+              "code" : "{{mpp:getConcept(%encounterSpecialitiesConceptMap, OpnameSpecialisme, 'target_code')}}",
+              "display" : "{{mpp:getConcept(%encounterSpecialitiesConceptMap, OpnameSpecialisme, 'target_display')}}"
+            } ]
+          }
         } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "actualPeriod" : {

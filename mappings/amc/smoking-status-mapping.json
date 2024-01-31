@@ -8,7 +8,12 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/smokingstatus",
     "joinOn" : [ ]
   } ],
-  "context" : { },
+  "context" : {
+    "smokingStatusContextMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/smoking-status-concept-map.csv"
+    }
+  },
   "variable" : [ ],
   "mapping" : [ {
     "expression" : {
@@ -28,6 +33,13 @@
             "code" : "72166-2",
             "display" : "Tobacco smoking status",
             "@sliceName" : "loincCode"
+          } ]
+        },
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "{{ mpp:getConcept(%smokingStatusContextMap, StatusTabakgebruik, 'target_code') }}",
+            "display" : "{{ mpp:getConcept(%smokingStatusContextMap, StatusTabakgebruik, 'target_display') }}"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",

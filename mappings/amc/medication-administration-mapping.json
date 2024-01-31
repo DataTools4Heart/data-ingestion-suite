@@ -27,16 +27,14 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
-        "occurencePeriod" : {
-          "start" : "{{ToedieningsDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
-        },
+        "occurenceDateTime" : "{{ToedieningsDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "status" : "completed",
         "dosage" : {
-          "dose" : {
-            "{{#doseVar}}" : "{{iif(ToegediendeHoeveelheid.exists() and ToegediendeHoeveelheid != 'NA', ToegediendeHoeveelheid , {})}}",
-            "{{?}}" : {
-              "value" : "{{ToegediendeHoeveelheid}}",
-              "unit" : "{{? ToegediendeHoeveelheidEenheid}}"
+          "{{#doseVar}}" : "{{iif(ToegediendeHoeveelheid.exists() and ToegediendeHoeveelheid != 'NA', ToegediendeHoeveelheid , {})}}",
+          "{{?}}" : {
+            "dose" : {
+                "value" : "{{ToegediendeHoeveelheid}}",
+                "unit" : "{{? ToegediendeHoeveelheidEenheid}}"
             }
           }
         },

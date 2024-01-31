@@ -48,6 +48,18 @@
       }
     }
   }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_EcgMeting.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
     "sourceContext" : {
       "EncounterEmergency" : {
@@ -65,6 +77,18 @@
       "Encounter" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Opnametraject.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
+    "sourceContext" : {
+      "SurgeryHistory" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_VoorgeschiedenisChirurgie.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"
@@ -240,11 +264,11 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
     "sourceContext" : {
-      "source" : {
+      "HistoryCondition" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_EcgMeting.tsv",
+        "path" : "Datatools4heart_VoorgeschiedenisMedisch.tsv",
         "fileFormat" : "tsv",
         "options" : {
           "sep" : "\\t"

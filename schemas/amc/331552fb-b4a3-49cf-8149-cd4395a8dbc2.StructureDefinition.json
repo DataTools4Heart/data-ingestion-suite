@@ -1,27 +1,27 @@
 {
-  "id" : "4d048368-842d-4830-910c-19518bc7a3eb",
+  "id" : "331552fb-b4a3-49cf-8149-cd4395a8dbc2",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/historysurgery",
-  "name" : "HistorySurgery",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/historycondition",
+  "name" : "HistoryCondition",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "HistorySurgery",
+  "type" : "HistoryCondition",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "HistorySurgery",
-      "path" : "HistorySurgery",
+      "id" : "HistoryCondition",
+      "path" : "HistoryCondition",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "HistorySurgery.pseudo_id",
-      "path" : "HistorySurgery.pseudo_id",
+      "id" : "HistoryCondition.pseudo_id",
+      "path" : "HistoryCondition.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "HistorySurgery.RegistratieDatum",
-      "path" : "HistorySurgery.RegistratieDatum",
+      "id" : "HistoryCondition.RegistratieDatum",
+      "path" : "HistoryCondition.RegistratieDatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "HistorySurgery.ProcedureStartDatum",
-      "path" : "HistorySurgery.ProcedureStartDatum",
+      "id" : "HistoryCondition.diagnosecode",
+      "path" : "HistoryCondition.diagnosecode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "HistoryCondition.DiagnoseOmschrijving",
+      "path" : "HistoryCondition.DiagnoseOmschrijving",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "HistoryCondition.IndicatieDatumVaststelling",
+      "path" : "HistoryCondition.IndicatieDatumVaststelling",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -47,17 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "HistorySurgery.ProcedureEindDatum",
-      "path" : "HistorySurgery.ProcedureEindDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
-    }, {
-      "id" : "HistorySurgery.ChirurgischeVoorgeschiedenisCode",
-      "path" : "HistorySurgery.ChirurgischeVoorgeschiedenisCode",
+      "id" : "HistoryCondition.Bron",
+      "path" : "HistoryCondition.Bron",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -65,8 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "HistorySurgery.ChirurgischeVoorgeschiedenis",
-      "path" : "HistorySurgery.ChirurgischeVoorgeschiedenis",
+      "id" : "HistoryCondition.ziekenhuislocatie",
+      "path" : "HistoryCondition.ziekenhuislocatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -74,8 +83,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "HistorySurgery.Bron",
-      "path" : "HistorySurgery.Bron",
+      "id" : "HistoryCondition.Patientcontactid",
+      "path" : "HistoryCondition.Patientcontactid",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,35 +92,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "HistorySurgery.ziekenhuislocatie",
-      "path" : "HistorySurgery.ziekenhuislocatie",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "HistorySurgery.TypeCode",
-      "path" : "HistorySurgery.TypeCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "HistorySurgery.Patientcontactid",
-      "path" : "HistorySurgery.Patientcontactid",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "HistorySurgery.uitgifteDT",
-      "path" : "HistorySurgery.uitgifteDT",
+      "id" : "HistoryCondition.uitgifteDT",
+      "path" : "HistoryCondition.uitgifteDT",
       "min" : 0,
       "max" : "1",
       "type" : [ {

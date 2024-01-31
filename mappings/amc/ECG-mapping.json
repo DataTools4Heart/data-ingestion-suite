@@ -24,7 +24,7 @@
           } ]
         },
         "component" : [ {
-          "{{#componentVar}}" : "{{QRS_Duration_in_rest}}",
+          "{{#componentVar}}" : "{{iif(QRS_Duration_in_medianbeat.exists(), QRS_Duration_in_medianbeat, QRS_Duration_in_rest)}}",
           "{{?}}" : {
             "code" : {
               "coding" : [ {
@@ -34,7 +34,7 @@
               } ]
             },
             "valueQuantity" : {
-              "value" : "{{QRS_Duration_in_rest}}",
+              "value" : "{{%componentVar}}",
               "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
@@ -96,7 +96,7 @@
           },
           "@sliceName" : "tAxis"
         }, {
-          "{{#componentVar}}" : "{{QT_Interval_in_rest}}",
+          "{{#componentVar}}" : "{{iif(QT_Interval_in_medianbeat.exists(), QT_Interval_in_medianbeat, QT_Interval_in_rest)}}",
           "{{?}}" : {
             "code" : {
               "coding" : [ {
@@ -106,7 +106,7 @@
               } ]
             },
             "valueQuantity" : {
-              "value" : "{{QT_Interval_in_rest}}",
+              "value" : "{{%componentVar}}",
               "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
@@ -168,7 +168,7 @@
           "code" : "",
           "@sliceName" : "qrsComplexCount"
         }, {
-          "{{#componentVar}}" : "{{PR_Interval_in_rest}}",
+          "{{#componentVar}}" : "{{iif(PR_Interval_in_medianbeat.exists(), PR_Interval_in_medianbeat, PR_Interval_in_rest)}}",
           "{{?}}" : {
             "code" : {
               "coding" : [ {
@@ -178,7 +178,7 @@
               } ]
             },
             "valueQuantity" : {
-              "value" : "{{PR_Interval_in_rest}}",
+              "value" : "{{%componentVar}}",
               "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
