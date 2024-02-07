@@ -15,26 +15,21 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Observation",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-SmokingStatus" ]
-        },
-        "status" : "final",
-        "category" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "social-history"
-          } ],
-          "@sliceName" : "socialHistory"
-        } ],
+        "category" : [{
+          "coding": [{
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "social-history",
+            "display": "Social History"
+          }]
+        }],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
             "code" : "72166-2",
+            "display" : "Tobacco smoking status",
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "effectivePeriod" : {
           "start" : "{{data_in.utl:toFhirDate('yyyy-MM-dd'))}}"
         },
@@ -44,7 +39,13 @@
             "code" : "77176002"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & data_in.toString() & patologia)}}"
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
+        "status" : "final",
+        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & data_in.toString() & patologia)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation"
       }
     },
     "precondition" : {

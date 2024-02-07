@@ -1,0 +1,96 @@
+{
+  "id" : "67f8b8f7-a9f9-4a09-ab61-ccc685607bc4",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/causeofdeath",
+  "name" : "CauseOfDeath",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "CauseOfDeath",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "CauseOfDeath",
+      "path" : "CauseOfDeath",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "CauseOfDeath.pseudo_id",
+      "path" : "CauseOfDeath.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "CauseOfDeath.MeetDatum",
+      "path" : "CauseOfDeath.MeetDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
+      "path" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "CauseOfDeath.VermoedelijkeDoodsoorzaakSpecifiek",
+      "path" : "CauseOfDeath.VermoedelijkeDoodsoorzaakSpecifiek",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "CauseOfDeath.NatuurlijkeDood",
+      "path" : "CauseOfDeath.NatuurlijkeDood",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "CauseOfDeath.ziekenhuislocatie",
+      "path" : "CauseOfDeath.ziekenhuislocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "CauseOfDeath.Patientcontactid",
+      "path" : "CauseOfDeath.Patientcontactid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "CauseOfDeath.uitgifteDT",
+      "path" : "CauseOfDeath.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    } ]
+  }
+}

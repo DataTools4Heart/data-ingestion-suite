@@ -12,3 +12,4 @@ source_code,source_unit,target_unit,conversion_function
 33762-6,ng/l,pg/mL,$this
 14927-8,mmol/l,mmol/L,$this
 14937-7,mmol/l,mmol/L,$this * 0.446
+1751-7,g/l,mcg/L,$this * 1000000

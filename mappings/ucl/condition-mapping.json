@@ -19,11 +19,6 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "clinicalStatus" : {
-          "coding" : [ {
-            "@sliceName" : "fhirCode"
-          } ]
-        },
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
@@ -32,11 +27,17 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "onsetDateTime" : "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime)}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "onsetDateTime" : "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime)}}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "active"
+          } ]
+        },
         "id" : "{{mpp:getHashedId('Condition', condition_occurrence_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Condition" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },
         "resourceType" : "Condition"
       }

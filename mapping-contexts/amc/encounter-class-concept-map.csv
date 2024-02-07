@@ -1,0 +1,3 @@
+"source_code","target_code","target_display","code_system"
+"Klinische opname","IMP","inpatient encounter","http://terminology.hl7.org/CodeSystem/v3-ActCode"
+"Spoedeisende hulp","EMER","emergency","http://terminology.hl7.org/CodeSystem/v3-ActCode"

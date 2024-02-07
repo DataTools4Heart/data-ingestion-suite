@@ -24,25 +24,30 @@
           "id": "{{mpp:getHashedId('Procedure', id.toString())}}",
           "meta": {
             "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Procedure"
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure"
             ],
             "source": "{{%sourceSystem.sourceUri}}"
           },
           "status": "completed",
+          "category": {
+            "coding": [{
+              "TODO": "procedure category is required now after CDM upgrade"
+            }]
+          },
           "code": {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/sid/icd-10",
+                "system": "http://hl7.org/fhir/sid/icd-10-pcs",
                 "code": "{{code}}",
                 "display": "{{ name_english }}"
               }
             ]
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "performedDateTime": "{{diag_dt.toString().replace(' ','T') + 'Z'}}",
-          "reasonReference": [
-            "{{mpp:createFhirReferenceWithHashedId('Observation', ref_observation.toString())}}"
-          ]
+          "occurrenceDateTime": "{{diag_dt.toString().replace(' ','T') + 'Z'}}",
+          "reason": [{
+            "reference": "{{mpp:createFhirReferenceWithHashedId('Observation', ref_observation.toString())}}"
+          }]
         }
       }
     }

@@ -26,13 +26,15 @@
         "{{#ingredient}}" : "{{%atcIngredientCodes}}",
         "{{*}}" : {
           "status" : "completed",
-          "medicationCodeableConcept" : {
-            "{{#medicationCodeableConceptVar}}" : "{{%atcIngredientCodes}}",
-            "{{?}}" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %medicationCodeableConceptVar, {})}}"
+          "medication" : {
+            "concept" : {
+              "{{#medicationCodeableConceptVar}}" : "{{%atcIngredientCodes}}",
+              "{{?}}" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %medicationCodeableConceptVar, {})}}"
+            }
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "context" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-          "effectivePeriod" : {
+          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+          "occurencePeriod" : {
             "start" : "{{drug_exposure_start_datetime}}",
             "end" : "{{? drug_exposure_end_datetime}}"
           },
@@ -43,7 +45,7 @@
           },
           "id" : "{{mpp:getHashedId('MedicationAdministration', drug_exposure_id.toString() & '_' & %ingredient)}}",
           "meta" : {
-            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-MedicationAdministration" ]
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
           },
           "resourceType" : "MedicationAdministration"
         }

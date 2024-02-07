@@ -36,9 +36,9 @@
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "vital-signs"
-          } ],
-          "@sliceName" : "hl7Category"
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
         } ],
         "code" : {
           "coding" : [ {
@@ -54,7 +54,7 @@
         "valueQuantity" : "{{mpp:convertAndReturnQuantity(%vitalSignUnitConversion, measurement_concept_id.toString() , value_as_number, unit_concept_id.toString())}}",
         "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-VitalSign" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation"
       }

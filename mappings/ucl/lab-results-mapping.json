@@ -23,9 +23,13 @@
     "language" : "text/fhirpath",
     "expression" : "trms:translateToCoding(measurement_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc')"
   }, {
+    "name" : "labQuantity",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:convertAndReturnQuantity(%unitConversionMap, measurement_concept_id.toString(), value_as_number, unit_concept_id.toString())"
+  }, {
     "name" : "isLabResult",
     "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%labResults, measurement_concept_id.toString()).exists()"
+    "expression" : "mpp:getConcept(%labResults, measurement_concept_id.toString()).exists() and %labQuantity.exists()"
   } ],
   "mapping" : [ {
     "expression" : {
@@ -37,9 +41,8 @@
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
             "code" : "laboratory",
-            "display" : "Laboratory result"
-          } ],
-          "@sliceName" : "hl7Category"
+            "display" : "Laboratory"
+          } ]
         } ],
         "code" : {
           "coding" : [ {
@@ -49,14 +52,14 @@
             "@sliceName" : "loincCode"
           } ]
         },
+        "effectiveDateTime" : "{{iif(measurement_datetime.empty(), measurement_date, measurement_datetime)}}",
+        "valueQuantity" : "{{%labQuantity}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "effectiveDateTime" : "{{iif(measurement_datetime.empty(), measurement_date, measurement_datetime)}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%unitConversionMap, measurement_concept_id.toString(), value_as_number, unit_concept_id.toString())}}",
         "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-LabResult" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
         },
         "resourceType" : "Observation"
       }

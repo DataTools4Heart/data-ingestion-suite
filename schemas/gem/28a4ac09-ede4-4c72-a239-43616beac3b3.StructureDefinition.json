@@ -4,7 +4,7 @@
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/Farmaci",
   "name" : "Medication",
   "status" : "draft",
-  "fhirVersion" : "4.0.1",
+  "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
   "type" : "Medication",

@@ -170,7 +170,8 @@ class UCLIntegrationTest extends MappingTestSpec {
       (results.head \ "onsetDateTime").extract[String] shouldBe "2019-10-04T00:00:00Z"
 
       (results(4) \ "id").extract[String] shouldBe FhirMappingUtility.getHashedId("Condition", "202535")
-      (results(4) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "S02.85XK"
+      // multiple codes exist after terminology service conversion for 4320022 (snomed-to-icd10)
+      (results(4) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "S02.85"
       (results(4) \ "code" \ "coding" \ "system").extract[Seq[String]].head shouldBe "http://hl7.org/fhir/sid/icd-10"
       (results(4) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "6356")
       (results(4) \ "encounter" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Encounter", "17142")
@@ -217,6 +218,7 @@ class UCLIntegrationTest extends MappingTestSpec {
       (results(1) \ "code" \ "coding" \ "system").extract[Seq[String]].head shouldBe "http://loinc.org"
       (results(1) \ "code" \ "coding" \ "display").extract[Seq[String]].head shouldBe "Primary cause of death"
       (results(1) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "3569")
+      // multiple codes exist after terminology service conversion for 444074 (snomed-to-icd10)
       (results(1) \ "valueCodeableConcept" \ "coding" \ "code").extract[Seq[String]].head shouldBe "V40.2"
       (results(1) \ "valueCodeableConcept" \ "coding" \ "system").extract[Seq[String]].head shouldBe "http://hl7.org/fhir/sid/icd-10"
       (results(1) \ "effectiveDateTime").extract[String] shouldBe "2020-10-26T00:00:00Z"
@@ -252,10 +254,10 @@ class UCLIntegrationTest extends MappingTestSpec {
       (results.head \ "id").extract[String] shouldBe FhirMappingUtility.getHashedId("Encounter", "14452")
       (results.head \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "9056")
 
-      (results.head \ "period" \ "start").extract[String] shouldBe "2020-03-03T10:38:00Z"
-      (results.head \ "period" \ "end").extract[String] shouldBe "2021-04-27T05:10:00Z"
+      (results.head \ "actualPeriod" \ "start").extract[String] shouldBe "2020-03-03T10:38:00Z"
+      (results.head \ "actualPeriod" \ "end").extract[String] shouldBe "2021-04-27T05:10:00Z"
 
-      (results.head \ "reasonCode" \ "coding" \ "code").extract[Seq[String]].head shouldBe "I21"
+      (((results.head \ "reason")(0) \ "value")(0) \ "concept" \ "coding" \ "code").extract[Seq[String]].head shouldBe "I21"
     }
   }
 
@@ -313,13 +315,13 @@ class UCLIntegrationTest extends MappingTestSpec {
 
       results.length shouldBe 7
       (results.head \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "7167")
-      (results.head \ "context" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Encounter", "123.0")
+      (results.head \ "encounter" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Encounter", "123.0")
 
-      (results.head \ "medicationCodeableConcept" \ "coding" \ "code").extract[Seq[String]].head shouldBe "A02BC03"
-      (results.head \ "medicationCodeableConcept" \ "coding" \ "system").extract[Seq[String]].head shouldBe "http://www.whocc.no/atc"
+      (results.head \ "medication" \ "concept" \ "coding" \ "code").extract[Seq[String]].head shouldBe "A02BC03"
+      (results.head \ "medication" \ "concept" \ "coding" \ "system").extract[Seq[String]].head shouldBe "http://www.whocc.no/atc"
 
-      (results.head \ "effectivePeriod" \ "start").extract[String] shouldBe "2022-06-08T05:54:00Z"
-      (results.head \ "effectivePeriod" \ "end").extract[String] shouldBe "2022-06-09T05:54:00Z"
+      (results.head \ "occurencePeriod" \ "start").extract[String] shouldBe "2022-06-08T05:54:00Z"
+      (results.head \ "occurencePeriod" \ "end").extract[String] shouldBe "2022-06-09T05:54:00Z"
       (results.head \ "dosage" \ "dose" \ "value").extract[Int] shouldBe 2
     }
   }
@@ -384,10 +386,9 @@ class UCLIntegrationTest extends MappingTestSpec {
       // if concept_code cannot be mapped to ICD10 (Condition), then it should be mapped to ICD10PCS (Procedure)
       (results.apply(30) \ "resourceType").extract[String] shouldBe "Procedure"
       (results.apply(30) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "5294")
-      (results.apply(30) \ "performedDateTime").extract[String] shouldBe "2021-04-05T00:00:00Z"
+      (results.apply(30) \ "occurrenceDateTime").extract[String] shouldBe "2021-04-05T00:00:00Z"
       (results.apply(30) \ "code" \ "coding" \ "code").extract[Seq[String]].head shouldBe "0W990ZX"
       (results.apply(30) \ "code" \ "coding" \ "system").extract[Seq[String]].head shouldBe "http://hl7.org/fhir/sid/icd-10-pcs"
-
     }
   }
 

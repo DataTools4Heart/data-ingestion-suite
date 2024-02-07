@@ -1,0 +1,284 @@
+{
+  "id" : "amc",
+  "name" : "amc",
+  "sourceSettings" : {
+    "source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "amc-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
+      "dataFolderPath" : "test-data/amc",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
+    "sourceContext" : {
+      "CauseOfDeath" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_OverlijdensRegistratie.tsv",
+        "fileFormat" : "tsv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
+    "sourceContext" : {
+      "Condition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Probleemlijst.tsv",
+        "fileFormat" : "tsv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
+    "sourceContext" : {
+      "MedicalDiagnosis" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedischeDiagnose.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_EcgMeting.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
+    "sourceContext" : {
+      "EncounterEmergency" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_SEHtraject.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
+    "sourceContext" : {
+      "Encounter" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Opnametraject.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
+    "sourceContext" : {
+      "SurgeryHistory" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_VoorgeschiedenisChirurgie.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/lab-result-mapping",
+    "sourceContext" : {
+      "LabResult" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Labuitslag.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
+    "sourceContext" : {
+      "MedicationAdministration" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedicatieToediening.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
+    "sourceContext" : {
+      "MedicationPrescription" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedicatieVoorschrift.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
+    "sourceContext" : {
+      "patient" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Patient.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+    "sourceContext" : {
+      "Procedure" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_VerrichtingUitgevoerd.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
+    "sourceContext" : {
+      "ProcedureSurgery" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_OKVerrichtingUitgevoerd.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
+    "sourceContext" : {
+      "SmokingStatus" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Tabakgebruik.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bmi-mapping",
+    "sourceContext" : {
+      "BMI" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingBMI.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
+    "sourceContext" : {
+      "BP" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingBloeddruk.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
+    "sourceContext" : {
+      "HeartRate" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingHartfrequentie.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-mapping",
+    "sourceContext" : {
+      "Length" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingLichaamsLengte.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
+    "sourceContext" : {
+      "VitalSign" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingVitaleGegevens.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-o2-mapping",
+    "sourceContext" : {
+      "O2Saturation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Metingo2Saturatie.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-weight-mapping",
+    "sourceContext" : {
+      "Weight" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingLichaamsGewicht.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
+    "sourceContext" : {
+      "HistoryCondition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_VoorgeschiedenisMedisch.tsv",
+        "fileFormat" : "tsv",
+        "options" : {
+          "sep" : "\\t"
+        }
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

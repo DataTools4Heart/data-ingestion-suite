@@ -19,10 +19,6 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "extension" : [ {
-          "url" : "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-PatientEthnicity",
-          "@sliceName" : "ethnicity"
-        } ],
         "gender" : "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
         "birthDate" : "{{iif(birthdate.empty(), birth_datetime, birthdate)}}",
         "deceasedDateTime" : "{{? death_datetime}}",
@@ -30,7 +26,7 @@
         "id" : "{{mpp:getHashedId('Patient',person_id.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
         },
         "resourceType" : "Patient"
       }

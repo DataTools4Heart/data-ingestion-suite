@@ -4,7 +4,7 @@
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/DiarioMisure",
   "name" : "Observation",
   "status" : "draft",
-  "fhirVersion" : "4.0.1",
+  "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
   "type" : "Observation",

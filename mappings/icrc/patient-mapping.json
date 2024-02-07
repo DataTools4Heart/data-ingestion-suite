@@ -16,7 +16,7 @@
           "resourceType": "Patient",
           "id": "{{mpp:getHashedId('Patient', id.toString())}}",
           "meta": {
-            "profile":["https://datatools4heart.eu/fhir/StructureDefinition/DT4H-Patient"],
+            "profile":["https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient"],
             "source": "{{%sourceSystem.sourceUri}}"
           },
           "active": true,
