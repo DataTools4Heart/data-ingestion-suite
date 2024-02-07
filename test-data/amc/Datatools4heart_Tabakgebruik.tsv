@@ -1,0 +1,11 @@
+pseudo_id	StatusTabakgebruik	TabakgebruikToelichting	SoortTabakgebruik	IsHuidigeRoker	IsVoormaligRoker	TabakgebruikJaren	Specialisme	StartDatum	StopDatum	ziekenhuislocatie	Patientcontactid	uitgifteDT
+15759	Stoppen			Nee	N.b.	0	Longziekten	1753-01-01	9999-12-31	Locatie VUmc	147072585	2023-12-05 05:24:49.5633300
+9336	Nooit			Nee	Nee	0	Anaesthesiologie	1753-01-01	2010-06-04	Locatie VUmc	155031497	2023-12-05 05:24:49.5633300
+9925	Ja			Nee	Ja	30	Cardio thoracale chirurgie	1753-01-01	2017-01-01	Locatie AMC	160304777	2023-12-05 05:24:49.5633300
+6291	Nooit			Nee	Ja	30	Overigen	1990-02-17	2005-01-01	Locatie AMC	143309966	2023-12-05 05:24:49.5633300
+15562	Ja		Sigaretten	N.b.	Nee	0	Chirurgie	1753-01-01	9999-12-31	Locatie AMC	158128805	2023-12-05 05:24:49.5633300
+16204	Ja			Nee	Ja	0	Cardio thoracale chirurgie	1753-01-01	2015-01-01	Locatie VUmc	154503032	2023-12-05 05:24:49.5633300
+2104	Stoppen			Ja	Ja	0	Anaesthesiologie	1753-01-01	9999-12-31	Locatie VUmc	175799711	2023-12-05 05:24:49.5633300
+7260	Stoppen			Nee	Ja	0	Overigen	1753-01-01	9999-12-31	Locatie AMC	177391051	2023-12-05 05:24:49.5633300
+1923	Ja			Nee	Nee	0	Maag-,darm-en leverziekten	1753-01-01	9999-12-31	Locatie AMC	136519376	2023-12-05 05:24:49.5633300
+571	Stoppen			Nee	Ja	0	Cardiologie	1753-01-01	9999-12-31	Locatie VUmc	131740007	2023-12-05 05:24:49.5633300

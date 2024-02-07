@@ -1,0 +1,44 @@
+{
+  "id" : "procedure-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+  "name" : "procedure-mapping",
+  "title" : "Mapping of AMC's VerrichtingUitgevoerd table to DT4H-Procedure FHIR profile",
+  "source" : [ {
+    "alias" : "Procedure",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/procedure",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "TODO",
+            "display" : "TODO"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+            "code" : "TODO code mappings are required: {{VerrichtingCode}}",
+            "display" : "{{Verrichting}}",
+            "@sliceName" : "icdCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id)}}",
+        "occurrenceDateTime" : "{{Verrichtingdatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "status" : "completed",
+        "id" : "{{mpp:getHashedId('Procedure', Pseudo_id & Verrichtingdatum)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+        },
+        "resourceType" : "Procedure"
+      }
+    }
+  } ]
+}

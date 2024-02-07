@@ -1,0 +1,60 @@
+{
+  "id" : "encounter-emergency-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
+  "name" : "encounter-emergency-mapping",
+  "title" : "Mapping of AMC's SEHtraject table to DT4H-Enconter FHIR profile",
+  "source" : [ {
+    "alias" : "EncounterEmergency",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounteremergency",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "type" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/organization-type",
+            "code" : "prov",
+            "display" : "Healthcare Provider"
+          } ],
+          "@sliceName" : "hfrOrganizationType"
+        } ],
+        "name" : "{{ziekenhuislocatie}}",
+        "id" : "{{mpp:getHashedId('Organization', ziekenhuislocatie)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Organization" ]
+        },
+        "resourceType" : "Organization"
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "EMER",
+            "display" : "emergency"
+          } ]
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "actualPeriod" : {
+          "start" : "{{SEHOpnameDatum}}",
+          "end" : "{{SEHVertrekDatum}}"
+        },
+        "status" : "completed",
+        "id" : "{{mpp:getHashedId('Encounter', Patientcontactid)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter"
+      }
+    }
+  } ]
+}

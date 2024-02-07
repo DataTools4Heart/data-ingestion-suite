@@ -1,0 +1,60 @@
+{
+  "id" : "smoking-status-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
+  "name" : "smoking-status-mapping",
+  "title" : "Mapping of AMC's Tabakgebruik table to DT4H-SmokingStatus FHIR profile",
+  "source" : [ {
+    "alias" : "SmokingStatus",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/smokingstatus",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "smokingStatusContextMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/smoking-status-concept-map.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "social-history",
+            "display" : "Social History"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "72166-2",
+            "display" : "Tobacco smoking status",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "{{ mpp:getConcept(%smokingStatusContextMap, StatusTabakgebruik, 'target_code') }}",
+            "display" : "{{ mpp:getConcept(%smokingStatusContextMap, StatusTabakgebruik, 'target_display') }}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "effectivePeriod" : {
+          "start" : "{{StartDatum}}",
+          "end" : "{{StopDatum}}"
+        },
+        "status" : "final",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & Patientcontactid)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation"
+      }
+    }
+  } ]
+}

@@ -1,0 +1,29 @@
+{
+  "id" : "patient-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
+  "name" : "patient-mapping",
+  "title" : "Mapping of AMC's Patient table to DT4H-Patient FHIR profile",
+  "source" : [ {
+    "alias" : "patient",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/patient",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "gender" : "{{iif(Geslacht = 'Vrouw','female','male')}}",
+        "birthDate" : "{{(Geboortejaar.toString() & '-' & Geboortemaand.toString()).utl:toFhirDateTime('yyyy-M')}}",
+        "deceasedDateTime" : "{{? Overlijdensdatum.toDate()}}",
+        "id" : "{{mpp:getHashedId('Patient', pseudo_id))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "resourceType" : "Patient"
+      }
+    }
+  } ]
+}

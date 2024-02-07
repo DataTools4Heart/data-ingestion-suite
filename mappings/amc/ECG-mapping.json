@@ -1,0 +1,324 @@
+{
+  "id" : "ECG-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
+  "name" : "ECG-mapping",
+  "title" : "Mapping of AMC's ECGMeting table to DT4H-ECG FHIR profile",
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/ecg",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34534-8",
+            "display" : "12 lead EKG panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "component" : [ {
+          "{{#componentVar}}" : "{{iif(QRS_Duration_in_medianbeat.exists(), QRS_Duration_in_medianbeat, QRS_Duration_in_rest)}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8633-0",
+                "display" : "QRS duration"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{%componentVar}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            }
+          },
+          "@sliceName" : "qrsDuration"
+        }, {
+          "{{#componentVar}}" : "{{R_Axis_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8632-2",
+                "display" : "QRS axis"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{R_Axis_in_rest}}",
+              "unit" : "degree",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "deg"
+            }
+          },
+          "@sliceName" : "rAxis"
+        }, {
+          "{{#componentVar}}" : "{{P_Axis_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8626-4",
+                "display" : "P wave axis"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{P_Axis_in_rest}}",
+              "unit" : "degree",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "deg"
+            }
+          },
+          "@sliceName" : "pAxis"
+        }, {
+          "{{#componentVar}}" : "{{T_Axis_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8638-9",
+                "display" : "T wave axis"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{T_Axis_in_rest}}",
+              "unit" : "degree",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "deg"
+            }
+          },
+          "@sliceName" : "tAxis"
+        }, {
+          "{{#componentVar}}" : "{{iif(QT_Interval_in_medianbeat.exists(), QT_Interval_in_medianbeat, QT_Interval_in_rest)}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8634-8",
+                "display" : "Q-T interval"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{%componentVar}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            }
+          },
+          "@sliceName" : "qtInterval"
+        }, {
+          "{{#componentVar}}" : "{{QTc_Bazett_in_medianbeat}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula",
+                "code" : "bazett"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{QTc_Bazett_in_medianbeat}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            }
+          },
+          "@sliceName" : "qtIntervalCorrectedBazett"
+        }, {
+          "{{#componentVar}}" : "{{QTcFredericia_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula",
+                "code" : "frederica"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{QTcFredericia_in_rest}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            }
+          },
+          "@sliceName" : "qtIntervalCorrectedFrederica"
+        }, {
+          "{{#componentVar}}" : "{{QTcFramingham_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula",
+                "code" : "framingham"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{QTcFramingham_in_rest}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            }
+          },
+          "@sliceName" : "qtIntervalCorrectedFramingham"
+        }, {
+          "code" : "",
+          "@sliceName" : "qrsComplexCount"
+        }, {
+          "{{#componentVar}}" : "{{iif(PR_Interval_in_medianbeat.exists(), PR_Interval_in_medianbeat, PR_Interval_in_rest)}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8625-6",
+                "display" : "P-R Interval"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{%componentVar}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            }
+          },
+          "@sliceName" : "prInterval"
+        }, {
+          "{{#componentVar}}" : "{{AtrialRate_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter",
+                "code" : "AtrialRate",
+                "display" : "Atrial Rate"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{AtrialRate_in_rest}}",
+              "unit" : "heart beats per minute",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "{beats}/min"
+            }
+          },
+          "@sliceName" : "atrialRate"
+        }, {
+          "{{#componentVar}}" : "{{VentricularRate_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter",
+                "code" : "VentricularRate",
+                "display" : "Ventricular Rate"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{VentricularRate_in_rest}}",
+              "unit" : "heart beats per minute",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "{beats}/min"
+            }
+          },
+          "@sliceName" : "ventricularRate"
+        }, {
+          "{{#componentVar}}" : "{{ECGSampleBase_in_rest}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter",
+                "code" : "SamplingFrequency",
+                "display" : "Sampling Frequency"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{ECGSampleBase_in_rest}}",
+              "unit" : "Hertz",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "Hz"
+            }
+          },
+          "@sliceName" : "samplingFrequency"
+        }, {
+          "code" : "",
+          "@sliceName" : "filterSettings"
+        }, {
+          "code" : "",
+          "@sliceName" : "rawMedianBeat"
+        }, {
+          "code" : "",
+          "@sliceName" : "rawRhythm"
+        }, {
+          "code" : "",
+          "@sliceName" : "pacedRhythm"
+        }, {
+          "code" : "",
+          "@sliceName" : "AF"
+        }, {
+          "code" : "",
+          "@sliceName" : "LBBB"
+        }, {
+          "code" : "",
+          "@sliceName" : "RBBB"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadI"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadII"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadIII"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadAVR"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadAVL"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadAVF"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadV1"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadV2"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadV3"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadV4"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadV5"
+        }, {
+          "code" : "",
+          "@sliceName" : "leadV6"
+        }, {
+          "code" : "",
+          "@sliceName" : "stElevation"
+        }, {
+          "code" : "",
+          "@sliceName" : "ischemiaWithoutStElevation"
+        } ],
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "effectiveDateTime" : "{{EcgAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd hh:mm:ss)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "status" : "final",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & EcgMetingId)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
+        },
+        "resourceType" : "Observation"
+      }
+    }
+  } ]
+}

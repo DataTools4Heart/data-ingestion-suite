@@ -1,0 +1,195 @@
+{
+  "id" : "1ea44e13-323e-45ac-ac62-c526ea024ae7",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicaldiagnosis",
+  "name" : "MedicalDiagnosis",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "MedicalDiagnosis",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "MedicalDiagnosis",
+      "path" : "MedicalDiagnosis",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.pseudo_id",
+      "path" : "MedicalDiagnosis.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.PatientContactId",
+      "path" : "MedicalDiagnosis.PatientContactId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.Ziekenhuislocatie",
+      "path" : "MedicalDiagnosis.Ziekenhuislocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DiagnoseContactDatum",
+      "path" : "MedicalDiagnosis.DiagnoseContactDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DiagnoseRegistratieMoment",
+      "path" : "MedicalDiagnosis.DiagnoseRegistratieMoment",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DiagnoseCode",
+      "path" : "MedicalDiagnosis.DiagnoseCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DiagnoseCategorie",
+      "path" : "MedicalDiagnosis.DiagnoseCategorie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DiagnoseOmschrijving",
+      "path" : "MedicalDiagnosis.DiagnoseOmschrijving",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DiagnoseSoortCode",
+      "path" : "MedicalDiagnosis.DiagnoseSoortCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DiagnoseSoort",
+      "path" : "MedicalDiagnosis.DiagnoseSoort",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.KlinischPoliklinischCode",
+      "path" : "MedicalDiagnosis.KlinischPoliklinischCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.KlinischPoliklinisch",
+      "path" : "MedicalDiagnosis.KlinischPoliklinisch",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.Specialismecode",
+      "path" : "MedicalDiagnosis.Specialismecode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.Specialisme",
+      "path" : "MedicalDiagnosis.Specialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.SpecialismeAfkorting",
+      "path" : "MedicalDiagnosis.SpecialismeAfkorting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.IsComplicatie",
+      "path" : "MedicalDiagnosis.IsComplicatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.Bron",
+      "path" : "MedicalDiagnosis.Bron",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.DCMVerverstDatumTijd",
+      "path" : "MedicalDiagnosis.DCMVerverstDatumTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "MedicalDiagnosis.uitgifteDT",
+      "path" : "MedicalDiagnosis.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    } ]
+  }
+}

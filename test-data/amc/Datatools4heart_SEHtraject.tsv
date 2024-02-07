@@ -1,0 +1,11 @@
+pseudo_id	SEHOpnameDatum	SEHVertrekDatum	SEHSubSpecialisme	HoofdSEHKlacht	HoofdSEHIngangsklacht	BestemmingNaSEH	VerwijzendZorgverlenerType	IsEHHtraject	ziekenhuislocatie	Patientcontactid	uitgifteDT
+10	2020-10-30	2021-12-01	INT - niet nader gespecificeerd	Dyspnoe/dl		Opname afdeling	Zelfverwijzer	Nee	Locatie VUmc	175352276	2023-12-05 05:24:49.5633300
+7268	2016-08-16	2017-01-09	LON - niet nader gespecificeerd	Pijn in flank verdenking urolithiasis	ALGEHELE MALAISE VOLWASSENE	Opname afdeling	Instelling	Nee	Locatie AMC	160397620	2023-12-05 05:24:49.5633300
+3872	2017-01-16	2022-08-05	LON - niet nader gespecificeerd	Klacht li arm, via ha.	ALGEHELE MALAISE VOLWASSENE		Arts	Nee	Locatie AMC	154609226	2023-12-05 05:24:49.5633300
+10951	2020-06-30	2017-09-03	CAR - niet nader gespecificeerd	Koorts & hoesten	HOESTEN		Zelfverwijzer	Nee	Locatie AMC	150558925	2023-12-05 05:24:49.5633300
+6291	2016-10-13	2019-05-23	INT - niet nader gespecificeerd	Via HAP: re-schouder na val van trap			Zelfverwijzer	Ja	Locatie VUmc	159424419	2023-12-05 05:24:49.5633300
+10948	2020-02-02	2022-01-09	CAR - niet nader gespecificeerd	Dik been (via poli URO)	WOND	Opname afdeling	Zelfverwijzer	Nee	Locatie VUmc	177230539	2023-12-05 05:24:49.5633300
+7963	2019-07-30	2016-10-27	INT - nefrologie	Wond re onderarm	HOESTEN		Zelfverwijzer	Nee	Locatie VUmc	157963036	2023-12-05 05:24:49.5633300
+12124	2022-07-29	2020-11-23	CAR - niet nader gespecificeerd	Hyponatriëmie.	ALGEHELE MALAISE VOLWASSENE	Ontslag	Huisarts	Ja	Locatie AMC	174425311	2023-12-05 05:24:49.5633300
+1982	2017-07-03	2017-07-10	INT - nefrologie	Retour klachten been	URINEWEGPROBLEMEN	Opname afdeling	Zelfverwijzer	Nee	Locatie AMC	158969448	2023-12-05 05:24:49.5633300
+5820	2016-10-16	2018-11-26	CAR - niet nader gespecificeerd	Gevallen	ALGEHELE MALAISE VOLWASSENE		Zelfverwijzer	Nee	Locatie AMC	155525268	2023-12-05 05:24:49.5633300

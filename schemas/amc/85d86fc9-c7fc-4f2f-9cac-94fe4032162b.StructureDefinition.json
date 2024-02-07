@@ -1,0 +1,168 @@
+{
+  "id" : "85d86fc9-c7fc-4f2f-9cac-94fe4032162b",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/proceduresurgery",
+  "name" : "ProcedureSurgery",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "ProcedureSurgery",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "ProcedureSurgery",
+      "path" : "ProcedureSurgery",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.pseudo_id",
+      "path" : "ProcedureSurgery.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.ZittingStartDatum",
+      "path" : "ProcedureSurgery.ZittingStartDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.Verrichting",
+      "path" : "ProcedureSurgery.Verrichting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.VerrichtingCode",
+      "path" : "ProcedureSurgery.VerrichtingCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.DbcDiagnose",
+      "path" : "ProcedureSurgery.DbcDiagnose",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.DbcDiagnosecode",
+      "path" : "ProcedureSurgery.DbcDiagnosecode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.ZorgtrajectOmschrijving",
+      "path" : "ProcedureSurgery.ZorgtrajectOmschrijving",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.AantalGekoppeldeSubtrajecten",
+      "path" : "ProcedureSurgery.AantalGekoppeldeSubtrajecten",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.AantalOKVerrichtingenUitgevoerd",
+      "path" : "ProcedureSurgery.AantalOKVerrichtingenUitgevoerd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.IsHoofdverrichting",
+      "path" : "ProcedureSurgery.IsHoofdverrichting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.Lateraliteit",
+      "path" : "ProcedureSurgery.Lateraliteit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.HoofdoperateurPanelSpecialisme",
+      "path" : "ProcedureSurgery.HoofdoperateurPanelSpecialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.HoofdoperateurPanelOKSpecialisme",
+      "path" : "ProcedureSurgery.HoofdoperateurPanelOKSpecialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.HoofdoperateurPanelSubspecialisme",
+      "path" : "ProcedureSurgery.HoofdoperateurPanelSubspecialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.ziekenhuislocatie",
+      "path" : "ProcedureSurgery.ziekenhuislocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ProcedureSurgery.uitgifteDT",
+      "path" : "ProcedureSurgery.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    } ]
+  }
+}

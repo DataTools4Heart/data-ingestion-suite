@@ -1,0 +1,44 @@
+{
+  "id" : "procedure-surgery-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
+  "name" : "procedure-surgery-mapping",
+  "title" : "Mapping of AMC's OKVerrichtingUitgevoerd table to DT4H-Procedure FHIR profile",
+  "source" : [ {
+    "alias" : "ProcedureSurgery",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/proceduresurgery",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "387713003",
+            "display" : "Surgical procedure (procedure)"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+            "code" : "TODO code mappings are required: {{VerrichtingCode}}",
+            "display" : "{{Verrichting}}",
+            "@sliceName" : "icdCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "occurrenceDateTime" : "{{? iif(ZittingStartDatum.exists() and ZittingStartDatum != 'NA', ZittingStartDatum, {})}}",
+        "status" : "completed",
+        "id" : "{{mpp:getHashedId('Procedure', pseudo_id & ZittingStartDatum)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+        },
+        "resourceType" : "Procedure"
+      }
+    }
+  } ]
+}
