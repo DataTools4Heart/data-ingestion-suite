@@ -26,8 +26,8 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "68343-3",
-            "display" : "Primary cause of death",
+            "code" : "79378-6",
+            "display" : "Cause of death",
             "@sliceName" : "loincCode"
           } ]
         },
