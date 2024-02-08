@@ -5,7 +5,7 @@ services:
     container_name: tofhir-log-server
     hostname: tofhir-log-server
     ports:
-      - "8086:8086"
+      - "6086:8086"
     networks:
       - tofhir-network
     volumes:
@@ -21,7 +21,7 @@ services:
       - APP_CONF_FILE=/usr/local/tofhir/conf/docker/tofhir-server.conf
       - CONTEXT_PATH=conf
     ports:
-      - "8085:8085"
+      - "6085:8085"
     networks:
       - tofhir-network
     volumes:
@@ -31,7 +31,7 @@ services:
     image: srdc/tofhir-web:dt4h-nginx
     container_name: tofhir-web
     ports:
-      - "8082:80"
+      - "6082:80"
     networks:
       - tofhir-network
 networks:
