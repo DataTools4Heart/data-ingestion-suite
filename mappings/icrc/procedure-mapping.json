@@ -29,11 +29,13 @@
             "source": "{{%sourceSystem.sourceUri}}"
           },
           "status": "completed",
-          "category": {
-            "coding": [{
-              "TODO": "procedure category is required now after CDM upgrade"
-            }]
-          },
+          "category" : [ {
+            "coding" : [ {
+              "system" : "http://snomed.info/sct",
+              "code" : "387713003",
+              "display" : "Surgical procedure (procedure)"
+            } ]
+          } ],
           "code": {
             "coding": [
               {
