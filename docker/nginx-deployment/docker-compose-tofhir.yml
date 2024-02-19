@@ -2,7 +2,7 @@ version: '3.9'
 services:
   tofhir-log-server:
     image: srdc/tofhir-log-server:latest
-    container_name: tofhir-log-server
+    container_name: dt4h-tofhir-log-server
     hostname: tofhir-log-server
     ports:
       - "6086:8086"
@@ -12,7 +12,7 @@ services:
       - './tofhir-docker-logs:/usr/local/tofhir/logs'
   tofhir-server:
     image: srdc/tofhir-server:latest
-    container_name: tofhir
+    container_name: dt4h-tofhir-server
     hostname: tofhir
     environment:
       - LOG_SERVICE_ENDPOINT=http://tofhir-log-server:8086/tofhir-logs
@@ -29,7 +29,7 @@ services:
       - './tofhir-docker-logs:/usr/local/tofhir/logs'
   tofhir-web:
     image: srdc/tofhir-web:dt4h-nginx
-    container_name: tofhir-web
+    container_name: dt4h-tofhir-web
     ports:
       - "6082:80"
     networks:
