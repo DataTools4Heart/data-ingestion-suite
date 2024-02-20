@@ -1,6 +1,6 @@
 {
-  "id" : "icrc-v2-test",
-  "name" : "icrc-v2-test",
+  "id" : "icrc-test",
+  "name" : "icrc-test",
   "sourceSettings" : {
     "source" : {
       "jsonClass" : "SqlSourceSettings",
@@ -113,7 +113,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.vital_sign_profile limit 500"
+        "query" : "select * from dt4h.vital_sign_profile"
       }
     }
   } ],
