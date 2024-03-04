@@ -77,6 +77,13 @@
                 "@sliceName" : "icdCode"
               } ]
             },
+            "category" : [ {
+              "coding" : [ {
+                "system" : "http://snomed.info/sct",
+                "code" : "387713003",
+                "display" : "Surgical procedure (procedure)"
+              } ]
+            } ],
             "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
             "occurrenceDateTime" : "{{utl:evaluateExpression('%encounterDetails.dataproc' & %ind)}}",
             "status" : "completed",

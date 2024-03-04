@@ -49,7 +49,7 @@
       "sourceContext" : {
         "source" : {
           "jsonClass" : "SqlSource",
-          "query" : "select encounter.*, icd10.name_english, icd10.name_czech from dt4h.encounter_profile encounter LEFT JOIN standard_dict.icd_10 icd10 ON encounter.reason_code = icd10.code limit 10"
+          "query" : "select encounter.*, icd10.name_english, icd10.name_czech from dt4h.encounter_profile encounter LEFT JOIN standard_dict.icd_10 icd10 ON encounter.reason_code = icd10.code"
         }
       }
     }, {
