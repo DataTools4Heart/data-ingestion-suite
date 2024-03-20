@@ -11,7 +11,7 @@
   "context" : {
     "procedureCodeMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/amc/procedure-category-concept-map.csv"
+      "url" : "$CONTEXT_REPO/amc/procedure-codes-concept-map.csv"
     }
   },
   "variable" : [ {
