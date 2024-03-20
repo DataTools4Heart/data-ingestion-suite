@@ -24,18 +24,18 @@
         } ],
         "code" : {
           "coding" : [ {
-            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
             "code" : "{{code}}",
-            "display" : "{{ name_english }}",
+            "display" : "{{ short_descr }}",
             "@sliceName" : "icdCode"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-        "occurrenceDateTime" : "{{diag_dt.toString().replace(' ','T') + 'Z'}}",
+        "occurrenceDateTime" : "{{perform_dt.toString().replace(' ','T') + 'Z'}}",
         "reason" : [ {
-          "reference" : "{{? iif(ref_observation.exists(), mpp:createFhirReferenceWithHashedId('Observation', ref_observation.toString()))}}"
+          "reference" : "{{? iif(id_observation.exists(), mpp:createFhirReferenceWithHashedId('Observation', id_observation.toString()))}}"
         } ],
-        "status" : "completed",
+        "status" : "{{status}}",
         "id" : "{{mpp:getHashedId('Procedure', id.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",

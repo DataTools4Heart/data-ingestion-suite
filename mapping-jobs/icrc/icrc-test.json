@@ -89,7 +89,7 @@
     "sourceContext" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.procedure_profile"
+        "query" : "select p.*, es.code as status, icd10pcs.code, icd10pcs.short_descr, e.id_patient from patient.\"procedure\" p left join standard_dict.icd_10_pcs icd10pcs on p.id_procedure_dict = icd10pcs.id left join patient.observation obs on p.id_observation = obs.id left join patient.encounter e on obs.id_encounter = e.id left join patient_dict.event_status es on p.id_event_status = es.id"
       }
     }
   }, {
