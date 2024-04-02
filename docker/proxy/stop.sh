@@ -1,0 +1,1 @@
+docker compose -f data-ingestion-suite/docker/proxy/docker-compose.yml -p dt4h-proxy down
