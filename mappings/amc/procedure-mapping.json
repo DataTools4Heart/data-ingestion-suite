@@ -8,8 +8,17 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/procedure",
     "joinOn" : [ ]
   } ],
-  "context" : { },
-  "variable" : [ ],
+  "context" : {
+    "procedureCodeMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/procedure-codes-concept-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "procedureCode",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%procedureCodeMap, VerrichtingCode, 'target_code')"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -18,15 +27,15 @@
         "category" : [ {
           "coding" : [ {
             "system" : "http://snomed.info/sct",
-            "code" : "TODO",
-            "display" : "TODO"
+            "code" : "387713003",
+            "display" : "Surgical procedure (procedure)"
           } ]
         } ],
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
-            "code" : "TODO code mappings are required: {{VerrichtingCode}}",
-            "display" : "{{Verrichting}}",
+            "code" : "TODO code mappings are required: {{procedureCode.target_code}}",
+            "display" : "{{procedureCode.target_display}}",
             "@sliceName" : "icdCode"
           } ]
         },
@@ -39,6 +48,11 @@
         },
         "resourceType" : "Procedure"
       }
+    },
+    "precondition" : {
+      "name" : "isValidProcedure",
+      "language" : "text/fhirpath",
+      "expression" : "procedureCode.exists()"
     }
   } ]
 }

@@ -22,24 +22,33 @@
     }, {
       "id" : "Procedure.id",
       "path" : "Procedure.id",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Procedure.diag_dt",
-      "path" : "Procedure.diag_dt",
+      "id" : "Procedure.report",
+      "path" : "Procedure.report",
       "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.perform_dt",
+      "path" : "Procedure.perform_dt",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "Procedure.ref_observation",
-      "path" : "Procedure.ref_observation",
+      "id" : "Procedure.id_event_status",
+      "path" : "Procedure.id_event_status",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -47,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Procedure.id_clinical_status",
-      "path" : "Procedure.id_clinical_status",
+      "id" : "Procedure.id_department",
+      "path" : "Procedure.id_department",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -56,8 +65,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Procedure.id_patient",
-      "path" : "Procedure.id_patient",
+      "id" : "Procedure.id_surgery",
+      "path" : "Procedure.id_surgery",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.id_observation",
+      "path" : "Procedure.id_observation",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.outcome",
+      "path" : "Procedure.outcome",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -74,8 +101,44 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
+      "id" : "Procedure.id_icd_10_pcs",
+      "path" : "Procedure.id_icd_10_pcs",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.id_procedure_dict",
+      "path" : "Procedure.id_procedure_dict",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.status",
+      "path" : "Procedure.status",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "Procedure.code",
       "path" : "Procedure.code",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.short_descr",
+      "path" : "Procedure.short_descr",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,22 +146,13 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.name_english",
-      "path" : "Procedure.name_english",
-      "min" : 0,
+      "id" : "Procedure.id_patient",
+      "path" : "Procedure.id_patient",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Procedure.all",
-      "path" : "Procedure.all",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "boolean",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     } ]
   }

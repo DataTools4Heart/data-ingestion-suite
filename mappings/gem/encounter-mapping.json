@@ -42,13 +42,7 @@
           "{{*}}" : {
             "value" : [ {
               "concept" : {
-                "coding" : {
-                  "{{#codingVar}}" : "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.' & %reasonCodeVar), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code}}",
-                  "{{?}}" : [ {
-                    "system" : "http://hl7.org/fhir/sid/icd-10",
-                    "code" : "{{%codingVar.first()}}"
-                  } ]
-                }
+                "coding" : "{{* trms:translateToCoding(utl:evaluateExpression('%encounterDetails.' & %reasonCodeVar), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10')}}"
               }
             } ]
           }
@@ -68,15 +62,18 @@
       "value" : {
         "{{#ind}}" : "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.proc' & $this.toString() & '.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select($this.toString())}}",
         "{{*}}" : {
-          "{{#translatedCode}}" : "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code.first()}}",
+          "{{#translatedCode}}" : "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs').code.first()}}",
           "{{?}}" : {
             "code" : {
-              "coding" : [ {
-                "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
-                "code" : "{{%translatedCode}}",
-                "@sliceName" : "icdCode"
-              } ]
+              "coding" : "{{* trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs')}}"
             },
+            "category" : [ {
+              "coding" : [ {
+                "system" : "http://snomed.info/sct",
+                "code" : "387713003",
+                "display" : "Surgical procedure (procedure)"
+              } ]
+            } ],
             "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
             "occurrenceDateTime" : "{{utl:evaluateExpression('%encounterDetails.dataproc' & %ind)}}",
             "status" : "completed",

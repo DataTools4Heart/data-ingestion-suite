@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:1.25.4
+    container_name: dt4h-nginx
+    volumes:
+      - type: bind
+        source: ./data-ingestion-suite/docker/proxy/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+    ports:
+      - "80:80"
+    networks:
+      - tofhir-network
+networks:
+  tofhir-network:
+    name: onfhir-network
+    external: true

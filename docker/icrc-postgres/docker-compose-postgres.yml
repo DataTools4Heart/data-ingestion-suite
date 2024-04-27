@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14.10
+    container_name: dt4h-icrc-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: icrc
+    volumes:
+      - ./data-ingestion-suite/test-data/icrc/icrc-postgres:/dump
+    networks:
+      - onfhir-network
+    ports:
+      - "5432:5432"
+
+networks:
+  onfhir-network:
+    external: true

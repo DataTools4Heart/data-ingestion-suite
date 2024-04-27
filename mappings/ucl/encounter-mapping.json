@@ -44,16 +44,19 @@
           "end" : "{{? iif(visit_end_datetime.empty(), visit_end_date, visit_end_datetime)}}"
         },
         "status" : "completed",
-        "reason" : [ {
-          "value" : [ {
-            "concept" : {
-              "coding" : [ {
-                "system" : "http://hl7.org/fhir/sid/icd-10",
-                "code" : "{{%reasonCode}}"
-              } ]
-            }
+        "reason" : {
+          "{{#reasonCodeVar}}" : "{{%reasonCode}}",
+          "{{?}}" : [ {
+            "value" : [ {
+              "concept" : {
+                "coding" : [ {
+                  "system" : "http://hl7.org/fhir/sid/icd-10",
+                  "code" : "{{%reasonCodeVar}}"
+                } ]
+              }
+            } ]
           } ]
-        } ],
+        },
         "diagnosis" : [ {
           "condition" : "{{? mpp:createFhirReferenceWithHashedId('Condition', condition_occurrence_id.toString())}}"
         } ],
@@ -64,11 +67,6 @@
         },
         "resourceType" : "Encounter"
       }
-    },
-    "precondition" : {
-      "name" : "reasonCodeExists",
-      "language" : "text/fhirpath",
-      "expression" : "%reasonCode.exists()"
     }
   } ]
 }

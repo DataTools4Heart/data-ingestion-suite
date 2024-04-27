@@ -50,6 +50,12 @@
     "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs",
     "sourceValueSetUrl" : "http://snomed.info/sct",
     "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+  }, {
+    "id" : "icd9toicd10pcs.csv",
+    "name" : "icd9toicd10pcs.csv",
+    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs",
+    "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
+    "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
   } ],
   "codeSystems" : [ ]
 } ]

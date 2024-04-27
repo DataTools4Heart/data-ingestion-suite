@@ -47,8 +47,8 @@
             "concept" : {
               "coding" : [ {
                 "system" : "http://hl7.org/fhir/sid/icd-10",
-                "code" : "{{? reason_code}}",
-                "display" : "{{? name_english}}"
+                "code" : "{{ reason_code}}",
+                "display" : "{{ iif(name_english.exists(), name_english, name_czech) }}"
               } ]
             }
           } ]

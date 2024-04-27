@@ -20,7 +20,6 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "status" : "final",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -36,8 +35,6 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
         "effectiveDateTime" : "{{effective_datetime.toString().replace(' ','T') + 'Z'}}",
         "valueCodeableConcept" : {
           "coding" : [ {
@@ -46,7 +43,10 @@
             "display" : "{{? mpp:getConcept(%nyhaValuesConceptMap, value.toString(), 'target_display')}}"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Observation', subject.toString() + effective_datetime.toString() + value.toString() + '_nyha')}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+        "status" : "final",
+        "id" : "{{mpp:getHashedId('Observation', subject.toString() + effective_datetime.toString() + id_encounter.toString() + '_nyha')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]

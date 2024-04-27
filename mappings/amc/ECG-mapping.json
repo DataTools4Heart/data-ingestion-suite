@@ -24,7 +24,7 @@
           } ]
         },
         "component" : [ {
-          "{{#componentVar}}" : "{{iif(QRS_Duration_in_medianbeat.exists(), QRS_Duration_in_medianbeat, QRS_Duration_in_rest)}}",
+          "{{#componentVar}}" : "{{QRS_Duration_in_rest}}",
           "{{?}}" : {
             "code" : {
               "coding" : [ {
@@ -34,11 +34,37 @@
               } ]
             },
             "valueQuantity" : {
-              "value" : "{{%componentVar}}",
+              "value" : "{{QRS_Duration_in_rest}}",
               "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
-            }
+            },
+            "extension": [ {
+                "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+                "valueString": "10-second rythm"
+            } ]
+          },
+          "@sliceName" : "qrsDuration"
+        }, {
+          "{{#componentVar}}" : "{{QRS_Duration_in_medianbeat}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8633-0",
+                "display" : "QRS duration"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{QRS_Duration_in_medianbeat}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "medianbeat"
+            } ]
           },
           "@sliceName" : "qrsDuration"
         }, {
@@ -56,7 +82,11 @@
               "unit" : "degree",
               "system" : "http://unitsofmeasure.org",
               "code" : "deg"
-            }
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "10-second rythm"
+            } ]
           },
           "@sliceName" : "rAxis"
         }, {
@@ -74,7 +104,11 @@
               "unit" : "degree",
               "system" : "http://unitsofmeasure.org",
               "code" : "deg"
-            }
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "10-second rythm"
+            } ]
           },
           "@sliceName" : "pAxis"
         }, {
@@ -92,11 +126,15 @@
               "unit" : "degree",
               "system" : "http://unitsofmeasure.org",
               "code" : "deg"
-            }
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "10-second rythm"
+            } ]
           },
           "@sliceName" : "tAxis"
         }, {
-          "{{#componentVar}}" : "{{iif(QT_Interval_in_medianbeat.exists(), QT_Interval_in_medianbeat, QT_Interval_in_rest)}}",
+          "{{#componentVar}}" : "{{QT_Interval_in_rest}}",
           "{{?}}" : {
             "code" : {
               "coding" : [ {
@@ -106,11 +144,37 @@
               } ]
             },
             "valueQuantity" : {
-              "value" : "{{%componentVar}}",
+              "value" : "{{QT_Interval_in_rest}}",
               "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
-            }
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "10-second rythm"
+            } ]
+          },
+          "@sliceName" : "qtInterval"
+        }, {
+          "{{#componentVar}}" : "{{QT_Interval_in_medianbeat}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8634-8",
+                "display" : "Q-T interval"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{QT_Interval_in_medianbeat}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "medianbeat"
+            } ]
           },
           "@sliceName" : "qtInterval"
         }, {
@@ -165,10 +229,7 @@
           },
           "@sliceName" : "qtIntervalCorrectedFramingham"
         }, {
-          "code" : "",
-          "@sliceName" : "qrsComplexCount"
-        }, {
-          "{{#componentVar}}" : "{{iif(PR_Interval_in_medianbeat.exists(), PR_Interval_in_medianbeat, PR_Interval_in_rest)}}",
+          "{{#componentVar}}" : "{{PR_Interval_in_rest}}",
           "{{?}}" : {
             "code" : {
               "coding" : [ {
@@ -178,11 +239,37 @@
               } ]
             },
             "valueQuantity" : {
-              "value" : "{{%componentVar}}",
+              "value" : "{{PR_Interval_in_rest}}",
               "unit" : "millisecond",
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
-            }
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "10-second rythm"
+            } ]
+          },
+          "@sliceName" : "prInterval"
+        }, {
+          "{{#componentVar}}" : "{{PR_Interval_in_medianbeat}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "8625-6",
+                "display" : "P-R Interval"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{PR_Interval_in_medianbeat}}",
+              "unit" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "code" : "ms"
+            },
+            "extension": [ {
+              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString": "medianbeat"
+            } ]
           },
           "@sliceName" : "prInterval"
         }, {
@@ -239,69 +326,6 @@
             }
           },
           "@sliceName" : "samplingFrequency"
-        }, {
-          "code" : "",
-          "@sliceName" : "filterSettings"
-        }, {
-          "code" : "",
-          "@sliceName" : "rawMedianBeat"
-        }, {
-          "code" : "",
-          "@sliceName" : "rawRhythm"
-        }, {
-          "code" : "",
-          "@sliceName" : "pacedRhythm"
-        }, {
-          "code" : "",
-          "@sliceName" : "AF"
-        }, {
-          "code" : "",
-          "@sliceName" : "LBBB"
-        }, {
-          "code" : "",
-          "@sliceName" : "RBBB"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadI"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadII"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadIII"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadAVR"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadAVL"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadAVF"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadV1"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadV2"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadV3"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadV4"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadV5"
-        }, {
-          "code" : "",
-          "@sliceName" : "leadV6"
-        }, {
-          "code" : "",
-          "@sliceName" : "stElevation"
-        }, {
-          "code" : "",
-          "@sliceName" : "ischemiaWithoutStElevation"
         } ],
         "category" : [ {
           "coding" : [ {

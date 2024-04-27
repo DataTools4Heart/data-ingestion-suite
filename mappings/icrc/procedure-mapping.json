@@ -1,56 +1,53 @@
 {
-  "id": "procedure-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
-  "name": "procedure-mapping",
-  "title": "Mapping of the icrc patient.procedure_profile view to DT4H Procedure FHIR profile",
-  "source": [
-    {
-      "alias": "source",
-      "url": "https://datatools4heart.eu/fhir/schemas/icrc/procedure"
-    }
-  ],
-  "mapping": [
-    {
-      "precondition": {
-        "name": "codeMustExist",
-        "language": "text/fhirpath",
-        "expression": "code.exists()"
-      },
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Procedure",
-          "id": "{{mpp:getHashedId('Procedure', id.toString())}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "completed",
-          "category": {
-            "coding": [{
-              "TODO": "procedure category is required now after CDM upgrade"
-            }]
-          },
-          "code": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/sid/icd-10-pcs",
-                "code": "{{code}}",
-                "display": "{{ name_english }}"
-              }
-            ]
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "occurrenceDateTime": "{{diag_dt.toString().replace(' ','T') + 'Z'}}",
-          "reason": [{
-            "reference": "{{mpp:createFhirReferenceWithHashedId('Observation', ref_observation.toString())}}"
-          }]
-        }
+  "id" : "procedure-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
+  "name" : "procedure-mapping",
+  "title" : "Mapping of the icrc patient.procedure_profile view to DT4H Procedure FHIR profile",
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/procedure",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "387713003",
+            "display" : "Surgical procedure (procedure)"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+            "code" : "{{code}}",
+            "display" : "{{ short_descr }}",
+            "@sliceName" : "icdCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "occurrenceDateTime" : "{{perform_dt.toString().replace(' ','T') + 'Z'}}",
+        "reason" : [ {
+          "reference" : "{{? iif(id_observation.exists(), mpp:createFhirReferenceWithHashedId('Observation', id_observation.toString()))}}"
+        } ],
+        "status" : "{{status}}",
+        "id" : "{{mpp:getHashedId('Procedure', id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+        },
+        "resourceType" : "Procedure"
       }
+    },
+    "precondition" : {
+      "name" : "codeMustExist",
+      "language" : "text/fhirpath",
+      "expression" : "code.exists()"
     }
-
-  ]
+  } ]
 }
