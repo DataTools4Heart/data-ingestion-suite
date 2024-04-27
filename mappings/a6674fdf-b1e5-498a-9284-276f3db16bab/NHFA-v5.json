@@ -1,0 +1,3651 @@
+{
+  "id" : "NHFA-v5",
+  "url" : "https://datatools4heart.eu/fhir/schemas/NHFA/NHFA-v5",
+  "name" : "NHFA-v5",
+  "title" : "NHFA-v5",
+  "source" : [ {
+    "alias" : "NHFA-v5",
+    "url" : "https://datatools4heart.eu/fhir/schemas/NHFA/NHFA-v5",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "admissionDate",
+    "language" : "text/fhirpath",
+    "expression" : "(date_of_admission.substring(6) + '-' + date_of_admission.substring(3, 2) + '-' + date_of_admission.substring(0, 2)).toDate()"
+  }, {
+    "name" : "dischargeDate",
+    "language" : "text/fhirpath",
+    "expression" : "(date_of_discharge_or_death.substring(6) + '-' + date_of_discharge_or_death.substring(3, 2) + '-' + date_of_discharge_or_death.substring(0, 2)).toDate()"
+  }, {
+    "name" : "patientId",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getHashedId('Patient', local_patient_identifier)"
+  }, {
+    "name" : "encounterId",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getHashedId('Encounter', (hospital_identifier + '-' + local_patient_identifier+ '-' + date_of_admission))"
+  }, {
+    "name" : "admissionDateTime",
+    "language" : "text/fhirpath",
+    "expression" : "(date_of_admission.substring(6) + '-' + date_of_admission.substring(3, 2) + '-' + date_of_admission.substring(0, 2)).toDateTime()"
+  }, {
+    "name" : "dischargeDateTime",
+    "language" : "text/fhirpath",
+    "expression" : "(date_of_discharge_or_death.substring(6) + '-' + date_of_discharge_or_death.substring(3, 2) + '-' + date_of_discharge_or_death.substring(0, 2)).toDateTime()"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "encounter",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "{{iif(Is_this_an_emergency_admission_for_heart_failure.startsWith('1') and Is_this_a_elective_admission.startsWith('1') = false,'EMER', iif(Is_this_a_elective_admission.startsWith('1') and Is_this_an_emergency_admission_for_heart_failure.startsWith('1') = false, 'IMP', 'AMB'))}}",
+            "display" : "{{iif(Is_this_an_emergency_admission_for_heart_failure.startsWith('1') and Is_this_a_elective_admission.startsWith('1') = false,'emergency', iif(Is_this_a_elective_admission.startsWith('1') and Is_this_an_emergency_admission_for_heart_failure.startsWith('1') = false, 'inpatient encounter', 'ambulatory'))}}"
+          } ]
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', local_patient_identifier)}}",
+        "actualPeriod" : {
+          "start" : "{{ %admissionDate }}",
+          "end" : "{{ %dischargeDate }}"
+        },
+        "status" : "completed",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Encounter', (hospital_identifier + '-' + local_patient_identifier+ '-' + date_of_admission))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter"
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "patient",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "gender" : "{{iif(patient_sex.startsWith('1'), 'male', iif(patient_sex.startsWith('2'), 'female', 'unknown'))}}",
+        "birthDate" : "{{(date_of_birth.substring(6) + '-' + date_of_birth.substring(3, 2) + '-' + date_of_birth.substring(0, 2)).toDate()}}",
+        "deceasedDateTime" : "{{ ? iif(death_in_hospital.startsWith('1'),(date_of_discharge_or_death.substring(6) + '-' + date_of_discharge_or_death.substring(3, 2) + '-' + date_of_discharge_or_death.substring(0, 2)).toDate(), {})}}",
+        "identifier" : "{{ ? iif(death_in_hospital.startsWith('1'),(date_of_discharge_or_death.substring(6) + '-' + date_of_discharge_or_death.substring(3, 2) + '-' + date_of_discharge_or_death.substring(0, 2)).toDate(), {})}}",
+        "address" : [ {
+          "postalCode" : "{{postcode}}"
+        } ],
+        "id" : "{{ %patientId }}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "extension" : {
+          "{{#extensionVar}}" : "{{iif(ethnic_category != '',ethnic_category, {})}}",
+          "{{?}}" : [ {
+            "url" : "https://ai4hf.eu/fhir/StructureDefinition/Ethnicity",
+            "valueCodeableConcept" : {
+              "coding" : [ {
+                "system" : "https://ai4hf.eu/fhir/StructureDefinition/Ethnicity",
+                "code" : "{{iif(ethnic_category.startsWith('0'), '413773004', iif(ethnic_category.startsWith('1'), '415794004', iif(ethnic_category.startsWith('2'), '413582008', iif(ethnic_category.startsWith('3'), '413464008', '415794004'))))}}",
+                "display" : "{{iif(ethnic_category.startsWith('0'), 'Caucasian', iif(ethnic_category.startsWith('1'), 'Unknown', iif(ethnic_category.startsWith('2'), 'Asian', iif(ethnic_category.startsWith('3'), 'African', 'Unknown'))))}}"
+              } ]
+            }
+          } ]
+        },
+        "resourceType" : "Patient"
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "breathlessness",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "88020-3",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %admissionDateTime }}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{iif(breathlessness.startsWith('1'),'LA28404-4' ,iif(breathlessness.startsWith('2'), 'LA28405-1',iif(breathlessness.startsWith('3'), 'LA28406-9', 'LA28407-7')))}}"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'breathlessness'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
+        },
+        "resourceType" : "Observation"
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "peripheral_oedema_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "271809000",
+            "display" : "Peripheral edema",
+            "@sliceName" : "snomedCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %admissionDateTime }}",
+        "valueBoolean" : "{{peripheral_oedema.startsWith('0') = false}}",
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'peripheral_oedema'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " peripheral_oedema.startsWith('9') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "ihd_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "I25",
+            "display" : "Ischemic Heart Disease",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'ihd'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " ihd.startsWith('9') = false and ihd.startsWith('0') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "device_therapy",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "Z95.0",
+            "display" : "Presence of cardiac and vascular implants and grafts",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'device_therapy'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " device_therapy.startsWith('0') = false and  device_therapy.startsWith('5') = false and device_therapy.startsWith('9') = false and device_therapy.startsWith('12') = false"
+    }
+  }, {
+    "expression" : {
+      "name" : "valve_disease",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "I06.2",
+            "display" : "Rheumatic aortic stenosis with insufficiency",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'valve_disease'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " valve_disease.startsWith('9') = false and valve_disease.startsWith('0') = false"
+    }
+  }, {
+    "expression" : {
+      "name" : "congenital_heart_disease",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "Q24",
+            "display" : "Other congenital malformations of heart",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'congenital_heart_disease'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " congenital_heart_disease.startsWith('9') = false"
+    }
+  }, {
+    "expression" : {
+      "name" : "hypertension",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "I10",
+            "display" : "Hypertension",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'hypertansion'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " hypertension.startsWith('9') = false and hypertension.startsWith('0') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "diabetes",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "E10",
+            "display" : "Type 1 diabetes mellitus",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'diabetes'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " diabetes.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "asthma",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "J45",
+            "display" : "Asthma",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'asthma'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " asthma.startsWith('1') = true"
+    }
+  }, {
+    "expression" : {
+      "name" : "cerebral_vascular_accident",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "I63",
+            "display" : "Cerebral infarction",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'cerebral_vascular_accident'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " cerebral_vascular_accident.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "chronic_obstructive_pulmonary_disease",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "J44",
+            "display" : "Other chronic obstructive pulmonary disease",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'chronic_obstructive_pulmonary_disease'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " chronic_obstructive_pulmonary_disease.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "atrial_fibrillation",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "I48",
+            "display" : "Atrial fibrillation and flutter",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "{{iif(atrial_fibrillation_flutter.startsWith('0') = true, 'inactive', 'active')}}",
+            "display" : "{{iif(atrial_fibrillation_flutter.startsWith('0') = true, 'Inactive', 'Active')}}"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'atrial_fibrillation_flutter'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " atrial_fibrillation_flutter.startsWith('2') = false and atrial_fibrillation_flutter.startsWith('9') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "cardiomyopathy",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "I42",
+            "display" : "Cardiomyopathy",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'cardiomyopathy'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " cardiomyopathy.startsWith('0') = false and cardiomyopathy.startsWith('9') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "smoking_history",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "social-history",
+            "display" : "Social History"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "72166-2",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/uv/ips/ValueSet/current-smoking-status-uv-ips",
+            "code" : "{{ iif(smoking_history.startsWith('1') = true, '77176002', iif(smoking_history.startsWith('2') = true , '8517006', '266919005'))}}",
+            "display" : "{{ iif(smoking_history.startsWith('1') = true, 'Smoker, current status unknown', iif(smoking_history.startsWith('2') = true , 'Former smoker', 'Never smoker'))}}"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "effectiveDateTime" : "{{ %admissionDateTime }}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'smoking_history'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " smoking_history.length() > 0 and smoking_history.startsWith('9') = false"
+    }
+  }, {
+    "expression" : {
+      "name" : "malignancy",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "C00",
+            "display" : "Malignant neoplasm of lip",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId}}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "{{ iif(current_malignancy.startsWith('0') = true, 'inactive', 'active')}}",
+            "display" : "{{ iif(current_malignancy.startsWith('0') = true, 'Inactive', 'Active')}}"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'malignancy'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " current_malignancy.startsWith('1') = true or (current_malignancy.startsWith('0') = true and previous_malignancy.startsWith('1') = true) "
+    }
+  }, {
+    "expression" : {
+      "name" : "amyloid",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "version" : "Amyloidosis",
+            "code" : "E85",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId }}",
+        "onsetDateTime" : "{{ %admissionDateTime }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'amyloidosis'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "amyloid.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "ace_inhibitor_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(ace_inhibitor.startsWith('1'), 'C09AA01', iif(ace_inhibitor.startsWith('2'), 'C09AA02', iif(ace_inhibitor.startsWith('3'), 'C09AA03', iif(ace_inhibitor.startsWith('4'), 'C09AA04', iif(ace_inhibitor.startsWith('5'), 'C09AA05', 'C09A')))))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(ace_inhibitor.startsWith('7') = false, ace_inhibitor, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ ace_inhibitor_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'ace_inhibitor'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "ace_inhibitor.startsWith('0') = false and ace_inhibitor.startsWith('8') = false and ace_inhibitor.startsWith('9') = false and ace_inhibitor.startsWith('11') = false and ace_inhibitor != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "arb_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(arb.startsWith('1'), 'C09CA06', iif(arb.startsWith('2'), 'C09CA01', iif(arb.startsWith('3'), 'C09CA03', 'C09CA')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(arb.startsWith('4') = false, arb, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ arb_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'arb'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "arb.startsWith('0') = false and arb.startsWith('8') = false and arb.startsWith('9') = false and arb.startsWith('11') = false and arb != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "beta_blocker_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif( beta_blocker.startsWith('1'), 'C07AB07', iif(beta_blocker.startsWith('2'), 'C07AG02', iif(beta_blocker.startsWith('3'), 'C07AB12', 'C07A')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%encounterId}}",
+        "encounter" : "{{%patientId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(beta_blocker.startsWith('4') = false, beta_blocker, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ beta_blocker_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'beta_blocker'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "beta_blocker.startsWith('0') = false and beta_blocker.startsWith('8') = false and beta_blocker.startsWith('9') = false and beta_blocker.startsWith('11') = false and beta_blocker.startsWith('12') and beta_blocker != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "loop_diuretic_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(loop_diuretic.startsWith('1'), 'C03CA02', iif(loop_diuretic.startsWith('2') or loop_diuretic.startsWith('3'), 'C03CC01', iif(loop_diuretic.startsWith('4'), 'C03CA04', 'C03C')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(loop_diuretic.startsWith('5') = false, loop_diuretic, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ loop_diuretic_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'loop_diuretic'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "loop_diuretic.startsWith('0') = false and loop_diuretic.startsWith('9') = false and loop_diuretic != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "thiazide_or_metolazone_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(thiazide_or_metolazone.startsWith('1'), 'C03AA01', iif(thiazide_or_metolazone.startsWith('2'), 'C03BA08', 'C03'))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(thiazide_or_metolazone.startsWith('3') = false, thiazide_or_metolazone, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ thiazide_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'thiazide_or_metolazone'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "thiazide_or_metolazone.startsWith('0') = false and thiazide_or_metolazone.startsWith('9') = false and thiazide_or_metolazone != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "mra_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(mra.startsWith('1'), 'C03DA04', 'C03DA01')}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ mra_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'mra_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "mra.startsWith('0') = false and mra.startsWith('8') = false and mra.startsWith('9') = false and mra.startsWith('11') = false and mra != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "aspirin_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(aspirin.startsWith('1'), 'B01AC06', 'B01AC')}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(aspirin.startsWith('1'),aspirin,{})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ aspirin_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', %encounterId + '-' + %patientId + 'aspirin_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " aspirin.startsWith('1') = true or other_oral_anti_platelet = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "digoxin_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C01AA05",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{ %patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ digoxin_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'digoxin_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " digoxin.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "ccb_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(ccb.startsWith('1'), 'C08CA01', iif(ccb.startsWith('2'), 'C08CA02', iif(ccb.startsWith('3'), 'C08DB01', iif(ccb.startsWith('4'), 'C08DA01', iif(ccb.startsWith('6'), 'C08CA05', 'C08'))))) }}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(ccb.startsWith('5') = false,ccb, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ ccb_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'ccb_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " ccb.startsWith('0') = false and ccb.startsWith('9') = false and ccb != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "statin_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C10AA",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ statin_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'statin_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " statin.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "warfarin_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "B01AA03",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'warfarin_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " warfarin.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "other_oral_anticoagulant_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(other_oral_anticoagulant.startsWith('1'), 'B01AE07',iif(other_oral_anticoagulant.startsWith('2'), 'B01AF01', iif(other_oral_anticoagulant.startsWith('4'), 'B01AF02', iif(other_oral_anticoagulant.startsWith('5'), 'B01AF03', 'B01A'))))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(other_oral_anticoagulant.startsWith('3') = false, other_oral_anticoagulant, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ other_oral_anticoagulant_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'other_oral_anticoagulant_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "other_oral_anticoagulant.startsWith('0') = false and other_oral_anticoagulant.startsWith('9') = false and other_oral_anticoagulant != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "amiodarone_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C01BD01",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ amiodarone_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'amiodarone_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " amiodarone.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "allopurinol_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "M04AA01",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ allopurinol_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'allopurinol_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " allopurinol.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "nsaid_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "M01A",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'nsaid_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " nsaid.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "oral_nitrates_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(oral_nitrates.startsWith('1'), 'C01DA08', 'C01DA14')}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ oral_nitrates_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'oral_nitrates_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " oral_nitrates.startsWith('0') = false and oral_nitrates.startsWith('9') = false and oral_nitrates != ''"
+    }
+  }, {
+    "expression" : {
+      "name" : "bronchodilators_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "R03",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'bronchodilators_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " bronchodilators.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "diabetes_therapy_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#rootVar}}" : "{{ diabetes_therapy.utl:split(';') }}",
+        "{{*}}" : {
+          "medication" : {
+            "concept" : {
+              "coding" : [ {
+                "system" : "http://www.whocc.no/atc",
+                "code" : "{{iif(%rootVar.startsWith('2'), 'A10BA02', iif(%rootVar.startsWith('3'), 'A10BB', iif(%rootVar.startsWith('4'), 'A10BG', iif(%rootVar.startsWith('5'), 'A10BK', iif(%rootVar.startsWith('6'), 'A10A', iif(%rootVar.startsWith('7'), 'A10BJ' , 'A10BH'))))))}}",
+                "@sliceName" : "atcCode"
+              } ]
+            }
+          },
+          "subject" : "{{%patientId}}",
+          "encounter" : "{{%encounterId}}",
+          "effectivePeriod" : {
+            "start" : "{{%admissionDateTime}}"
+          },
+          "status" : "recorded",
+          "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + %rootVar + '_admission'))}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+          },
+          "resourceType" : "MedicationStatement"
+        }
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " diabetes_therapy.contains('0') = false and diabetes_therapy.contains('9') = false and diabetes_therapy.contains('10') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "ivabradine_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C01EB17",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ ivabradine_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'ivabradine_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " ivabradine.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "hydralazine_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C02DB02",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ hydralazine_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'hydralazine_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " hydralazine.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "arni_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(arni.startsWith('1'), 'C09DX04', 'C09DX')}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(arni.startsWith('1'), arni, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ arni_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', %encounterId + '-' + %patientId + 'arni_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " arni.startsWith('1') = true or arni.startsWith('4') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "height",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "8302-2",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ height }}",
+          "unit" : "cm"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'height'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " height > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "weight_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "29463-7",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ weight_admission }}",
+          "unit" : "kg"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'weight_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " weight_admission > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "weight_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "29463-7",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ weight_discharge }}",
+          "unit" : "kg"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'weight_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " weight_discharge > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "heart_rate_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "8867-4",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ heart_rate_discharge }}",
+          "unit" : "bpm"
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'heart_rate_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " heart_rate_discharge > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "heart_rate_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "8867-4",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ heart_rate_admission }}",
+          "unit" : "bpm"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'heart_rate_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " heart_rate_admission > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "systolic_blood_pressure_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "8480-6",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ systolic_blood_pressure_discharge }}",
+          "unit" : "mmHg"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'systolic_blood_pressure_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " systolic_blood_pressure_discharge > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "systolic_blood_pressure_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "8480-6",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ systolic_blood_pressure_admission }}",
+          "unit" : "mmHg"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'systolic_blood_pressure_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " systolic_blood_pressure_admission > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "hb_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "718-7",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ hb_discharge * 10 }}",
+          "unit" : "g/dL"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'hb_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " hb_discharge > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "urea_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "6299-2",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ urea_discharge }}",
+          "unit" : "mmol/L"
+        },
+        "subject" : "{{ %patientId }}",
+        "encounter" : "{{ %encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'urea_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " urea_discharge > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "serum_sodium_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "2951-2",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ serum_sodium_discharge }}",
+          "unit" : "mmol/L"
+        },
+        "subject" : "{{ %patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'serum_sodium_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " serum_sodium_discharge > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "serum_potassium_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "2823-3",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ serum_potassium_discharge }}",
+          "unit" : "mmol/L"
+        },
+        "subject" : "{{ %patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'serum_potassium_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " serum_potassium_discharge > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "bnp",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "30934-4",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ bnp }}",
+          "unit" : "pg/ml"
+        },
+        "subject" : "{{ %patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'bnp'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " bnp > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "nt_probnp",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "33762-6",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{ %admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ nt_pro_bnp }}",
+          "unit" : "pg/ml"
+        },
+        "subject" : "{{ %patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'nt_pro_bnp'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " nt_pro_bnp > 0 "
+    }
+  }, {
+    "expression" : {
+      "name" : "ace_inhibitor_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(ace_inhibitor_discharge.startsWith('1'), 'C09AA01', iif(ace_inhibitor_discharge.startsWith('2'), 'C09AA02', iif(ace_inhibitor_discharge.startsWith('3'), 'C09AA03', iif(ace_inhibitor_discharge.startsWith('4'), 'C09AA04', iif(ace_inhibitor_discharge.startsWith('5'), 'C09AA05', 'C09A')))))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(ace_inhibitor_discharge.startsWith('7') = false, ace_inhibitor_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ ace_inhibitor_dose_discharge }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'ace_inhibitor_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "ace_inhibitor_discharge.startsWith('0') = false and ace_inhibitor_discharge.startsWith('8') = false and ace_inhibitor_discharge.startsWith('9') = false and ace_inhibitor_discharge.startsWith('11') = false and ace_inhibitor_discharge.startsWith('12') = false and ace_inhibitor_discharge != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "arb_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(arb_discharge.startsWith('1'), 'C09CA06', iif(arb_discharge.startsWith('2'), 'C09CA01', iif(arb_discharge.startsWith('3'), 'C09CA03', 'C09CA')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(arb_discharge.startsWith('4') = false, arb_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ arb_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'arb_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "arb_discharge.startsWith('0') = false and arb_discharge.startsWith('8') = false and arb_discharge.startsWith('9') = false and arb_discharge.startsWith('11') = false and arb_discharge.startsWith('12') = false and arb != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "beta_blocker_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif( beta_blocker_discharge.startsWith('1'), 'C07AB07', iif(beta_blocker_discharge.startsWith('2'), 'C07AG02', iif(beta_blocker_discharge.startsWith('3'), 'C07AB12', 'C07A')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{ %patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(beta_blocker_discharge.startsWith('4') = false, beta_blocker_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ beta_blocker_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'beta_blocker_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "beta_blocker_discharge.startsWith('0') = false and beta_blocker_discharge.startsWith('8') = false and beta_blocker_discharge.startsWith('9') = false and beta_blocker_discharge.startsWith('10') = false and beta_blocker_discharge.startsWith('11') = false and beta_blocker_discharge.startsWith('12') and beta_blocker_discharge != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "loop_diuretic_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(loop_diuretic_discharge.startsWith('1'), 'C03CA02', iif(loop_diuretic_discharge.startsWith('2') or loop_diuretic_discharge.startsWith('3'), 'C03CC01', iif(loop_diuretic_discharge.startsWith('4'), 'C03CA04', 'C03C')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(loop_diuretic_discharge.startsWith('5') = false, loop_diuretic_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ loop_diuretic_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'loop_diuretic_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "loop_diuretic_discharge.startsWith('0') = false and loop_diuretic_discharge.startsWith('8') = false and loop_diuretic_discharge.startsWith('9') = false and loop_diuretic_discharge.startsWith('10') = false and loop_diuretic_discharge.startsWith('11') = false and loop_diuretic_discharge.startsWith('12') = false and loop_diuretic_discharge != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "thiazide_or_metolazone_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(thiazide_or_metolazone_discharge.startsWith('1'), 'C03AA01', iif(thiazide_or_metolazone_discharge.startsWith('2'), 'C03BA08', 'C03'))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(thiazide_or_metolazone_discharge.startsWith('3') = false, thiazide_or_metolazone_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ thiazide_or_metolazone_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'thiazide_or_metolazone_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "thiazide_or_metolazone_discharge.startsWith('0') = false and thiazide_or_metolazone_discharge.startsWith('8') = false and thiazide_or_metolazone_discharge.startsWith('9') = false and thiazide_or_metolazone_discharge.startsWith('10') = false and thiazide_or_metolazone_discharge.startsWith('11') = false and thiazide_or_metolazone_discharge.startsWith('12') = false and thiazide_or_metolazone_discharge != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "mra_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(mra_discharge.startsWith('1'), 'C03DA04', iif(mra_discharge.startsWith('2'), 'C03DA01', 'C03DA'))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(mra_discharge.startsWith('3') = false, mra_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ mra_dose_discharge }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'mra_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "mra_discharge.startsWith('0') = false and mra_discharge.startsWith('8') = false and mra_discharge.startsWith('9') = false and mra_discharge.startsWith('11') = false and mra_discharge.startsWith('12') = false and mra_discharge != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "aspirin_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(aspirin_discharge.startsWith('1'), 'B01AC06', 'B01AC')}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(aspirin_discharge.startsWith('1'),aspirin_discharge,{})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ aspirin_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (mpp:getHashedId('Encounter', (hospital_identifier + '-' + local_patient_identifier+ '-' + date_of_admission)) + '-' + (mpp:getHashedId('Patient', local_patient_identifier) + 'aspirin_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " aspirin_discharge.startsWith('1') = true or other_oral_anti_platelet_discharge = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "digoxin_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C01AA05",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ digoxin_discharge_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'digoxin_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " digoxin_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "ccb_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(ccb_discharge.startsWith('1'), 'C08CA01', iif(ccb_discharge.startsWith('2'), 'C08CA02', iif(ccb_discharge.startsWith('3'), 'C08DB01', iif(ccb_discharge.startsWith('4'), 'C08DA01', iif(ccb_discharge.startsWith('6'), 'C08CA05', 'C08'))))) }}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(ccb_discharge.startsWith('5') = false, ccb_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ ccb_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'ccb_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " ccb_discharge.startsWith('0') = false and ccb_discharge.startsWith('9') = false and ccb_discharge.startsWith('10') = false and ccb_discharge != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "statin_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C10AA",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ statin_discharge_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'statin_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " statin_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "warfarin_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "B01AA03",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ warfarin_discharge_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'warfarin_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " warfarin_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "other_oral_anticoagulant_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(other_oral_anticoagulant_discharge.startsWith('1'), 'B01AE07',iif(other_oral_anticoagulant_discharge.startsWith('2'), 'B01AF01', iif(other_oral_anticoagulant_discharge.startsWith('4'), 'B01AF02', iif(other_oral_anticoagulant_discharge.startsWith('5'), 'B01AF03', 'B01A'))))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{iif(other_oral_anticoagulant_discharge.startsWith('3') = false, other_oral_anticoagulant_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ other_oral_anticoagulant_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %encounterId + 'other_oral_anticoagulant_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "other_oral_anticoagulant_discharge.startsWith('0') = false and other_oral_anticoagulant_discharge.startsWith('9') = false and other_oral_anticoagulant_discharge.startsWith('10') = false and other_oral_anticoagulant_discharge != '' "
+    }
+  }, {
+    "expression" : {
+      "name" : "amiodarone_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C01BD01",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ amiodarone_discharge_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'amiodarone_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " amiodarone_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "allopurinol_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "M04AA01",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ allopurinol_discharge_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'allopurinol_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " allopurinol_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "nsaid_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "M01A",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'nsaid_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " nsaid_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "oral_nitrates_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(oral_nitrates_discharge.startsWith('1'), 'C01DA08', 'C01DA14')}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ oral_nitrates_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'oral_nitrates_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " oral_nitrates_discharge.startsWith('0') = false and oral_nitrates_discharge.startsWith('9') = false and oral_nitrates_discharge.startsWith('10') = false and oral_nitrates_discharge != ''"
+    }
+  }, {
+    "expression" : {
+      "name" : "diabetes_therapy_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#rootVar}}" : "{{ diabetes_therapy_discharge.utl:split(';') }}",
+        "{{*}}" : {
+          "medication" : {
+            "concept" : {
+              "coding" : [ {
+                "system" : "http://www.whocc.no/atc",
+                "code" : "{{iif(%rootVar.startsWith('2'), 'A10BA02', iif(%rootVar.startsWith('3'), 'A10BB', iif(%rootVar.startsWith('4'), 'A10BG', iif(%rootVar.startsWith('5'), 'A10BK', iif(%rootVar.startsWith('6'), 'A10A', iif(%rootVar.startsWith('7'), 'A10BJ' , 'A10BH'))))))}}",
+                "@sliceName" : "atcCode"
+              } ]
+            }
+          },
+          "subject" : "{{%patientId}}",
+          "encounter" : "{{%encounterId}}",
+          "effectivePeriod" : {
+            "start" : "{{%dischargeDateTime}}"
+          },
+          "status" : "recorded",
+          "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + %rootVar + '_discharge'))}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+          },
+          "resourceType" : "MedicationStatement"
+        }
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " diabetes_therapy_discharge.contains('0') = false and diabetes_therapy_discharge.contains('9') = false and diabetes_therapy_discharge.contains('10') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "ivabradine_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C01EB17",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ ivabradine_discharge_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'ivabradine_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " ivabradine_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "hydralazine_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "C02DB02",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "1",
+              "period" : "1",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{ hydralazine_discharge_dose }}",
+              "unit" : "mg"
+            }
+          } ]
+        } ],
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'hydralazine_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " hydralazine_discharge.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "arni_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ iif(arni_discharge.startsWith('1'), 'C09DX04', 'C09DX')}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{ %patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(arni_discharge.startsWith('1'), arni_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ arb_discharge_dose }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'arni_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " arni_discharge.startsWith('1') = true or arni_discharge.startsWith('4') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "sglt2_inhibitors_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(sglt2_inhibitors_discharge.startsWith('1'), 'A10BK02', iif(sglt2_inhibitors_discharge.startsWith('2'), 'A10BK01', iif(sglt2_inhibitors_discharge.startsWith('3'), 'A10BK03', 'A10BK')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%dischargeDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(sglt2_inhibitors_discharge.startsWith('4') = false, sglt2_inhibitors_discharge, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ sglt2_inhibitors_discharge }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'sglt2_inhibitors_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " sglt2_inhibitors_discharge.startsWith('1') = true or sglt2_inhibitors_discharge.startsWith('2') =true or sglt2_inhibitors_discharge.startsWith('3') = true or sglt2_inhibitors_discharge.startsWith('4') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "heart_failure",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "I50",
+            "display" : "Heart failure",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "onsetDateTime" : "{{%admissionDateTime}}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/ValueSet/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Condition', (%encounterId + '-' + %patientId + 'heart_failure'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " confirmed_diagnosis_of_heart_failure.startsWith('1') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "sglt2_inhibitors_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{iif(sglt2_inhibitors_admission.startsWith('1'), 'A10BK02', iif(sglt2_inhibitors_admission.startsWith('2'), 'A10BK01', iif(sglt2_inhibitors_admission.startsWith('3'), 'A10BK03', 'A10BK')))}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "effectivePeriod" : {
+          "start" : "{{%admissionDateTime}}",
+          "end" : "{{%admissionDateTime}}"
+        },
+        "status" : "recorded",
+        "dosage" : {
+          "{{#dosageVar}}" : "{{ iif(sglt2_inhibitors_admission.startsWith('4') = false, sglt2_inhibitors_admission, {})}}",
+          "{{?}}" : [ {
+            "timing" : {
+              "repeat" : {
+                "frequency" : "1",
+                "period" : "1",
+                "periodUnit" : "d"
+              }
+            },
+            "doseAndRate" : [ {
+              "doseQuantity" : {
+                "value" : "{{ sglt2_inhibitors_admission }}",
+                "unit" : "mg"
+              }
+            } ]
+          } ]
+        },
+        "id" : "{{mpp:createFhirReferenceWithHashedId('MedicationStatement', (%encounterId + '-' + %patientId + 'sglt2_inhibitors_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Prescription" ]
+        },
+        "resourceType" : "MedicationStatement"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " sglt2_inhibitors_admission.startsWith('1') = true or sglt2_inhibitors_admission.startsWith('2') =true or sglt2_inhibitors_admission.startsWith('3') = true or sglt2_inhibitors_admission.startsWith('4') = true "
+    }
+  }, {
+    "expression" : {
+      "name" : "inr_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34714-6",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{inr}}"
+        },
+        "subject" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'inr_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "inr > 0"
+    }
+  }, {
+    "expression" : {
+      "name" : "inr_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34714-6",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{inr_discharge}}"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'inr_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "inr_discharge > 0"
+    }
+  }, {
+    "expression" : {
+      "name" : "creatinine_discharge",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "14682-9",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%dischargeDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{ creatinine_discharge }}",
+          "unit" : "μmol/L"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'creatinine_discharge'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "creatinine_discharge > 0"
+    }
+  }, {
+    "expression" : {
+      "name" : "creatinine_admission",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "14682-9",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{%admissionDateTime}}",
+        "valueQuantity" : {
+          "value" : "{{creatinine_admission}}",
+          "unit" : "μmol/L"
+        },
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'creatinine_admission'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : "creatinine_admission > 0"
+    }
+  }, {
+    "expression" : {
+      "name" : "ecg",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34534-8",
+            "display" : "12 lead EKG panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "component" : [ {
+          "code" : {
+            "coding" : [ {
+              "system" : "http://loinc.org",
+              "code" : "8633-0"
+            } ]
+          },
+          "valueQuantity" : {
+            "value" : "{{qrs_duration}}",
+            "unit" : "ms"
+          },
+          "@sliceName" : "qrsDuration"
+        }, {
+          "code" : {
+            "coding" : [ {
+              "system" : "https://ai4hf.eu",
+              "code" : "ECG-AF"
+            } ]
+          },
+          "valueBoolean" : "{{ecg.contains('2')}}",
+          "@sliceName" : "AF"
+        }, {
+          "code" : {
+            "coding" : [ {
+              "system" : "htpps://ai4hf.eu",
+              "code" : "ECG-LBBB"
+            } ]
+          },
+          "valueBoolean" : "{{ecg.contains('3')}}",
+          "@sliceName" : "LBBB"
+        }, {
+          "code" : {
+            "coding" : [ {
+              "system" : "https://ai4hf.eu",
+              "code" : "ECG-RBBB"
+            } ]
+          },
+          "valueBoolean" : "{{ecg.contains('5')}}",
+          "@sliceName" : "RBBB"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "rAxis"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "pAxis"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "tAxis"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "qtInterval"
+        }, {
+          "code" : "",
+          "@sliceName" : "qtIntervalCorrectedBazett"
+        }, {
+          "code" : "",
+          "@sliceName" : "qtIntervalCorrectedFrederica"
+        }, {
+          "code" : "",
+          "@sliceName" : "qtIntervalCorrectedFramingham"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "qrsComplexCount"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "prInterval"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "atrialRate"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "ventricularRate"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "samplingFrequency"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "filterSettings"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "rawMedianBeat"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "rawRhythm"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "pacedRhythm"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadI"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadII"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadIII"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadAVR"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadAVL"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadAVF"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadV1"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadV2"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadV3"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadV4"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadV5"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "leadV6"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "stElevation"
+        }, {
+          "code" : {
+            "coding" : ""
+          },
+          "@sliceName" : "ischemiaWithoutStElevation"
+        } ],
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "effectiveDateTime" : "{{%admissionDateTime}}",
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'ecg'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " ecg.contains('0') = false and ecg.contains('9') = false and ecg.contains('10') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "echo",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "imaging",
+            "display" : "Imaging"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34552-0",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{(gold_standard_test_date.substring(6) + '-' + gold_standard_test_date.substring(3, 2) + '-' + gold_standard_test_date.substring(0, 2)).toDateTime()}}",
+        "component" : [ {
+          "code" : {
+            "coding" : [ {
+              "system" : "http://loinc.org",
+              "code" : "8806-2"
+            } ]
+          },
+          "valueQuantity" : {
+            "value" : "{{iif(lvef.startsWith('1'), 75, iif(lvef.startsWith('2'), 45, iif(lvef.startsWith('3'), 37, 18)))}}",
+            "unit" : "%"
+          },
+          "@sliceName" : "echoParameter"
+        } ],
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "status" : "",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('Observation', (%encounterId + '-' + %patientId + 'echo'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " gold_standard_test.contains('8') = false and gold_standard_test.contains('9') = false and gold_standard_test.contains('10') = false "
+    }
+  }, {
+    "expression" : {
+      "name" : "referral",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "intent" : "order",
+        "subject" : "{{%patientId}}",
+        "encounter" : "{{%encounterId}}",
+        "authoredOn" : "{{%dischargeDateTime}}",
+        "status" : "unknown",
+        "id" : "{{mpp:createFhirReferenceWithHashedId('ServiceRequest', (%encounterId + '-' + %patientId + 'referral'))}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Referral" ]
+        },
+        "resourceType" : "ServiceRequest"
+      }
+    },
+    "precondition" : {
+      "name" : "isKnown",
+      "language" : "text/fhirpath",
+      "expression" : " referral_to_the_hospital_heart_failure.contains('1') or referral_to_cardiac_rehabilitation.contains('1') or referral_for_cardiothoracic_surgery_made.contains('1') or referral_for_transplant_made.contains('1') or referral_for_transplant_made.contains('1') or referral_to_palliative_care_services_made.contains('1') or referral_to_cardiology_follow_up_made.contains('1') or referral_to_the_community_heart_failure_nurse_follow_up_made.contains('1') or referral_to_hf_cardiologist_follow_up_made.contains('1') or appointment_with_the_specialist_multidisciplinary_hf_team_made.contains('1') or patient_stable_on_oral_therapy_after_discharge_planning.contains('1') or referral_to_hf_specialist_pharmacist_follow_up_made.contains('1') or is_a_heart_failure_pre_discharge_management_plan_in_place.contains('1') or heart_failure_management_plan_been_discussed_with_the_patient.contains('1') or management_plan_been_communicated_to_the_primary_care_team.contains('1') or referral_to_gp_with_special_interest_in_hf_made.contains('1') or is_the_first_hf_follow_up_appointment_within_2_weeks.contains('1') or referral_to_geriatrician_with_interest_in_hf_made.contains('1')"
+    }
+  } ]
+}
