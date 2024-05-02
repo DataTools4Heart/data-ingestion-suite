@@ -1,4 +1,3 @@
 codice_sanitario,nosografico_adt,desc_reparto_ricovero,data_ricovero,ora_ricovero,data_dimissione,ora_dimissione,diag1_icd9cm,diag2_icd9cm,diag3_icd9cm,diag4_icd9cm,diag5_icd9cm,diag6_icd9cm,diag7_icd9cm,proc1,proc2,proc3,proc4,proc5,proc6,proc7,dataproc1,dataproc2,dataproc3,dataproc4,dataproc5,dataproc6,dataproc7
 1,1,"Encounter discharge report",2020-01-01,,2020-01-09,,"41000",571,570,140,,,203.00,37.52,37.51,,,,,,2020-01-06,2020-01-06,,,,,,
 2,2,"Encounter discharge report",2020-01-01,,2020-01-09,,"41000",571,570,140,,,00.66,37.52,37.51,,,,,,2020-01-06,2020-01-06,,,,,,
-,,,,,,,,,,,,,,,,,,,,

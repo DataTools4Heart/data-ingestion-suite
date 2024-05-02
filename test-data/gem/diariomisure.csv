@@ -1,6 +1,3 @@
 codice_sanitario,data_ora_esame,codice_esame,nome_esame,unita_misura,value,value_c,valore_minimo,valore_massimo,range,category
 1,2020-01-03 15:43,5152,Colesterolo,mg/dL,120,,,,,LAB_RESULTS
 1,2020-01-03 15:43,WEIGHT,Weight,kg,120,,,,,VITAL_SIGNS
-
-
-

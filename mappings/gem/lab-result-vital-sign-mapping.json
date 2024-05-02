@@ -33,24 +33,19 @@
   }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(data_in.toDate() <= (%context.data_ora_esame.replace(' ','T') + ':00+02:00').toDate() and data_out.toDate() >= (%context.data_ora_esame.replace(' ','T') + ':00+02:00').toDate()).first()"
+    "expression" : "%encounters.where(data_in.toDate() <= %context.data_ora_esame.toFhirDateTime('yyyy-MM-dd HH:mm').toDate() and data_out.toDate() >= %context.data_ora_esame.toFhirDateTime('yyyy-MM-dd HH:mm').toDate()).first()"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Observation",
-        "meta" : {
-          "profile" : [ "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign')}}" ],
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
         "status" : "final",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
             "code" : "{{iif(category = 'LAB_RESULTS', 'laboratory', 'vital-signs')}}",
-            "display": "{{iif(category = 'LAB_RESULTS', 'Laboratory', 'Vital Signs')}}"
+            "display" : "{{iif(category = 'LAB_RESULTS', 'Laboratory', 'Vital Signs')}}"
           } ]
         } ],
         "code" : {
@@ -62,9 +57,14 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
-        "effectiveDateTime" : "{{data_ora_esame.toString().replace(' ','T') + ':00+02:00'}}",
+        "effectiveDateTime" : "{{data_ora_esame.toFhirDateTime('yyyy-MM-dd HH:mm')}}",
         "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultUnitConversion, codice_esame, value, unita_misura), utl:createFhirQuantity(value, unita_misura, 'http://unitsofmeasure.org', unita_misura))}}",
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & data_ora_esame & codice_esame)}}"
+        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & data_ora_esame & codice_esame)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign')}}" ]
+        },
+        "resourceType" : "Observation"
       }
     },
     "precondition" : {

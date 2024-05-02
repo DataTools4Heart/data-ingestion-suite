@@ -33,8 +33,8 @@
         } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
         "actualPeriod" : {
-          "start" : "{{data_in & 'T' & ora_in & ':00+02:00'}}",
-          "end" : "{{data_out & 'T' & ora_out & ':00+02:00'}}"
+          "start" : "{{(data_in & ' ' & ora_in).toFhirDateTime('yyyy-MM-dd HH:mm')}}",
+          "end" : "{{(data_out & ' ' & ora_out).toFhirDateTime('yyyy-MM-dd HH:mm')}}"
         },
         "status" : "completed",
         "reason" : {
