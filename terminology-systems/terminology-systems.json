@@ -56,6 +56,12 @@
     "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs",
     "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
     "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+  }, {
+    "id" : "noteNlpSnomedToIcd10.csv",
+    "name" : "noteNlpSnomedToIcd10.csv",
+    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
+    "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+    "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
   } ],
   "codeSystems" : [ ]
 } ]
