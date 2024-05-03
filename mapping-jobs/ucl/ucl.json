@@ -82,17 +82,21 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
     "sourceContext" : {
-      "omopPerson" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "PERSON.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      },
       "omopDeath" : {
         "jsonClass" : "FileSystemSource",
         "path" : "DEATH.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
+    "sourceContext" : {
+      "omopCondition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "CONDITION_OCCURRENCE.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
@@ -124,31 +128,49 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
-    "sourceContext" : {
-      "omopMeasurement" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "MEASUREMENT.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
-    "sourceContext" : {
-      "omopCondition" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "CONDITION_OCCURRENCE.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      }
-    }
-  }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
     "sourceContext" : {
       "omopDrugExposure" : {
         "jsonClass" : "FileSystemSource",
         "path" : "DRUG_EXPOSURE.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping",
+    "sourceContext" : {
+      "noteNlp" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NOTE_NLP.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "note" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NOTE.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "concept" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "CONCEPT.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
+    "sourceContext" : {
+      "omopPerson" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "PERSON.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "omopDeath" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "DEATH.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
@@ -164,11 +186,11 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
     "sourceContext" : {
-      "omopDeath" : {
+      "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "DEATH.csv",
+        "path" : "MEASUREMENT.csv",
         "fileFormat" : "csv",
         "options" : { }
       }

@@ -6,15 +6,15 @@
   "source" : [ {
     "alias" : "noteNlp",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-NoteNlp",
-    "joinOn" : [ "note_id", "note_nlp_concept_id" ]
-  }, {
-    "alias" : "note",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Note",
-    "joinOn" : [ "note_id" ]
+    "joinOn" : [ "note_nlp_concept_id", "note_id" ]
   }, {
     "alias" : "concept",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Concept",
     "joinOn" : [ "concept_id" ]
+  }, {
+    "alias" : "note",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Note",
+    "joinOn" : [ "note_id" ]
   } ],
   "context" : { },
   "variable" : [ {
@@ -38,7 +38,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %note.person_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %note.visit_occurrence_id.toString())}}",
-        "onsetDateTime" : "{{nlp_datetime}}",
+        "onsetDateTime" : "{{iif(nlp_datetime.empty(), nlp_date.toString(), nlp_datetime)}}",
         "clinicalStatus" : {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
@@ -53,7 +53,7 @@
       }
     },
     "precondition" : {
-      "name" : "isConditionAndDefined",
+      "name" : "isConditionAndCodeExists",
       "language" : "text/fhirpath",
       "expression" : "%concept.domain_id = 'Condition' and (%code.exists() or %concept.vocabulary_id = 'ICD10')"
     }
