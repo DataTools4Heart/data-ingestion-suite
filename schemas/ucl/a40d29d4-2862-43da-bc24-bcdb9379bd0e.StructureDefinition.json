@@ -1,27 +1,27 @@
 {
-  "id" : "98f350f5-d50c-4de3-b4a1-fabcbc9c1ab2",
+  "id" : "a40d29d4-2862-43da-bc24-bcdb9379bd0e",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/omop_nlp/Note",
-  "name" : "Note",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Note",
+  "name" : "OMOP-Note",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Note",
+  "type" : "OMOP-Note",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Note",
-      "path" : "Note",
+      "id" : "OMOP-Note",
+      "path" : "OMOP-Note",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Note.note_id",
-      "path" : "Note.note_id",
+      "id" : "OMOP-Note.note_id",
+      "path" : "OMOP-Note.note_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Note.person_id",
-      "path" : "Note.person_id",
+      "id" : "OMOP-Note.person_id",
+      "path" : "OMOP-Note.person_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Note.note_date",
-      "path" : "Note.note_date",
+      "id" : "OMOP-Note.note_date",
+      "path" : "OMOP-Note.note_date",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -47,8 +47,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Note.note_datetime",
-      "path" : "Note.note_datetime",
+      "id" : "OMOP-Note.note_datetime",
+      "path" : "OMOP-Note.note_datetime",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -56,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "Note.note_type_concept_id",
-      "path" : "Note.note_type_concept_id",
+      "id" : "OMOP-Note.note_type_concept_id",
+      "path" : "OMOP-Note.note_type_concept_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -65,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Note.note_class_concept_id",
-      "path" : "Note.note_class_concept_id",
+      "id" : "OMOP-Note.note_class_concept_id",
+      "path" : "OMOP-Note.note_class_concept_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -74,8 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Note.note_title",
-      "path" : "Note.note_title",
+      "id" : "OMOP-Note.note_title",
+      "path" : "OMOP-Note.note_title",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,35 +83,71 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Note.note_text",
-      "path" : "Note.note_text",
+      "id" : "OMOP-Note.note_text",
+      "path" : "OMOP-Note.note_text",
       "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.encoding_concept_id",
+      "path" : "OMOP-Note.encoding_concept_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.language_concept_id",
+      "path" : "OMOP-Note.language_concept_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.provider_id",
+      "path" : "OMOP-Note.provider_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.visit_occurrence_id",
+      "path" : "OMOP-Note.visit_occurrence_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.visit_detail_id",
+      "path" : "OMOP-Note.visit_detail_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.note_source_value",
+      "path" : "OMOP-Note.note_source_value",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Note.encoding_concept_id",
-      "path" : "Note.encoding_concept_id",
-      "min" : 1,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Note.language_concept_id",
-      "path" : "Note.language_concept_id",
-      "min" : 1,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Note.provider_id",
-      "path" : "Note.provider_id",
+      "id" : "OMOP-Note.note_event_id",
+      "path" : "OMOP-Note.note_event_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -119,44 +155,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Note.visit_occurrence_id",
-      "path" : "Note.visit_occurrence_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Note.visit_detail_id",
-      "path" : "Note.visit_detail_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Note.note_source_value",
-      "path" : "Note.note_source_value",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Note.note_event_id",
-      "path" : "Note.note_event_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Note.note_event_field_concept_id",
-      "path" : "Note.note_event_field_concept_id",
+      "id" : "OMOP-Note.note_event_field_concept_id",
+      "path" : "OMOP-Note.note_event_field_concept_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {

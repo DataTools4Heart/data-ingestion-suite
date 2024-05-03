@@ -1,19 +1,19 @@
 {
-  "id" : "condition-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/omop_nlp/condition",
-  "name" : "condition-mapping",
-  "title" : "condition-mapping",
+  "id" : "nlp-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping",
+  "name" : "nlp-mapping",
+  "title" : "nlp-mapping",
   "source" : [ {
     "alias" : "noteNlp",
-    "url" : "https://datatools4heart.eu/fhir/schemas/omop_nlp/Note_nlp",
-    "joinOn" : [ "note_id", "section_concept_id" ]
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-NoteNlp",
+    "joinOn" : [ "note_id", "note_nlp_concept_id" ]
   }, {
     "alias" : "note",
-    "url" : "https://datatools4heart.eu/fhir/schemas/omop_nlp/Note",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Note",
     "joinOn" : [ "note_id" ]
   }, {
     "alias" : "concept",
-    "url" : "https://datatools4heart.eu/fhir/schemas/omop_nlp/Concept",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Concept",
     "joinOn" : [ "concept_id" ]
   } ],
   "context" : { },
@@ -37,7 +37,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %note.person_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %note.visit_occurrence_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %note.visit_occurrence_id.toString())}}",
         "onsetDateTime" : "{{nlp_datetime}}",
         "clinicalStatus" : {
           "coding" : [ {
@@ -45,6 +45,7 @@
             "code" : "active"
           } ]
         },
+        "id" : "{{mpp:getHashedId('Condition', note_nlp_id.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },

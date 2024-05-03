@@ -1,27 +1,27 @@
 {
-  "id" : "f8d3c06e-2cfd-4e46-bdc3-124c6d92c5a5",
+  "id" : "6f9b7991-9eda-4e0a-a421-3f7f71900956",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/omop_nlp/Concept",
-  "name" : "Concept",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Concept",
+  "name" : "OMOP-Concept",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Concept",
+  "type" : "OMOP-Concept",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Concept",
-      "path" : "Concept",
+      "id" : "OMOP-Concept",
+      "path" : "OMOP-Concept",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Concept.concept_id",
-      "path" : "Concept.concept_id",
+      "id" : "OMOP-Concept.concept_id",
+      "path" : "OMOP-Concept.concept_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Concept.concept_name",
-      "path" : "Concept.concept_name",
+      "id" : "OMOP-Concept.concept_name",
+      "path" : "OMOP-Concept.concept_name",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Concept.domain_id",
-      "path" : "Concept.domain_id",
+      "id" : "OMOP-Concept.domain_id",
+      "path" : "OMOP-Concept.domain_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -47,8 +47,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Concept.vocabulary_id",
-      "path" : "Concept.vocabulary_id",
+      "id" : "OMOP-Concept.vocabulary_id",
+      "path" : "OMOP-Concept.vocabulary_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -56,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Concept.concept_class_id",
-      "path" : "Concept.concept_class_id",
+      "id" : "OMOP-Concept.concept_class_id",
+      "path" : "OMOP-Concept.concept_class_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -65,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Concept.standard_concept",
-      "path" : "Concept.standard_concept",
+      "id" : "OMOP-Concept.standard_concept",
+      "path" : "OMOP-Concept.standard_concept",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -74,8 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Concept.concept_code",
-      "path" : "Concept.concept_code",
+      "id" : "OMOP-Concept.concept_code",
+      "path" : "OMOP-Concept.concept_code",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -83,8 +83,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Concept.valid_start_date",
-      "path" : "Concept.valid_start_date",
+      "id" : "OMOP-Concept.valid_start_date",
+      "path" : "OMOP-Concept.valid_start_date",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -92,8 +92,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Concept.valid_end_date",
-      "path" : "Concept.valid_end_date",
+      "id" : "OMOP-Concept.valid_end_date",
+      "path" : "OMOP-Concept.valid_end_date",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -101,8 +101,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Concept.invalid_reason",
-      "path" : "Concept.invalid_reason",
+      "id" : "OMOP-Concept.invalid_reason",
+      "path" : "OMOP-Concept.invalid_reason",
       "min" : 0,
       "max" : "1",
       "type" : [ {
