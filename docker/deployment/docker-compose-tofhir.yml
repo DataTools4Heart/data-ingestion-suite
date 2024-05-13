@@ -38,19 +38,19 @@ services:
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
   fluentd:
-    build: ./data-ingestion-suite/docker/fluentd
+    image: srdc/tofhir-fluentd:latest
     container_name: fluentd
-    volumes:
-      - ./data-ingestion-suite/docker/fluentd/conf:/fluentd/etc
     ports:
       - "24224:24224"
       - "24224:24224/udp"
+    environment:
+      - FORWARD_PORT=24224
+      - HOST=elasticsearch
+      - PORT=9200
     networks:
       - tofhir-network
   kibana:
-    build: 
-      context: ./data-ingestion-suite/docker/kibana
-      dockerfile: ./Dockerfile
+    image: srdc/tofhir-kibana:latest
     container_name: kibana
     environment:
       - SERVER_BASEPATH=/dt4h/tofhir/kibana
