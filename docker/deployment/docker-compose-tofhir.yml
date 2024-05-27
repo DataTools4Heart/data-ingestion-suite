@@ -35,7 +35,7 @@ services:
  # Elasticsearch, Fluentd and Kibana stack for mapping job log management
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
-    container_name: elasticsearch
+    container_name: dt4h-elasticsearch
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms256m -Xmx2g"      
@@ -47,7 +47,7 @@ services:
       - elasticsearch_data:/usr/share/elasticsearch/data
   fluentd:
     image: srdc/tofhir-fluentd:latest
-    container_name: fluentd
+    container_name: dt4h-fluentd
     ports:
       - "24224:24224"
       - "24224:24224/udp"
@@ -59,7 +59,7 @@ services:
       - tofhir-network
   kibana:
     image: srdc/tofhir-kibana:latest
-    container_name: kibana
+    container_name: dt4h-kibana
     environment:
       - SERVER_BASEPATH=/dt4h/tofhir/kibana
       - SERVER_REWRITEBASEPATH=false
