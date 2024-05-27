@@ -8,29 +8,35 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/labresult",
     "joinOn" : [ ]
   } ],
-  "context" : { },
-  "variable" : [ ],
+  "context" : {
+    "labCodes" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/lab-codes.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "convertedCodeObject",
+    "language" : "text/fhirpath",
+    "expression" : " mpp:getConcept(%labCodes, BepalingCode) "
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
         "status" : "final",
-        "category": [
-          {
-            "coding": [
-              {
-                "code": "laboratory",
-                "display": "Laboratory",
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category"
-              }
-            ]
-          }
-        ],
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "TODO code needs to be converted: {{BepalingCode}}",
+            "code" : "{{ %convertedCodeObject.target_code }}",
+            "display" : "{{ %convertedCodeObject.target_display }}",
             "@sliceName" : "loincCode"
           } ]
         },
@@ -39,7 +45,7 @@
           "value" : "{{UitslagNumeriek}}",
           "unit" : "{{UitslagEenheid}}",
           "system" : "http://unitsofmeasure.org",
-          "code" : "TODO"
+          "code" : "{{UitslagEenheid}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "id" : "{{mpp:getHashedId('Observation', pseudo_id & UitslagDatumtijd)}}",
@@ -48,6 +54,11 @@
         },
         "resourceType" : "Observation"
       }
+    },
+    "precondition" : {
+      "name" : "convertedCodeObjectExists",
+      "language" : "text/fhirpath",
+      "expression" : " %convertedCodeObject.exists() "
     }
   } ]
 }
