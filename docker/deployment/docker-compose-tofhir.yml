@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   tofhir-server:
     image: srdc/tofhir-server:latest
@@ -18,6 +17,11 @@ services:
     volumes:
       - './data-ingestion-suite:/usr/local/tofhir/conf'
       - './tofhir-docker-logs:/usr/local/tofhir/logs'
+    healthcheck:
+      test: curl --fail --request OPTIONS http://localhost:8085/tofhir || exit 1
+      interval: 20s
+      timeout: 10s
+      retries: 5      
   tofhir-web:
     image: srdc/tofhir-web:dt4h
     container_name: dt4h-tofhir-web
@@ -25,12 +29,16 @@ services:
       - "6082:80"
     networks:
       - tofhir-network
+    depends_on:
+      tofhir-server:
+        condition: service_healthy      
  # Elasticsearch, Fluentd and Kibana stack for mapping job log management
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms256m -Xmx2g"      
     ports:
       - "9200:9200"
     networks:
