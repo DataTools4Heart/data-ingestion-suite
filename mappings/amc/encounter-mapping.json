@@ -45,14 +45,22 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "class" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-            "code" : "{{mpp:getConcept(%encounterClassMap, Opnametype, 'target_code')}}",
-            "display" : "{{mpp:getConcept(%encounterClassMap, Opnametype, 'target_display')}}"
+        "class" : {
+          "{{#encounterClass}}" : "{{mpp:getConcept(%encounterClassMap, Opnametype)}}",
+          "{{?}}" : [ {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+              "code" : "{{ %encounterClass.target_code }}",
+              "display" : "{{ %encounterClass.target_display }}"
+            } ]
           } ]
-        } ],
-        "serviceProvider" : "{{mpp:createFhirReferenceWithHashedId('Organization', ziekenhuislocatie)}}",
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "actualPeriod" : {
+          "start" : "{{OpnameDatum}}",
+          "end" : "{{OntslagDatum}}"
+        },
+        "status" : "completed",
         "serviceType" : [ {
           "concept" : {
             "coding" : [ {
@@ -62,12 +70,7 @@
             } ]
           }
         } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "actualPeriod" : {
-          "start" : "{{OpnameDatum}}",
-          "end" : "{{OntslagDatum}}"
-        },
-        "status" : "completed",
+        "serviceProvider" : "{{mpp:createFhirReferenceWithHashedId('Organization', ziekenhuislocatie)}}",
         "id" : "{{mpp:getHashedId('Encounter', Patientcontactid)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
