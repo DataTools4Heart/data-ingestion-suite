@@ -2,35 +2,44 @@
   "id" : "bfc91876-a769-41de-b939-a23c20a08356",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/DiarioMisure",
-  "name" : "Observation",
+  "name" : "LabResultVitalSign",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Observation",
+  "type" : "LabResultVitalSign",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Observation",
-      "path" : "Observation",
+      "id" : "LabResultVitalSign",
+      "path" : "LabResultVitalSign",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Observation.codice_sanitario",
-      "path" : "Observation.codice_sanitario",
+      "id" : "LabResultVitalSign.CODICE_SANITARIO",
+      "path" : "LabResultVitalSign.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Observation.data_ora_esame",
-      "path" : "Observation.data_ora_esame",
+      "id" : "LabResultVitalSign.DATA_ESAME",
+      "path" : "LabResultVitalSign.DATA_ESAME",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "LabResultVitalSign.DATA_ORA_ESAME",
+      "path" : "LabResultVitalSign.DATA_ORA_ESAME",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,8 +47,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "Observation.codice_esame",
-      "path" : "Observation.codice_esame",
+      "id" : "LabResultVitalSign.CODICE_ESAME",
+      "path" : "LabResultVitalSign.CODICE_ESAME",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -47,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Observation.nome_esame",
-      "path" : "Observation.nome_esame",
+      "id" : "LabResultVitalSign.NOME_ESAME",
+      "path" : "LabResultVitalSign.NOME_ESAME",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -56,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Observation.unita_misura",
-      "path" : "Observation.unita_misura",
+      "id" : "LabResultVitalSign.UNITA_MISURA",
+      "path" : "LabResultVitalSign.UNITA_MISURA",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -65,17 +74,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Observation.value",
-      "path" : "Observation.value",
+      "id" : "LabResultVitalSign.VALUE",
+      "path" : "LabResultVitalSign.VALUE",
       "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
-      "id" : "Observation.value_c",
-      "path" : "Observation.value_c",
+      "id" : "LabResultVitalSign.VALUE_C",
+      "path" : "LabResultVitalSign.VALUE_C",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "LabResultVitalSign.VALORE_MINIMO",
+      "path" : "LabResultVitalSign.VALORE_MINIMO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,8 +101,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Observation.valore_minimo",
-      "path" : "Observation.valore_minimo",
+      "id" : "LabResultVitalSign.VALORE_MASSIMO",
+      "path" : "LabResultVitalSign.VALORE_MASSIMO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -92,8 +110,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Observation.valore_massimo",
-      "path" : "Observation.valore_massimo",
+      "id" : "LabResultVitalSign.RANGE",
+      "path" : "LabResultVitalSign.RANGE",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -101,17 +119,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Observation.range",
-      "path" : "Observation.range",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Observation.category",
-      "path" : "Observation.category",
+      "id" : "LabResultVitalSign.category",
+      "path" : "LabResultVitalSign.category",
       "min" : 1,
       "max" : "1",
       "type" : [ {

@@ -20,8 +20,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "NYHA.codice_sanitario",
-      "path" : "NYHA.codice_sanitario",
+      "id" : "NYHA.CODICE_SANITARIO",
+      "path" : "NYHA.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "NYHA.date",
-      "path" : "NYHA.date",
+      "id" : "NYHA.DATE",
+      "path" : "NYHA.DATE",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "NYHA.nyha_max",
-      "path" : "NYHA.nyha_max",
+      "id" : "NYHA.NYHA_MAX",
+      "path" : "NYHA.NYHA_MAX",
       "min" : 1,
       "max" : "1",
       "type" : [ {

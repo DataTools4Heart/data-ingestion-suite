@@ -82,43 +82,11 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
     "sourceContext" : {
-      "source" : {
+      "anagrafica" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "angrafica.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
-    "sourceContext" : {
-      "encounterMain" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      },
-      "encounterDetails" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "dettaglio_contatti.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceContext" : {
-      "labResults" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "diariomisure.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
+        "path" : "anagrafica.csv",
         "fileFormat" : "csv",
         "options" : { }
       }
@@ -134,11 +102,44 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
     "sourceContext" : {
-      "medications" : {
+      "echo" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "farmaci.csv",
+        "path" : "ecocardio.csv",
+        "fileFormat" : "csv",
+        "options" : { },
+        "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MSSITE, '_', echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo\ngroup by echo.codice_sanitario, echo.DATAREFERTO "
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
+    "sourceContext" : {
+      "encounterMain" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      },
+      "encounterDetails" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "dettagliocontatti.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "sourceContext" : {
+      "labResults" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "diario_misure.csv",
         "fileFormat" : "csv",
         "options" : { }
       },
@@ -150,24 +151,13 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
     "sourceContext" : {
-      "patology" : {
+      "medications" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "patologie.csv",
+        "path" : "farmaci.csv",
         "fileFormat" : "csv",
         "options" : { }
-      }
-    }
-  }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
-    "sourceContext" : {
-      "echo" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "ecocardio.csv",
-        "fileFormat" : "csv",
-        "options" : { },
-        "preprocessSql" : "SELECT * FROM\n\t(SELECT \n\t\t codice_sanitario, dataerogazione, regexp_replace(concat(mssite, '_', measurename), '[\\\\\\\\W]+', '') as code, measuervalue \n\t FROM echo\n\t)\n\tPIVOT (LAST(measuervalue) as value FOR code in ('FunzioneDiastolica_RapportoEA','FunzioneDiastolica_RapportoEE','FunzioneDiastolica_VelocitPiccoOndaA','FunzioneDiastolica_VelocitPiccoOndaE','Valvolatricuspide_TAPSE','Ventricolosinistro_DiametroDiastolicoIndic','Ventricolosinistro_DiametroSistolicoIndic','Ventricolosinistro_DiametroTeleDiastolico','Ventricolosinistro_DiametroTeleSistolico','Ventricolosinistro_FrazionediEiezione','Ventricolosinistro_ParetePosterioreSpessoreTD','Ventricolosinistro_ParetePosterioreSpessoreTDIndic','Ventricolosinistro_SettoInterventricolareSpessoreTD','Ventricolosinistro_SettointerventricolarespessoreTDIndicM','Ventricolosinistro_StrokeVolumeIndex','Ventricolosinistro_VolumeTeleDiastolico','Ventricolosinistro_VolumeTeleDiastolicoInd','Ventricolosinistro_VolumeTeleSistolico','Ventricolosinistro_VolumeTeleSistolicoInd','Ventricolosinistro_ParetePosterioreSpessoreTS','Ventricolosinistro_ParetePosterioreSpessoreTSIndic','Ventricolodestro_Accorciamentofrazionale','Ventricolosinistro_DiametroInternoTD','FunzioneDiastolica_VelocitPiccoOndaELATTDI','FunzioneDiastolica_VelocitPiccoOndaESETTTDI','Ventricolosinistro_HeartRate','Ventricolosinistro_SettoInterventricolareSpessoreTS','VenaCava_DiametroMax','VenaCava_DiametroMin','Ventricolodestro_DiametroTeleDiastolico','Ventricolodestro_DiametroTeleDiastolicoIndic','VentricolosinistroSettointerventricolarespessoresistolicoIndicM'\n\t))\n"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
@@ -193,11 +183,21 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
     "sourceContext" : {
-      "anagrafica" : {
+      "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "angrafica.csv",
+        "path" : "anagrafica.csv",
+        "fileFormat" : "csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
+    "sourceContext" : {
+      "patology" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "patologie.csv",
         "fileFormat" : "csv",
         "options" : { }
       }

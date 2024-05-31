@@ -15,15 +15,15 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Patient",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ],
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
-        "gender" : "{{ iif(sex='M', 'male', 'female') }}",
-        "birthDate" : "{{data_nascita}}",
+        "gender" : "{{ iif(SESSO='M', 'male', 'female') }}",
+        "birthDate" : "{{DATA_NASCITA}}",
         "active" : true,
-        "id" : "{{mpp:getHashedId('Patient', codice_sanitario.toString())}}"
+        "id" : "{{mpp:getHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "resourceType" : "Patient"
       }
     }
   } ]

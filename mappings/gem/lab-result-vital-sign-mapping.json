@@ -29,11 +29,15 @@
   "variable" : [ {
     "name" : "labLoincCode",
     "language" : "text/fhirpath",
-    "expression" : "(category = 'LAB_RESULTS' and mpp:getConcept(%labResultsConceptMap, codice_esame).exists()) or true"
+    "expression" : " iif(category = 'LAB_RESULTS', mpp:getConcept(%labResultsConceptMap, CODICE_ESAME)) "
   }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(data_in.toDate() <= %context.data_ora_esame.toFhirDateTime('yyyy-MM-dd HH:mm').toDate() and data_out.toDate() >= %context.data_ora_esame.toFhirDateTime('yyyy-MM-dd HH:mm').toDate()).first()"
+    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA_ORA_ESAME.toFhirDateTime('yyyy-MM-dd HH:mm:ss').toDate() and DATA_OUT.toDate() >= %context.DATA_ORA_ESAME.toFhirDateTime('yyyy-MM-dd HH:mm:ss').toDate()).first()"
+  }, {
+    "name" : "vitalSign",
+    "language" : "text/fhirpath",
+    "expression" : " iif(category = 'VITAL_SIGNS', mpp:getConcept(%vitalSignsConceptMap, CODICE_ESAME)) "
   } ],
   "mapping" : [ {
     "expression" : {
@@ -51,15 +55,25 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{iif(category = 'LAB_RESULTS', mpp:getConcept(%labResultsConceptMap, codice_esame, 'target_code'), mpp:getConcept(%vitalSignsConceptMap, codice_esame, 'target_code'))}}",
-            "display" : "{{? mpp:getConcept(%labResultsConceptMap, codice_esame, 'target_display')}}"
+            "code" : "{{iif(category = 'LAB_RESULTS', %labLoincCode.target_code, %vitalSign.target_code)}}",
+            "display" : "{{? iif(category = 'LAB_RESULTS', %labLoincCode.target_display, %vitalSign.target_display)}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
-        "effectiveDateTime" : "{{data_ora_esame.toFhirDateTime('yyyy-MM-dd HH:mm')}}",
-        "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultUnitConversion, codice_esame, value, unita_misura), utl:createFhirQuantity(value, unita_misura, 'http://unitsofmeasure.org', unita_misura))}}",
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & data_ora_esame & codice_esame)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO)}}",
+        "effectiveDateTime" : "{{DATA_ORA_ESAME.toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALUE, UNITA_MISURA).nav:orElse(utl:createFhirQuantity(VALUE, UNITA_MISURA, 'http://unitsofmeasure.org', CODICE_ESAME)), utl:createFhirQuantity(VALUE, %vitalSign.unit, 'http://unitsofmeasure.org', %vitalSign.target_code) )  }}",
+        "referenceRange" : [ {
+          "low" : {
+            "{{#lowVar}}" : "{{iif(VALORE_MINIMO.exists(), mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALORE_MINIMO, UNITA_MISURA)}}",
+            "{{?}}" : "{{%lowVar}}"
+          },
+          "high" : {
+            "{{#highVar}}" : "{{iif(VALORE_MASSIMO.exists(), mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALORE_MASSIMO, UNITA_MISURA)}}",
+            "{{?}}" : "{{%highVar}}"
+          }
+        } ],
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATA_ORA_ESAME & CODICE_ESAME)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign')}}" ]
@@ -70,7 +84,7 @@
     "precondition" : {
       "name" : "loincCodeAndRelatedEncounterExist",
       "language" : "text/fhirpath",
-      "expression" : "%labLoincCode.exists() and %relatedEncounter.exists()"
+      "expression" : "(%labLoincCode.exists() or %vitalSign.exists()) and %relatedEncounter.exists()"
     }
   } ]
 }

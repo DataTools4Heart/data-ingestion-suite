@@ -20,8 +20,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Encounter-Details.codice_sanitario",
-      "path" : "Encounter-Details.codice_sanitario",
+      "id" : "Encounter-Details.CODICE_SANITARIO",
+      "path" : "Encounter-Details.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.nosografico_adt",
-      "path" : "Encounter-Details.nosografico_adt",
+      "id" : "Encounter-Details.NOSOGRAFICO_ADT",
+      "path" : "Encounter-Details.NOSOGRAFICO_ADT",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,17 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.desc_reparto_ricovero",
-      "path" : "Encounter-Details.desc_reparto_ricovero",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Encounter-Details.data_ricovero",
-      "path" : "Encounter-Details.data_ricovero",
+      "id" : "Encounter-Details.DATA_RICOVERO",
+      "path" : "Encounter-Details.DATA_RICOVERO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -56,8 +47,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.ora_ricovero",
-      "path" : "Encounter-Details.ora_ricovero",
+      "id" : "Encounter-Details.ORA_RICOVERO",
+      "path" : "Encounter-Details.ORA_RICOVERO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -65,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.data_dimissione",
-      "path" : "Encounter-Details.data_dimissione",
+      "id" : "Encounter-Details.DATA_DIMISSIONE",
+      "path" : "Encounter-Details.DATA_DIMISSIONE",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -74,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.ora_dimissione",
-      "path" : "Encounter-Details.ora_dimissione",
+      "id" : "Encounter-Details.ORA_DIMISSIONE",
+      "path" : "Encounter-Details.ORA_DIMISSIONE",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,8 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.diag1_icd9cm",
-      "path" : "Encounter-Details.diag1_icd9cm",
+      "id" : "Encounter-Details.DESC_REPARTO_RICOVERO",
+      "path" : "Encounter-Details.DESC_REPARTO_RICOVERO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -92,8 +83,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.diag2_icd9cm",
-      "path" : "Encounter-Details.diag2_icd9cm",
+      "id" : "Encounter-Details.DIAG1_ICD9CM",
+      "path" : "Encounter-Details.DIAG1_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -101,8 +92,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.diag3_icd9cm",
-      "path" : "Encounter-Details.diag3_icd9cm",
+      "id" : "Encounter-Details.DIAG2_ICD9CM",
+      "path" : "Encounter-Details.DIAG2_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -110,8 +101,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.diag4_icd9cm",
-      "path" : "Encounter-Details.diag4_icd9cm",
+      "id" : "Encounter-Details.DIAG3_ICD9CM",
+      "path" : "Encounter-Details.DIAG3_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -119,8 +110,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.diag5_icd9cm",
-      "path" : "Encounter-Details.diag5_icd9cm",
+      "id" : "Encounter-Details.DIAG4_ICD9CM",
+      "path" : "Encounter-Details.DIAG4_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -128,8 +119,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.diag6_icd9cm",
-      "path" : "Encounter-Details.diag6_icd9cm",
+      "id" : "Encounter-Details.DIAG5_ICD9CM",
+      "path" : "Encounter-Details.DIAG5_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -137,8 +128,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.diag7_icd9cm",
-      "path" : "Encounter-Details.diag7_icd9cm",
+      "id" : "Encounter-Details.DIAG6_ICD9CM",
+      "path" : "Encounter-Details.DIAG6_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -146,8 +137,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.proc1",
-      "path" : "Encounter-Details.proc1",
+      "id" : "Encounter-Details.DIAG7_ICD9CM",
+      "path" : "Encounter-Details.DIAG7_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -155,8 +146,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.proc2",
-      "path" : "Encounter-Details.proc2",
+      "id" : "Encounter-Details.PROC1",
+      "path" : "Encounter-Details.PROC1",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -164,8 +155,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.proc3",
-      "path" : "Encounter-Details.proc3",
+      "id" : "Encounter-Details.PROC2",
+      "path" : "Encounter-Details.PROC2",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -173,8 +164,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.proc4",
-      "path" : "Encounter-Details.proc4",
+      "id" : "Encounter-Details.PROC3",
+      "path" : "Encounter-Details.PROC3",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -182,8 +173,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.proc5",
-      "path" : "Encounter-Details.proc5",
+      "id" : "Encounter-Details.PROC4",
+      "path" : "Encounter-Details.PROC4",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -191,8 +182,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.proc6",
-      "path" : "Encounter-Details.proc6",
+      "id" : "Encounter-Details.PROC5",
+      "path" : "Encounter-Details.PROC5",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -200,8 +191,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.proc7",
-      "path" : "Encounter-Details.proc7",
+      "id" : "Encounter-Details.PROC6",
+      "path" : "Encounter-Details.PROC6",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -209,8 +200,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter-Details.dataproc1",
-      "path" : "Encounter-Details.dataproc1",
+      "id" : "Encounter-Details.PROC7",
+      "path" : "Encounter-Details.PROC7",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter-Details.DATAPROC1",
+      "path" : "Encounter-Details.DATAPROC1",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -218,8 +218,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.dataproc2",
-      "path" : "Encounter-Details.dataproc2",
+      "id" : "Encounter-Details.DATAPROC2",
+      "path" : "Encounter-Details.DATAPROC2",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -227,8 +227,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.dataproc3",
-      "path" : "Encounter-Details.dataproc3",
+      "id" : "Encounter-Details.DATAPROC3",
+      "path" : "Encounter-Details.DATAPROC3",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -236,8 +236,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.dataproc4",
-      "path" : "Encounter-Details.dataproc4",
+      "id" : "Encounter-Details.DATAPROC4",
+      "path" : "Encounter-Details.DATAPROC4",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -245,8 +245,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.dataproc5",
-      "path" : "Encounter-Details.dataproc5",
+      "id" : "Encounter-Details.DATAPROC5",
+      "path" : "Encounter-Details.DATAPROC5",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -254,8 +254,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.dataproc6",
-      "path" : "Encounter-Details.dataproc6",
+      "id" : "Encounter-Details.DATAPROC6",
+      "path" : "Encounter-Details.DATAPROC6",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -263,13 +263,22 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter-Details.dataproc7",
-      "path" : "Encounter-Details.dataproc7",
+      "id" : "Encounter-Details.DATAPROC7",
+      "path" : "Encounter-Details.DATAPROC7",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "Encounter-Details.TIPO",
+      "path" : "Encounter-Details.TIPO",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     } ]
   }

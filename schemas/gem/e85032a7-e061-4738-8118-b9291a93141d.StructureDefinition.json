@@ -20,8 +20,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Encounter.codice_sanitario",
-      "path" : "Encounter.codice_sanitario",
+      "id" : "Encounter.CODICE_SANITARIO",
+      "path" : "Encounter.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,26 +29,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter.nosografico",
-      "path" : "Encounter.nosografico",
-      "min" : 1,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Encounter.num_ps",
-      "path" : "Encounter.num_ps",
+      "id" : "Encounter.NOSOGRAFICO",
+      "path" : "Encounter.NOSOGRAFICO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter.data_in",
-      "path" : "Encounter.data_in",
+      "id" : "Encounter.NUM_PS",
+      "path" : "Encounter.NUM_PS",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.DATA_IN",
+      "path" : "Encounter.DATA_IN",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -56,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter.ora_in",
-      "path" : "Encounter.ora_in",
+      "id" : "Encounter.ORA_IN",
+      "path" : "Encounter.ORA_IN",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -65,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter.data_out",
-      "path" : "Encounter.data_out",
+      "id" : "Encounter.DATA_OUT",
+      "path" : "Encounter.DATA_OUT",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -74,8 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter.ora_out",
-      "path" : "Encounter.ora_out",
+      "id" : "Encounter.ORA_OUT",
+      "path" : "Encounter.ORA_OUT",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,8 +83,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter.d_evento",
-      "path" : "Encounter.d_evento",
+      "id" : "Encounter.D_EVENTO",
+      "path" : "Encounter.D_EVENTO",
       "min" : 1,
       "max" : "1",
       "type" : [ {

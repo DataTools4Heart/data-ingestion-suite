@@ -20,8 +20,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "PatientRecord.codice_sanitario",
-      "path" : "PatientRecord.codice_sanitario",
+      "id" : "PatientRecord.CODICE_SANITARIO",
+      "path" : "PatientRecord.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "PatientRecord.sesso",
-      "path" : "PatientRecord.sesso",
+      "id" : "PatientRecord.SESSO",
+      "path" : "PatientRecord.SESSO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "PatientRecord.data_nascita",
-      "path" : "PatientRecord.data_nascita",
+      "id" : "PatientRecord.DATA_NASCITA",
+      "path" : "PatientRecord.DATA_NASCITA",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -47,8 +47,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "PatientRecord.titolo_studio",
-      "path" : "PatientRecord.titolo_studio",
+      "id" : "PatientRecord.TITOLO_STUDIO",
+      "path" : "PatientRecord.TITOLO_STUDIO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -56,8 +56,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "PatientRecord.stato_civile",
-      "path" : "PatientRecord.stato_civile",
+      "id" : "PatientRecord.STATO_CIVILE",
+      "path" : "PatientRecord.STATO_CIVILE",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -65,8 +65,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "PatientRecord.data_in_ultimo_contatto",
-      "path" : "PatientRecord.data_in_ultimo_contatto",
+      "id" : "PatientRecord.Data_In_Ultimo_Contatto",
+      "path" : "PatientRecord.Data_In_Ultimo_Contatto",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -74,8 +74,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "PatientRecord.data_out_ultimo_contatto",
-      "path" : "PatientRecord.data_out_ultimo_contatto",
+      "id" : "PatientRecord.Data_Out_Ultimo_Contatto",
+      "path" : "PatientRecord.Data_Out_Ultimo_Contatto",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,8 +83,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "PatientRecord.deceduto",
-      "path" : "PatientRecord.deceduto",
+      "id" : "PatientRecord.Deceduto",
+      "path" : "PatientRecord.Deceduto",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -92,13 +92,22 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "PatientRecord.eta_diagnosi",
-      "path" : "PatientRecord.eta_diagnosi",
+      "id" : "PatientRecord.Eta_Diagnosi",
+      "path" : "PatientRecord.Eta_Diagnosi",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "PatientRecord.Data_Diagnosi",
+      "path" : "PatientRecord.Data_Diagnosi",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     } ]
   }

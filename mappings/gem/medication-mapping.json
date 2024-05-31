@@ -16,7 +16,7 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(data_in.toDate() <= %context.data.toDate() and data_out.toDate() >= %context.data.toDate()).first()"
+    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA.toDate() and DATA_OUT.toDate() >= %context.DATA.toDate()).first()"
   } ],
   "mapping" : [ {
     "expression" : {
@@ -27,22 +27,21 @@
           "concept" : {
             "coding" : [ {
               "system" : "http://www.whocc.no/atc",
-              "code" : "{{atc}}",
-              "display" : "{{? termine}}",
+              "code" : "{{ATC}}",
+              "display" : "{{? TERMINE}}",
               "@sliceName" : "atcCode"
-            } ]
+            } ],
+            "text" : "{{ DESC_ATC_2_LIVELLO & ' - ' & DESC_ATC_3_LIVELLO & ' - ' & DESC_ATC_4_LIVELLO & ' - ' & DESC_ATC_5_LIVELLO}}"
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
-        "occurenceDateTime" : "{{data}}",
-        "status" : "completed",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO)}}",
+        "occurenceDateTime" : "{{DATA}}",
         "dosage" : {
-          "dose" : {
-            "value" : 123456789
-          }
+          "text" : "No data"
         },
-        "id" : "{{mpp:getHashedId('Medication', codice_sanitario.toString() & data.toString() & atc)}}",
+        "status" : "completed",
+        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & now().toString() }}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]

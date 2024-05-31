@@ -9,41 +9,43 @@
     "joinOn" : [ ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "icd9Codes",
+    "language" : "text/fhirpath",
+    "expression" : "ICD9_CODES.replace('.', '').utl:split(',')"
+  }, {
+    "name" : "icd10Codes",
+    "language" : "text/fhirpath",
+    "expression" : "%icd9Codes.select(trms:translateToCoding(%icd9Codes[$index], 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10'))"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#conditionCode}}" : "{{icd9_codes.utl:split(',')}}",
-        "{{*}}" : {
-          "{{#translatedCode}}" : "{{trms:translateToCoding(%conditionCode, 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10').code.first()}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : "{{* trms:translateToCoding(%conditionCode, 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10')}}"
-            },
-            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-            "onsetDateTime" : "{{data_in}}",
-            "clinicalStatus" : {
-              "coding" : [ {
-                "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                "code" : "active"
-              } ]
-            },
-            "id" : "{{mpp:getHashedId('Condition', codice_sanitario.toString() & data_in.toString() & %conditionCode)}}",
-            "meta" : {
-              "source" : "{{%sourceSystem.sourceUri}}",
-              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
-            },
-            "resourceType" : "Condition"
-          }
-        }
+        "code" : {
+          "coding" : [ "{{* %icd10Codes}}" ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "onsetDateTime" : "{{data_in}}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "active"
+          } ]
+        },
+        "id" : "{{mpp:getHashedId('Condition', CODICE_SANITARIO.toString() & data_in.toString() & Patologia & now().toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
       }
     },
     "precondition" : {
       "name" : "isCondition",
       "language" : "text/fhirpath",
-      "expression" : "status = 1 and patologia != 'ABITUDINE_TABAGICA'"
+      "expression" : "STATUS = 1 and %icd10Codes.exists()"
     }
   } ]
 }

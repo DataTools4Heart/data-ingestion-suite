@@ -16,17 +16,13 @@
       "language" : "application/fhir-template+json",
       "value" : {
         "status" : "final",
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                "code": "exam",
-                "display": "Exam"
-              }
-            ]
-          }
-        ],
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
@@ -35,15 +31,20 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{data_out_ultimo_contatto)}}",
+        "effectiveDateTime" : "{{Data_In_Ultimo_Contatto)}}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
             "code" : "NA"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-        "id" : "{{codice_sanitario.toString()}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "identifier" : [ {
+          "use" : "official",
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "value" : "{{CODICE_SANITARIO.toString()}}"
+        } ],
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & 'causeofdeath')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
         },
@@ -53,7 +54,7 @@
     "precondition" : {
       "name" : "isDeath",
       "language" : "text/fhirpath",
-      "expression" : "deceduto = 1"
+      "expression" : "Deceduto = 1"
     }
   } ]
 }

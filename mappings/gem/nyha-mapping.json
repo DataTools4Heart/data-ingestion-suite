@@ -6,11 +6,11 @@
   "source" : [ {
     "alias" : "nyha",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/NYHA",
-    "joinOn" : [ "codice_sanitario" ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
-    "joinOn" : [ "codice_sanitario" ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {
     "echoCodeMappings" : {
@@ -25,19 +25,13 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(data_in <= %context.date and data_out >= %context.date).first()"
+    "expression" : "%encounters.where(DATA_IN <= %context.DATE and DATA_OUT >= %context.DATE).first()"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "resourceType" : "Observation",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ],
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
-        "status" : "final",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -53,16 +47,22 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
-        "effectiveDateTime" : "{{date}}",
+        "effectiveDateTime" : "{{DATE}}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%nyhaMappings, nyha_max.split(' ').last().split('-').last(), 'target_code')}}"
+            "code" : "{{mpp:getConcept(%nyhaMappings, NYHA_MAX.split(' ').last().split('-').last(), 'target_code')}}"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario & date.toString() & '_nyha')}}"
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', iif(%relatedEncounter.NOSOGRAFICO.exists(), %relatedEncounter.NOSOGRAFICO, %relatedEncounter.NUM_PS) )}}",
+        "status" : "final",
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO & DATE.toString() & NYHA_MAX & now().toString() )}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
+        },
+        "resourceType" : "Observation"
       }
     },
     "precondition" : {

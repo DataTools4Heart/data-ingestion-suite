@@ -20,8 +20,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Patology.codice_sanitario",
-      "path" : "Patology.codice_sanitario",
+      "id" : "Patology.CODICE_SANITARIO",
+      "path" : "Patology.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -29,8 +29,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Patology.patologia",
-      "path" : "Patology.patologia",
+      "id" : "Patology.Patologia",
+      "path" : "Patology.Patologia",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -38,8 +38,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Patology.status",
-      "path" : "Patology.status",
+      "id" : "Patology.STATUS",
+      "path" : "Patology.STATUS",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -49,15 +49,15 @@
     }, {
       "id" : "Patology.data_in",
       "path" : "Patology.data_in",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Patology.icd9_codes",
-      "path" : "Patology.icd9_codes",
+      "id" : "Patology.ICD9_CODES",
+      "path" : "Patology.ICD9_CODES",
       "min" : 0,
       "max" : "1",
       "type" : [ {

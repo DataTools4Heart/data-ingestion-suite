@@ -6,3 +6,4 @@
 "VS2","8462-4","Diastolic blood pressure","mmHg"
 "VS3","8867-4","Heart rate","bpm"
 "VS6","2708-6","Oxygen saturation","%"
+"TC.BSA","8277-6","Body surface area (BSA)","m2"

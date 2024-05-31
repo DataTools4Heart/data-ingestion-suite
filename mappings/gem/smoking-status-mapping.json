@@ -15,13 +15,13 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "category" : [{
-          "coding": [{
-            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code": "social-history",
-            "display": "Social History"
-          }]
-        }],
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "social-history",
+            "display" : "Social History"
+          } ]
+        } ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
@@ -30,18 +30,17 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectivePeriod" : {
-          "start" : "{{data_in.utl:toFhirDate('yyyy-MM-dd'))}}"
-        },
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://snomed.info/sct",
-            "code" : "77176002"
+            "code" : "77176002",
+            "display" : "Smoker (finding)"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "effectiveDateTime" : "{{? data_in.utl:toFhirDate('yyyy-MM-dd'))}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & data_in.toString() & patologia)}}",
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & data_in.toString() & Patologia & now().toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
         },
@@ -51,7 +50,7 @@
     "precondition" : {
       "name" : "smokingPatology",
       "language" : "text/fhirpath",
-      "expression" : "patologia = 'ABITUDINE_TABAGICA'"
+      "expression" : "Patologia = 'ABITUDINE_TABAGICA' and STATUS = 1"
     }
   } ]
 }

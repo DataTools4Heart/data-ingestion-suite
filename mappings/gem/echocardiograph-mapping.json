@@ -10,7 +10,7 @@
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
-    "joinOn" : [ "codice_sanitario" ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {
     "echoCodeMappings" : {
@@ -21,24 +21,20 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(data_in <= %context.dataerogazione and data_out >= %context.dataerogazione).first()"
+    "expression" : "%encounters.where(DATA_IN <= %context.DATAREFERTO and DATA_OUT >= %context.DATAREFERTO).first()"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                "code": "imaging",
-                "display": "Imaging"
-              }
-            ]
-          }
-        ],
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "imaging",
+            "display" : "Imaging"
+          } ]
+        } ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
@@ -47,31 +43,29 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{dataerogazione.toDateTime()}}",
+        "effectiveDateTime" : "{{DATAREFERTO.toDateTime()}}",
         "component" : {
-          "{{#gemCode}}" : "{{('FunzioneDiastolica_RapportoEA'|'FunzioneDiastolica_RapportoEE'|'FunzioneDiastolica_VelocitPiccoOndaA'|'FunzioneDiastolica_VelocitPiccoOndaE'|'Valvolatricuspide_TAPSE'|'Ventricolosinistro_DiametroDiastolicoIndic'|'Ventricolosinistro_DiametroSistolicoIndic'|'Ventricolosinistro_DiametroTeleDiastolico'|'Ventricolosinistro_DiametroTeleSistolico'|'Ventricolosinistro_FrazionediEiezione'|'Ventricolosinistro_ParetePosterioreSpessoreTD'|'Ventricolosinistro_ParetePosterioreSpessoreTDIndic'|'Ventricolosinistro_SettoInterventricolareSpessoreTD'|'Ventricolosinistro_SettointerventricolarespessoreTDIndicM'|'Ventricolosinistro_StrokeVolumeIndex'|'Ventricolosinistro_VolumeTeleDiastolico'|'Ventricolosinistro_VolumeTeleDiastolicoInd'|'Ventricolosinistro_VolumeTeleSistolico'|'Ventricolosinistro_VolumeTeleSistolicoInd'|'Ventricolosinistro_ParetePosterioreSpessoreTS'|'Ventricolosinistro_ParetePosterioreSpessoreTSIndic'|'Ventricolodestro_Accorciamentofrazionale'|'Ventricolosinistro_DiametroInternoTD'|'FunzioneDiastolica_VelocitPiccoOndaELATTDI'|'FunzioneDiastolica_VelocitPiccoOndaESETTTDI'|'Ventricolosinistro_HeartRate'|'Ventricolosinistro_SettoInterventricolareSpessoreTS'|'VenaCava_DiametroMax'|'VenaCava_DiametroMin'|'Ventricolodestro_DiametroTeleDiastolico'|'Ventricolodestro_DiametroTeleDiastolicoIndic'|'VentricolosinistroSettointerventricolarespessoresistolicoIndicM')}}",
+          "{{#measurement}}" : "{{echodata}}",
           "{{*}}" : {
-            "{{#echoCode}}" : "{{mpp:getConcept(%echoCodeMappings, %gemCode)}}",
+            "{{#echoCode}}" : "{{mpp:getConcept(%echoCodeMappings, %measurement.utl:split('|').first() ) }}",
             "{{?}}" : {
-              "{{#value}}" : "{{utl:evaluateExpression(%gemCode)}}",
-              "{{?}}" : {
-                "code" : {
-                  "coding" : [ "{{utl:createFhirCoding(%echoCode.code_system, %echoCode.target_code, %echoCode.target_display)}}" ]
-                },
-                "valueQuantity" : {
-                  "value" : "{{%value}}",
-                  "unit" : "{{%echoCode.unit}}",
-                  "system" : "http://unitsofmeasure.org",
-                  "code" : "{{%echoCode.unit}}"
-                }
+              "code" : {
+                "coding" : [ "{{utl:createFhirCoding(%echoCode.code_system, %echoCode.target_code, %echoCode.target_display)}}" ],
+                "@sliceName" : "echoParameter"
+              },
+              "valueQuantity" : {
+                "value" : "{{%measurement.utl:split('|')[1]}}",
+                "unit" : "{{%echoCode.unit}}",
+                "system" : "http://unitsofmeasure.org",
+                "code" : "{{%echoCode.unit}}"
               }
             }
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.nosografico)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & %relatedEncounter.nosografico & dataerogazione)}}",
+        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & %relatedEncounter.NOSOGRAFICO & DATAREFERTO)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
         },
