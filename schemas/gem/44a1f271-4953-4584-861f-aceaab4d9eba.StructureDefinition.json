@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient id"
     }, {
       "id" : "NYHA.DATE",
       "path" : "NYHA.DATE",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Date"
     }, {
       "id" : "NYHA.NYHA_MAX",
       "path" : "NYHA.NYHA_MAX",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "NYHA value e.g. NYHA II, NYHA III-IV"
     } ]
   }
 }

@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Patient id"
     }, {
       "id" : "PatientRecord.SESSO",
       "path" : "PatientRecord.SESSO",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Gender"
     }, {
       "id" : "PatientRecord.DATA_NASCITA",
       "path" : "PatientRecord.DATA_NASCITA",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Date of birth"
     }, {
       "id" : "PatientRecord.TITOLO_STUDIO",
       "path" : "PatientRecord.TITOLO_STUDIO",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Education level"
     }, {
       "id" : "PatientRecord.STATO_CIVILE",
       "path" : "PatientRecord.STATO_CIVILE",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Marital status"
     }, {
       "id" : "PatientRecord.Data_In_Ultimo_Contatto",
       "path" : "PatientRecord.Data_In_Ultimo_Contatto",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Last contact date in"
     }, {
       "id" : "PatientRecord.Data_Out_Ultimo_Contatto",
       "path" : "PatientRecord.Data_Out_Ultimo_Contatto",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Last contact date out"
     }, {
       "id" : "PatientRecord.Deceduto",
       "path" : "PatientRecord.Deceduto",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Is deceased"
     }, {
       "id" : "PatientRecord.Eta_Diagnosi",
       "path" : "PatientRecord.Eta_Diagnosi",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Age at diagnosis"
     }, {
       "id" : "PatientRecord.Data_Diagnosi",
       "path" : "PatientRecord.Data_Diagnosi",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Diagnosis date"
     } ]
   }
 }

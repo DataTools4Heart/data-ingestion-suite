@@ -15,7 +15,7 @@
   "context" : {
     "echoCodeMappings" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/gem/echo-code-mappings.csv"
+      "url" : "$CONTEXT_REPO/gem/echo-code-mappings-v2.csv"
     }
   },
   "variable" : [ {
@@ -54,7 +54,7 @@
                 "@sliceName" : "echoParameter"
               },
               "valueQuantity" : {
-                "value" : "{{%measurement.utl:split('|')[1]}}",
+                "value" : "{{%measurement.utl:split('|')[1].toDecimal()}}",
                 "unit" : "{{%echoCode.unit}}",
                 "system" : "http://unitsofmeasure.org",
                 "code" : "{{%echoCode.unit}}"

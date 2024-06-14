@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Patient id"
     }, {
       "id" : "Patology.Patologia",
       "path" : "Patology.Patologia",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pathology"
     }, {
       "id" : "Patology.STATUS",
       "path" : "Patology.STATUS",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Status: 1 or 0"
     }, {
       "id" : "Patology.data_in",
       "path" : "Patology.data_in",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Date"
     }, {
       "id" : "Patology.ICD9_CODES",
       "path" : "Patology.ICD9_CODES",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Comma separated ICD9 codes e.g. 570,570.*,570.**"
     } ]
   }
 }
