@@ -40,7 +40,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "effectiveDateTime" : "{{? data_in.utl:toFhirDate('yyyy-MM-dd'))}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & data_in.toString() & Patologia & now().toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & data_in.toString()}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
         },
