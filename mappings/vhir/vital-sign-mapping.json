@@ -1,35 +1,31 @@
 {
-  "id" : "lab-results-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
-  "name" : "lab-results-mapping",
-  "title" : "Mapping from OMOP Measurement to the DT4H LabResult profile",
+  "id" : "vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/vhir/vital-sign-mapping",
+  "name" : "vital-sign-mapping",
+  "title" : "Mapping of OMOP observation to DT4H Vital Sign profile",
   "source" : [ {
     "alias" : "omopMeasurement",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Measurement",
     "joinOn" : [ ]
   } ],
   "context" : {
-    "unitConversionMap" : {
+    "vitalSignUnitConversion" : {
       "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/vhir/vital-signs-unit-conversion.csv"
     },
-    "labResults" : {
+    "vitalSigns" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/vhir/vital-signs-unit-conversion.csv"
     }
   },
   "variable" : [ {
-    "name" : "labCode",
+    "name" : "vitalSignConcept",
     "language" : "text/fhirpath",
     "expression" : "trms:translateToCoding(measurement_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc')"
   }, {
-    "name" : "labQuantity",
+    "name" : "isVitalSign",
     "language" : "text/fhirpath",
-    "expression" : "mpp:convertAndReturnQuantity(%unitConversionMap, measurement_concept_id.toString(), value_as_number, unit_concept_id.toString())"
-  }, {
-    "name" : "isLabResult",
-    "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%labResults, measurement_concept_id.toString()).exists() and %labQuantity.exists()"
+    "expression" : "mpp:getConcept(%vitalSigns, measurement_concept_id.toString()).exists()"
   } ],
   "mapping" : [ {
     "expression" : {
@@ -40,34 +36,33 @@
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "laboratory",
-            "display" : "Laboratory"
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
           } ]
         } ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{%labCode.code}}",
-            "display" : "{{? %labCode.display}}",
+            "code" : "{{%vitalSignConcept.code}}",
+            "display" : "{{? %vitalSignConcept.display}}",
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{iif(measurement_datetime.empty(), measurement_date, measurement_datetime)}}",
-        "valueQuantity" : "{{%labQuantity}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "effectiveDateTime" : "{{iif(measurement_datetime.empty(),measurement_date,measurement_datetime)}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%vitalSignUnitConversion, measurement_concept_id.toString() , value_as_number, unit_concept_id.toString())}}",
         "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
         "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation"
       }
     },
     "precondition" : {
-      "name" : "isLabResult",
+      "name" : "isVitalSign",
       "language" : "text/fhirpath",
-      "expression" : "%isLabResult"
+      "expression" : "%isVitalSign and vitalSignConcept.exists()"
     }
   } ]
 }

@@ -1,0 +1,5 @@
+"source_code","target_code","target_display","code_system"
+"9201","IMP","inpatient encounter","http://terminology.hl7.org/CodeSystem/v3-ActCode"
+"9202","AMB","ambulatory","http://terminology.hl7.org/CodeSystem/v3-ActCode"
+"9203","EMER","emergency","http://terminology.hl7.org/CodeSystem/v3-ActCode"
+"262","EMAMB","emergency followed by hospitalization","https://datatools4heart.eu/fhir/CodeSystem/encounter-class"
