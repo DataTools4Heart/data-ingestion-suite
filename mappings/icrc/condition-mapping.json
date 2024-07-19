@@ -18,7 +18,7 @@
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
-            "code" : "{{code_dot.substring(0, 3) & iif(code_dot.substring(3), '.' & code_dot.substring(3), '') }}",
+            "code" : "{{code_dot}}",
             "display" : "{{? name_english}}",
             "@sliceName" : "icd10Code"
           } ]
