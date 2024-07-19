@@ -18,7 +18,7 @@
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
-            "code" : "{{code_dot}}",
+            "code" : "{{code_dot.substring(0, 3) & iif(code_dot.substring(3), '.' & code_dot.substring(3), '') }}",
             "display" : "{{? name_english}}",
             "@sliceName" : "icd10Code"
           } ]
@@ -31,7 +31,7 @@
             "code" : "active"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Condition', subject.toString() + on_set_datetime.toString() + code.toString())}}",
+        "id" : "{{mpp:getHashedId('Condition', subject.toString() + on_set_datetime.toString() + code_dot.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
