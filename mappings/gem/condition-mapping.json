@@ -34,7 +34,7 @@
             "code" : "active"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Condition', CODICE_SANITARIO.toString() & data_in.toString() & Patologia & now().toString())}}",
+        "id" : "{{mpp:getHashedId('Condition', CODICE_SANITARIO.toString() & data_in.toString() & Patologia)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]

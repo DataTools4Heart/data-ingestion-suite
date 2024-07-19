@@ -1,6 +1,6 @@
 {
   "id" : "encounter-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/vhir/encounter-mapping",
   "name" : "encounter-mapping",
   "title" : "Mapping of OMOP visit occurrence to the DT4H-Encounter profile",
   "source" : [ {
@@ -15,7 +15,7 @@
   "context" : {
     "encounterClassConceptMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/encounter-class-concept-map.csv"
+      "url" : "$CONTEXT_REPO/vhir/encounter-class-concept-map.csv"
     }
   },
   "variable" : [ {

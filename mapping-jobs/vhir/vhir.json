@@ -1,0 +1,159 @@
+{
+  "id" : "vhir",
+  "name" : "vhir",
+  "sourceSettings" : {
+    "source" : {
+      "jsonClass" : "SqlSourceSettings",
+      "name" : "vhir-data",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/vhir-data",
+      "databaseUrl" : "jdbc:postgresql://localhost:5432/vhir",
+      "username" : "postgres",
+      "password" : "password123"
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "terminologyServiceSettings" : {
+    "jsonClass" : "LocalFhirTerminologyServiceSettings",
+    "folderPath" : "./terminology-systems/DT4HTerminologyService",
+    "conceptMapFiles" : [ {
+      "id" : "icd9toicd10.csv",
+      "name" : "icd9toicd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10",
+      "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "snomedToIcd10.csv",
+      "name" : "snomedToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10",
+      "sourceValueSetUrl" : "http://snomed.info/sct",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "omopToIcd10.csv",
+      "name" : "omopToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "omopToRxNorm.csv",
+      "name" : "omopToRxNorm.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://www.nlm.nih.gov/research/umls/rxnorm"
+    }, {
+      "id" : "omopToIcd10Pcs.csv",
+      "name" : "omopToIcd10Pcs.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+    }, {
+      "id" : "omopToLoinc.csv",
+      "name" : "omopToLoinc.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://loinc.org"
+    }, {
+      "id" : "omopToSnomed.csv",
+      "name" : "omopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
+    }, {
+      "id" : "snomedToIcd10Pcs.csv",
+      "name" : "snomedToIcd10Pcs.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs",
+      "sourceValueSetUrl" : "http://snomed.info/sct",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+    }, {
+      "id" : "icd9toicd10pcs.csv",
+      "name" : "icd9toicd10pcs.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs",
+      "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+    }, {
+      "id" : "noteNlpSnomedToIcd10.csv",
+      "name" : "noteNlpSnomedToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    } ],
+    "codeSystemFiles" : [ ]
+  },
+  "mappings" : [ {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/condition-mapping",
+    "sourceContext" : {
+      "omopCondition" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "condition_occurrence",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/encounter-mapping",
+    "sourceContext" : {
+      "omopVisitOccurrence" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "visit_occurrence",
+        "options" : { }
+      },
+      "omopConditionOccurrence" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "condition_occurrence",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/lab-result-mapping",
+    "sourceContext" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "measurement",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/medication-mapping",
+    "sourceContext" : {
+      "omopDrugExposure" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "drug_exposure",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/patient-mapping",
+    "sourceContext" : {
+      "omopPerson" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "person",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/procedure-mapping",
+    "sourceContext" : {
+      "omopProcedure" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "procedure_occurrence",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/vital-sign-mapping",
+    "sourceContext" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "measurement",
+        "options" : { }
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

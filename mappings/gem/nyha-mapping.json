@@ -57,7 +57,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', iif(%relatedEncounter.NOSOGRAFICO.exists(), %relatedEncounter.NOSOGRAFICO, %relatedEncounter.NUM_PS) )}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO & DATE.toString() & NYHA_MAX & now().toString() )}}",
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO & DATE.toString() & NYHA_MAX )}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]

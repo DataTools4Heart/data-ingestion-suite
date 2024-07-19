@@ -41,7 +41,7 @@
           "text" : "No data"
         },
         "status" : "completed",
-        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & now().toString() }}",
+        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & ATC }}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]

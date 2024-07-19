@@ -1,6 +1,6 @@
 {
   "id" : "lab-results-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/vhir/lab-result-mapping",
   "name" : "lab-results-mapping",
   "title" : "Mapping from OMOP Measurement to the DT4H LabResult profile",
   "source" : [ {
@@ -11,11 +11,11 @@
   "context" : {
     "unitConversionMap" : {
       "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/vhir/lab-results-unit-conversion.csv"
     },
     "labResults" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/vhir/lab-results-unit-conversion.csv"
     }
   },
   "variable" : [ {
