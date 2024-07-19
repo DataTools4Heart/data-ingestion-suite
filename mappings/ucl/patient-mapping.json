@@ -21,7 +21,12 @@
       "value" : {
         "gender" : "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
         "birthDate" : "{{iif(birthdate.empty(), birth_datetime, birthdate)}}",
-        "deceasedDateTime" : "{{? death_datetime}}",
+        "deceasedDateTime" : "{{? %omopDeath.death_datetime}}",
+        "identifier" : [ {
+          "use" : "official",
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "value" : "{{person_id.toString()}}"
+        } ],
         "active" : true,
         "id" : "{{mpp:getHashedId('Patient',person_id.toString())}}",
         "meta" : {
