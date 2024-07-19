@@ -41,7 +41,7 @@
       },
       "echoMeasurements" : {
         "jsonClass" : "SqlSource",
-        "query" : "select \n\techodata.*,\n\tdict.code,\n\tdict.shortcut,\n\tdict.descr,\n\tdict.unit\nfrom heart_echo.tte_data echodata\nleft join heart_echo.dt4h_dict dict\non echodata.id_dict = dict.id"
+        "query" : "select \n\techodata.*,\n\tdict.code,\n\tdict.shortcut,\n\tdict.descr,\n\tdict.unit\nfrom heart_echo.tte_data echodata\nleft join heart_echo.echo_dict dict\non echodata.id_dict = dict.id"
       }
     }
   }, {
