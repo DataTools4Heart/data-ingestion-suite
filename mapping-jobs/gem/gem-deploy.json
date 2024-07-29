@@ -109,7 +109,7 @@
         "path" : "ecocardio.csv",
         "fileFormat" : "csv",
         "options" : { },
-        "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MSSITE, '_', echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo\ngroup by echo.codice_sanitario, echo.DATAREFERTO "
+        "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo\ngroup by echo.codice_sanitario, echo.DATAREFERTO "
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
