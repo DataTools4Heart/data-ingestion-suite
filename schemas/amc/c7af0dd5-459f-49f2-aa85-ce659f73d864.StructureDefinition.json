@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "VitalSignHeartRate.PatientContactId",
       "path" : "VitalSignHeartRate.PatientContactId",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "VitalSignHeartRate.ZiekenhuisLocatie",
       "path" : "VitalSignHeartRate.ZiekenhuisLocatie",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "VitalSignHeartRate.MetingHartfrequentieId",
       "path" : "VitalSignHeartRate.MetingHartfrequentieId",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Measurement Heart Rate ID"
     }, {
       "id" : "VitalSignHeartRate.AntwoordId",
       "path" : "VitalSignHeartRate.AntwoordId",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Answer ID"
     }, {
       "id" : "VitalSignHeartRate.MeetTijd",
       "path" : "VitalSignHeartRate.MeetTijd",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Measure Time"
     }, {
       "id" : "VitalSignHeartRate.MeetDatum",
       "path" : "VitalSignHeartRate.MeetDatum",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Measure Date"
     }, {
       "id" : "VitalSignHeartRate.MeetMoment",
       "path" : "VitalSignHeartRate.MeetMoment",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Measure Moment"
     }, {
       "id" : "VitalSignHeartRate.Hartfrequentie",
       "path" : "VitalSignHeartRate.Hartfrequentie",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Heart Rate"
     }, {
       "id" : "VitalSignHeartRate.Eenheid",
       "path" : "VitalSignHeartRate.Eenheid",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Unit"
     }, {
       "id" : "VitalSignHeartRate.Bron",
       "path" : "VitalSignHeartRate.Bron",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Source"
     }, {
       "id" : "VitalSignHeartRate.DCMVerverstDatumTijd",
       "path" : "VitalSignHeartRate.DCMVerverstDatumTijd",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "DCMV Refreshed Date Time"
     }, {
       "id" : "VitalSignHeartRate.uitgifteDT",
       "path" : "VitalSignHeartRate.uitgifteDT",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

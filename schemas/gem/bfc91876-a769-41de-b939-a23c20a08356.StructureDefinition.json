@@ -97,7 +97,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Measured value c"
     }, {
       "id" : "LabResultVitalSign.VALORE_MINIMO",
       "path" : "LabResultVitalSign.VALORE_MINIMO",

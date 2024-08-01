@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "Encounter.OpnameDatum",
       "path" : "Encounter.OpnameDatum",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Recording Date"
     }, {
       "id" : "Encounter.OntslagDatum",
       "path" : "Encounter.OntslagDatum",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Discharge Date"
     }, {
       "id" : "Encounter.OpnameSpecialismeCode",
       "path" : "Encounter.OpnameSpecialismeCode",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Recording Specialism Code"
     }, {
       "id" : "Encounter.OpnameSpecialisme",
       "path" : "Encounter.OpnameSpecialisme",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Recording Specialism"
     }, {
       "id" : "Encounter.OpnameSubspecialismeCode",
       "path" : "Encounter.OpnameSubspecialismeCode",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Admission Subspecialism Code"
     }, {
       "id" : "Encounter.OpnameSubspecialismeAfkorting",
       "path" : "Encounter.OpnameSubspecialismeAfkorting",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Admission Subspecialism Abbreviation"
     }, {
       "id" : "Encounter.OpnameSubspecialisme",
       "path" : "Encounter.OpnameSubspecialisme",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Admission Subspecialism"
     }, {
       "id" : "Encounter.OntslagSpecialismeCode",
       "path" : "Encounter.OntslagSpecialismeCode",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Dismissal Specialism Code"
     }, {
       "id" : "Encounter.OntslagSpecialismeAfkorting",
       "path" : "Encounter.OntslagSpecialismeAfkorting",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dismissal Specialism Abbreviation"
     }, {
       "id" : "Encounter.OntslagSpecialisme",
       "path" : "Encounter.OntslagSpecialisme",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dismissal Specialism"
     }, {
       "id" : "Encounter.OntslagSubspecialismeCode",
       "path" : "Encounter.OntslagSubspecialismeCode",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Discharge Subspecialty Code"
     }, {
       "id" : "Encounter.OntslagSubspecialismeAfkorting",
       "path" : "Encounter.OntslagSubspecialismeAfkorting",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dismissal Subspecialism Abbreviation"
     }, {
       "id" : "Encounter.OntslagSubspecialisme",
       "path" : "Encounter.OntslagSubspecialisme",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dismissal Subspecialism"
     }, {
       "id" : "Encounter.ziekenhuislocatie",
       "path" : "Encounter.ziekenhuislocatie",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "Encounter.VerwijzendZorgverlenerType",
       "path" : "Encounter.VerwijzendZorgverlenerType",
@@ -162,7 +177,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Referring Caregiver Type"
     }, {
       "id" : "Encounter.VerwijzendZorgverlenerIsIntern",
       "path" : "Encounter.VerwijzendZorgverlenerIsIntern",
@@ -171,7 +187,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Referring Care Provider Is Intern?"
     }, {
       "id" : "Encounter.Opnametype",
       "path" : "Encounter.Opnametype",
@@ -180,7 +197,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Recording Type"
     }, {
       "id" : "Encounter.Patientcontactid",
       "path" : "Encounter.Patientcontactid",
@@ -189,7 +207,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "Encounter.uitgifteDT",
       "path" : "Encounter.uitgifteDT",
@@ -198,7 +217,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "VitalSignLength.PatientContactId",
       "path" : "VitalSignLength.PatientContactId",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "VitalSignLength.ZiekenhuisLocatie",
       "path" : "VitalSignLength.ZiekenhuisLocatie",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "VitalSignLength.MetingLichaamsLengteId",
       "path" : "VitalSignLength.MetingLichaamsLengteId",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Measurement Body Height ID"
     }, {
       "id" : "VitalSignLength.AntwoordId",
       "path" : "VitalSignLength.AntwoordId",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Answer ID"
     }, {
       "id" : "VitalSignLength.MeetTijd",
       "path" : "VitalSignLength.MeetTijd",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Measure Time"
     }, {
       "id" : "VitalSignLength.MeetDatum",
       "path" : "VitalSignLength.MeetDatum",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Measure Date"
     }, {
       "id" : "VitalSignLength.MeetMoment",
       "path" : "VitalSignLength.MeetMoment",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Measure Moment"
     }, {
       "id" : "VitalSignLength.LichaamsLengte",
       "path" : "VitalSignLength.LichaamsLengte",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Body Length"
     }, {
       "id" : "VitalSignLength.Eenheid",
       "path" : "VitalSignLength.Eenheid",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Unit"
     }, {
       "id" : "VitalSignLength.Bron",
       "path" : "VitalSignLength.Bron",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Source"
     }, {
       "id" : "VitalSignLength.DCMVerverstDatumTijd",
       "path" : "VitalSignLength.DCMVerverstDatumTijd",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "DCMV Refreshed Date Time"
     }, {
       "id" : "VitalSignLength.uitgifteDT",
       "path" : "VitalSignLength.uitgifteDT",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

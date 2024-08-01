@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "HistoryCondition.RegistratieDatum",
       "path" : "HistoryCondition.RegistratieDatum",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Registration Date"
     }, {
       "id" : "HistoryCondition.diagnosecode",
       "path" : "HistoryCondition.diagnosecode",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Diagnosis Code"
     }, {
       "id" : "HistoryCondition.DiagnoseOmschrijving",
       "path" : "HistoryCondition.DiagnoseOmschrijving",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Diagnosis Description"
     }, {
       "id" : "HistoryCondition.IndicatieDatumVaststelling",
       "path" : "HistoryCondition.IndicatieDatumVaststelling",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Indication Date Determination"
     }, {
       "id" : "HistoryCondition.Bron",
       "path" : "HistoryCondition.Bron",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Source"
     }, {
       "id" : "HistoryCondition.ziekenhuislocatie",
       "path" : "HistoryCondition.ziekenhuislocatie",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "HistoryCondition.Patientcontactid",
       "path" : "HistoryCondition.Patientcontactid",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "HistoryCondition.uitgifteDT",
       "path" : "HistoryCondition.uitgifteDT",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "VitalSign.MeetDatum",
       "path" : "VitalSign.MeetDatum",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Measure Date"
     }, {
       "id" : "VitalSign.VitaleGegevensLengte",
       "path" : "VitalSign.VitaleGegevensLengte",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Vital Data Length"
     }, {
       "id" : "VitalSign.VitaleGegevensGewicht",
       "path" : "VitalSign.VitaleGegevensGewicht",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Vital Data Weight"
     }, {
       "id" : "VitalSign.VitaleGegevensBMIberekening",
       "path" : "VitalSign.VitaleGegevensBMIberekening",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Vital Data BMI Calculation"
     }, {
       "id" : "VitalSign.VitaleGegevensPolsslag",
       "path" : "VitalSign.VitaleGegevensPolsslag",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Vital Data Pulse"
     }, {
       "id" : "VitalSign.VitaleGegevensBloeddrukSysDia",
       "path" : "VitalSign.VitaleGegevensBloeddrukSysDia",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Vital Data Blood Pressure Sys. Dia."
     }, {
       "id" : "VitalSign.ZiekenhuisLocatie",
       "path" : "VitalSign.ZiekenhuisLocatie",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "VitalSign.Patientcontactid",
       "path" : "VitalSign.Patientcontactid",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "VitalSign.uitgifteDT",
       "path" : "VitalSign.uitgifteDT",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

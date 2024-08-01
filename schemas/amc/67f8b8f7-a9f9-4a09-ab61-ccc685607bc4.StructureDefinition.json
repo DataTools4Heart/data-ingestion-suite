@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "CauseOfDeath.MeetDatum",
       "path" : "CauseOfDeath.MeetDatum",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Measure Date"
     }, {
       "id" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
       "path" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Probable Cause of Death"
     }, {
       "id" : "CauseOfDeath.VermoedelijkeDoodsoorzaakSpecifiek",
       "path" : "CauseOfDeath.VermoedelijkeDoodsoorzaakSpecifiek",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Probable Cause of Death Specific"
     }, {
       "id" : "CauseOfDeath.NatuurlijkeDood",
       "path" : "CauseOfDeath.NatuurlijkeDood",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : " Death by Natural Causes"
     }, {
       "id" : "CauseOfDeath.ziekenhuislocatie",
       "path" : "CauseOfDeath.ziekenhuislocatie",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : " Hospital Location"
     }, {
       "id" : "CauseOfDeath.Patientcontactid",
       "path" : "CauseOfDeath.Patientcontactid",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "CauseOfDeath.uitgifteDT",
       "path" : "CauseOfDeath.uitgifteDT",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

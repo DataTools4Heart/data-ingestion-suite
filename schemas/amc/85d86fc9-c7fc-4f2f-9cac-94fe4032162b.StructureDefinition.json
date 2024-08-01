@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "ProcedureSurgery.ZittingStartDatum",
       "path" : "ProcedureSurgery.ZittingStartDatum",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Session Start Date"
     }, {
       "id" : "ProcedureSurgery.Verrichting",
       "path" : "ProcedureSurgery.Verrichting",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Operation"
     }, {
       "id" : "ProcedureSurgery.VerrichtingCode",
       "path" : "ProcedureSurgery.VerrichtingCode",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Operation Code"
     }, {
       "id" : "ProcedureSurgery.DbcDiagnose",
       "path" : "ProcedureSurgery.DbcDiagnose",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dbc Diagnosis"
     }, {
       "id" : "ProcedureSurgery.DbcDiagnosecode",
       "path" : "ProcedureSurgery.DbcDiagnosecode",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Dbc Diagnosis Code"
     }, {
       "id" : "ProcedureSurgery.ZorgtrajectOmschrijving",
       "path" : "ProcedureSurgery.ZorgtrajectOmschrijving",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Care Process Description"
     }, {
       "id" : "ProcedureSurgery.AantalGekoppeldeSubtrajecten",
       "path" : "ProcedureSurgery.AantalGekoppeldeSubtrajecten",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Number of Linked Subpaths"
     }, {
       "id" : "ProcedureSurgery.AantalOKVerrichtingenUitgevoerd",
       "path" : "ProcedureSurgery.AantalOKVerrichtingenUitgevoerd",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Number of OK Operations Performed"
     }, {
       "id" : "ProcedureSurgery.IsHoofdverrichting",
       "path" : "ProcedureSurgery.IsHoofdverrichting",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Is Main Operation?"
     }, {
       "id" : "ProcedureSurgery.Lateraliteit",
       "path" : "ProcedureSurgery.Lateraliteit",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Laterality"
     }, {
       "id" : "ProcedureSurgery.HoofdoperateurPanelSpecialisme",
       "path" : "ProcedureSurgery.HoofdoperateurPanelSpecialisme",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Chief Operator Panel Specialism"
     }, {
       "id" : "ProcedureSurgery.HoofdoperateurPanelOKSpecialisme",
       "path" : "ProcedureSurgery.HoofdoperateurPanelOKSpecialisme",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Chief Operator Panel OK Specialism"
     }, {
       "id" : "ProcedureSurgery.HoofdoperateurPanelSubspecialisme",
       "path" : "ProcedureSurgery.HoofdoperateurPanelSubspecialisme",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Chief Operator Panel Subspecialism"
     }, {
       "id" : "ProcedureSurgery.ziekenhuislocatie",
       "path" : "ProcedureSurgery.ziekenhuislocatie",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "ProcedureSurgery.uitgifteDT",
       "path" : "ProcedureSurgery.uitgifteDT",
@@ -162,7 +177,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }
