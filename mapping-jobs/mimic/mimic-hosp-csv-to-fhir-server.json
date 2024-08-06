@@ -246,16 +246,6 @@
       }
     }
   }, {
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/prescriptions",
-    "sourceContext" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/prescriptions.csv",
-        "fileFormat" : "csv",
-        "options" : { }
-      }
-    }
-  }, {
     "mappingRef" : "https://mimic.mit.edu/fhir/mappings/procedures-icd",
     "sourceContext" : {
       "procedures" : {
@@ -287,15 +277,6 @@
       "emarDetail" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/emar_detail.csv",
-        "options" : { }
-      }
-    }
-  }, {
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/poe",
-    "sourceContext" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/poe.csv",
         "options" : { }
       }
     }
