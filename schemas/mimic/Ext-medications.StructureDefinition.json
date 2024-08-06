@@ -96,23 +96,23 @@
       "path" : "Ext-medications.drug",
       "min" : 1,
       "max" : "1",
-      "short": "Drug name",
-      "definition": "A free-text description of the medication administered.",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "A free-text description of the medication administered.",
+      "short" : "Drug name"
     }, {
       "id" : "Ext-medications.formulary_drug_cd",
       "path" : "Ext-medications.formulary_drug_cd",
       "min" : 0,
       "max" : "1",
-      "short": "Drug formula code",
-      "definition": "A hospital specific ontology used to order drugs from the formulary.",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "A hospital specific ontology used to order drugs from the formulary.",
+      "short" : "Drug formula code"
     }, {
       "id" : "Ext-medications.gsn",
       "path" : "Ext-medications.gsn",
@@ -127,23 +127,23 @@
       "path" : "Ext-medications.ndc",
       "min" : 0,
       "max" : "1",
-      "short": "NDC",
-      "definition": "The National Drug Code (NDC), a coded identifier which uniquely identifiers medications",
       "type" : [ {
         "code" : "integer64",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
-      } ]
+      } ],
+      "definition" : "The National Drug Code (NDC), a coded identifier which uniquely identifiers medications",
+      "short" : "NDC"
     }, {
       "id" : "Ext-medications.prod_strength",
       "path" : "Ext-medications.prod_strength",
       "min" : 0,
       "max" : "1",
-      "short": "Product strength",
-      "definition": "A free-text description of the composition of the prescribed medication (e.g. ‘12 mg / 0.8 mL Oral Syringe’, ‘12.5mg Tablet’, etc).",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "A free-text description of the composition of the prescribed medication (e.g. ‘12 mg / 0.8 mL Oral Syringe’, ‘12.5mg Tablet’, etc).",
+      "short" : "Product strength"
     }, {
       "id" : "Ext-medications.form_rx",
       "path" : "Ext-medications.form_rx",
@@ -185,12 +185,12 @@
       "path" : "Ext-medications.form_unit_disp",
       "min" : 0,
       "max" : "1",
-      "short": "Form unit",
-      "definition": "The unit of measurement used for the formulary dosage",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "The unit of measurement used for the formulary dosage",
+      "short" : "Form unit"
     }, {
       "id" : "Ext-medications.doses_per_24_hrs",
       "path" : "Ext-medications.doses_per_24_hrs",
