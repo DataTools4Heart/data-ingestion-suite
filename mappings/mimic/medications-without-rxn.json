@@ -11,7 +11,7 @@
   "context" : {
     "ndcToMedDetails" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/hosp/ndcToMedDetails.csv"
+      "url" : "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
     }
   },
   "variable" : [ ],

@@ -32,11 +32,11 @@
           "identifier": [
             {
               "{{#gsn}}": "{{gsn}}",
-               "{{?}}": {
-                 "use": "official",
-                 "system": "http://www.fdbhealth.com/gsn",
-                 "value": "{{%gsn.toString()}}"
-               }
+              "{{?}}": {
+                "use": "official",
+                "system": "http://www.fdbhealth.com/gsn",
+                "value": "{{%gsn.toString()}}"
+              }
             }
           ],
           "code": {
@@ -61,12 +61,12 @@
           },
           "doseForm": {
             "coding": {
-                "{{#dfc}}": "{{%medDetails.doseFormConcept}}",
-                "{{*}}": {
-                  "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                  "code": "{{%dfc.doseFormRxcui}}",
-                  "display": "{{? %dfc.doseFormName}}"
-                }
+              "{{#dfc}}": "{{%medDetails.doseFormConcept}}",
+              "{{*}}": {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "{{%dfc.doseFormRxcui}}",
+                "display": "{{? %dfc.doseFormName}}"
+              }
             },
             "text": "{{? prod_strength}}"
           },

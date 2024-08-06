@@ -1,71 +1,69 @@
 {
-  "id": "emar",
-  "url": "https://mimic.mit.edu/fhir/mappings/emar",
-  "name": "emar",
-  "title": "Mapping of entries in 'emar' and 'emar_detail' tables in MIMIC-IV v2.0 dataset into FHIR MedicationAdministration resources.",
-  "source": [
-    {
-      "alias": "emar",
-      "url": "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar",
-      "joinOn": [
-        "poe_id", "emar_id"
-      ]
-    },
-    {
-      "alias": "prescription",
-      "url": "https://mimic.mit.edu/fhir/StructureDefinition/Ext-prescriptions",
-      "joinOn": [
-        "poe_id", null
-      ]
-    },
-    {
-      "alias": "emarDetail",
-      "url": "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar-detail",
-      "joinOn": [
-        null, "emar_id"
-      ]
+  "id" : "emar",
+  "url" : "https://mimic.mit.edu/fhir/mappings/emar",
+  "name" : "emar",
+  "title" : "Mapping of entries in 'emar' and 'emar_detail' tables in MIMIC-IV v2.0 dataset into FHIR MedicationAdministration resources.",
+  "source" : [ {
+    "alias" : "emar",
+    "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar",
+    "joinOn" : [ "emar_id" ]
+  }, {
+    "alias" : "emarDetail",
+    "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar-detail",
+    "joinOn" : [ "emar_id" ]
+  } ],
+  "context" : {
+    "statusCodeConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/mimic/medication-administration-status.csv"
     }
-  ],
-  "mapping": [
-    {
-      "expression": {
-        "name": "medication-administration-mapping",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "MedicationAdministration",
-          "id": "{{mpp:getHashedId('MedicationAdministration',emar_id.toString())}}",
-          "identifier": [
-            {
-              "use": "official",
-              "system": "{{%sourceSystem.sourceUri}}/fhir/emar_seq",
-              "value": "{{emar_seq.toString()}}"
-            }
-          ],
-          "status": "{{}}",
-          "medication": {
-            "reference": {
-              "reference": "{{}}",
-              "display": "{{? medication}}",
-              "type": "Medication"
-            }
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
-          "occurenceDateTime": "{{charttime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
-          "request": "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', poe_id.toString())}}",
-          "dosage": {
-            "site": "{{}}",
-            "route": "{{}}",
-            "dose": {
-              "value": 500,
-              "unit": "mg",
-              "system": "http://unitsofmeasure.org",
-              "code": "mg"
-            },
-            "rateRatio": {}
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "medication-administration-mapping",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "reference" : {
+            "reference" : "{{? mpp:createFhirReferenceWithHashedId('Medication', pharmacy_id.toString()).reference}}",
+            "display" : "{{? medication}}"
           }
-        }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
+        "occurenceDateTime" : "{{charttime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+        "dosage" : {
+          "site" : {
+            "text" : "{{? %emarDetail.site.first()}}"
+          },
+          "route" : {
+            "coding" : "{{? trms:translateToCoding(%emarDetail.route, 'https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-route-codes-to-snomed')}}"
+          },
+          "dose" : {
+            "value" : "{{%emarDetail.dose_given.where($this.exists()).aggregate($this + $total, 0)}}",
+            "unit" : "{{? %emarDetail.dose_given_unit.where($this.exists()).first()}}",
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{? %emarDetail.dose_given_unit.where($this.exists()).first()}}"
+          },
+          "rateQuantity" : {
+            "value" : "{{? %emarDetail.infusion_rate}}",
+            "unit" : "{{? %emarDetail.infusion_rate_unit}}"
+          }
+        },
+        "identifier" : [ {
+          "use" : "official",
+          "system" : "{{%sourceSystem.sourceUri}}/fhir/emar_id",
+          "value" : "{{emar_id.toString()}}"
+        } ],
+        "status" : "{{ mpp:getConcept(%statusCodeConceptMap, event_txt, 'target_code') }}",
+        "request" : "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', poe_id.toString())}}",
+        "id" : "{{mpp:getHashedId('MedicationAdministration',emar_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration"
       }
     }
-  ]
+  } ]
 }
