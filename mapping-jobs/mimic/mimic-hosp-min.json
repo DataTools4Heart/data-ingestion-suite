@@ -115,14 +115,36 @@
         "path" : "hosp/min-emar.csv",
         "options" : { }
       },
-      "prescription" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/min-prescriptions.csv",
-        "options" : { }
-      },
       "emarDetail" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/min-emar_detail.csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications",
+    "sourceContext" : {
+      "prescribed_meds" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hosp/min-prescriptions.csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
+    "sourceContext" : {
+      "prescribed_meds" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hosp/min-prescriptions.csv",
+        "options" : { }
+      }
+    }
+  }, {
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/prescriptions",
+    "sourceContext" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hosp/min-prescriptions.csv",
         "options" : { }
       }
     }
