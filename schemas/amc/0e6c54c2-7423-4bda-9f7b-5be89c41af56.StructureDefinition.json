@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Caregiver Code Pseudo"
     }, {
       "id" : "MedicationPrescription.pseudo_id",
       "path" : "MedicationPrescription.pseudo_id",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "MedicationPrescription.Ziekenhuislocatie",
       "path" : "MedicationPrescription.Ziekenhuislocatie",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "MedicationPrescription.VoorschriftId",
       "path" : "MedicationPrescription.VoorschriftId",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Prescription ID"
     }, {
       "id" : "MedicationPrescription.PatientContactId",
       "path" : "MedicationPrescription.PatientContactId",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "MedicationPrescription.SpecialismeCode",
       "path" : "MedicationPrescription.SpecialismeCode",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Specialism Code"
     }, {
       "id" : "MedicationPrescription.SpecialismeAfkorting",
       "path" : "MedicationPrescription.SpecialismeAfkorting",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Specialism Abbreviation"
     }, {
       "id" : "MedicationPrescription.SpecialismeOmschrijving",
       "path" : "MedicationPrescription.SpecialismeOmschrijving",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Specialism Description"
     }, {
       "id" : "MedicationPrescription.SubSpecialismeCode",
       "path" : "MedicationPrescription.SubSpecialismeCode",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Subspecialty Code"
     }, {
       "id" : "MedicationPrescription.SubSpecialismeAfkorting",
       "path" : "MedicationPrescription.SubSpecialismeAfkorting",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Subspecialty Abbreviation"
     }, {
       "id" : "MedicationPrescription.SubSpecialismeOmschrijving",
       "path" : "MedicationPrescription.SubSpecialismeOmschrijving",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Subspecialty Description"
     }, {
       "id" : "MedicationPrescription.VoorschrijfDatumTijd",
       "path" : "MedicationPrescription.VoorschrijfDatumTijd",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Prescription Date Time"
     }, {
       "id" : "MedicationPrescription.VoorschrijfDatum",
       "path" : "MedicationPrescription.VoorschrijfDatum",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Prescription Date"
     }, {
       "id" : "MedicationPrescription.VoorschrijfTijd",
       "path" : "MedicationPrescription.VoorschrijfTijd",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Prescription Time"
     }, {
       "id" : "MedicationPrescription.StartDatumTijd",
       "path" : "MedicationPrescription.StartDatumTijd",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Start Date Time"
     }, {
       "id" : "MedicationPrescription.StartDatum",
       "path" : "MedicationPrescription.StartDatum",
@@ -162,7 +177,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Start Date"
     }, {
       "id" : "MedicationPrescription.StartTijd",
       "path" : "MedicationPrescription.StartTijd",
@@ -171,7 +187,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Start Time"
     }, {
       "id" : "MedicationPrescription.StopDatumTijd",
       "path" : "MedicationPrescription.StopDatumTijd",
@@ -180,7 +197,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Stop Date Time"
     }, {
       "id" : "MedicationPrescription.StopDatum",
       "path" : "MedicationPrescription.StopDatum",
@@ -189,7 +207,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Stop Date"
     }, {
       "id" : "MedicationPrescription.StopTijd",
       "path" : "MedicationPrescription.StopTijd",
@@ -198,7 +217,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Stop Time"
     }, {
       "id" : "MedicationPrescription.WerkplekCode",
       "path" : "MedicationPrescription.WerkplekCode",
@@ -207,7 +227,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Workplace Code"
     }, {
       "id" : "MedicationPrescription.WerkplekAfkorting",
       "path" : "MedicationPrescription.WerkplekAfkorting",
@@ -216,7 +237,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Workplace Abbreviation"
     }, {
       "id" : "MedicationPrescription.WerkplekOmschrijving",
       "path" : "MedicationPrescription.WerkplekOmschrijving",
@@ -225,7 +247,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Workplace Description"
     }, {
       "id" : "MedicationPrescription.ZorgverlenerSpecialismecode",
       "path" : "MedicationPrescription.ZorgverlenerSpecialismecode",
@@ -234,7 +257,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Healthcare Provider Specialty Code"
     }, {
       "id" : "MedicationPrescription.MedicatieArtikelCode",
       "path" : "MedicationPrescription.MedicatieArtikelCode",
@@ -243,7 +267,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Medication Item Code"
     }, {
       "id" : "MedicationPrescription.MedicatieArtikelNaam",
       "path" : "MedicationPrescription.MedicatieArtikelNaam",
@@ -252,7 +277,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Medication Item Name"
     }, {
       "id" : "MedicationPrescription.MedicatieGeneriekeCode",
       "path" : "MedicationPrescription.MedicatieGeneriekeCode",
@@ -261,7 +287,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Medication Generic Code"
     }, {
       "id" : "MedicationPrescription.MedicatieGeneriekeNaam",
       "path" : "MedicationPrescription.MedicatieGeneriekeNaam",
@@ -270,7 +297,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Medication Generic Name"
     }, {
       "id" : "MedicationPrescription.MedicatieStofnaam",
       "path" : "MedicationPrescription.MedicatieStofnaam",
@@ -279,7 +307,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Medication Substance Name"
     }, {
       "id" : "MedicationPrescription.FarmaceutischeKlasse",
       "path" : "MedicationPrescription.FarmaceutischeKlasse",
@@ -288,7 +317,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pharmaceutical Class"
     }, {
       "id" : "MedicationPrescription.FarmaceutischeSubklasse",
       "path" : "MedicationPrescription.FarmaceutischeSubklasse",
@@ -297,7 +327,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pharmaceutical Subclass"
     }, {
       "id" : "MedicationPrescription.TherapeutischeKlasse",
       "path" : "MedicationPrescription.TherapeutischeKlasse",
@@ -306,7 +337,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Therapeutic Class"
     }, {
       "id" : "MedicationPrescription.OrderKlasseId",
       "path" : "MedicationPrescription.OrderKlasseId",
@@ -315,7 +347,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Order Class ID"
     }, {
       "id" : "MedicationPrescription.OrderKlasseOmschrijving",
       "path" : "MedicationPrescription.OrderKlasseOmschrijving",
@@ -324,7 +357,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Order Class Description"
     }, {
       "id" : "MedicationPrescription.OrderStatus",
       "path" : "MedicationPrescription.OrderStatus",
@@ -333,7 +367,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Order Status"
     }, {
       "id" : "MedicationPrescription.OrderStatusCode",
       "path" : "MedicationPrescription.OrderStatusCode",
@@ -342,7 +377,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Order Status Code"
     }, {
       "id" : "MedicationPrescription.OrderOmschrijving",
       "path" : "MedicationPrescription.OrderOmschrijving",
@@ -351,7 +387,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Order Description"
     }, {
       "id" : "MedicationPrescription.VorigeVoorschriftId",
       "path" : "MedicationPrescription.VorigeVoorschriftId",
@@ -360,7 +397,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Previous Prescription ID"
     }, {
       "id" : "MedicationPrescription.KlinischPoliklinische",
       "path" : "MedicationPrescription.KlinischPoliklinische",
@@ -369,7 +407,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Clinical Outpatient"
     }, {
       "id" : "MedicationPrescription.IsThuisMedicatie",
       "path" : "MedicationPrescription.IsThuisMedicatie",
@@ -378,7 +417,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Is Thuis Medication?"
     }, {
       "id" : "MedicationPrescription.ATCCode",
       "path" : "MedicationPrescription.ATCCode",
@@ -387,7 +427,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ATC Code"
     }, {
       "id" : "MedicationPrescription.ATCKlasse",
       "path" : "MedicationPrescription.ATCKlasse",
@@ -396,7 +437,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ATC Class"
     }, {
       "id" : "MedicationPrescription.ATCKlasseCode",
       "path" : "MedicationPrescription.ATCKlasseCode",
@@ -405,7 +447,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ATC Class Code"
     }, {
       "id" : "MedicationPrescription.MedicatieFrequentieCode",
       "path" : "MedicationPrescription.MedicatieFrequentieCode",
@@ -414,7 +457,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Medication Frequency Code"
     }, {
       "id" : "MedicationPrescription.MedicatieFrequentieOmschrijving",
       "path" : "MedicationPrescription.MedicatieFrequentieOmschrijving",
@@ -423,7 +467,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Medication Frequency Description"
     }, {
       "id" : "MedicationPrescription.ToedieningsRoute",
       "path" : "MedicationPrescription.ToedieningsRoute",
@@ -432,7 +477,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Administration Route"
     }, {
       "id" : "MedicationPrescription.ToedieningsRouteCode",
       "path" : "MedicationPrescription.ToedieningsRouteCode",
@@ -441,7 +487,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Administration Route Code"
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenEenheidOmschrijving",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenEenheidOmschrijving",
@@ -450,7 +497,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dosage Prescribed Unit Description"
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenEenheidCode",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenEenheidCode",
@@ -459,7 +507,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Dosage Prescribed Unit Code"
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenMin",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenMin",
@@ -468,7 +517,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dosage Prescribed Minimum"
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenMax",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenMax",
@@ -477,7 +527,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dosage Prescribed Maximum"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendEenheidOmschrijving",
       "path" : "MedicationPrescription.DoseringBerekendEenheidOmschrijving",
@@ -486,7 +537,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dosage Calculated Unit Description"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendEenheidCode",
       "path" : "MedicationPrescription.DoseringBerekendEenheidCode",
@@ -495,7 +547,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Dosage Calculated Unit Code"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendMin",
       "path" : "MedicationPrescription.DoseringBerekendMin",
@@ -504,7 +557,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dosage Calculated Minimum"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendMax",
       "path" : "MedicationPrescription.DoseringBerekendMax",
@@ -513,7 +567,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dosage Calculated Maximum"
     }, {
       "id" : "MedicationPrescription.DoseringBerekeningsinformatie",
       "path" : "MedicationPrescription.DoseringBerekeningsinformatie",
@@ -522,7 +577,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Dosage Calculation Information"
     }, {
       "id" : "MedicationPrescription.VolumeEenheidOmschrijving",
       "path" : "MedicationPrescription.VolumeEenheidOmschrijving",
@@ -531,7 +587,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Volume Unit Description"
     }, {
       "id" : "MedicationPrescription.VolumeEenheidCode",
       "path" : "MedicationPrescription.VolumeEenheidCode",
@@ -540,7 +597,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Volume Unit Code"
     }, {
       "id" : "MedicationPrescription.Volume",
       "path" : "MedicationPrescription.Volume",
@@ -549,7 +607,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Volume"
     }, {
       "id" : "MedicationPrescription.GewichtPatientKg",
       "path" : "MedicationPrescription.GewichtPatientKg",
@@ -558,7 +617,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Weight Patient Kg"
     }, {
       "id" : "MedicationPrescription.Bron",
       "path" : "MedicationPrescription.Bron",
@@ -567,7 +627,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Source"
     }, {
       "id" : "MedicationPrescription.DCMVerverstDatumTijd",
       "path" : "MedicationPrescription.DCMVerverstDatumTijd",
@@ -576,7 +637,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "DCMV Refreshed Date Time"
     }, {
       "id" : "MedicationPrescription.uitgifteDT",
       "path" : "MedicationPrescription.uitgifteDT",
@@ -585,7 +647,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

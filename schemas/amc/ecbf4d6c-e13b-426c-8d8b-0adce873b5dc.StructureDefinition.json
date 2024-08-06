@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "EncounterEmergency.SEHOpnameDatum",
       "path" : "EncounterEmergency.SEHOpnameDatum",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "ER Admission Date"
     }, {
       "id" : "EncounterEmergency.SEHVertrekDatum",
       "path" : "EncounterEmergency.SEHVertrekDatum",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "ER Departure Date"
     }, {
       "id" : "EncounterEmergency.SEHSubSpecialisme",
       "path" : "EncounterEmergency.SEHSubSpecialisme",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ER Sub Specialism"
     }, {
       "id" : "EncounterEmergency.HoofdSEHKlacht",
       "path" : "EncounterEmergency.HoofdSEHKlacht",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Main ER Complaint"
     }, {
       "id" : "EncounterEmergency.HoofdSEHIngangsklacht",
       "path" : "EncounterEmergency.HoofdSEHIngangsklacht",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Main ER Entrance Complaint"
     }, {
       "id" : "EncounterEmergency.BestemmingNaSEH",
       "path" : "EncounterEmergency.BestemmingNaSEH",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Destination After ER"
     }, {
       "id" : "EncounterEmergency.VerwijzendZorgverlenerType",
       "path" : "EncounterEmergency.VerwijzendZorgverlenerType",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Referring Caregiver Type"
     }, {
       "id" : "EncounterEmergency.IsEHHtraject",
       "path" : "EncounterEmergency.IsEHHtraject",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Is EHH Process?"
     }, {
       "id" : "EncounterEmergency.ziekenhuislocatie",
       "path" : "EncounterEmergency.ziekenhuislocatie",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "EncounterEmergency.Patientcontactid",
       "path" : "EncounterEmergency.Patientcontactid",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "EncounterEmergency.uitgifteDT",
       "path" : "EncounterEmergency.uitgifteDT",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

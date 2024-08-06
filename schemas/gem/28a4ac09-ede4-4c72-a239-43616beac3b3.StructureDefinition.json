@@ -107,7 +107,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "New association"
     }, {
       "id" : "Medication.CLASSE_RACCOMANDAZIONE",
       "path" : "Medication.CLASSE_RACCOMANDAZIONE",
@@ -116,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Class recommendation"
     }, {
       "id" : "Medication.FOUR_PILLARS_NEW",
       "path" : "Medication.FOUR_PILLARS_NEW",
@@ -125,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Four pillars new"
     }, {
       "id" : "Medication.DIURETICO_TIAZIDICO",
       "path" : "Medication.DIURETICO_TIAZIDICO",
@@ -134,7 +137,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Thiadium diuretic"
     } ]
   }
 }

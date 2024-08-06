@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "ECG.EcgMetingId",
       "path" : "ECG.EcgMetingId",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Ecg Measurement ID"
     }, {
       "id" : "ECG.EcgAfnameDatumTijd",
       "path" : "ECG.EcgAfnameDatumTijd",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Ecg Collection Date Time"
     }, {
       "id" : "ECG.PR_Interval_in_medianbeat",
       "path" : "ECG.PR_Interval_in_medianbeat",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "PR Interval in Median Beat"
     }, {
       "id" : "ECG.PR_Interval_in_rest",
       "path" : "ECG.PR_Interval_in_rest",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "PR Interval in Rest"
     }, {
       "id" : "ECG.VentricularRate_in_medianbeat",
       "path" : "ECG.VentricularRate_in_medianbeat",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Ventricular Rate in Median Beat"
     }, {
       "id" : "ECG.VentricularRate_in_rest",
       "path" : "ECG.VentricularRate_in_rest",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Ventricular Rate in Rest"
     }, {
       "id" : "ECG.Avg_RR_Interval",
       "path" : "ECG.Avg_RR_Interval",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Average RR Interval"
     }, {
       "id" : "ECG.QRS_Duration_in_medianbeat",
       "path" : "ECG.QRS_Duration_in_medianbeat",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QRS Duration in Median Beat"
     }, {
       "id" : "ECG.QRS_Duration_in_rest",
       "path" : "ECG.QRS_Duration_in_rest",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QRS Duration in Rest"
     }, {
       "id" : "ECG.QTc_Bazett_in_medianbeat",
       "path" : "ECG.QTc_Bazett_in_medianbeat",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QTc Bazett in Median Beat"
     }, {
       "id" : "ECG.QT_Interval_in_medianbeat",
       "path" : "ECG.QT_Interval_in_medianbeat",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QT Interval in Median Beat"
     }, {
       "id" : "ECG.QT_Interval_in_rest",
       "path" : "ECG.QT_Interval_in_rest",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QT Interval in Rest"
     }, {
       "id" : "ECG.P_Axis_in_rest",
       "path" : "ECG.P_Axis_in_rest",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "P Axis in Rest"
     }, {
       "id" : "ECG.R_Axis_in_rest",
       "path" : "ECG.R_Axis_in_rest",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "R Axis in Rest"
     }, {
       "id" : "ECG.T_Axis_in_rest",
       "path" : "ECG.T_Axis_in_rest",
@@ -162,7 +177,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "T Axis in Rest"
     }, {
       "id" : "ECG.SystolicBP_in_rest",
       "path" : "ECG.SystolicBP_in_rest",
@@ -171,7 +187,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Systolic BP in Rest"
     }, {
       "id" : "ECG.DiastolicBP_in_rest",
       "path" : "ECG.DiastolicBP_in_rest",
@@ -180,7 +197,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Diastolic BP in Rest"
     }, {
       "id" : "ECG.AtrialRate_in_rest",
       "path" : "ECG.AtrialRate_in_rest",
@@ -189,7 +207,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Atrial Rate in Rest"
     }, {
       "id" : "ECG.QTcFramingham_in_rest",
       "path" : "ECG.QTcFramingham_in_rest",
@@ -198,7 +217,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QTc Framingham in Rest"
     }, {
       "id" : "ECG.QTcFredericia_in_rest",
       "path" : "ECG.QTcFredericia_in_rest",
@@ -207,7 +227,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QTc Fredericia in Rest"
     }, {
       "id" : "ECG.QTCCalculation_in_rest",
       "path" : "ECG.QTCCalculation_in_rest",
@@ -216,7 +237,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "QTC Calculation in Rest"
     }, {
       "id" : "ECG.ECGSampleBase_in_rest",
       "path" : "ECG.ECGSampleBase_in_rest",
@@ -225,7 +247,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "ECG Sample Base in Rest"
     }, {
       "id" : "ECG.uitgifteDT",
       "path" : "ECG.uitgifteDT",
@@ -234,7 +257,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

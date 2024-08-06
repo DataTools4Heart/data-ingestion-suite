@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "Procedure.VerrichtingId",
       "path" : "Procedure.VerrichtingId",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Transaction ID"
     }, {
       "id" : "Procedure.Verrichtingdatum",
       "path" : "Procedure.Verrichtingdatum",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Transaction Date"
     }, {
       "id" : "Procedure.VerrichtingCode",
       "path" : "Procedure.VerrichtingCode",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Operation Code"
     }, {
       "id" : "Procedure.Verrichting",
       "path" : "Procedure.Verrichting",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Operation"
     }, {
       "id" : "Procedure.Ziekenhuislocatie",
       "path" : "Procedure.Ziekenhuislocatie",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "Procedure.PatientContactId",
       "path" : "Procedure.PatientContactId",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "Procedure.LeeftijdInJarenOpMomentVanVerrichting",
       "path" : "Procedure.LeeftijdInJarenOpMomentVanVerrichting",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Age in Years at Moment of Action"
     }, {
       "id" : "Procedure.SubtrajectId",
       "path" : "Procedure.SubtrajectId",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Subtrack ID"
     }, {
       "id" : "Procedure.OKZittingsnummer",
       "path" : "Procedure.OKZittingsnummer",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "OK Session Number"
     }, {
       "id" : "Procedure.OrderId",
       "path" : "Procedure.OrderId",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Order ID"
     }, {
       "id" : "Procedure.ZorgactiviteitCode",
       "path" : "Procedure.ZorgactiviteitCode",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Care Activity Code"
     }, {
       "id" : "Procedure.Zorgactiviteit",
       "path" : "Procedure.Zorgactiviteit",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Care Activity"
     }, {
       "id" : "Procedure.ZorgprofielKlasseCode",
       "path" : "Procedure.ZorgprofielKlasseCode",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Care Profile Class Code"
     }, {
       "id" : "Procedure.ZorgprofielKlasse",
       "path" : "Procedure.ZorgprofielKlasse",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Care Profile Class"
     }, {
       "id" : "Procedure.AanvragendSpecialismeCode",
       "path" : "Procedure.AanvragendSpecialismeCode",
@@ -162,7 +177,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Applying Specialism Code"
     }, {
       "id" : "Procedure.AanvragendSpecialismeAfkorting",
       "path" : "Procedure.AanvragendSpecialismeAfkorting",
@@ -171,7 +187,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Applying Specialism Abbreviation"
     }, {
       "id" : "Procedure.AanvragendSpecialisme",
       "path" : "Procedure.AanvragendSpecialisme",
@@ -180,7 +197,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Applying Specialism"
     }, {
       "id" : "Procedure.AanvragendSubSpecialismeCode",
       "path" : "Procedure.AanvragendSubSpecialismeCode",
@@ -189,7 +207,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Applying Sub Specialism Code"
     }, {
       "id" : "Procedure.AanvragendSubSpecialismeAfkorting",
       "path" : "Procedure.AanvragendSubSpecialismeAfkorting",
@@ -198,7 +217,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Applying Sub Specialism Abbreviation"
     }, {
       "id" : "Procedure.AanvragendSubSpecialisme",
       "path" : "Procedure.AanvragendSubSpecialisme",
@@ -207,7 +227,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Applying Sub Specialism"
     }, {
       "id" : "Procedure.UitvoerendSpecialismeCode",
       "path" : "Procedure.UitvoerendSpecialismeCode",
@@ -216,7 +237,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Executive Specialism Code"
     }, {
       "id" : "Procedure.UitvoerendSpecialismeAfkorting",
       "path" : "Procedure.UitvoerendSpecialismeAfkorting",
@@ -225,7 +247,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Executive Specialism Abbreviation"
     }, {
       "id" : "Procedure.UitvoerendSpecialisme",
       "path" : "Procedure.UitvoerendSpecialisme",
@@ -234,7 +257,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Executive Specialism"
     }, {
       "id" : "Procedure.UitvoerendSubSpecialismeCode",
       "path" : "Procedure.UitvoerendSubSpecialismeCode",
@@ -243,7 +267,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Executive Sub Specialism Code"
     }, {
       "id" : "Procedure.UitvoerendSubSpecialismeAfkorting",
       "path" : "Procedure.UitvoerendSubSpecialismeAfkorting",
@@ -252,7 +277,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Executive Sub Specialism Abbreviation"
     }, {
       "id" : "Procedure.UitvoerendSubSpecialisme",
       "path" : "Procedure.UitvoerendSubSpecialisme",
@@ -261,7 +287,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Executive Sub Specialism"
     }, {
       "id" : "Procedure.UitvoerendWerkplekId",
       "path" : "Procedure.UitvoerendWerkplekId",
@@ -270,7 +297,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Executive Workplace ID"
     }, {
       "id" : "Procedure.UitvoerendWerkplekAfkorting",
       "path" : "Procedure.UitvoerendWerkplekAfkorting",
@@ -279,7 +307,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Executive Workplace Abbreviation"
     }, {
       "id" : "Procedure.UitvoerendWerkplek",
       "path" : "Procedure.UitvoerendWerkplek",
@@ -288,7 +317,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Executive Workplace"
     }, {
       "id" : "Procedure.AantalVerrichtingen",
       "path" : "Procedure.AantalVerrichtingen",
@@ -297,7 +327,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Number of Operations"
     }, {
       "id" : "Procedure.Bronmodule",
       "path" : "Procedure.Bronmodule",
@@ -306,7 +337,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Source Module"
     }, {
       "id" : "Procedure.Bron",
       "path" : "Procedure.Bron",
@@ -315,7 +347,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Source"
     }, {
       "id" : "Procedure.DCMVerverstDatumTijd",
       "path" : "Procedure.DCMVerverstDatumTijd",
@@ -324,7 +357,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "DCMV Refreshed Date Time"
     }, {
       "id" : "Procedure.uitgifteDT",
       "path" : "Procedure.uitgifteDT",
@@ -333,7 +367,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

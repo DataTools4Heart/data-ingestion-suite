@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "SmokingStatus.StatusTabakgebruik",
       "path" : "SmokingStatus.StatusTabakgebruik",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Tobacco Use Status"
     }, {
       "id" : "SmokingStatus.TabakgebruikToelichting",
       "path" : "SmokingStatus.TabakgebruikToelichting",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Tobacco Use Explanation"
     }, {
       "id" : "SmokingStatus.SoortTabakgebruik",
       "path" : "SmokingStatus.SoortTabakgebruik",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Tobacco Use Type"
     }, {
       "id" : "SmokingStatus.IsHuidigeRoker",
       "path" : "SmokingStatus.IsHuidigeRoker",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Is Current Smoker?"
     }, {
       "id" : "SmokingStatus.IsVoormaligRoker",
       "path" : "SmokingStatus.IsVoormaligRoker",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Is Former Smoker?"
     }, {
       "id" : "SmokingStatus.TabakgebruikJaren",
       "path" : "SmokingStatus.TabakgebruikJaren",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Tobacco Use Years"
     }, {
       "id" : "SmokingStatus.Specialisme",
       "path" : "SmokingStatus.Specialisme",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Specialism"
     }, {
       "id" : "SmokingStatus.StartDatum",
       "path" : "SmokingStatus.StartDatum",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Start Date"
     }, {
       "id" : "SmokingStatus.StopDatum",
       "path" : "SmokingStatus.StopDatum",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Stop Date"
     }, {
       "id" : "SmokingStatus.ziekenhuislocatie",
       "path" : "SmokingStatus.ziekenhuislocatie",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "SmokingStatus.Patientcontactid",
       "path" : "SmokingStatus.Patientcontactid",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "SmokingStatus.uitgifteDT",
       "path" : "SmokingStatus.uitgifteDT",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }

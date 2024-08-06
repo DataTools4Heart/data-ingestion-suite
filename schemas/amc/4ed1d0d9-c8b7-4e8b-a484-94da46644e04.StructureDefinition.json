@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pseudo ID"
     }, {
       "id" : "MedicationAdministration.VoorschriftId",
       "path" : "MedicationAdministration.VoorschriftId",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Prescription ID"
     }, {
       "id" : "MedicationAdministration.PatientContactId",
       "path" : "MedicationAdministration.PatientContactId",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Patient Contact ID"
     }, {
       "id" : "MedicationAdministration.OpnameTrajectId",
       "path" : "MedicationAdministration.OpnameTrajectId",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Recording Traject ID"
     }, {
       "id" : "MedicationAdministration.ToedieningsDatumTijd",
       "path" : "MedicationAdministration.ToedieningsDatumTijd",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Administration Date Time"
     }, {
       "id" : "MedicationAdministration.ToedieningsDatum",
       "path" : "MedicationAdministration.ToedieningsDatum",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Administration Date"
     }, {
       "id" : "MedicationAdministration.ToedieningsTijd",
       "path" : "MedicationAdministration.ToedieningsTijd",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Administration Time"
     }, {
       "id" : "MedicationAdministration.ToedieningsStatus",
       "path" : "MedicationAdministration.ToedieningsStatus",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Administration Status"
     }, {
       "id" : "MedicationAdministration.Inloopsnelheid",
       "path" : "MedicationAdministration.Inloopsnelheid",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Entry Speed"
     }, {
       "id" : "MedicationAdministration.InloopsnelheidEenheid",
       "path" : "MedicationAdministration.InloopsnelheidEenheid",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Entry Speed Unit"
     }, {
       "id" : "MedicationAdministration.ToegediendeHoeveelheid",
       "path" : "MedicationAdministration.ToegediendeHoeveelheid",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Administered Amount"
     }, {
       "id" : "MedicationAdministration.ToegediendeHoeveelheidEenheid",
       "path" : "MedicationAdministration.ToegediendeHoeveelheidEenheid",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Administered Quantity Unit"
     }, {
       "id" : "MedicationAdministration.ToedieningsRoute",
       "path" : "MedicationAdministration.ToedieningsRoute",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Administration Route"
     }, {
       "id" : "MedicationAdministration.ToedieningsRouteCode",
       "path" : "MedicationAdministration.ToedieningsRouteCode",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Administration Route Code"
     }, {
       "id" : "MedicationAdministration.MedicatieArtikelNaam",
       "path" : "MedicationAdministration.MedicatieArtikelNaam",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Medication Item Name"
     }, {
       "id" : "MedicationAdministration.MedicatieArtikelCode",
       "path" : "MedicationAdministration.MedicatieArtikelCode",
@@ -162,7 +177,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Medication Item Code"
     }, {
       "id" : "MedicationAdministration.IngredienttypeNaam",
       "path" : "MedicationAdministration.IngredienttypeNaam",
@@ -171,7 +187,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Ingredient Type Name"
     }, {
       "id" : "MedicationAdministration.IngredienttypeCode",
       "path" : "MedicationAdministration.IngredienttypeCode",
@@ -180,7 +197,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Ingredient Type Code"
     }, {
       "id" : "MedicationAdministration.ATCKlasseCode",
       "path" : "MedicationAdministration.ATCKlasseCode",
@@ -189,7 +207,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ATC Class Code"
     }, {
       "id" : "MedicationAdministration.ATCKlasse",
       "path" : "MedicationAdministration.ATCKlasse",
@@ -198,7 +217,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ATC Class"
     }, {
       "id" : "MedicationAdministration.FarmaceutischeKlasse",
       "path" : "MedicationAdministration.FarmaceutischeKlasse",
@@ -207,7 +227,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pharmaceutical Class"
     }, {
       "id" : "MedicationAdministration.FarmaceutischeSubklasse",
       "path" : "MedicationAdministration.FarmaceutischeSubklasse",
@@ -216,7 +237,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Pharmaceutical Subclass"
     }, {
       "id" : "MedicationAdministration.TherapeutischeKlasse",
       "path" : "MedicationAdministration.TherapeutischeKlasse",
@@ -225,7 +247,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Therapeutic Class"
     }, {
       "id" : "MedicationAdministration.WerkplekCode",
       "path" : "MedicationAdministration.WerkplekCode",
@@ -234,7 +257,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Workplace Code"
     }, {
       "id" : "MedicationAdministration.WerkplekAfkorting",
       "path" : "MedicationAdministration.WerkplekAfkorting",
@@ -243,7 +267,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Workplace Abbreviation"
     }, {
       "id" : "MedicationAdministration.Werkplek",
       "path" : "MedicationAdministration.Werkplek",
@@ -252,7 +277,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Workplace"
     }, {
       "id" : "MedicationAdministration.Ziekenhuislocatie",
       "path" : "MedicationAdministration.Ziekenhuislocatie",
@@ -261,7 +287,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location"
     }, {
       "id" : "MedicationAdministration.ZiekenhuislocatieCode",
       "path" : "MedicationAdministration.ZiekenhuislocatieCode",
@@ -270,7 +297,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Hospital Location Code"
     }, {
       "id" : "MedicationAdministration.ToedieningsReden",
       "path" : "MedicationAdministration.ToedieningsReden",
@@ -279,7 +307,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Administration Reason"
     }, {
       "id" : "MedicationAdministration.ToedieningsRedenCode",
       "path" : "MedicationAdministration.ToedieningsRedenCode",
@@ -288,7 +317,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Administration Reason Code"
     }, {
       "id" : "MedicationAdministration.MedicatieOpmerking",
       "path" : "MedicationAdministration.MedicatieOpmerking",
@@ -297,7 +327,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Medication Note"
     }, {
       "id" : "MedicationAdministration.Bron",
       "path" : "MedicationAdministration.Bron",
@@ -306,7 +337,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Source"
     }, {
       "id" : "MedicationAdministration.DCMVerverstDatumTijd",
       "path" : "MedicationAdministration.DCMVerverstDatumTijd",
@@ -315,7 +347,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "DCMV Refreshed Date Time"
     }, {
       "id" : "MedicationAdministration.uitgifteDT",
       "path" : "MedicationAdministration.uitgifteDT",
@@ -324,7 +357,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Issuance DT"
     } ]
   }
 }
