@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "HistorySurgery.RegistratieDatum",
       "path" : "HistorySurgery.RegistratieDatum",
@@ -78,7 +78,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Surgical History"
+      "short" : "Surgical History Description"
     }, {
       "id" : "HistorySurgery.Bron",
       "path" : "HistorySurgery.Bron",
@@ -108,7 +108,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Type Code"
+      "short" : "Type of code (procedure, operation)"
     }, {
       "id" : "HistorySurgery.Patientcontactid",
       "path" : "HistorySurgery.Patientcontactid",
@@ -118,7 +118,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "HistorySurgery.uitgifteDT",
       "path" : "HistorySurgery.uitgifteDT",

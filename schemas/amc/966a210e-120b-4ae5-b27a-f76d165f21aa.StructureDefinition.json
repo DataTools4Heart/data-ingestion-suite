@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "VitalSign.MeetDatum",
       "path" : "VitalSign.MeetDatum",
@@ -38,7 +38,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Measure Date"
+      "short" : "Measurement Date"
     }, {
       "id" : "VitalSign.VitaleGegevensLengte",
       "path" : "VitalSign.VitaleGegevensLengte",
@@ -48,7 +48,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Vital Data Length"
+      "short" : "Length"
     }, {
       "id" : "VitalSign.VitaleGegevensGewicht",
       "path" : "VitalSign.VitaleGegevensGewicht",
@@ -58,7 +58,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Vital Data Weight"
+      "short" : "Weight"
     }, {
       "id" : "VitalSign.VitaleGegevensBMIberekening",
       "path" : "VitalSign.VitaleGegevensBMIberekening",
@@ -68,7 +68,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Vital Data BMI Calculation"
+      "short" : "BMI Calculation"
     }, {
       "id" : "VitalSign.VitaleGegevensPolsslag",
       "path" : "VitalSign.VitaleGegevensPolsslag",
@@ -78,7 +78,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Vital Data Pulse"
+      "short" : "Heart rate"
     }, {
       "id" : "VitalSign.VitaleGegevensBloeddrukSysDia",
       "path" : "VitalSign.VitaleGegevensBloeddrukSysDia",
@@ -88,7 +88,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Vital Data Blood Pressure Sys. Dia."
+      "short" : "Blood pressure (systolic / diastolic)"
     }, {
       "id" : "VitalSign.ZiekenhuisLocatie",
       "path" : "VitalSign.ZiekenhuisLocatie",
@@ -108,7 +108,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "VitalSign.uitgifteDT",
       "path" : "VitalSign.uitgifteDT",

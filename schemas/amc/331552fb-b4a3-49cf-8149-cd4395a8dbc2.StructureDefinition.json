@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "HistoryCondition.RegistratieDatum",
       "path" : "HistoryCondition.RegistratieDatum",
@@ -48,7 +48,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnosis Code"
+      "short" : "Diagnosis code (ICD-10)"
     }, {
       "id" : "HistoryCondition.DiagnoseOmschrijving",
       "path" : "HistoryCondition.DiagnoseOmschrijving",
@@ -68,7 +68,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Indication Date Determination"
+      "short" : "Indication date of diagnosis"
     }, {
       "id" : "HistoryCondition.Bron",
       "path" : "HistoryCondition.Bron",
@@ -98,7 +98,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "HistoryCondition.uitgifteDT",
       "path" : "HistoryCondition.uitgifteDT",

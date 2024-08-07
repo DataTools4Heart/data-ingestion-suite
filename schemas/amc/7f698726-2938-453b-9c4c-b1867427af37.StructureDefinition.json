@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "LabResult.MonsterId",
       "path" : "LabResult.MonsterId",
@@ -38,7 +38,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Monster ID"
+      "short" : "Specimen ID",
+      "definition" : "Linkage lab values from same specimen"
     }, {
       "id" : "LabResult.Afnamelocatie",
       "path" : "LabResult.Afnamelocatie",
@@ -48,7 +49,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Collection Location"
+      "short" : "Type of Specimen (venous, arterial)"
     }, {
       "id" : "LabResult.AfnamelocatieOpmerking",
       "path" : "LabResult.AfnamelocatieOpmerking",
@@ -58,7 +59,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Collection Location Note"
+      "short" : "Type of Specimen Note"
     }, {
       "id" : "LabResult.MateriaalAfnameDatum",
       "path" : "LabResult.MateriaalAfnameDatum",
@@ -68,7 +69,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Material Acquisition Date"
+      "short" : "Material Collection Date"
     }, {
       "id" : "LabResult.MateriaalAfnameTijd",
       "path" : "LabResult.MateriaalAfnameTijd",
@@ -78,7 +79,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Material Acquisition Time"
+      "short" : "Material Collection Time"
     }, {
       "id" : "LabResult.MateriaalAfnameDatumTijd",
       "path" : "LabResult.MateriaalAfnameDatumTijd",
@@ -88,7 +89,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Material Acquisition Date Time"
+      "short" : "Material Collection Datetime"
     }, {
       "id" : "LabResult.MateriaalSoortCode",
       "path" : "LabResult.MateriaalSoortCode",
@@ -98,7 +99,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Material Type Code"
+      "short" : "Code for type of material",
+      "definition" : "E.g. 'BL' for Blood, 'UR' for Urine"
     }, {
       "id" : "LabResult.MateriaalSoort",
       "path" : "LabResult.MateriaalSoort",
@@ -108,7 +110,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Material Type"
+      "short" : "Material Type",
+      "definition": "E.g. 'Bloed' for Blood, 'Urine' for Urine"
     }, {
       "id" : "LabResult.AanvragendeWerkplekAfkorting",
       "path" : "LabResult.AanvragendeWerkplekAfkorting",
@@ -118,7 +121,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Workplace Abbreviation"
+      "short" : "Department abbreviation",
+      "definition": "Department abbreviation making the request. Abbreviations are AMC based."
     }, {
       "id" : "LabResult.AanvragendeWerkplek",
       "path" : "LabResult.AanvragendeWerkplek",
@@ -128,7 +132,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Workplace"
+      "short" : "Department name",
+      "definition": "Department name making the request. Names are in Dutch."
     }, {
       "id" : "LabResult.AanvragendeZiekenhuisLocatie",
       "path" : "LabResult.AanvragendeZiekenhuisLocatie",
@@ -138,7 +143,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Hospital Location"
+      "short" : "Hospital Location"
     }, {
       "id" : "LabResult.Bepaling",
       "path" : "LabResult.Bepaling",
@@ -148,7 +153,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Determination"
+      "short" : "Lab measurement name",
+      "definition": "Name of the lab measurement in Dutch. "
     }, {
       "id" : "LabResult.BepalingCode",
       "path" : "LabResult.BepalingCode",
@@ -158,7 +164,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Determination Code"
+      "short" : "Lab measurement Code",
+        "definition": "Code of the lab measurement. Codes are AMC based."
     }, {
       "id" : "LabResult.UitslagDatum",
       "path" : "LabResult.UitslagDatum",
@@ -168,7 +175,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Result Date"
+      "short" : "Measurement Date"
     }, {
       "id" : "LabResult.UitslagTijd",
       "path" : "LabResult.UitslagTijd",
@@ -178,7 +185,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Result Time"
+      "short" : "Measurement Time"
     }, {
       "id" : "LabResult.UitslagDatumtijd",
       "path" : "LabResult.UitslagDatumtijd",
@@ -188,7 +195,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Result Date Time"
+      "short" : "Measurement Datetime"
     }, {
       "id" : "LabResult.NormaalwaardeOndergrens",
       "path" : "LabResult.NormaalwaardeOndergrens",

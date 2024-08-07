@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Health Code"
+      "short" : "Patient ID"
     }, {
       "id" : "Echocardiograph.DATAREFERTO",
       "path" : "Echocardiograph.DATAREFERTO",
@@ -38,7 +38,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Data Reference"
+      "short" : "Report Date"
     }, {
       "id" : "Echocardiograph.FunzioneDiastolica_RapportoEA",
       "path" : "Echocardiograph.FunzioneDiastolica_RapportoEA",
@@ -98,7 +98,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Diastolic Diameter Indic."
+      "short" : "Left Ventricle Diastolic Diameter Indexed"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_DiametroSistolicoIndic",
       "path" : "Echocardiograph.Ventricolosinistro_DiametroSistolicoIndic",
@@ -108,7 +108,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Systolic Diameter Indic."
+      "short" : "Left Ventricle Systolic Diameter Indexed"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_DiametroTeleDiastolico",
       "path" : "Echocardiograph.Ventricolosinistro_DiametroTeleDiastolico",
@@ -118,7 +118,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Tele Diastolic Diameter"
+      "short" : "Left Ventricle End-Diastolic Diameter"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_DiametroTeleSistolico",
       "path" : "Echocardiograph.Ventricolosinistro_DiametroTeleSistolico",
@@ -128,7 +128,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Tele Systolic Diameter"
+      "short" : "Left Ventricle End-Systolic Diameter"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_FrazionediEiezione",
       "path" : "Echocardiograph.Ventricolosinistro_FrazionediEiezione",
@@ -158,7 +158,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Posterior Wall Thickness TD Indic."
+      "short" : "Left Ventricle Posterior Wall Thickness TD Indexed"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_SettoInterventricolareSpessoreTD",
       "path" : "Echocardiograph.Ventricolosinistro_SettoInterventricolareSpessoreTD",
@@ -198,7 +198,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Tele Diastolic Volume"
+      "short" : "Left Ventricle End Diastolic Volume"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_VolumeTeleDiastolicoInd",
       "path" : "Echocardiograph.Ventricolosinistro_VolumeTeleDiastolicoInd",
@@ -208,7 +208,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Tele Diastolic Volume Ind."
+      "short" : "Left Ventricle End Diastolic Volume Indexed"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_VolumeTeleSistolico",
       "path" : "Echocardiograph.Ventricolosinistro_VolumeTeleSistolico",
@@ -218,7 +218,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Tele Systolic Volume"
+      "short" : "Left Ventricle End Systolic Volume"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_VolumeTeleSistolicoInd",
       "path" : "Echocardiograph.Ventricolosinistro_VolumeTeleSistolicoInd",
@@ -228,7 +228,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Tele Systolic Volume Ind."
+      "short" : "Left Ventricle End Systolic Volume Indexed"
     }, {
       "id" : "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTS",
       "path" : "Echocardiograph.Ventricolosinistro_ParetePosterioreSpessoreTS",
@@ -248,7 +248,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Posterior Wall Thickness TS Indic."
+      "short" : "Left Ventricle Posterior Wall Thickness TS Indexed"
     }, {
       "id" : "Echocardiograph.Ventricolodestro_Accorciamentofrazionale",
       "path" : "Echocardiograph.Ventricolodestro_Accorciamentofrazionale",
@@ -338,7 +338,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Right Ventricle Tele Diastolic Diameter"
+      "short" : "Right Ventricle End Diastolic Diameter"
     }, {
       "id" : "Echocardiograph.Ventricolodestro_DiametroTeleDiastolicoIndic",
       "path" : "Echocardiograph.Ventricolodestro_DiametroTeleDiastolicoIndic",
@@ -348,7 +348,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Right Ventricle Tele Diastolic Diameter Indic."
+      "short" : "Right Ventricle End Diastolic Diameter Indexed"
     }, {
       "id" : "Echocardiograph.VentricolosinistroSettointerventricolarespessoresistolicoIndicM",
       "path" : "Echocardiograph.VentricolosinistroSettointerventricolarespessoresistolicoIndicM",
@@ -358,7 +358,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Left Ventricle Interventricular Septum Resistolic Thickness Indic. M"
+      "short" : "Left Ventricle Interventricular Septum Resistolic Thickness Indexed M"
     } ]
   }
 }

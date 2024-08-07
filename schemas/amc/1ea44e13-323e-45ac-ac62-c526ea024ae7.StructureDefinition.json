@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "MedicalDiagnosis.PatientContactId",
       "path" : "MedicalDiagnosis.PatientContactId",
@@ -38,7 +38,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "MedicalDiagnosis.Ziekenhuislocatie",
       "path" : "MedicalDiagnosis.Ziekenhuislocatie",
@@ -68,7 +68,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Diagnosis Registration Moment"
+      "short" : "Diagnosis Registration Date"
     }, {
       "id" : "MedicalDiagnosis.DiagnoseCode",
       "path" : "MedicalDiagnosis.DiagnoseCode",
@@ -78,7 +78,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnosis Code"
+      "short" : "Diagnosis Code (ICD-10 Dutch/ICD-9-CM/HICDA-8)"
     }, {
       "id" : "MedicalDiagnosis.DiagnoseCategorie",
       "path" : "MedicalDiagnosis.DiagnoseCategorie",
@@ -88,7 +88,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnosis Category"
+      "short" : "Diagnosis code category (ICD-10 Dutch/ICD-9-CM/HICDA-8)"
     }, {
       "id" : "MedicalDiagnosis.DiagnoseOmschrijving",
       "path" : "MedicalDiagnosis.DiagnoseOmschrijving",
@@ -108,7 +108,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnosis Type Code"
+      "short" : "Diagnosis type code (main=H/secondary=N/not registered=n.g./Primary diagnosis=P)"
     }, {
       "id" : "MedicalDiagnosis.DiagnoseSoort",
       "path" : "MedicalDiagnosis.DiagnoseSoort",
@@ -128,7 +128,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Clinical Outpatient Code"
+      "short" : "Clinical or Outpatient Code",
+      "definition" : "In-patient or out-patient registration e.g. 'K', 'P'"
     }, {
       "id" : "MedicalDiagnosis.KlinischPoliklinisch",
       "path" : "MedicalDiagnosis.KlinischPoliklinisch",
@@ -138,7 +139,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Clinical Outpatient"
+      "short" : "Clinical or Outpatient Description",
+      "definition" : "In-patient or out-patient registration e.g. 'Klinische diagnose', 'Poliklinische diagnose'"
     }, {
       "id" : "MedicalDiagnosis.Specialismecode",
       "path" : "MedicalDiagnosis.Specialismecode",
@@ -148,7 +150,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism Code"
+      "short" : "Specialism Code",
+      "definition" : "Specialty code registered the diagnosis."
     }, {
       "id" : "MedicalDiagnosis.Specialisme",
       "path" : "MedicalDiagnosis.Specialisme",
@@ -158,7 +161,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism"
+      "short" : "Specialism",
+      "definition" : "Specialty description in Dutch registered the diagnosis."
     }, {
       "id" : "MedicalDiagnosis.SpecialismeAfkorting",
       "path" : "MedicalDiagnosis.SpecialismeAfkorting",
@@ -168,7 +172,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism Abbreviation"
+      "short" : "Specialism Abbreviation",
+      "definition" : "Specialty abbreviation in Dutch registered the diagnosis."
     }, {
       "id" : "MedicalDiagnosis.IsComplicatie",
       "path" : "MedicalDiagnosis.IsComplicatie",
@@ -178,7 +183,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Is Complication?"
+      "short" : "Is Complication? Adverse event / complication"
     }, {
       "id" : "MedicalDiagnosis.Bron",
       "path" : "MedicalDiagnosis.Bron",

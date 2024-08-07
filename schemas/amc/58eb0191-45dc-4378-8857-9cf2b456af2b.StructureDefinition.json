@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "VitalSignO2Saturation.ZiekenhuisLocatie",
       "path" : "VitalSignO2Saturation.ZiekenhuisLocatie",
@@ -48,7 +48,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Time"
+      "short" : "Measurement Time"
     }, {
       "id" : "VitalSignO2Saturation.MeetDatum",
       "path" : "VitalSignO2Saturation.MeetDatum",
@@ -58,7 +58,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Measure Date"
+      "short" : "Measurement Date"
     }, {
       "id" : "VitalSignO2Saturation.MeetMoment",
       "path" : "VitalSignO2Saturation.MeetMoment",
@@ -68,7 +68,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Moment"
+      "short" : "Measurement Datetime"
     }, {
       "id" : "VitalSignO2Saturation.o2Saturatie",
       "path" : "VitalSignO2Saturation.o2Saturatie",
@@ -78,7 +78,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "O2 Saturation"
+      "short" : "Measured O2 Saturation"
     }, {
       "id" : "VitalSignO2Saturation.Bron",
       "path" : "VitalSignO2Saturation.Bron",
@@ -98,7 +98,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "VitalSignO2Saturation.uitgifteDT",
       "path" : "VitalSignO2Saturation.uitgifteDT",

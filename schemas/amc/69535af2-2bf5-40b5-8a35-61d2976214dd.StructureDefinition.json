@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "ECG.EcgMetingId",
       "path" : "ECG.EcgMetingId",
@@ -38,7 +38,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Ecg Measurement ID"
+      "short" : "Ecg Measurement ID",
+      "definition": "ECG information linkage ID"
     }, {
       "id" : "ECG.EcgAfnameDatumTijd",
       "path" : "ECG.EcgAfnameDatumTijd",
@@ -48,7 +49,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Ecg Collection Date Time"
+      "short" : "ECG Collection Date Time"
     }, {
       "id" : "ECG.PR_Interval_in_medianbeat",
       "path" : "ECG.PR_Interval_in_medianbeat",
@@ -58,7 +59,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "PR Interval in Median Beat"
+      "short" : "PR Interval in Median Beat",
+      "definition": "Derived from median beat"
     }, {
       "id" : "ECG.PR_Interval_in_rest",
       "path" : "ECG.PR_Interval_in_rest",
@@ -68,7 +70,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "PR Interval in Rest"
+      "short" : "PR Interval in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.VentricularRate_in_medianbeat",
       "path" : "ECG.VentricularRate_in_medianbeat",
@@ -78,7 +81,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Ventricular Rate in Median Beat"
+      "short" : "Ventricular Rate in Median Beat",
+      "definition": "Derived from median beat"
     }, {
       "id" : "ECG.VentricularRate_in_rest",
       "path" : "ECG.VentricularRate_in_rest",
@@ -88,7 +92,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Ventricular Rate in Rest"
+      "short" : "Ventricular Rate in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.Avg_RR_Interval",
       "path" : "ECG.Avg_RR_Interval",
@@ -98,7 +103,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Average RR Interval"
+      "short" : "Average RR Interval",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.QRS_Duration_in_medianbeat",
       "path" : "ECG.QRS_Duration_in_medianbeat",
@@ -108,7 +114,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QRS Duration in Median Beat"
+      "short" : "QRS Duration in Median Beat",
+      "definition": "Derived from median beat"
     }, {
       "id" : "ECG.QRS_Duration_in_rest",
       "path" : "ECG.QRS_Duration_in_rest",
@@ -118,7 +125,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QRS Duration in Rest"
+      "short" : "QRS Duration in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.QTc_Bazett_in_medianbeat",
       "path" : "ECG.QTc_Bazett_in_medianbeat",
@@ -128,7 +136,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QTc Bazett in Median Beat"
+      "short" : "QTc Bazett in Median Beat",
+      "definition": "Derived from median beat"
     }, {
       "id" : "ECG.QT_Interval_in_medianbeat",
       "path" : "ECG.QT_Interval_in_medianbeat",
@@ -138,7 +147,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QT Interval in Median Beat"
+      "short" : "QT Interval in Median Beat",
+      "definition": "Derived from median beat"
     }, {
       "id" : "ECG.QT_Interval_in_rest",
       "path" : "ECG.QT_Interval_in_rest",
@@ -148,7 +158,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QT Interval in Rest"
+      "short" : "QT Interval in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.P_Axis_in_rest",
       "path" : "ECG.P_Axis_in_rest",
@@ -158,7 +169,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "P Axis in Rest"
+      "short" : "P Axis in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.R_Axis_in_rest",
       "path" : "ECG.R_Axis_in_rest",
@@ -168,7 +180,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "R Axis in Rest"
+      "short" : "R Axis in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.T_Axis_in_rest",
       "path" : "ECG.T_Axis_in_rest",
@@ -178,7 +191,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "T Axis in Rest"
+      "short" : "T Axis in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.SystolicBP_in_rest",
       "path" : "ECG.SystolicBP_in_rest",
@@ -188,7 +202,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Systolic BP in Rest"
+      "short" : "Systolic BP in Rest",
+      "definition": "Measured systolic blood pressure during ECG measurement"
     }, {
       "id" : "ECG.DiastolicBP_in_rest",
       "path" : "ECG.DiastolicBP_in_rest",
@@ -198,7 +213,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diastolic BP in Rest"
+      "short" : "Diastolic BP in Rest",
+      "definition": "Measured diastolic blood pressure during ECG measurement"
     }, {
       "id" : "ECG.AtrialRate_in_rest",
       "path" : "ECG.AtrialRate_in_rest",
@@ -208,7 +224,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Atrial Rate in Rest"
+      "short" : "Atrial Rate in Rest",
+      "definition": "Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.QTcFramingham_in_rest",
       "path" : "ECG.QTcFramingham_in_rest",
@@ -218,7 +235,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QTc Framingham in Rest"
+      "short" : "QTc Framingham in Rest",
+      "definition": "Corrected QT interval with Framingham algorithm. Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.QTcFredericia_in_rest",
       "path" : "ECG.QTcFredericia_in_rest",
@@ -228,7 +246,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QTc Fredericia in Rest"
+      "short" : "QTc Fredericia in Rest",
+      "definition": "Corrected QT interval with Fredericia algorithm. Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.QTCCalculation_in_rest",
       "path" : "ECG.QTCCalculation_in_rest",
@@ -238,7 +257,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "QTC Calculation in Rest"
+      "short" : "QTC Calculation in Rest",
+      "definition": "Corrected QT interval with [unknown] algorithm. Derived from 10-second rhythm measurement"
     }, {
       "id" : "ECG.ECGSampleBase_in_rest",
       "path" : "ECG.ECGSampleBase_in_rest",
@@ -248,7 +268,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "ECG Sample Base in Rest"
+      "short" : "ECG Sample Base in Rest",
+      "definition": "Sampling frequency for ECG measurement 10-second rhythm strip."
     }, {
       "id" : "ECG.uitgifteDT",
       "path" : "ECG.uitgifteDT",

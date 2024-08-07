@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "VitalSignBMI.MeetDatum",
       "path" : "VitalSignBMI.MeetDatum",
@@ -38,7 +38,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Measure Date"
+      "short" : "Measurement Date"
     }, {
       "id" : "VitalSignBMI.BMI",
       "path" : "VitalSignBMI.BMI",
@@ -48,7 +48,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "BMI"
+      "short" : "BMI value"
     }, {
       "id" : "VitalSignBMI.ZiekenhuisLocatie",
       "path" : "VitalSignBMI.ZiekenhuisLocatie",
@@ -68,7 +68,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "VitalSignBMI.uitgifteDT",
       "path" : "VitalSignBMI.uitgifteDT",

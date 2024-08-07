@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "VitalSignBP.PatientContactId",
       "path" : "VitalSignBP.PatientContactId",
@@ -38,7 +38,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "VitalSignBP.ZiekenhuisLocatie",
       "path" : "VitalSignBP.ZiekenhuisLocatie",
@@ -68,7 +68,7 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Answer ID"
+      "short" : "Answer ID (Not Used)"
     }, {
       "id" : "VitalSignBP.MeetTijd",
       "path" : "VitalSignBP.MeetTijd",
@@ -78,7 +78,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Time"
+      "short" : "Measurement Time"
     }, {
       "id" : "VitalSignBP.MeetDatum",
       "path" : "VitalSignBP.MeetDatum",
@@ -88,7 +88,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Measure Date"
+      "short" : "Measurement Date"
     }, {
       "id" : "VitalSignBP.MeetMoment",
       "path" : "VitalSignBP.MeetMoment",
@@ -98,7 +98,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Moment"
+      "short" : "Measurement Datetime"
     }, {
       "id" : "VitalSignBP.BloeddrukSamengesteld",
       "path" : "VitalSignBP.BloeddrukSamengesteld",
@@ -108,7 +108,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Blood Pressure Compound"
+      "short" : "Blood Pressure Value Compound (sys/dia)"
     }, {
       "id" : "VitalSignBP.SystolischeBloeddrukWaarde",
       "path" : "VitalSignBP.SystolischeBloeddrukWaarde",

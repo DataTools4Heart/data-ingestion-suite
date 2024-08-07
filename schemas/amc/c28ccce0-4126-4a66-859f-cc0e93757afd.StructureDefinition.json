@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "SmokingStatus.StatusTabakgebruik",
       "path" : "SmokingStatus.StatusTabakgebruik",
@@ -38,7 +38,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Tobacco Use Status"
+      "short" : "Tobacco Use Status",
+      "definition": "State of tobacco use (Yes, passive, never, not asked, stopped, others)"
     }, {
       "id" : "SmokingStatus.TabakgebruikToelichting",
       "path" : "SmokingStatus.TabakgebruikToelichting",
@@ -98,7 +99,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism"
+      "short" : "Registering specialism"
     }, {
       "id" : "SmokingStatus.StartDatum",
       "path" : "SmokingStatus.StartDatum",
@@ -108,7 +109,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Start Date"
+      "short" : "Start date tabacco use"
     }, {
       "id" : "SmokingStatus.StopDatum",
       "path" : "SmokingStatus.StopDatum",
@@ -118,7 +119,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Stop Date"
+      "short" : "Stop date tabacco use"
     }, {
       "id" : "SmokingStatus.ziekenhuislocatie",
       "path" : "SmokingStatus.ziekenhuislocatie",
@@ -138,7 +139,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "SmokingStatus.uitgifteDT",
       "path" : "SmokingStatus.uitgifteDT",

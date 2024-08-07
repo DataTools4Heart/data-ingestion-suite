@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "VitalSignLength.PatientContactId",
       "path" : "VitalSignLength.PatientContactId",
@@ -38,7 +38,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "VitalSignLength.ZiekenhuisLocatie",
       "path" : "VitalSignLength.ZiekenhuisLocatie",
@@ -58,7 +58,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Measurement Body Height ID"
+      "short" : "Measurement ID"
     }, {
       "id" : "VitalSignLength.AntwoordId",
       "path" : "VitalSignLength.AntwoordId",
@@ -68,7 +68,7 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Answer ID"
+      "short" : "Answer ID (Not Used)"
     }, {
       "id" : "VitalSignLength.MeetTijd",
       "path" : "VitalSignLength.MeetTijd",
@@ -78,7 +78,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Time"
+      "short" : "Measurement Time"
     }, {
       "id" : "VitalSignLength.MeetDatum",
       "path" : "VitalSignLength.MeetDatum",
@@ -88,7 +88,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Measure Date"
+      "short" : "Measurement Date"
     }, {
       "id" : "VitalSignLength.MeetMoment",
       "path" : "VitalSignLength.MeetMoment",
@@ -98,7 +98,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Moment"
+      "short" : "Measurement Datetime"
     }, {
       "id" : "VitalSignLength.LichaamsLengte",
       "path" : "VitalSignLength.LichaamsLengte",
@@ -108,7 +108,7 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Body Length"
+      "short" : "Measured Length Value"
     }, {
       "id" : "VitalSignLength.Eenheid",
       "path" : "VitalSignLength.Eenheid",
@@ -118,7 +118,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Unit"
+      "short" : "Measured Length Unit"
     }, {
       "id" : "VitalSignLength.Bron",
       "path" : "VitalSignLength.Bron",

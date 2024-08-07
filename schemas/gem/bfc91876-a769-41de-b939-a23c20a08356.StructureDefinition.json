@@ -98,7 +98,8 @@
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
-      "short" : "Measured value c"
+      "short" : "No information",
+      "definition": "It could be corrected or calibrated value of the measurement"
     }, {
       "id" : "LabResultVitalSign.VALORE_MINIMO",
       "path" : "LabResultVitalSign.VALORE_MINIMO",

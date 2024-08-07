@@ -38,7 +38,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient pseudo ID"
     }, {
       "id" : "MedicationPrescription.Ziekenhuislocatie",
       "path" : "MedicationPrescription.Ziekenhuislocatie",
@@ -58,7 +58,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Prescription ID"
+      "short" : "Related prescription ID",
+      "definition" : "Prescription ID linkage different meds prescribed at the same time."
     }, {
       "id" : "MedicationPrescription.PatientContactId",
       "path" : "MedicationPrescription.PatientContactId",
@@ -68,7 +69,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID",
+      "definition" : "Encounter ID linkage to the patient."
     }, {
       "id" : "MedicationPrescription.SpecialismeCode",
       "path" : "MedicationPrescription.SpecialismeCode",
@@ -78,7 +80,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism Code"
+      "short" : "Specialism Code",
+      "definition" : "Specialty code prescribing drugs. Codes are AMC based."
     }, {
       "id" : "MedicationPrescription.SpecialismeAfkorting",
       "path" : "MedicationPrescription.SpecialismeAfkorting",
@@ -88,7 +91,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism Abbreviation"
+      "short" : "Specialism Abbreviation",
+      "definition" : "Specialty abbreviation prescribing drugs. Abbreviations are AMC based."
     }, {
       "id" : "MedicationPrescription.SpecialismeOmschrijving",
       "path" : "MedicationPrescription.SpecialismeOmschrijving",
@@ -98,7 +102,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism Description"
+      "short" : "Specialism Description",
+      "definition" : "Specialty description prescribing drugs. Descriptions are Dutch and AMC based. E.g. Cardiologie, Interne geneeskunde..."
     }, {
       "id" : "MedicationPrescription.SubSpecialismeCode",
       "path" : "MedicationPrescription.SubSpecialismeCode",
@@ -228,7 +233,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Workplace Code"
+      "short" : "Department code",
+      "definition" : "Department code making the request. Codes are AMC based."
     }, {
       "id" : "MedicationPrescription.WerkplekAfkorting",
       "path" : "MedicationPrescription.WerkplekAfkorting",
@@ -238,7 +244,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Workplace Abbreviation"
+      "short" : "Department abbreviation",
+      "definition" : "Department abbreviation making the request. Abbreviations are AMC based."
     }, {
       "id" : "MedicationPrescription.WerkplekOmschrijving",
       "path" : "MedicationPrescription.WerkplekOmschrijving",
@@ -248,7 +255,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Workplace Description"
+      "short" : "Department name",
+      "definition" : "Department name making the request. Names are Dutch and AMC based. E.g. AMC INTENSIVE CARE VOLWASSENEN..."
     }, {
       "id" : "MedicationPrescription.ZorgverlenerSpecialismecode",
       "path" : "MedicationPrescription.ZorgverlenerSpecialismecode",
@@ -268,7 +276,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Medication Item Code"
+      "short" : "Medication code with brand",
+      "definition" : "This is a unique code assigned to a specific medication. It's like an identifier used in the pharmacy or hospital to precisely specify the medication. E.g '12345' could be the code for a specific brand of paracetamol."
     }, {
       "id" : "MedicationPrescription.MedicatieArtikelNaam",
       "path" : "MedicationPrescription.MedicatieArtikelNaam",
@@ -278,7 +287,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Medication Item Name"
+      "short" : "Medication Brand Name",
+      "definition" : "This is the brand name or the commercial name of the medication. e.g. Tylenol, Panadol"
     }, {
       "id" : "MedicationPrescription.MedicatieGeneriekeCode",
       "path" : "MedicationPrescription.MedicatieGeneriekeCode",
@@ -288,7 +298,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Medication Generic Code"
+      "short" : "Medication Generic Code",
+      "definition": "This is a unique code for the generic version of a medication, regardless of the brand."
     }, {
       "id" : "MedicationPrescription.MedicatieGeneriekeNaam",
       "path" : "MedicationPrescription.MedicatieGeneriekeNaam",
@@ -298,7 +309,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Medication Generic Name"
+      "short" : "Medication Generic Name",
+      "definition": "This is the non-branded or generic name of the medication, which is the same regardless of the manufacturer."
     }, {
       "id" : "MedicationPrescription.MedicatieStofnaam",
       "path" : "MedicationPrescription.MedicatieStofnaam",
@@ -308,7 +320,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Medication Substance Name"
+      "short" : "Medication Ingredient Name",
+      "definition": "This is the name of the active ingredient in the medication. E.g. 'Paracetamol' is the active ingredient in the medication sold under the brand name Tylenol and Panadol."
     }, {
       "id" : "MedicationPrescription.FarmaceutischeKlasse",
       "path" : "MedicationPrescription.FarmaceutischeKlasse",
@@ -318,7 +331,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pharmaceutical Class"
+      "short" : "Pharmaceutical Class",
+      "definition": "Broad category of the medication based on its primary pharmacological effect or mechanism of action. This is the class of the medication based on its chemical structure and how it works in the body. E.g. 'BETA-BLOKKERS' is a class of medications that are used to treat high blood pressure and heart problems."
     }, {
       "id" : "MedicationPrescription.FarmaceutischeSubklasse",
       "path" : "MedicationPrescription.FarmaceutischeSubklasse",
@@ -328,7 +342,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pharmaceutical Subclass"
+      "short" : "Pharmaceutical Subclass",
+      "definition": "More specific categorization within the pharmaceutical class. It further narrows down the type of medication based on specific characteristics or more detailed mechanisms of action. E.g VITAMINE K-ANTAGONISTEN is commonly used to prevent blood clots."
     }, {
       "id" : "MedicationPrescription.TherapeutischeKlasse",
       "path" : "MedicationPrescription.TherapeutischeKlasse",
@@ -338,7 +353,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Therapeutic Class"
+      "short" : "Therapeutic Class",
+      "definition": "The category of the medication based on its therapeutic use or the medical condition it treats. Examples include diuretics, anesthetics, and diabetes medications."
     }, {
       "id" : "MedicationPrescription.OrderKlasseId",
       "path" : "MedicationPrescription.OrderKlasseId",
@@ -368,7 +384,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Order Status"
+      "short" : "Order Status",
+      "definition": "Information about the administration. The status of the medication order. E.g. Geannuleerd ('cancelled'), Afgerond ('completed')"
     }, {
       "id" : "MedicationPrescription.OrderStatusCode",
       "path" : "MedicationPrescription.OrderStatusCode",
@@ -378,7 +395,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Order Status Code"
+      "short" : "Order Status Code",
+      "definition": "The code for the status of the medication order. Codes are AMC based."
     }, {
       "id" : "MedicationPrescription.OrderOmschrijving",
       "path" : "MedicationPrescription.OrderOmschrijving",
@@ -388,7 +406,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Order Description"
+      "short" : "Order Description",
+      "definition": "Explanation of how to take the medicine. E.g. 'kaliumchloride 75 mg/ml (1 mmol/ml) drank 30 mmol'"
     }, {
       "id" : "MedicationPrescription.VorigeVoorschriftId",
       "path" : "MedicationPrescription.VorigeVoorschriftId",
@@ -408,7 +427,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Clinical Outpatient"
+      "short" : "Clinical Outpatient",
+      "definition": "Indicates whether the medication is prescribed for inpatient or outpatient care. Values: 'klinisch' ('clinical') or 'poliklinisch' ('outpatient')"
     }, {
       "id" : "MedicationPrescription.IsThuisMedicatie",
       "path" : "MedicationPrescription.IsThuisMedicatie",
@@ -418,7 +438,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Is Thuis Medication?"
+      "short" : "Is Home Medication?",
+      "definition": "Indicates whether the medication is prescribed for home use. Values: 'Ja' ('yes') or 'Nee' ('no')"
     }, {
       "id" : "MedicationPrescription.ATCCode",
       "path" : "MedicationPrescription.ATCCode",
@@ -428,7 +449,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ATC Code"
+      "short" : "ATC Code",
+      "definition": "The Anatomical Therapeutic Chemical (ATC) system code for the medication."
     }, {
       "id" : "MedicationPrescription.ATCKlasse",
       "path" : "MedicationPrescription.ATCKlasse",
@@ -438,7 +460,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ATC Class"
+      "short" : "ATC Class Name",
+      "definition": "ATC class name for the medication."
     }, {
       "id" : "MedicationPrescription.ATCKlasseCode",
       "path" : "MedicationPrescription.ATCKlasseCode",
@@ -448,7 +471,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ATC Class Code"
+      "short" : "ATC Class Code",
+      "definition": "ATC class code for the medication. Not Used."
     }, {
       "id" : "MedicationPrescription.MedicatieFrequentieCode",
       "path" : "MedicationPrescription.MedicatieFrequentieCode",
@@ -458,7 +482,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Medication Frequency Code"
+      "short" : "Medication Frequency Code",
+      "definition": "The code for the intake frequency of the medication. Codes are AMC based."
     }, {
       "id" : "MedicationPrescription.MedicatieFrequentieOmschrijving",
       "path" : "MedicationPrescription.MedicatieFrequentieOmschrijving",
@@ -468,7 +493,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Medication Frequency Description"
+      "short" : "Medication Frequency Description",
+      "definition": "The description of the intake frequency of the medication. E.g. '1x per dag' ('1x per day')"
     }, {
       "id" : "MedicationPrescription.ToedieningsRoute",
       "path" : "MedicationPrescription.ToedieningsRoute",
@@ -478,7 +504,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Administration Route"
+      "short" : "Administration Route",
+      "definition": "The route of administration of the medication. E.g. 'oraal' ('oral'), 'intraveneus' ('intravenous')"
     }, {
       "id" : "MedicationPrescription.ToedieningsRouteCode",
       "path" : "MedicationPrescription.ToedieningsRouteCode",
@@ -488,7 +515,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Administration Route Code"
+      "short" : "Administration Route Code",
+      "definition": "The code for the route of administration of the medication. Codes are AMC based."
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenEenheidOmschrijving",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenEenheidOmschrijving",
@@ -498,7 +526,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dosage Prescribed Unit Description"
+      "short" : "Dosage Prescribed Unit Description",
+      "definition": "The description of the unit of the prescribed dosage. E.g. 'mg', 'tablet'"
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenEenheidCode",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenEenheidCode",
@@ -508,7 +537,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Dosage Prescribed Unit Code"
+      "short" : "Dosage Prescribed Unit Code",
+      "definition": "The code for the unit of the prescribed dosage. Codes are AMC based."
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenMin",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenMin",
@@ -518,7 +548,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dosage Prescribed Minimum"
+      "short" : "Minimum Dosage Prescribed"
     }, {
       "id" : "MedicationPrescription.DoseringVoorgeschrevenMax",
       "path" : "MedicationPrescription.DoseringVoorgeschrevenMax",
@@ -528,7 +558,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dosage Prescribed Maximum"
+      "short" : "Maximum Dosage Prescribed"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendEenheidOmschrijving",
       "path" : "MedicationPrescription.DoseringBerekendEenheidOmschrijving",
@@ -538,7 +568,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dosage Calculated Unit Description"
+      "short" : "Calculated Dosage Unit Description"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendEenheidCode",
       "path" : "MedicationPrescription.DoseringBerekendEenheidCode",
@@ -548,7 +578,7 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Dosage Calculated Unit Code"
+      "short" : "Calculated Dosage Unit Code"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendMin",
       "path" : "MedicationPrescription.DoseringBerekendMin",
@@ -558,7 +588,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dosage Calculated Minimum"
+      "short" : "Calculated Dosage Minimum"
     }, {
       "id" : "MedicationPrescription.DoseringBerekendMax",
       "path" : "MedicationPrescription.DoseringBerekendMax",
@@ -568,7 +598,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dosage Calculated Maximum"
+      "short" : "Calculated Dosage Maximum"
     }, {
       "id" : "MedicationPrescription.DoseringBerekeningsinformatie",
       "path" : "MedicationPrescription.DoseringBerekeningsinformatie",
@@ -578,7 +608,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dosage Calculation Information"
+      "short" : "Calculated Dosage Information"
     }, {
       "id" : "MedicationPrescription.VolumeEenheidOmschrijving",
       "path" : "MedicationPrescription.VolumeEenheidOmschrijving",
@@ -608,7 +638,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Volume"
+      "short" : "Total volume of the medication prescribed."
     }, {
       "id" : "MedicationPrescription.GewichtPatientKg",
       "path" : "MedicationPrescription.GewichtPatientKg",
@@ -618,7 +648,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Weight Patient Kg"
+      "short" : "Patient Weight in Kg"
     }, {
       "id" : "MedicationPrescription.Bron",
       "path" : "MedicationPrescription.Bron",

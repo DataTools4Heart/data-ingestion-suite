@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "Encounter.OpnameDatum",
       "path" : "Encounter.OpnameDatum",
@@ -38,7 +38,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Recording Date"
+      "short" : "Date of hospitalisation"
     }, {
       "id" : "Encounter.OntslagDatum",
       "path" : "Encounter.OntslagDatum",
@@ -48,7 +48,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Discharge Date"
+      "short" : "Date of discharge"
     }, {
       "id" : "Encounter.OpnameSpecialismeCode",
       "path" : "Encounter.OpnameSpecialismeCode",
@@ -58,7 +58,7 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Recording Specialism Code"
+      "short" : "Admission Specialism Code"
     }, {
       "id" : "Encounter.OpnameSpecialisme",
       "path" : "Encounter.OpnameSpecialisme",
@@ -68,7 +68,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Recording Specialism"
+      "short" : "Admission Specialism"
     }, {
       "id" : "Encounter.OpnameSubspecialismeCode",
       "path" : "Encounter.OpnameSubspecialismeCode",
@@ -108,7 +108,7 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Dismissal Specialism Code"
+      "short" : "Discharge Specialism Code"
     }, {
       "id" : "Encounter.OntslagSpecialismeAfkorting",
       "path" : "Encounter.OntslagSpecialismeAfkorting",
@@ -118,7 +118,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dismissal Specialism Abbreviation"
+      "short" : "Discharge Specialism Abbreviation"
     }, {
       "id" : "Encounter.OntslagSpecialisme",
       "path" : "Encounter.OntslagSpecialisme",
@@ -128,7 +128,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dismissal Specialism"
+      "short" : "Discharge Specialism"
     }, {
       "id" : "Encounter.OntslagSubspecialismeCode",
       "path" : "Encounter.OntslagSubspecialismeCode",
@@ -148,7 +148,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dismissal Subspecialism Abbreviation"
+      "short" : "Discharge Subspecialism Abbreviation"
     }, {
       "id" : "Encounter.OntslagSubspecialisme",
       "path" : "Encounter.OntslagSubspecialisme",
@@ -158,7 +158,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Dismissal Subspecialism"
+      "short" : "Discharge Subspecialism"
     }, {
       "id" : "Encounter.ziekenhuislocatie",
       "path" : "Encounter.ziekenhuislocatie",
@@ -178,7 +178,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Referring Caregiver Type"
+      "short" : "Referring Healthcareprovider Type"
     }, {
       "id" : "Encounter.VerwijzendZorgverlenerIsIntern",
       "path" : "Encounter.VerwijzendZorgverlenerIsIntern",
@@ -188,7 +188,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Referring Care Provider Is Intern?"
+      "short" : "Referring Care Provider Is In Same Hospital?"
     }, {
       "id" : "Encounter.Opnametype",
       "path" : "Encounter.Opnametype",
@@ -198,7 +198,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Recording Type"
+      "short" : "Admission Type",
+      "definition": "Admission type (in-patient, day, ED, observation, others)"
     }, {
       "id" : "Encounter.Patientcontactid",
       "path" : "Encounter.Patientcontactid",
@@ -208,7 +209,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "Encounter.uitgifteDT",
       "path" : "Encounter.uitgifteDT",

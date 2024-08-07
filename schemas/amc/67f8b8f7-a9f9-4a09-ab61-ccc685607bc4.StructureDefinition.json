@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "CauseOfDeath.MeetDatum",
       "path" : "CauseOfDeath.MeetDatum",
@@ -38,7 +38,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Measure Date"
+      "short" : "Registration date"
     }, {
       "id" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
       "path" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
@@ -68,7 +68,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : " Death by Natural Causes"
+      "short" : "Is Death by Natural Causes"
     }, {
       "id" : "CauseOfDeath.ziekenhuislocatie",
       "path" : "CauseOfDeath.ziekenhuislocatie",
@@ -88,7 +88,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "CauseOfDeath.uitgifteDT",
       "path" : "CauseOfDeath.uitgifteDT",

@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "VitalSignHeartRate.PatientContactId",
       "path" : "VitalSignHeartRate.PatientContactId",
@@ -38,7 +38,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact ID"
+      "short" : "Encounter ID"
     }, {
       "id" : "VitalSignHeartRate.ZiekenhuisLocatie",
       "path" : "VitalSignHeartRate.ZiekenhuisLocatie",
@@ -58,7 +58,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Measurement Heart Rate ID"
+      "short" : "Heart Rate Measurement ID"
     }, {
       "id" : "VitalSignHeartRate.AntwoordId",
       "path" : "VitalSignHeartRate.AntwoordId",
@@ -68,7 +68,7 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Answer ID"
+      "short" : "Answer ID (Not Used)"
     }, {
       "id" : "VitalSignHeartRate.MeetTijd",
       "path" : "VitalSignHeartRate.MeetTijd",
@@ -78,7 +78,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Time"
+      "short" : "Measurement Time"
     }, {
       "id" : "VitalSignHeartRate.MeetDatum",
       "path" : "VitalSignHeartRate.MeetDatum",
@@ -88,7 +88,7 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Measure Date"
+      "short" : "Measurement Date"
     }, {
       "id" : "VitalSignHeartRate.MeetMoment",
       "path" : "VitalSignHeartRate.MeetMoment",
@@ -98,7 +98,7 @@
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Measure Moment"
+      "short" : "Measurement Datetime"
     }, {
       "id" : "VitalSignHeartRate.Hartfrequentie",
       "path" : "VitalSignHeartRate.Hartfrequentie",

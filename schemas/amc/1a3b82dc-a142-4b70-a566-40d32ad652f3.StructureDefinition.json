@@ -28,7 +28,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Pseudo ID"
+      "short" : "Patient ID"
     }, {
       "id" : "Patient.Geboortejaar",
       "path" : "Patient.Geboortejaar",
@@ -68,7 +68,8 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Date of Death"
+      "short" : "Date of death",
+        "definition": "Only in-hospital reliable registration date of death"
     }, {
       "id" : "Patient.IsOverleden",
       "path" : "Patient.IsOverleden",
@@ -78,7 +79,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Is Deceased?"
+      "short" : "Is Deceased?",
+      "definition": "Only in-hospital reliable registration of death"
     }, {
       "id" : "Patient.Bron",
       "path" : "Patient.Bron",
