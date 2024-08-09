@@ -19,12 +19,6 @@
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
     "folderPath" : "./terminology-systems/DT4HTerminologyService",
     "conceptMapFiles" : [ {
-      "id" : "icd9toicd10.csv",
-      "name" : "icd9toicd10.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10",
-      "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
-    }, {
       "id" : "snomedToIcd10.csv",
       "name" : "snomedToIcd10.csv",
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10",
@@ -65,12 +59,6 @@
       "name" : "snomedToIcd10Pcs.csv",
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs",
       "sourceValueSetUrl" : "http://snomed.info/sct",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
-    }, {
-      "id" : "icd9toicd10pcs.csv",
-      "name" : "icd9toicd10pcs.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs",
-      "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
       "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
     }, {
       "id" : "noteNlpSnomedToIcd10.csv",

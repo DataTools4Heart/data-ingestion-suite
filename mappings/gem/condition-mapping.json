@@ -8,7 +8,12 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/patologie",
     "joinOn" : [ ]
   } ],
-  "context" : { },
+  "context" : {
+    "icd9toIcd10CM" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/gem/icd9cm-to-icd10cm.csv"
+    }
+  },
   "variable" : [ {
     "name" : "icd9Codes",
     "language" : "text/fhirpath",
@@ -16,7 +21,7 @@
   }, {
     "name" : "icd10Codes",
     "language" : "text/fhirpath",
-    "expression" : "%icd9Codes.select(trms:translateToCoding(%icd9Codes[$index], 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10'))"
+    "expression" : "%icd9Codes.select(mpp:getConcept(%icd9toIcd10CM, %icd9Codes[$index]))"
   } ],
   "mapping" : [ {
     "expression" : {
@@ -24,7 +29,13 @@
       "language" : "application/fhir-template+json",
       "value" : {
         "code" : {
-          "coding" : [ "{{* %icd10Codes}}" ]
+          "coding" : {
+            "{{#icd10}}" : "{{%icd10Codes}}",
+            "{{*}}" : {
+              "system" : "{{%icd10.target_system}}",
+              "code" : "{{%icd10.target_code}}"
+            }
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "onsetDateTime" : "{{data_in}}",
@@ -45,7 +56,7 @@
     "precondition" : {
       "name" : "isCondition",
       "language" : "text/fhirpath",
-      "expression" : "STATUS = 1 and %icd10Codes.exists()"
+      "expression" : "STATUS = 1 and ICD9_CODES != 'From text-mining' and %icd10Codes.exists()"
     }
   } ]
 }

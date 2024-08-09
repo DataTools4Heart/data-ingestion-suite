@@ -1,0 +1,63 @@
+{
+  "id" : "procedure-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/gem/procedure-mapping",
+  "name" : "procedure-mapping",
+  "title" : "Mapping of GEM's dettaglio_contatti table to DT4H Encounter FHIR profile",
+  "source" : [ {
+    "alias" : "encounterDetails",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "icd9toIcd10PCS" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/gem/icd9-to-icd10pcs.csv"
+    },
+    "encounterClassConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/gem/encounter-class-concept-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "dischargeDate",
+    "language" : "text/fhirpath",
+    "expression" : "(DATA_OUT & iif(ORA_OUT.exists(), ORA_OUT) )"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "procedure",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#ind}}" : "{{utl:indices(1, 7)}}",
+        "{{*}}" : {
+          "{{#translatedCode}}" : "{{ mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString()) }}",
+          "{{?}}" : {
+            "category" : [ {
+              "coding" : [ {
+                "system" : "http://snomed.info/sct",
+                "code" : "387713003",
+                "display" : "Surgical procedure (procedure)"
+              } ]
+            } ],
+            "code" : {
+              "coding" : [ {
+                "system" : "{{%translatedCode.target_system}}",
+                "code" : "{{%translatedCode.target_code}}",
+                "@sliceName" : "icdCode"
+              } ]
+            },
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+            "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', NOSOGRAFICO_ADT)}}",
+            "occurrenceDateTime" : "{{DATAPROC[%ind]}}",
+            "status" : "completed",
+            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & DATAPROC[%ind]) }}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+            },
+            "resourceType" : "Procedure"
+          }
+        }
+      }
+    }
+  } ]
+}

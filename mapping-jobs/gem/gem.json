@@ -2,7 +2,7 @@
   "id" : "gem",
   "name" : "gem",
   "sourceSettings" : {
-    "source" : {
+    "gem-source" : {
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "gem-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/gem-data",
@@ -15,72 +15,6 @@
     "fhirRepoUrl" : "http://localhost:8080/fhir",
     "returnMinimal" : true
   },
-  "terminologyServiceSettings" : {
-    "jsonClass" : "LocalFhirTerminologyServiceSettings",
-    "folderPath" : "./terminology-systems/DT4HTerminologyService",
-    "conceptMapFiles" : [ {
-      "id" : "icd9toicd10.csv",
-      "name" : "icd9toicd10.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10",
-      "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
-    }, {
-      "id" : "snomedToIcd10.csv",
-      "name" : "snomedToIcd10.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10",
-      "sourceValueSetUrl" : "http://snomed.info/sct",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
-    }, {
-      "id" : "omopToIcd10.csv",
-      "name" : "omopToIcd10.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10",
-      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
-    }, {
-      "id" : "omopToRxNorm.csv",
-      "name" : "omopToRxNorm.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm",
-      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
-      "targetValueSetUrl" : "http://www.nlm.nih.gov/research/umls/rxnorm"
-    }, {
-      "id" : "omopToIcd10Pcs.csv",
-      "name" : "omopToIcd10Pcs.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs",
-      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
-    }, {
-      "id" : "omopToLoinc.csv",
-      "name" : "omopToLoinc.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc",
-      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
-      "targetValueSetUrl" : "http://loinc.org"
-    }, {
-      "id" : "omopToSnomed.csv",
-      "name" : "omopToSnomed.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-snomed",
-      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
-      "targetValueSetUrl" : "http://snomed.info/sct"
-    }, {
-      "id" : "snomedToIcd10Pcs.csv",
-      "name" : "snomedToIcd10Pcs.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs",
-      "sourceValueSetUrl" : "http://snomed.info/sct",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
-    }, {
-      "id" : "icd9toicd10pcs.csv",
-      "name" : "icd9toicd10pcs.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs",
-      "sourceValueSetUrl" : "http://terminology.hl7.org/CodeSystem/icd9cm",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
-    }, {
-      "id" : "noteNlpSnomedToIcd10.csv",
-      "name" : "noteNlpSnomedToIcd10.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
-      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
-      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
-    } ],
-    "codeSystemFiles" : [ ]
-  },
   "mappings" : [ {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
     "sourceContext" : {
@@ -88,7 +22,8 @@
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -98,7 +33,8 @@
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -109,13 +45,15 @@
         "path" : "ecocardio.csv",
         "fileFormat" : "csv",
         "options" : { },
-        "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo\ngroup by echo.codice_sanitario, echo.DATAREFERTO "
+        "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo group by echo.codice_sanitario, echo.DATAREFERTO ",
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -124,14 +62,14 @@
       "encounterMain" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounterDetails" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dettagliocontatti.csv",
-        "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -141,13 +79,15 @@
         "jsonClass" : "FileSystemSource",
         "path" : "diario_misure.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -157,13 +97,15 @@
         "jsonClass" : "FileSystemSource",
         "path" : "farmaci.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -173,13 +115,15 @@
         "jsonClass" : "FileSystemSource",
         "path" : "nyha.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -189,7 +133,8 @@
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -199,7 +144,19 @@
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
+      }
+    }
+  }, {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/procedure-mapping",
+    "sourceContext" : {
+      "encounterDetails" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "dettagliocontatti.csv",
+        "options" : { },
+        "preprocessSql" : "select CODICE_SANITARIO, NOSOGRAFICO_ADT, DATA_RICOVERO, ORA_RICOVERO, DATA_DIMISSIONE, ORA_DIMISSIONE, DESC_REPARTO_RICOVERO, DIAG1_ICD9CM, DIAG2_ICD9CM, DIAG3_ICD9CM, DIAG4_ICD9CM, DIAG5_ICD9CM, DIAG6_ICD9CM, DIAG7_ICD9CM, ARRAY(PROC1, PROC2, PROC3, PROC4, PROC5, PROC6, PROC7) as PROC, ARRAY(DATAPROC1, DATAPROC2, DATAPROC3, DATAPROC4, DATAPROC5, DATAPROC6, DATAPROC7) as DATAPROC, TIPO from encounterDetails",
+        "sourceRef" : "gem-source"
       }
     }
   } ],

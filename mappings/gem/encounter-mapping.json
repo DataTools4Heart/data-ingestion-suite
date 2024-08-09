@@ -6,19 +6,27 @@
   "source" : [ {
     "alias" : "encounterMain",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
-    "joinOn" : [ "CODICE_SANITARIO", "NOSOGRAFICO" ]
+    "joinOn" : [ "NOSOGRAFICO" ]
   }, {
     "alias" : "encounterDetails",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
-    "joinOn" : [ "CODICE_SANITARIO", "NOSOGRAFICO_ADT" ]
+    "joinOn" : [ "NOSOGRAFICO_ADT" ]
   } ],
   "context" : {
+    "icd9toIcd10CM" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/gem/icd9cm-to-icd10cm.csv"
+    },
     "encounterClassConceptMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/gem/encounter-class-concept-map.csv"
     }
   },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "dischargeDate",
+    "language" : "text/fhirpath",
+    "expression" : "(DATA_OUT & iif(ORA_OUT.exists(), ORA_OUT) )"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -34,17 +42,25 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
         "actualPeriod" : {
           "start" : "{{(DATA_IN & iif(ORA_IN.exists(), ORA_IN) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}",
-          "end" : "{{(DATA_OUT & iif(ORA_OUT.exists(), ORA_OUT) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}"
+          "end" : "{{? iif(%dischargeDate = '', {}, %dischargeDate.utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')) }}"
         },
-        "status" : "completed",
-        "reason" : {
-          "{{#reasonCodeVar}}" : "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.DIAG' & $this.toString() & '_ICD9CM.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select('DIAG' & $this.toString() & '_ICD9CM')}}",
-          "{{*}}" : {
-            "value" : [ {
-              "concept" : {
-                "coding" : "{{* trms:translateToCoding(utl:evaluateExpression('%encounterDetails.' & %reasonCodeVar).replace('.', ''), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10')}}"
+        "status": "completed",
+        "reason": {
+          "{{#diagCodeIcd9}}": "{{ %encounterDetails.DIAG1_ICD9CM | %encounterDetails.DIAG2_ICD9CM | %encounterDetails.DIAG3_ICD9CM | %encounterDetails.DIAG4_ICD9CM | %encounterDetails.DIAG5_ICD9CM | %encounterDetails.DIAG6_ICD9CM | %encounterDetails.DIAG7_ICD9CM }}",
+          "{{*}}": {
+            "value": [
+              {
+                "concept": {
+                  "coding": {
+                    "{{#icd10Object}}": "{{ mpp:getConcept(%icd9toIcd10CM, %diagCodeIcd9.replace('.', '')) }}",
+                    "{{*}}": {
+                      "system": "{{%icd10Object.target_system}}",
+                      "code": "{{%icd10Object.target_code}}"
+                    }
+                  }
+                }
               }
-            } ]
+            ]
           }
         },
         "id" : "{{mpp:getHashedId('Encounter', NOSOGRAFICO)}}",
@@ -59,37 +75,6 @@
       "name" : "encounterIdExists",
       "language" : "text/fhirpath",
       "expression" : " NOSOGRAFICO.exists() "
-    }
-  }, {
-    "expression" : {
-      "name" : "procedure",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "{{#ind}}" : "{{utl:evaluateExpression(utl:indices(1, 7).select('iif(%encounterDetails.proc' & $this.toString() & '.exists(), ' & $this.toString() & ', {})').mkString(' | ')).select($this.toString())}}",
-        "{{*}}" : {
-          "{{#translatedCode}}" : "{{trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs').code.first()}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : "{{* trms:translateToCoding(utl:evaluateExpression('%encounterDetails.proc' & %ind), 'http://terminology.hl7.org/CodeSystem/icd9cm', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/icd9-to-icd10pcs')}}"
-            },
-            "category" : [ {
-              "coding" : [ {
-                "system" : "http://snomed.info/sct",
-                "code" : "387713003",
-                "display" : "Surgical procedure (procedure)"
-              } ]
-            } ],
-            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario)}}",
-            "occurrenceDateTime" : "{{utl:evaluateExpression('%encounterDetails.dataproc' & %ind)}}",
-            "status" : "completed",
-            "id" : "{{mpp:getHashedId('Procedure', codice_sanitario & utl:evaluateExpression('%encounterDetails.dataproc' & %ind).toString() & %ind) }}",
-            "meta" : {
-              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
-            },
-            "resourceType" : "Procedure"
-          }
-        }
-      }
     }
   } ]
 }

@@ -73,7 +73,7 @@
     }, {
       "id" : "Encounter.DATA_OUT",
       "path" : "Encounter.DATA_OUT",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
