@@ -11,13 +11,13 @@
   "context" : {
     "labCodes" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/amc/lab-codes.csv"
+      "url" : "$CONTEXT_REPO/amc/lab-amc-to-loinc.csv"
     }
   },
   "variable" : [ {
     "name" : "convertedCodeObject",
     "language" : "text/fhirpath",
-    "expression" : " mpp:getConcept(%labCodes, BepalingCode) "
+    "expression" : " mpp:getConcept(%labCodes, BepalingCode & '|' & MateriaalSoort & '|' & Afnamelocatie & '|' & UitslagEenheid) "
   } ],
   "mapping" : [ {
     "expression" : {
@@ -33,12 +33,14 @@
           } ]
         } ],
         "code" : {
-          "coding" : [ {
-            "system" : "http://loinc.org",
-            "code" : "{{ %convertedCodeObject.target_code }}",
-            "display" : "{{ %convertedCodeObject.target_display }}",
-            "@sliceName" : "loincCode"
-          } ]
+          "coding" : {
+            "{{#loincCodeObject}}" : "{{ %convertedCodeObject }}",
+            "{{*}}" : {
+              "system" : "http://loinc.org",
+              "code" : "{{ %loincCodeObject.target_code }}",
+              "display" : "{{ %loincCodeObject.target_display }}"
+            }
+          }
         },
         "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {

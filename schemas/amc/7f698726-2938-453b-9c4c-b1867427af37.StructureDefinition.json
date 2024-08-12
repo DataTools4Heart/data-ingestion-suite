@@ -38,8 +38,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specimen ID",
-      "definition" : "Linkage lab values from same specimen"
+      "definition" : "Linkage lab values from same specimen",
+      "short" : "Specimen ID"
     }, {
       "id" : "LabResult.Afnamelocatie",
       "path" : "LabResult.Afnamelocatie",
@@ -99,8 +99,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Code for type of material",
-      "definition" : "E.g. 'BL' for Blood, 'UR' for Urine"
+      "definition" : "E.g. 'BL' for Blood, 'UR' for Urine",
+      "short" : "Code for type of material"
     }, {
       "id" : "LabResult.MateriaalSoort",
       "path" : "LabResult.MateriaalSoort",
@@ -110,8 +110,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Material Type",
-      "definition": "E.g. 'Bloed' for Blood, 'Urine' for Urine"
+      "definition" : "E.g. 'Bloed' for Blood, 'Urine' for Urine",
+      "short" : "Material Type"
     }, {
       "id" : "LabResult.AanvragendeWerkplekAfkorting",
       "path" : "LabResult.AanvragendeWerkplekAfkorting",
@@ -121,8 +121,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Department abbreviation",
-      "definition": "Department abbreviation making the request. Abbreviations are AMC based."
+      "definition" : "Department abbreviation making the request. Abbreviations are AMC based.",
+      "short" : "Department abbreviation"
     }, {
       "id" : "LabResult.AanvragendeWerkplek",
       "path" : "LabResult.AanvragendeWerkplek",
@@ -132,8 +132,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Department name",
-      "definition": "Department name making the request. Names are in Dutch."
+      "definition" : "Department name making the request. Names are in Dutch.",
+      "short" : "Department name"
     }, {
       "id" : "LabResult.AanvragendeZiekenhuisLocatie",
       "path" : "LabResult.AanvragendeZiekenhuisLocatie",
@@ -153,8 +153,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Lab measurement name",
-      "definition": "Name of the lab measurement in Dutch. "
+      "definition" : "Name of the lab measurement in Dutch. ",
+      "short" : "Lab measurement name"
     }, {
       "id" : "LabResult.BepalingCode",
       "path" : "LabResult.BepalingCode",
@@ -164,8 +164,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Lab measurement Code",
-        "definition": "Code of the lab measurement. Codes are AMC based."
+      "definition" : "Code of the lab measurement. Codes are AMC based.",
+      "short" : "Lab measurement Code"
     }, {
       "id" : "LabResult.UitslagDatum",
       "path" : "LabResult.UitslagDatum",
@@ -212,8 +212,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Normal Value Upper Limit"
     }, {
