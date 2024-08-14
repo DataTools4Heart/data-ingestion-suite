@@ -17,7 +17,7 @@
   },
   "mappings" : [ {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "anagrafica" : {
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
@@ -28,7 +28,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
@@ -39,7 +39,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "echo" : {
         "jsonClass" : "FileSystemSource",
         "path" : "ecocardio.csv",
@@ -58,7 +58,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "encounterMain" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
@@ -74,7 +74,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "labResults" : {
         "jsonClass" : "FileSystemSource",
         "path" : "diario_misure.csv",
@@ -92,7 +92,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "medications" : {
         "jsonClass" : "FileSystemSource",
         "path" : "farmaci.csv",
@@ -110,7 +110,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/nyha-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "nyha" : {
         "jsonClass" : "FileSystemSource",
         "path" : "nyha.csv",
@@ -128,7 +128,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
@@ -139,7 +139,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "patology" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
@@ -150,7 +150,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/procedure-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "encounterDetails" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dettagliocontatti.csv",

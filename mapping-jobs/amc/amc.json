@@ -17,7 +17,7 @@
   },
   "mappings" : [ {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "CauseOfDeath" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OverlijdensRegistratie.tsv",
@@ -27,7 +27,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "Condition" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Probleemlijst.tsv",
@@ -37,7 +37,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "MedicalDiagnosis" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedischeDiagnose.tsv",
@@ -47,7 +47,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
-    "sourceContext" : {
+    "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_EcgMeting.tsv",
@@ -57,7 +57,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "EncounterEmergency" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_SEHtraject.tsv",
@@ -67,7 +67,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "Encounter" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Opnametraject.tsv",
@@ -77,7 +77,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "SurgeryHistory" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisChirurgie.tsv",
@@ -87,7 +87,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/lab-result-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "LabResult" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Labuitslag.tsv",
@@ -97,7 +97,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "MedicationAdministration" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieToediening.tsv",
@@ -107,7 +107,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "MedicationPrescription" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieVoorschrift.tsv",
@@ -117,7 +117,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "patient" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Patient.tsv",
@@ -127,7 +127,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "Procedure" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VerrichtingUitgevoerd.tsv",
@@ -137,7 +137,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "ProcedureSurgery" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OKVerrichtingUitgevoerd.tsv",
@@ -147,7 +147,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "SmokingStatus" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Tabakgebruik.tsv",
@@ -157,7 +157,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bmi-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "BMI" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingBMI.tsv",
@@ -167,7 +167,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "BP" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingBloeddruk.tsv",
@@ -177,7 +177,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "HeartRate" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingHartfrequentie.tsv",
@@ -187,7 +187,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "Length" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingLichaamsLengte.tsv",
@@ -197,7 +197,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "VitalSign" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingVitaleGegevens.tsv",
@@ -207,7 +207,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-o2-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "O2Saturation" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Metingo2Saturatie.tsv",
@@ -217,7 +217,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-weight-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "Weight" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingLichaamsGewicht.tsv",
@@ -227,7 +227,7 @@
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "HistoryCondition" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisMedisch.tsv",

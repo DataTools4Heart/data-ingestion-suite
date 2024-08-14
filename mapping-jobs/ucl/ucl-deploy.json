@@ -2,7 +2,7 @@
   "id" : "ucl-deploy",
   "name" : "ucl-deploy",
   "sourceSettings" : {
-    "source" : {
+    "ucl-data" : {
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "ucl-data",
       "sourceUri" : "http://datatools4heart.eu/data-ingestion-suite/ucl-data",
@@ -71,116 +71,129 @@
   },
   "mappings" : [ {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopDeath" : {
         "jsonClass" : "FileSystemSource",
         "path" : "DEATH.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopCondition" : {
         "jsonClass" : "FileSystemSource",
         "path" : "CONDITION_OCCURRENCE.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/encounter-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopVisitOccurrence" : {
         "jsonClass" : "FileSystemSource",
         "path" : "VISIT_OCCURRENCE.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       },
       "omopConditionOccurrence" : {
         "jsonClass" : "FileSystemSource",
         "path" : "CONDITION_OCCURRENCE.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
         "path" : "MEASUREMENT.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopDrugExposure" : {
         "jsonClass" : "FileSystemSource",
         "path" : "DRUG_EXPOSURE.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "noteNlp" : {
         "jsonClass" : "FileSystemSource",
         "path" : "NOTE_NLP.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       },
       "note" : {
         "jsonClass" : "FileSystemSource",
         "path" : "NOTE.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       },
       "concept" : {
         "jsonClass" : "FileSystemSource",
         "path" : "CONCEPT.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopPerson" : {
         "jsonClass" : "FileSystemSource",
         "path" : "PERSON.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       },
       "omopDeath" : {
         "jsonClass" : "FileSystemSource",
         "path" : "DEATH.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopProcedure" : {
         "jsonClass" : "FileSystemSource",
         "path" : "PROCEDURE_OCCURRENCE.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
         "path" : "MEASUREMENT.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   } ],

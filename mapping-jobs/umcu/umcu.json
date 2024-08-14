@@ -1,33 +1,41 @@
 {
-  "id": "umcu",
-  "sourceSettings": {
-    "source": {
-      "jsonClass": "SqlSourceSettings",
-      "name": "icrc-db-source",
-      "sourceUri": "https://datatools4heart.eu/data-ingestion-suite/umcu-data",
-      "databaseUrl": "jdbc:postgresql://localhost:5432/",
-      "username": "postgres",
-      "password": "password"
+  "id" : "umcu",
+  "name" : "umcu",
+  "sourceSettings" : {
+    "umcu-source" : {
+      "jsonClass" : "SqlSourceSettings",
+      "name" : "umcu-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/umcu-data",
+      "databaseUrl" : "jdbc:postgresql://localhost:5432/",
+      "username" : "postgres",
+      "password" : "password"
     }
   },
-  "sinkSettings": {
-    "jsonClass": "FhirRepositorySinkSettings",
-    "fhirRepoUrl": "http://localhost:8081/fhir"
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8081/fhir",
+    "returnMinimal" : true
   },
-  "dataProcessingSettings": {},
-  "mappings": [
-    {
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
-      "sourceContext": {
-        "labResults": {
-          "jsonClass": "SqlSource",
-          "query": "lab_selectie"
-        },
-        "encounters": {
-          "jsonClass": "SqlSource",
-          "tableName": "patient.encounter"
-        }
+  "mappings" : [ {
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping",
+    "sourceBinding" : {
+      "labResults" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "lab_selectie",
+        "options" : { },
+        "sourceRef" : "umcu-source"
+      },
+      "encounters" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "patient.encounter",
+        "options" : { },
+        "sourceRef" : "umcu-source"
       }
     }
-  ]
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
 }

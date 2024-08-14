@@ -2,9 +2,9 @@
   "id" : "vhir",
   "name" : "vhir",
   "sourceSettings" : {
-    "source" : {
+    "vhir-source" : {
       "jsonClass" : "SqlSourceSettings",
-      "name" : "vhir-data",
+      "name" : "vhir-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/vhir-data",
       "databaseUrl" : "jdbc:postgresql://localhost:5432/vhir",
       "username" : "postgres",
@@ -72,70 +72,78 @@
   },
   "mappings" : [ {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/condition-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopCondition" : {
         "jsonClass" : "SqlSource",
         "tableName" : "condition_occurrence",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/encounter-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopVisitOccurrence" : {
         "jsonClass" : "SqlSource",
         "tableName" : "visit_occurrence",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       },
       "omopConditionOccurrence" : {
         "jsonClass" : "SqlSource",
         "tableName" : "condition_occurrence",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/lab-result-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "tableName" : "measurement",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/medication-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopDrugExposure" : {
         "jsonClass" : "SqlSource",
         "tableName" : "drug_exposure",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/patient-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopPerson" : {
         "jsonClass" : "SqlSource",
         "tableName" : "person",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/procedure-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopProcedure" : {
         "jsonClass" : "SqlSource",
         "tableName" : "procedure_occurrence",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/vital-sign-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "tableName" : "measurement",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   } ],

@@ -2,7 +2,7 @@
   "id" : "gem-deploy",
   "name" : "gem-deploy",
   "sourceSettings" : {
-    "source" : {
+    "gem-source" : {
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "gem-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/gem-data",
@@ -17,128 +17,140 @@
   },
   "mappings" : [ {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "anagrafica" : {
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "echo" : {
         "jsonClass" : "FileSystemSource",
         "path" : "ecocardio.csv",
         "fileFormat" : "csv",
         "options" : { },
-        "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo\ngroup by echo.codice_sanitario, echo.DATAREFERTO "
+        "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo group by echo.codice_sanitario, echo.DATAREFERTO ",
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "encounterMain" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounterDetails" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dettagliocontatti.csv",
-        "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "labResults" : {
         "jsonClass" : "FileSystemSource",
         "path" : "diario_misure.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "medications" : {
         "jsonClass" : "FileSystemSource",
         "path" : "farmaci.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/nyha-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "nyha" : {
         "jsonClass" : "FileSystemSource",
         "path" : "nyha.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "patology" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
         "fileFormat" : "csv",
-        "options" : { }
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/procedure-mapping",
-    "sourceContext" : {
+    "sourceBinding" : {
       "encounterDetails" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dettagliocontatti.csv",
