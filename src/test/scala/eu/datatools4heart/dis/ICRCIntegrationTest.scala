@@ -5,8 +5,11 @@ import akka.http.scaladsl.model.StatusCodes
 import io.onfhir.api.Resource
 import io.onfhir.client.OnFhirNetworkClient
 import io.onfhir.util.JsonFormatter._
-import io.tofhir.engine.mapping._
+import io.tofhir.engine.mapping.context.{IMappingContextLoader, MappingContextLoader}
+import io.tofhir.engine.mapping.job.FhirMappingJobManager
+import io.tofhir.engine.mapping.schema.{IFhirSchemaLoader, SchemaFolderLoader}
 import io.tofhir.engine.model._
+import io.tofhir.engine.repository.mapping.{FhirMappingFolderRepository, IFhirMappingRepository}
 import io.tofhir.engine.util.FhirMappingUtility
 import org.json4s.JArray
 
@@ -21,13 +24,14 @@ class ICRCIntegrationTest extends MappingTestSpec {
   val mappingRepository: IFhirMappingRepository =
     new FhirMappingFolderRepository(Paths.get("mappings/icrc").toAbsolutePath.toUri)
 
-  val contextLoader: IMappingContextLoader = new MappingContextLoader(mappingRepository)
+  val contextLoader: IMappingContextLoader = new MappingContextLoader
 
   val schemaLoader: IFhirSchemaLoader = new SchemaFolderLoader(Paths.get("schemas/icrc").toAbsolutePath.toUri)
 
-  val dataSourceSettings = Map("source" -> FileSystemSourceSettings("test-source-icrc", "https://www.fnusa-icrc.org", Paths.get("test-data/icrc").toAbsolutePath.toString))
+  val dataSourceSettings: Map[String, FileSystemSourceSettings] = Map("source" ->
+    FileSystemSourceSettings("test-source-icrc", "https://www.fnusa-icrc.org", Paths.get("test-data/icrc").toAbsolutePath.toString))
 
-  val fhirMappingJobManager = new FhirMappingJobManager(mappingRepository, contextLoader, schemaLoader, functionLibraries, sparkSession, runningJobRegistry)
+  val fhirMappingJobManager = new FhirMappingJobManager(mappingRepository, contextLoader, schemaLoader, functionLibraries, sparkSession)
 
   val fhirSinkSetting: FhirRepositorySinkSettings = FhirRepositorySinkSettings(fhirRepoUrl = sys.env.getOrElse("FHIR_REPO_URL", "http://localhost:8080/fhir"))
   implicit val actorSystem = ActorSystem("ICRCIntegrationTest")
@@ -47,77 +51,79 @@ class ICRCIntegrationTest extends MappingTestSpec {
 
   val conditionMappingTask = FhirMappingTask(
     mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
-    sourceContext = Map("source" -> FileSystemSource(path = "conditions.csv"))
+    sourceBinding = Map("source" -> FileSystemSource(path = "conditions.csv"))
   )
 
   val echocardiographMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
-      sourceContext = Map("echos" -> FileSystemSource(path = "echocardiograph.csv"))
+      sourceBinding = Map("echoObservation" -> FileSystemSource(path = "echo-observation.csv"),
+                          "echoMeasurements" -> FileSystemSource(path = "echo-measurement.csv"))
     )
 
   val electrocardiographMappingTask =
     FhirMappingTask(
-      mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/electrocardiograph-mapping",
-      sourceContext = Map("ecgs" -> FileSystemSource(path = "electrocardiograph.csv"))
+      mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/ECG-mapping",
+      sourceBinding = Map("ecg" -> FileSystemSource(path = "electrocardiograph.csv"))
     )
 
   val encounterMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "encounters.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "encounters.csv"))
     )
 
   val labResultMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "labresults.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "labresults.csv"))
     )
 
   val medAdmMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "medications.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "medications.csv"))
     )
 
   val nyhaMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "nyha.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "nyha.csv"))
     )
 
   val patientMappingTask = FhirMappingTask(
     mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
-    sourceContext = Map("source" -> FileSystemSource(path = "patients.csv"))
+    sourceBinding = Map("source" -> FileSystemSource(path = "patients.csv"))
   )
 
   val procedureMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "procedures.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "procedures.csv"))
     )
 
   val smokingStatusMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "smoking-status.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "smoking-status.csv"))
     )
 
   val symptomMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "symptoms.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "symptoms.csv"))
     )
 
   val vitalSignMappingTask =
     FhirMappingTask(
       mappingRef = "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
-      sourceContext = Map("source" -> FileSystemSource(path = "vitalsigns.csv"))
+      sourceBinding = Map("source" -> FileSystemSource(path = "vitalsigns.csv"))
     )
 
 
   "conditions mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(conditionMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(conditionMappingTask)),
+                                                      mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -142,14 +148,14 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "echocardiograph mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(echocardiographMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(echocardiographMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
         resource shouldBe a[Resource]
         resource
       })
-      results.length shouldBe 1
+      results.length shouldBe 20
 
       (results.apply(0) \ "subject" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Patient", "32232")
       (results.apply(0) \ "encounter" \ "reference").extract[String] shouldBe FhirMappingUtility.getHashedReference("Encounter", "223394")
@@ -221,7 +227,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "electrocardiograph mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(electrocardiographMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(electrocardiographMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -290,7 +296,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
 
 
   "encounter mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(encounterMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(encounterMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -321,7 +327,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "lab results mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(labResultMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(labResultMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -352,7 +358,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "medication administration mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(medAdmMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(medAdmMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -382,7 +388,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "nyha mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(nyhaMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(nyhaMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -416,7 +422,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
 
   "patient mapping" should "map test data" in {
     //Some semantic tests on generated content
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(patientMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(patientMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         r.mappedResource.get.parseJson
@@ -441,7 +447,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "procedure mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(procedureMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(procedureMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -469,7 +475,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "smoking status mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(smokingStatusMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(smokingStatusMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -500,7 +506,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "symptom mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(symptomMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(symptomMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson
@@ -528,7 +534,7 @@ class ICRCIntegrationTest extends MappingTestSpec {
   }
 
   "vital sign mapping" should "map test data" in {
-    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(vitalSignMappingTask)), sourceSettings = dataSourceSettings) map { mappingResults =>
+    fhirMappingJobManager.executeMappingTaskAndReturn(mappingJobExecution = FhirMappingJobExecution(job = mappingJob, mappingTasks = Seq(vitalSignMappingTask)), mappingJobSourceSettings = dataSourceSettings) map { mappingResults =>
       val results = mappingResults.map(r => {
         r.mappedResource shouldBe defined
         val resource = r.mappedResource.get.parseJson

@@ -16,8 +16,8 @@ class MappingTestSpec extends AsyncFlatSpec with should.Matchers with
 
 
   val sparkConf: SparkConf = new SparkConf()
-    .setAppName(ToFhirConfig.sparkAppName)
-    .setMaster(ToFhirConfig.sparkMaster)
+    .setAppName("DT4H-Tests")
+    .setMaster("local[4]")
     .set("spark.driver.allowMultipleContexts", "false")
     .set("spark.ui.enabled", "false")
   val sparkSession: SparkSession = SparkSession.builder().config(sparkConf).getOrCreate()
