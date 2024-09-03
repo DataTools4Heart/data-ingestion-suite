@@ -1,0 +1,116 @@
+{
+  "id" : "Patient",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/patient",
+  "name" : "Patient",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Patient",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Patient",
+      "path" : "Patient",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Patient.pseudo_id",
+      "path" : "Patient.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "Patient.Geboortejaar",
+      "path" : "Patient.Geboortejaar",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Year of Birth"
+    }, {
+      "id" : "Patient.Geboortemaand",
+      "path" : "Patient.Geboortemaand",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Month of Birth"
+    }, {
+      "id" : "Patient.Geslacht",
+      "path" : "Patient.Geslacht",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Sex"
+    }, {
+      "id" : "Patient.Overlijdensdatum",
+      "path" : "Patient.Overlijdensdatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Date of death",
+        "definition": "Only in-hospital reliable registration date of death"
+    }, {
+      "id" : "Patient.IsOverleden",
+      "path" : "Patient.IsOverleden",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Is Deceased?",
+      "definition": "Only in-hospital reliable registration of death"
+    }, {
+      "id" : "Patient.Bron",
+      "path" : "Patient.Bron",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Source"
+    }, {
+      "id" : "Patient.LandNaam",
+      "path" : "Patient.LandNaam",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Country Name"
+    }, {
+      "id" : "Patient.uitgifteDT",
+      "path" : "Patient.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Issuance DT"
+    } ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "id" : "OMOP-ProcedureOccurrence",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+  "name" : "OMOP-ProcedureOccurrence",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "OMOP-ProcedureOccurrence",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "OMOP-ProcedureOccurrence",
+      "path" : "OMOP-ProcedureOccurrence",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_occurrence_id",
+      "path" : "OMOP-ProcedureOccurrence.procedure_occurrence_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.person_id",
+      "path" : "OMOP-ProcedureOccurrence.person_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_concept_id",
+      "path" : "OMOP-ProcedureOccurrence.procedure_concept_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_date",
+      "path" : "OMOP-ProcedureOccurrence.procedure_date",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_type_concept_id",
+      "path" : "OMOP-ProcedureOccurrence.procedure_type_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.visit_occurrence_id",
+      "path" : "OMOP-ProcedureOccurrence.visit_occurrence_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_datetime",
+      "path" : "OMOP-ProcedureOccurrence.procedure_datetime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.quantity",
+      "path" : "OMOP-ProcedureOccurrence.quantity",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_source_value",
+      "path" : "OMOP-ProcedureOccurrence.procedure_source_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-ProcedureOccurrence.procedure_source_concept_id",
+      "path" : "OMOP-ProcedureOccurrence.procedure_source_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    } ]
+  }
+}

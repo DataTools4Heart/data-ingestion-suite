@@ -1,0 +1,154 @@
+{
+  "id" : "VitalSignHeartRate",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/heartrate",
+  "name" : "VitalSignHeartRate",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "VitalSignHeartRate",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "VitalSignHeartRate",
+      "path" : "VitalSignHeartRate",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "VitalSignHeartRate.pseudo_id",
+      "path" : "VitalSignHeartRate.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "VitalSignHeartRate.PatientContactId",
+      "path" : "VitalSignHeartRate.PatientContactId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter ID"
+    }, {
+      "id" : "VitalSignHeartRate.ZiekenhuisLocatie",
+      "path" : "VitalSignHeartRate.ZiekenhuisLocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital Location"
+    }, {
+      "id" : "VitalSignHeartRate.MetingHartfrequentieId",
+      "path" : "VitalSignHeartRate.MetingHartfrequentieId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Heart Rate Measurement ID"
+    }, {
+      "id" : "VitalSignHeartRate.AntwoordId",
+      "path" : "VitalSignHeartRate.AntwoordId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Answer ID (Not Used)"
+    }, {
+      "id" : "VitalSignHeartRate.MeetTijd",
+      "path" : "VitalSignHeartRate.MeetTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Measurement Time"
+    }, {
+      "id" : "VitalSignHeartRate.MeetDatum",
+      "path" : "VitalSignHeartRate.MeetDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Measurement Date"
+    }, {
+      "id" : "VitalSignHeartRate.MeetMoment",
+      "path" : "VitalSignHeartRate.MeetMoment",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Measurement Datetime"
+    }, {
+      "id" : "VitalSignHeartRate.Hartfrequentie",
+      "path" : "VitalSignHeartRate.Hartfrequentie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Heart Rate"
+    }, {
+      "id" : "VitalSignHeartRate.Eenheid",
+      "path" : "VitalSignHeartRate.Eenheid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Unit"
+    }, {
+      "id" : "VitalSignHeartRate.Bron",
+      "path" : "VitalSignHeartRate.Bron",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Source"
+    }, {
+      "id" : "VitalSignHeartRate.DCMVerverstDatumTijd",
+      "path" : "VitalSignHeartRate.DCMVerverstDatumTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "DCMV Refreshed Date Time"
+    }, {
+      "id" : "VitalSignHeartRate.uitgifteDT",
+      "path" : "VitalSignHeartRate.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Issuance DT"
+    } ]
+  }
+}

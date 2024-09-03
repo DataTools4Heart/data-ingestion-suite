@@ -1,0 +1,87 @@
+{
+  "id" : "OMOP-Death",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
+  "name" : "OMOP-Death",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "OMOP-Death",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "OMOP-Death",
+      "path" : "OMOP-Death",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "OMOP-Death.person_id",
+      "path" : "OMOP-Death.person_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.death_datetime",
+      "path" : "OMOP-Death.death_datetime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.death_date",
+      "path" : "OMOP-Death.death_date",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.death_type_concept_id",
+      "path" : "OMOP-Death.death_type_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.cause_concept_id",
+      "path" : "OMOP-Death.cause_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.cause_source_value",
+      "path" : "OMOP-Death.cause_source_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Death.cause_source_concept_id",
+      "path" : "OMOP-Death.cause_source_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

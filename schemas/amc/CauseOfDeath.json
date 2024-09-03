@@ -1,0 +1,104 @@
+{
+  "id" : "CauseOfDeath",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/causeofdeath",
+  "name" : "CauseOfDeath",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "CauseOfDeath",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "CauseOfDeath",
+      "path" : "CauseOfDeath",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "CauseOfDeath.pseudo_id",
+      "path" : "CauseOfDeath.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "CauseOfDeath.MeetDatum",
+      "path" : "CauseOfDeath.MeetDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Registration date"
+    }, {
+      "id" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
+      "path" : "CauseOfDeath.VermoedelijkeDoodsoorzaak",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Probable Cause of Death"
+    }, {
+      "id" : "CauseOfDeath.VermoedelijkeDoodsoorzaakSpecifiek",
+      "path" : "CauseOfDeath.VermoedelijkeDoodsoorzaakSpecifiek",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Probable Cause of Death Specific"
+    }, {
+      "id" : "CauseOfDeath.NatuurlijkeDood",
+      "path" : "CauseOfDeath.NatuurlijkeDood",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Is Death by Natural Causes"
+    }, {
+      "id" : "CauseOfDeath.ziekenhuislocatie",
+      "path" : "CauseOfDeath.ziekenhuislocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : " Hospital Location"
+    }, {
+      "id" : "CauseOfDeath.Patientcontactid",
+      "path" : "CauseOfDeath.Patientcontactid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter ID"
+    }, {
+      "id" : "CauseOfDeath.uitgifteDT",
+      "path" : "CauseOfDeath.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Issuance DT"
+    } ]
+  }
+}

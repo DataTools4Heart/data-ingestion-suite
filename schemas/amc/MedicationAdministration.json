@@ -1,0 +1,376 @@
+{
+  "id" : "MedicationAdministration",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationadministration",
+  "name" : "MedicationAdministration",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "MedicationAdministration",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "MedicationAdministration",
+      "path" : "MedicationAdministration",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "MedicationAdministration.pseudo_id",
+      "path" : "MedicationAdministration.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "MedicationAdministration.VoorschriftId",
+      "path" : "MedicationAdministration.VoorschriftId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Prescription ID",
+      "definition" : "Prescription ID linkage different meds prescribed at the same time"
+    }, {
+      "id" : "MedicationAdministration.PatientContactId",
+      "path" : "MedicationAdministration.PatientContactId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter ID"
+    }, {
+      "id" : "MedicationAdministration.OpnameTrajectId",
+      "path" : "MedicationAdministration.OpnameTrajectId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospitalisation ID",
+      "definition": "It's told that 'PatientContactId' is used to link the encounters within different tables. We need to check what is the difference between 'PatientContactId' and 'OpnameTrajectId')"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsDatumTijd",
+      "path" : "MedicationAdministration.ToedieningsDatumTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Administration Date Time"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsDatum",
+      "path" : "MedicationAdministration.ToedieningsDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Administration Date"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsTijd",
+      "path" : "MedicationAdministration.ToedieningsTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Administration Time"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsStatus",
+      "path" : "MedicationAdministration.ToedieningsStatus",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Administration Status",
+      "definition": "E.g (administered, stopped, planned, others) in Dutch"
+    }, {
+      "id" : "MedicationAdministration.Inloopsnelheid",
+      "path" : "MedicationAdministration.Inloopsnelheid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Rate of administration"
+    }, {
+      "id" : "MedicationAdministration.InloopsnelheidEenheid",
+      "path" : "MedicationAdministration.InloopsnelheidEenheid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Rate of administration unit"
+    }, {
+      "id" : "MedicationAdministration.ToegediendeHoeveelheid",
+      "path" : "MedicationAdministration.ToegediendeHoeveelheid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Administered Amount"
+    }, {
+      "id" : "MedicationAdministration.ToegediendeHoeveelheidEenheid",
+      "path" : "MedicationAdministration.ToegediendeHoeveelheidEenheid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Administered Amount Unit"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsRoute",
+      "path" : "MedicationAdministration.ToedieningsRoute",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Administration Route",
+      "definition": "E.g (oral, intravenous, subcutaneous, others) in Dutch"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsRouteCode",
+      "path" : "MedicationAdministration.ToedieningsRouteCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Administration Route Code"
+    }, {
+      "id" : "MedicationAdministration.MedicatieArtikelNaam",
+      "path" : "MedicationAdministration.MedicatieArtikelNaam",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Medication Name",
+      "definition" : "This is the name of the medication. e.g. LOPERAMIDE CAPSULE 2MG."
+    }, {
+      "id" : "MedicationAdministration.MedicatieArtikelCode",
+      "path" : "MedicationAdministration.MedicatieArtikelCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Medication Code",
+      "definition" : "This is a unique code assigned to a specific medication. It's like an identifier used in the pharmacy or hospital to precisely specify the medication. E.g '12345' could be the code for a specific brand of LOPERAMIDE CAPSULE 2MG."
+    }, {
+      "id" : "MedicationAdministration.IngredienttypeNaam",
+      "path" : "MedicationAdministration.IngredienttypeNaam",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Ingredient Type Name"
+    }, {
+      "id" : "MedicationAdministration.IngredienttypeCode",
+      "path" : "MedicationAdministration.IngredienttypeCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Ingredient Type Code"
+    }, {
+      "id" : "MedicationAdministration.ATCKlasseCode",
+      "path" : "MedicationAdministration.ATCKlasseCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "ATC Code"
+    }, {
+      "id" : "MedicationAdministration.ATCKlasse",
+      "path" : "MedicationAdministration.ATCKlasse",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "ATC Display in Dutch"
+    }, {
+      "id" : "MedicationAdministration.FarmaceutischeKlasse",
+      "path" : "MedicationAdministration.FarmaceutischeKlasse",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Pharmaceutical Class",
+      "definition": "Broad category of the medication based on its primary pharmacological effect or mechanism of action. This is the class of the medication based on its chemical structure and how it works in the body. E.g. 'BETA-BLOKKERS' is a class of medications that are used to treat high blood pressure and heart problems."
+    }, {
+      "id" : "MedicationAdministration.FarmaceutischeSubklasse",
+      "path" : "MedicationAdministration.FarmaceutischeSubklasse",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Pharmaceutical Subclass",
+      "definition": "More specific categorization within the pharmaceutical class. It further narrows down the type of medication based on specific characteristics or more detailed mechanisms of action. E.g VITAMINE K-ANTAGONISTEN is commonly used to prevent blood clots."
+    }, {
+      "id" : "MedicationAdministration.TherapeutischeKlasse",
+      "path" : "MedicationAdministration.TherapeutischeKlasse",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Therapeutic Class",
+      "definition": "The category of the medication based on its therapeutic use or the medical condition it treats. Examples include diuretics, anesthetics, and diabetes medications."
+    }, {
+      "id" : "MedicationAdministration.WerkplekCode",
+      "path" : "MedicationAdministration.WerkplekCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Department code",
+      "definition" : "Department code making the request. Codes are AMC based."
+    }, {
+      "id" : "MedicationAdministration.WerkplekAfkorting",
+      "path" : "MedicationAdministration.WerkplekAfkorting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Department abbreviation",
+      "definition" : "Department abbreviation making the request. Abbreviations are AMC based."
+    }, {
+      "id" : "MedicationAdministration.Werkplek",
+      "path" : "MedicationAdministration.Werkplek",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Department name",
+      "definition" : "Department name making the request. Names are Dutch and AMC based. E.g. AMC INTENSIVE CARE VOLWASSENEN..."
+    }, {
+      "id" : "MedicationAdministration.Ziekenhuislocatie",
+      "path" : "MedicationAdministration.Ziekenhuislocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital Location"
+    }, {
+      "id" : "MedicationAdministration.ZiekenhuislocatieCode",
+      "path" : "MedicationAdministration.ZiekenhuislocatieCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital Location Code"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsReden",
+      "path" : "MedicationAdministration.ToedieningsReden",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Administration Reason"
+    }, {
+      "id" : "MedicationAdministration.ToedieningsRedenCode",
+      "path" : "MedicationAdministration.ToedieningsRedenCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Administration Reason Code"
+    }, {
+      "id" : "MedicationAdministration.MedicatieOpmerking",
+      "path" : "MedicationAdministration.MedicatieOpmerking",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Medication Note"
+    }, {
+      "id" : "MedicationAdministration.Bron",
+      "path" : "MedicationAdministration.Bron",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Source"
+    }, {
+      "id" : "MedicationAdministration.DCMVerverstDatumTijd",
+      "path" : "MedicationAdministration.DCMVerverstDatumTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "DCMV Refreshed Date Time"
+    }, {
+      "id" : "MedicationAdministration.uitgifteDT",
+      "path" : "MedicationAdministration.uitgifteDT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Issuance DT"
+    } ]
+  }
+}

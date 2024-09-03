@@ -1,0 +1,106 @@
+{
+  "id" : "Encounter",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+  "name" : "Encounter",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Encounter",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Encounter",
+      "path" : "Encounter",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Encounter.CODICE_SANITARIO",
+      "path" : "Encounter.CODICE_SANITARIO",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Patient id"
+    }, {
+      "id" : "Encounter.NOSOGRAFICO",
+      "path" : "Encounter.NOSOGRAFICO",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter id"
+    }, {
+      "id" : "Encounter.NUM_PS",
+      "path" : "Encounter.NUM_PS",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "A record can have both ids (NOSOGRAFICO and NUM_PS) populated in the case of an admission proceeded by an emergency visit. So a same record can have both.",
+      "short" : "Unique id for the emergency visits"
+    }, {
+      "id" : "Encounter.DATA_IN",
+      "path" : "Encounter.DATA_IN",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Admission date"
+    }, {
+      "id" : "Encounter.ORA_IN",
+      "path" : "Encounter.ORA_IN",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Admission time"
+    }, {
+      "id" : "Encounter.DATA_OUT",
+      "path" : "Encounter.DATA_OUT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Discharge date"
+    }, {
+      "id" : "Encounter.ORA_OUT",
+      "path" : "Encounter.ORA_OUT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Discharge time"
+    }, {
+      "id" : "Encounter.D_EVENTO",
+      "path" : "Encounter.D_EVENTO",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "E.g.  'Ricovero' which translates to 'Hospitalization' in English.",
+      "short" : "Type of event"
+    } ]
+  }
+}
