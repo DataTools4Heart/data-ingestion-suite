@@ -15,7 +15,7 @@
   "context" : {
     "echoCodeMappings" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/gem/echo-code-mappings-v2.csv"
+      "url" : "$CONTEXT_REPO/gem/echo-code-mappings.csv"
     }
   },
   "variable" : [ {

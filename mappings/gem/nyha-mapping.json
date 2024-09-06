@@ -13,10 +13,6 @@
     "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {
-    "echoCodeMappings" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/gem/echo-code-mappings.csv"
-    },
     "nyhaMappings" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/gem/nyha-mappings.csv"

@@ -1,33 +1,45 @@
 "source_code","target_code","target_display","code_system","unit"
-"Funzione Diastolica_RapportoEA","59129-7","Left ventricular E-wave/A-wave by US","http://loinc.org",
-"Funzione Diastolica_RapportoEE","78190-6","Mitral valve lateral annulus E-wave/Tissue velocity.E-wave.max by US.doppler+tissue doppler","http://loinc.org",
-"Funzione Diastolica_VelocitPiccoOndaA","79915-5","Pulmonary vein Maximum A-wave velocity by Ultrasound.doppler.PW","http://loinc.org",cm/s
-"Funzione Diastolica_VelocitPiccoOndaE","79911-4","Mitral valve medial annulus Tissue velocity.E-wave.max by US.tissue doppler.A4C","http://loinc.org",cm/s
-"Valvola tricuspide_TAPSE","77903-3","Tricuspid valve annulus Excursion distance during systole by US.M-mode","http://loinc.org",cm
-"Ventricolo sinistro_DiametroDiastolicoIndic","LVEDDi","Indexed left-ventricle end-diastolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm/m2
-"Ventricolo sinistro_DiametroSistolicoIndic","LVESDi","Indexed left-ventricle end-systolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm/m2
-"Ventricolo sinistro_DiametroTeleDiastolico","18083-6","Left ventricular Internal diameter minor axis diastole by US 2D","http://loinc.org",mm
-"Ventricolo sinistro_DiametroTeleSistolico","18085-1","Left ventricular Internal diameter minor axis systole by US 2D","http://loinc.org",mm
-"Ventricolo sinistro_FrazionediEiezione","8806-2","Left ventricular Ejection fraction by 2D echo","http://loinc.org",%
-"Ventricolo sinistro_ParetePosterioreSpessoreTD","80032-6","Left ventricular posterior wall Thickness at end diastole by US 2D","http://loinc.org",mm
-"Ventricolo sinistro_ParetePosterioreSpessoreTDIndic","LVPWdi","Indexed left ventricular posterior wall thickness at end diastole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm/m2
-"Ventricolo sinistro_SettoInterventricolareSpessoreTD","79969-2","Interventricular septum Thickness at end diastole by US 2D","http://loinc.org",mm
-"Ventricolo sinistro_SettointerventricolarespessoreTDIndicM","IVSdi","Indexed intraventricular septal thickness end diastole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm/m2
-"Ventricolo sinistro_StrokeVolumeIndex","134401001","Left ventricular cardiac dysfunction","http://snomed.info/sct",
-"Ventricolo sinistro_VolumeTeleDiastolico","75988-6","Left ventricular End diastolic volume","http://loinc.org",mL
-"Ventricolo sinistro_VolumeTeleDiastolicoInd","79997-3","End-diastolic volume/Body surface area","http://loinc.org",mL/m2
-"Ventricolo sinistro_VolumeTeleSistolico","75989-4","Left ventricular End systolic volume","http://loinc.org",mL
-"Ventricolo sinistro_VolumeTeleSistolicoInd","80002-9","End-systolic volume/Body surface area","http://loinc.org",mL/m2
-"Ventricolo sinistro_ParetePosterioreSpessoreTS","80034-2","Left ventricular posterior wall Thickness at end systole by US 2D","http://loinc.org",mm
-"Ventricolo sinistro_ParetePosterioreSpessoreTSIndic","LVPWsi","Indexed left ventricular posterior wall thickness at end systole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm/m2
-"Ventricolo destro_Accorciamentofrazionale","FAC","Fractional area change","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",%
-"Ventricolo sinistro_DiametroInternoTD","18083-6","Left ventricular Internal diameter minor axis diastole by US 2D","http://loinc.org",mm
-"Funzione Diastolica_VelocitPiccoOndaELATTDI","eLateral","Early diastolic mitral annulus velocity at the lateral side","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",cm/s
-"Funzione Diastolica_VelocitPiccoOndaESETTTDI","eSeptal","Early diastolic mitral annulus velocity at the septal side","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",cm/s
-"Ventricolo sinistro_HeartRate","HRecho","Heart rate at echocardiography","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",bpm
-"Ventricolo sinistro_SettoInterventricolareSpessoreTS","79971-8","Interventricular septum thickness at end systole by US 2D","http://loinc.org",mm
-"Vena Cava_DiametroMax","IVCdmax","Inferior vena cava maximum diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm
-"Vena Cava_DiametroMin","IVCdmin","Inferior vena cava minimum diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm
-"Ventricolo destro_DiametroTeleDiastolico","RVEDD","Right-ventricle end-diastolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm
-"Ventricolo destro_DiametroTeleDiastolicoIndic","RVEDDi","Indexed right-ventricle end-diastolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm/m2
-"Ventricolo sinistroSettointerventricolarespessoresistolicoIndicM","IVSsi","Indexed intraventricular septal thickness end systole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes",mm/m2
+"LA volume","LAV","Left atrial volume","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mL"
+"LA diameter","LA diameter","Left atrial diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm"
+"LAVi","LAVi","Left atrial/Body surface area","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","%"
+"Peak E wave","79911-4","Mitral valve medial annulus Tissue velocity.E-wave.max by US.tissue doppler.A4C","http://loinc.org","cm/s"
+"Peak A wave","79915-5","Pulmonary vein Maximum A-wave velocity by Ultrasound.doppler.PW","http://loinc.org","cm/s"
+"A wave","79915-5","Pulmonary vein Maximum A-wave velocity by Ultrasound.doppler.PW","http://loinc.org","cm/s"
+"E wave","79911-4","Mitral valve medial annulus Tissue velocity.E-wave.max by US.tissue doppler.A4C","http://loinc.org","cm/s"
+"E/A ratio","59129-7","Left ventricular E-wave/A-wave by US","http://loinc.org","%"
+"TR velocity","11712-7","Tricuspid valve Peak systolic flow velocity by US.doppler","http://loinc.org","cm/s"
+"TR","11712-7","Tricuspid valve Peak systolic flow velocity by US.doppler","http://loinc.org","cm/s"
+"E/A","59129-7","Left ventricular E-wave/A-wave by US","http://loinc.org","%"
+"E_A ratio","59129-7","Left ventricular E-wave/A-wave by US","http://loinc.org","%"
+"E_e ratio","78190-6","Mitral valve lateral annulus E-wave/Tissue velocity.E-wave.max by US.doppler+tissue doppler","http://loinc.org","%"
+"TAPSE","77903-3","Tricuspid valve annulus Excursion distance during systole by US.M-mode","http://loinc.org","cm"
+"LVEDDi","LVEDDi","Indexed left-ventricle end-diastolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm/m2"
+"LVESDi","LVESDi","Indexed left-ventricle end-systolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm/m2"
+"LVEDD","18083-6","Left ventricular Internal diameter minor axis diastole by US 2D","http://loinc.org","cm"
+"LVESD","18085-1","Left ventricular Internal diameter minor axis systole by US 2D","http://loinc.org","mm"
+"LVEF","8806-2","Left ventricular Ejection fraction by 2D echo","http://loinc.org","%"
+"LVPWd","80032-6","Left ventricular posterior wall Thickness at end diastole by US 2D","http://loinc.org","mm"
+"LVPWdi","LVPWdi","Indexed left ventricular posterior wall thickness at end diastole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm/m2"
+"IVSd","79969-2","Interventricular septum Thickness at end diastole by US 2D","http://loinc.org","mm"
+"IVSdi","IVSdi","Indexed intraventricular septal thickness end diastole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm/m2"
+"LV_sys","8785-8","Left ventricular Stroke volume index by 2D echo","http://loinc.org","mL/m2"
+"Stroke Volume","8765-0","Left ventricular Stroke volume by 2D echo","http://loinc.org","mL"
+"LVEDV","75988-6","Left ventricular End diastolic volume","http://loinc.org","mL"
+"LVEDVi","79997-3","End-diastolic volume/Body surface area","http://loinc.org","mL/m2"
+"LVESV","75989-4","Left ventricular End systolic volume","http://loinc.org","mL"
+"LVESVi","80002-9","End-systolic volume/Body surface area","http://loinc.org","mL/m2"
+"LVPWs","80034-2","Left ventricular posterior wall Thickness at end systole by US 2D","http://loinc.org","mm"
+"LVPWsi","LVPWsi","Indexed left ventricular posterior wall thickness at end systole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm/m2"
+"FAC","FAC","Fractional area change","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","%"
+"e' lateral","eLateral","Early diastolic mitral annulus velocity at the lateral side","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","cm/s"
+eLateral,"eLateral","Early diastolic mitral annulus velocity at the lateral side","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","cm/s"
+"e' septal","eSeptal","Early diastolic mitral annulus velocity at the septal side","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","cm/s"
+"eSeptal","eSeptal","Early diastolic mitral annulus velocity at the septal side","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","cm/s"
+"HRecho","HRecho","Heart rate at echocardiography","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","bpm"
+"IVSs","79971-8","Interventricular septum thickness at end systole by US 2D","http://loinc.org","mm"
+"IVC diameter","IVCd","Inferior vena cava maximum diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm"
+"IVCdmin","IVCdmin","Inferior vena cava minimum diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm"
+"IVCdmax","IVCdmax","Inferior vena cava maximum diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm"
+"RVEDD","RVEDD","Right-ventricle end-diastolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm"
+"RVEDDi","RVEDDi","Indexed right-ventricle end-diastolic diameter","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm/m2"
+"IVSsi","IVSsi","Indexed intraventricular septal thickness end systole","https://datatools4heart.eu/fhir/CodeSystem/echocardiogram-codes","mm/m2"
