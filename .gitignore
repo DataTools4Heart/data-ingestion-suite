@@ -7,3 +7,4 @@ log-service.conf
 **/target
 projects.json
 checkpoint
+test-data/mimic-iv-data
