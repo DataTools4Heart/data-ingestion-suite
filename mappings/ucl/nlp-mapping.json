@@ -10,11 +10,11 @@
   }, {
     "alias" : "concept",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Concept",
-    "joinOn" : [ "concept_id" ]
+    "joinOn" : [ "concept_id", null ]
   }, {
     "alias" : "note",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Note",
-    "joinOn" : [ "note_id" ]
+    "joinOn" : [ null, "note_id" ]
   } ],
   "context" : { },
   "variable" : [ {
@@ -36,8 +36,8 @@
             }
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %note.person_id.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %note.visit_occurrence_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %note.first().person_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %note.first().visit_occurrence_id.toString())}}",
         "onsetDateTime" : "{{iif(nlp_datetime.empty(), nlp_date.toString(), nlp_datetime)}}",
         "clinicalStatus" : {
           "coding" : [ {
