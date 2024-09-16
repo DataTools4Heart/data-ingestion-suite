@@ -73,7 +73,7 @@
             "{{?}}" : "{{%highVar}}"
           }
         } ],
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATA_ORA_ESAME & CODICE_ESAME)}}",
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATA_ORA_ESAME & CODICE_ESAME & VALUE.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign')}}" ]
@@ -84,7 +84,7 @@
     "precondition" : {
       "name" : "loincCodeAndRelatedEncounterExist",
       "language" : "text/fhirpath",
-      "expression" : "(%labLoincCode.exists() or %vitalSign.exists()) and %relatedEncounter.exists()"
+      "expression" : "%labLoincCode.exists() or %vitalSign.exists()"
     }
   } ]
 }

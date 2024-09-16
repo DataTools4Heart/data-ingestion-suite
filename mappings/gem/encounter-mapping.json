@@ -6,11 +6,11 @@
   "source" : [ {
     "alias" : "encounterMain",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
-    "joinOn" : [ "NOSOGRAFICO" ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
   }, {
     "alias" : "encounterDetails",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
-    "joinOn" : [ "NOSOGRAFICO_ADT" ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {
     "icd9toIcd10CM" : {
@@ -23,10 +23,14 @@
     }
   },
   "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "%encounterDetails.where(%context.DATA_IN.toDate() <= DATA_RICOVERO.toDate() and %context.DATA_OUT.toDate() >= DATA_DIMISSIONE.toDate()).first()"
+  }, {
     "name" : "dischargeDate",
     "language" : "text/fhirpath",
     "expression" : "(DATA_OUT & iif(ORA_OUT.exists(), ORA_OUT) )"
-  } ],
+  }],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -46,7 +50,7 @@
         },
         "status": "completed",
         "reason": {
-          "{{#diagCodeIcd9}}": "{{ %encounterDetails.DIAG1_ICD9CM | %encounterDetails.DIAG2_ICD9CM | %encounterDetails.DIAG3_ICD9CM | %encounterDetails.DIAG4_ICD9CM | %encounterDetails.DIAG5_ICD9CM | %encounterDetails.DIAG6_ICD9CM | %encounterDetails.DIAG7_ICD9CM }}",
+          "{{#diagCodeIcd9}}": "{{ %relatedEncounter.DIAG1_ICD9CM | %relatedEncounter.DIAG2_ICD9CM | %relatedEncounter.DIAG3_ICD9CM | %relatedEncounter.DIAG4_ICD9CM | %relatedEncounter.DIAG5_ICD9CM | %relatedEncounter.DIAG6_ICD9CM | %relatedEncounter.DIAG7_ICD9CM }}",
           "{{*}}": {
             "value": [
               {

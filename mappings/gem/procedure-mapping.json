@@ -6,7 +6,11 @@
   "source" : [ {
     "alias" : "encounterDetails",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
-    "joinOn" : [ ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {
     "icd9toIcd10PCS" : {
@@ -19,9 +23,9 @@
     }
   },
   "variable" : [ {
-    "name" : "dischargeDate",
+    "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "(DATA_OUT & iif(ORA_OUT.exists(), ORA_OUT) )"
+    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA_RICOVERO.toDate() and DATA_OUT.toDate() >= %context.DATA_DIMISSIONE.toDate()).first()"
   } ],
   "mapping" : [ {
     "expression" : {
@@ -47,7 +51,7 @@
               } ]
             },
             "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
-            "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', NOSOGRAFICO_ADT)}}",
+            "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter',  %relatedEncounter.NOSOGRAFICO)}}",
             "occurrenceDateTime" : "{{DATAPROC[%ind]}}",
             "status" : "completed",
             "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & DATAPROC[%ind]) }}",
