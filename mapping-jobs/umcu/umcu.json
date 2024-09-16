@@ -17,6 +17,7 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
+    "name": "lab-result-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping",
     "sourceBinding" : {
       "labResults" : {

@@ -17,6 +17,7 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
+    "name": "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
     "sourceBinding" : {
       "source" : {
@@ -27,6 +28,7 @@
       }
     }
   }, {
+    "name": "ECG-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/ECG-mapping",
     "sourceBinding" : {
       "ecg" : {
@@ -37,6 +39,7 @@
       }
     }
   }, {
+    "name": "echocardiograph-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
     "sourceBinding" : {
       "echoObservation" : {
@@ -53,6 +56,7 @@
       }
     }
   }, {
+    "name": "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
     "sourceBinding" : {
       "source" : {
@@ -63,6 +67,7 @@
       }
     }
   }, {
+    "name": "lab-result-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
     "sourceBinding" : {
       "source" : {
@@ -73,6 +78,7 @@
       }
     }
   }, {
+    "name": "medication-administration-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
     "sourceBinding" : {
       "source" : {
@@ -83,6 +89,7 @@
       }
     }
   }, {
+    "name": "nyha-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
     "sourceBinding" : {
       "source" : {
@@ -93,6 +100,7 @@
       }
     }
   }, {
+    "name": "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
     "sourceBinding" : {
       "source" : {
@@ -103,6 +111,7 @@
       }
     }
   }, {
+    "name": "procedure-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
     "sourceBinding" : {
       "source" : {
@@ -113,6 +122,7 @@
       }
     }
   }, {
+    "name": "smoking-status-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
     "sourceBinding" : {
       "source" : {
@@ -123,6 +133,7 @@
       }
     }
   }, {
+    "name": "symptom-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
     "sourceBinding" : {
       "source" : {
@@ -133,6 +144,7 @@
       }
     }
   }, {
+    "name": "vital-sign-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
     "sourceBinding" : {
       "source" : {

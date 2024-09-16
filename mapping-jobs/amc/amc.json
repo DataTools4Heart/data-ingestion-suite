@@ -16,6 +16,7 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
+    "name": "cause-of-death-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
     "sourceBinding" : {
       "CauseOfDeath" : {
@@ -26,6 +27,7 @@
       }
     }
   }, {
+    "name": "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
     "sourceBinding" : {
       "Condition" : {
@@ -36,6 +38,7 @@
       }
     }
   }, {
+    "name": "condition-medical-diagnosis-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
     "sourceBinding" : {
       "MedicalDiagnosis" : {
@@ -46,6 +49,7 @@
       }
     }
   }, {
+    "name": "ecg",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
     "sourceBinding" : {
       "source" : {
@@ -56,6 +60,7 @@
       }
     }
   }, {
+    "name": "encounter-emergency-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
     "sourceBinding" : {
       "EncounterEmergency" : {
@@ -66,6 +71,7 @@
       }
     }
   }, {
+    "name": "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
     "sourceBinding" : {
       "Encounter" : {
@@ -76,6 +82,7 @@
       }
     }
   }, {
+    "name": "history-surgery-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
     "sourceBinding" : {
       "SurgeryHistory" : {
@@ -86,6 +93,7 @@
       }
     }
   }, {
+    "name": "lab-result-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/lab-result-mapping",
     "sourceBinding" : {
       "LabResult" : {
@@ -96,6 +104,7 @@
       }
     }
   }, {
+    "name": "medication-administration-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
     "sourceBinding" : {
       "MedicationAdministration" : {
@@ -106,6 +115,7 @@
       }
     }
   }, {
+    "name": "medication-prescription-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
     "sourceBinding" : {
       "MedicationPrescription" : {
@@ -116,6 +126,7 @@
       }
     }
   }, {
+    "name": "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
     "sourceBinding" : {
       "patient" : {
@@ -126,6 +137,7 @@
       }
     }
   }, {
+    "name": "procedure-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
     "sourceBinding" : {
       "Procedure" : {
@@ -136,6 +148,7 @@
       }
     }
   }, {
+    "name": "procedure-surgery-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
     "sourceBinding" : {
       "ProcedureSurgery" : {
@@ -146,6 +159,7 @@
       }
     }
   }, {
+    "name": "smoking-status-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
     "sourceBinding" : {
       "SmokingStatus" : {
@@ -156,6 +170,7 @@
       }
     }
   }, {
+    "name": "vital-sign-bmi-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bmi-mapping",
     "sourceBinding" : {
       "BMI" : {
@@ -166,6 +181,7 @@
       }
     }
   }, {
+    "name": "vital-sign-bp-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
     "sourceBinding" : {
       "BP" : {
@@ -176,6 +192,7 @@
       }
     }
   }, {
+    "name": "vital-sign-heartrate-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
     "sourceBinding" : {
       "HeartRate" : {
@@ -186,6 +203,7 @@
       }
     }
   }, {
+    "name": "vital-sign-length-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-mapping",
     "sourceBinding" : {
       "Length" : {
@@ -196,6 +214,7 @@
       }
     }
   }, {
+    "name": "vital-sign-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
     "sourceBinding" : {
       "VitalSign" : {
@@ -206,6 +225,7 @@
       }
     }
   }, {
+    "name": "vital-sign-o2-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-o2-mapping",
     "sourceBinding" : {
       "O2Saturation" : {
@@ -216,6 +236,7 @@
       }
     }
   }, {
+    "name": "vital-sign-weight-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-weight-mapping",
     "sourceBinding" : {
       "Weight" : {
@@ -226,7 +247,8 @@
       }
     }
   }, {
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
+    "name": "history-condition-mapping",
+    "mappingRef" : "https://datatools4hart.eu/fhir/mappings/amc/history-condition-mapping",
     "sourceBinding" : {
       "HistoryCondition" : {
         "jsonClass" : "FileSystemSource",

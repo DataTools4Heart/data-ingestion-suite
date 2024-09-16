@@ -71,6 +71,7 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
+    "name": "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/condition-mapping",
     "sourceBinding" : {
       "omopCondition" : {
@@ -81,6 +82,7 @@
       }
     }
   }, {
+    "name": "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/encounter-mapping",
     "sourceBinding" : {
       "omopVisitOccurrence" : {
@@ -97,6 +99,7 @@
       }
     }
   }, {
+    "name": "lab-result-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/lab-result-mapping",
     "sourceBinding" : {
       "omopMeasurement" : {
@@ -107,6 +110,7 @@
       }
     }
   }, {
+    "name": "medication-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/medication-mapping",
     "sourceBinding" : {
       "omopDrugExposure" : {
@@ -117,6 +121,7 @@
       }
     }
   }, {
+    "name": "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/patient-mapping",
     "sourceBinding" : {
       "omopPerson" : {
@@ -127,6 +132,7 @@
       }
     }
   }, {
+    "name": "procedure-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/procedure-mapping",
     "sourceBinding" : {
       "omopProcedure" : {
@@ -137,6 +143,7 @@
       }
     }
   }, {
+    "name": "vital-sign-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/vital-sign-mapping",
     "sourceBinding" : {
       "omopMeasurement" : {

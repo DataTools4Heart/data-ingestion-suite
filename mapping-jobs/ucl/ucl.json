@@ -70,6 +70,7 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
+    "name": "cause-of-death-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
     "sourceBinding" : {
       "omopDeath" : {
@@ -81,6 +82,7 @@
       }
     }
   }, {
+    "name": "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
     "sourceBinding" : {
       "omopCondition" : {
@@ -92,6 +94,7 @@
       }
     }
   }, {
+    "name": "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/encounter-mapping",
     "sourceBinding" : {
       "omopVisitOccurrence" : {
@@ -110,6 +113,7 @@
       }
     }
   }, {
+    "name": "lab-result-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
     "sourceBinding" : {
       "omopMeasurement" : {
@@ -121,6 +125,7 @@
       }
     }
   }, {
+    "name": "medication-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
     "sourceBinding" : {
       "omopDrugExposure" : {
@@ -132,6 +137,7 @@
       }
     }
   }, {
+    "name": "nlp-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping",
     "sourceBinding" : {
       "noteNlp" : {
@@ -157,6 +163,7 @@
       }
     }
   }, {
+    "name": "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
     "sourceBinding" : {
       "omopPerson" : {
@@ -175,6 +182,7 @@
       }
     }
   }, {
+    "name": "procedure-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
     "sourceBinding" : {
       "omopProcedure" : {
@@ -186,6 +194,7 @@
       }
     }
   }, {
+    "name": "vital-sign-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
     "sourceBinding" : {
       "omopMeasurement" : {
