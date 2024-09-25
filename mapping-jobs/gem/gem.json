@@ -22,7 +22,7 @@
       "anagrafica" : {
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -34,7 +34,7 @@
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -46,7 +46,7 @@
       "echo" : {
         "jsonClass" : "FileSystemSource",
         "path" : "ecocardio.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo group by echo.codice_sanitario, echo.DATAREFERTO ",
         "sourceRef" : "gem-source"
@@ -54,7 +54,7 @@
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -66,12 +66,14 @@
       "encounterMain" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       },
       "encounterDetails" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dettagliocontatti.csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -83,14 +85,14 @@
       "labResults" : {
         "jsonClass" : "FileSystemSource",
         "path" : "diario_misure.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -102,14 +104,14 @@
       "medications" : {
         "jsonClass" : "FileSystemSource",
         "path" : "farmaci.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -121,14 +123,14 @@
       "nyha" : {
         "jsonClass" : "FileSystemSource",
         "path" : "nyha.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -140,7 +142,7 @@
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "anagrafica.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -152,7 +154,7 @@
       "patology" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }
@@ -164,6 +166,7 @@
       "encounterDetails" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dettagliocontatti.csv",
+        "contentType" : "csv",
         "options" : { },
         "preprocessSql" : "select CODICE_SANITARIO, NOSOGRAFICO_ADT, DATA_RICOVERO, ORA_RICOVERO, DATA_DIMISSIONE, ORA_DIMISSIONE, DESC_REPARTO_RICOVERO, DIAG1_ICD9CM, DIAG2_ICD9CM, DIAG3_ICD9CM, DIAG4_ICD9CM, DIAG5_ICD9CM, DIAG6_ICD9CM, DIAG7_ICD9CM, ARRAY(PROC1, PROC2, PROC3, PROC4, PROC5, PROC6, PROC7) as PROC, ARRAY(DATAPROC1, DATAPROC2, DATAPROC3, DATAPROC4, DATAPROC5, DATAPROC6, DATAPROC7) as DATAPROC, TIPO from encounterDetails",
         "sourceRef" : "gem-source"
@@ -171,7 +174,7 @@
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "elenco_contatti.csv",
-        "fileFormat" : "csv",
+        "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
       }

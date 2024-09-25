@@ -22,6 +22,7 @@
       "CauseOfDeath" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OverlijdensRegistratie.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -33,6 +34,7 @@
       "Condition" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Probleemlijst.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -44,6 +46,7 @@
       "MedicalDiagnosis" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedischeDiagnose.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -55,6 +58,7 @@
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_EcgMeting.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -66,6 +70,7 @@
       "EncounterEmergency" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_SEHtraject.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -77,6 +82,7 @@
       "Encounter" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Opnametraject.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -88,6 +94,7 @@
       "SurgeryHistory" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisChirurgie.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -99,6 +106,7 @@
       "LabResult" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Labuitslag.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -110,6 +118,7 @@
       "MedicationAdministration" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieToediening.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -121,6 +130,7 @@
       "MedicationPrescription" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieVoorschrift.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -132,6 +142,7 @@
       "patient" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Patient.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -143,6 +154,7 @@
       "Procedure" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VerrichtingUitgevoerd.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -154,6 +166,7 @@
       "ProcedureSurgery" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OKVerrichtingUitgevoerd.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -165,6 +178,7 @@
       "SmokingStatus" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Tabakgebruik.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -176,6 +190,7 @@
       "BMI" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingBMI.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -187,6 +202,7 @@
       "BP" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingBloeddruk.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -198,6 +214,7 @@
       "HeartRate" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingHartfrequentie.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -209,6 +226,7 @@
       "Length" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingLichaamsLengte.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -220,6 +238,7 @@
       "VitalSign" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingVitaleGegevens.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -231,6 +250,7 @@
       "O2Saturation" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Metingo2Saturatie.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -242,6 +262,7 @@
       "Weight" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingLichaamsGewicht.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
@@ -253,6 +274,7 @@
       "HistoryCondition" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisMedisch.tsv",
+        "contentType": "tsv",
         "options" : { },
         "sourceRef" : "amc-source"
       }
