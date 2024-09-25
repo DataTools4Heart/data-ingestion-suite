@@ -50,7 +50,7 @@
     "precondition" : {
       "name" : "bpExists",
       "language" : "text/fhirpath",
-      "expression" : "BloeddrukSamengesteld.exists()"
+      "expression" : "BloeddrukSamengesteld.exists() and BloeddrukSamengesteld != 'null'"
     }
   }, {
     "expression" : {
@@ -92,7 +92,7 @@
     "precondition" : {
       "name" : "bpExists",
       "language" : "text/fhirpath",
-      "expression" : "BloeddrukSamengesteld.exists()"
+      "expression" : "BloeddrukSamengesteld.exists() and BloeddrukSamengesteld != 'null'"
     }
   } ]
 }
