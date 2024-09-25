@@ -37,6 +37,11 @@
         },
         "resourceType" : "Condition"
       }
+    },
+    "precondition" : {
+      "name" : "dateExists",
+      "language" : "text/fhirpath",
+      "expression" : "DiagnoseContactDatum.exists() and DiagnoseContactDatum != 'NA'"
     }
   } ]
 }

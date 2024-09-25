@@ -36,7 +36,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
           "value" : "{{VitaleGegevensLengte}}",
@@ -82,7 +82,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
           "value" : "{{VitaleGegevensGewicht}}",
@@ -128,7 +128,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
           "value" : "{{VitaleGegevensBMIberekening}}",
@@ -174,7 +174,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
           "value" : "{{VitaleGegevensPolsslag}}",
@@ -220,7 +220,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
           "value" : "{{VitaleGegevensBloeddrukSysDia.utl:split('/').first().toDecimal()}}",
@@ -238,7 +238,7 @@
     "precondition" : {
       "name" : "systolicDiastolicExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensBloeddrukSysDia.exists()"
+      "expression" : "VitaleGegevensBloeddrukSysDia.exists() and VitaleGegevensBloeddrukSysDia != 'null'"
     }
   }, {
     "expression" : {
@@ -266,7 +266,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
           "value" : "{{VitaleGegevensBloeddrukSysDia.utl:split('/').last().toDecimal()}}",
@@ -284,7 +284,7 @@
     "precondition" : {
       "name" : "systolicDiastolicExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensBloeddrukSysDia.exists()"
+      "expression" : "VitaleGegevensBloeddrukSysDia.exists() and VitaleGegevensBloeddrukSysDia != 'null'"
     }
   } ]
 }

@@ -38,9 +38,9 @@
           "code" : "%"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_weight')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetMoment & '_weight')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },

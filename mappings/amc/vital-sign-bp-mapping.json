@@ -40,12 +40,17 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_systolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum.toString() & BloeddrukSamengesteld.toString() & '_systolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation"
       }
+    },
+    "precondition" : {
+      "name" : "bpExists",
+      "language" : "text/fhirpath",
+      "expression" : "BloeddrukSamengesteld.exists()"
     }
   }, {
     "expression" : {
@@ -77,12 +82,17 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_diastolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & BloeddrukSamengesteld & '_diastolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation"
       }
+    },
+    "precondition" : {
+      "name" : "bpExists",
+      "language" : "text/fhirpath",
+      "expression" : "BloeddrukSamengesteld.exists()"
     }
   } ]
 }

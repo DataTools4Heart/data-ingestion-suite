@@ -40,12 +40,17 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_length')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetMoment.toString() & '_length')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation"
       }
+    },
+    "precondition" : {
+      "name" : "lengthExists",
+      "language" : "text/fhirpath",
+      "expression" : "LichaamsLengte.exists()"
     }
   } ]
 }
