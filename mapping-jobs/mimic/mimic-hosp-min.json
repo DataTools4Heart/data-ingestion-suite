@@ -2,9 +2,9 @@
   "id" : "mimic-hosp-min",
   "name" : "mimic-hosp-min",
   "sourceSettings" : {
-    "source" : {
+    "MIMIC-IV-v2.0" : {
       "jsonClass" : "FileSystemSourceSettings",
-      "name" : "MIMIC-IV v2.0",
+      "name" : "MIMIC-IV-v2.0",
       "sourceUri" : "https://physionet.org/content/mimiciv/2.0",
       "dataFolderPath" : "test-data/mimic-iv-data",
       "asStream" : false
@@ -108,44 +108,58 @@
     } ]
   },
   "mappings" : [ {
+    "name": "emar",
     "mappingRef" : "https://mimic.mit.edu/fhir/mappings/emar",
-    "sourceContext" : {
+    "sourceBinding" : {
       "emar" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/min-emar.csv",
-        "options" : { }
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "MIMIC-IV-v2.0"
       },
       "emarDetail" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/min-emar_detail.csv",
-        "options" : { }
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "MIMIC-IV-v2.0"
       }
     }
   }, {
+    "name": "medications",
     "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications",
-    "sourceContext" : {
+    "sourceBinding" : {
       "prescribed_meds" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/min-prescriptions.csv",
-        "options" : { }
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "MIMIC-IV-v2.0"
       }
     }
   }, {
+    "name": "medications-without-rxn",
     "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
-    "sourceContext" : {
+    "sourceBinding" : {
       "prescribed_meds" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/min-prescriptions.csv",
-        "options" : { }
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "MIMIC-IV-v2.0"
       }
     }
   }, {
+    "name": "prescriptions",
     "mappingRef" : "https://mimic.mit.edu/fhir/mappings/prescriptions",
-    "sourceContext" : {
+    "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/min-prescriptions.csv",
-        "options" : { }
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "MIMIC-IV-v2.0"
       }
     }
   } ],
