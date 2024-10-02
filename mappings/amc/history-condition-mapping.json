@@ -22,9 +22,9 @@
             "@sliceName" : "icd10Code"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
-        "onsetDateTime" : "{{IndicatieDatumVaststelling}}",
+        "onsetDateTime" : "{{IndicatieDatumVaststelling.utl:toFhirDateTime('d-M-yyyy' | 'yyyy' | 'M-yyyy')}}",
         "clinicalStatus" : {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
@@ -32,7 +32,7 @@
             "display" : "Active"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Condition', pseudo_id)}}",
+        "id" : "{{mpp:getHashedId('Condition', pseudo_id.toString() & diagnosecode.toString() & IndicatieDatumVaststelling.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },
@@ -42,7 +42,7 @@
     "precondition" : {
       "name" : "dateExists",
       "language" : "text/fhirpath",
-      "expression" : "IndicatieDatumVaststelling.exists()"
+      "expression" : "IndicatieDatumVaststelling.exists() and IndicatieDatumVaststelling != ''"
     }
   } ]
 }

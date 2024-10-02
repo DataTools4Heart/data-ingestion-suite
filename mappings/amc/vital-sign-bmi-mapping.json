@@ -36,15 +36,15 @@
         },
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{BMI}}",
+          "value" : "{{BMI.toDecimal()}}",
           "unit" : "kg/m2",
           "system" : "http://unitsofmeasure.org",
           "code" : "kg/m2"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum.toString() & BMI.toString() & '_bmi')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & BMI.toString() & '_bmi')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -54,7 +54,7 @@
     "precondition" : {
       "name" : "bmiExists",
       "language" : "text/fhirpath",
-      "expression" : "BMI.exists()"
+      "expression" : "BMI.exists() and (BMI in ('NA'| '' | 'null')).not()"
     }
   } ]
 }

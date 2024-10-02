@@ -49,8 +49,8 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "{{UitslagEenheid}}"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & UitslagDatumtijd)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & UitslagDatumtijd.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
         },

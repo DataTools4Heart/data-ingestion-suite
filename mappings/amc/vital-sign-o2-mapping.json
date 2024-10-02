@@ -32,20 +32,25 @@
         },
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{o2Saturatie}}",
+          "value" : "{{o2Saturatie.toDecimal()}}",
           "unit" : "%",
           "system" : "http://unitsofmeasure.org",
           "code" : "%"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetMoment & '_o2')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment & '_o2')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation"
       }
+    },
+    "precondition" : {
+      "name" : "lengthExists",
+      "language" : "text/fhirpath",
+      "expression" : "o2Saturatie.exists() and (o2Saturatie in ('NA'| '' | 'null')).not()"
     }
   } ]
 }

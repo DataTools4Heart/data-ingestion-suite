@@ -2,6 +2,7 @@
   "id" : "ProcedureSurgery",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/proceduresurgery",
+  "version" : "latest",
   "name" : "ProcedureSurgery",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -25,8 +26,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -88,8 +89,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Care Process Description",
-        "definition" : "Healthcare process description"
+      "definition" : "Healthcare process description",
+      "short" : "Care Process Description"
     }, {
       "id" : "ProcedureSurgery.AantalGekoppeldeSubtrajecten",
       "path" : "ProcedureSurgery.AantalGekoppeldeSubtrajecten",
@@ -129,8 +130,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Laterality",
-      "definition" : "The preference most humans show for one side of their body over the other. Examples include left-handedness/right-handedness and left/right-footedness."
+      "definition" : "The preference most humans show for one side of their body over the other. Examples include left-handedness/right-handedness and left/right-footedness.",
+      "short" : "Laterality"
     }, {
       "id" : "ProcedureSurgery.HoofdoperateurPanelSpecialisme",
       "path" : "ProcedureSurgery.HoofdoperateurPanelSpecialisme",

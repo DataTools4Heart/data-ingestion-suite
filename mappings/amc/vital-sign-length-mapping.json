@@ -32,15 +32,15 @@
         },
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{LichaamsLengte}}",
+          "value" : "{{LichaamsLengte.toDecimal()}}",
           "unit" : "cm",
           "system" : "http://unitsofmeasure.org",
           "code" : "cm"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetMoment.toString() & '_length')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment.toString() & '_length')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -50,7 +50,7 @@
     "precondition" : {
       "name" : "lengthExists",
       "language" : "text/fhirpath",
-      "expression" : "LichaamsLengte.exists()"
+      "expression" : "LichaamsLengte.exists() and (LichaamsLengte in ('NA'| '' | 'null')).not()"
     }
   } ]
 }

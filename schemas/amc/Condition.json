@@ -2,6 +2,7 @@
   "id" : "Condition",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/condition",
+  "version" : "latest",
   "name" : "Condition",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -25,19 +26,19 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "unsignedInt",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
       } ],
-      "short" : "EPD User Pseudo",
-      "definition": "Pseudo ID healthcareprofessional registration items"
+      "definition" : "Pseudo ID healthcareprofessional registration items",
+      "short" : "EPD User Pseudo"
     }, {
       "id" : "Condition.Pseudo_id",
       "path" : "Condition.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -79,8 +80,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnosis Code",
-      "definition": "Linked diagnosis code (ICD-10, other)"
+      "definition" : "Linked diagnosis code (ICD-10, other)",
+      "short" : "Diagnosis Code"
     }, {
       "id" : "Condition.DiagnoseCategorie",
       "path" : "Condition.DiagnoseCategorie",
@@ -90,8 +91,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnosis Category",
-      "definition": "Linked diagnosis code category (complication, ICD-10, other)"
+      "definition" : "Linked diagnosis code category (complication, ICD-10, other)",
+      "short" : "Diagnosis Category"
     }, {
       "id" : "Condition.PatientProbleemstatus",
       "path" : "Condition.PatientProbleemstatus",
@@ -101,8 +102,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Problem Status",
-      "definition": "Problem status (active, closed)"
+      "definition" : "Problem status (active, closed)",
+      "short" : "Patient Problem Status"
     }, {
       "id" : "Condition.PatientContactId",
       "path" : "Condition.PatientContactId",
@@ -122,8 +123,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact Type Code",
-      "definition": "Type CODE of the encounter"
+      "definition" : "Type CODE of the encounter",
+      "short" : "Patient Contact Type Code"
     }, {
       "id" : "Condition.PatientContactType",
       "path" : "Condition.PatientContactType",
@@ -133,8 +134,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Patient Contact Type",
-      "definition": "Type of the encounter (consultation, hospitalisation, others)"
+      "definition" : "Type of the encounter (consultation, hospitalisation, others)",
+      "short" : "Patient Contact Type"
     }, {
       "id" : "Condition.PatientContactDatum",
       "path" : "Condition.PatientContactDatum",
@@ -144,19 +145,19 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Patient Contact Date",
-      "definition": "Date of the encounter"
+      "definition" : "Date of the encounter",
+      "short" : "Patient Contact Date"
     }, {
       "id" : "Condition.PatientContactDatumTijd",
       "path" : "Condition.PatientContactDatumTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "unsignedInt",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
       } ],
-      "short" : "Patient Contact Datetime",
-      "definition": "Datetime of the encounter"
+      "definition" : "Datetime of the encounter",
+      "short" : "Patient Contact Datetime"
     }, {
       "id" : "Condition.ConstateringsDatum",
       "path" : "Condition.ConstateringsDatum",
@@ -166,8 +167,8 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Observation Date",
-      "definition": "Date of first observation"
+      "definition" : "Date of first observation",
+      "short" : "Observation Date"
     }, {
       "id" : "Condition.RegistratieDatum",
       "path" : "Condition.RegistratieDatum",
@@ -177,8 +178,8 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Registration Date",
-      "definition": "Date of registration"
+      "definition" : "Date of registration",
+      "short" : "Registration Date"
     }, {
       "id" : "Condition.SluitDatum",
       "path" : "Condition.SluitDatum",
@@ -188,8 +189,8 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Close Date",
-      "definition": "End date"
+      "definition" : "End date",
+      "short" : "Close Date"
     }, {
       "id" : "Condition.IsChronisch",
       "path" : "Condition.IsChronisch",
@@ -239,8 +240,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnostics Thesaurus Code",
-      "definition": "DHD-Trex diagnosis codes"
+      "definition" : "DHD-Trex diagnosis codes",
+      "short" : "Diagnostics Thesaurus Code"
     }, {
       "id" : "Condition.SNOMEDCode",
       "path" : "Condition.SNOMEDCode",
@@ -250,8 +251,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "SNOMED Code",
-      "definition": "SNOMED-CT codes (https://termbrowser.nhs.uk/?)"
+      "definition" : "SNOMED-CT codes (https://termbrowser.nhs.uk/?)",
+      "short" : "SNOMED Code"
     }, {
       "id" : "Condition.Bron",
       "path" : "Condition.Bron",
@@ -268,8 +269,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "unsignedInt",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
       } ],
       "short" : "DCMV Refreshed Date Time"
     }, {

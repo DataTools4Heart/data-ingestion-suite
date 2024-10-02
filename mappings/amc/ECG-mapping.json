@@ -39,9 +39,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             },
-            "extension": [ {
-                "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-                "valueString": "10-second rythm"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "10-second rythm"
             } ]
           },
           "@sliceName" : "qrsDuration"
@@ -61,9 +61,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "medianbeat"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "medianbeat"
             } ]
           },
           "@sliceName" : "qrsDuration"
@@ -83,9 +83,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "deg"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "10-second rythm"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "10-second rythm"
             } ]
           },
           "@sliceName" : "rAxis"
@@ -105,9 +105,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "deg"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "10-second rythm"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "10-second rythm"
             } ]
           },
           "@sliceName" : "pAxis"
@@ -127,9 +127,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "deg"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "10-second rythm"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "10-second rythm"
             } ]
           },
           "@sliceName" : "tAxis"
@@ -149,9 +149,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "10-second rythm"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "10-second rythm"
             } ]
           },
           "@sliceName" : "qtInterval"
@@ -171,9 +171,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "medianbeat"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "medianbeat"
             } ]
           },
           "@sliceName" : "qtInterval"
@@ -244,9 +244,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "10-second rythm"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "10-second rythm"
             } ]
           },
           "@sliceName" : "prInterval"
@@ -266,9 +266,9 @@
               "system" : "http://unitsofmeasure.org",
               "code" : "ms"
             },
-            "extension": [ {
-              "url": "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
-              "valueString": "medianbeat"
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR_ECGSignalOutput",
+              "valueString" : "medianbeat"
             } ]
           },
           "@sliceName" : "prInterval"
@@ -334,10 +334,10 @@
             "display" : "Vital Signs"
           } ]
         } ],
-        "effectiveDateTime" : "{{EcgAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd hh:mm:ss)}}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "effectiveDateTime" : "{{EcgAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & EcgMetingId)}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & EcgMetingId)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
         },

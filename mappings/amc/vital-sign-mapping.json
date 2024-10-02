@@ -35,16 +35,16 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensLengte}}",
+          "value" : "{{VitaleGegevensLengte.toDecimal()}}",
           "unit" : "cm",
           "system" : "http://unitsofmeasure.org",
           "code" : "cm"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_height')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & '_height')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -54,7 +54,7 @@
     "precondition" : {
       "name" : "heightExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensLengte.exists() and VitaleGegevensLengte != 'NA'"
+      "expression" : "VitaleGegevensLengte.exists() and (VitaleGegevensLengte in ('NA'| '' | 'null')).not()"
     }
   }, {
     "expression" : {
@@ -81,16 +81,16 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensGewicht}}",
+          "value" : "{{VitaleGegevensGewicht.toDecimal()}}",
           "unit" : "kg",
           "system" : "http://unitsofmeasure.org",
           "code" : "kg"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_weight')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & '_weight')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -100,7 +100,7 @@
     "precondition" : {
       "name" : "weightExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensGewicht.exists() and VitaleGegevensGewicht != 'NA'"
+      "expression" : "VitaleGegevensGewicht.exists() and (VitaleGegevensGewicht in ('NA'|''|'null')).not()"
     }
   }, {
     "expression" : {
@@ -127,16 +127,16 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensBMIberekening}}",
+          "value" : "{{VitaleGegevensBMIberekening.toDecimal()}}",
           "unit" : "kg/m2",
           "system" : "http://unitsofmeasure.org",
           "code" : "kg/m2"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_bmi')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & '_bmi')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -146,7 +146,7 @@
     "precondition" : {
       "name" : "bmiExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensBMIberekening.exists()"
+      "expression" : "VitaleGegevensBMIberekening.exists() and (VitaleGegevensBMIberekening in ('NA'|''|'null')).not()"
     }
   }, {
     "expression" : {
@@ -173,16 +173,16 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{VitaleGegevensPolsslag}}",
+          "value" : "{{VitaleGegevensPolsslag.toDecimal()}}",
           "unit" : "bpm",
           "system" : "http://unitsofmeasure.org",
           "code" : "bpm"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_heartrate')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & '_heartrate')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -192,7 +192,7 @@
     "precondition" : {
       "name" : "heartRateExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensPolsslag.exists()"
+      "expression" : "VitaleGegevensPolsslag.exists() and (VitaleGegevensPolsslag in ('NA'|''|'null')).not()"
     }
   }, {
     "expression" : {
@@ -219,7 +219,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
@@ -228,7 +228,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "mmHg"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_systolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & '_systolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -238,7 +238,7 @@
     "precondition" : {
       "name" : "systolicDiastolicExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensBloeddrukSysDia.exists() and VitaleGegevensBloeddrukSysDia != 'null'"
+      "expression" : "VitaleGegevensBloeddrukSysDia.exists() and (VitaleGegevensBloeddrukSysDia in ('NA'|''|'null')).not()"
     }
   }, {
     "expression" : {
@@ -265,7 +265,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
@@ -274,7 +274,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "mmHg"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & '_diastolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & '_diastolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -284,7 +284,7 @@
     "precondition" : {
       "name" : "systolicDiastolicExists",
       "language" : "text/fhirpath",
-      "expression" : "VitaleGegevensBloeddrukSysDia.exists() and VitaleGegevensBloeddrukSysDia != 'null'"
+      "expression" : "VitaleGegevensBloeddrukSysDia.exists() and (VitaleGegevensBloeddrukSysDia in ('NA'|''|'null')).not()"
     }
   } ]
 }

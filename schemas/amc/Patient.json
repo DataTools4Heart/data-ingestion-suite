@@ -2,6 +2,7 @@
   "id" : "Patient",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/patient",
+  "version" : "latest",
   "name" : "Patient",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -25,8 +26,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -68,8 +69,8 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Date of death",
-        "definition": "Only in-hospital reliable registration date of death"
+      "definition" : "Only in-hospital reliable registration date of death",
+      "short" : "Date of death"
     }, {
       "id" : "Patient.IsOverleden",
       "path" : "Patient.IsOverleden",
@@ -79,8 +80,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Is Deceased?",
-      "definition": "Only in-hospital reliable registration of death"
+      "definition" : "Only in-hospital reliable registration of death",
+      "short" : "Is Deceased?"
     }, {
       "id" : "Patient.Bron",
       "path" : "Patient.Bron",

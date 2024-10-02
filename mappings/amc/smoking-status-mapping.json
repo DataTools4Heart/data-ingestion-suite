@@ -42,14 +42,14 @@
             "display" : "{{ mpp:getConcept(%smokingStatusContextMap, StatusTabakgebruik, 'target_display') }}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "effectivePeriod" : {
           "start" : "{{StartDatum}}",
           "end" : "{{StopDatum}}"
         },
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & Patientcontactid)}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
         },

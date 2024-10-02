@@ -2,6 +2,7 @@
   "id" : "Procedure",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/procedure",
+  "version" : "latest",
   "name" : "Procedure",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -25,8 +26,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -38,8 +39,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Operation ID",
-      "definition": "The identifier for a specific procedure or medical intervention. It is used to uniquely identify each procedure performed."
+      "definition" : "The identifier for a specific procedure or medical intervention. It is used to uniquely identify each procedure performed.",
+      "short" : "Operation ID"
     }, {
       "id" : "Procedure.Verrichtingdatum",
       "path" : "Procedure.Verrichtingdatum",
@@ -49,8 +50,8 @@
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Operation Date",
-      "definition": "The date on which the procedure was performed. It provides the date for when the procedure took place."
+      "definition" : "The date on which the procedure was performed. It provides the date for when the procedure took place.",
+      "short" : "Operation Date"
     }, {
       "id" : "Procedure.VerrichtingCode",
       "path" : "Procedure.VerrichtingCode",
@@ -60,8 +61,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Operation Code",
-      "definition": "The code that identifies the specific type of procedure or medical intervention. It is often used for categorizing and classifying procedures."
+      "definition" : "The code that identifies the specific type of procedure or medical intervention. It is often used for categorizing and classifying procedures.",
+      "short" : "Operation Code"
     }, {
       "id" : "Procedure.Verrichting",
       "path" : "Procedure.Verrichting",
@@ -71,8 +72,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Operation",
-      "definition": "The name or description of the procedure or medical intervention that was performed. It provides a human-readable description of the procedure."
+      "definition" : "The name or description of the procedure or medical intervention that was performed. It provides a human-readable description of the procedure.",
+      "short" : "Operation"
     }, {
       "id" : "Procedure.Ziekenhuislocatie",
       "path" : "Procedure.Ziekenhuislocatie",
@@ -112,8 +113,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Subevent ID",
-      "definition": "An identifier for a sub-process or sub-event related to the procedure. It is used to group related procedures together."
+      "definition" : "An identifier for a sub-process or sub-event related to the procedure. It is used to group related procedures together.",
+      "short" : "Subevent ID"
     }, {
       "id" : "Procedure.OKZittingsnummer",
       "path" : "Procedure.OKZittingsnummer",
@@ -123,8 +124,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "OR (Operating Room) Session Number",
-      "definition": "A number associated with the operating room or surgical theater where the procedure was performed. It is often used in hospital settings to track and manage surgical procedures."
+      "definition" : "A number associated with the operating room or surgical theater where the procedure was performed. It is often used in hospital settings to track and manage surgical procedures.",
+      "short" : "OR (Operating Room) Session Number"
     }, {
       "id" : "Procedure.OrderId",
       "path" : "Procedure.OrderId",
@@ -134,8 +135,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Order ID",
-      "definition": "An identifier for the order or request that led to the procedure being performed. It is used to link the procedure to the original request."
+      "definition" : "An identifier for the order or request that led to the procedure being performed. It is used to link the procedure to the original request.",
+      "short" : "Order ID"
     }, {
       "id" : "Procedure.ZorgactiviteitCode",
       "path" : "Procedure.ZorgactiviteitCode",
@@ -145,8 +146,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Care Activity Code",
-      "definition": "The code that identifies the specific type of healthcare activity or service associated with the procedure. It is often used for categorizing and classifying healthcare activities."
+      "definition" : "The code that identifies the specific type of healthcare activity or service associated with the procedure. It is often used for categorizing and classifying healthcare activities.",
+      "short" : "Care Activity Code"
     }, {
       "id" : "Procedure.Zorgactiviteit",
       "path" : "Procedure.Zorgactiviteit",
@@ -156,8 +157,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Care Activity",
-      "definition": "The name or description of the healthcare activity or service associated with the procedure. It provides a human-readable description of the healthcare activity."
+      "definition" : "The name or description of the healthcare activity or service associated with the procedure. It provides a human-readable description of the healthcare activity.",
+      "short" : "Care Activity"
     }, {
       "id" : "Procedure.ZorgprofielKlasseCode",
       "path" : "Procedure.ZorgprofielKlasseCode",
@@ -167,8 +168,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Care Profile Class Code",
-      "definition": "A code that identifies the class or category of the healthcare profile associated with the procedure. It is often used for categorizing and classifying healthcare profiles."
+      "definition" : "A code that identifies the class or category of the healthcare profile associated with the procedure. It is often used for categorizing and classifying healthcare profiles.",
+      "short" : "Care Profile Class Code"
     }, {
       "id" : "Procedure.ZorgprofielKlasse",
       "path" : "Procedure.ZorgprofielKlasse",
@@ -178,8 +179,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Care Profile Class",
-      "definition": "The name or description of the healthcare profile class associated with the procedure. It provides a human-readable description of the healthcare profile class."
+      "definition" : "The name or description of the healthcare profile class associated with the procedure. It provides a human-readable description of the healthcare profile class.",
+      "short" : "Care Profile Class"
     }, {
       "id" : "Procedure.AanvragendSpecialismeCode",
       "path" : "Procedure.AanvragendSpecialismeCode",
@@ -189,8 +190,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Specialism Code",
-      "definition": "A code that identifies the specialty or department that requested the procedure. It is often used to track and manage procedures requested by different specialties."
+      "definition" : "A code that identifies the specialty or department that requested the procedure. It is often used to track and manage procedures requested by different specialties.",
+      "short" : "Requesting Specialism Code"
     }, {
       "id" : "Procedure.AanvragendSpecialismeAfkorting",
       "path" : "Procedure.AanvragendSpecialismeAfkorting",
@@ -200,8 +201,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Specialism Abbreviation",
-      "definition": "The abbreviation or short form of the specialty or department that requested the procedure."
+      "definition" : "The abbreviation or short form of the specialty or department that requested the procedure.",
+      "short" : "Requesting Specialism Abbreviation"
     }, {
       "id" : "Procedure.AanvragendSpecialisme",
       "path" : "Procedure.AanvragendSpecialisme",
@@ -211,8 +212,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Specialism",
-      "definition": "The name or description of the specialty or department that requested the procedure. It provides a human-readable description of the requesting specialty."
+      "definition" : "The name or description of the specialty or department that requested the procedure. It provides a human-readable description of the requesting specialty.",
+      "short" : "Requesting Specialism"
     }, {
       "id" : "Procedure.AanvragendSubSpecialismeCode",
       "path" : "Procedure.AanvragendSubSpecialismeCode",
@@ -222,8 +223,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Sub Specialism Code",
-      "definition": "A code that identifies the sub-specialty or sub-department that requested the procedure. It is often used to track and manage procedures requested by different sub-specialties."
+      "definition" : "A code that identifies the sub-specialty or sub-department that requested the procedure. It is often used to track and manage procedures requested by different sub-specialties.",
+      "short" : "Requesting Sub Specialism Code"
     }, {
       "id" : "Procedure.AanvragendSubSpecialismeAfkorting",
       "path" : "Procedure.AanvragendSubSpecialismeAfkorting",
@@ -233,8 +234,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Sub Specialism Abbreviation",
-      "definition": "The abbreviation or short form of the sub-specialty or sub-department that requested the procedure."
+      "definition" : "The abbreviation or short form of the sub-specialty or sub-department that requested the procedure.",
+      "short" : "Requesting Sub Specialism Abbreviation"
     }, {
       "id" : "Procedure.AanvragendSubSpecialisme",
       "path" : "Procedure.AanvragendSubSpecialisme",
@@ -244,8 +245,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Requesting Sub Specialism",
-      "definition": "The name or description of the sub-specialty or sub-department that requested the procedure. It provides a human-readable description of the requesting sub-specialty."
+      "definition" : "The name or description of the sub-specialty or sub-department that requested the procedure. It provides a human-readable description of the requesting sub-specialty.",
+      "short" : "Requesting Sub Specialism"
     }, {
       "id" : "Procedure.UitvoerendSpecialismeCode",
       "path" : "Procedure.UitvoerendSpecialismeCode",
@@ -255,8 +256,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Performing Specialism Code",
-      "definition": "A code that identifies the specialty or department that performed the procedure. It is often used to track and manage procedures performed by different specialties."
+      "definition" : "A code that identifies the specialty or department that performed the procedure. It is often used to track and manage procedures performed by different specialties.",
+      "short" : "Performing Specialism Code"
     }, {
       "id" : "Procedure.UitvoerendSpecialismeAfkorting",
       "path" : "Procedure.UitvoerendSpecialismeAfkorting",
@@ -266,8 +267,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Performing Specialism Abbreviation",
-      "definition": "The abbreviation or short form of the specialty or department that performed the procedure."
+      "definition" : "The abbreviation or short form of the specialty or department that performed the procedure.",
+      "short" : "Performing Specialism Abbreviation"
     }, {
       "id" : "Procedure.UitvoerendSpecialisme",
       "path" : "Procedure.UitvoerendSpecialisme",
@@ -277,8 +278,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Performing Specialism",
-      "definition": "The name or description of the specialty or department that performed the procedure. It provides a human-readable description of the performing specialty."
+      "definition" : "The name or description of the specialty or department that performed the procedure. It provides a human-readable description of the performing specialty.",
+      "short" : "Performing Specialism"
     }, {
       "id" : "Procedure.UitvoerendSubSpecialismeCode",
       "path" : "Procedure.UitvoerendSubSpecialismeCode",
@@ -288,8 +289,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Performing Sub Specialism Code",
-      "definition": "A code that identifies the sub-specialty or sub-department that performed the procedure. It is often used to track and manage procedures performed by different sub-specialties."
+      "definition" : "A code that identifies the sub-specialty or sub-department that performed the procedure. It is often used to track and manage procedures performed by different sub-specialties.",
+      "short" : "Performing Sub Specialism Code"
     }, {
       "id" : "Procedure.UitvoerendSubSpecialismeAfkorting",
       "path" : "Procedure.UitvoerendSubSpecialismeAfkorting",
@@ -299,8 +300,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Performing Sub Specialism Abbreviation",
-      "definition": "The abbreviation or short form of the sub-specialty or sub-department that performed the procedure."
+      "definition" : "The abbreviation or short form of the sub-specialty or sub-department that performed the procedure.",
+      "short" : "Performing Sub Specialism Abbreviation"
     }, {
       "id" : "Procedure.UitvoerendSubSpecialisme",
       "path" : "Procedure.UitvoerendSubSpecialisme",
@@ -310,8 +311,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Performing Sub Specialism",
-      "definition": "The name or description of the sub-specialty or sub-department that performed the procedure. It provides a human-readable description of the performing sub-specialty."
+      "definition" : "The name or description of the sub-specialty or sub-department that performed the procedure. It provides a human-readable description of the performing sub-specialty.",
+      "short" : "Performing Sub Specialism"
     }, {
       "id" : "Procedure.UitvoerendWerkplekId",
       "path" : "Procedure.UitvoerendWerkplekId",
@@ -351,8 +352,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Number of Operations",
-      "definition": "The number of times the procedure was performed. It provides a count of the number of times the procedure was performed."
+      "definition" : "The number of times the procedure was performed. It provides a count of the number of times the procedure was performed.",
+      "short" : "Number of Operations"
     }, {
       "id" : "Procedure.Bronmodule",
       "path" : "Procedure.Bronmodule",

@@ -2,6 +2,7 @@
   "id" : "MedicalDiagnosis",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicaldiagnosis",
+  "version" : "latest",
   "name" : "MedicalDiagnosis",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -25,8 +26,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -65,8 +66,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+        "code" : "unsignedInt",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
       } ],
       "short" : "Diagnosis Registration Date"
     }, {
@@ -128,8 +129,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Clinical or Outpatient Code",
-      "definition" : "In-patient or out-patient registration e.g. 'K', 'P'"
+      "definition" : "In-patient or out-patient registration e.g. 'K', 'P'",
+      "short" : "Clinical or Outpatient Code"
     }, {
       "id" : "MedicalDiagnosis.KlinischPoliklinisch",
       "path" : "MedicalDiagnosis.KlinischPoliklinisch",
@@ -139,8 +140,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Clinical or Outpatient Description",
-      "definition" : "In-patient or out-patient registration e.g. 'Klinische diagnose', 'Poliklinische diagnose'"
+      "definition" : "In-patient or out-patient registration e.g. 'Klinische diagnose', 'Poliklinische diagnose'",
+      "short" : "Clinical or Outpatient Description"
     }, {
       "id" : "MedicalDiagnosis.Specialismecode",
       "path" : "MedicalDiagnosis.Specialismecode",
@@ -150,8 +151,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism Code",
-      "definition" : "Specialty code registered the diagnosis."
+      "definition" : "Specialty code registered the diagnosis.",
+      "short" : "Specialism Code"
     }, {
       "id" : "MedicalDiagnosis.Specialisme",
       "path" : "MedicalDiagnosis.Specialisme",
@@ -161,8 +162,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism",
-      "definition" : "Specialty description in Dutch registered the diagnosis."
+      "definition" : "Specialty description in Dutch registered the diagnosis.",
+      "short" : "Specialism"
     }, {
       "id" : "MedicalDiagnosis.SpecialismeAfkorting",
       "path" : "MedicalDiagnosis.SpecialismeAfkorting",
@@ -172,8 +173,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Specialism Abbreviation",
-      "definition" : "Specialty abbreviation in Dutch registered the diagnosis."
+      "definition" : "Specialty abbreviation in Dutch registered the diagnosis.",
+      "short" : "Specialism Abbreviation"
     }, {
       "id" : "MedicalDiagnosis.IsComplicatie",
       "path" : "MedicalDiagnosis.IsComplicatie",
@@ -200,8 +201,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "unsignedInt",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
       } ],
       "short" : "DCMV Refreshed Date Time"
     }, {

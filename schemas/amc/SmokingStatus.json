@@ -2,6 +2,7 @@
   "id" : "SmokingStatus",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/smokingstatus",
+  "version" : "latest",
   "name" : "SmokingStatus",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -25,8 +26,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -38,8 +39,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Tobacco Use Status",
-      "definition": "State of tobacco use (Yes, passive, never, not asked, stopped, others)"
+      "definition" : "State of tobacco use (Yes, passive, never, not asked, stopped, others)",
+      "short" : "Tobacco Use Status"
     }, {
       "id" : "SmokingStatus.TabakgebruikToelichting",
       "path" : "SmokingStatus.TabakgebruikToelichting",
@@ -86,8 +87,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
       "short" : "Tobacco Use Years"
     }, {

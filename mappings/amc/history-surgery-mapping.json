@@ -29,11 +29,11 @@
             "@sliceName" : "icdCode"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "occurrenceDateTime" : "{{iif(ProcedureEindDatum.toDate().exists(), ProcedureEindDatum, ProcedureStartDatum)}}",
         "status" : "completed",
-        "id" : "{{mpp:getHashedId('Procedure', pseudo_id & Patientcontactid)}}",
+        "id" : "{{mpp:getHashedId('Procedure', pseudo_id.toString() & ChirurgischeVoorgeschiedenisCode.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
         },

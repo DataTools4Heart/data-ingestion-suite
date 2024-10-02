@@ -20,30 +20,34 @@
             "coding" : [ {
               "system" : "http://www.whocc.no/atc",
               "code" : "{{ATCKlasseCode}}",
-              "display" : "{{ATCKlasse}}",
               "@sliceName" : "atcCode"
             } ]
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "occurenceDateTime" : "{{ToedieningsDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
-        "status" : "completed",
         "dosage" : {
           "{{#doseVar}}" : "{{iif(ToegediendeHoeveelheid.exists() and ToegediendeHoeveelheid != 'NA', ToegediendeHoeveelheid , {})}}",
           "{{?}}" : {
             "dose" : {
-                "value" : "{{ToegediendeHoeveelheid}}",
-                "unit" : "{{? ToegediendeHoeveelheidEenheid}}"
+              "value" : "{{ToegediendeHoeveelheid}}",
+              "unit" : "{{? ToegediendeHoeveelheidEenheid}}"
             }
           }
         },
-        "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id & ToedieningsDatumTijd)}}",
+        "status" : "completed",
+        "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id.toString() & ToedieningsDatumTijd.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
         },
         "resourceType" : "MedicationAdministration"
       }
+    },
+    "precondition" : {
+      "name" : "atcCodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "ATCKlasseCode.exists() and (ATCKlasseCode in ('NA'| '' | 'null')).not()"
     }
   } ]
 }

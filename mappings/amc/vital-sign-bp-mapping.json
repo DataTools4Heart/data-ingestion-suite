@@ -37,10 +37,10 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "mmHg"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum.toString() & BloeddrukSamengesteld.toString() & '_systolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & BloeddrukSamengesteld.toString() & '_systolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -79,10 +79,10 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "mmHg"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum & BloeddrukSamengesteld & '_diastolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & BloeddrukSamengesteld & '_diastolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -92,7 +92,7 @@
     "precondition" : {
       "name" : "bpExists",
       "language" : "text/fhirpath",
-      "expression" : "BloeddrukSamengesteld.exists() and BloeddrukSamengesteld != 'null'"
+      "expression" : "BloeddrukSamengesteld.exists() and (BloeddrukSamengesteld in ('NA'| '' | 'null')).not()"
     }
   } ]
 }

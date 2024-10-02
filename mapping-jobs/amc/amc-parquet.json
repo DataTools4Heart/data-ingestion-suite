@@ -1,0 +1,288 @@
+{
+  "id" : "amc-parquet",
+  "name" : "amc-parquet",
+  "sourceSettings" : {
+    "amc-source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "amc-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
+      "dataFolderPath" : "test-data/amc",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "cause-of-death-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
+    "sourceBinding" : {
+      "CauseOfDeath" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_OverlijdensRegistratie.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
+    "sourceBinding" : {
+      "Condition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Probleemlijst.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "condition-medical-diagnosis-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
+    "sourceBinding" : {
+      "MedicalDiagnosis" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedischeDiagnose.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "ecg",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_EcgMeting.parquet",
+        "contentType" : "parquet",
+        "options" : {},
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "encounter-emergency-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
+    "sourceBinding" : {
+      "EncounterEmergency" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_SEHtraject.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
+    "sourceBinding" : {
+      "Encounter" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Opnametraject.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "history-condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
+    "sourceBinding" : {
+      "HistoryCondition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_VoorgeschiedenisMedisch.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "history-surgery-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
+    "sourceBinding" : {
+      "SurgeryHistory" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_VoorgeschiedenisChirurgie.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "lab-result-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/lab-result-mapping",
+    "sourceBinding" : {
+      "LabResult" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Labuitslag.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "medication-administration-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
+    "sourceBinding" : {
+      "MedicationAdministration" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedicatieToediening.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "medication-prescription-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
+    "sourceBinding" : {
+      "MedicationPrescription" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MedicatieVoorschrift.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
+    "sourceBinding" : {
+      "patient" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Patient.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+    "sourceBinding" : {
+      "Procedure" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_VerrichtingUitgevoerd.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "procedure-surgery-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
+    "sourceBinding" : {
+      "ProcedureSurgery" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_OKVerrichtingUitgevoerd.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "smoking-status-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
+    "sourceBinding" : {
+      "SmokingStatus" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Tabakgebruik.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-bmi-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bmi-mapping",
+    "sourceBinding" : {
+      "BMI" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingBMI.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-bp-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
+    "sourceBinding" : {
+      "BP" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingBloeddruk.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-heartrate-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
+    "sourceBinding" : {
+      "HeartRate" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingHartfrequentie.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-length-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-mapping",
+    "sourceBinding" : {
+      "Length" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingLichaamsLengte.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
+    "sourceBinding" : {
+      "VitalSign" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingVitaleGegevens.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-o2-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-o2-mapping",
+    "sourceBinding" : {
+      "O2Saturation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_Metingo2Saturatie.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-weight-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-weight-mapping",
+    "sourceBinding" : {
+      "Weight" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Datatools4heart_MetingLichaamsGewicht.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

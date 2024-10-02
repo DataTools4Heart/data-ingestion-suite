@@ -32,15 +32,15 @@
         },
         "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueQuantity" : {
-          "value" : "{{Hartfrequentie}}",
+          "value" : "{{Hartfrequentie.toDecimal()}}",
           "unit" : "bpm",
           "system" : "http://unitsofmeasure.org",
           "code" : "bpm"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetMoment.toString() & Hartfrequentie.toString() & '_heartrate')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment.toString() & Hartfrequentie.toString() & '_heartrate')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -50,7 +50,7 @@
     "precondition" : {
       "name" : "heartRateExists",
       "language" : "text/fhirpath",
-      "expression" : "Hartfrequentie.exists()"
+      "expression" : "Hartfrequentie.exists() and (Hartfrequentie in ('NA'| '' | 'null')).not()"
     }
   } ]
 }

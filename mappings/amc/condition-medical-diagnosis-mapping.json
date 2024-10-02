@@ -22,7 +22,7 @@
             "@sliceName" : "icd10Code"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "onsetDateTime" : "{{DiagnoseContactDatum.utl:toFhirDate('yyyy-MM-dd')}}",
         "clinicalStatus" : {
@@ -31,7 +31,7 @@
             "code" : "active"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Condition', pseudo_id & PatientContactId & DiagnoseContactDatum)}}",
+        "id" : "{{mpp:getHashedId('Condition', pseudo_id.toString() & PatientContactId & DiagnoseContactDatum)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },

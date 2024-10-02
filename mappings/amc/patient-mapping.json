@@ -18,7 +18,7 @@
         "gender" : "{{iif(Geslacht = 'Vrouw','female','male')}}",
         "birthDate" : "{{(Geboortejaar.toString() & '-' & Geboortemaand.toString()).utl:toFhirDateTime('yyyy-M')}}",
         "deceasedDateTime" : "{{? Overlijdensdatum.toDate()}}",
-        "id" : "{{mpp:getHashedId('Patient', pseudo_id))}}",
+        "id" : "{{mpp:getHashedId('Patient', pseudo_id.toString()))}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
         },
