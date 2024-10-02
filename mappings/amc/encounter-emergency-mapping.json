@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
   "name" : "encounter-emergency-mapping",
   "title" : "Mapping of AMC's SEHtraject table to DT4H-Enconter FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "EncounterEmergency",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounteremergency",

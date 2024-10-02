@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
   "name" : "encounter-mapping",
   "title" : "Mapping of AMC's Opnametraject table to DT4H-Enconter FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "Encounter",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",

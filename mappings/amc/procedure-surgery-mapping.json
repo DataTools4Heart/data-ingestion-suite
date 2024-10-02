@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
   "name" : "procedure-surgery-mapping",
   "title" : "Mapping of AMC's OKVerrichtingUitgevoerd table to DT4H-Procedure FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "ProcedureSurgery",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/proceduresurgery",

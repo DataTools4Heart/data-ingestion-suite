@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
   "name" : "history-surgery-mapping",
   "title" : "Mapping of AMC's VoorgeschiedenisChirurgie table to DT4H-Procedure FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "SurgeryHistory",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/historysurgery",
