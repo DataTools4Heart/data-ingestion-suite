@@ -31,7 +31,7 @@
     "name": "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
     "sourceBinding" : {
-      "source" : {
+      "patologie" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
         "contentType" : "csv",

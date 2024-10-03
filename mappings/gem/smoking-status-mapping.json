@@ -5,7 +5,7 @@
   "title" : "Mapping from GEM's patology table to the DT4H's smoking status profile",
   "source" : [ {
     "alias" : "patology",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/patologie",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/condition",
     "joinOn" : [ ]
   } ],
   "context" : { },

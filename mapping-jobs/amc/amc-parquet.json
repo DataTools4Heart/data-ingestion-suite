@@ -43,7 +43,7 @@
     "name" : "condition-medical-diagnosis-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
     "sourceBinding" : {
-      "MedicalDiagnosis" : {
+      "ConditionMedicalDiagnosis" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedischeDiagnose.parquet",
         "contentType" : "parquet",

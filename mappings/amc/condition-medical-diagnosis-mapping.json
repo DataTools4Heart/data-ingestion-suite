@@ -4,8 +4,8 @@
   "name" : "condition-medical-diagnosis-mapping",
   "title" : "Mapping of AMC's MedischeDiagnose table to DT4H-Condition FHIR profile",
   "source" : [ {
-    "alias" : "MedicalDiagnosis",
-    "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicaldiagnosis",
+    "alias" : "ConditionMedicalDiagnosis",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/conditionmedicaldiagnosis",
     "joinOn" : [ ]
   } ],
   "context" : { },

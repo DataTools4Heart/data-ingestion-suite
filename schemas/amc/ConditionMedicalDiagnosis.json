@@ -1,28 +1,28 @@
 {
-  "id" : "MedicalDiagnosis",
+  "id" : "ConditionMedicalDiagnosis",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicaldiagnosis",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/conditionmedicaldiagnosis",
   "version" : "latest",
-  "name" : "MedicalDiagnosis",
+  "name" : "ConditionMedicalDiagnosis",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "MedicalDiagnosis",
+  "type" : "ConditionMedicalDiagnosis",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "MedicalDiagnosis",
-      "path" : "MedicalDiagnosis",
+      "id" : "ConditionMedicalDiagnosis",
+      "path" : "ConditionMedicalDiagnosis",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "MedicalDiagnosis.pseudo_id",
-      "path" : "MedicalDiagnosis.pseudo_id",
+      "id" : "ConditionMedicalDiagnosis.pseudo_id",
+      "path" : "ConditionMedicalDiagnosis.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -31,8 +31,8 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "MedicalDiagnosis.PatientContactId",
-      "path" : "MedicalDiagnosis.PatientContactId",
+      "id" : "ConditionMedicalDiagnosis.PatientContactId",
+      "path" : "ConditionMedicalDiagnosis.PatientContactId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -41,8 +41,8 @@
       } ],
       "short" : "Encounter ID"
     }, {
-      "id" : "MedicalDiagnosis.Ziekenhuislocatie",
-      "path" : "MedicalDiagnosis.Ziekenhuislocatie",
+      "id" : "ConditionMedicalDiagnosis.Ziekenhuislocatie",
+      "path" : "ConditionMedicalDiagnosis.Ziekenhuislocatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -51,8 +51,8 @@
       } ],
       "short" : "Hospital Location"
     }, {
-      "id" : "MedicalDiagnosis.DiagnoseContactDatum",
-      "path" : "MedicalDiagnosis.DiagnoseContactDatum",
+      "id" : "ConditionMedicalDiagnosis.DiagnoseContactDatum",
+      "path" : "ConditionMedicalDiagnosis.DiagnoseContactDatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -61,8 +61,8 @@
       } ],
       "short" : "Diagnosis Contact Date"
     }, {
-      "id" : "MedicalDiagnosis.DiagnoseRegistratieMoment",
-      "path" : "MedicalDiagnosis.DiagnoseRegistratieMoment",
+      "id" : "ConditionMedicalDiagnosis.DiagnoseRegistratieMoment",
+      "path" : "ConditionMedicalDiagnosis.DiagnoseRegistratieMoment",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -71,8 +71,8 @@
       } ],
       "short" : "Diagnosis Registration Date"
     }, {
-      "id" : "MedicalDiagnosis.DiagnoseCode",
-      "path" : "MedicalDiagnosis.DiagnoseCode",
+      "id" : "ConditionMedicalDiagnosis.DiagnoseCode",
+      "path" : "ConditionMedicalDiagnosis.DiagnoseCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -81,8 +81,8 @@
       } ],
       "short" : "Diagnosis Code (ICD-10 Dutch/ICD-9-CM/HICDA-8)"
     }, {
-      "id" : "MedicalDiagnosis.DiagnoseCategorie",
-      "path" : "MedicalDiagnosis.DiagnoseCategorie",
+      "id" : "ConditionMedicalDiagnosis.DiagnoseCategorie",
+      "path" : "ConditionMedicalDiagnosis.DiagnoseCategorie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -91,8 +91,8 @@
       } ],
       "short" : "Diagnosis code category (ICD-10 Dutch/ICD-9-CM/HICDA-8)"
     }, {
-      "id" : "MedicalDiagnosis.DiagnoseOmschrijving",
-      "path" : "MedicalDiagnosis.DiagnoseOmschrijving",
+      "id" : "ConditionMedicalDiagnosis.DiagnoseOmschrijving",
+      "path" : "ConditionMedicalDiagnosis.DiagnoseOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -101,8 +101,8 @@
       } ],
       "short" : "Diagnosis Description"
     }, {
-      "id" : "MedicalDiagnosis.DiagnoseSoortCode",
-      "path" : "MedicalDiagnosis.DiagnoseSoortCode",
+      "id" : "ConditionMedicalDiagnosis.DiagnoseSoortCode",
+      "path" : "ConditionMedicalDiagnosis.DiagnoseSoortCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -111,8 +111,8 @@
       } ],
       "short" : "Diagnosis type code (main=H/secondary=N/not registered=n.g./Primary diagnosis=P)"
     }, {
-      "id" : "MedicalDiagnosis.DiagnoseSoort",
-      "path" : "MedicalDiagnosis.DiagnoseSoort",
+      "id" : "ConditionMedicalDiagnosis.DiagnoseSoort",
+      "path" : "ConditionMedicalDiagnosis.DiagnoseSoort",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -121,8 +121,8 @@
       } ],
       "short" : "Diagnosis Type"
     }, {
-      "id" : "MedicalDiagnosis.KlinischPoliklinischCode",
-      "path" : "MedicalDiagnosis.KlinischPoliklinischCode",
+      "id" : "ConditionMedicalDiagnosis.KlinischPoliklinischCode",
+      "path" : "ConditionMedicalDiagnosis.KlinischPoliklinischCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -132,8 +132,8 @@
       "definition" : "In-patient or out-patient registration e.g. 'K', 'P'",
       "short" : "Clinical or Outpatient Code"
     }, {
-      "id" : "MedicalDiagnosis.KlinischPoliklinisch",
-      "path" : "MedicalDiagnosis.KlinischPoliklinisch",
+      "id" : "ConditionMedicalDiagnosis.KlinischPoliklinisch",
+      "path" : "ConditionMedicalDiagnosis.KlinischPoliklinisch",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -143,8 +143,8 @@
       "definition" : "In-patient or out-patient registration e.g. 'Klinische diagnose', 'Poliklinische diagnose'",
       "short" : "Clinical or Outpatient Description"
     }, {
-      "id" : "MedicalDiagnosis.Specialismecode",
-      "path" : "MedicalDiagnosis.Specialismecode",
+      "id" : "ConditionMedicalDiagnosis.Specialismecode",
+      "path" : "ConditionMedicalDiagnosis.Specialismecode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -154,8 +154,8 @@
       "definition" : "Specialty code registered the diagnosis.",
       "short" : "Specialism Code"
     }, {
-      "id" : "MedicalDiagnosis.Specialisme",
-      "path" : "MedicalDiagnosis.Specialisme",
+      "id" : "ConditionMedicalDiagnosis.Specialisme",
+      "path" : "ConditionMedicalDiagnosis.Specialisme",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -165,8 +165,8 @@
       "definition" : "Specialty description in Dutch registered the diagnosis.",
       "short" : "Specialism"
     }, {
-      "id" : "MedicalDiagnosis.SpecialismeAfkorting",
-      "path" : "MedicalDiagnosis.SpecialismeAfkorting",
+      "id" : "ConditionMedicalDiagnosis.SpecialismeAfkorting",
+      "path" : "ConditionMedicalDiagnosis.SpecialismeAfkorting",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -176,8 +176,8 @@
       "definition" : "Specialty abbreviation in Dutch registered the diagnosis.",
       "short" : "Specialism Abbreviation"
     }, {
-      "id" : "MedicalDiagnosis.IsComplicatie",
-      "path" : "MedicalDiagnosis.IsComplicatie",
+      "id" : "ConditionMedicalDiagnosis.IsComplicatie",
+      "path" : "ConditionMedicalDiagnosis.IsComplicatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -186,8 +186,8 @@
       } ],
       "short" : "Is Complication? Adverse event / complication"
     }, {
-      "id" : "MedicalDiagnosis.Bron",
-      "path" : "MedicalDiagnosis.Bron",
+      "id" : "ConditionMedicalDiagnosis.Bron",
+      "path" : "ConditionMedicalDiagnosis.Bron",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -196,8 +196,8 @@
       } ],
       "short" : "Source"
     }, {
-      "id" : "MedicalDiagnosis.DCMVerverstDatumTijd",
-      "path" : "MedicalDiagnosis.DCMVerverstDatumTijd",
+      "id" : "ConditionMedicalDiagnosis.DCMVerverstDatumTijd",
+      "path" : "ConditionMedicalDiagnosis.DCMVerverstDatumTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -206,8 +206,8 @@
       } ],
       "short" : "DCMV Refreshed Date Time"
     }, {
-      "id" : "MedicalDiagnosis.uitgifteDT",
-      "path" : "MedicalDiagnosis.uitgifteDT",
+      "id" : "ConditionMedicalDiagnosis.uitgifteDT",
+      "path" : "ConditionMedicalDiagnosis.uitgifteDT",
       "min" : 0,
       "max" : "1",
       "type" : [ {

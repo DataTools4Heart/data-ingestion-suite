@@ -4,8 +4,8 @@
   "name" : "condition-mapping",
   "title" : "Mapping of GEM's patologie table to the DT4H Condition FHIR profile",
   "source" : [ {
-    "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/patologie",
+    "alias" : "patologie",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/condition",
     "joinOn" : [ ]
   } ],
   "context" : {
