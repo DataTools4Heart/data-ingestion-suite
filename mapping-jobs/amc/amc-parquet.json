@@ -23,7 +23,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OverlijdensRegistratie.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -35,7 +37,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Probleemlijst.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -47,7 +51,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedischeDiagnose.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -71,7 +77,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_SEHtraject.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -83,7 +91,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Opnametraject.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -95,7 +105,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisMedisch.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -107,7 +119,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisChirurgie.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -119,7 +133,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Labuitslag.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -131,7 +147,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieToediening.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -143,7 +161,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieVoorschrift.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -155,7 +175,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Patient.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -167,7 +189,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VerrichtingUitgevoerd.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -179,7 +203,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_OKVerrichtingUitgevoerd.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -191,7 +217,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Tabakgebruik.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -203,7 +231,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingBMI.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -215,7 +245,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingBloeddruk.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -227,7 +259,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingHartfrequentie.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -239,7 +273,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingLichaamsLengte.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -251,7 +287,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingVitaleGegevens.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -263,7 +301,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_Metingo2Saturatie.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }
@@ -275,7 +315,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingLichaamsGewicht.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }

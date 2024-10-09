@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
   "name" : "vital-sign-bp-mapping",
   "title" : "Mapping of AMC's MetingBloeddruk table to DT4H-VitalSign FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "BP",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/bp",
@@ -40,7 +41,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & BloeddrukSamengesteld.toString() & '_systolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment.toString() & MetingBloeddrukId.toString() & BloeddrukSamengesteld.toString() & '_systolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -50,7 +51,7 @@
     "precondition" : {
       "name" : "bpExists",
       "language" : "text/fhirpath",
-      "expression" : "BloeddrukSamengesteld.exists() and BloeddrukSamengesteld != 'null'"
+      "expression" : "BloeddrukSamengesteld.exists() and (BloeddrukSamengesteld in ('NA'| '' | 'null')).not()"
     }
   }, {
     "expression" : {
@@ -82,7 +83,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum & BloeddrukSamengesteld & '_diastolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment.toString() & MetingBloeddrukId.toString() & BloeddrukSamengesteld.toString() & '_diastolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },

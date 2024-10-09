@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bmi-mapping",
   "name" : "vital-sign-bmi-mapping",
   "title" : "Mapping of AMC's MetingBMI table to DT4H-VitalSign FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "BMI",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/bmi",
@@ -15,17 +16,13 @@
       "name" : "bmi",
       "language" : "application/fhir-template+json",
       "value" : {
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                "code": "vital-signs",
-                "display": "Vital Signs"
-              }
-            ]
-          }
-        ],
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
@@ -44,7 +41,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & BMI.toString() & '_bmi')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & BMI.toString() & Patientcontactid.toString() & '_bmi')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },

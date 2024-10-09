@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-weight-mapping",
   "name" : "vital-sign-weight-mapping",
   "title" : "Mapping of AMC's MetingLichaamsGewicht table to DT4H-VitalSign FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "Weight",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/weight",
@@ -40,7 +41,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment & '_weight')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & PatientContactId.toString() & MetingLichaamsGewichtId.toString() & MeetMoment & '_weight')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },

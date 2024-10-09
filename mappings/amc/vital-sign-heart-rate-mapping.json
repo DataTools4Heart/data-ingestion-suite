@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
   "name" : "vital-sign-heart-rate-mapping",
   "title" : "Mapping of AMC's MetingHartfrequentie table to DT4H-VitalSign FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "HeartRate",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/heartrate",
@@ -40,7 +41,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment.toString() & Hartfrequentie.toString() & '_heartrate')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & PatientContactId.toString() & MeetMoment.toString() & MetingHartfrequentieId.toString() & Hartfrequentie.toString() & '_heartrate')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },

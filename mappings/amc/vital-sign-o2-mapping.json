@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-o2-mapping",
   "name" : "vital-sign-o2-mapping",
   "title" : "Mapping of AMC's Metingo2Saturatie table to DT4H-VitalSign FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "O2Saturation",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/vitalsigno2saturation",
@@ -40,7 +41,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetMoment & '_o2')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid.toString() & MeetMoment.toString() & '_o2')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },

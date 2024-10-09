@@ -55,6 +55,11 @@
         },
         "resourceType" : "Observation"
       }
+    },
+    "precondition" : {
+      "name" : "smokingStatusExists",
+      "language" : "text/fhirpath",
+      "expression" : "StatusTabakgebruik.exists() and (StatusTabakgebruik in ('NA'| '' | 'null' | 'Passief')).not()"
     }
   } ]
 }
