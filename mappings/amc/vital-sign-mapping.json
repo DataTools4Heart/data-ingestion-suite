@@ -44,7 +44,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "cm"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & '_height')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & VitaleGegevensLengte.toString() & '_height')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -90,7 +90,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "kg"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & '_weight')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & VitaleGegevensGewicht.toString() & '_weight')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -136,7 +136,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "kg/m2"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & '_bmi')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & VitaleGegevensBMIberekening.toString() & '_bmi')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -182,7 +182,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "bpm"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & '_heartrate')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & VitaleGegevensPolsslag.toString() & '_heartrate')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -228,7 +228,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "mmHg"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & '_systolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & VitaleGegevensBloeddrukSysDia.toString() & '_systolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -274,7 +274,7 @@
           "system" : "http://unitsofmeasure.org",
           "code" : "mmHg"
         },
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & '_diastolic')}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum.toString() & Patientcontactid.toString() & VitaleGegevensBloeddrukSysDia.toString() & '_diastolic')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
