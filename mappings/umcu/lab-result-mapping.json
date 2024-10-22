@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping",
   "name" : "lab-result-mapping",
   "title" : "Mapping of lab results to DT4H Lab Result FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "labResults",
     "url" : "https://datatools4heart.eu/umcu/LabResult",

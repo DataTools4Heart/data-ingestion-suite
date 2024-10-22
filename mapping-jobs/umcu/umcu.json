@@ -1,34 +1,29 @@
 {
   "id" : "umcu",
   "name" : "umcu",
+  "description" : "",
   "sourceSettings" : {
     "umcu-source" : {
-      "jsonClass" : "SqlSourceSettings",
+      "jsonClass" : "FileSystemSourceSettings",
       "name" : "umcu-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/umcu-data",
-      "databaseUrl" : "jdbc:postgresql://localhost:5432/",
-      "username" : "postgres",
-      "password" : "password"
+      "dataFolderPath" : "test-data/umcu",
+      "asStream" : false
     }
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://localhost:8081/fhir",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
     "returnMinimal" : true
   },
   "mappings" : [ {
-    "name": "lab-result-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping",
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/patient-mapping",
     "sourceBinding" : {
-      "labResults" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "lab_selectie",
-        "options" : { },
-        "sourceRef" : "umcu-source"
-      },
-      "encounters" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "patient.encounter",
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "patient.parquet",
+        "contentType" : "parquet",
         "options" : { },
         "sourceRef" : "umcu-source"
       }

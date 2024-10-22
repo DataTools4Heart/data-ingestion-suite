@@ -1,0 +1,30 @@
+{
+  "id" : "patient-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/patient-mapping",
+  "name" : "patient-mapping",
+  "title" : "Mapping of UMCU's Patient table to DT4H-Patient FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/PatientPatient",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "gender" : "{{ gender }}",
+        "birthDate" : "{{ birthDate.toString().utl:toFhirDate('yyyy') }}",
+        "deceasedDateTime" : "{{? deceasedDateTime.toString().utl:toFhirDate('yyyy').nav:orElse({}) }}",
+        "id" : "{{mpp:getHashedId('Patient', studyId_0763.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "resourceType" : "Patient"
+      }
+    }
+  } ]
+}
