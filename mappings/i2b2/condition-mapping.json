@@ -1,0 +1,52 @@
+{
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Mapping of i2b2 observation fact to the DT4H-Condition profile",
+  "source" : [ {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [
+    {
+      "name": "reasonCodeSystem",
+      "language": "text/fhirpath",
+      "expression": "CONCEPT_CD.split(':').first()"
+    },
+    {
+      "name": "reasonCodeValue",
+      "language": "text/fhirpath",
+      "expression": "CONCEPT_CD.split(':').last()"
+    }
+  ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "code" : {
+          "coding" : [ {
+            "system" : "{{%reasonCodeSystem}}",
+            "code": "{{%reasonCodeValue}}"
+          } ]
+        },
+        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "onsetDateTime" : "{{START_DATE}}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "active"
+          } ]
+        },
+        "id" : "{{mpp:getHashedId('Condition', ENCOUNTER_NUM.toString() + START_DATE.toString()  )}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition"
+      }
+    }
+  } ]
+}

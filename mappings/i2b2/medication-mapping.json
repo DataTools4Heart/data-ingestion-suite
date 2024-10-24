@@ -1,0 +1,64 @@
+{
+  "id" : "medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/medication-mapping",
+  "name" : "medication-mapping",
+  "title" : "Mapping of i2b2 observation fact to the DT4H medication administration profile",
+  "source" : [ {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name": "isMedication",
+    "language": "text/fhirpath",
+    "expression": "CONCEPT_CD.startsWith('NDC') and MODIFIER_CD = 'MED:DOSE' "
+  }, {
+    "name" : "rxNormCode",
+    "language" : "text/fhirpath",
+    "expression" : "trms:translateToCoding(CONCEPT_CD.split(':').last(),'https://dps.fda.gov/ndc', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ndc-to-rxnorm').code"
+  }, {
+    "name" : "atcIngredientCodes",
+    "language" : "text/fhirpath",
+    "expression" : "rxn:getMedicationDetails(%rxNormCode).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "{{#medicationCodeableConceptVar}}" : "{{%atcIngredientCodes}}",
+            "{{?}}" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %medicationCodeableConceptVar, {})}}"
+          }
+        },
+        "{{#ingredient}}" : "{{? %atcIngredientCodes}}",
+        "{{*}}" : {
+          "status" : "completed",
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
+          "occurencePeriod" : {
+            "start" : "{{START_DATE}}",
+            "end" : "{{END_DATE}}"
+          },
+          "dosage" : {
+            "dose" : {
+              "value" : "{{NVAL_NUM.toDecimal()}}"
+            }
+          },
+          "id" : "{{mpp:getHashedId('MedicationAdministration', ENCOUNTER_NUM.toString() & '_' & %ingredient)}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+          },
+          "resourceType" : "MedicationAdministration"
+        }
+      }
+    },
+    "precondition" : {
+      "name" : "isMedication",
+      "language" : "text/fhirpath",
+      "expression" : "%isMedication"
+    }
+  } ]
+}
