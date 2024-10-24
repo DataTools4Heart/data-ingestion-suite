@@ -1,0 +1,86 @@
+{
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Mapping of i2b2 visit dimension to the DT4H-Encounter profile",
+  "source" : [ {
+    "alias" : "visitDimension",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/VisitDimension",
+    "joinOn" : [ "ENCOUNTER_NUM" ]
+  }, {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
+    "joinOn" : [ "ENCOUNTER_NUM" ]
+  } ],
+  "context" : {
+    "encounterClassConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/encounter-class-concept-map.csv"
+    }
+  },
+  "variable" : [
+    {
+      "name" : "encounterClass",
+      "language" : "text/fhirpath",
+      "expression" : "mpp:getConcept(%encounterClassConceptMap, INOUT_CD)"
+    },
+    {
+      "name": "reasonCodeSystem",
+      "language": "text/fhirpath",
+      "expression": "%observationFact.first().concept_cd.split(':').first()"
+    },
+    {
+      "name": "reasonCodeValue",
+      "language": "text/fhirpath",
+      "expression": "%observationFact.first().concept_cd.split(':').last()"
+    }
+  ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "class" : [ {
+          "coding" : [ {
+            "system" : "{{%encounterClass.code_system}}",
+            "code" : "{{%encounterClass.target_code}}"
+          } ]
+        } ],
+        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "actualPeriod" : {
+          "start" : "{{START_DATE}}",
+          "end" : "{{END_DATE}}"
+        },
+        "status" : "completed",
+        "reason": {
+          "{{#reasonCodeVar}}": "{{%reasonCode}}",
+          "{{?}}": [
+            {
+              "value": [
+                {
+                  "concept": {
+                    "coding": [
+                      {
+                        "system": "{{%reasonCodeSystem}}",
+                        "code": "{{%reasonCodeValue}}",
+                        "display": "{{%reasonCodeDisplay}}"
+                      } ]
+                  }
+                } ]
+            } ]
+        },
+        "id" : "{{mpp:getHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter"
+      }
+    },
+    "precondition": {
+      "name": "validObservation",
+      "language": "text/fhirpath",
+      "expression": "ENCOUNTER_NUM.exists() and %observationFact.exists()"
+    }
+  } ]
+}

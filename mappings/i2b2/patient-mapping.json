@@ -1,0 +1,36 @@
+{
+  "id" : "patient-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/patient-mapping",
+  "name" : "patient-mapping",
+  "title" : "Mapping from i2b2 patient to the DT4h-Patient profile",
+  "source" : [ {
+    "alias" : "patient",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/PatientDimension",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "gender" : "{{iif(SEX_CD='F', 'female', iif(SEX_CD='M', 'male', 'unknown'))}}",
+        "birthDate" : "{{? BIRTH_DATE}}",
+        "deceasedDateTime" : "{{? DEATH_DATE}}",
+        "identifier" : [ {
+          "use" : "official",
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "value" : "{{PATIENT_NUM.toString()}}"
+        } ],
+        "active" : true,
+        "id" : "{{mpp:getHashedId('Patient',PATIENT_NUM.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "resourceType" : "Patient"
+      }
+    }
+  } ]
+}
