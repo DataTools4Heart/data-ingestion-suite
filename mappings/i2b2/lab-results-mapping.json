@@ -1,0 +1,65 @@
+{
+  "id" : "lab-results-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/lab-results-mapping",
+  "name" : "lab-results-mapping",
+  "title" : "Mapping from i2b2 observation fact to the DT4H LabResult profile",
+  "source" : [ {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "labResultCodes" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/lab-result-codes.csv"
+    }
+  },
+  "variable" : [ {
+    "name": "isLabResult",
+    "language": "text/fhirpath",
+    "expression": "CONCEPT_CD.startsWith('LOINC')"
+  }, {
+    "name": "labCodeValue",
+    "language": "text/fhirpath",
+    "expression": "CONCEPT_CD.split(':').last()"
+  }],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{%labCodeValue}}",
+            "display" : "{{ mpp:getConcept(%labResultCodes, %labCodeValue, 'source_display') }}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{START_DATE}}",
+        "valueQuantity" : "{{ iif(VALTYPE_CD = 'T', TVAL_CHAR, NVAL_NUM) }}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', PATIENT_NUM.toString() + ENCOUNTER_NUM.toString() + UNITS_CD )}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation"
+      }
+    },
+    "precondition" : {
+      "name" : "isLabResult",
+      "language" : "text/fhirpath",
+      "expression" : "%isLabResult"
+    }
+  } ]
+}
