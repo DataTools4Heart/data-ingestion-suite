@@ -1,0 +1,4 @@
+"source_system","source_code","target_system","target_code","target_display"
+https://www.i2b2.org,HIGH,http://snomed.info/sct,75540009,HIGH
+https://www.i2b2.org,NORMAL,http://snomed.info/sct,17621005,NORMAL
+https://www.i2b2.org,LOW,http://snomed.info/sct,62482003,LOW

@@ -24,6 +24,12 @@
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/ndc-to-rxnorm",
       "sourceValueSetUrl" : "https://dps.fda.gov/ndc",
       "targetValueSetUrl" : "http://www.nlm.nih.gov/research/umls/rxnorm"
+    }, {
+      "id" : "stringToSnomed.csv",
+      "name" : "stringToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed",
+      "sourceValueSetUrl" : "https://www.i2b2.org",
+      "targetValueSetUrl" : "http://snomed.info/sct"
     }],
     "codeSystemFiles" : [ ]
   },
