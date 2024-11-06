@@ -22,7 +22,8 @@
     "name": "labCodeValue",
     "language": "text/fhirpath",
     "expression": "CONCEPT_CD.split(':').last()"
-  }],
+  }
+  ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -44,11 +45,27 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{START_DATE}}",
-        "valueQuantity" : "{{ iif(VALTYPE_CD = 'T', TVAL_CHAR, NVAL_NUM) }}",
+        "effectiveDateTime" : "{{? iif(START_DATE.exists(), START_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "valueCodeableConcept": {
+          "{{#codedValue}}": "{{iif( TVAL_CHAR.exists(), trms:translateToCoding(TVAL_CHAR, 'https://www.i2b2.org', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed'), {} )}}",
+          "{{?}}": {
+            "coding": "{{* %codedValue}}",
+            "text": "{{? TVAL_CHAR }}"
+          }
+        },
+        "valueString": {
+          "{{#strValue}}": "{{iif(TVAL_CHAR.exists() and trms:translateToCoding(TVAL_CHAR, 'https://www.i2b2.org', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed').exists().not(), TVAL_CHAR, {})}}",
+          "{{?}}": "{{%strValue}}"
+        },
+        "valueQuantity": {
+          "{{#quantityValue}}": "{{iif(NVAL_NUM.exists(), true, {})}}",
+          "{{?}}": {
+            "value": "{{NVAL_NUM}}"
+          }
+        },
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
-        "id" : "{{mpp:getHashedId('Observation', PATIENT_NUM.toString() + ENCOUNTER_NUM.toString() + UNITS_CD )}}",
+        "id" : "{{mpp:getHashedId('Observation', PATIENT_NUM.toString() & ENCOUNTER_NUM.toString() & UNITS_CD & TEXT_SEARCH_INDEX.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]

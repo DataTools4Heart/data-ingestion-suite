@@ -27,12 +27,12 @@
     {
       "name": "reasonCodeSystem",
       "language": "text/fhirpath",
-      "expression": "%observationFact.first().concept_cd.split(':').first()"
+      "expression": "%observationFact.first().CONCEPT_CD.split(':').first()"
     },
     {
       "name": "reasonCodeValue",
       "language": "text/fhirpath",
-      "expression": "%observationFact.first().concept_cd.split(':').last()"
+      "expression": "%observationFact.first().CONCEPT_CD.split(':').last()"
     }
   ],
   "mapping" : [ {
@@ -48,12 +48,12 @@
         } ],
         "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
         "actualPeriod" : {
-          "start" : "{{START_DATE}}",
-          "end" : "{{END_DATE}}"
+          "start" : "{{? iif(START_DATE.exists(), START_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
+          "end" : "{{? iif(END_DATE.exists(), END_DATE.toString().substring(0, 10).replace('/', '-'), null) }}"
         },
         "status" : "completed",
         "reason": {
-          "{{#reasonCodeVar}}": "{{%reasonCode}}",
+          "{{#reasonCodeVar}}": "{{%reasonCodeValue}}",
           "{{?}}": [
             {
               "value": [
@@ -62,8 +62,7 @@
                     "coding": [
                       {
                         "system": "{{%reasonCodeSystem}}",
-                        "code": "{{%reasonCodeValue}}",
-                        "display": "{{%reasonCodeDisplay}}"
+                        "code": "{{%reasonCodeValue}}"
                       } ]
                   }
                 } ]

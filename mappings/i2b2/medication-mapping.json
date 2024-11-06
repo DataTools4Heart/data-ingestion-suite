@@ -12,7 +12,7 @@
   "variable" : [ {
     "name": "isMedication",
     "language": "text/fhirpath",
-    "expression": "CONCEPT_CD.startsWith('NDC') and MODIFIER_CD = 'MED:DOSE' "
+    "expression": "MODIFIER_CD = 'MED:DOSE' and CONCEPT_CD.startsWith('NDC') "
   }, {
     "name" : "rxNormCode",
     "language" : "text/fhirpath",
@@ -21,33 +21,33 @@
     "name" : "atcIngredientCodes",
     "language" : "text/fhirpath",
     "expression" : "rxn:getMedicationDetails(%rxNormCode).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
-  } ],
+  }],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "medication" : {
-          "concept" : {
-            "{{#medicationCodeableConceptVar}}" : "{{%atcIngredientCodes}}",
-            "{{?}}" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %medicationCodeableConceptVar, {})}}"
-          }
-        },
         "{{#ingredient}}" : "{{? %atcIngredientCodes}}",
         "{{*}}" : {
           "status" : "completed",
+          "medication" : {
+            "concept" : {
+              "{{#medicationCodeableConceptVar}}" : "{{%atcIngredientCodes}}",
+              "{{?}}" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %medicationCodeableConceptVar, {})}}"
+            }
+          },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
           "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
           "occurencePeriod" : {
-            "start" : "{{START_DATE}}",
-            "end" : "{{END_DATE}}"
+            "start" : "{{? iif(START_DATE.exists(), START_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
+            "end" : "{{? iif(END_DATE.exists(), END_DATE.toString().substring(0, 10).replace('/', '-'), null) }}"
           },
           "dosage" : {
             "dose" : {
               "value" : "{{NVAL_NUM.toDecimal()}}"
             }
           },
-          "id" : "{{mpp:getHashedId('MedicationAdministration', ENCOUNTER_NUM.toString() & '_' & %ingredient)}}",
+          "id" : "{{mpp:getHashedId('MedicationAdministration', ENCOUNTER_NUM.toString() & '_' & %ingredient & TEXT_SEARCH_INDEX.toString() )}}",
           "meta" : {
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
           },

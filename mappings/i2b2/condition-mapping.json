@@ -33,14 +33,14 @@
           } ]
         },
         "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
-        "onsetDateTime" : "{{START_DATE}}",
+        "onsetDateTime" : "{{? iif(START_DATE.exists(), START_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
         "clinicalStatus" : {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
             "code" : "active"
           } ]
         },
-        "id" : "{{mpp:getHashedId('Condition', ENCOUNTER_NUM.toString() + START_DATE.toString()  )}}",
+        "id" : "{{mpp:getHashedId('Condition', ENCOUNTER_NUM.toString() & START_DATE.toString() & TEXT_SEARCH_INDEX.toString() )}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
