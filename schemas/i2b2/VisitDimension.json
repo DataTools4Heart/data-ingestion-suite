@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short": "Encounter ID"
     }, {
       "id" : "VisitDimension.PATIENT_NUM",
       "path" : "VisitDimension.PATIENT_NUM",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short": "Patient ID"
     }, {
       "id" : "VisitDimension.ACTIVE_STATUS_CD",
       "path" : "VisitDimension.ACTIVE_STATUS_CD",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Visit Status Code"
     }, {
       "id" : "VisitDimension.START_DATE",
       "path" : "VisitDimension.START_DATE",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Visit Start Date"
     }, {
       "id" : "VisitDimension.END_DATE",
       "path" : "VisitDimension.END_DATE",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Visit End Date"
     }, {
       "id" : "VisitDimension.INOUT_CD",
       "path" : "VisitDimension.INOUT_CD",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Visit Inout Code"
     }, {
       "id" : "VisitDimension.LOCATION_CD",
       "path" : "VisitDimension.LOCATION_CD",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Visit Location"
     }, {
       "id" : "VisitDimension.LOCATION_PATH",
       "path" : "VisitDimension.LOCATION_PATH",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Visit Location Path"
     }, {
       "id" : "VisitDimension.LENGTH_OF_STAY",
       "path" : "VisitDimension.LENGTH_OF_STAY",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short": "Visit Stay Length"
     }, {
       "id" : "VisitDimension.VISIT_BLOB",
       "path" : "VisitDimension.VISIT_BLOB",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Visit Additional Raw Data"
     }, {
       "id" : "VisitDimension.UPDATE_DATE",
       "path" : "VisitDimension.UPDATE_DATE",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Visit Record Update Date"
     }, {
       "id" : "VisitDimension.DOWNLOAD_DATE",
       "path" : "VisitDimension.DOWNLOAD_DATE",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Visit Record Download Date"
     }, {
       "id" : "VisitDimension.IMPORT_DATE",
       "path" : "VisitDimension.IMPORT_DATE",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Visit Record Import Date"
     }, {
       "id" : "VisitDimension.SOURCESYSTEM_CD",
       "path" : "VisitDimension.SOURCESYSTEM_CD",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Visit Source System Code"
     }, {
       "id" : "VisitDimension.UPLOAD_ID",
       "path" : "VisitDimension.UPLOAD_ID",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short": "Visit Data Upload ID"
     } ]
   }
 }

@@ -27,7 +27,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short": "Patient ID"
     }, {
       "id" : "PatientDimension.VITAL_STATUS_CD",
       "path" : "PatientDimension.VITAL_STATUS_CD",
@@ -36,7 +37,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Vital Status Code"
     }, {
       "id" : "PatientDimension.BIRTH_DATE",
       "path" : "PatientDimension.BIRTH_DATE",
@@ -45,7 +47,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Patient Birth Date"
     }, {
       "id" : "PatientDimension.DEATH_DATE",
       "path" : "PatientDimension.DEATH_DATE",
@@ -54,7 +57,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Patient Death Date"
     }, {
       "id" : "PatientDimension.SEX_CD",
       "path" : "PatientDimension.SEX_CD",
@@ -63,7 +67,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Sex"
     }, {
       "id" : "PatientDimension.AGE_IN_YEARS_NUM",
       "path" : "PatientDimension.AGE_IN_YEARS_NUM",
@@ -72,7 +77,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short": "Patient Age In Years"
     }, {
       "id" : "PatientDimension.LANGUAGE_CD",
       "path" : "PatientDimension.LANGUAGE_CD",
@@ -81,7 +87,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Primary Language Code"
     }, {
       "id" : "PatientDimension.RACE_CD",
       "path" : "PatientDimension.RACE_CD",
@@ -90,7 +97,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Race"
     }, {
       "id" : "PatientDimension.MARITAL_STATUS_CD",
       "path" : "PatientDimension.MARITAL_STATUS_CD",
@@ -99,7 +107,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Marital Status"
     }, {
       "id" : "PatientDimension.RELIGION_CD",
       "path" : "PatientDimension.RELIGION_CD",
@@ -108,7 +117,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Religion"
     }, {
       "id" : "PatientDimension.ZIP_CD",
       "path" : "PatientDimension.ZIP_CD",
@@ -117,7 +127,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Zip Code"
     }, {
       "id" : "PatientDimension.STATECITYZIP_PATH",
       "path" : "PatientDimension.STATECITYZIP_PATH",
@@ -126,7 +137,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient State, City, Zip Code"
     }, {
       "id" : "PatientDimension.INCOME_CD",
       "path" : "PatientDimension.INCOME_CD",
@@ -135,7 +147,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Income Category Code"
     }, {
       "id" : "PatientDimension.PATIENT_BLOB",
       "path" : "PatientDimension.PATIENT_BLOB",
@@ -144,7 +157,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Additional Raw Data"
     }, {
       "id" : "PatientDimension.UPDATE_DATE",
       "path" : "PatientDimension.UPDATE_DATE",
@@ -153,7 +167,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Patient Record Update Date"
     }, {
       "id" : "PatientDimension.DOWNLOAD_DATE",
       "path" : "PatientDimension.DOWNLOAD_DATE",
@@ -162,7 +177,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Patient Record Download Date"
     }, {
       "id" : "PatientDimension.IMPORT_DATE",
       "path" : "PatientDimension.IMPORT_DATE",
@@ -171,7 +187,8 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short": "Patient Record Import Date"
     }, {
       "id" : "PatientDimension.SOURCESYSTEM_CD",
       "path" : "PatientDimension.SOURCESYSTEM_CD",
@@ -180,7 +197,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short": "Patient Source System Code"
     }, {
       "id" : "PatientDimension.UPLOAD_ID",
       "path" : "PatientDimension.UPLOAD_ID",
@@ -189,7 +207,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short": "Patient Data Upload ID"
     } ]
   }
 }
