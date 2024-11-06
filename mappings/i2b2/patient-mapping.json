@@ -8,16 +8,25 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/PatientDimension",
     "joinOn" : [ ]
   } ],
-  "context" : { },
-  "variable" : [ ],
+  "context" : {
+    "patientGenderMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/patient-gender-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "genderClass",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%patientGenderMap, SEX_CD)"
+  }],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "gender" : "{{iif(SEX_CD='F', 'female', iif(SEX_CD='M', 'male', 'unknown'))}}",
-        "birthDate" : "{{? BIRTH_DATE}}",
-        "deceasedDateTime" : "{{? DEATH_DATE}}",
+        "gender" : "{{ %genderClass.gender_display }}",
+        "birthDate" : "{{? iif(BIRTH_DATE.exists(), BIRTH_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
+        "deceasedDateTime" : "{{? iif(DEATH_DATE.exists(), DEATH_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
         "identifier" : [ {
           "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}",
