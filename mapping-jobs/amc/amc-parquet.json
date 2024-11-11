@@ -1,13 +1,14 @@
 {
   "id" : "amc-parquet",
   "name" : "amc-parquet",
+  "description" : "",
   "sourceSettings" : {
     "amc-source" : {
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "amc-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
       "dataFolderPath" : "test-data/amc",
-      "asStream" : false
+      "asStream" : true
     }
   },
   "sinkSettings" : {
@@ -21,7 +22,7 @@
     "sourceBinding" : {
       "CauseOfDeath" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_OverlijdensRegistratie.parquet",
+        "path" : "Datatools4heart_OverlijdensRegistratie",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -35,7 +36,7 @@
     "sourceBinding" : {
       "Condition" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Probleemlijst.parquet",
+        "path" : "Datatools4heart_Probleemlijst",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -49,7 +50,7 @@
     "sourceBinding" : {
       "ConditionMedicalDiagnosis" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MedischeDiagnose.parquet",
+        "path" : "Datatools4heart_MedischeDiagnose",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -63,9 +64,9 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_EcgMeting.parquet",
+        "path" : "Datatools4heart_EcgMeting",
         "contentType" : "parquet",
-        "options" : {},
+        "options" : { },
         "sourceRef" : "amc-source"
       }
     }
@@ -75,7 +76,7 @@
     "sourceBinding" : {
       "EncounterEmergency" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_SEHtraject.parquet",
+        "path" : "Datatools4heart_SEHtraject",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -89,7 +90,7 @@
     "sourceBinding" : {
       "Encounter" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Opnametraject.parquet",
+        "path" : "Datatools4heart_Opnametraject",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -103,7 +104,7 @@
     "sourceBinding" : {
       "HistoryCondition" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VoorgeschiedenisMedisch.parquet",
+        "path" : "Datatools4heart_VoorgeschiedenisMedisch",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -117,7 +118,7 @@
     "sourceBinding" : {
       "SurgeryHistory" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VoorgeschiedenisChirurgie.parquet",
+        "path" : "Datatools4heart_VoorgeschiedenisChirurgie",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -131,7 +132,7 @@
     "sourceBinding" : {
       "LabResult" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Labuitslag.parquet",
+        "path" : "Datatools4heart_Labuitslag",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -145,7 +146,7 @@
     "sourceBinding" : {
       "MedicationAdministration" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MedicatieToediening.parquet",
+        "path" : "Datatools4heart_MedicatieToediening",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -159,7 +160,7 @@
     "sourceBinding" : {
       "MedicationPrescription" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MedicatieVoorschrift.parquet",
+        "path" : "Datatools4heart_MedicatieVoorschrift",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -173,7 +174,7 @@
     "sourceBinding" : {
       "patient" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Patient.parquet",
+        "path" : "Datatools4heart_Patient",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -187,7 +188,7 @@
     "sourceBinding" : {
       "Procedure" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VerrichtingUitgevoerd.parquet",
+        "path" : "Datatools4heart_VerrichtingUitgevoerd",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -201,7 +202,7 @@
     "sourceBinding" : {
       "ProcedureSurgery" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_OKVerrichtingUitgevoerd.parquet",
+        "path" : "Datatools4heart_OKVerrichtingUitgevoerd",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -215,7 +216,7 @@
     "sourceBinding" : {
       "SmokingStatus" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Tabakgebruik.parquet",
+        "path" : "Datatools4heart_Tabakgebruik",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -229,7 +230,7 @@
     "sourceBinding" : {
       "BMI" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingBMI.parquet",
+        "path" : "Datatools4heart_MetingBMI",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -243,7 +244,7 @@
     "sourceBinding" : {
       "BP" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingBloeddruk.parquet",
+        "path" : "Datatools4heart_MetingBloeddruk",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -257,7 +258,7 @@
     "sourceBinding" : {
       "HeartRate" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingHartfrequentie.parquet",
+        "path" : "Datatools4heart_MetingHartfrequentie",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -271,7 +272,7 @@
     "sourceBinding" : {
       "Length" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingLichaamsLengte.parquet",
+        "path" : "Datatools4heart_MetingLichaamsLengte",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -285,7 +286,7 @@
     "sourceBinding" : {
       "VitalSign" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingVitaleGegevens.parquet",
+        "path" : "Datatools4heart_MetingVitaleGegevens",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -299,7 +300,7 @@
     "sourceBinding" : {
       "O2Saturation" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Metingo2Saturatie.parquet",
+        "path" : "Datatools4heart_Metingo2Saturatie",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -313,7 +314,7 @@
     "sourceBinding" : {
       "Weight" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingLichaamsGewicht.parquet",
+        "path" : "Datatools4heart_MetingLichaamsGewicht",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -324,7 +325,7 @@
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
-    "archiveMode" : "off"
+    "archiveMode" : "archive"
   },
   "useFhirSinkAsIdentityService" : false
 }
