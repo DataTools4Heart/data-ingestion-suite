@@ -45,8 +45,8 @@
     "sourceValueSetUrl" : "https://dps.fda.gov/ndc",
     "targetValueSetUrl" : "http://www.nlm.nih.gov/research/umls/rxnorm"
   }, {
-    "id" : "stringToSnomed.csv",
-    "name" : "stringToSnomed.csv",
+    "id" : "labResults-Ib2bToSnomed.csv",
+    "name" : "labResults-Ib2bToSnomed.csv",
     "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed",
     "sourceValueSetUrl" : "https://www.i2b2.org",
     "targetValueSetUrl" : "http://snomed.info/sct"
