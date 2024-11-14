@@ -12,6 +12,10 @@
     "labResultCodes" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/i2b2/lab-result-codes.csv"
+    },
+    "unitConversionMap" : {
+      "category" : "unit-conversion",
+      "url" : "$CONTEXT_REPO/i2b2/lab-results-unit-conversion.csv"
     }
   },
   "variable" : [ {
@@ -60,9 +64,7 @@
         },
         "valueQuantity": {
           "{{#quantityValue}}": "{{iif(NVAL_NUM.exists(), true, {})}}",
-          "{{?}}": {
-            "value": "{{NVAL_NUM}}"
-          }
+          "{{?}}": "{{ mpp:convertAndReturnQuantity(%unitConversionMap, %labCodeValue, NVAL_NUM, UNITS_CD) }}"
         },
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
         "id" : "{{mpp:getHashedId('Observation', PATIENT_NUM.toString() & ENCOUNTER_NUM.toString() & UNITS_CD & TEXT_SEARCH_INDEX.toString())}}",
