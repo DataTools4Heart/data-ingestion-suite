@@ -2,26 +2,27 @@
   "id" : "EncounterDetails",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
+  "version" : "latest",
   "name" : "EncounterDetails",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Encounter-Details",
+  "type" : "EncounterDetails",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Encounter-Details",
-      "path" : "Encounter-Details",
+      "id" : "EncounterDetails",
+      "path" : "EncounterDetails",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Encounter-Details.CODICE_SANITARIO",
-      "path" : "Encounter-Details.CODICE_SANITARIO",
+      "id" : "EncounterDetails.CODICE_SANITARIO",
+      "path" : "EncounterDetails.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -30,8 +31,8 @@
       } ],
       "short" : "Patient id"
     }, {
-      "id" : "Encounter-Details.NOSOGRAFICO_ADT",
-      "path" : "Encounter-Details.NOSOGRAFICO_ADT",
+      "id" : "EncounterDetails.NOSOGRAFICO_ADT",
+      "path" : "EncounterDetails.NOSOGRAFICO_ADT",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -40,8 +41,8 @@
       } ],
       "short" : "Foreign key to main encounter data"
     }, {
-      "id" : "Encounter-Details.DATA_RICOVERO",
-      "path" : "Encounter-Details.DATA_RICOVERO",
+      "id" : "EncounterDetails.DATA_RICOVERO",
+      "path" : "EncounterDetails.DATA_RICOVERO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -50,8 +51,8 @@
       } ],
       "short" : "Date of hospitalization."
     }, {
-      "id" : "Encounter-Details.ORA_RICOVERO",
-      "path" : "Encounter-Details.ORA_RICOVERO",
+      "id" : "EncounterDetails.ORA_RICOVERO",
+      "path" : "EncounterDetails.ORA_RICOVERO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -60,8 +61,8 @@
       } ],
       "short" : "Time of hospitalization"
     }, {
-      "id" : "Encounter-Details.DATA_DIMISSIONE",
-      "path" : "Encounter-Details.DATA_DIMISSIONE",
+      "id" : "EncounterDetails.DATA_DIMISSIONE",
+      "path" : "EncounterDetails.DATA_DIMISSIONE",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -70,8 +71,8 @@
       } ],
       "short" : "Date of discharge"
     }, {
-      "id" : "Encounter-Details.ORA_DIMISSIONE",
-      "path" : "Encounter-Details.ORA_DIMISSIONE",
+      "id" : "EncounterDetails.ORA_DIMISSIONE",
+      "path" : "EncounterDetails.ORA_DIMISSIONE",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -80,8 +81,8 @@
       } ],
       "short" : "Time of discharge"
     }, {
-      "id" : "Encounter-Details.DESC_REPARTO_RICOVERO",
-      "path" : "Encounter-Details.DESC_REPARTO_RICOVERO",
+      "id" : "EncounterDetails.DESC_REPARTO_RICOVERO",
+      "path" : "EncounterDetails.DESC_REPARTO_RICOVERO",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -90,8 +91,8 @@
       } ],
       "short" : "Description of a hospital department"
     }, {
-      "id" : "Encounter-Details.DIAG1_ICD9CM",
-      "path" : "Encounter-Details.DIAG1_ICD9CM",
+      "id" : "EncounterDetails.DIAG1_ICD9CM",
+      "path" : "EncounterDetails.DIAG1_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -100,8 +101,8 @@
       } ],
       "short" : "First diagnosis code based on the ICD-9-CM system"
     }, {
-      "id" : "Encounter-Details.DIAG2_ICD9CM",
-      "path" : "Encounter-Details.DIAG2_ICD9CM",
+      "id" : "EncounterDetails.DIAG2_ICD9CM",
+      "path" : "EncounterDetails.DIAG2_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -110,8 +111,8 @@
       } ],
       "short" : "Second diagnosis code based on the ICD-9-CM system"
     }, {
-      "id" : "Encounter-Details.DIAG3_ICD9CM",
-      "path" : "Encounter-Details.DIAG3_ICD9CM",
+      "id" : "EncounterDetails.DIAG3_ICD9CM",
+      "path" : "EncounterDetails.DIAG3_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -120,8 +121,8 @@
       } ],
       "short" : "Third diagnosis code based on the ICD-9-CM system"
     }, {
-      "id" : "Encounter-Details.DIAG4_ICD9CM",
-      "path" : "Encounter-Details.DIAG4_ICD9CM",
+      "id" : "EncounterDetails.DIAG4_ICD9CM",
+      "path" : "EncounterDetails.DIAG4_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -130,8 +131,8 @@
       } ],
       "short" : "Fourth diagnosis code based on the ICD-9-CM system"
     }, {
-      "id" : "Encounter-Details.DIAG5_ICD9CM",
-      "path" : "Encounter-Details.DIAG5_ICD9CM",
+      "id" : "EncounterDetails.DIAG5_ICD9CM",
+      "path" : "EncounterDetails.DIAG5_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -140,8 +141,8 @@
       } ],
       "short" : "Fifth diagnosis code based on the ICD-9-CM system"
     }, {
-      "id" : "Encounter-Details.DIAG6_ICD9CM",
-      "path" : "Encounter-Details.DIAG6_ICD9CM",
+      "id" : "EncounterDetails.DIAG6_ICD9CM",
+      "path" : "EncounterDetails.DIAG6_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -150,8 +151,8 @@
       } ],
       "short" : "Sixth diagnosis code based on the ICD-9-CM system"
     }, {
-      "id" : "Encounter-Details.DIAG7_ICD9CM",
-      "path" : "Encounter-Details.DIAG7_ICD9CM",
+      "id" : "EncounterDetails.DIAG7_ICD9CM",
+      "path" : "EncounterDetails.DIAG7_ICD9CM",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -160,8 +161,8 @@
       } ],
       "short" : "Seventh diagnosis code based on the ICD-9-CM system"
     }, {
-      "id" : "Encounter-Details.PROC1",
-      "path" : "Encounter-Details.PROC1",
+      "id" : "EncounterDetails.PROC1",
+      "path" : "EncounterDetails.PROC1",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -170,8 +171,8 @@
       } ],
       "short" : "First procedure code based on the ICD-9-PCS system"
     }, {
-      "id" : "Encounter-Details.PROC2",
-      "path" : "Encounter-Details.PROC2",
+      "id" : "EncounterDetails.PROC2",
+      "path" : "EncounterDetails.PROC2",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -180,8 +181,8 @@
       } ],
       "short" : "Second procedure code based on the ICD-9-PCS system"
     }, {
-      "id" : "Encounter-Details.PROC3",
-      "path" : "Encounter-Details.PROC3",
+      "id" : "EncounterDetails.PROC3",
+      "path" : "EncounterDetails.PROC3",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -190,8 +191,8 @@
       } ],
       "short" : "Third procedure code based on the ICD-9-PCS system"
     }, {
-      "id" : "Encounter-Details.PROC4",
-      "path" : "Encounter-Details.PROC4",
+      "id" : "EncounterDetails.PROC4",
+      "path" : "EncounterDetails.PROC4",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -200,8 +201,8 @@
       } ],
       "short" : "Fourth procedure code based on the ICD-9-PCS system"
     }, {
-      "id" : "Encounter-Details.PROC5",
-      "path" : "Encounter-Details.PROC5",
+      "id" : "EncounterDetails.PROC5",
+      "path" : "EncounterDetails.PROC5",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -210,8 +211,8 @@
       } ],
       "short" : "Fifth procedure code based on the ICD-9-PCS system"
     }, {
-      "id" : "Encounter-Details.PROC6",
-      "path" : "Encounter-Details.PROC6",
+      "id" : "EncounterDetails.PROC6",
+      "path" : "EncounterDetails.PROC6",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -220,8 +221,8 @@
       } ],
       "short" : "Sixth procedure code based on the ICD-9-PCS system"
     }, {
-      "id" : "Encounter-Details.PROC7",
-      "path" : "Encounter-Details.PROC7",
+      "id" : "EncounterDetails.PROC7",
+      "path" : "EncounterDetails.PROC7",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -230,8 +231,8 @@
       } ],
       "short" : "Seventh procedure code based on the ICD-9-PCS system"
     }, {
-      "id" : "Encounter-Details.DATAPROC1",
-      "path" : "Encounter-Details.DATAPROC1",
+      "id" : "EncounterDetails.DATAPROC1",
+      "path" : "EncounterDetails.DATAPROC1",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -240,8 +241,8 @@
       } ],
       "short" : "Date of the first procedure "
     }, {
-      "id" : "Encounter-Details.DATAPROC2",
-      "path" : "Encounter-Details.DATAPROC2",
+      "id" : "EncounterDetails.DATAPROC2",
+      "path" : "EncounterDetails.DATAPROC2",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -250,8 +251,8 @@
       } ],
       "short" : "Date of the second procedure "
     }, {
-      "id" : "Encounter-Details.DATAPROC3",
-      "path" : "Encounter-Details.DATAPROC3",
+      "id" : "EncounterDetails.DATAPROC3",
+      "path" : "EncounterDetails.DATAPROC3",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -260,8 +261,8 @@
       } ],
       "short" : "Date of the third procedure "
     }, {
-      "id" : "Encounter-Details.DATAPROC4",
-      "path" : "Encounter-Details.DATAPROC4",
+      "id" : "EncounterDetails.DATAPROC4",
+      "path" : "EncounterDetails.DATAPROC4",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -270,8 +271,8 @@
       } ],
       "short" : "Date of the fourth procedure "
     }, {
-      "id" : "Encounter-Details.DATAPROC5",
-      "path" : "Encounter-Details.DATAPROC5",
+      "id" : "EncounterDetails.DATAPROC5",
+      "path" : "EncounterDetails.DATAPROC5",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -280,8 +281,8 @@
       } ],
       "short" : "Date of the fifth procedure "
     }, {
-      "id" : "Encounter-Details.DATAPROC6",
-      "path" : "Encounter-Details.DATAPROC6",
+      "id" : "EncounterDetails.DATAPROC6",
+      "path" : "EncounterDetails.DATAPROC6",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -290,8 +291,8 @@
       } ],
       "short" : "Date of the sixth procedure "
     }, {
-      "id" : "Encounter-Details.DATAPROC7",
-      "path" : "Encounter-Details.DATAPROC7",
+      "id" : "EncounterDetails.DATAPROC7",
+      "path" : "EncounterDetails.DATAPROC7",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -300,8 +301,8 @@
       } ],
       "short" : "Date of the seventh procedure "
     }, {
-      "id" : "Encounter-Details.TIPO",
-      "path" : "Encounter-Details.TIPO",
+      "id" : "EncounterDetails.TIPO",
+      "path" : "EncounterDetails.TIPO",
       "min" : 0,
       "max" : "1",
       "type" : [ {

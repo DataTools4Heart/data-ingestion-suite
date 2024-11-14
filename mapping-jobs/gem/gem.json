@@ -1,6 +1,7 @@
 {
   "id" : "gem",
   "name" : "gem",
+  "description" : "",
   "sourceSettings" : {
     "gem-source" : {
       "jsonClass" : "FileSystemSourceSettings",
@@ -16,7 +17,7 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
-    "name": "cause-of-death-mapping",
+    "name" : "cause-of-death-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
     "sourceBinding" : {
       "anagrafica" : {
@@ -28,7 +29,7 @@
       }
     }
   }, {
-    "name": "condition-mapping",
+    "name" : "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
     "sourceBinding" : {
       "patologie" : {
@@ -40,7 +41,7 @@
       }
     }
   }, {
-    "name": "echocardiograph-mapping",
+    "name" : "echocardiograph-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
     "sourceBinding" : {
       "echo" : {
@@ -60,7 +61,7 @@
       }
     }
   }, {
-    "name": "encounter-mapping",
+    "name" : "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
     "sourceBinding" : {
       "encounterMain" : {
@@ -79,7 +80,7 @@
       }
     }
   }, {
-    "name": "lab-result-and-vital-sign-mapping",
+    "name" : "lab-result-and-vital-sign-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
     "sourceBinding" : {
       "labResults" : {
@@ -98,7 +99,7 @@
       }
     }
   }, {
-    "name": "medication-mapping",
+    "name" : "medication-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
     "sourceBinding" : {
       "medications" : {
@@ -117,7 +118,7 @@
       }
     }
   }, {
-    "name": "nyha-mapping",
+    "name" : "nyha-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/nyha-mapping",
     "sourceBinding" : {
       "nyha" : {
@@ -136,7 +137,7 @@
       }
     }
   }, {
-    "name": "patient-mapping",
+    "name" : "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
     "sourceBinding" : {
       "source" : {
@@ -148,7 +149,7 @@
       }
     }
   }, {
-    "name": "smoking-status-mapping",
+    "name" : "smoking-status-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
     "sourceBinding" : {
       "patology" : {
@@ -160,7 +161,7 @@
       }
     }
   }, {
-    "name": "procedure-mapping",
+    "name" : "procedure-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/procedure-mapping",
     "sourceBinding" : {
       "encounterDetails" : {
@@ -168,7 +169,7 @@
         "path" : "dettagliocontatti.csv",
         "contentType" : "csv",
         "options" : { },
-        "preprocessSql" : "select CODICE_SANITARIO, NOSOGRAFICO_ADT, DATA_RICOVERO, ORA_RICOVERO, DATA_DIMISSIONE, ORA_DIMISSIONE, DESC_REPARTO_RICOVERO, DIAG1_ICD9CM, DIAG2_ICD9CM, DIAG3_ICD9CM, DIAG4_ICD9CM, DIAG5_ICD9CM, DIAG6_ICD9CM, DIAG7_ICD9CM, ARRAY(PROC1, PROC2, PROC3, PROC4, PROC5, PROC6, PROC7) as PROC, ARRAY(DATAPROC1, DATAPROC2, DATAPROC3, DATAPROC4, DATAPROC5, DATAPROC6, DATAPROC7) as DATAPROC, TIPO from encounterDetails",
+        "preprocessSql" : "select CODICE_SANITARIO, NOSOGRAFICO_ADT, DATA_RICOVERO, DATA_DIMISSIONE, DESC_REPARTO_RICOVERO, DIAG1_ICD9CM, DIAG2_ICD9CM, DIAG3_ICD9CM, DIAG4_ICD9CM, DIAG5_ICD9CM, DIAG6_ICD9CM, DIAG7_ICD9CM, ARRAY(PROC1, PROC2, PROC3, PROC4, PROC5, PROC6, PROC7) as PROC, ARRAY(DATAPROC1, DATAPROC2, DATAPROC3, DATAPROC4, DATAPROC5, DATAPROC6, DATAPROC7) as DATAPROC, TIPO from encounterDetails",
         "sourceRef" : "gem-source"
       },
       "encounters" : {
