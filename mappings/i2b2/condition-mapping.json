@@ -8,17 +8,22 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
     "joinOn" : [ ]
   } ],
-  "context" : { },
+  "context" : {
+    "icd9toIcd10CM" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/icd9-to-icd10pcs.csv"
+    }
+  },
   "variable" : [
     {
-      "name": "reasonCodeSystem",
+      "name": "isCondition",
       "language": "text/fhirpath",
-      "expression": "CONCEPT_CD.split(':').first()"
+      "expression": "CONCEPT_CD.startsWith('ICD9')"
     },
     {
-      "name": "reasonCodeValue",
-      "language": "text/fhirpath",
-      "expression": "CONCEPT_CD.split(':').last()"
+      "name" : "ICD10Code",
+      "language" : "text/fhirpath",
+      "expression" : "mpp:getConcept(%icd9toIcd10CM, CONCEPT_CD.split(':').last().replace('.', ''))"
     }
   ],
   "mapping" : [ {
@@ -28,8 +33,8 @@
       "value" : {
         "code" : {
           "coding" : [ {
-            "system" : "{{%reasonCodeSystem}}",
-            "code": "{{%reasonCodeValue}}"
+            "system" : "{{%ICD10Code.target_system}}",
+            "code": "{{%ICD10Code.target_code}}"
           } ]
         },
         "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
@@ -47,6 +52,11 @@
         },
         "resourceType" : "Condition"
       }
+    },
+    "precondition" : {
+      "name" : "isCondition",
+      "language" : "text/fhirpath",
+      "expression" : "%isCondition"
     }
   } ]
 }
