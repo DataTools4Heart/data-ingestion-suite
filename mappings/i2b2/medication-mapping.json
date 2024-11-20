@@ -27,7 +27,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#ingredient}}" : "{{? %atcIngredientCodes}}",
+        "{{#ingredient}}" : "{{ %atcIngredientCodes}}",
         "{{*}}" : {
           "status" : "completed",
           "medication" : {
@@ -58,7 +58,7 @@
     "precondition" : {
       "name" : "isMedication",
       "language" : "text/fhirpath",
-      "expression" : "%isMedication"
+      "expression" : "%isMedication and %atcIngredientCodes.exists()"
     }
   } ]
 }
