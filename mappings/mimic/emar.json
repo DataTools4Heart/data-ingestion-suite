@@ -20,11 +20,11 @@
   "context" : {
     "emarStatusConceptMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/hosp/emar-status.csv"
+      "url" : "$CONTEXT_REPO/mimic/emar-status.csv"
     },
     "routeConceptMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/hosp/med-routes-to-snomed.csv"
+      "url" : "$CONTEXT_REPO/mimic/med-routes-to-snomed.csv"
     }
   },
   "variable" : [ {
@@ -75,6 +75,10 @@
             }
           },
           "id" : "{{mpp:getHashedId('MedicationAdministration', emar_id.toString() & '-' & parent_field_ordinal.toString())}}",
+          "meta" : {
+            "source": "{{%sourceSystem.sourceUri}}",
+            "profile": ["https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration"]
+          },
           "resourceType" : "MedicationAdministration"
         }
       }

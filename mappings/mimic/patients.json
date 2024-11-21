@@ -39,7 +39,8 @@
         },
         "id" : "{{mpp:getHashedId('Patient', subject_id.toString())}}",
         "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}"
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
         },
         "resourceType" : "Patient"
       }

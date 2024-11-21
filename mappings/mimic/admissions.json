@@ -28,7 +28,7 @@
   "context" : {
     "admissionTypeConceptMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/hosp/admission-type-concept-map.csv"
+      "url" : "$CONTEXT_REPO/mimic/admission-type-concept-map.csv"
     }
   },
   "variable" : [ ],
@@ -66,6 +66,14 @@
           "end" : "{{dischtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}"
         },
         "length" : "{{utl:getDurationAsQuantityObject(admittime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00'), dischtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00'))}}",
+        "reason" : [ {
+          "value" : {
+            "{{#proc}}" : "{{%procedures}}",
+            "{{*}}" : {
+              "reference" : "{{mpp:createFhirReferenceWithHashedId('Procedure', %proc.hadm_id.toString() & %proc.seq_num.toString())}}"
+            }
+          }
+        } ],
         "diagnosis" : {
           "{{#cond}}" : "{{%diagnoses}}",
           "{{*}}" : {
@@ -81,14 +89,6 @@
             } ]
           }
         },
-        "reason" : [ {
-          "value" : {
-            "{{#proc}}" : "{{%procedures}}",
-            "{{*}}" : {
-              "reference" : "{{mpp:createFhirReferenceWithHashedId('Procedure', %proc.hadm_id.toString() & %proc.seq_num.toString())}}"
-            }
-          }
-        } ],
         "admission" : {
           "admitSource" : {
             "coding" : "{{* trms:translateToCoding(admission_location, 'https://mimic.mit.edu/fhir/CodeSystem/admission-locations','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/admission-location-to-hl7')}}",
@@ -118,7 +118,8 @@
         },
         "id" : "{{mpp:getHashedId('Encounter',hadm_id.toString())}}",
         "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}"
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },
         "extension" : [ {
           "url" : "https://mimic.mit.edu/fhir/StructureDefinition/ext-insurance",

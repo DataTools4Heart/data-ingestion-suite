@@ -34,6 +34,10 @@
         "value": {
           "resourceType": "MedicationRequest",
           "id": "{{mpp:getHashedId('MedicationRequest', pharmacy_id.toString())}}",
+          "meta" : {
+            "source" : "{{%sourceSystem.sourceUri}}",
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+          },
           "status": "completed",
           "intent": "order",
           "medication": {

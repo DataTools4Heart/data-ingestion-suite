@@ -42,6 +42,10 @@
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
         "authoredOn" : "{{ordertime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
         "id" : "{{mpp:getHashedId('ServiceRequest', poe_id)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Referral" ]
+        },
         "resourceType" : "ServiceRequest"
       }
     },

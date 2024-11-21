@@ -12,7 +12,7 @@
   "context" : {
     "ndcToMedDetails" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/hosp/ndcToMedDetails.csv"
+      "url" : "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
     }
   },
   "variable" : [ ],
@@ -91,6 +91,9 @@
           }
         } ],
         "id" : "{{mpp:getHashedId('Medication', drug & gsn.toString() & ndc.toString() & formulary_drug_cd)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}"
+        },
         "resourceType" : "Medication"
       }
     },
