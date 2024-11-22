@@ -1,28 +1,28 @@
 {
-  "id" : "MedicationPrescription",
+  "id" : "MedicationRequest",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationprescription",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationrequest",
   "version" : "latest",
-  "name" : "MedicationPrescription",
+  "name" : "MedicationRequest",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "MedicationPrescription",
+  "type" : "MedicationRequest",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "MedicationPrescription",
-      "path" : "MedicationPrescription",
+      "id" : "MedicationRequest",
+      "path" : "MedicationRequest",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "MedicationPrescription.ZorgverlenerCode_pseudo",
-      "path" : "MedicationPrescription.ZorgverlenerCode_pseudo",
+      "id" : "MedicationRequest.ZorgverlenerCode_pseudo",
+      "path" : "MedicationRequest.ZorgverlenerCode_pseudo",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -31,8 +31,8 @@
       } ],
       "short" : "Caregiver Code Pseudo"
     }, {
-      "id" : "MedicationPrescription.pseudo_id",
-      "path" : "MedicationPrescription.pseudo_id",
+      "id" : "MedicationRequest.pseudo_id",
+      "path" : "MedicationRequest.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -41,8 +41,8 @@
       } ],
       "short" : "Patient pseudo ID"
     }, {
-      "id" : "MedicationPrescription.Ziekenhuislocatie",
-      "path" : "MedicationPrescription.Ziekenhuislocatie",
+      "id" : "MedicationRequest.Ziekenhuislocatie",
+      "path" : "MedicationRequest.Ziekenhuislocatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -51,8 +51,8 @@
       } ],
       "short" : "Hospital Location"
     }, {
-      "id" : "MedicationPrescription.VoorschriftId",
-      "path" : "MedicationPrescription.VoorschriftId",
+      "id" : "MedicationRequest.VoorschriftId",
+      "path" : "MedicationRequest.VoorschriftId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -62,8 +62,8 @@
       "definition" : "Prescription ID linkage different meds prescribed at the same time.",
       "short" : "Related prescription ID"
     }, {
-      "id" : "MedicationPrescription.PatientContactId",
-      "path" : "MedicationPrescription.PatientContactId",
+      "id" : "MedicationRequest.PatientContactId",
+      "path" : "MedicationRequest.PatientContactId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -73,8 +73,8 @@
       "definition" : "Encounter ID linkage to the patient.",
       "short" : "Encounter ID"
     }, {
-      "id" : "MedicationPrescription.SpecialismeCode",
-      "path" : "MedicationPrescription.SpecialismeCode",
+      "id" : "MedicationRequest.SpecialismeCode",
+      "path" : "MedicationRequest.SpecialismeCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -84,8 +84,8 @@
       "definition" : "Specialty code prescribing drugs. Codes are AMC based.",
       "short" : "Specialism Code"
     }, {
-      "id" : "MedicationPrescription.SpecialismeAfkorting",
-      "path" : "MedicationPrescription.SpecialismeAfkorting",
+      "id" : "MedicationRequest.SpecialismeAfkorting",
+      "path" : "MedicationRequest.SpecialismeAfkorting",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -95,8 +95,8 @@
       "definition" : "Specialty abbreviation prescribing drugs. Abbreviations are AMC based.",
       "short" : "Specialism Abbreviation"
     }, {
-      "id" : "MedicationPrescription.SpecialismeOmschrijving",
-      "path" : "MedicationPrescription.SpecialismeOmschrijving",
+      "id" : "MedicationRequest.SpecialismeOmschrijving",
+      "path" : "MedicationRequest.SpecialismeOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -106,8 +106,8 @@
       "definition" : "Specialty description prescribing drugs. Descriptions are Dutch and AMC based. E.g. Cardiologie, Interne geneeskunde...",
       "short" : "Specialism Description"
     }, {
-      "id" : "MedicationPrescription.SubSpecialismeCode",
-      "path" : "MedicationPrescription.SubSpecialismeCode",
+      "id" : "MedicationRequest.SubSpecialismeCode",
+      "path" : "MedicationRequest.SubSpecialismeCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -116,8 +116,8 @@
       } ],
       "short" : "Subspecialty Code"
     }, {
-      "id" : "MedicationPrescription.SubSpecialismeAfkorting",
-      "path" : "MedicationPrescription.SubSpecialismeAfkorting",
+      "id" : "MedicationRequest.SubSpecialismeAfkorting",
+      "path" : "MedicationRequest.SubSpecialismeAfkorting",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -126,8 +126,8 @@
       } ],
       "short" : "Subspecialty Abbreviation"
     }, {
-      "id" : "MedicationPrescription.SubSpecialismeOmschrijving",
-      "path" : "MedicationPrescription.SubSpecialismeOmschrijving",
+      "id" : "MedicationRequest.SubSpecialismeOmschrijving",
+      "path" : "MedicationRequest.SubSpecialismeOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -136,8 +136,8 @@
       } ],
       "short" : "Subspecialty Description"
     }, {
-      "id" : "MedicationPrescription.VoorschrijfDatumTijd",
-      "path" : "MedicationPrescription.VoorschrijfDatumTijd",
+      "id" : "MedicationRequest.VoorschrijfDatumTijd",
+      "path" : "MedicationRequest.VoorschrijfDatumTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -146,8 +146,8 @@
       } ],
       "short" : "Prescription Date Time"
     }, {
-      "id" : "MedicationPrescription.VoorschrijfDatum",
-      "path" : "MedicationPrescription.VoorschrijfDatum",
+      "id" : "MedicationRequest.VoorschrijfDatum",
+      "path" : "MedicationRequest.VoorschrijfDatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -156,8 +156,8 @@
       } ],
       "short" : "Prescription Date"
     }, {
-      "id" : "MedicationPrescription.VoorschrijfTijd",
-      "path" : "MedicationPrescription.VoorschrijfTijd",
+      "id" : "MedicationRequest.VoorschrijfTijd",
+      "path" : "MedicationRequest.VoorschrijfTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -166,8 +166,8 @@
       } ],
       "short" : "Prescription Time"
     }, {
-      "id" : "MedicationPrescription.StartDatumTijd",
-      "path" : "MedicationPrescription.StartDatumTijd",
+      "id" : "MedicationRequest.StartDatumTijd",
+      "path" : "MedicationRequest.StartDatumTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -176,8 +176,8 @@
       } ],
       "short" : "Start Date Time"
     }, {
-      "id" : "MedicationPrescription.StartDatum",
-      "path" : "MedicationPrescription.StartDatum",
+      "id" : "MedicationRequest.StartDatum",
+      "path" : "MedicationRequest.StartDatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -186,8 +186,8 @@
       } ],
       "short" : "Start Date"
     }, {
-      "id" : "MedicationPrescription.StartTijd",
-      "path" : "MedicationPrescription.StartTijd",
+      "id" : "MedicationRequest.StartTijd",
+      "path" : "MedicationRequest.StartTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -196,8 +196,8 @@
       } ],
       "short" : "Start Time"
     }, {
-      "id" : "MedicationPrescription.StopDatumTijd",
-      "path" : "MedicationPrescription.StopDatumTijd",
+      "id" : "MedicationRequest.StopDatumTijd",
+      "path" : "MedicationRequest.StopDatumTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -206,8 +206,8 @@
       } ],
       "short" : "Stop Date Time"
     }, {
-      "id" : "MedicationPrescription.StopDatum",
-      "path" : "MedicationPrescription.StopDatum",
+      "id" : "MedicationRequest.StopDatum",
+      "path" : "MedicationRequest.StopDatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -216,8 +216,8 @@
       } ],
       "short" : "Stop Date"
     }, {
-      "id" : "MedicationPrescription.StopTijd",
-      "path" : "MedicationPrescription.StopTijd",
+      "id" : "MedicationRequest.StopTijd",
+      "path" : "MedicationRequest.StopTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -226,8 +226,8 @@
       } ],
       "short" : "Stop Time"
     }, {
-      "id" : "MedicationPrescription.WerkplekCode",
-      "path" : "MedicationPrescription.WerkplekCode",
+      "id" : "MedicationRequest.WerkplekCode",
+      "path" : "MedicationRequest.WerkplekCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -237,8 +237,8 @@
       "definition" : "Department code making the request. Codes are AMC based.",
       "short" : "Department code"
     }, {
-      "id" : "MedicationPrescription.WerkplekAfkorting",
-      "path" : "MedicationPrescription.WerkplekAfkorting",
+      "id" : "MedicationRequest.WerkplekAfkorting",
+      "path" : "MedicationRequest.WerkplekAfkorting",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -248,8 +248,8 @@
       "definition" : "Department abbreviation making the request. Abbreviations are AMC based.",
       "short" : "Department abbreviation"
     }, {
-      "id" : "MedicationPrescription.WerkplekOmschrijving",
-      "path" : "MedicationPrescription.WerkplekOmschrijving",
+      "id" : "MedicationRequest.WerkplekOmschrijving",
+      "path" : "MedicationRequest.WerkplekOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -259,8 +259,8 @@
       "definition" : "Department name making the request. Names are Dutch and AMC based. E.g. AMC INTENSIVE CARE VOLWASSENEN...",
       "short" : "Department name"
     }, {
-      "id" : "MedicationPrescription.ZorgverlenerSpecialismecode",
-      "path" : "MedicationPrescription.ZorgverlenerSpecialismecode",
+      "id" : "MedicationRequest.ZorgverlenerSpecialismecode",
+      "path" : "MedicationRequest.ZorgverlenerSpecialismecode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -269,8 +269,8 @@
       } ],
       "short" : "Healthcare Provider Specialty Code"
     }, {
-      "id" : "MedicationPrescription.MedicatieArtikelCode",
-      "path" : "MedicationPrescription.MedicatieArtikelCode",
+      "id" : "MedicationRequest.MedicatieArtikelCode",
+      "path" : "MedicationRequest.MedicatieArtikelCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -280,8 +280,8 @@
       "definition" : "This is a unique code assigned to a specific medication. It's like an identifier used in the pharmacy or hospital to precisely specify the medication. E.g '12345' could be the code for a specific brand of paracetamol.",
       "short" : "Medication code with brand"
     }, {
-      "id" : "MedicationPrescription.MedicatieArtikelNaam",
-      "path" : "MedicationPrescription.MedicatieArtikelNaam",
+      "id" : "MedicationRequest.MedicatieArtikelNaam",
+      "path" : "MedicationRequest.MedicatieArtikelNaam",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -291,8 +291,8 @@
       "definition" : "This is the brand name or the commercial name of the medication. e.g. Tylenol, Panadol",
       "short" : "Medication Brand Name"
     }, {
-      "id" : "MedicationPrescription.MedicatieGeneriekeCode",
-      "path" : "MedicationPrescription.MedicatieGeneriekeCode",
+      "id" : "MedicationRequest.MedicatieGeneriekeCode",
+      "path" : "MedicationRequest.MedicatieGeneriekeCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -302,8 +302,8 @@
       "definition" : "This is a unique code for the generic version of a medication, regardless of the brand.",
       "short" : "Medication Generic Code"
     }, {
-      "id" : "MedicationPrescription.MedicatieGeneriekeNaam",
-      "path" : "MedicationPrescription.MedicatieGeneriekeNaam",
+      "id" : "MedicationRequest.MedicatieGeneriekeNaam",
+      "path" : "MedicationRequest.MedicatieGeneriekeNaam",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -313,8 +313,8 @@
       "definition" : "This is the non-branded or generic name of the medication, which is the same regardless of the manufacturer.",
       "short" : "Medication Generic Name"
     }, {
-      "id" : "MedicationPrescription.MedicatieStofnaam",
-      "path" : "MedicationPrescription.MedicatieStofnaam",
+      "id" : "MedicationRequest.MedicatieStofnaam",
+      "path" : "MedicationRequest.MedicatieStofnaam",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -324,8 +324,8 @@
       "definition" : "This is the name of the active ingredient in the medication. E.g. 'Paracetamol' is the active ingredient in the medication sold under the brand name Tylenol and Panadol.",
       "short" : "Medication Ingredient Name"
     }, {
-      "id" : "MedicationPrescription.FarmaceutischeKlasse",
-      "path" : "MedicationPrescription.FarmaceutischeKlasse",
+      "id" : "MedicationRequest.FarmaceutischeKlasse",
+      "path" : "MedicationRequest.FarmaceutischeKlasse",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -335,8 +335,8 @@
       "definition" : "Broad category of the medication based on its primary pharmacological effect or mechanism of action. This is the class of the medication based on its chemical structure and how it works in the body. E.g. 'BETA-BLOKKERS' is a class of medications that are used to treat high blood pressure and heart problems.",
       "short" : "Pharmaceutical Class"
     }, {
-      "id" : "MedicationPrescription.FarmaceutischeSubklasse",
-      "path" : "MedicationPrescription.FarmaceutischeSubklasse",
+      "id" : "MedicationRequest.FarmaceutischeSubklasse",
+      "path" : "MedicationRequest.FarmaceutischeSubklasse",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -346,8 +346,8 @@
       "definition" : "More specific categorization within the pharmaceutical class. It further narrows down the type of medication based on specific characteristics or more detailed mechanisms of action. E.g VITAMINE K-ANTAGONISTEN is commonly used to prevent blood clots.",
       "short" : "Pharmaceutical Subclass"
     }, {
-      "id" : "MedicationPrescription.TherapeutischeKlasse",
-      "path" : "MedicationPrescription.TherapeutischeKlasse",
+      "id" : "MedicationRequest.TherapeutischeKlasse",
+      "path" : "MedicationRequest.TherapeutischeKlasse",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -357,8 +357,8 @@
       "definition" : "The category of the medication based on its therapeutic use or the medical condition it treats. Examples include diuretics, anesthetics, and diabetes medications.",
       "short" : "Therapeutic Class"
     }, {
-      "id" : "MedicationPrescription.OrderKlasseId",
-      "path" : "MedicationPrescription.OrderKlasseId",
+      "id" : "MedicationRequest.OrderKlasseId",
+      "path" : "MedicationRequest.OrderKlasseId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -367,8 +367,8 @@
       } ],
       "short" : "Order Class ID"
     }, {
-      "id" : "MedicationPrescription.OrderKlasseOmschrijving",
-      "path" : "MedicationPrescription.OrderKlasseOmschrijving",
+      "id" : "MedicationRequest.OrderKlasseOmschrijving",
+      "path" : "MedicationRequest.OrderKlasseOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -377,8 +377,8 @@
       } ],
       "short" : "Order Class Description"
     }, {
-      "id" : "MedicationPrescription.OrderStatus",
-      "path" : "MedicationPrescription.OrderStatus",
+      "id" : "MedicationRequest.OrderStatus",
+      "path" : "MedicationRequest.OrderStatus",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -388,8 +388,8 @@
       "definition" : "Information about the administration. The status of the medication order. E.g. Geannuleerd ('cancelled'), Afgerond ('completed')",
       "short" : "Order Status"
     }, {
-      "id" : "MedicationPrescription.OrderStatusCode",
-      "path" : "MedicationPrescription.OrderStatusCode",
+      "id" : "MedicationRequest.OrderStatusCode",
+      "path" : "MedicationRequest.OrderStatusCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -399,8 +399,8 @@
       "definition" : "The code for the status of the medication order. Codes are AMC based.",
       "short" : "Order Status Code"
     }, {
-      "id" : "MedicationPrescription.OrderOmschrijving",
-      "path" : "MedicationPrescription.OrderOmschrijving",
+      "id" : "MedicationRequest.OrderOmschrijving",
+      "path" : "MedicationRequest.OrderOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -410,8 +410,8 @@
       "definition" : "Explanation of how to take the medicine. E.g. 'kaliumchloride 75 mg/ml (1 mmol/ml) drank 30 mmol'",
       "short" : "Order Description"
     }, {
-      "id" : "MedicationPrescription.VorigeVoorschriftId",
-      "path" : "MedicationPrescription.VorigeVoorschriftId",
+      "id" : "MedicationRequest.VorigeVoorschriftId",
+      "path" : "MedicationRequest.VorigeVoorschriftId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -420,8 +420,8 @@
       } ],
       "short" : "Previous Prescription ID"
     }, {
-      "id" : "MedicationPrescription.KlinischPoliklinische",
-      "path" : "MedicationPrescription.KlinischPoliklinische",
+      "id" : "MedicationRequest.KlinischPoliklinische",
+      "path" : "MedicationRequest.KlinischPoliklinische",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -429,10 +429,10 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "definition" : "Indicates whether the medication is prescribed for inpatient or outpatient care. Values: 'klinisch' ('clinical') or 'poliklinisch' ('outpatient')",
-      "short" : "Clinical Outpatient"
+      "short" : "In-patient or out-patient prescription"
     }, {
-      "id" : "MedicationPrescription.IsThuisMedicatie",
-      "path" : "MedicationPrescription.IsThuisMedicatie",
+      "id" : "MedicationRequest.IsThuisMedicatie",
+      "path" : "MedicationRequest.IsThuisMedicatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -442,8 +442,8 @@
       "definition" : "Indicates whether the medication is prescribed for home use. Values: 'Ja' ('yes') or 'Nee' ('no')",
       "short" : "Is Home Medication?"
     }, {
-      "id" : "MedicationPrescription.ATCCode",
-      "path" : "MedicationPrescription.ATCCode",
+      "id" : "MedicationRequest.ATCCode",
+      "path" : "MedicationRequest.ATCCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -453,8 +453,8 @@
       "definition" : "The Anatomical Therapeutic Chemical (ATC) system code for the medication.",
       "short" : "ATC Code"
     }, {
-      "id" : "MedicationPrescription.ATCKlasse",
-      "path" : "MedicationPrescription.ATCKlasse",
+      "id" : "MedicationRequest.ATCKlasse",
+      "path" : "MedicationRequest.ATCKlasse",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -464,8 +464,8 @@
       "definition" : "ATC class name for the medication.",
       "short" : "ATC Class Name"
     }, {
-      "id" : "MedicationPrescription.ATCKlasseCode",
-      "path" : "MedicationPrescription.ATCKlasseCode",
+      "id" : "MedicationRequest.ATCKlasseCode",
+      "path" : "MedicationRequest.ATCKlasseCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -475,8 +475,8 @@
       "definition" : "ATC class code for the medication. Not Used.",
       "short" : "ATC Class Code"
     }, {
-      "id" : "MedicationPrescription.MedicatieFrequentieCode",
-      "path" : "MedicationPrescription.MedicatieFrequentieCode",
+      "id" : "MedicationRequest.MedicatieFrequentieCode",
+      "path" : "MedicationRequest.MedicatieFrequentieCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -486,8 +486,8 @@
       "definition" : "The code for the intake frequency of the medication. Codes are AMC based.",
       "short" : "Medication Frequency Code"
     }, {
-      "id" : "MedicationPrescription.MedicatieFrequentieOmschrijving",
-      "path" : "MedicationPrescription.MedicatieFrequentieOmschrijving",
+      "id" : "MedicationRequest.MedicatieFrequentieOmschrijving",
+      "path" : "MedicationRequest.MedicatieFrequentieOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -497,8 +497,8 @@
       "definition" : "The description of the intake frequency of the medication. E.g. '1x per dag' ('1x per day')",
       "short" : "Medication Frequency Description"
     }, {
-      "id" : "MedicationPrescription.ToedieningsRoute",
-      "path" : "MedicationPrescription.ToedieningsRoute",
+      "id" : "MedicationRequest.ToedieningsRoute",
+      "path" : "MedicationRequest.ToedieningsRoute",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -508,8 +508,8 @@
       "definition" : "The route of administration of the medication. E.g. 'oraal' ('oral'), 'intraveneus' ('intravenous')",
       "short" : "Administration Route"
     }, {
-      "id" : "MedicationPrescription.ToedieningsRouteCode",
-      "path" : "MedicationPrescription.ToedieningsRouteCode",
+      "id" : "MedicationRequest.ToedieningsRouteCode",
+      "path" : "MedicationRequest.ToedieningsRouteCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -519,8 +519,8 @@
       "definition" : "The code for the route of administration of the medication. Codes are AMC based.",
       "short" : "Administration Route Code"
     }, {
-      "id" : "MedicationPrescription.DoseringVoorgeschrevenEenheidOmschrijving",
-      "path" : "MedicationPrescription.DoseringVoorgeschrevenEenheidOmschrijving",
+      "id" : "MedicationRequest.DoseringVoorgeschrevenEenheidOmschrijving",
+      "path" : "MedicationRequest.DoseringVoorgeschrevenEenheidOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -530,8 +530,8 @@
       "definition" : "The description of the unit of the prescribed dosage. E.g. 'mg', 'tablet'",
       "short" : "Dosage Prescribed Unit Description"
     }, {
-      "id" : "MedicationPrescription.DoseringVoorgeschrevenEenheidCode",
-      "path" : "MedicationPrescription.DoseringVoorgeschrevenEenheidCode",
+      "id" : "MedicationRequest.DoseringVoorgeschrevenEenheidCode",
+      "path" : "MedicationRequest.DoseringVoorgeschrevenEenheidCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -541,8 +541,8 @@
       "definition" : "The code for the unit of the prescribed dosage. Codes are AMC based.",
       "short" : "Dosage Prescribed Unit Code"
     }, {
-      "id" : "MedicationPrescription.DoseringVoorgeschrevenMin",
-      "path" : "MedicationPrescription.DoseringVoorgeschrevenMin",
+      "id" : "MedicationRequest.DoseringVoorgeschrevenMin",
+      "path" : "MedicationRequest.DoseringVoorgeschrevenMin",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -551,8 +551,8 @@
       } ],
       "short" : "Minimum Dosage Prescribed"
     }, {
-      "id" : "MedicationPrescription.DoseringVoorgeschrevenMax",
-      "path" : "MedicationPrescription.DoseringVoorgeschrevenMax",
+      "id" : "MedicationRequest.DoseringVoorgeschrevenMax",
+      "path" : "MedicationRequest.DoseringVoorgeschrevenMax",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -561,8 +561,8 @@
       } ],
       "short" : "Maximum Dosage Prescribed"
     }, {
-      "id" : "MedicationPrescription.DoseringBerekendEenheidOmschrijving",
-      "path" : "MedicationPrescription.DoseringBerekendEenheidOmschrijving",
+      "id" : "MedicationRequest.DoseringBerekendEenheidOmschrijving",
+      "path" : "MedicationRequest.DoseringBerekendEenheidOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -571,8 +571,8 @@
       } ],
       "short" : "Calculated Dosage Unit Description"
     }, {
-      "id" : "MedicationPrescription.DoseringBerekendEenheidCode",
-      "path" : "MedicationPrescription.DoseringBerekendEenheidCode",
+      "id" : "MedicationRequest.DoseringBerekendEenheidCode",
+      "path" : "MedicationRequest.DoseringBerekendEenheidCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -581,8 +581,8 @@
       } ],
       "short" : "Calculated Dosage Unit Code"
     }, {
-      "id" : "MedicationPrescription.DoseringBerekendMin",
-      "path" : "MedicationPrescription.DoseringBerekendMin",
+      "id" : "MedicationRequest.DoseringBerekendMin",
+      "path" : "MedicationRequest.DoseringBerekendMin",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -591,8 +591,8 @@
       } ],
       "short" : "Calculated Dosage Minimum"
     }, {
-      "id" : "MedicationPrescription.DoseringBerekendMax",
-      "path" : "MedicationPrescription.DoseringBerekendMax",
+      "id" : "MedicationRequest.DoseringBerekendMax",
+      "path" : "MedicationRequest.DoseringBerekendMax",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -601,8 +601,8 @@
       } ],
       "short" : "Calculated Dosage Maximum"
     }, {
-      "id" : "MedicationPrescription.DoseringBerekeningsinformatie",
-      "path" : "MedicationPrescription.DoseringBerekeningsinformatie",
+      "id" : "MedicationRequest.DoseringBerekeningsinformatie",
+      "path" : "MedicationRequest.DoseringBerekeningsinformatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -611,8 +611,8 @@
       } ],
       "short" : "Calculated Dosage Information"
     }, {
-      "id" : "MedicationPrescription.VolumeEenheidOmschrijving",
-      "path" : "MedicationPrescription.VolumeEenheidOmschrijving",
+      "id" : "MedicationRequest.VolumeEenheidOmschrijving",
+      "path" : "MedicationRequest.VolumeEenheidOmschrijving",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -621,8 +621,8 @@
       } ],
       "short" : "Volume Unit Description"
     }, {
-      "id" : "MedicationPrescription.VolumeEenheidCode",
-      "path" : "MedicationPrescription.VolumeEenheidCode",
+      "id" : "MedicationRequest.VolumeEenheidCode",
+      "path" : "MedicationRequest.VolumeEenheidCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -631,8 +631,8 @@
       } ],
       "short" : "Volume Unit Code"
     }, {
-      "id" : "MedicationPrescription.Volume",
-      "path" : "MedicationPrescription.Volume",
+      "id" : "MedicationRequest.Volume",
+      "path" : "MedicationRequest.Volume",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -641,8 +641,8 @@
       } ],
       "short" : "Total volume of the medication prescribed."
     }, {
-      "id" : "MedicationPrescription.GewichtPatientKg",
-      "path" : "MedicationPrescription.GewichtPatientKg",
+      "id" : "MedicationRequest.GewichtPatientKg",
+      "path" : "MedicationRequest.GewichtPatientKg",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -651,8 +651,8 @@
       } ],
       "short" : "Patient Weight in Kg"
     }, {
-      "id" : "MedicationPrescription.Bron",
-      "path" : "MedicationPrescription.Bron",
+      "id" : "MedicationRequest.Bron",
+      "path" : "MedicationRequest.Bron",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -661,8 +661,8 @@
       } ],
       "short" : "Source"
     }, {
-      "id" : "MedicationPrescription.DCMVerverstDatumTijd",
-      "path" : "MedicationPrescription.DCMVerverstDatumTijd",
+      "id" : "MedicationRequest.DCMVerverstDatumTijd",
+      "path" : "MedicationRequest.DCMVerverstDatumTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -671,8 +671,8 @@
       } ],
       "short" : "DCMV Refreshed Date Time"
     }, {
-      "id" : "MedicationPrescription.uitgifteDT",
-      "path" : "MedicationPrescription.uitgifteDT",
+      "id" : "MedicationRequest.uitgifteDT",
+      "path" : "MedicationRequest.uitgifteDT",
       "min" : 0,
       "max" : "1",
       "type" : [ {

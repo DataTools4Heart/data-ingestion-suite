@@ -1,0 +1,73 @@
+{
+  "id" : "medication-request",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-request-mapping",
+  "name" : "medication-request",
+  "title" : "Mapping of AMC's MedicatieVoorschrift table to HFR-MedicationRequest FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "MedicationRequest",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationrequest",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "atcCodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "ATCCode.exists() and (ATCCode in ('NA'| '' | 'null')).not()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ATCCode}}",
+              "display" : "{{? ATCKlasse}}",
+              "@sliceName" : "atcCode"
+            }, {
+              "{{#aumcMedCode}}" : "{{MedicatieArtikelCode}}",
+              "{{?}}" : {
+                "system" : "https://www.amsterdamumc.nl",
+                "code" : "{{MedicatieArtikelCode}}",
+                "display" : "{{? MedicatieArtikelNaam}}"
+              }
+            }, {
+              "{{#aumcMedGenericCode}}" : "{{MedicatieGeneriekeCode}}",
+              "{{?}}" : {
+                "system" : "https://www.amsterdamumc.nl",
+                "code" : "{{MedicatieGeneriekeCode}}",
+                "display" : "{{? MedicatieGeneriekeNaam}}"
+              }
+            } ]
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "priorPrescription" : "{{? mpp:createFhirReferenceWithHashedId('MedicationRequest', VoorschriftId) }}",
+        "status" : "unknown",
+        "intent" : "order",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/medicationrequest-admin-location",
+            "code" : "{{ iif(IsThuisMedicatie = 'Ja', 'community').nav:orElse(iif(KlinischPoliklinische = 'klinisch', 'inpatient', 'outpatient') }}",
+            "display" : "{{ iif(IsThuisMedicatie = 'Ja', 'Community').nav:orElse(iif(KlinischPoliklinische = 'klinisch', 'Inpatient', 'Outpatient') }}"
+          } ]
+        } ],
+        "authoredOn" : "{{ VoorschrijfDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') }}",
+        "effectiveDosePeriod" : {
+          "start" : "{{? StartDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{? StopDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+        },
+        "id" : "{{mpp:getHashedId('MedicationRequest', pseudo_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest"
+      }
+    }
+  } ]
+}

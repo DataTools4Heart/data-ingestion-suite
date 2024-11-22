@@ -154,10 +154,10 @@
       }
     }
   }, {
-    "name" : "medication-prescription-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-prescription-mapping",
+    "name" : "medication-request-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-request-mapping",
     "sourceBinding" : {
-      "MedicationPrescription" : {
+      "MedicationRequest" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MedicatieVoorschrift.csv",
         "contentType" : "csv",
