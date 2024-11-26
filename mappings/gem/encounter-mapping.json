@@ -5,11 +5,11 @@
   "title" : "Mapping of GEM's elenco_contatti table to DT4H Encounter FHIR profile",
   "source" : [ {
     "alias" : "encounterMain",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
     "joinOn" : [ "CODICE_SANITARIO" ]
   }, {
     "alias" : "encounterDetails",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter-details",
     "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {
@@ -56,7 +56,7 @@
               {
                 "concept": {
                   "coding": {
-                    "{{#icd10Object}}": "{{ mpp:getConcept(%icd9toIcd10CM, %diagCodeIcd9.replace('.', '')) }}",
+                    "{{#icd10Object}}": "{{ mpp:getConcept(%icd9toIcd10CM, %diagCodeIcd9.toString().replace('.', '')) }}",
                     "{{*}}": {
                       "system": "{{%icd10Object.target_system}}",
                       "code": "{{%icd10Object.target_code}}"

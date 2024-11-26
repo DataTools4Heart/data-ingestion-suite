@@ -1,8 +1,9 @@
 {
-  "id" : "Condition",
+  "id" : "condition",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/condition",
   "name" : "Condition",
+  "description" : "Represents patologie table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

@@ -5,11 +5,11 @@
   "title" : "Mapping of GEM's ecocardio table to the DT4H's Echocardiograph profile",
   "source" : [ {
     "alias" : "echo",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/Ecocardio",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/echo",
     "joinOn" : [ "codice_sanitario" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
     "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {

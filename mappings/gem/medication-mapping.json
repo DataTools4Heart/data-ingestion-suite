@@ -5,11 +5,11 @@
   "title" : "Mapping of GEM's farmaci table to DT4H Medication Administered FHIR profile",
   "source" : [ {
     "alias" : "medications",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/Farmaci",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/medication",
     "joinOn" : [ "codice_sanitario" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
     "joinOn" : [ "codice_sanitario" ]
   } ],
   "context" : { },

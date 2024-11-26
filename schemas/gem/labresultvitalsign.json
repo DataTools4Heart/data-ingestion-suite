@@ -1,8 +1,9 @@
 {
-  "id" : "LabResultVitalSign",
+  "id" : "labresultvitalsign",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/gem/DiarioMisure",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/labresultvitalsign",
   "name" : "LabResultVitalSign",
+  "description" : "Represents diario_misure table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

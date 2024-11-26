@@ -1,9 +1,10 @@
 {
-  "id" : "Encounter",
+  "id" : "encounter",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
   "version" : "latest",
   "name" : "Encounter",
+  "description" : "Represents elenco_contatti table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

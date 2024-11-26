@@ -4,6 +4,7 @@
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/ecg",
   "version" : "latest",
   "name" : "ECG",
+  "description" : "Represents ecg table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

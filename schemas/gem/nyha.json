@@ -1,8 +1,9 @@
 {
-  "id" : "NYHA",
+  "id" : "nyha",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/gem/NYHA",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/nyha",
   "name" : "NYHA",
+  "description" : "Represents nyha table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

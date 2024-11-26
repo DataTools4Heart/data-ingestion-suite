@@ -5,7 +5,7 @@
   "title" : "Mapping of GEM's angrafica table to DT4H Patient FHIR profile",
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/Anagrafica",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/patient",
     "joinOn" : [ ]
   } ],
   "context" : { },

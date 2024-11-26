@@ -5,11 +5,11 @@
   "title" : "Mapping of GEM's dettaglio_contatti table to DT4H Encounter FHIR profile",
   "source" : [ {
     "alias" : "encounterDetails",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter-details",
     "joinOn" : [ "CODICE_SANITARIO" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
     "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {

@@ -1,9 +1,10 @@
 {
-  "id" : "EncounterDetails",
+  "id" : "encounterdetails",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/gem/DettaglioContatti",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounterdetails",
   "version" : "latest",
   "name" : "EncounterDetails",
+  "description" : "Represents dettagliocontatti table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

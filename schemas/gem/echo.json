@@ -1,8 +1,9 @@
 {
-  "id" : "Echocardiograph",
+  "id" : "echo",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/gem/Ecocardio",
-  "name" : "Echocardiograph",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/echo",
+  "name" : "Echo",
+  "description" : "Represents ecocardio table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

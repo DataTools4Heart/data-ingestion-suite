@@ -5,11 +5,11 @@
   "title" : "Mapping of Gemelli lab results to DT4H Lab Result FHIR profile",
   "source" : [ {
     "alias" : "labResults",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/DiarioMisure",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/labresultvitalsign",
     "joinOn" : [ "codice_sanitario" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
     "joinOn" : [ "codice_sanitario" ]
   } ],
   "context" : {
