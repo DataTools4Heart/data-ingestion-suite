@@ -180,6 +180,18 @@
         "sourceRef" : "gem-source"
       }
     }
+  }, {
+    "name" : "ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/ecg-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ecg.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,

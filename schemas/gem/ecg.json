@@ -1,0 +1,248 @@
+{
+  "id" : "ecg",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/ecg",
+  "version" : "latest",
+  "name" : "ECG",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "ECG",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "ECG",
+      "path" : "ECG",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "ECG.DATA_ESECUZIONE",
+      "path" : "ECG.DATA_ESECUZIONE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Execution date"
+    }, {
+      "id" : "ECG.ORA_ESECUZIONE",
+      "path" : "ECG.ORA_ESECUZIONE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "time",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/time" ]
+      } ],
+      "short" : "Execution time"
+    }, {
+      "id" : "ECG.CODICE_SANITARIO",
+      "path" : "ECG.CODICE_SANITARIO",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Patient id"
+    }, {
+      "id" : "ECG.R_PEAK",
+      "path" : "ECG.R_PEAK",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "R-wave peak amplitude"
+    }, {
+      "id" : "ECG.P_ONSET",
+      "path" : "ECG.P_ONSET",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "P-wave onset time"
+    }, {
+      "id" : "ECG.P_OFFSET",
+      "path" : "ECG.P_OFFSET",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "P-wave offset time"
+    }, {
+      "id" : "ECG.Q_ONSET",
+      "path" : "ECG.Q_ONSET",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Q-wave onset time"
+    }, {
+      "id" : "ECG.Q_OFFSET",
+      "path" : "ECG.Q_OFFSET",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Q-wave offset time"
+    }, {
+      "id" : "ECG.T_OFFSET",
+      "path" : "ECG.T_OFFSET",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "T-wave offset time"
+    }, {
+      "id" : "ECG.P_DURATION",
+      "path" : "ECG.P_DURATION",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "P-wave duration"
+    }, {
+      "id" : "ECG.PR_DURATION",
+      "path" : "ECG.PR_DURATION",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "PR interval duration"
+    }, {
+      "id" : "ECG.QRS_DURATION",
+      "path" : "ECG.QRS_DURATION",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "QRS complex duration"
+    }, {
+      "id" : "ECG.QT",
+      "path" : "ECG.QT",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "QT interval duration"
+    }, {
+      "id" : "ECG.QTC",
+      "path" : "ECG.QTC",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "Corrected QT interval (bazett formula)",
+      "short" : "Corrected QT interval"
+    }, {
+      "id" : "ECG.QTB",
+      "path" : "ECG.QTB",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "Corrected QT interval (linear regression or framingham formula)",
+      "short" : "Corrected QT interval"
+    }, {
+      "id" : "ECG.QTF",
+      "path" : "ECG.QTF",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "Corrected QT interval (Fridericia formula)",
+      "short" : "Corrected QT interval"
+    }, {
+      "id" : "ECG.P_AXIS",
+      "path" : "ECG.P_AXIS",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "P-wave axis"
+    }, {
+      "id" : "ECG.QRS_AXIS",
+      "path" : "ECG.QRS_AXIS",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "QRS axis"
+    }, {
+      "id" : "ECG.T_AXIS",
+      "path" : "ECG.T_AXIS",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "T-wave axis"
+    }, {
+      "id" : "ECG.UNITS_PER_MV",
+      "path" : "ECG.UNITS_PER_MV",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Units per millivolt in ECG"
+    }, {
+      "id" : "ECG.DURATION",
+      "path" : "ECG.DURATION",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Duration of the ECG recording"
+    }, {
+      "id" : "ECG.SAMPLE_FREQ",
+      "path" : "ECG.SAMPLE_FREQ",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Sampling frequency of ECG recording"
+    } ]
+  }
+}
