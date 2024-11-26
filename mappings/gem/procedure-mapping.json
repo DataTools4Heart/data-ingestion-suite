@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/procedure-mapping",
   "name" : "procedure-mapping",
   "title" : "Mapping of GEM's dettaglio_contatti table to DT4H Encounter FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "encounterDetails",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter-details",
@@ -36,6 +37,11 @@
         "{{*}}" : {
           "{{#translatedCode}}" : "{{ mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString()) }}",
           "{{?}}" : {
+            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & DATAPROC[%ind]) }}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+            },
+            "resourceType" : "Procedure",
             "category" : [ {
               "coding" : [ {
                 "system" : "http://snomed.info/sct",
@@ -53,12 +59,7 @@
             "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
             "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter',  %relatedEncounter.NOSOGRAFICO)}}",
             "occurrenceDateTime" : "{{DATAPROC[%ind]}}",
-            "status" : "completed",
-            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & DATAPROC[%ind]) }}",
-            "meta" : {
-              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
-            },
-            "resourceType" : "Procedure"
+            "status" : "completed"
           }
         }
       }

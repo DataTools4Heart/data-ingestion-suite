@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
   "name" : "lab-result-vital-sign-mapping",
   "title" : "Mapping of Gemelli lab results to DT4H Lab Result FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "labResults",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/labresultvitalsign",
@@ -40,10 +41,21 @@
     "expression" : " iif(category = 'VITAL_SIGNS', mpp:getConcept(%vitalSignsConceptMap, CODICE_ESAME)) "
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "loincCodeAndRelatedEncounterExist",
+      "language" : "text/fhirpath",
+      "expression" : "%labLoincCode.exists() or %vitalSign.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATA_ORA_ESAME & CODICE_ESAME & VALUE.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign')}}" ]
+        },
+        "resourceType" : "Observation",
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -72,19 +84,8 @@
             "{{#highVar}}" : "{{iif(VALORE_MASSIMO.exists(), mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALORE_MASSIMO, UNITA_MISURA)}}",
             "{{?}}" : "{{%highVar}}"
           }
-        } ],
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATA_ORA_ESAME & CODICE_ESAME & VALUE.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign')}}" ]
-        },
-        "resourceType" : "Observation"
+        } ]
       }
-    },
-    "precondition" : {
-      "name" : "loincCodeAndRelatedEncounterExist",
-      "language" : "text/fhirpath",
-      "expression" : "%labLoincCode.exists() or %vitalSign.exists()"
     }
   } ]
 }

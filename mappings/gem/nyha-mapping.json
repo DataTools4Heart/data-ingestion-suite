@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/nyha-mapping",
   "name" : "nyha-mapping",
   "title" : "Mapping of GEM's NYHA table to the DT4H NYHA FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "nyha",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/nyha",
@@ -24,10 +25,21 @@
     "expression" : "%encounters.where(DATA_IN <= %context.DATE and DATA_OUT >= %context.DATE).first()"
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "relatedEncounterExists",
+      "language" : "text/fhirpath",
+      "expression" : "%relatedEncounter.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO & DATE.toString() & NYHA_MAX )}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
+        },
+        "resourceType" : "Observation",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -52,19 +64,8 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', iif(%relatedEncounter.NOSOGRAFICO.exists(), %relatedEncounter.NOSOGRAFICO, %relatedEncounter.NUM_PS) )}}",
-        "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO & DATE.toString() & NYHA_MAX )}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
-        },
-        "resourceType" : "Observation"
+        "status" : "final"
       }
-    },
-    "precondition" : {
-      "name" : "relatedEncounterExists",
-      "language" : "text/fhirpath",
-      "expression" : "%relatedEncounter.exists()"
     }
   } ]
 }

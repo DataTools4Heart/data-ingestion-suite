@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/patient-mapping",
   "name" : "patient-mapping",
   "title" : "Mapping of GEM's angrafica table to DT4H Patient FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/patient",
@@ -15,15 +16,15 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "gender" : "{{ iif(SESSO='M', 'male', 'female') }}",
-        "birthDate" : "{{DATA_NASCITA}}",
-        "active" : true,
         "id" : "{{mpp:getHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
         },
-        "resourceType" : "Patient"
+        "resourceType" : "Patient",
+        "gender" : "{{ iif(SESSO='M', 'male', 'female') }}",
+        "birthDate" : "{{DATA_NASCITA}}",
+        "active" : true
       }
     }
   } ]

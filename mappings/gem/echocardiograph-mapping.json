@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
   "name" : "echocardiograph-mapping",
   "title" : "Mapping of GEM's ecocardio table to the DT4H's Echocardiograph profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "echo",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/echo",
@@ -24,10 +25,20 @@
     "expression" : "%encounters.where(DATA_IN <= %context.DATAREFERTO and DATA_OUT >= %context.DATAREFERTO).first()"
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "relatedEncounterExists",
+      "language" : "text/fhirpath",
+      "expression" : "%relatedEncounter.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & %relatedEncounter.NOSOGRAFICO & DATAREFERTO)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
+        },
+        "resourceType" : "Observation",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -54,28 +65,18 @@
                 "@sliceName" : "echoParameter"
               },
               "valueQuantity" : {
-                "value" : "{{%measurement.utl:split('|')[1].toDecimal()}}",
-                "unit" : "{{%echoCode.unit}}",
                 "system" : "http://unitsofmeasure.org",
-                "code" : "{{%echoCode.unit}}"
+                "code" : "{{%echoCode.unit}}",
+                "value" : "{{%measurement.utl:split('|')[1].toDecimal()}}",
+                "unit" : "{{%echoCode.unit}}"
               }
             }
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO)}}",
-        "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & %relatedEncounter.NOSOGRAFICO & DATAREFERTO)}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
-        },
-        "resourceType" : "Observation"
+        "status" : "final"
       }
-    },
-    "precondition" : {
-      "name" : "relatedEncounterExists",
-      "language" : "text/fhirpath",
-      "expression" : "%relatedEncounter.exists()"
     }
   } ]
 }

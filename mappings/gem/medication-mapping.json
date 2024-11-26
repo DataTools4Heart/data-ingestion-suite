@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/medication-mapping",
   "name" : "medication-mapping",
   "title" : "Mapping of GEM's farmaci table to DT4H Medication Administered FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "medications",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/medication",
@@ -19,10 +20,21 @@
     "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA.toDate() and DATA_OUT.toDate() >= %context.DATA.toDate()).first()"
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "relatedEncounterExists",
+      "language" : "text/fhirpath",
+      "expression" : "%relatedEncounter.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & ATC }}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration",
         "medication" : {
           "concept" : {
             "coding" : [ {
@@ -40,19 +52,8 @@
         "dosage" : {
           "text" : "No data"
         },
-        "status" : "completed",
-        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & ATC }}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
-        },
-        "resourceType" : "MedicationAdministration"
+        "status" : "completed"
       }
-    },
-    "precondition" : {
-      "name" : "relatedEncounterExists",
-      "language" : "text/fhirpath",
-      "expression" : "%relatedEncounter.exists()"
     }
   } ]
 }

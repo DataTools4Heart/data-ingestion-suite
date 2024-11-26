@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/encounter-mapping",
   "name" : "encounter-mapping",
   "title" : "Mapping of GEM's elenco_contatti table to DT4H Encounter FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "encounterMain",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
@@ -30,12 +31,23 @@
     "name" : "dischargeDate",
     "language" : "text/fhirpath",
     "expression" : "(DATA_OUT & iif(ORA_OUT.exists(), ORA_OUT) )"
-  }],
+  } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "encounterIdExists",
+      "language" : "text/fhirpath",
+      "expression" : " NOSOGRAFICO.exists() "
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Encounter', NOSOGRAFICO)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter",
         "class" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
@@ -48,37 +60,24 @@
           "start" : "{{(DATA_IN & iif(ORA_IN.exists(), ORA_IN) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}",
           "end" : "{{? iif(%dischargeDate = '', {}, %dischargeDate.utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')) }}"
         },
-        "status": "completed",
-        "reason": {
-          "{{#diagCodeIcd9}}": "{{ %relatedEncounter.DIAG1_ICD9CM | %relatedEncounter.DIAG2_ICD9CM | %relatedEncounter.DIAG3_ICD9CM | %relatedEncounter.DIAG4_ICD9CM | %relatedEncounter.DIAG5_ICD9CM | %relatedEncounter.DIAG6_ICD9CM | %relatedEncounter.DIAG7_ICD9CM }}",
-          "{{*}}": {
-            "value": [
-              {
-                "concept": {
-                  "coding": {
-                    "{{#icd10Object}}": "{{ mpp:getConcept(%icd9toIcd10CM, %diagCodeIcd9.toString().replace('.', '')) }}",
-                    "{{*}}": {
-                      "system": "{{%icd10Object.target_system}}",
-                      "code": "{{%icd10Object.target_code}}"
-                    }
+        "status" : "completed",
+        "reason" : {
+          "{{#diagCodeIcd9}}" : "{{ %relatedEncounter.DIAG1_ICD9CM | %relatedEncounter.DIAG2_ICD9CM | %relatedEncounter.DIAG3_ICD9CM | %relatedEncounter.DIAG4_ICD9CM | %relatedEncounter.DIAG5_ICD9CM | %relatedEncounter.DIAG6_ICD9CM | %relatedEncounter.DIAG7_ICD9CM }}",
+          "{{*}}" : {
+            "value" : [ {
+              "concept" : {
+                "coding" : {
+                  "{{#icd10Object}}" : "{{ mpp:getConcept(%icd9toIcd10CM, %diagCodeIcd9.toString().replace('.', '')) }}",
+                  "{{*}}" : {
+                    "system" : "{{%icd10Object.target_system}}",
+                    "code" : "{{%icd10Object.target_code}}"
                   }
                 }
               }
-            ]
+            } ]
           }
-        },
-        "id" : "{{mpp:getHashedId('Encounter', NOSOGRAFICO)}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
-        },
-        "resourceType" : "Encounter"
+        }
       }
-    },
-    "precondition" : {
-      "name" : "encounterIdExists",
-      "language" : "text/fhirpath",
-      "expression" : " NOSOGRAFICO.exists() "
     }
   } ]
 }

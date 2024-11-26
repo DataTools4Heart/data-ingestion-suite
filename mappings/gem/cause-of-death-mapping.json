@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
   "name" : "cause-of-death-mapping",
   "title" : "Mapping of GEM's angrafica to the DT4H-CauseOfDeath profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "anagrafica",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/patient",
@@ -11,10 +12,20 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "isDeath",
+      "language" : "text/fhirpath",
+      "expression" : "Deceduto = 1"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & 'causeofdeath')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation",
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -40,21 +51,11 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "identifier" : [ {
-          "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}",
+          "use" : "official",
           "value" : "{{CODICE_SANITARIO.toString()}}"
-        } ],
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & 'causeofdeath')}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
-        },
-        "resourceType" : "Observation"
+        } ]
       }
-    },
-    "precondition" : {
-      "name" : "isDeath",
-      "language" : "text/fhirpath",
-      "expression" : "Deceduto = 1"
     }
   } ]
 }
