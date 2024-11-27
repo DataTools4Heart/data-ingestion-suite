@@ -47,7 +47,7 @@
   }, {
     "id" : "labResults-Ib2bToSnomed.csv",
     "name" : "labResults-Ib2bToSnomed.csv",
-    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed",
+    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/labResults-Ib2bToSnomed",
     "sourceValueSetUrl" : "https://www.i2b2.org",
     "targetValueSetUrl" : "http://snomed.info/sct"
   }, {
