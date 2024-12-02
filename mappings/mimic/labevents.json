@@ -25,6 +25,12 @@
       "name" : "labevents-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', labevent_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation",
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -46,12 +52,13 @@
           "{{?}}" : "{{%strValue}}"
         },
         "valueQuantity" : {
-          "{{#ifQuantity}}" : "{{iif(valuenum.exists() or (value.exists() and value.utl:isFhirQuantityExpression()), true)}}",
+          "{{#ifQuantity}}" : "{{ iif(valuenum.exists() or (value.exists() and value.utl:isFhirQuantityExpression()), utl:parseFhirQuantityExpression(valuenum.orElse(value)))}}",
           "{{?}}" : {
-            "value" : "{{valuenum.orElse(value)}}",
-            "unit" : "{{valueuom.trim()}}",
             "system" : "http://unitsofmeasure.org",
-            "code" : "{{valueuom.trim()}}"
+            "code" : "{{valueuom.trim()}}",
+            "value" : "{{ %ifQuantity.first() }}",
+            "comparator" : "{{? iif(%ifQuantity[1].exists(), %ifQuantity.last()) }}",
+            "unit" : "{{valueuom.trim()}}"
           }
         },
         "valueCodeableConcept" : {
@@ -67,13 +74,13 @@
             "value" : "{{specimen_id.toString()}}"
           }
         },
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}/fhir/labevent_ids",
+          "value" : "{{labevent_id.toString()}}",
+          "use" : "official"
+        } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
-        "identifier" : [ {
-          "use" : "official",
-          "system" : "{{%sourceSystem.sourceUri}}/fhir/labevent_ids",
-          "value" : "{{labevent_id.toString()}}"
-        } ],
         "issued" : "{{? storetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
         "interpretation" : {
           "{{#isAbnormal}}" : "{{iif(flag.exists() and flag='abnormal', true, {})}}",
@@ -99,19 +106,13 @@
             "high" : "{{utl:createFhirQuantity(ref_range_upper, valueuom.trim(), 'http://unitsofmeasure.org', valueuom.trim())}}"
           }
         },
-        "id" : "{{mpp:getHashedId('Observation', labevent_id.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
-        },
         "extension" : {
           "{{#pr}}" : "{{priority}}",
           "{{*}}" : {
             "url" : "http://hl7.org/fhir/us/cdmh/StructureDefinition/cdmh-pcornet-lab-test-priority",
             "valueCode" : "{{iif(%pr='ROUTINE', 'R', iif(%pr='STAT', 'S', 'O'))}}"
           }
-        },
-        "resourceType" : "Observation"
+        }
       }
     }
   } ]
