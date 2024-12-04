@@ -1,6 +1,7 @@
 {
   "id" : "i2b2",
   "name" : "i2b2",
+  "description" : "",
   "sourceSettings" : {
     "i2b2-data" : {
       "jsonClass" : "FileSystemSourceSettings",
@@ -30,77 +31,89 @@
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed",
       "sourceValueSetUrl" : "https://www.i2b2.org",
       "targetValueSetUrl" : "http://snomed.info/sct"
-    }],
+    } ],
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "name": "patient-mapping",
+    "name" : "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/i2b2/patient-mapping",
     "sourceBinding" : {
       "patient" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "PATIENT.csv",
+        "path" : "PATIENT_DIMENSION.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "sep" : ";"
+        },
         "sourceRef" : "i2b2-data"
       }
     }
   }, {
-    "name": "encounter-mapping",
+    "name" : "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/i2b2/encounter-mapping",
     "sourceBinding" : {
+      "visitDimension" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_DIMENSION.csv",
+        "contentType" : "csv",
+        "options" : {
+          "sep" : ";"
+        },
+        "sourceRef" : "i2b2-data"
+      },
       "observationFact" : {
         "jsonClass" : "FileSystemSource",
         "path" : "OBSERVATION_FACT.csv",
         "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "i2b2-data"
-      },
-      "visitDimension" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "VISIT.csv",
-        "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "sep" : ";"
+        },
         "sourceRef" : "i2b2-data"
       }
     }
   }, {
-    "name": "condition-mapping",
+    "name" : "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/i2b2/condition-mapping",
     "sourceBinding" : {
       "observationFact" : {
         "jsonClass" : "FileSystemSource",
         "path" : "OBSERVATION_FACT.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "sep" : ";"
+        },
         "sourceRef" : "i2b2-data"
       }
     }
   }, {
-    "name": "lab-results-mapping",
+    "name" : "lab-results-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/i2b2/lab-results-mapping",
     "sourceBinding" : {
       "observationFact" : {
         "jsonClass" : "FileSystemSource",
         "path" : "OBSERVATION_FACT.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "sep" : ";"
+        },
         "sourceRef" : "i2b2-data"
       }
     }
   }, {
-    "name": "medication-mapping",
+    "name" : "medication-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/i2b2/medication-mapping",
     "sourceBinding" : {
       "observationFact" : {
         "jsonClass" : "FileSystemSource",
         "path" : "OBSERVATION_FACT.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "sep" : ";"
+        },
         "sourceRef" : "i2b2-data"
       }
     }
-  }],
+  } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
     "archiveMode" : "off"

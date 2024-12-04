@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/patient-mapping",
   "name" : "patient-mapping",
   "title" : "Mapping from i2b2 patient to the DT4h-Patient profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "patient",
     "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/PatientDimension",
@@ -12,33 +13,61 @@
     "patientGenderMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/i2b2/patient-gender-map.csv"
+    },
+    "ethnicityMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/ethnicity-map.csv"
+    },
+    "maritalStatusMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/marital-status-map.csv"
     }
   },
   "variable" : [ {
     "name" : "genderClass",
     "language" : "text/fhirpath",
     "expression" : "mpp:getConcept(%patientGenderMap, SEX_CD)"
-  }],
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Patient',PATIENT_NUM.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "resourceType" : "Patient",
         "gender" : "{{ %genderClass.gender_display }}",
-        "birthDate" : "{{? iif(BIRTH_DATE.exists(), BIRTH_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
-        "deceasedDateTime" : "{{? iif(DEATH_DATE.exists(), DEATH_DATE.toString().substring(0, 10).replace('/', '-'), null) }}",
+        "birthDate" : "{{BIRTH_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd')}}",
+        "deceasedDateTime" : "{{? DEATH_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}",
         "identifier" : [ {
           "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}",
           "value" : "{{PATIENT_NUM.toString()}}"
         } ],
         "active" : true,
-        "id" : "{{mpp:getHashedId('Patient',PATIENT_NUM.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        "maritalStatus" : {
+          "{{#maritalStatusVar}}" : "{{mpp:getConcept(%maritalStatusMap, MARITAL_STATUS_CD)}}",
+          "{{?}}" : {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+              "code" : "{{%maritalStatusVar.target_code}}",
+              "display" : "{{%maritalStatusVar.target_display}}"
+            } ]
+          }
         },
-        "resourceType" : "Patient"
+        "extension" : [ {
+          "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Ethnicity",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "system" : "http://snomed.info/sct",
+              "code" : "{{mpp:getConcept(%ethnicityMap, RACE_CD.nav:orElse('unknown'), 'target_code')}}",
+              "display" : "{{mpp:getConcept(%ethnicityMap, RACE_CD.nav:orElse('unknown'), 'target_display')}}"
+            } ]
+          }
+        } ]
       }
     }
   } ]
