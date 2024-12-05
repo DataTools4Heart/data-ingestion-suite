@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
   "name" : "smoking-status-mapping",
   "title" : "Mapping from GEM's patology table to the DT4H's smoking status profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "patology",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/condition",
@@ -11,10 +12,20 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "smokingPatology",
+      "language" : "text/fhirpath",
+      "expression" : "Patologia = 'ABITUDINE_TABAGICA' and STATUS = 1"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & data_in.toString()}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -39,18 +50,8 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "effectiveDateTime" : "{{? data_in.utl:toFhirDate('yyyy-MM-dd'))}}",
-        "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & data_in.toString()}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
-        },
-        "resourceType" : "Observation"
+        "status" : "final"
       }
-    },
-    "precondition" : {
-      "name" : "smokingPatology",
-      "language" : "text/fhirpath",
-      "expression" : "Patologia = 'ABITUDINE_TABAGICA' and STATUS = 1"
     }
   } ]
 }

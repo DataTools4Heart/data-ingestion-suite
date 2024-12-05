@@ -1,8 +1,10 @@
 {
-  "id" : "Encounter",
+  "id" : "encounter",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/gem/ElencoContatti",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
+  "version" : "latest",
   "name" : "Encounter",
+  "description" : "Represents elenco_contatti table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -29,16 +31,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Patient id"
-    }, {
-      "id" : "Encounter.NOSOGRAFICO",
-      "path" : "Encounter.NOSOGRAFICO",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Encounter id"
     }, {
       "id" : "Encounter.NUM_PS",
       "path" : "Encounter.NUM_PS",
@@ -101,6 +93,16 @@
       } ],
       "definition" : "E.g.  'Ricovero' which translates to 'Hospitalization' in English.",
       "short" : "Type of event"
+    }, {
+      "id" : "Encounter.NOSOGRAFICO",
+      "path" : "Encounter.NOSOGRAFICO",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter id"
     } ]
   }
 }

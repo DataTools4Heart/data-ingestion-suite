@@ -1,0 +1,350 @@
+{
+  "id" : "ecg-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/gem/ecg-mapping",
+  "name" : "ecg-mapping",
+  "title" : "Mapping of Gemelli's ECG table to DT4H-ECG FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/ecg",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATA_ESECUZIONE.toString() & ORA_ESECUZIONE.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "code" : {
+          "coding" : [ {
+            "code" : "34534-8",
+            "system" : "http://loinc.org",
+            "display" : "12 lead EKG panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "component" : [ {
+          "{{#componentVar}}" : "{{R_PEAK}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "unknown",
+                "display" : "R-wave peak amplitude"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "mV",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{R_PEAK}}",
+              "unit" : "millivolt"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{P_ONSET}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "18511-6",
+                "system" : "http://loinc.org",
+                "display" : "P wave onset [Time] Reference beat"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{P_ONSET}}",
+              "unit" : "millisecond"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{P_OFFSET}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "18512-4",
+                "system" : "http://loinc.org",
+                "display" : "P wave offset [Time] Reference beat"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{P_OFFSET}}",
+              "unit" : "millisecond"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{Q_ONSET}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "unknown",
+                "display" : "Q-wave onset time"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{Q_ONSET}}",
+              "unit" : "ms"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{Q_OFFSET}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "unknown",
+                "display" : "Q-wave offset time"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{Q_OFFSET}}",
+              "unit" : "ms"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{T_OFFSET}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "18515-7",
+                "system" : "http://loinc.org",
+                "display" : "T wave offset [Time] Reference beat"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{T_OFFSET}}",
+              "unit" : "ms"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{P_DURATION}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "8627-2",
+                "system" : "http://loinc.org",
+                "display" : "P wave duration"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "millisecond",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{P_DURATION}}",
+              "unit" : "ms"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{PR_DURATION}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "8625-6",
+                "system" : "http://loinc.org",
+                "display" : "P-R Interval"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{PR_DURATION}}",
+              "unit" : "millisecond"
+            }
+          },
+          "@sliceName" : "prInterval"
+        }, {
+          "{{#componentVar}}" : "{{QRS_DURATION}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "8633-0",
+                "system" : "http://loinc.org",
+                "display" : "QRS duration"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{QRS_DURATION}}",
+              "unit" : "millisecond"
+            }
+          },
+          "@sliceName" : "qrsDuration"
+        }, {
+          "{{#componentVar}}" : "{{QT}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "8634-8",
+                "system" : "http://loinc.org",
+                "display" : "Q-T interval"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{QT}}",
+              "unit" : "millisecond"
+            }
+          },
+          "@sliceName" : "qtInterval"
+        }, {
+          "{{#componentVar}}" : "{{QTC}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "framingham",
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{QTC}}",
+              "unit" : "millisecond"
+            }
+          },
+          "@sliceName" : "qtIntervalCorrectedFramingham"
+        }, {
+          "{{#componentVar}}" : "{{QTF}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "frederica",
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{QTF}}",
+              "unit" : "millisecond"
+            }
+          },
+          "@sliceName" : "qtIntervalCorrectedFrederica"
+        }, {
+          "{{#componentVar}}" : "{{QTB}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "bazett",
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "ms",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{QTB}}",
+              "unit" : "millisecond"
+            }
+          },
+          "@sliceName" : "qtIntervalCorrectedBazett"
+        }, {
+          "{{#componentVar}}" : "{{P_AXIS}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "8626-4",
+                "system" : "http://loinc.org",
+                "display" : "P wave axis"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "deg",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{P_AXIS}}",
+              "unit" : "degree"
+            }
+          },
+          "@sliceName" : "pAxis"
+        }, {
+          "{{#componentVar}}" : "{{QRS_AXIS}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "8632-2",
+                "system" : "http://loinc.org",
+                "display" : "QRS axis"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "deg",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{QRS_AXIS}}",
+              "unit" : "degree"
+            }
+          }
+        }, {
+          "{{#componentVar}}" : "{{T_AXIS}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "8638-9",
+                "system" : "http://loinc.org",
+                "display" : "T wave axis"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "deg",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{T_AXIS}}",
+              "unit" : "degree"
+            }
+          },
+          "@sliceName" : "tAxis"
+        }, {
+          "{{#componentVar}}" : "{{SAMPLE_FREQ}}",
+          "{{?}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "SamplingFrequency",
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter",
+                "display" : "Sampling Frequency"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "Hz",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{SAMPLE_FREQ}}",
+              "unit" : "Hertz"
+            }
+          },
+          "@sliceName" : "samplingFrequency"
+        } ],
+        "category" : [ {
+          "coding" : [ {
+            "code" : "vital-signs",
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "effectiveDateTime" : "{{(DATA_ESECUZIONE & iif(ORA_ESECUZIONE.exists(), ORA_ESECUZIONE) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd') }}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "status" : "final",
+        "extension" : {
+          "{{#durationVar}}" : "{{DURATION}}",
+          "{{?}}" : [ {
+            "valueQuantity" : {
+              "code" : "s",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{DURATION}}",
+              "unit" : "seconds"
+            },
+            "url" : "https://datatools4heart.eu/fhir/StructureDefinition/ecg-recording-duration"
+          } ]
+        }
+      }
+    }
+  } ]
+}
