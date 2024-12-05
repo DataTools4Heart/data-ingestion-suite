@@ -204,7 +204,7 @@
           "{{?}}" : {
             "code" : {
               "coding" : [ {
-                "code" : "bazett",
+                "code" : "framingham",
                 "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
               } ]
             },
@@ -215,7 +215,7 @@
               "unit" : "millisecond"
             }
           },
-          "@sliceName" : "qtIntervalCorrectedBazett"
+          "@sliceName" : "qtIntervalCorrectedFramingham"
         }, {
           "{{#componentVar}}" : "{{QTF}}",
           "{{?}}" : {
@@ -238,7 +238,7 @@
           "{{?}}" : {
             "code" : {
               "coding" : [ {
-                "code" : "framingham",
+                "code" : "bazett",
                 "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
               } ]
             },
@@ -249,7 +249,7 @@
               "unit" : "millisecond"
             }
           },
-          "@sliceName" : "qtIntervalCorrectedFramingham"
+          "@sliceName" : "qtIntervalCorrectedBazett"
         }, {
           "{{#componentVar}}" : "{{P_AXIS}}",
           "{{?}}" : {
