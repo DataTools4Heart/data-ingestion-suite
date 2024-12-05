@@ -1,0 +1,5 @@
+source_code,target_code,target_display
+divorced,D,Divorced
+married,M,Married
+single,U,unmarried
+widow,W,Widowed
