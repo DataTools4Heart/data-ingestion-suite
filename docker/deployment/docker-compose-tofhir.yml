@@ -4,12 +4,13 @@ services:
     container_name: dt4h-tofhir-server
     hostname: tofhir
     environment:
+      - APP_CONF_FILE=/usr/local/tofhir/conf/docker/tofhir-server.conf
       - FHIR_DEFINITIONS_ENDPOINT=http://onfhir:8080/fhir
       - FHIR_REPO_URL=http://onfhir:8080/fhir
-      - APP_CONF_FILE=/usr/local/tofhir/conf/docker/tofhir-server.conf
+      - DATA_FOLDER_PATH=/usr/local/tofhir/data/mimic-iv-3.1
       - FLUENT_HOST=fluentd
       - CONTEXT_PATH=conf
-      - JAVA_OPTIONS=-Xms256m -Xmx7g
+      - JAVA_OPTIONS=-Xms256m -Xmx8g
     ports:
       - "6085:8085"
     networks:
@@ -17,6 +18,7 @@ services:
     volumes:
       - './data-ingestion-suite:/usr/local/tofhir/conf'
       - './tofhir-docker-logs:/usr/local/tofhir/logs'
+      - 'C:/development/data/mimic-iv-3.1:/usr/local/tofhir/data/mimic-iv-3.1'
     healthcheck:
       test: curl --fail --request OPTIONS http://localhost:8085/tofhir || exit 1
       interval: 20s
