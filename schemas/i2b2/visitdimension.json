@@ -1,7 +1,7 @@
 {
-  "id" : "VisitDimension",
+  "id" : "visitdimension",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/VisitDimension",
+  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/visitdimension",
   "name" : "VisitDimension",
   "status" : "draft",
   "fhirVersion" : "5.0.0",

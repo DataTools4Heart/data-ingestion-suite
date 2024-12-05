@@ -6,7 +6,7 @@
   "isDraft" : false,
   "source" : [ {
     "alias" : "observationFact",
-    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
     "joinOn" : [ ]
   } ],
   "context" : {

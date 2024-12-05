@@ -5,7 +5,7 @@
   "title" : "Mapping of i2b2 observation fact to the DT4H medication administration profile",
   "source" : [ {
     "alias" : "observationFact",
-    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
     "joinOn" : [ ]
   } ],
   "context" : { },

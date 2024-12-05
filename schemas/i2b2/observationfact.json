@@ -1,7 +1,7 @@
 {
-  "id" : "ObservationFact",
+  "id" : "observationfact",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/ObservationFact",
+  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
   "version" : "latest",
   "name" : "ObservationFact",
   "status" : "draft",

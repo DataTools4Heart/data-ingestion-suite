@@ -1,7 +1,7 @@
 {
-  "id" : "PatientDimension",
+  "id" : "patientdimension",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/PatientDimension",
+  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/patientdimension",
   "name" : "PatientDimension",
   "status" : "draft",
   "fhirVersion" : "5.0.0",

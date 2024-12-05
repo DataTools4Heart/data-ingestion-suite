@@ -6,7 +6,7 @@
   "isDraft" : false,
   "source" : [ {
     "alias" : "patient",
-    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/PatientDimension",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/patientdimension",
     "joinOn" : [ ]
   } ],
   "context" : {
