@@ -14,13 +14,17 @@
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/i2b2/lab-result-codes.csv"
     },
-    "unitConversionMap" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/i2b2/lab-results-unit-conversion.csv"
-    },
     "vitalSigns" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/i2b2/vital-signs.csv"
+    },
+    "labResultComparatorMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/lab-result-comparator-map.csv"
+    },
+    "labResultInterpretationMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/lab-result-interpretation-map.csv"
     }
   },
   "variable" : [ {
@@ -40,7 +44,7 @@
     "precondition" : {
       "name" : "labMeasurement",
       "language" : "text/fhirpath",
-      "expression" : "(NVAL_NUM.exists() or TVAL_CHAR.exists()) and (%isLoincCode and %isVitalSign.exists().not())"
+      "expression" : "iif(VALTYPE_CD = 'N', NVAL_NUM.exists(), TVAL_CHAR.exists()) and (%isLoincCode and %isVitalSign.exists().not())"
     },
     "expression" : {
       "name" : "lab-observation",
@@ -70,29 +74,32 @@
         },
         "effectiveDateTime" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}",
         "valueString" : {
-          "{{#strValue}}" : "{{iif(TVAL_CHAR.exists() and trms:translateToCoding(TVAL_CHAR, 'https://www.i2b2.org', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed').exists().not(), TVAL_CHAR, {})}}",
+          "{{#strValue}}" : "{{iif(VALTYPE_CD != 'N', TVAL_CHAR)}}",
           "{{?}}" : "{{%strValue}}"
-        },
-        "valueCodeableConcept" : {
-          "{{#codedValue}}" : "{{iif( TVAL_CHAR.exists(), trms:translateToCoding(TVAL_CHAR, 'https://www.i2b2.org', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed'), {} )}}",
-          "{{?}}" : {
-            "coding" : "{{* %codedValue}}",
-            "text" : "{{? TVAL_CHAR }}"
-          }
         },
         "valueQuantity" : {
           "{{#quantityValue}}" : "{{NVAL_NUM}}",
-          "{{?}}" : "{{ utl:createFhirQuantity(NVAL_NUM, UNITS_CD, 'http://unitsofmeasure.org', UNITS_CD) }}"
+          "{{?}}" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{UNITS_CD}}",
+            "value" : "{{NVAL_NUM}}",
+            "comparator" : "{{? mpp:getConcept(%labResultComparatorMap, TVAL_CHAR, 'target_code')}}",
+            "unit" : "{{UNITS_CD}}"
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}"
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
+        "interpretation" : {
+          "{{#interpretationVar}}" : "{{mpp:getConcept(%labResultInterpretationMap, VALUEFLAG_CD)}}",
+          "{{*}}" : "{{utl:createFhirCodeableConcept('http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation', %interpretationVar.target_code, %interpretationVar.target_display)}}"
+        }
       }
     }
   }, {
     "precondition" : {
       "name" : "vitalSign",
       "language" : "text/fhirpath",
-      "expression" : "%isLoincCode and %isVitalSign.exists()"
+      "expression" : "iif(VALTYPE_CD = 'N', NVAL_NUM.exists(), TVAL_CHAR.exists()) and (%isLoincCode and %isVitalSign.exists())"
     },
     "expression" : {
       "name" : "vital-sign-obs",
@@ -119,6 +126,16 @@
           } ]
         },
         "effectiveDateTime" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd')}}",
+        "valueQuantity" : {
+          "{{#quantityValue}}" : "{{NVAL_NUM}}",
+          "{{?}}" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{UNITS_CD}}",
+            "value" : "{{NVAL_NUM}}",
+            "comparator" : "{{? mpp:getConcept(%labResultComparatorMap, TVAL_CHAR, 'target_code')}}",
+            "unit" : "{{UNITS_CD}}"
+          }
+        },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
         "status" : "final"
       }

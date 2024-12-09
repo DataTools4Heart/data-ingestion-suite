@@ -70,7 +70,7 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "name": "cause-of-death-mapping",
+    "name" : "cause-of-death-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
     "sourceBinding" : {
       "omopDeath" : {
@@ -82,7 +82,7 @@
       }
     }
   }, {
-    "name": "condition-mapping",
+    "name" : "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
     "sourceBinding" : {
       "omopCondition" : {

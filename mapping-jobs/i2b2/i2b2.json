@@ -16,24 +16,6 @@
     "fhirRepoUrl" : "http://localhost:8080/fhir",
     "returnMinimal" : true
   },
-  "terminologyServiceSettings" : {
-    "jsonClass" : "LocalFhirTerminologyServiceSettings",
-    "folderPath" : "./terminology-systems/DT4HTerminologyService",
-    "conceptMapFiles" : [ {
-      "id" : "ndcToRxNorm.csv",
-      "name" : "ndcToRxNorm.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/ndc-to-rxnorm",
-      "sourceValueSetUrl" : "https://dps.fda.gov/ndc",
-      "targetValueSetUrl" : "http://www.nlm.nih.gov/research/umls/rxnorm"
-    }, {
-      "id" : "labResults-Ib2bToSnomed.csv",
-      "name" : "labResults-Ib2bToSnomed.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/string-to-snomed",
-      "sourceValueSetUrl" : "https://www.i2b2.org",
-      "targetValueSetUrl" : "http://snomed.info/sct"
-    } ],
-    "codeSystemFiles" : [ ]
-  },
   "mappings" : [ {
     "name" : "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/i2b2/patient-mapping",
