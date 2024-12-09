@@ -1,0 +1,65 @@
+{
+  "id" : "medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/medication-mapping",
+  "name" : "medication-mapping",
+  "title" : "Mapping of i2b2 observation fact to the DT4H medication administration profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "isMedication",
+    "language" : "text/fhirpath",
+    "expression" : "MODIFIER_CD = 'MED:DOSE' and CONCEPT_CD.startsWith('NDC') "
+  }, {
+    "name" : "rxNormCodes",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%isMedication.exists(), rxn:findRxConceptIdsByNdc(CONCEPT_CD.split(':').last()))"
+  }, {
+    "name" : "atcIngredientCodes",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%rxNormCodes.exists(), rxn:getMedicationDetails(%rxNormCodes).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)) )"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "isMedicationData",
+      "language" : "text/fhirpath",
+      "expression" : "iif(VALTYPE_CD = 'N', NVAL_NUM.exists(), TVAL_CHAR.exists()) and %isMedication and %atcIngredientCodes.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationAdministration', TEXT_SEARCH_INDEX.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration",
+        "medication" : {
+          "concept" : {
+            "coding" : {
+              "{{#codingVar}}" : "{{%atcIngredientCodes}}",
+              "{{*}}" : "{{utl:createFhirCoding('http://www.whocc.no/atc', %codingVar, {})}}"
+            }
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
+        "occurencePeriod" : {
+          "start" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd')}}",
+          "end" : "{{? END_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd')}}"
+        },
+        "dosage" : {
+          "text" : "{{? TVAL_CHAR}}",
+          "dose" : {
+            "value" : "{{? NVAL_NUM.toDecimal()}}"
+          }
+        },
+        "status" : "completed"
+      }
+    }
+  } ]
+}

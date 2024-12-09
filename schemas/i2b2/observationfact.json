@@ -1,0 +1,258 @@
+{
+  "id" : "observationfact",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
+  "version" : "latest",
+  "name" : "ObservationFact",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "ObservationFact",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "ObservationFact",
+      "path" : "ObservationFact",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "ObservationFact.ENCOUNTER_NUM",
+      "path" : "ObservationFact.ENCOUNTER_NUM",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Encounter ID"
+    }, {
+      "id" : "ObservationFact.PATIENT_NUM",
+      "path" : "ObservationFact.PATIENT_NUM",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Patient ID"
+    }, {
+      "id" : "ObservationFact.CONCEPT_CD",
+      "path" : "ObservationFact.CONCEPT_CD",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Concept Code"
+    }, {
+      "id" : "ObservationFact.PROVIDER_ID",
+      "path" : "ObservationFact.PROVIDER_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Provider ID"
+    }, {
+      "id" : "ObservationFact.START_DATE",
+      "path" : "ObservationFact.START_DATE",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Observation Start Date"
+    }, {
+      "id" : "ObservationFact.MODIFIER_CD",
+      "path" : "ObservationFact.MODIFIER_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Modifier Code"
+    }, {
+      "id" : "ObservationFact.INSTANCE_NUM",
+      "path" : "ObservationFact.INSTANCE_NUM",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Observation Instance Number"
+    }, {
+      "id" : "ObservationFact.VALTYPE_CD",
+      "path" : "ObservationFact.VALTYPE_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Value Type"
+    }, {
+      "id" : "ObservationFact.TVAL_CHAR",
+      "path" : "ObservationFact.TVAL_CHAR",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Text Value"
+    }, {
+      "id" : "ObservationFact.NVAL_NUM",
+      "path" : "ObservationFact.NVAL_NUM",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short": "Observation Numeric Value"
+    }, {
+      "id" : "ObservationFact.VALUEFLAG_CD",
+      "path" : "ObservationFact.VALUEFLAG_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Flag certain outlying or abnormal values (H = High, L = Low, A = Abnormal)",
+      "short": "Abnormal Value Flag"
+    }, {
+      "id" : "ObservationFact.QUANTITY_NUM",
+      "path" : "ObservationFact.QUANTITY_NUM",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "Quantity of the value in the NVAL_NUM column",
+      "short": "Observation Quantity"
+    }, {
+      "id" : "ObservationFact.UNITS_CD",
+      "path" : "ObservationFact.UNITS_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Measurement Unit"
+    }, {
+      "id" : "ObservationFact.END_DATE",
+      "path" : "ObservationFact.END_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Observation End Date"
+    }, {
+      "id" : "ObservationFact.LOCATION_CD",
+      "path" : "ObservationFact.LOCATION_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Location"
+    }, {
+      "id" : "ObservationFact.OBSERVATION_BLOB",
+      "path" : "ObservationFact.OBSERVATION_BLOB",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Holds any raw or miscellaneous data, often encrypted PHI",
+      "short": "Observation Raw Data"
+    }, {
+      "id" : "ObservationFact.CONFIDENCE_NUM",
+      "path" : "ObservationFact.CONFIDENCE_NUM",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short": "Observation Accuracy Level"
+    }, {
+      "id" : "ObservationFact.UPDATE_DATE",
+      "path" : "ObservationFact.UPDATE_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Observation Update Date"
+    }, {
+      "id" : "ObservationFact.DOWNLOAD_DATE",
+      "path" : "ObservationFact.DOWNLOAD_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Observation Data Download Date"
+    }, {
+      "id" : "ObservationFact.IMPORT_DATE",
+      "path" : "ObservationFact.IMPORT_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Observation Data Import Date"
+    }, {
+      "id" : "ObservationFact.SOURCESYSTEM_CD",
+      "path" : "ObservationFact.SOURCESYSTEM_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Observation Source System Code"
+    }, {
+      "id" : "ObservationFact.UPLOAD_ID",
+      "path" : "ObservationFact.UPLOAD_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Observation Upload ID"
+    }, {
+      "id" : "ObservationFact.TEXT_SEARCH_INDEX",
+      "path" : "ObservationFact.TEXT_SEARCH_INDEX",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Observation Text Search Index"
+    } ]
+  }
+}

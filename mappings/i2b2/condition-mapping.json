@@ -1,0 +1,103 @@
+{
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Mapping of i2b2 observation fact to the DT4H-Condition profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "icd9toIcd10CM" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/icd9cm-to-icd10cm.csv"
+    },
+    "icd9toIcd10PCS" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/icd9-to-icd10pcs.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "isIcdCode",
+    "language" : "text/fhirpath",
+    "expression" : "CONCEPT_CD.startsWith('ICD9')"
+  }, {
+    "name" : "icd10Code",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%icd9toIcd10CM, CONCEPT_CD.split(':').last().replace('.', ''))"
+  }, {
+    "name" : "icd10PcsCode",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%icd9toIcd10PCS, CONCEPT_CD.split(':').last())"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "isIcdCode",
+      "language" : "text/fhirpath",
+      "expression" : "%isIcdCode and %icd10Code.exists()"
+    },
+    "expression" : {
+      "name" : "condition",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Condition', TEXT_SEARCH_INDEX.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
+        "code" : {
+          "coding" : [ {
+            "code" : "{{%icd10Code.target_code}}",
+            "system" : "{{%icd10Code.target_system}}",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "onsetDateTime" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "code" : "active",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
+          } ]
+        }
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "isProcedure",
+      "language" : "text/fhirpath",
+      "expression" : "%isIcdCode and %icd10PcsCode.exists()"
+    },
+    "expression" : {
+      "name" : "procedure",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Procedure', TEXT_SEARCH_INDEX.toString() )}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+        },
+        "resourceType" : "Procedure",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "103693007",
+            "display" : "Diagnostic procedure"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+            "code" : "{{%icd10PcsCode.target_code}}",
+            "@sliceName" : "icdCode"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "occurrenceDateTime" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}",
+        "status" : "unknown"
+      }
+    }
+  } ]
+}

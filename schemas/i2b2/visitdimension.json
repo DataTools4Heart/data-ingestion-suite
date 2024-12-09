@@ -1,0 +1,174 @@
+{
+  "id" : "visitdimension",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/visitdimension",
+  "name" : "VisitDimension",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "VisitDimension",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "VisitDimension",
+      "path" : "VisitDimension",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "VisitDimension.ENCOUNTER_NUM",
+      "path" : "VisitDimension.ENCOUNTER_NUM",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Encounter ID"
+    }, {
+      "id" : "VisitDimension.PATIENT_NUM",
+      "path" : "VisitDimension.PATIENT_NUM",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Patient ID"
+    }, {
+      "id" : "VisitDimension.ACTIVE_STATUS_CD",
+      "path" : "VisitDimension.ACTIVE_STATUS_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Visit Status Code"
+    }, {
+      "id" : "VisitDimension.START_DATE",
+      "path" : "VisitDimension.START_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Visit Start Date"
+    }, {
+      "id" : "VisitDimension.END_DATE",
+      "path" : "VisitDimension.END_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Visit End Date"
+    }, {
+      "id" : "VisitDimension.INOUT_CD",
+      "path" : "VisitDimension.INOUT_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Visit Inout Code"
+    }, {
+      "id" : "VisitDimension.LOCATION_CD",
+      "path" : "VisitDimension.LOCATION_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Visit Location"
+    }, {
+      "id" : "VisitDimension.LOCATION_PATH",
+      "path" : "VisitDimension.LOCATION_PATH",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Visit Location Path"
+    }, {
+      "id" : "VisitDimension.LENGTH_OF_STAY",
+      "path" : "VisitDimension.LENGTH_OF_STAY",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Visit Stay Length"
+    }, {
+      "id" : "VisitDimension.VISIT_BLOB",
+      "path" : "VisitDimension.VISIT_BLOB",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Visit Additional Raw Data"
+    }, {
+      "id" : "VisitDimension.UPDATE_DATE",
+      "path" : "VisitDimension.UPDATE_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Visit Record Update Date"
+    }, {
+      "id" : "VisitDimension.DOWNLOAD_DATE",
+      "path" : "VisitDimension.DOWNLOAD_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Visit Record Download Date"
+    }, {
+      "id" : "VisitDimension.IMPORT_DATE",
+      "path" : "VisitDimension.IMPORT_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short": "Visit Record Import Date"
+    }, {
+      "id" : "VisitDimension.SOURCESYSTEM_CD",
+      "path" : "VisitDimension.SOURCESYSTEM_CD",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short": "Visit Source System Code"
+    }, {
+      "id" : "VisitDimension.UPLOAD_ID",
+      "path" : "VisitDimension.UPLOAD_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short": "Visit Data Upload ID"
+    } ]
+  }
+}

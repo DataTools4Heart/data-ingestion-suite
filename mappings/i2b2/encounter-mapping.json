@@ -1,0 +1,66 @@
+{
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Mapping of i2b2 visit dimension to the DT4H-Encounter profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "visitDimension",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/visitdimension",
+    "joinOn" : [ "ENCOUNTER_NUM" ]
+  }, {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
+    "joinOn" : [ "ENCOUNTER_NUM" ]
+  } ],
+  "context" : {
+    "encounterClassConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/encounter-class-concept-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "encounterClass",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%encounterClassConceptMap, INOUT_CD)"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "validObservation",
+      "language" : "text/fhirpath",
+      "expression" : "ENCOUNTER_NUM.exists() and %observationFact.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter",
+        "class" : [ {
+          "coding" : [ {
+            "system" : "{{%encounterClass.code_system}}",
+            "code" : "{{%encounterClass.target_code}}"
+          } ]
+        } ],
+        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "actualPeriod" : {
+          "start" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}",
+          "end" : "{{? END_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}"
+        },
+        "status" : "completed",
+        "reason" : [ {
+          "value" : {
+            "{{#obFact}}" : "{{%observationFact}}",
+            "{{*}}" : {
+              "reference" : "{{mpp:createFhirReferenceWithHashedId(iif(%obFact.CONCEPT_CD.startsWith('ICD9'), 'Condition', 'Observation'), %obFact.TEXT_SEARCH_INDEX.toString())}}"
+            }
+          }
+        } ]
+      }
+    }
+  } ]
+}

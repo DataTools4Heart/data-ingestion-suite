@@ -1,0 +1,144 @@
+{
+  "id" : "lab-results-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/i2b2/lab-results-mapping",
+  "name" : "lab-results-mapping",
+  "title" : "Mapping from i2b2 observation fact to the DT4H LabResult profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "observationFact",
+    "url" : "https://datatools4heart.eu/fhir/schemas/i2b2/observationfact",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "labResultCodes" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/lab-result-codes.csv"
+    },
+    "vitalSigns" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/vital-signs.csv"
+    },
+    "labResultComparatorMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/lab-result-comparator-map.csv"
+    },
+    "labResultInterpretationMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/i2b2/lab-result-interpretation-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "isLoincCode",
+    "language" : "text/fhirpath",
+    "expression" : "CONCEPT_CD.startsWith('LOINC')"
+  }, {
+    "name" : "loincCodeValue",
+    "language" : "text/fhirpath",
+    "expression" : "CONCEPT_CD.split(':').last()"
+  }, {
+    "name" : "isVitalSign",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%vitalSigns, %loincCodeValue)"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "labMeasurement",
+      "language" : "text/fhirpath",
+      "expression" : "iif(VALTYPE_CD = 'N', NVAL_NUM.exists(), TVAL_CHAR.exists()) and (%isLoincCode and %isVitalSign.exists().not())"
+    },
+    "expression" : {
+      "name" : "lab-observation",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', TEXT_SEARCH_INDEX.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{%loincCodeValue}}",
+            "display" : "{{? mpp:getConcept(%labResultCodes, %loincCodeValue, 'source_display') }}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}",
+        "valueString" : {
+          "{{#strValue}}" : "{{iif(VALTYPE_CD != 'N', TVAL_CHAR)}}",
+          "{{?}}" : "{{%strValue}}"
+        },
+        "valueQuantity" : {
+          "{{#quantityValue}}" : "{{NVAL_NUM}}",
+          "{{?}}" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{UNITS_CD}}",
+            "value" : "{{NVAL_NUM}}",
+            "comparator" : "{{? mpp:getConcept(%labResultComparatorMap, TVAL_CHAR, 'target_code')}}",
+            "unit" : "{{UNITS_CD}}"
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
+        "interpretation" : {
+          "{{#interpretationVar}}" : "{{mpp:getConcept(%labResultInterpretationMap, VALUEFLAG_CD)}}",
+          "{{*}}" : "{{utl:createFhirCodeableConcept('http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation', %interpretationVar.target_code, %interpretationVar.target_display)}}"
+        }
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "vitalSign",
+      "language" : "text/fhirpath",
+      "expression" : "iif(VALTYPE_CD = 'N', NVAL_NUM.exists(), TVAL_CHAR.exists()) and (%isLoincCode and %isVitalSign.exists())"
+    },
+    "expression" : {
+      "name" : "vital-sign-obs",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', TEXT_SEARCH_INDEX.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{%isVitalSign.source_code}}",
+            "display" : "{{%isVitalSign.source_display}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd')}}",
+        "valueQuantity" : {
+          "{{#quantityValue}}" : "{{NVAL_NUM}}",
+          "{{?}}" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{UNITS_CD}}",
+            "value" : "{{NVAL_NUM}}",
+            "comparator" : "{{? mpp:getConcept(%labResultComparatorMap, TVAL_CHAR, 'target_code')}}",
+            "unit" : "{{UNITS_CD}}"
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
+        "status" : "final"
+      }
+    }
+  } ]
+}
