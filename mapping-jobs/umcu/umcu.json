@@ -28,6 +28,18 @@
         "sourceRef" : "umcu-source"
       }
     }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/vital-sign-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "vitalsign.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "umcu-source"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,

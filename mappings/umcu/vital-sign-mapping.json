@@ -12,10 +12,19 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "valueExists",
+      "language" : "text/fhirpath",
+      "expression" : "valueQuantity_value.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -26,16 +35,18 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "",
             "@sliceName" : "loincCode"
           } ]
         },
-        "subject" : "",
-        "status" : "",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        "effectiveDateTime" : "{{effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "value" : "{{valueQuantity_value}}",
+          "unit" : "{{valueQuantity_unit_original}}"
         },
-        "resourceType" : "Observation"
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', context_Encounter_value.toString())}}",
+        "status" : "final"
       }
     }
   } ]
