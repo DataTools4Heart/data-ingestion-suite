@@ -10,7 +10,7 @@
     "joinOn" : [ "CODICE_SANITARIO" ]
   }, {
     "alias" : "encounterDetails",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter-details",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounterdetails",
     "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : {
