@@ -1,15 +1,18 @@
 source_code,source_unit,target_unit,conversion_function
-14647-2,mmol/l,mmol/L,$this
-69405-9,ml/s/1.73m2,mL/min/1.73m2,$this * 60
-718-7,g/l,g/dL,$this * 0.1
-41995-2,mmol/mol,%,($this / 10.929) + 2.15
-14646-4,mmol/l,mmol/L,$this
-2160-0,µmol/l,mg/L,$this * 0.1131
-2161-8,mmol/l,mg/L,$this * 113.12
-22748-8,mmol/l,mmol/L,$this
-1754-1,mg/l,mcg/L,$this * 1000
-32294-1,mg/mmol,mg/g,$this * 8.85
-33762-6,ng/l,pg/mL,$this
-14927-8,mmol/l,mmol/L,$this
-14937-7,mmol/l,mmol/L,$this * 0.446
-1751-7,g/l,mcg/L,$this * 1000000
+"14647-2","mmol/l","mmol/L","$this"
+"69405-9","ml/s/1.73m2","mL/min/1.73m2","$this * 60"
+"718-7","g/l","g/L","$this"
+"14646-4","mmol/l","mmol/L","$this"
+"2160-0","µmol/l","mg/L","$this * 0.11312"
+"2161-8","mmol/l","mg/L","$this * 113.12"
+"22748-8","mmol/l","mmol/L","$this"
+"1754-1","mg/l","mg/L","$this"
+"33762-6","ng/l","pg/mL","$this"
+"14927-8","mmol/l","mmol/L","$this"
+"14937-7","mmol/l","mmol/L","$this"
+"1751-7","g/l","g/L","$this"
+"2823-3","mmol/l","mmol/L","$this"
+"2823-3","mmol/l","mmol/L","$this"
+"2276-4","µg/l","µg/L","$this"
+"67151-1","µg/l","µg/L","$this"
+"6598-7","ng/l","ng/L","$this"

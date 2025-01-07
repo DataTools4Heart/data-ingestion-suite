@@ -1,0 +1,37 @@
+{
+  "id" : "organization-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/organization-mapping",
+  "name" : "organization-mapping",
+  "title" : "Mapping of ICRC clinic data to the DT4H Organization FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "organization",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/Organization",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Organization', id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Organization" ]
+        },
+        "resourceType" : "Organization",
+        "type" : [ {
+          "coding" : [ "{{utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/organization-type', 'dept', '\tHospital Department')}}" ],
+          "@sliceName" : "hfrOrganizationType"
+        } ],
+        "name" : "{{nis_name}}",
+        "identifier" : [ {
+          "use" : "official",
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "value" : "{{id.toString()}}"
+        } ]
+      }
+    }
+  } ]
+}

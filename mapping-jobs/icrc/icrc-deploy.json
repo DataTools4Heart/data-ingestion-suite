@@ -1,6 +1,7 @@
 {
   "id" : "icrc-deploy",
   "name" : "icrc-deploy",
+  "description" : "",
   "sourceSettings" : {
     "icrc-data" : {
       "jsonClass" : "SqlSourceSettings",
@@ -17,7 +18,7 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
-    "name": "condition-mapping",
+    "name" : "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
     "sourceBinding" : {
       "source" : {
@@ -28,7 +29,7 @@
       }
     }
   }, {
-    "name": "ECG-mapping",
+    "name" : "ECG-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/ECG-mapping",
     "sourceBinding" : {
       "ecg" : {
@@ -39,7 +40,7 @@
       }
     }
   }, {
-    "name": "echocardiograph-mapping",
+    "name" : "echocardiograph-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
     "sourceBinding" : {
       "echoObservation" : {
@@ -56,7 +57,7 @@
       }
     }
   }, {
-    "name": "encounter-mapping",
+    "name" : "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
     "sourceBinding" : {
       "source" : {
@@ -67,7 +68,7 @@
       }
     }
   }, {
-    "name": "lab-result-mapping",
+    "name" : "lab-result-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
     "sourceBinding" : {
       "source" : {
@@ -78,7 +79,7 @@
       }
     }
   }, {
-    "name": "medication-administration-mapping",
+    "name" : "medication-administration-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
     "sourceBinding" : {
       "source" : {
@@ -89,18 +90,7 @@
       }
     }
   }, {
-    "name": "nyha-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/nyha-mapping",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.nyha_profile",
-        "options" : { },
-        "sourceRef" : "icrc-data"
-      }
-    }
-  }, {
-    "name": "patient-mapping",
+    "name" : "patient-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
     "sourceBinding" : {
       "source" : {
@@ -111,7 +101,7 @@
       }
     }
   }, {
-    "name": "procedure-mapping",
+    "name" : "procedure-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
     "sourceBinding" : {
       "source" : {
@@ -122,7 +112,7 @@
       }
     }
   }, {
-    "name": "smoking-status-mapping",
+    "name" : "smoking-status-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
     "sourceBinding" : {
       "source" : {
@@ -133,7 +123,7 @@
       }
     }
   }, {
-    "name": "symptom-mapping",
+    "name" : "symptom-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
     "sourceBinding" : {
       "source" : {
@@ -144,7 +134,7 @@
       }
     }
   }, {
-    "name": "vital-sign-mapping",
+    "name" : "vital-sign-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
     "sourceBinding" : {
       "source" : {

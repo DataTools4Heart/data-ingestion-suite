@@ -2,6 +2,7 @@
   "id" : "ECG",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/ECG",
+  "version" : "latest",
   "name" : "ECG",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -20,41 +21,75 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "ECG.id",
-      "path" : "ECG.id",
-      "min" : 0,
+      "id" : "ECG.id_ecg",
+      "path" : "ECG.id_ecg",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Unique identifier for the ECG measurement"
     }, {
       "id" : "ECG.id_patient",
       "path" : "ECG.id_patient",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Patient identifier"
     }, {
-      "id" : "ECG.encounter_id",
-      "path" : "ECG.encounter_id",
+      "id" : "ECG.id_encounter",
+      "path" : "ECG.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Encounter identifier"
+    }, {
+      "id" : "ECG.id_department",
+      "path" : "ECG.id_department",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Department identifier"
     }, {
       "id" : "ECG.exec_date",
       "path" : "ECG.exec_date",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Date of the ECG measurement"
+    }, {
+      "id" : "ECG.vent_rate",
+      "path" : "ECG.vent_rate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Ventricular rate"
+    }, {
+      "id" : "ECG.average_rr",
+      "path" : "ECG.average_rr",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Average time between consecutive R-waves"
     }, {
       "id" : "ECG.sample_freq",
       "path" : "ECG.sample_freq",
@@ -63,7 +98,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Sampling frequency ECG (Hz) (one number in Hz)"
     }, {
       "id" : "ECG.num_qrs",
       "path" : "ECG.num_qrs",
@@ -72,7 +108,9 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "definition" : " QRS complex Ventricles by EKG",
+      "short" : "Count of QRS complexes in 10 second measurement interval."
     }, {
       "id" : "ECG.pr_duration",
       "path" : "ECG.pr_duration",
@@ -81,7 +119,9 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "definition" : "Interval P-wave and QRS complex ",
+      "short" : "PR interval"
     }, {
       "id" : "ECG.qrs_duration",
       "path" : "ECG.qrs_duration",
@@ -90,7 +130,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "QRS duration"
     }, {
       "id" : "ECG.qt",
       "path" : "ECG.qt",
@@ -99,7 +140,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Q-T interval"
     }, {
       "id" : "ECG.qtc",
       "path" : "ECG.qtc",
@@ -117,7 +159,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Corrected QT interval with Bazett algorithm"
     }, {
       "id" : "ECG.qtf",
       "path" : "ECG.qtf",
@@ -126,7 +169,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Corrected QT interval with Frederica algorithm"
     }, {
       "id" : "ECG.p_axis",
       "path" : "ECG.p_axis",
@@ -135,7 +179,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "P-wave axis"
     }, {
       "id" : "ECG.qrs_axis",
       "path" : "ECG.qrs_axis",
@@ -144,7 +189,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "QRS axis"
     }, {
       "id" : "ECG.t_axis",
       "path" : "ECG.t_axis",
@@ -153,7 +199,28 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "T-wave axis"
+    }, {
+      "id" : "ECG.st_elevation",
+      "path" : "ECG.st_elevation",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "boolean",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+      } ],
+      "short" : "Whether ST elevation observed or not"
+    }, {
+      "id" : "ECG.ischema_sign",
+      "path" : "ECG.ischema_sign",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "boolean",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+      } ],
+      "short" : "Whether ischemia observed or not"
     }, {
       "id" : "ECG.inter_text",
       "path" : "ECG.inter_text",
@@ -162,115 +229,128 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Textual interpretation of the ECG in Czech"
     }, {
-      "id" : "ECG.avf",
-      "path" : "ECG.avf",
+      "id" : "ECG.lead_avf",
+      "path" : "ECG.lead_avf",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the aVF lead"
     }, {
-      "id" : "ECG.avl",
-      "path" : "ECG.avl",
+      "id" : "ECG.lead_avl",
+      "path" : "ECG.lead_avl",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the aVL lead"
     }, {
-      "id" : "ECG.avr",
-      "path" : "ECG.avr",
+      "id" : "ECG.lead_avr",
+      "path" : "ECG.lead_avr",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the aVR lead"
     }, {
-      "id" : "ECG.i",
-      "path" : "ECG.i",
+      "id" : "ECG.lead_i",
+      "path" : "ECG.lead_i",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the I lead"
     }, {
-      "id" : "ECG.ii",
-      "path" : "ECG.ii",
+      "id" : "ECG.lead_ii",
+      "path" : "ECG.lead_ii",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the II lead"
     }, {
-      "id" : "ECG.iii",
-      "path" : "ECG.iii",
+      "id" : "ECG.lead_iii",
+      "path" : "ECG.lead_iii",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the III lead"
     }, {
-      "id" : "ECG.v1",
-      "path" : "ECG.v1",
+      "id" : "ECG.lead_v1",
+      "path" : "ECG.lead_v1",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the V1 lead"
     }, {
-      "id" : "ECG.v2",
-      "path" : "ECG.v2",
+      "id" : "ECG.lead_v2",
+      "path" : "ECG.lead_v2",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the V2 lead"
     }, {
-      "id" : "ECG.v3",
-      "path" : "ECG.v3",
+      "id" : "ECG.lead_v3",
+      "path" : "ECG.lead_v3",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the V3 lead"
     }, {
-      "id" : "ECG.v4",
-      "path" : "ECG.v4",
+      "id" : "ECG.lead_v4",
+      "path" : "ECG.lead_v4",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the V4 lead"
     }, {
-      "id" : "ECG.v5",
-      "path" : "ECG.v5",
+      "id" : "ECG.lead_v5",
+      "path" : "ECG.lead_v5",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the V5 lead"
     }, {
-      "id" : "ECG.v6",
-      "path" : "ECG.v6",
+      "id" : "ECG.lead_v6",
+      "path" : "ECG.lead_v6",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Raw data for the V6 lead"
     } ]
   }
 }

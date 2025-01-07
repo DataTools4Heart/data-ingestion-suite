@@ -2,7 +2,9 @@
   "id" : "Encounter",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/encounter",
+  "version" : "latest",
   "name" : "Encounter",
+  "description" : "Represents a hospital stay of a patient.",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -22,48 +24,65 @@
     }, {
       "id" : "Encounter.id_encounter",
       "path" : "Encounter.id_encounter",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Unique identifier for the Encounter"
     }, {
-      "id" : "Encounter.subject",
-      "path" : "Encounter.subject",
+      "id" : "Encounter.id_patient",
+      "path" : "Encounter.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "definition" : "Identifier of the patient to whom this Encounter belongs to",
+      "short" : "Patient identifier"
+    }, {
+      "id" : "Encounter.id_department",
+      "path" : "Encounter.id_department",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "definition" : "Identifier of the department at which this Encounter happens.",
+      "short" : "Department identifier"
     }, {
       "id" : "Encounter.status",
       "path" : "Encounter.status",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Status of the Encounter"
     }, {
       "id" : "Encounter.class",
       "path" : "Encounter.class",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Classicifaction of the Encounter"
     }, {
       "id" : "Encounter.begin_date",
       "path" : "Encounter.begin_date",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Start date of the hospital stay"
     }, {
       "id" : "Encounter.end_date",
       "path" : "Encounter.end_date",
@@ -72,43 +91,29 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "End date of the hospital stay"
     }, {
-      "id" : "Encounter.reason_code",
-      "path" : "Encounter.reason_code",
+      "id" : "Encounter.id_condition_main_diagnosis",
+      "path" : "Encounter.id_condition_main_diagnosis",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "definition" : "Reference to the unique Condition record",
+      "short" : "Identifier of the main diagnosis"
+    }, {
+      "id" : "Encounter.discharge_code",
+      "path" : "Encounter.discharge_code",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Encounter.diagnosis",
-      "path" : "Encounter.diagnosis",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Encounter.name_english",
-      "path" : "Encounter.name_english",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Encounter.name_czech",
-      "path" : "Encounter.name_czech",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+        "code" : "code",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/code" ]
+      } ],
+      "short" : "Coded value for the discharge location/disposition"
     } ]
   }
 }

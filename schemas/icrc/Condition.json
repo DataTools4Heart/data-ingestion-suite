@@ -2,7 +2,9 @@
   "id" : "Condition",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/condition",
+  "version" : "latest",
   "name" : "Condition",
+  "description" : "Represents a diagnosis",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -20,41 +22,58 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Condition.subject",
-      "path" : "Condition.subject",
-      "min" : 0,
+      "id" : "Condition.id_condition",
+      "path" : "Condition.id_condition",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Unique identifier for this Condition"
     }, {
-      "id" : "Condition.on_set_datetime",
-      "path" : "Condition.on_set_datetime",
-      "min" : 0,
+      "id" : "Condition.id_patient",
+      "path" : "Condition.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "definition" : "Patient to whom this Condition belongs to",
+      "short" : "Patient identifier"
+    }, {
+      "id" : "Condition.id_encounter",
+      "path" : "Condition.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "definition" : "Encounter at which this Condition is recorded",
+      "short" : "Encounter identifier"
+    }, {
+      "id" : "Condition.on_set_date",
+      "path" : "Condition.on_set_date",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "definition" : "Start date of the Encounter (which created this Condition) is assigned as the onset date of the Condition",
+      "short" : "Onset date of the Condition"
     }, {
-      "id" : "Condition.code",
-      "path" : "Condition.code",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Condition.code_dot",
-      "path" : "Condition.code_dot",
+      "id" : "Condition.code_icd_10",
+      "path" : "Condition.code_icd_10",
       "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ICD-10 code of this Condition"
     }, {
       "id" : "Condition.name_english",
       "path" : "Condition.name_english",
@@ -63,7 +82,18 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Condition name in English"
+    }, {
+      "id" : "Condition.name_czech",
+      "path" : "Condition.name_czech",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Condition name in Czech"
     } ]
   }
 }

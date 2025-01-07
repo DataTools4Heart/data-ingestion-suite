@@ -2,7 +2,9 @@
   "id" : "Symptom",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/symptom",
+  "version" : "latest",
   "name" : "Symptom",
+  "description" : "Represents the smoking status addiction of a Patient",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -20,50 +22,96 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Symptom.subject",
-      "path" : "Symptom.subject",
+      "id" : "Symptom.id_symptom",
+      "path" : "Symptom.id_symptom",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Unique identifier for this symptom"
+    }, {
+      "id" : "Symptom.id_patient",
+      "path" : "Symptom.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Patient identifier"
+    }, {
+      "id" : "Symptom.id_encounter",
+      "path" : "Symptom.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Encounter identifier"
+    }, {
+      "id" : "Symptom.id_department",
+      "path" : "Symptom.id_department",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Department identifier"
     }, {
-      "id" : "Symptom.effective_date_time",
-      "path" : "Symptom.effective_date_time",
-      "min" : 0,
+      "id" : "Symptom.observation_date_time",
+      "path" : "Symptom.observation_date_time",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+      } ],
+      "short" : "Date and time for the symptom observation"
     }, {
-      "id" : "Symptom.code",
-      "path" : "Symptom.code",
-      "min" : 0,
+      "id" : "Symptom.code_snomed",
+      "path" : "Symptom.code_snomed",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "SNOMED code of this symptom"
     }, {
       "id" : "Symptom.value",
       "path" : "Symptom.value",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "boolean",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
-      } ]
+      } ],
+      "short" : "Boolean value of this symptom"
     }, {
-      "id" : "Symptom.encounter",
-      "path" : "Symptom.encounter",
+      "id" : "Symptom.category_code",
+      "path" : "Symptom.category_code",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "code",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/code" ]
+      } ],
+      "definition" : "From HL7 Observation category codes (https://hl7.org/fhir/valueset-observation-category.html)",
+      "short" : "Category code of the symptom observation"
+    }, {
+      "id" : "Symptom.category_text",
+      "path" : "Symptom.category_text",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Category text description of the symptom observation"
     } ]
   }
 }

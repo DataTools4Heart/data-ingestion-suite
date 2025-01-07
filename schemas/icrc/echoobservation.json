@@ -1,0 +1,96 @@
+{
+  "id" : "echoobservation",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/icrc/EchoObservation",
+  "version" : "latest",
+  "name" : "EchoObservation",
+  "description" : "Represent a cardiac echocardiagraphy observation",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "EchoObservation",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "EchoObservation",
+      "path" : "EchoObservation",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "EchoObservation.id_echo",
+      "path" : "EchoObservation.id_echo",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Echo identifier"
+    }, {
+      "id" : "EchoObservation.id_patient",
+      "path" : "EchoObservation.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Patient identifier"
+    }, {
+      "id" : "EchoObservation.id_encounter",
+      "path" : "EchoObservation.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Encounter idenfier"
+    }, {
+      "id" : "EchoObservation.id_department",
+      "path" : "EchoObservation.id_department",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Department identifier"
+    }, {
+      "id" : "EchoObservation.date_exec",
+      "path" : "EchoObservation.date_exec",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Date and time of the echo"
+    }, {
+      "id" : "EchoObservation.rhythm",
+      "path" : "EchoObservation.rhythm",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Cardiac rythm"
+    }, {
+      "id" : "EchoObservation.bsa",
+      "path" : "EchoObservation.bsa",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Body Surface Area"
+    } ]
+  }
+}

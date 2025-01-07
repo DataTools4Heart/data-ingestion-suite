@@ -2,7 +2,9 @@
   "id" : "Procedure",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/procedure",
+  "version" : "latest",
   "name" : "Procedure",
+  "description" : "Represents the procedures which might be linked to observations or surgeries.",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -20,41 +22,35 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Procedure.id",
-      "path" : "Procedure.id",
+      "id" : "Procedure.id_procedure",
+      "path" : "Procedure.id_procedure",
       "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Procedure identifier"
     }, {
-      "id" : "Procedure.report",
-      "path" : "Procedure.report",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Procedure.perform_dt",
-      "path" : "Procedure.perform_dt",
+      "id" : "Procedure.id_patient",
+      "path" : "Procedure.id_patient",
       "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Patient identifier"
     }, {
-      "id" : "Procedure.id_event_status",
-      "path" : "Procedure.id_event_status",
-      "min" : 0,
+      "id" : "Procedure.id_encounter",
+      "path" : "Procedure.id_encounter",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Encounter identifier"
     }, {
       "id" : "Procedure.id_department",
       "path" : "Procedure.id_department",
@@ -63,61 +59,18 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Department identifier"
     }, {
-      "id" : "Procedure.id_surgery",
-      "path" : "Procedure.id_surgery",
-      "min" : 0,
+      "id" : "Procedure.perform_dt",
+      "path" : "Procedure.perform_dt",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Procedure.id_observation",
-      "path" : "Procedure.id_observation",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Procedure.outcome",
-      "path" : "Procedure.outcome",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Procedure.code_icd_10",
-      "path" : "Procedure.code_icd_10",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Procedure.id_icd_10_pcs",
-      "path" : "Procedure.id_icd_10_pcs",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Procedure.id_procedure_dict",
-      "path" : "Procedure.id_procedure_dict",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ],
+      "short" : "Date and time of the procedure"
     }, {
       "id" : "Procedure.status",
       "path" : "Procedure.status",
@@ -126,34 +79,68 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Status of the procedure"
     }, {
-      "id" : "Procedure.code",
-      "path" : "Procedure.code",
+      "id" : "Procedure.code_local",
+      "path" : "Procedure.code_local",
       "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Local code of the procedure"
     }, {
-      "id" : "Procedure.short_descr",
-      "path" : "Procedure.short_descr",
+      "id" : "Procedure.name_local",
+      "path" : "Procedure.name_local",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Local name of the procedure"
+    }, {
+      "id" : "Procedure.code_icd10pcs",
+      "path" : "Procedure.code_icd10pcs",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "ICD10-PCS code of the procedure"
     }, {
-      "id" : "Procedure.id_patient",
-      "path" : "Procedure.id_patient",
-      "min" : 1,
+      "id" : "Procedure.descr_icd10pcs",
+      "path" : "Procedure.descr_icd10pcs",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "ICD10-PCS description of the procedure"
+    }, {
+      "id" : "Procedure.outcome_snomed_code",
+      "path" : "Procedure.outcome_snomed_code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "SNOMED code of the outcome of the procedure"
+    }, {
+      "id" : "Procedure.outcome_snomed_descr",
+      "path" : "Procedure.outcome_snomed_descr",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "SNOMED description of the outcome of the procedure"
     } ]
   }
 }

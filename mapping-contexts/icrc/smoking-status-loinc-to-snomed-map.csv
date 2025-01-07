@@ -1,9 +1,9 @@
-source_code,target_code,target_display
-"LA18976-3","449868002","Current every day smoker"
-"LA18977-1","428041000124106","Current some day smoker"
-"LA15920-4","8517006","Former smoker"
-"LA18978-9","266919005","Never smoker"
-"LA18979-7","77176002","Smoker, current status unknown"
-"LA18980-5","266927001","Unknown if ever smoked"
-"LA18981-3","428071000124103","Heavy tobacco smoker"
-"LA18982-1","428061000124105","Light tobacco smoker"
+source_code,source_system,source_display,target_code,target_system,target_display
+"LA18976-3","http://loinc.org","Current every day smoker","449868002","http://snomed.info/sct","Smokes tobacco daily"
+"LA18977-1","http://loinc.org","Current some day smoker","428041000124106","http://snomed.info/sct","Occasional tobacco smoker"
+"LA15920-4","http://loinc.org","Former smoker","8517006","http://snomed.info/sct"," Ex-smoker"
+"LA18978-9","http://loinc.org","Never smoker","266919005","http://snomed.info/sct","Never smoked tobacco"
+"LA18979-7","http://loinc.org","Smoker, current status unknown","77176002","http://snomed.info/sct","Smoker"
+"LA18980-5","http://loinc.org","Unknown if ever smoked","266927001","http://snomed.info/sct","Tobacco smoking consumption unknown"
+"LA18981-3","http://loinc.org","Heavy tobacco smoker","230063004","http://snomed.info/sct","Heavy cigarette smoker"
+"LA18982-1","http://loinc.org","Light tobacco smoker","230060001","http://snomed.info/sct","Light cigarette smoker"

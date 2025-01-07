@@ -1,0 +1,107 @@
+{
+  "id" : "echomeasurement",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/icrc/EchoMeasurement",
+  "version" : "latest",
+  "name" : "EchoMeasurement",
+  "description" : "Represents individual measurements (e.g., LVEF, LVEDD etc.) within a cardiac echo observation",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "EchoMeasurement",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "EchoMeasurement",
+      "path" : "EchoMeasurement",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "EchoMeasurement.id",
+      "path" : "EchoMeasurement.id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Unique identifier for the measurement"
+    }, {
+      "id" : "EchoMeasurement.value",
+      "path" : "EchoMeasurement.value",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Value of the measurement"
+    }, {
+      "id" : "EchoMeasurement.id_header",
+      "path" : "EchoMeasurement.id_header",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "short" : "Identifier of the echo observation"
+    }, {
+      "id" : "EchoMeasurement.id_dict",
+      "path" : "EchoMeasurement.id_dict",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Identifier of the dictionary element"
+    }, {
+      "id" : "EchoMeasurement.code",
+      "path" : "EchoMeasurement.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "LOINC code of the measurement"
+    }, {
+      "id" : "EchoMeasurement.shortcut",
+      "path" : "EchoMeasurement.shortcut",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Populated when the measurement does not have a corresponding LOINC code",
+      "short" : "A short name for the measurement"
+    }, {
+      "id" : "EchoMeasurement.descr",
+      "path" : "EchoMeasurement.descr",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Description of the measurement"
+    }, {
+      "id" : "EchoMeasurement.unit",
+      "path" : "EchoMeasurement.unit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Unit of the measured value"
+    } ]
+  }
+}

@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
   "name" : "symptom-mapping",
   "title" : "Mapping of icrc symptoms to DT4H Symptom FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/icrc/symptom",
@@ -14,43 +15,49 @@
       "url" : "$CONTEXT_REPO/icrc/symptoms-concept-map.csv"
     }
   },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "snomedConcept",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%smyptomsConceptMap, code_snomed.toString())"
+  } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "snomedCodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "code_snomed.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "category" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "survey"
-          } ]
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://snomed.info/sct",
-            "code" : "{{code.toString()}}",
-            "display" : "{{ mpp:getConcept(%smyptomsConceptMap, code.toString(), 'target_display') )}}",
-            "@sliceName" : "snomedCode"
-          } ]
-        },
-        "effectiveDateTime" : "{{effective_date_time.toString().replace(' ','T') + 'Z'}}",
-        "valueBoolean" : "{{value}}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
-        "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', encounter.toString() + code.toString() + '_symptom')}}",
+        "id" : "{{mpp:getHashedId('Observation', id_symptom.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom" ]
         },
-        "resourceType" : "Observation"
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "{{iif(category_code.exists(), category_code, 'survey')}}",
+            "display" : "{{iif(category_text.exists(), category_text, 'Survey')}}"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ "{{utl:createFhirCoding(%snomedConcept.source_system, %snomedConcept.source_code, %snomedConcept.source_display)}}" ]
+        },
+        "effectiveDateTime" : "{{observation_date_time.toString().replace(' ','T') + 'Z'}}",
+        "valueBoolean" : "{{value}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+        "performer" : [ "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}" ],
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "use" : "official",
+          "value" : "{{id_symptom.toString()}}"
+        } ],
+        "status" : "final"
       }
-    },
-    "precondition" : {
-      "name" : "snomedCodeExists",
-      "language" : "text/fhirpath",
-      "expression" : "code.exists()"
     }
   } ]
 }

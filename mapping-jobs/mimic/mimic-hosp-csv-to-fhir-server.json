@@ -12,9 +12,13 @@
     }
   },
   "sinkSettings" : {
-    "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "${FHIR_REPO_URL}",
-    "returnMinimal" : true
+    "jsonClass" : "FileSystemSinkSettings",
+    "path" : "/usr/local/tofhir/data/mimic-iv-3.1/output",
+    "contentType" : "ndjson",
+    "numOfPartitions" : 1,
+    "options" : { },
+    "partitionByResourceType" : false,
+    "partitioningColumns" : { }
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",

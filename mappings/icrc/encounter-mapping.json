@@ -3,19 +3,20 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
   "name" : "encounter-mapping",
   "title" : "Mapping of icrc encounter data to DT4H-Encounter FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/icrc/encounter",
     "joinOn" : [ ]
   } ],
   "context" : {
-    "encounterStatusConceptMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/icrc/encounter-status-concept-map.csv"
-    },
     "encounterClassConceptMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/icrc/encounter-class-codes.csv"
+    },
+    "dischargeLocationsConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/icrc/encounter-discharge-locations.csv"
     }
   },
   "variable" : [ ],
@@ -24,41 +25,53 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "class" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-            "code" : "{{class}}",
-            "display" : "{{? mpp:getConcept(%encounterClassConceptMap, class, 'target_display')}}"
-          } ]
-        } ],
-        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-        "actualPeriod" : {
-          "start" : "{{begin_date}}",
-          "end" : "{{end_date}}"
-        },
-        "identifier" : [ {
-          "use" : "official",
-          "system" : "{{%sourceSystem.sourceUri}}",
-          "value" : "{{id_encounter.toString()}}"
-        } ],
-        "status" : "{{mpp:getConcept(%encounterStatusConceptMap, status, 'target_code')}}",
-        "reason" : [ {
-          "value" : [ {
-            "concept" : {
-              "coding" : [ {
-                "system" : "http://hl7.org/fhir/sid/icd-10",
-                "code" : "{{ reason_code}}",
-                "display" : "{{ iif(name_english.exists(), name_english, name_czech) }}"
-              } ]
-            }
-          } ]
-        } ],
         "id" : "{{mpp:getHashedId('Encounter', id_encounter.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },
-        "resourceType" : "Encounter"
+        "resourceType" : "Encounter",
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "{{class}}",
+            "display" : "{{? mpp:getConcept(%encounterClassConceptMap, class, 'display')}}"
+          } ]
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "actualPeriod" : {
+          "start" : "{{begin_date}}",
+          "end" : "{{? end_date}}"
+        },
+        "reason" : [ {
+          "use" : [ {
+            "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
+          } ],
+          "value" : [ {
+            "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', id_condition_main_diagnosis.toString())}}"
+          } ]
+        } ],
+        "admission" : {
+          "dischargeDisposition" : {
+            "{{#dislc}}" : "{{mpp:getConcept(%dischargeLocationsConceptMap, discharge_ref_code)}}",
+            "{{?}}" : {
+              "coding" : [ "{{utl:createFhirCoding(%dislc.target_system, %dislc.target_code, %dislc.target_display)}}", "{{utl:createFhirCoding(%dislc.source_system, %dislc.source_code, %dislc.source_display_en)}}" ],
+              "text" : "{{mpp:getConcept(%dischargeLocationsConceptMap, discharge_ref_code, 'source_display_cz')}}"
+            }
+          }
+        },
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "use" : "official",
+          "value" : "{{id_encounter.toString()}}"
+        } ],
+        "status" : "{{status}}",
+        "location" : {
+          "{{#locationRef}}" : "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}",
+          "{{*}}" : {
+            "location" : "{{%locationRef}}"
+          }
+        }
       }
     }
   } ]

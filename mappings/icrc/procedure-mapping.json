@@ -2,7 +2,8 @@
   "id" : "procedure-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
   "name" : "procedure-mapping",
-  "title" : "Mapping of the icrc patient.procedure_profile view to DT4H Procedure FHIR profile",
+  "title" : "Mapping of the ICRC procedures based on observations",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/icrc/procedure",
@@ -11,10 +12,21 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "codeMustExist",
+      "language" : "text/fhirpath",
+      "expression" : "code_icd10pcs.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Procedure', id_procedure.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+        },
+        "resourceType" : "Procedure",
         "category" : [ {
           "coding" : [ {
             "system" : "http://snomed.info/sct",
@@ -25,29 +37,33 @@
         "code" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
-            "code" : "{{code}}",
-            "display" : "{{ short_descr }}",
+            "code" : "{{code_icd10pcs.utl:trim()}}",
+            "display" : "{{descr_icd10pcs.utl:trim()}}",
             "@sliceName" : "icdCode"
+          }, {
+            "system" : "https://datatools4heart.eu/icrc/Procedure",
+            "code" : "{{code_local}}",
+            "display" : "{{name_local}}"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
         "occurrenceDateTime" : "{{perform_dt.toString().replace(' ','T') + 'Z'}}",
         "reason" : [ {
           "reference" : "{{? iif(id_observation.exists(), mpp:createFhirReferenceWithHashedId('Observation', id_observation.toString()))}}"
         } ],
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "use" : "official",
+          "value" : "{{id_procedure.toString()}}"
+        } ],
         "status" : "{{status}}",
-        "id" : "{{mpp:getHashedId('Procedure', id.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
-        },
-        "resourceType" : "Procedure"
+        "location" : "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}",
+        "outcome" : {
+          "{{#outcomeAvailable}}" : "{{outcome_snomed_code}}",
+          "{{?}}" : "{{utl:createFhirCodeableConcept('http://snomed.info/sct', outcome_snomed_code, outcome_snomed_descr)}}"
+        }
       }
-    },
-    "precondition" : {
-      "name" : "codeMustExist",
-      "language" : "text/fhirpath",
-      "expression" : "code.exists()"
     }
   } ]
 }

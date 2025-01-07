@@ -2,7 +2,9 @@
   "id" : "MedicationAdministration",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/medicationadministration",
+  "version" : "latest",
   "name" : "MedicationAdministration",
+  "description" : "Represents the medication administration records within ICRC",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -20,13 +22,67 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "MedicationAdministration.subject",
-      "path" : "MedicationAdministration.subject",
+      "id" : "MedicationAdministration.id_medication",
+      "path" : "MedicationAdministration.id_medication",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
+    }, {
+      "id" : "MedicationAdministration.id_patient",
+      "path" : "MedicationAdministration.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
+    }, {
+      "id" : "MedicationAdministration.id_encounter",
+      "path" : "MedicationAdministration.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
+    }, {
+      "id" : "MedicationAdministration.code_atc",
+      "path" : "MedicationAdministration.code_atc",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationAdministration.name_en",
+      "path" : "MedicationAdministration.name_en",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationAdministration.dosage",
+      "path" : "MedicationAdministration.dosage",
+      "min" : 0,
+      "max" : "0",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationAdministration.unit",
+      "path" : "MedicationAdministration.unit",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
       "id" : "MedicationAdministration.date_from",
@@ -45,42 +101,6 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
-    }, {
-      "id" : "MedicationAdministration.code_atc",
-      "path" : "MedicationAdministration.code_atc",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "MedicationAdministration.dosage",
-      "path" : "MedicationAdministration.dosage",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
-    }, {
-      "id" : "MedicationAdministration.encounter",
-      "path" : "MedicationAdministration.encounter",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "MedicationAdministration.name_en",
-      "path" : "MedicationAdministration.name_en",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     } ]
   }

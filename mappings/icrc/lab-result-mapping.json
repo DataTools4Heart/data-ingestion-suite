@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
   "name" : "lab-result-mapping",
   "title" : "Mapping of icrc lab results to DT4H Lab Result FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/icrc/labresult",
@@ -20,10 +21,22 @@
   },
   "variable" : [ ],
   "mapping" : [ {
+    "description" : "Lab results mapping; exedcuted only if there is a LOINC code associated with the lab test.",
+    "precondition" : {
+      "name" : "codeExistsInDT4HLabResultCodes",
+      "language" : "text/fhirpath",
+      "expression" : "mpp:getConcept(%labResultCodes, code_loinc).exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', id_lab.toString()}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation",
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -35,27 +48,26 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{code}}",
-            "display" : "{{ mpp:getConcept(%labResultCodes, code, 'source_display') }}",
+            "code" : "{{code_loinc}}",
+            "display" : "{{mpp:getConcept(%labResultCodes, code_loinc, 'source_display')}}",
             "@sliceName" : "loincCode"
+          }, {
+            "system" : "{{%sourceSystem.sourceUri & '/lab-result'}}",
+            "code" : "{{code_his}}",
+            "display" : "{{lab_name_his}}"
           } ]
         },
         "effectiveDateTime" : "{{effective_date}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit, 'http://unitsofmeasure.org', code))}}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
-        "id" : "{{mpp:getHashedId('Observation', subject.toString() + encounter.toString() + code.toString() + effective_date.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
-        },
-        "resourceType" : "Observation"
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, code_loinc, value_result, value_unit).nav:orElse(utl:createFhirQuantity(value_result, value_unit, 'http://unitsofmeasure.org', code_loinc))}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+        "performer" : [ "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}" ],
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "use" : "official",
+          "value" : "{{id_lab.toString()}}"
+        } ]
       }
-    },
-    "precondition" : {
-      "name" : "codeExistsInDT4HLabResultCodes",
-      "language" : "text/fhirpath",
-      "expression" : "mpp:getConcept(%labResultCodes, code).exists()"
     }
   } ]
 }

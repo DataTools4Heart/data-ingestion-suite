@@ -2,7 +2,9 @@
   "id" : "SmokingStatus",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/smokingstatus",
+  "version" : "latest",
   "name" : "SmokingStatus",
+  "description" : "Represents the smoking status addiction of a Patient",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -20,23 +22,36 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "SmokingStatus.id_patient",
-      "path" : "SmokingStatus.id_patient",
-      "min" : 0,
+      "id" : "SmokingStatus.id",
+      "path" : "SmokingStatus.id",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Unique identifier for this addiction"
+    }, {
+      "id" : "SmokingStatus.id_patient",
+      "path" : "SmokingStatus.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "definition" : "The patient to whom this addiction belongs to",
+      "short" : "Patient identifier"
     }, {
       "id" : "SmokingStatus.date_from",
       "path" : "SmokingStatus.date_from",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Start date of the addiction"
     }, {
       "id" : "SmokingStatus.date_to",
       "path" : "SmokingStatus.date_to",
@@ -45,25 +60,18 @@
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "End date of the addiction"
     }, {
       "id" : "SmokingStatus.code_loinc",
       "path" : "SmokingStatus.code_loinc",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "SmokingStatus.id_type",
-      "path" : "SmokingStatus.id_type",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+        "code" : "code",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/code" ]
+      } ],
+      "short" : "LOINC code of the addiction observation"
     } ]
   }
 }

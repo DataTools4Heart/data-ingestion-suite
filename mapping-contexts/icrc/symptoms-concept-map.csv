@@ -1,30 +1,30 @@
-source_code,target_display
-267039000,Ankle swelling
-389026000,Ascites
-267036007,Breathlessness
-59495006,Cardiac murmur
-29857009,Chest pain
-90480005,Cheyne-stokes respiration
-35489007,Depression
-404640003,Dizziness
-22447003,Elevated jugular venous pressure
-84229001,Fatigue
-72196001,Hepatojugular reflux
-80515008,Hepatomegaly
-361137007,Irregular pulse
-79890006,Loss of appetite
-161947006,Nocturnal cough
-83128009,Oliguria
-62744007,Orthopnoea
-80313002,Palpitations
-55442000,Paroxysmal nocturnal dyspnea
-271809000,Peripheral edema
-60046008,Pleural effusion
-48409008,Pulmonary crepitations
-267044007,Reduced exercise tolerance
-272030005,Syncope
-3424008,Tachycardia
-271823003,Tachypnoea
-1285004,Third heart sound
-8943002,Weight gain
-89362005,Weight loss
+source_code,source_system,source_display,category_code,category_display
+"267039000","http://snomed.info/sct","Ankle swelling","exam","Exam"
+"389026000","http://snomed.info/sct","Ascites","exam","Exam"
+"267036007","http://snomed.info/sct","Breathlessness","survey","Survey"
+"59495006","http://snomed.info/sct","Cardiac murmur","exam","Exam"
+"29857009","http://snomed.info/sct","Chest pain","survey","Survey"
+"90480005","http://snomed.info/sct","Cheyne-stokes respiration","exam","Exam"
+"35489007","http://snomed.info/sct","Depression","survey","Survey"
+"404640003","http://snomed.info/sct","Dizziness","survey","Survey"
+"22447003","http://snomed.info/sct","Elevated jugular venous pressure","exam","Exam"
+"84229001","http://snomed.info/sct","Fatigue","survey","Survey"
+"72196001","http://snomed.info/sct","Hepatojugular reflux","exam","Exam"
+"80515008","http://snomed.info/sct","Hepatomegaly","exam","Exam"
+"361137007","http://snomed.info/sct","Irregular pulse","vital-signs","Vital Signs"
+"79890006","http://snomed.info/sct","Loss of appetite","survey","Survey"
+"161947006","http://snomed.info/sct","Nocturnal cough","survey","Survey"
+"83128009","http://snomed.info/sct","Oliguria","exam","Exam"
+"62744007","http://snomed.info/sct","Orthopnoea","survey","Survey"
+"80313002","http://snomed.info/sct","Palpitations","survey","Survey"
+"55442000","http://snomed.info/sct","Paroxysmal nocturnal dyspnea","survey","Survey"
+"271809000","http://snomed.info/sct","Peripheral edema","exam","Exam"
+"60046008","http://snomed.info/sct","Pleural effusion","imaging","Imaging"
+"48409008","http://snomed.info/sct","Pulmonary crepitations","exam","Exam"
+"267044007","http://snomed.info/sct","Reduced exercise tolerance","survey","Survey"
+"272030005","http://snomed.info/sct","Syncope","survey","Survey"
+"3424008","http://snomed.info/sct","Tachycardia","vital-signs","Vital Signs"
+"271823003","http://snomed.info/sct","Tachypnoea","vital-signs","Vital Signs"
+"1285004","http://snomed.info/sct","Third heart sound","exam","Exam"
+"8943002","http://snomed.info/sct","Weight gain","vital-signs","Vital Signs"
+"89362005","http://snomed.info/sct","Weight loss","vital-signs","Vital Signs"

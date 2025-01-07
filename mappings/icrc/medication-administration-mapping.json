@@ -1,55 +1,56 @@
 {
-  "id": "medication-administration-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
-  "name": "medication-administration- mapping",
-  "title": "Mapping of icrc medication administration data to DT4H MedicationAdministration FHIR profile",
-  "source": [{
-    "alias": "source",
-    "url": "https://datatools4heart.eu/fhir/schemas/icrc/medicationadministration"
-  }],
-  "mapping": [
-    {
-      "precondition": {
-        "name": "encounterExists",
-        "language": "text/fhirpath",
-        "expression": "encounter.exists()"
-      },
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "MedicationAdministration",
-          "id": "{{mpp:getHashedId('MedicationAdministration', subject.toString() + encounter.toString() + code_atc.toString() + date_from.toString())}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "{{iif(date_to.exists(), 'completed', 'in-progress')}}",
-          "medication" : {
-            "concept" : {
-              "coding" : [ {
-                "system": "http://www.whocc.no/atc",
-                "code": "{{code_atc}}",
-                "display": "{{? name_en}}",
-                "@sliceName" : "atcCode"
-              } ]
-            }
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-          "occurencePeriod": {
-            "start": "{{date_from}}",
-            "end": "{{? date_to}}"
-          },
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounter.toString())}}",
-          "dosage": {
-            "dose": {
-              "value": "{{dosage}}"
-            }
+  "id" : "medication-administration-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
+  "name" : "medication-administration- mapping",
+  "title" : "Mapping of icrc medication administration data to DT4H MedicationAdministration FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/medicationadministration",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationAdministration', id_medication.toString()}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{code_atc}}",
+              "display" : "{{? name_en}}",
+              "@sliceName" : "atcCode"
+            } ]
           }
-        }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+        "occurencePeriod" : {
+          "start" : "{{date_from}}",
+          "end" : "{{? date_to}}"
+        },
+        "dosage" : {
+          "dose" : {
+            "value" : "{{dosage}}",
+            "unit" : "{{? unit}}"
+          }
+        },
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "value" : "{{id_medication.toString()}}",
+          "use" : "official"
+        } ],
+        "status" : "{{iif(date_to.exists(), 'completed', 'in-progress')}}"
       }
     }
-  ]
+  } ]
 }

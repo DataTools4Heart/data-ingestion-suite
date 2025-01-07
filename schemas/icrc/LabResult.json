@@ -2,7 +2,9 @@
   "id" : "LabResult",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/labresult",
+  "version" : "latest",
   "name" : "LabResult",
+  "description" : "Represents the lab results from ICRC database.",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -20,59 +22,107 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "LabResult.subject",
-      "path" : "LabResult.subject",
+      "id" : "LabResult.id_lab",
+      "path" : "LabResult.id_lab",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Lab result identifier"
+    }, {
+      "id" : "LabResult.id_patient",
+      "path" : "LabResult.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Patient identifier"
+    }, {
+      "id" : "LabResult.id_encounter",
+      "path" : "LabResult.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Encounter identifier"
+    }, {
+      "id" : "LabResult.id_department",
+      "path" : "LabResult.id_department",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "LabResult.code",
-      "path" : "LabResult.code",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "LabResult.encounter",
-      "path" : "LabResult.encounter",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Department identifier"
     }, {
       "id" : "LabResult.effective_date",
       "path" : "LabResult.effective_date",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
+      } ],
+      "short" : "Execution date of the lab result"
     }, {
-      "id" : "LabResult.value",
-      "path" : "LabResult.value",
-      "min" : 0,
+      "id" : "LabResult.code_his",
+      "path" : "LabResult.code_his",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Code of the lab test coming from the Hospital Information System",
+      "short" : "Local code of the lab test"
     }, {
-      "id" : "LabResult.unit",
-      "path" : "LabResult.unit",
+      "id" : "LabResult.lab_name_his",
+      "path" : "LabResult.lab_name_his",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Name in Czech of the lab test",
+      "short" : "Name of the lab test"
+    }, {
+      "id" : "LabResult.code_loinc",
+      "path" : "LabResult.code_loinc",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "LOINC code of the lab test"
+    }, {
+      "id" : "LabResult.value_result",
+      "path" : "LabResult.value_result",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Numerical value of the lab result"
+    }, {
+      "id" : "LabResult.value_unit",
+      "path" : "LabResult.value_unit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Unit of the lab result"
     } ]
   }
 }

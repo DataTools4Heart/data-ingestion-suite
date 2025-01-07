@@ -1,68 +1,70 @@
 {
-  "id": "smoking-status-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
-  "name": "smoking-status-mapping",
-  "title": "Mapping of icrc smoking status to DT4H Smoking Status FHIR profile",
-  "source": [
-    {
-      "alias": "source",
-      "url": "https://datatools4heart.eu/fhir/schemas/icrc/smokingstatus"
-    }
-  ],
-  "context": {
-    "smokingStatusConceptMap": {
-      "category": "concept-map",
-      "url": "$CONTEXT_REPO/icrc/smoking-status-loinc-to-snomed-map.csv"
+  "id" : "smoking-status-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
+  "name" : "smoking-status-mapping",
+  "title" : "Mapping of icrc smoking status to DT4H Smoking Status FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/smokingstatus",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "smokingStatusConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/icrc/smoking-status-loinc-to-snomed-map.csv"
     }
   },
-  "mapping": [
-    {
-      "expression": {
-        "name": "result",
-        "language": "application/fhir-template+json",
-        "value": {
-          "resourceType": "Observation",
-          "id": "{{mpp:getHashedId('Observation', id_patient.toString() + date_from.toString() + code_loinc.toString())}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus"
-            ],
-            "source": "{{%sourceSystem.sourceUri}}"
-          },
-          "status": "final",
-          "category" : [{
-            "coding": [{
-              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-              "code": "social-history",
-              "display": "Social History"
-            }]
-          }], 
-          "code": {
-            "coding": [
-              {
-                "system": "http://loinc.org",
-                "code": "72166-2",
-                "display": "Tobacco smoking status",
-                "@sliceName": "loincCode"
-              }
-            ]
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-          "effectivePeriod": {
-            "start": "{{date_from}}",
-            "end": "{{? date_to}}"
-          },
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://snomed.info/sct",
-                "code": "{{mpp:getConcept(%smokingStatusConceptMap, code_loinc, 'target_code')}}",
-                "display": "{{mpp:getConcept(%smokingStatusConceptMap, code_loinc, 'target_display')}}"
-              }
-            ]
+  "variable" : [ ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "valueExists",
+      "language" : "text/fhirpath",
+      "expression" : "code_loinc.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', id.toString()}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "social-history",
+            "display" : "Social History"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "72166-2",
+            "display" : "Tobacco smoking status",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "valueCodeableConcept" : {
+          "{{#ssc}}" : "{{mpp:getConcept(%smokingStatusConceptMap, code_loinc)}}",
+          "{{?}}" : {
+            "coding" : [ "{{utl:createFhirCoding(%ssc.target_system, %ssc.target_code, %ssc.target_display)}}", "{{utl:createFhirCoding(%ssc.source_system, %ssc.source_code, %ssc.source_display)}}" ]
           }
-        }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "effectivePeriod" : {
+          "start" : "{{date_from}}",
+          "end" : "{{? date_to}}"
+        },
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "use" : "official",
+          "value" : "{{id.toString()}}"
+        } ],
+        "status" : "final"
       }
     }
-  ]
+  } ]
 }

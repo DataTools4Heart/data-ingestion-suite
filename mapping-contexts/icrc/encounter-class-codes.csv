@@ -1,12 +1,12 @@
-source_code,target_display,code_system
-AMB,ambulatory,http://terminology.hl7.org/CodeSystem/v3-ActCode
-EMER,emergency,http://terminology.hl7.org/CodeSystem/v3-ActCode
-FLD,field,http://terminology.hl7.org/CodeSystem/v3-ActCode
-HH,home health,http://terminology.hl7.org/CodeSystem/v3-ActCode
-IMP,inpatient encounter,http://terminology.hl7.org/CodeSystem/v3-ActCode
-ACUTE,inpatient acute,http://terminology.hl7.org/CodeSystem/v3-ActCode
-NONAC,inpatient non-acute,http://terminology.hl7.org/CodeSystem/v3-ActCode
-OBSENC,observation encounter,http://terminology.hl7.org/CodeSystem/v3-ActCode
-PRENC,pre-admission,http://terminology.hl7.org/CodeSystem/v3-ActCode
-SS,short stay,http://terminology.hl7.org/CodeSystem/v3-ActCode
-VR,virtual,http://terminology.hl7.org/CodeSystem/v3-ActCode
+source_code,code_system,display
+"AMB","http://terminology.hl7.org/CodeSystem/v3-ActCode","ambulatory"
+"EMER","http://terminology.hl7.org/CodeSystem/v3-ActCode","emergency"
+"FLD","http://terminology.hl7.org/CodeSystem/v3-ActCode","field"
+"HH","http://terminology.hl7.org/CodeSystem/v3-ActCode","home health"
+"IMP","http://terminology.hl7.org/CodeSystem/v3-ActCode","inpatient encounter"
+"ACUTE","http://terminology.hl7.org/CodeSystem/v3-ActCode","inpatient acute"
+"NONAC","http://terminology.hl7.org/CodeSystem/v3-ActCode","inpatient non-acute"
+"OBSENC","http://terminology.hl7.org/CodeSystem/v3-ActCode","observation encounter"
+"PRENC","http://terminology.hl7.org/CodeSystem/v3-ActCode","pre-admission"
+"SS","http://terminology.hl7.org/CodeSystem/v3-ActCode","short stay"
+"VR","http://terminology.hl7.org/CodeSystem/v3-ActCode","virtual"

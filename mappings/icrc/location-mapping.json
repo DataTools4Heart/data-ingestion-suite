@@ -1,0 +1,35 @@
+{
+  "id" : "location-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/location-mapping",
+  "name" : "location-mapping",
+  "title" : "Mapping of ICRC department data to the DT4H Organization FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "location",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/Location",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Location', id.toString()}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Location" ]
+        },
+        "resourceType" : "Location",
+        "name" : "{{nis_name}}",
+        "managingOrganization" : "{{? mpp:createFhirReferenceWithHashedId('Organization', id_clinic.toString())}}",
+        "identifier" : [ {
+          "use" : "official",
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "value" : "{{id.toString()}}"
+        } ],
+        "status" : "{{iif(nis_active = 0, 'active', 'inactive')}}"
+      }
+    }
+  } ]
+}

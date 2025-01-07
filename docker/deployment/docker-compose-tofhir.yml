@@ -1,6 +1,6 @@
 services:
   tofhir-server:
-    image: srdc/tofhir-server:latest
+    image: srdc/tofhir-server:log-test
     container_name: dt4h-tofhir-server
     hostname: tofhir
     environment:
@@ -10,9 +10,10 @@ services:
       - DATA_FOLDER_PATH=/usr/local/tofhir/data/mimic-iv-3.1
       - FLUENT_HOST=fluentd
       - CONTEXT_PATH=conf
-      - JAVA_OPTIONS=-Xms256m -Xmx8g
+      - JAVA_OPTIONS=-Xms80g -Xmx80g -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35
     ports:
       - "6085:8085"
+      - "4040:4040"
     networks:
       - tofhir-network
     volumes:

@@ -2,6 +2,7 @@
   "id" : "VitalSign",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/vitalsign",
+  "version" : "latest",
   "name" : "VitalSign",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
@@ -20,14 +21,45 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSign.subject",
-      "path" : "VitalSign.subject",
+      "id" : "VitalSign.id_vital_sign",
+      "path" : "VitalSign.id_vital_sign",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Vital sign identifier"
+    }, {
+      "id" : "VitalSign.id_patient",
+      "path" : "VitalSign.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Patient identifier"
+    }, {
+      "id" : "VitalSign.id_encounter",
+      "path" : "VitalSign.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Encounter identifier"
+    }, {
+      "id" : "VitalSign.id_department",
+      "path" : "VitalSign.id_department",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Department identifier"
     }, {
       "id" : "VitalSign.efective_datetime",
       "path" : "VitalSign.efective_datetime",
@@ -36,16 +68,8 @@
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ]
-    }, {
-      "id" : "VitalSign.encounter",
-      "path" : "VitalSign.encounter",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Date and time of the vital sign measurement"
     }, {
       "id" : "VitalSign.weight",
       "path" : "VitalSign.weight",
@@ -54,7 +78,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Body weight"
     }, {
       "id" : "VitalSign.height",
       "path" : "VitalSign.height",
@@ -63,7 +88,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Body height"
     }, {
       "id" : "VitalSign.systolic_pressure",
       "path" : "VitalSign.systolic_pressure",
@@ -72,7 +98,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Systolic blood pressure"
     }, {
       "id" : "VitalSign.diastolic_pressure",
       "path" : "VitalSign.diastolic_pressure",
@@ -81,16 +108,8 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "VitalSign.spo2",
-      "path" : "VitalSign.spo2",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Diastolic blood pressure"
     }, {
       "id" : "VitalSign.heart_rate",
       "path" : "VitalSign.heart_rate",
@@ -99,7 +118,48 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
+      } ],
+      "short" : "Heart rate"
+    }, {
+      "id" : "VitalSign.respiration",
+      "path" : "VitalSign.respiration",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Respiration rate"
+    }, {
+      "id" : "VitalSign.spo2",
+      "path" : "VitalSign.spo2",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Oxygen saturation"
+    }, {
+      "id" : "VitalSign.body_temperature",
+      "path" : "VitalSign.body_temperature",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Body temperature"
+    }, {
+      "id" : "VitalSign.nyha",
+      "path" : "VitalSign.nyha",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "NYHA assessment value"
     } ]
   }
 }
