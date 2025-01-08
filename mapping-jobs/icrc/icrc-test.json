@@ -1,15 +1,15 @@
 {
   "id" : "icrc-test",
   "name" : "icrc-test",
-  "description" : "Links in the element descriptions in the mapping screen, tree element descriptions, can be clicable in a new tab.![image](/uploads/f9d507235279d61790a074dcb595fa88/image.png){width=709 height=202}",
+  "description" : "",
   "sourceSettings" : {
     "icrc-data" : {
       "jsonClass" : "SqlSourceSettings",
       "name" : "icrc-data",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/icrc-data",
       "databaseUrl" : "jdbc:postgresql://10.34.3.67:5432/dt4h",
-      "username" : "dt4h",
-      "password" : "Bck*45Cn"
+      "username" : "postgres",
+      "password" : "password123"
     }
   },
   "sinkSettings" : {
