@@ -1,7 +1,7 @@
 {
   "id" : "icrc-deploy",
   "name" : "icrc-deploy",
-  "description" : "",
+  "description" : "Mapping job for ICRC deployment.",
   "sourceSettings" : {
     "icrc-data" : {
       "jsonClass" : "SqlSourceSettings",
@@ -23,7 +23,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select cp.*, icd10.name_english from dt4h.condition_profile cp left join standard_dict.icd_10 icd10 on cp.code = icd10.code",
+        "query" : "SELECT c.id           AS id_condition,\n       e.id_patient   AS id_patient,\n       e.id           AS id_encounter,\n       e.begin_date   AS on_set_date,\n       i.code_dot     AS code_icd_10,\n       i.name_english AS name_english,\n       i.name_czech   AS name_czech\nFROM patient.condition c\n         JOIN patient.encounter e ON c.id_encounter = e.id\n         JOIN standard_dict.icd_10 i ON c.code_icd_10::text = i.code::text",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -34,7 +34,7 @@
     "sourceBinding" : {
       "ecg" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT ecg.id, e.id_patient, e.id as encounter_id, exec_date, sample_freq, num_qrs, pr_duration, qrs_duration, qt, qtc, qtb, qtf, p_axis, qrs_axis, t_axis, inter_text, aVF, aVL, aVR, I, II, III, V1, V2, V3, V4, V5, V6 \nFROM ecg.ecg ecg INNER JOIN (\n\tSELECT id_ecg, raw_data[1] AS aVF, raw_data[2] AS aVL, raw_data[3] AS aVR, raw_data[4] AS I, raw_data[5] AS II, raw_data[6] AS III, raw_data[7] AS V1, raw_data[8] AS V2, raw_data[9] AS V3, raw_data[10] AS V4, raw_data[11] AS V5, raw_data[12] AS V6 \n\tfrom (select id_ecg, array_agg(c_data order by c_name) AS raw_data from ecg.mortara_typical_data mcd group by id_ecg) AS mcd_agg\n) AS mcd ON ecg.id = mcd.id_ecg \nINNER JOIN patient.observation o ON ecg.id_observation = o.id \nINNER JOIN patient.encounter e ON e.id = o.id_encounter\nINNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text FROM ecg.mortara_interpret GROUP BY id_ecg) AS mi ON ecg.id = mi.id_ecg",
+        "query" : "SELECT ecg.id AS id_ecg,\n       e.id_patient,\n       e.id AS id_encounter,\n       o.id_department,\n       exec_date,\n       vent_rate,\n       average_rr,\n       sample_freq,\n       num_qrs,\n       pr_duration,\n       qrs_duration,\n       qt,\n       qtc,\n       qtb,\n       qtf,\n       p_axis,\n       qrs_axis,\n       t_axis,\n       st_elevation,\n       ischema_sign,\n       inter_text,\n       aVF AS lead_avf,\n       aVL AS lead_avl,\n       aVR AS lead_avr,\n       I AS lead_i,\n       II AS lead_ii,\n       III AS lead_iii,\n       V1 AS lead_v1,\n       V2 AS lead_v2,\n       V3 AS lead_v3,\n       V4 AS lead_v4,\n       V5 AS lead_v5,\n       V6 AS lead_v6\nFROM ecg.ecg ecg\n         INNER JOIN (SELECT id_ecg,\n                            raw_data[1]  AS aVF,\n                            raw_data[2]  AS aVL,\n                            raw_data[3]  AS aVR,\n                            raw_data[4]  AS I,\n                            raw_data[5]  AS II,\n                            raw_data[6]  AS III,\n                            raw_data[7]  AS V1,\n                            raw_data[8]  AS V2,\n                            raw_data[9]  AS V3,\n                            raw_data[10] AS V4,\n                            raw_data[11] AS V5,\n                            raw_data[12] AS V6\n                     from (select id_ecg, array_agg(c_data order by c_name) AS raw_data\n                           from ecg.mortara_typical_data mcd\n                           group by id_ecg) AS mcd_agg) AS mcd ON ecg.id = mcd.id_ecg\n         INNER JOIN patient.observation o ON ecg.id_observation = o.id\n         INNER JOIN patient.encounter e ON e.id = o.id_encounter\n         INNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text\n                     FROM ecg.mortara_interpret\n                     GROUP BY id_ecg) AS mi ON ecg.id = mi.id_ecg",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -45,13 +45,13 @@
     "sourceBinding" : {
       "echoObservation" : {
         "jsonClass" : "SqlSource",
-        "query" : "select th.*, e.id as id_encounter, e.id_patient  \nfrom heart_echo.tte_header th,\npatient.observation po,\npatient.encounter e \nwhere th.id_observation = po.id and\npo.id_encounter = e.id",
+        "query" : "SELECT th.id AS id_echo,\n       e.id_patient,\n       e.id  AS id_encounter,\n       po.id_department,\n       th.date_exec,\n       th.rhythm,\n       th.bsa\nFROM heart_echo.tte_header th,\n     patient.observation po,\n     patient.encounter e\nWHERE th.id_observation = po.id\n  AND po.id_encounter = e.id",
         "options" : { },
         "sourceRef" : "icrc-data"
       },
       "echoMeasurements" : {
         "jsonClass" : "SqlSource",
-        "query" : "select \n\techodata.*,\n\tdict.code,\n\tdict.shortcut,\n\tdict.descr,\n\tdict.unit\nfrom heart_echo.tte_data echodata\nleft join heart_echo.echo_dict dict\non echodata.id_dict = dict.id",
+        "query" : "SELECT echodata.*,\n       dict.code,\n       dict.shortcut,\n       dict.descr,\n       dict.unit\nFROM heart_echo.tte_data echodata\n         JOIN heart_echo.echo_dict dict ON echodata.id_dict = dict.id",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -62,7 +62,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select encounter.*, icd10.name_english, icd10.name_czech from dt4h.encounter_profile encounter LEFT JOIN standard_dict.icd_10 icd10 ON encounter.reason_code = icd10.code",
+        "query" : "SELECT e.id            AS id_encounter,\n       e.id_patient    AS id_patient,\n       e.id_department AS id_department,\n       es.code         AS status,\n       ec.code         AS class,\n       e.begin_date    AS begin_date,\n       e.end_date      AS end_date,\n       c.id            AS id_condition_main_diagnosis,\n       dr.code_cz      AS discharge_ref_code\nFROM patient.encounter e\n         JOIN patient_dict.encounter_status es ON e.id_encounter_status = es.id\n         JOIN patient_dict.encounter_class ec ON e.id_encounter_class = ec.id\n         JOIN patient.condition c ON e.id = c.id_encounter\n         JOIN patient_dict.discharge_ref dr ON e.id_discharge_ref = dr.id",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -73,7 +73,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT e.id_patient AS subject, lc.code_loinc AS code, o.id_encounter AS encounter, l.exec_date AS effective_date, ld.value, ld.unit FROM patient.lab l  JOIN lab.lab_data ld ON l.id = ld.id_lab  JOIN patient.observation o ON l.id_observation = o.id  JOIN lab.lab_code lc ON ld.id_lab_code = lc.id  JOIN patient.encounter e ON o.id_encounter = e.id  JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text",
+        "query" : "SELECT l.id            AS id_lab,\n       e.id_patient    AS id_patient,\n       e.id            AS id_encounter,\n       l.id_department AS id_department,\n       l.exec_date     AS effective_date,\n       lc.code_his     AS code_his,\n       lc.lab_name_his AS lab_name_his,\n       lc.code_loinc   AS code_loinc,\n       ld.value        AS value_result,\n       ld.unit         AS value_unit\nFROM patient.lab l\n         JOIN lab.lab_data ld ON l.id = ld.id_lab\n         JOIN patient.observation o ON l.id_observation = o.id\n         JOIN lab.lab_code lc ON ld.id_lab_code = lc.id\n         JOIN patient.encounter e ON o.id_encounter = e.id\n         JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -84,7 +84,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select mp.*, atc.name_en from dt4h.medication_profile mp left join standard_dict.atc atc on mp.code_atc = atc.code",
+        "query" : "SELECT m.id AS id_medication,\n       m.id_patient,\n       m.id_encounter,\n       m.code_atc,\n       atc.name_en,\n       m.dosage,\n       m.unit,\n       m.date_from,\n       m.date_to\nFROM patient.medication m\n         JOIN standard_dict.atc atc on m.code_atc = atc.code",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -106,7 +106,18 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select p.*, es.code as status, icd10pcs.code, icd10pcs.short_descr, e.id_patient from patient.\"procedure\" p left join standard_dict.icd_10_pcs icd10pcs on p.id_procedure_dict = icd10pcs.id left join patient.observation obs on p.id_observation = obs.id left join patient.encounter e on obs.id_encounter = e.id left join patient_dict.event_status es on p.id_event_status = es.id",
+        "query" : "SELECT p.id                 AS id_procedure,\n       e.id_patient         AS id_patient,\n       e.id                 AS id_encounter,\n       obs.id_department    AS id_department,\n       p.perform_dt         AS perform_dt,\n       es.code              AS status,\n       pdict.code_cz        AS code_local,\n       pdict.name_cz        AS name_local,\n       icd10pcs.code        AS code_icd10pcs,\n       icd10pcs.short_descr AS descr_icd10pcs,\n       snomed.sctid         AS outcome_snomed_code,\n       snomed.text          AS outcome_snomed_descr\nFROM patient.procedure p\n         JOIN patient.observation obs ON p.id_observation = obs.id\n         JOIN patient.encounter e ON obs.id_encounter = e.id\n         JOIN patient_dict.event_status es ON p.id_event_status = es.id\n         JOIN patient_dict.procedure_dict pdict ON p.id_procedure_dict = pdict.id\n         LEFT JOIN standard_dict.icd_10_pcs icd10pcs ON p.id_procedure_dict = icd10pcs.id\n         LEFT JOIN standard_dict.snomed_ct snomed ON p.outcome = snomed.sctid",
+        "options" : { },
+        "sourceRef" : "icrc-data"
+      }
+    }
+  }, {
+    "name" : "procedure-surgery-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/procedure-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT p.id                 AS id_procedure,\n       e.id_patient         AS id_patient,\n       e.id                 AS id_encounter,\n       sur.id_department    AS id_department,\n       p.perform_dt         AS perform_dt,\n       es.code              AS status,\n       pdict.code_cz        AS code_local,\n       pdict.name_cz        AS name_local,\n       icd10pcs.code        AS code_icd10pcs,\n       icd10pcs.short_descr AS descr_icd10pcs,\n       snomed.sctid         AS outcome_snomed_code,\n       snomed.text          AS outcome_snomed_descr\nFROM patient.procedure p\n         JOIN patient.surgery sur ON p.id_observation = sur.id\n         JOIN patient.encounter e ON sur.id_encounter = e.id\n         JOIN patient_dict.event_status es ON p.id_event_status = es.id\n         JOIN patient_dict.procedure_dict pdict ON p.id_procedure_dict = pdict.id\n         LEFT JOIN standard_dict.icd_10_pcs icd10pcs ON p.id_procedure_dict = icd10pcs.id\n         LEFT JOIN standard_dict.snomed_ct snomed ON p.outcome = snomed.sctid",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -117,7 +128,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.smoking_status_profile",
+        "query" : "SELECT * FROM patient.addiction a WHERE a.id_type = 1",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -128,7 +139,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.symptom_profile",
+        "query" : "SELECT s.id            AS id_symptom,\n       e.id_patient    AS id_patient,\n       e.id            AS id_encounter,\n       o.id_department AS id_department,\n       o.value_dt      AS observation_date_time,\n       s.snomed        AS code_snomed,\n       s.value_boolean AS value,\n       oc.code         AS category_code,\n       oc.text         AS category_text\nFROM patient.symptom s\n         JOIN patient.observation o ON s.id_observation = o.id\n         JOIN patient.encounter e ON o.id_encounter = e.id\n         JOIN patient_dict.observation_cathegory oc ON o.id_observation_cathegory = oc.id",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -139,7 +150,29 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "select * from dt4h.vital_sign_profile",
+        "query" : "SELECT vs.id                 AS id_vital_sign,\n       e.id_patient          AS id_patient,\n       e.id                  AS id_encounter,\n       e.id_department       AS id_department,\n       o.value_dt            AS efective_datetime,\n       vs.body_weight        AS weight,\n       vs.body_height        AS height,\n       vs.systolic_pressure  AS systoclic,\n       vs.diastolic_pressure AS diastolic,\n       vs.heard_rate         AS heart_rate,\n       vs.respirate_rate     AS respiration,\n       vs.oxygen_saturation  AS spo2,\n       vs.body_temperature   AS body_temperature,\n       vs.nyha               AS nyha\nFROM patient.vital_sign vs\n         JOIN patient.observation o ON vs.id_observation = o.id\n         JOIN patient.encounter e ON o.id_encounter = e.id",
+        "options" : { },
+        "sourceRef" : "icrc-data"
+      }
+    }
+  }, {
+    "name" : "organization-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/organization-mapping",
+    "sourceBinding" : {
+      "organization" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "hospital.clinic",
+        "options" : { },
+        "sourceRef" : "icrc-data"
+      }
+    }
+  }, {
+    "name" : "location-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/location-mapping",
+    "sourceBinding" : {
+      "location" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "hospital.department",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
