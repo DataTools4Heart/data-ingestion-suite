@@ -1,6 +1,6 @@
 services:
   tofhir-server:
-    image: srdc/tofhir-server:log-test
+    image: srdc/tofhir-server:latest
     container_name: dt4h-tofhir-server
     hostname: tofhir
     environment:
