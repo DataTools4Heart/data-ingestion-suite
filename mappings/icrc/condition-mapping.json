@@ -36,7 +36,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_condition}}"
+          "value" : "{{id_condition.toString()}}"
         } ],
         "clinicalStatus" : {
           "coding" : [ {

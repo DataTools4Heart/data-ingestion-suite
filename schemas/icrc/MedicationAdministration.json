@@ -42,7 +42,7 @@
     }, {
       "id" : "MedicationAdministration.id_encounter",
       "path" : "MedicationAdministration.id_encounter",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer64",

@@ -33,7 +33,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
         "occurencePeriod" : {
           "start" : "{{date_from}}",
           "end" : "{{? date_to}}"

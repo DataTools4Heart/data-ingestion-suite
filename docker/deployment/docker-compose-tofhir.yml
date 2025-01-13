@@ -19,7 +19,7 @@ services:
     volumes:
       - './data-ingestion-suite:/usr/local/tofhir/conf'
       - './tofhir-docker-logs:/usr/local/tofhir/logs'
-      - 'C:/development/data/mimic-iv-3.1:/usr/local/tofhir/data/mimic-iv-3.1'
+     # - 'C:/development/data/mimic-iv-3.1:/usr/local/tofhir/data/mimic-iv-3.1'
     healthcheck:
       test: curl --fail --request OPTIONS http://localhost:8085/tofhir || exit 1
       interval: 20s

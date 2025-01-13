@@ -21,11 +21,6 @@
     "expression" : "mpp:getConcept(%smyptomsConceptMap, code_snomed.toString())"
   } ],
   "mapping" : [ {
-    "precondition" : {
-      "name" : "snomedCodeExists",
-      "language" : "text/fhirpath",
-      "expression" : "code_snomed.exists()"
-    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",

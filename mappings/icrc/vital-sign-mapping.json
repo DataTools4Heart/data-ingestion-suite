@@ -26,7 +26,7 @@
       "name" : "weight",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-weight')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -59,7 +59,7 @@
         "performer" : [ "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}" ],
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
-          "value" : "{{id_vital_sign.toString()}}",
+          "value" : "{{id_vital_sign.toString() & '-weight'}}",
           "use" : "official"
         } ],
         "status" : "final"
@@ -75,7 +75,7 @@
       "name" : "height",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-height')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -109,7 +109,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-height'}}"
         } ],
         "status" : "final"
       }
@@ -124,7 +124,7 @@
       "name" : "systolic-bp",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-systolicBP')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -158,7 +158,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-systolicBP'}}"
         } ],
         "status" : "final"
       }
@@ -173,7 +173,7 @@
       "name" : "diastolic-bp",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-diastolicBP')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -207,7 +207,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-diastolicBP'}}"
         } ],
         "status" : "final"
       }
@@ -222,7 +222,7 @@
       "name" : "heart-rate",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-heartRate')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -256,7 +256,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-heartRate'}}"
         } ],
         "status" : "final"
       }
@@ -271,7 +271,7 @@
       "name" : "respiration-rate",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-respirationRate')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -305,7 +305,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-respirationRate'}}"
         } ],
         "status" : "final"
       }
@@ -320,7 +320,7 @@
       "name" : "spo2",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-spo2')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -354,7 +354,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-spo2'}}"
         } ],
         "status" : "final"
       }
@@ -369,7 +369,7 @@
       "name" : "body-temperature",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-bodyTemperature')}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -403,7 +403,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-bodyTemperature'}}"
         } ],
         "status" : "final"
       }
@@ -419,7 +419,7 @@
       "name" : "nyha",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-nyha')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
         },
@@ -450,7 +450,7 @@
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_vital_sign.toString()}}"
+          "value" : "{{id_vital_sign.toString() & '-nyha'}}"
         } ],
         "status" : "final"
       }
