@@ -2,41 +2,31 @@
   "id" : "lab-result-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping",
   "name" : "lab-result-mapping",
-  "title" : "Mapping of lab results to DT4H Lab Result FHIR profile",
-  "isDraft" : true,
+  "title" : "Mapping of UMCU's Lab Result table to EHR-LabResult FHIR profile",
+  "isDraft" : false,
   "source" : [ {
-    "alias" : "labResults",
-    "url" : "https://datatools4heart.eu/umcu/LabResult",
-    "joinOn" : [ "id_patient" ]
-  }, {
-    "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/umcu/Encounter",
-    "joinOn" : [ "id_patient" ]
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/LabResult",
+    "joinOn" : [ ]
   } ],
   "context" : {
-    "labResultsConceptMap" : {
+    "interpretationMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/umcu/lab-results-concept-map.csv"
-    },
-    "labResultUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/umcu/lab-results-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/umcu/lab-interpretation.csv"
     }
   },
-  "variable" : [ {
-    "name" : "labLoincCode",
-    "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%labResultsConceptMap, lab_code)"
-  }, {
-    "name" : "relatedEncounter",
-    "language" : "text/fhirpath",
-    "expression" : "%encounters.where((time_stamp.toString().replace(' ','T') + 'Z').toDate() <= (%context.exec_date.replace(' ','T') + 'Z').toDate() and (time_stamp.toString().replace(' ','T') + 'Z').toDate() + 7 days > (%context.exec_date.replace(' ','T') + 'Z').toDate()).first()"
-  } ],
+  "variable" : [ ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', identifier_value)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation",
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -47,34 +37,43 @@
         } ],
         "code" : {
           "coding" : [ {
-            "system" : "https://datatools4heart.eu/icrc/LabResult",
-            "code" : "{{lab_code}}",
+            "system" : "http://loinc.org",
+            "code" : "{{LOINCcode}}",
+            "display" : "{{LOINCdisplay}}",
             "@sliceName" : "loincCode"
           }, {
-            "{{#tc}}" : "{{mpp:getConcept(%labResultsConceptMap, lab_code, 'target_code')}}",
-            "{{?}}" : {
-              "system" : "http://loinc.org",
-              "code" : "{{%tc}}",
-              "display" : "{{? mpp:getConcept(%labResultsConceptMap, lab_code, 'target_display')}}"
-            }
+            "code" : "{{? code_code_original\t}}",
+            "display" : "{{? code_display_original}}"
           } ]
         },
-        "effectiveDateTime" : "{{exec_date.toString().replace(' ','T') + 'Z'}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, lab_code, value, unit).nav:orElse(utl:createFhirQuantity(value, unit))}}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id_encounter.toString())}}",
-        "id" : "{{mpp:getHashedId('Observation', id.toString() + '_lab_result_umcu')}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        "effectiveDateTime" : "{{effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueString" : "{{? iif(valueString.exists() and valueString != '', valueString) }}",
+        "valueQuantity" : {
+          "{{#valueQuantityVar}}" : "{{valueQuantity_value}}",
+          "{{?}}" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{valueQuantity_code_original}}",
+            "unit" : "{{valueQuantity_code_original}}",
+            "value" : "{{valueQuantity_value}}",
+            "comparator" : "{{? iif(valueQuantity_comparator.exists() and valueQuantity_comparator != '', valueQuantity_comparator) }}"
+          }
         },
-        "resourceType" : "Observation"
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "interpretation" : [ {
+          "{{#interpretationVar}}" : "{{iif(interpretation_display.exists() and interpretation_display != '', interpretation_display) }}",
+          "{{?}}" : {
+            "coding" : [ {
+              "{{#codingVar}}" : "{{mpp:getConcept(%interpretationMap, interpretation_display)}}",
+              "{{?}}" : {
+                "system" : "http://hl7.org/fhir/ValueSet/observation-interpretation",
+                "code" : "{{%codingVar.target_code}}",
+                "display" : "{{%codingVar.target_display}}"
+              }
+            } ],
+            "text" : "{{interpretation_display}}"
+          }
+        } ]
       }
-    },
-    "precondition" : {
-      "name" : "loincCodeAndRelatedEncounterExist",
-      "language" : "text/fhirpath",
-      "expression" : "%labLoincCode.exists() and %relatedEncounter.exists()"
     }
   } ]
 }

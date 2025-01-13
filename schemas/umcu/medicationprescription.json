@@ -1,0 +1,148 @@
+{
+  "id" : "medicationprescription",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/MedicationPrescription",
+  "version" : "latest",
+  "name" : "MedicationPrescription",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "MedicationPrescription",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "MedicationPrescription",
+      "path" : "MedicationPrescription",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "MedicationPrescription.studyId_0763",
+      "path" : "MedicationPrescription.studyId_0763",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "MedicationPrescription.identifier_value",
+      "path" : "MedicationPrescription.identifier_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital specific identifier for each medication"
+    }, {
+      "id" : "MedicationPrescription.code5_ATC_code",
+      "path" : "MedicationPrescription.code5_ATC_code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "ATC code"
+    }, {
+      "id" : "MedicationPrescription.code5_ATC_display",
+      "path" : "MedicationPrescription.code5_ATC_display",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "ATC display"
+    }, {
+      "id" : "MedicationPrescription.DI_doseQuantity_unit",
+      "path" : "MedicationPrescription.DI_doseQuantity_unit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Dose unit"
+    }, {
+      "id" : "MedicationPrescription.DI_doseQuantity_value",
+      "path" : "MedicationPrescription.DI_doseQuantity_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Dose value (related to quantity)"
+    }, {
+      "id" : "MedicationPrescription.dosageInstruction_text",
+      "path" : "MedicationPrescription.dosageInstruction_text",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Dose instruction, (not provided here as there are a lot of unique ones) From this colum, the column checkedFrequency and dosage_ifNeededStatement are derived"
+    }, {
+      "id" : "MedicationPrescription.dosageInstruction_route_display",
+      "path" : "MedicationPrescription.dosageInstruction_route_display",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "ORAAL; SUBLINGUAAL; OCULAIR; INTRAVENEUS; CONTINU INFUUS; CUTAAN; OROMUCOSAAL; RECTAAL; SUBCUTAAN; NIET GESPECIFICEERD OF MEERVOUDIG; INTRAMUSCULAIR; NIET VAN TOEPASSING; TRANSDERMAAL; PARENTERAAL; SONDE; URETHRAAL; AURICULAIR; PERINEURAAL",
+      "short" : "Administration route"
+    }, {
+      "id" : "MedicationPrescription.periodOfUse_valuePeriod_end",
+      "path" : "MedicationPrescription.periodOfUse_valuePeriod_end",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "End of use drug"
+    }, {
+      "id" : "MedicationPrescription.periodOfUse_valuePeriod_start",
+      "path" : "MedicationPrescription.periodOfUse_valuePeriod_start",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Start of use drug"
+    }, {
+      "id" : "MedicationPrescription.CheckedFrequency",
+      "path" : "MedicationPrescription.CheckedFrequency",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nNA; 2pd; 1p2d; 1pd; 3pd; 4pd",
+      "short" : "Frequency of administration 1,2,3,4 per day and 1 per two days (1p2d)"
+    }, {
+      "id" : "MedicationPrescription.dosage_ifNeededStatement",
+      "path" : "MedicationPrescription.dosage_ifNeededStatement",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "boolean",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+      } ],
+      "definition" : "FALSE; TRUE",
+      "short" : "Statement on if the drug is only administrated if required (for example when exhibiting symptoms)--> TRUE is statement present. "
+    } ]
+  }
+}

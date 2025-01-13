@@ -1,0 +1,58 @@
+{
+  "id" : "nyha-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/nyha-mapping",
+  "name" : "nyha-mapping",
+  "title" : "Mapping of UMCU's NYHA table to HFR-NYHAAssessment FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/NYHA",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "nyhaConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/nyha-map.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & NYHA_standard & create_dt.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "88020-3",
+            "display" : "Functional capacity NYHA",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{create_dt.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{mpp:getConcept(%nyhaConceptMap, NYHA_standard, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%nyhaConceptMap, NYHA_standard, 'target_display')}}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "status" : "final"
+      }
+    }
+  } ]
+}

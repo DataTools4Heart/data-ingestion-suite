@@ -60,10 +60,12 @@
           "start" : "{{(DATA_IN & iif(ORA_IN.exists(), ORA_IN) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}",
           "end" : "{{? iif(%dischargeDate = '', {}, %dischargeDate.utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')) }}"
         },
-        "status" : "completed",
         "reason" : {
           "{{#diagCodeIcd9}}" : "{{ %relatedEncounter.DIAG1_ICD9CM | %relatedEncounter.DIAG2_ICD9CM | %relatedEncounter.DIAG3_ICD9CM | %relatedEncounter.DIAG4_ICD9CM | %relatedEncounter.DIAG5_ICD9CM | %relatedEncounter.DIAG6_ICD9CM | %relatedEncounter.DIAG7_ICD9CM }}",
           "{{*}}" : {
+            "use" : [ {
+              "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
+            } ],
             "value" : [ {
               "concept" : {
                 "coding" : {
@@ -76,7 +78,8 @@
               }
             } ]
           }
-        }
+        },
+        "status" : "completed"
       }
     }
   } ]

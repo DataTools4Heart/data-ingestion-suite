@@ -1,0 +1,56 @@
+{
+  "id" : "nyha",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/NYHA",
+  "version" : "latest",
+  "name" : "NYHA",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "NYHA",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "NYHA",
+      "path" : "NYHA",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "NYHA.studyId_0763",
+      "path" : "NYHA.studyId_0763",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "NYHA.NYHA_standard",
+      "path" : "NYHA.NYHA_standard",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nIII; II/IV; I/IV; II; I/II; I; III/IV; II/III; IV; III-IV; II-III; III/; II-III/IV; I-II/IV; I-II; IV/IV; III-IV/IV; II-/IV; II-IIII/IV; II/VI; I-; III/VI; II/II; VI; IV/I; II/III/IV; III-; III-VI; I//IV; II-IV; I/II/IV; III/I; /IV; II-III/VI; II+; II/I; IV-",
+      "short" : "NYHA value"
+    }, {
+      "id" : "NYHA.create_dt",
+      "path" : "NYHA.create_dt",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "definition" : "Creation date of the note of which the information was extracted"
+    } ]
+  }
+}

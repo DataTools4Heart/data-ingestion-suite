@@ -1,0 +1,12 @@
+source_code,target_code,target_display
+"W","other","Other"
+"A","hosp-trans","Transferred from other hospital"
+"S","emd","From accident/emergency department"
+"H","other","Other"
+"P","outp","From outpatient department"
+"R","rehab","From rehabilitation facility"
+"C","hosp-trans","Transferred from other hospital"
+"I","nursing","From nursing home"
+"E","other","Other"
+"T","other","Other"
+"B","other","Other"

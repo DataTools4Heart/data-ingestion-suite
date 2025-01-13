@@ -1,7 +1,7 @@
 {
   "id" : "vitalsign",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/VitalSignVitalSign",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/VitalSign",
   "version" : "latest",
   "name" : "VitalSign",
   "status" : "draft",
@@ -21,24 +21,6 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSign.studyId_0763",
-      "path" : "VitalSign.studyId_0763",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
-    }, {
-      "id" : "VitalSign.identifier_value",
-      "path" : "VitalSign.identifier_value",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
       "id" : "VitalSign.code_code_original",
       "path" : "VitalSign.code_code_original",
       "min" : 0,
@@ -46,7 +28,9 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "Possible values: \nCS00000002; CS00000004; CS00000006; CS00000007; CS00000008",
+      "short" : "Local UMCU codes"
     }, {
       "id" : "VitalSign.code_display_original",
       "path" : "VitalSign.code_display_original",
@@ -55,52 +39,9 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "VitalSign.context_Encounter_system",
-      "path" : "VitalSign.context_Encounter_system",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "VitalSign.context_Encounter_value",
-      "path" : "VitalSign.context_Encounter_value",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "VitalSign.effectivedatetime",
-      "path" : "VitalSign.effectivedatetime",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "instant",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
-      } ]
-    }, {
-      "id" : "VitalSign.valueQuantity_unit_original",
-      "path" : "VitalSign.valueQuantity_unit_original",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "VitalSign.valueQuantity_value",
-      "path" : "VitalSign.valueQuantity_value",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "definition" : "Possible values: \nNIBP; SpO2; Lengte; Gewicht; BMI",
+      "short" : "Local UMCU code displays"
     }, {
       "id" : "VitalSign.component_code_display",
       "path" : "VitalSign.component_code_display",
@@ -109,7 +50,81 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "Possible values: \nDiastolic blood pressure; Mean blood pressure; Systolic blood pressure; ",
+      "short" : "In case of NIBP, a component is defined"
+    }, {
+      "id" : "VitalSign.studyId_0763",
+      "path" : "VitalSign.studyId_0763",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "VitalSign.identifier_value",
+      "path" : "VitalSign.identifier_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Local identifier with specified measurement"
+    }, {
+      "id" : "VitalSign.context_Encounter_system",
+      "path" : "VitalSign.context_Encounter_system",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values: \nhttps://metadata.umcutrecht.nl/ids/HixOK; ; https://metadata.umcutrecht.nl/ids/HixSEHregistratie; https://metadata.umcutrecht.nl/ids/HixOpname",
+      "short" : "In which type of encounter is the data acquired"
+    }, {
+      "id" : "VitalSign.context_Encounter_value",
+      "path" : "VitalSign.context_Encounter_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter ID"
+    }, {
+      "id" : "VitalSign.effectivedatetime",
+      "path" : "VitalSign.effectivedatetime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Measurement date"
+    }, {
+      "id" : "VitalSign.valueQuantity_unit_original",
+      "path" : "VitalSign.valueQuantity_unit_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nmmHg; %; cm; kg; kg/m²",
+      "short" : "Unit of measurement"
+    }, {
+      "id" : "VitalSign.valueQuantity_value",
+      "path" : "VitalSign.valueQuantity_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Measured value"
     }, {
       "id" : "VitalSign.component_valueQuantity_unit_ori",
       "path" : "VitalSign.component_valueQuantity_unit_ori",
@@ -118,7 +133,9 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "Possible values:\nmmHg; %; cm; kg; kg/m²",
+      "short" : "Unit of component measurement (NIBP)"
     }, {
       "id" : "VitalSign.component_valueQuantity_value",
       "path" : "VitalSign.component_valueQuantity_value",
@@ -127,7 +144,29 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Measured value"
+    }, {
+      "id" : "VitalSign.LOINCcode",
+      "path" : "VitalSign.LOINCcode",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\n76535-4; 76536-2; 76534-7; 59408-5; 8302-2; 29463-7; 89270-3",
+      "short" : "Assigned LOINC codes"
+    }, {
+      "id" : "VitalSign.LOINCdisplay",
+      "path" : "VitalSign.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "LOINC displays"
     } ]
   }
 }

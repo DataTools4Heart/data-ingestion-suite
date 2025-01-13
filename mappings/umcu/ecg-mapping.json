@@ -1,0 +1,55 @@
+{
+  "id" : "ecg-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/ecg-mapping",
+  "name" : "ecg-mapping",
+  "title" : "Mapping of UMCU's ECG table to HFR-ECG FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/ECG",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & identifier_value)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "code" : {
+          "coding" : [ {
+            "code" : "34534-8",
+            "system" : "http://loinc.org",
+            "display" : "12 lead EKG panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "component" : [ {
+          "code" : {
+            "coding" : [ {
+              "code" : "8633-0",
+              "system" : "http://loinc.org",
+              "version" : "QRS duration"
+            } ]
+          },
+          "valueQuantity" : {
+            "code" : "ms",
+            "system" : "http://unitsofmeasure.org",
+            "value" : "{{ValueQuantity}}",
+            "unit" : "millisecond"
+          },
+          "@sliceName" : "qrsDuration"
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "effectiveDateTime" : "{{AcquisitionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "status" : "final"
+      }
+    }
+  } ]
+}

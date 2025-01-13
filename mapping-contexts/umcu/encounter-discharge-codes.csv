@@ -1,0 +1,11 @@
+source_code,target_code,target_display
+"H","home","Home"
+"M","exp","Expired"
+"E","oth","Other"
+"A"," other-hcf","Other healthcare facility"
+"O","exp","Expired"
+"R","rehab","Rehabilitation"
+"S","oth","Other"
+"T","aadvice","Left against advice"
+"V","snf","Skilled nursing facility"
+"P","psy","Psychiatric hospital"

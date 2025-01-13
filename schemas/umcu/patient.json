@@ -1,7 +1,7 @@
 {
   "id" : "patient",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/PatientPatient",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Patient",
   "version" : "latest",
   "name" : "Patient",
   "status" : "draft",
@@ -28,7 +28,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "short" : "Patient ID"
     }, {
       "id" : "Patient.gender",
       "path" : "Patient.gender",
@@ -37,7 +38,8 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "Possible values:\nmale, female"
     }, {
       "id" : "Patient.birthDate",
       "path" : "Patient.birthDate",
@@ -46,7 +48,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "definition" : "Currently only years available \nPossible values: 1914 to 2003"
     }, {
       "id" : "Patient.deceasedDateTime",
       "path" : "Patient.deceasedDateTime",
@@ -55,7 +58,8 @@
       "type" : [ {
         "code" : "decimal",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ]
+      } ],
+      "definition" : "Currently only years available \nPossible values: 2012 to 2023"
     } ]
   }
 }

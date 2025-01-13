@@ -1,0 +1,147 @@
+{
+  "id" : "labresult",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/LabResult",
+  "version" : "latest",
+  "name" : "LabResult",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "LabResult",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "LabResult",
+      "path" : "LabResult",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "LabResult.studyId_0763",
+      "path" : "LabResult.studyId_0763",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "LabResult.identifier_value",
+      "path" : "LabResult.identifier_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Local identifier"
+    }, {
+      "id" : "LabResult.LOINCcode",
+      "path" : "LabResult.LOINCcode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\n30522-7; 14682-9; 62238-1; 41995-2; 14647-2; 14683-7; 22748-8; 14646-4; 32294-1; 61152-5; 30934-4; 20567-4; 59260-0; 6298-4; 100158-5; 2951-2; 83107-3; 14927-8; 89579-7; 6598-7; 22664-7",
+      "short" : "LOINC codes"
+    }, {
+      "id" : "LabResult.code_code_original",
+      "path" : "LabResult.code_code_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Original codes"
+    }, {
+      "id" : "LabResult.LOINCdisplay",
+      "path" : "LabResult.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "LOINC displays"
+    }, {
+      "id" : "LabResult.code_display_original",
+      "path" : "LabResult.code_display_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Original displays"
+    }, {
+      "id" : "LabResult.interpretation_display",
+      "path" : "LabResult.interpretation_display",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nUnknown; High; Low; ; Critically low; Critically high; Normal; Abnormal",
+      "short" : "Interpretation local lab values"
+    }, {
+      "id" : "LabResult.effectivedatetime",
+      "path" : "LabResult.effectivedatetime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Measurement datetime"
+    }, {
+      "id" : "LabResult.valueQuantity_code_original",
+      "path" : "LabResult.valueQuantity_code_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nmg/L; µmol/L; ml/min/1.73m²; mmol/mol; mmol/L; mg/mmol; g/L; pmol/L; µg/L; pg/ml; ng/L",
+      "short" : "Value unit"
+    }, {
+      "id" : "LabResult.valueQuantity_value",
+      "path" : "LabResult.valueQuantity_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Quantity value"
+    }, {
+      "id" : "LabResult.valueQuantity_comparator",
+      "path" : "LabResult.valueQuantity_comparator",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "High or low"
+    }, {
+      "id" : "LabResult.valueString",
+      "path" : "LabResult.valueString",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

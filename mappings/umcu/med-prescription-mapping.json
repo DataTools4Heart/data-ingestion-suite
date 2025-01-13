@@ -1,0 +1,68 @@
+{
+  "id" : "med-prescription-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/med-prescription-mapping",
+  "name" : "med-prescription-mapping",
+  "title" : "Mapping of UMCU's Medication Prescription table to EHR-MedicationRequest FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/MedicationPrescription",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', identifier_value)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{code5_ATC_code}}",
+              "display" : "{{code5_ATC_display}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "status" : "unknown",
+        "intent" : "order",
+        "effectiveDosePeriod" : {
+          "start" : "{{periodOfUse_valuePeriod_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{? periodOfUse_valuePeriod_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+        },
+        "dosageInstruction" : [ {
+          "text" : "{{dosageInstruction_text}}",
+          "timing" : {
+            "repeat" : {
+              "{{#repeatVar}}" : "{{CheckedFrequency}}",
+              "{{?}}" : {
+                "frequency" : "{{CheckedFrequency.utl:takeUntil('p').toDecimal()}}",
+                "period" : "{{iif(CheckedFrequency.utl:split('p').last() = 'd', 1, CheckedFrequency.utl:split('p').last().utl:takeUntil('d').toDecimal() ) }}",
+                "periodUnit" : "d"
+              }
+            }
+          },
+          "asNeeded" : "{{dosage_ifNeededStatement}}",
+          "route" : {
+            "text" : "{{? dosageInstruction_route_display}}"
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{DI_doseQuantity_value}}",
+              "unit" : "{{DI_doseQuantity_unit}}"
+            }
+          } ]
+        } ]
+      }
+    }
+  } ]
+}

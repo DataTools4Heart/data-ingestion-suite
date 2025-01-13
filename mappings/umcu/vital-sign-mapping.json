@@ -2,11 +2,11 @@
   "id" : "vital-sign-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/umcu/vital-sign-mapping",
   "name" : "vital-sign-mapping",
-  "title" : "Mapping of UMCU's vitalsign table to DT4H-VitalSign FHIR profile",
+  "title" : "Mapping of UMCU's vitalsign table to HFR-VitalSign FHIR profile",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/VitalSignVitalSign",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/VitalSign",
     "joinOn" : [ ]
   } ],
   "context" : { },
@@ -15,13 +15,15 @@
     "precondition" : {
       "name" : "valueExists",
       "language" : "text/fhirpath",
-      "expression" : "valueQuantity_value.exists()"
+      "expression" : "valueQuantity_value.exists() or component_valueQuantity_value.exists()"
     },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', identifier_value)}}",
         "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation",
@@ -35,14 +37,17 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
+            "code" : "{{LOINCcode}}",
+            "display" : "{{LOINCdisplay}}",
             "@sliceName" : "loincCode"
           } ]
         },
         "effectiveDateTime" : "{{effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
-          "value" : "{{valueQuantity_value}}",
-          "unit" : "{{valueQuantity_unit_original}}"
+          "code" : "{{iif(valueQuantity_unit_original.exists() and valueQuantity_unit_original != '', valueQuantity_unit_original, component_valueQuantity_unit_ori)}}",
+          "value" : "{{iif(valueQuantity_value.exists() and valueQuantity_value != '', valueQuantity_value, component_valueQuantity_value)}}",
+          "unit" : "{{iif(valueQuantity_unit_original.exists() and valueQuantity_unit_original != '', valueQuantity_unit_original, component_valueQuantity_unit_ori)}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', context_Encounter_value.toString())}}",

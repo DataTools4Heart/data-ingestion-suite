@@ -1,0 +1,108 @@
+{
+  "id" : "echo",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Echo",
+  "version" : "latest",
+  "name" : "Echo",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Echo",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Echo",
+      "path" : "Echo",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Echo.MeasName",
+      "path" : "Echo.MeasName",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Original UMCU measurement names"
+    }, {
+      "id" : "Echo.studyId_0763",
+      "path" : "Echo.studyId_0763",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "Echo.identifier_value",
+      "path" : "Echo.identifier_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Echo measurement ID"
+    }, {
+      "id" : "Echo.effectiveDateTime",
+      "path" : "Echo.effectiveDateTime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Measurement date time"
+    }, {
+      "id" : "Echo.Value",
+      "path" : "Echo.Value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Measured values"
+    }, {
+      "id" : "Echo.UnitName",
+      "path" : "Echo.UnitName",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nm2; BPM; mL; ml; %; 1/min; cm; cm2; mL/m2; cm/s; s; 1",
+      "short" : "Units values"
+    }, {
+      "id" : "Echo.LOINCcode",
+      "path" : "Echo.LOINCcode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\n3139-3; 8867-4; 79995-7; 79998-1; 79999-9; 79996-5; 20235-8; 93660-9; 93661-7; 76549-5; 79990-8; 79992-4; 79993-2; 79991-6; 77890-2; 93644-3; 93645-0; 77891-0; 80000-3; 80003-7; 80004-5; 80001-1; 76553-7; 93657-5; 93658-3; 29465-2; 18006-7; 29459-5; 29429-8; 79969-2; 79971-8; 79973-4; 79974-2; 29469-4; 79983-3; 79984-1; 79975-9; 78186-4; 79985-8; 79986-6; 29436-3; 29438-9; 18152-9; 29445-4; 80065-6; 80066-4; 81384-0; 18038-0; 80075-5; 80076-3; 80077-1; 93643-5; 77903-3; 81386-5; 78190-6",
+      "short" : "Assigned LOINC codes"
+    }, {
+      "id" : "Echo.LOINCdisplay",
+      "path" : "Echo.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nBSA measured; Heart Rate; Left ventricular End-diastolic volume by US.3D.segmentation; Left ventricular End-diastolic volume by US.2D.A2C+Calculated by single plane method of disks; Left ventricular End-diastolic volume by US.2D.A4C+Calculated by single plane method of disks; Left ventricular End-diastolic volume by US.2D+Calculated by biplane method of disks; Left ventricular End-diastolic volume by US.cubed.calculated; Left ventricular End-diastolic volume by US.2D.A2C+Calc by single plane area-length method; Left ventricular End-diastolic volume by US.2D.A4C+Calc by single plane area-length method; Left ventricular End-diastolic volume by US.2D+Calculated by Teichholz method; Left ventricular Ejection fraction by US.3D.segmentation; Left ventricular Ejection fraction by US.2D.A2C+Calculated by single plane method of disks; Left ventricular Ejection fraction by US.2D.A4C+Calculated by single plane method of disks; Left ventricular Ejection fraction by US.2D+Calculated by biplane method of disks; Left ventricular Ejection fraction by US.2D+Calculated by cube method; Left ventricular Ejection fraction by US.2D.A2C+Calc by single plane area-length method; Left ventricular Ejection fraction by US.2D.A4C+Calc by single plane area-length method; Left ventricular Ejection fraction by US.2D+Calculated by Teichholz method; Left ventricular End-systolic volume by US.3D.segmentation; Left ventricular End-systolic volume by US.2D.A2C+Calculated by single plane method of disks; Left ventricular End-systolic volume by US.2D.A4C+Calculated by single plane method of disks; Left ventricular End-systolic volume by US.2D+Calculated by biplane method of disks; Left ventricular End-systolic volume by US.2D+Calculated by cube method; Left ventricular End-systolic volume by US.2D.A2C+Calc by single plane area-length method; Left ventricular End-systolic volume by US.2D.A4C+Calc by single plane area-length method; Left ventricular End-systolic volume by US.Teichholz.calculated; Inferior vena cava Diameter by US; Inferior vena cava Diameter by US --expiration; Inferior vena cava Diameter by US --inspiration; Interventricular septum Thickness at end diastole by US 2D; Interventricular septum Thickness at end systole by US 2D; Left atrial Area at end systole by US.2D.A2C+Measured by planimetry; Left atrial Area at end systole by US.2D.A4C+Measured by planimetry; Left atrial Major axis diameter anterior-posterior systole by US 2D; Left atrial End-systolic volume by US.2D+Calculated by biplane method of disks; Left atrial End-systolic volume (by US.2D+Calculated by biplane method of disks)/Body surface area; Left atrial Minor axis at end systole [Length] by US 2D; Mitral valve lateral annulus Tissue velocity.E-wave.max by US.tissue doppler; Left atrial End-systolic volume by US.2D.A2C+Calculated by single plane method of disks; Left atrial End-systolic volume by US.2D.A4C+Calculated by single plane method of disks; Left ventricular Internal diameter minor axis diastole by US; Left ventricular Internal diameter minor axis systole by US; Left ventricular posterior wall Thickness during diastole by US; Left ventricular posterior wall Thickness during systole by US; Mitral valve A-wave duration by US.doppler; Mitral valve Maximum A-wave velocity by US.doppler; Mitral valve annulus Tissue velocity.E-wave.max by US.tissue doppler; Mitral valve Peak E wave/Peak A wave by US.doppler; Right atrial Area at end systole by US.2D.A4C+Measured by planimetry; Right atrial Major axis at end systole [Length] by US.2D.A4C; Right atrial Minor axis at end systole [Length] by US.2D.A4C; Right ventricular Major axis diastole [Length] by US.2D.A4C; Tricuspid valve annulus Excursion distance during systole by US.M-mode; Blood flow velocity.E wave.max/Tissue velocity.E wave.max; Mitral valve lateral annulus E-wave/Tissue velocity.E-wave.max by US.doppler+tissue doppler",
+      "short" : "Assigned LOINC displays"
+    } ]
+  }
+}

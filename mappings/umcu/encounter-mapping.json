@@ -1,0 +1,80 @@
+{
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Mapping of UMCU's Encounter table to EHR-Encounter FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "encounterClass" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/encounter-class-codes.csv"
+    },
+    "admitSource" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/encounter-admit-source-codes.csv"
+    },
+    "dischargeCodes" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/encounter-discharge-codes.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Encounter', identifier_value)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter",
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "{{mpp:getConcept(%encounterClass, class_code, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%encounterClass, class_code, 'target_display')}}"
+          } ]
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "actualPeriod" : {
+          "start" : "{{period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+        },
+        "reason" : [ {
+          "use" : [ {
+            "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
+          } ],
+          "@sliceName" : "admittingDiagnosis"
+        } ],
+        "admission" : {
+          "admitSource" : {
+            "coding" : [ {
+              "{{#codingVar}}" : "{{mpp:getConcept(%admitSource, hospitalization_admitSource_cod0)}}",
+              "{{?}}" : "{{utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/admit-source', %codingVar.target_code, %codingVar.target_display)}}"
+            }, {
+              "{{#codingVar}}" : "{{iif(hospitalization_admitSource_cod0.exists() and hospitalization_admitSource_cod0 != '', hospitalization_admitSource_cod0)}}",
+              "{{?}}" : "{{utl:createFhirCoding('https://www.umcutrecht.nl', hospitalization_admitSource_cod0, hospitalization_admitSource_disp)}}"
+            } ]
+          },
+          "dischargeDisposition" : {
+            "coding" : [ {
+              "{{#codingVar}}" : "{{mpp:getConcept(%dischargeCodes, hospitalization_dischargeDispos0)}}",
+              "{{?}}" : "{{utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/discharge-disposition', %codingVar.target_code, %codingVar.target_display)}}"
+            }, {
+              "{{#codingVar}}" : "{{iif(hospitalization_dischargeDispos0.exists() and hospitalization_dischargeDispos0 != '', hospitalization_dischargeDispos0)}}",
+              "{{?}}" : "{{utl:createFhirCoding('https://www.umcutrecht.nl', hospitalization_dischargeDispos0, hospitalization_dischargeDispos1)}}"
+            } ]
+          }
+        },
+        "status" : "completed"
+      }
+    }
+  } ]
+}
