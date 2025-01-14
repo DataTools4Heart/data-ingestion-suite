@@ -24,6 +24,7 @@
         "resourceType" : "Patient",
         "gender" : "{{ iif(SESSO='M', 'male', 'female') }}",
         "birthDate" : "{{DATA_NASCITA}}",
+        "deceasedDateTime" : "{{? iif(Deceduto = 1, Data_Diagnosi) }}",
         "active" : true
       }
     }
