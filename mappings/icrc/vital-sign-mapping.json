@@ -455,5 +455,54 @@
         "status" : "final"
       }
     }
+  }, {
+    "description" : "The body mass index (BMI) of the patient.",
+    "precondition" : {
+      "name" : "weightAndHeightExist",
+      "language" : "text/fhirpath",
+      "expression" : "weight.exists() and height.exists()"
+    },
+    "expression" : {
+      "name" : "bmi",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', id_vital_sign.toString() & '-bmi')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "39156-5",
+            "display" : "Body mass index (BMI)",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "kg/m2",
+          "value" : "{{weight / (height * height / 10000)}}",
+          "unit" : "kg/m2"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
+        "performer" : [ "{{mpp:createFhirReferenceWithHashedId('Location', id_encounter.toString())}}" ],
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}",
+          "value" : "{{id_vital_sign.toString() & '-bmi'}}",
+          "use" : "official"
+        } ],
+        "status" : "final"
+      }
+    }
   } ]
 }
