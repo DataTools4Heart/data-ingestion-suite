@@ -460,7 +460,7 @@
     "precondition" : {
       "name" : "weightAndHeightExist",
       "language" : "text/fhirpath",
-      "expression" : "weight.exists() and height.exists()"
+      "expression" : "weight.exists() and weight != 0 and height.exists() and height != 0"
     },
     "expression" : {
       "name" : "bmi",
