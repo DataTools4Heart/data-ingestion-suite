@@ -1,2 +1,4 @@
-"id_patient","date_from","date_to","code_loinc","id_type"
-66442,2012-07-20,2013-12-10,LA18976-3,1
+"id","id_patient","date_from","date_to","code_loinc"
+1,1,2018-05-05,2019-05-05,LA18981-3
+2,2,2021-05-05,2022-01-01,LA15920-4
+3,3,2021-05-05,,LA18976-3

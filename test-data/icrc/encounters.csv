@@ -1,11 +1,6 @@
-"id_encounter","subject","status","class","begin_date","end_date","reason_code","diagnosis","name_english"
-475046,66786,completed,AMB,2023-06-15,2023-06-15,Z450,Z450,Encounter for adjustment and management of cardiac device
-475596,66789,completed,AMB,2018-09-26,2018-09-26,K30,K30,Functional dyspepsia
-476239,66791,completed,AMB,2020-12-15,2020-12-15,S0650,S0650,
-474162,57872,completed,IMP,2017-07-26,2017-08-30,D509,D500,"Iron deficiency anemia, unspecified"
-474487,32765,completed,AMB,2021-10-05,2021-10-05,R002,R002,Palpitations
-475454,32771,completed,AMB,2011-02-07,2011-02-07,M501,M501,Cervical disc disorder with radiculopathy
-475293,15964,completed,AMB,2013-04-18,2013-04-18,K591,K591,Functional diarrhea
-475405,15964,completed,AMB,2018-08-27,2018-08-27,K591,K591,Functional diarrhea
-476906,15965,completed,AMB,2001-12-24,2001-12-24,M549,M549,"Dorsalgia, unspecified"
-476948,15965,completed,AMB,2022-10-06,2022-10-06,R060,R060,Dyspnea
+"id_encounter","id_patient","id_department","status","class","begin_date","end_date","id_condition_main_diagnosis","discharge_code"
+1,1,1,completed,AMB,2023-06-15,2023-06-18,1,Z450
+2,2,2,completed,AMB,2018-09-26,2018-10-05,2,K30
+3,3,3,completed,AMB,2020-12-15,2020-12-23,3,S0650
+4,3,3,completed,AMB,2021-07-11,2021-07-12,5,S0650
+5,2,2,completed,AMB,2022-02-11,2022-02-15,6,S0650

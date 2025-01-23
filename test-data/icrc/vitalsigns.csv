@@ -1,6 +1,3 @@
-"subject","efective_datetime","encounter","weight","height","systolic_pressure","diastolic_pressure","spo2","heart_rate"
-15617,2016-01-11 13:02:00,213595,60,164,,,,
-15617,2016-01-31 13:02:00,213609,60,164,,,,
-48798,2013-11-01 13:02:00,213693,78,176,,,,
-48798,2018-06-21 13:02:00,213703,78,176,,,,
-40502,2022-03-14 14:02:00,213705,92,176,,,,
+"id_vital_sign","id_patient","id_encounter","id_department","efective_datetime","weight","height","systolic_pressure","diastolic_pressure","heart_rate","respiration","spo2","body_temperature","nyha"
+1,1,1,1,2023-06-16 13:00:00,80,180,111,84,75,18,91.1,36.4,2
+2,1,1,1,2023-06-17 13:00:00,,,251,23,,,,,

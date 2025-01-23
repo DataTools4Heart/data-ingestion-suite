@@ -1,0 +1,117 @@
+{
+  "id": "icrc-test-file-system",
+  "name": "icrc-test-file-system",
+  "description": "Executes the ICRC mappings on test data using the file system",
+  "sourceSettings": {
+    "icrc-file-system-data": {
+      "jsonClass": "FileSystemSourceSettings",
+      "name": "icrc-file-system-data",
+      "sourceUri": "https://datatools4heart.eu/data-ingestion-suite/icrc-data-file-system",
+      "dataFolderPath": "test-data/icrc",
+      "asStream": false
+    }
+  },
+  "sinkSettings": {
+    "jsonClass": "FhirRepositorySinkSettings",
+    "fhirRepoUrl": "http://localhost:8080/fhir",
+    "returnMinimal": true
+  },
+  "mappings": [
+    {
+      "name": "patient-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/patient-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "patients.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "condition-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/condition-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "conditions.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "encounter-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/encounter-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "vitalsigns-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/vital-sign-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "vitalsigns.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "lab-results-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/lab-result-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "labresults.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "medication-administration-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "medications.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "smoking-status-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/smoking-status-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "smoking-status.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    }
+  ],
+  "dataProcessingSettings": {
+    "saveErroneousRecords": false,
+    "archiveMode": "off"
+  },
+  "useFhirSinkAsIdentityService": false
+}
