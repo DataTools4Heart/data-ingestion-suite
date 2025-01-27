@@ -37,7 +37,7 @@
         "{{*}}" : {
           "{{#translatedCodes}}" : "{{ mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString()) }}",
           "{{?}}" : {
-            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & DATA_RICOVERO.toString() & DATAPROC[%ind]) }}",
+            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & '-' & DATA_RICOVERO.toString() & '-' & DATAPROC[%ind].toString() & '-' & PROC[%ind].toString()) }}",
             "meta" : {
               "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
             },
@@ -67,6 +67,9 @@
                 "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %mainDiagnosisCode.toString())}}"
               }
             },
+            "identifier" : [ {
+              "value" : "{{CODICE_SANITARIO.toString() & '-' & DATA_RICOVERO.toString() & '-' & DATAPROC[%ind].toString() & '-' & PROC[%ind].toString()}}"
+            } ],
             "status" : "completed"
           }
         }
