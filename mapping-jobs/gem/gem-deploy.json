@@ -17,18 +17,6 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
-    "name" : "condition-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
-    "sourceBinding" : {
-      "patologie" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "patologie.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      }
-    }
-  }, {
     "name" : "echocardiograph-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/echocardiograph-mapping",
     "sourceBinding" : {
