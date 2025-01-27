@@ -17,10 +17,6 @@
     "icd9toIcd10PCS" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/gem/icd9-to-icd10pcs.csv"
-    },
-    "encounterClassConceptMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/gem/encounter-class-concept-map.csv"
     }
   },
   "variable" : [ {

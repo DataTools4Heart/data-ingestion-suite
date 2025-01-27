@@ -64,17 +64,17 @@
           "start" : "{{(DATA_IN & iif(ORA_IN.exists(), ORA_IN) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}",
           "end" : "{{? iif(%dischargeDate = '', {}, %dischargeDate.utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')) }}"
         },
-        "reason" : [ {
-          "use" : [ {
-            "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
-          } ],
-          "value" : {
-            "{{#diagCodeIcd9}}" : "{{%mainDiagnosisCodes}}",
-            "{{*}}" : {
+        "reason" : {
+          "{{#diagCodeIcd9}}" : "{{%mainDiagnosisCodes}}",
+          "{{*}}" : {
+            "use" : [ {
+              "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
+            } ],
+            "value" : [ {
               "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', NOSOGRAFICO & %diagCodeIcd9.toString())}}"
-            }
+            } ]
           }
-        } ],
+        },
         "status" : "completed"
       }
     }
