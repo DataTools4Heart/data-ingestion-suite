@@ -17,18 +17,6 @@
     "returnMinimal" : true
   },
   "mappings" : [ {
-    "name" : "cause-of-death-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/cause-of-death-mapping",
-    "sourceBinding" : {
-      "anagrafica" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "anagrafica.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      }
-    }
-  }, {
     "name" : "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
     "sourceBinding" : {

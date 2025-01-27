@@ -27,6 +27,10 @@
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
     "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA_RICOVERO.toDate() and DATA_OUT.toDate() >= %context.DATA_DIMISSIONE.toDate()).first()"
+  }, {
+    "name" : "mainDiagnosisCodes",
+    "language" : "text/fhirpath",
+    "expression" : " DIAG1_ICD9CM.nav:orElse(DIAG2_ICD9CM | DIAG3_ICD9CM | DIAG4_ICD9CM | DIAG5_ICD9CM | DIAG6_ICD9CM | DIAG7_ICD9CM) "
   } ],
   "mapping" : [ {
     "expression" : {
@@ -35,9 +39,9 @@
       "value" : {
         "{{#ind}}" : "{{utl:indices(1, 7)}}",
         "{{*}}" : {
-          "{{#translatedCode}}" : "{{ mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString()) }}",
+          "{{#translatedCodes}}" : "{{ mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString()) }}",
           "{{?}}" : {
-            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & DATAPROC[%ind]) }}",
+            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & DATA_RICOVERO.toString() & DATAPROC[%ind]) }}",
             "meta" : {
               "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
             },
@@ -50,15 +54,23 @@
               } ]
             } ],
             "code" : {
-              "coding" : [ {
-                "system" : "{{%translatedCode.target_system}}",
-                "code" : "{{%translatedCode.target_code}}",
-                "@sliceName" : "icdCode"
-              } ]
+              "coding" : {
+                "{{#code}}" : "{{%translatedCodes}}",
+                "{{*}}" : {
+                  "system" : "{{%code.target_system}}",
+                  "code" : "{{%code.target_code}}"
+                }
+              }
             },
             "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
             "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter',  %relatedEncounter.NOSOGRAFICO)}}",
             "occurrenceDateTime" : "{{DATAPROC[%ind]}}",
+            "reason" : {
+              "{{#mainDiagnosisCode}}" : "{{%mainDiagnosisCodes}}",
+              "{{*}}" : {
+                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %mainDiagnosisCode.toString())}}"
+              }
+            },
             "status" : "completed"
           }
         }

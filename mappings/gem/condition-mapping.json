@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
   "name" : "condition-mapping",
   "title" : "Mapping of GEM's patologie table to the DT4H Condition FHIR profile",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "patologie",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/condition",
