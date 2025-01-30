@@ -1,28 +1,28 @@
 {
-  "id" : "VitalSignO2Saturation",
+  "id" : "vitalsignbp",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/vitalsigno2saturation",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/VitalSignBp",
   "version" : "latest",
-  "name" : "VitalSignO2Saturation",
+  "name" : "VitalSignBp",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "VitalSignO2Saturation",
+  "type" : "VitalSignBp",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "VitalSignO2Saturation",
-      "path" : "VitalSignO2Saturation",
+      "id" : "VitalSignBp",
+      "path" : "VitalSignBp",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSignO2Saturation.pseudo_id",
-      "path" : "VitalSignO2Saturation.pseudo_id",
+      "id" : "VitalSignBp.pseudo_id",
+      "path" : "VitalSignBp.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -31,68 +31,8 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "VitalSignO2Saturation.ZiekenhuisLocatie",
-      "path" : "VitalSignO2Saturation.ZiekenhuisLocatie",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Hospital Location"
-    }, {
-      "id" : "VitalSignO2Saturation.MeetTijd",
-      "path" : "VitalSignO2Saturation.MeetTijd",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ],
-      "short" : "Measurement Time"
-    }, {
-      "id" : "VitalSignO2Saturation.MeetDatum",
-      "path" : "VitalSignO2Saturation.MeetDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "short" : "Measurement Date"
-    }, {
-      "id" : "VitalSignO2Saturation.MeetMoment",
-      "path" : "VitalSignO2Saturation.MeetMoment",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ],
-      "short" : "Measurement Datetime"
-    }, {
-      "id" : "VitalSignO2Saturation.o2Saturatie",
-      "path" : "VitalSignO2Saturation.o2Saturatie",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Measured O2 Saturation"
-    }, {
-      "id" : "VitalSignO2Saturation.Bron",
-      "path" : "VitalSignO2Saturation.Bron",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Source"
-    }, {
-      "id" : "VitalSignO2Saturation.Patientcontactid",
-      "path" : "VitalSignO2Saturation.Patientcontactid",
+      "id" : "VitalSignBp.Patientcontactid",
+      "path" : "VitalSignBp.Patientcontactid",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -101,15 +41,63 @@
       } ],
       "short" : "Encounter ID"
     }, {
-      "id" : "VitalSignO2Saturation.uitgifteDT",
-      "path" : "VitalSignO2Saturation.uitgifteDT",
+      "id" : "VitalSignBp.ZiekenhuisLocatie",
+      "path" : "VitalSignBp.ZiekenhuisLocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital Location"
+    }, {
+      "id" : "VitalSignBp.MeetTijd",
+      "path" : "VitalSignBp.MeetTijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "dateTime",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
-      "short" : "Issuance DT"
+      "short" : "Measurement Time"
+    }, {
+      "id" : "VitalSignBp.MeetDatum",
+      "path" : "VitalSignBp.MeetDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Measurement Date"
+    }, {
+      "id" : "VitalSignBp.ValueQuantity",
+      "path" : "VitalSignBp.ValueQuantity",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Measurement value"
+    }, {
+      "id" : "VitalSignBp.LOINCcode",
+      "path" : "VitalSignBp.LOINCcode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "VitalSignBp.LOINCdisplay",
+      "path" : "VitalSignBp.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     } ]
   }
 }

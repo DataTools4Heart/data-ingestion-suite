@@ -1,6 +1,7 @@
 {
   "id" : "amc-csv",
   "name" : "amc-csv",
+  "description" : "",
   "sourceSettings" : {
     "amc-source" : {
       "jsonClass" : "FileSystemSourceSettings",
@@ -58,18 +59,6 @@
       }
     }
   }, {
-    "name" : "ecg",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_EcgMeting.csv",
-        "contentType" : "csv",
-        "options" : {},
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
     "name" : "encounter-emergency-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
     "sourceBinding" : {
@@ -118,20 +107,6 @@
       "SurgeryHistory" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_VoorgeschiedenisChirurgie.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "lab-result-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/lab-result-mapping",
-    "sourceBinding" : {
-      "LabResult" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Labuitslag.csv",
         "contentType" : "csv",
         "options" : {
           "distinct" : "true"
@@ -224,96 +199,12 @@
       }
     }
   }, {
-    "name" : "vital-sign-bmi-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bmi-mapping",
-    "sourceBinding" : {
-      "BMI" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingBMI.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "vital-sign-bp-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
-    "sourceBinding" : {
-      "BP" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingBloeddruk.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
     "name" : "vital-sign-heartrate-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
     "sourceBinding" : {
       "HeartRate" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Datatools4heart_MetingHartfrequentie.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "vital-sign-length-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-mapping",
-    "sourceBinding" : {
-      "Length" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingLichaamsLengte.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "vital-sign-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
-    "sourceBinding" : {
-      "VitalSign" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingVitaleGegevens.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "vital-sign-o2-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-o2-mapping",
-    "sourceBinding" : {
-      "O2Saturation" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Metingo2Saturatie.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "vital-sign-weight-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-weight-mapping",
-    "sourceBinding" : {
-      "Weight" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingLichaamsGewicht.csv",
         "contentType" : "csv",
         "options" : {
           "distinct" : "true"

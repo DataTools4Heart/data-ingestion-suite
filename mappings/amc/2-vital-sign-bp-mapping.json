@@ -1,0 +1,60 @@
+{
+  "id" : "2-vital-sign-bp-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-vital-sign-bp-mapping",
+  "name" : "2-vital-sign-bp-mapping",
+  "title" : "Mapping of AMC's BloodPressure table to DT4H-VitalSign FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "VitalSignBp",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/VitalSignBp",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "vitalSignUnits" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/vital-sign-units.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "bp",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid.toString() & MeetDatum.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{LOINCcode}}",
+            "display" : "{{LOINCdisplay}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{mpp:getConcept(%vitalSignUnits, LOINCcode, 'unit')}}",
+          "value" : "{{ValueQuantity.toDecimal()}}",
+          "unit" : "{{mpp:getConcept(%vitalSignUnits, LOINCcode, 'unit')}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "identifier" : [ {
+          "value" : "{{pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetDatum.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

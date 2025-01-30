@@ -1,0 +1,101 @@
+{
+  "id" : "amc-parquet-v2",
+  "name" : "amc-parquet-v2",
+  "description" : "",
+  "sourceSettings" : {
+    "amc-source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "amc-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
+      "dataFolderPath" : "test-data/amc",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "vital-sign-bp-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/2-vital-sign-bp-mapping",
+    "sourceBinding" : {
+      "VitalSignBp" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "BloodPressure.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-length-weight-bmi-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/2-vital-sign-length-weight-bmi-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "LengthWeightBMI.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/2-vital-sign-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VitalSigns.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "laboratory-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/2-laboratory-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Laboratory.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/2-echo-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Echocardiography.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\ngroup by pseudo_id, Accessionnummer",
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/2-ecg-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ECG.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\ngroup by pseudo_id, EcgMetingId",
+        "sourceRef" : "amc-source"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

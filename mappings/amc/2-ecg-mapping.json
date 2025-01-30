@@ -1,0 +1,56 @@
+{
+  "id" : "2-ecg-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-ecg-mapping",
+  "name" : "2-ecg-mapping",
+  "title" : "Mapping of AMC's ECG table to DT4H-ECG FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/ecg",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & EcgMetingId)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "code" : {
+          "coding" : [ {
+            "code" : "34534-8",
+            "system" : "http://loinc.org",
+            "display" : "12 lead EKG panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "component" : {
+          "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "{{LOINCcode[%ind]}}",
+                "system" : "loinc.org",
+                "display" : "{{LOINCdisplay[%ind]}}"
+              } ]
+            },
+            "valueQuantity" : {
+              "value" : "{{ValueQuantity[%ind].toDecimal()}}"
+            }
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "effectiveDateTime" : "{{EcgAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "identifier" : [ {
+          "value" : "{{pseudo_id.toString() & '-' & EcgMetingId}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

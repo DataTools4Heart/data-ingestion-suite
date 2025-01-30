@@ -1,0 +1,55 @@
+{
+  "id" : "2-vital-sign-length-weight-bmi-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-vital-sign-length-weight-bmi-mapping",
+  "name" : "2-vital-sign-length-weight-bmi-mapping",
+  "title" : "Mapping of AMC's LengthWeightBMI table to DT4H-VitalSign FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/VitalSignLengthWeightBMI",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid & MeetDatum.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{LOINCcode}}",
+            "display" : "{{LOINCdisplay}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{Unit.nav:orElse('%')}}",
+          "value" : "{{ValueQuantity}}",
+          "unit" : "{{Unit.nav:orElse('%')}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "identifier" : [ {
+          "value" : "{{pseudo_id.toString() & '-' & Patientcontactid & '-' & MeetDatum.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

@@ -1,0 +1,188 @@
+{
+  "id" : "laboratory",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/Laboratory",
+  "version" : "latest",
+  "name" : "Laboratory",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Laboratory",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Laboratory",
+      "path" : "Laboratory",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Laboratory.pseudo_id",
+      "path" : "Laboratory.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "Laboratory.MonsterId",
+      "path" : "Laboratory.MonsterId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Linkage lab values from same specimen",
+      "short" : "Specimen ID"
+    }, {
+      "id" : "Laboratory.MateriaalAfnameDatumTijd",
+      "path" : "Laboratory.MateriaalAfnameDatumTijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Material Collection Datetime"
+    }, {
+      "id" : "Laboratory.Bepaling",
+      "path" : "Laboratory.Bepaling",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Name of the lab measurement in Dutch. ",
+      "short" : "Lab measurement name"
+    }, {
+      "id" : "Laboratory.MateriaalSoort",
+      "path" : "Laboratory.MateriaalSoort",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "E.g. 'Bloed' for Blood, 'Urine' for Urine",
+      "short" : "Material Type"
+    }, {
+      "id" : "Laboratory.UitslagEenheid",
+      "path" : "Laboratory.UitslagEenheid",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Result Unit"
+    }, {
+      "id" : "Laboratory.AanvragendeWerkplekAfkorting",
+      "path" : "Laboratory.AanvragendeWerkplekAfkorting",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Department abbreviation making the request. Abbreviations are AMC based.",
+      "short" : "Department abbreviation"
+    }, {
+      "id" : "Laboratory.AanvragendeWerkplek",
+      "path" : "Laboratory.AanvragendeWerkplek",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Department name making the request. Names are in Dutch.",
+      "short" : "Department name"
+    }, {
+      "id" : "Laboratory.AanvragendeZiekenhuisLocatie",
+      "path" : "Laboratory.AanvragendeZiekenhuisLocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital Location"
+    }, {
+      "id" : "Laboratory.UitslagDatumtijd",
+      "path" : "Laboratory.UitslagDatumtijd",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Measurement Datetime"
+    }, {
+      "id" : "Laboratory.NormaalwaardeOndergrens",
+      "path" : "Laboratory.NormaalwaardeOndergrens",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Normal Value Lower Limit"
+    }, {
+      "id" : "Laboratory.NormaalwaardeBovengrens",
+      "path" : "Laboratory.NormaalwaardeBovengrens",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Normal Value Upper Limit"
+    }, {
+      "id" : "Laboratory.UitslagNumeriek",
+      "path" : "Laboratory.UitslagNumeriek",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Result Numerical"
+    }, {
+      "id" : "Laboratory.UitslagOpmerking",
+      "path" : "Laboratory.UitslagOpmerking",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Result Note"
+    }, {
+      "id" : "Laboratory.LOINCcode",
+      "path" : "Laboratory.LOINCcode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Laboratory.LOINCdisplay",
+      "path" : "Laboratory.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id" : "2-echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-echo-mapping",
+  "name" : "2-echo-mapping",
+  "title" : "Mapping of AMC's Echocardiography table to DT4H-ECG FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/Echo",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Accessionnummer)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "imaging",
+            "display" : "Imaging"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34552-0",
+            "display" : "Cardiac 2D echo panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{Onderzoeksdatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "component" : {
+          "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "{{LOINCcode[%ind]}}",
+                "display" : "{{LOINCdisplay[%ind]}}"
+              } ],
+              "@sliceName" : "echoParameter"
+            },
+            "valueQuantity" : {
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{ValueQuantity[%ind].replace(',', '.').toDecimal()}}"
+            }
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "identifier" : [ {
+          "value" : "{{pseudo_id.toString() & '-' & Accessionnummer}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

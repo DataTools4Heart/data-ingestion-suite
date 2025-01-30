@@ -1,29 +1,29 @@
 {
-  "id" : "VitalSign",
+  "id" : "echo",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/vitalsign",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/Echo",
   "version" : "latest",
-  "name" : "VitalSign",
+  "name" : "Echo",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "VitalSign",
+  "type" : "Echo",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "VitalSign",
-      "path" : "VitalSign",
+      "id" : "Echo",
+      "path" : "Echo",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSign.pseudo_id",
-      "path" : "VitalSign.pseudo_id",
-      "min" : 0,
+      "id" : "Echo.pseudo_id",
+      "path" : "Echo.pseudo_id",
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
@@ -31,81 +31,75 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "VitalSign.Patientcontactid",
-      "path" : "VitalSign.Patientcontactid",
+      "id" : "Echo.Onderzoeksdatum",
+      "path" : "Echo.Onderzoeksdatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Encounter ID"
+      "short" : "Date of research"
     }, {
-      "id" : "VitalSign.ZiekenhuisLocatie",
-      "path" : "VitalSign.ZiekenhuisLocatie",
+      "id" : "Echo.Onderzoeksstatus",
+      "path" : "Echo.Onderzoeksstatus",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Hospital Location"
+      "short" : "Status of research"
     }, {
-      "id" : "VitalSign.MeetDatum",
-      "path" : "VitalSign.MeetDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "short" : "Measurement Date"
-    }, {
-      "id" : "VitalSign.MeetTijd",
-      "path" : "VitalSign.MeetTijd",
+      "id" : "Echo.Accessionnummer",
+      "path" : "Echo.Accessionnummer",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Measurement ID"
     }, {
-      "id" : "VitalSign.ValueQuantity",
-      "path" : "VitalSign.ValueQuantity",
+      "id" : "Echo.OriginalName",
+      "path" : "Echo.OriginalName",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "OriginalName"
+    }, {
+      "id" : "Echo.ValueQuantity",
+      "path" : "Echo.ValueQuantity",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Measured value"
     }, {
-      "id" : "VitalSign.Unit",
-      "path" : "VitalSign.Unit",
+      "id" : "Echo.LOINCcode",
+      "path" : "Echo.LOINCcode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "LOINC code of echo parameter "
     }, {
-      "id" : "VitalSign.LOINCcode",
-      "path" : "VitalSign.LOINCcode",
+      "id" : "Echo.LOINCdisplay",
+      "path" : "Echo.LOINCdisplay",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "VitalSign.LOINCdisplay",
-      "path" : "VitalSign.LOINCdisplay",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "LOINC display of echo parameter "
     } ]
   }
 }

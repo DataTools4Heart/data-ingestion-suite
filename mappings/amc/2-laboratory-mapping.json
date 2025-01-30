@@ -1,0 +1,62 @@
+{
+  "id" : "2-laboratory-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-laboratory-mapping",
+  "name" : "2-laboratory-mapping",
+  "title" : "Mapping of AMC's Laboratory table to DT4H-LabResult FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/Laboratory",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Patient', pseudo_id.toString() & MonsterId & LOINCcode)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{LOINCcode}}",
+            "display" : "{{LOINCdisplay}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{UitslagEenheid}}",
+          "unit" : "{{UitslagEenheid}}",
+          "value" : "{{UitslagNumeriek}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "identifier" : [ {
+          "value" : "{{pseudo_id.toString() & '-' & MonsterId & '-' & LOINCcode}}"
+        } ],
+        "referenceRange" : [ {
+          "low" : {
+            "value" : "{{? iif(NormaalwaardeOndergrens.exists() and NormaalwaardeOndergrens != '', NormaalwaardeOndergrens.replace(',', '.').toDecimal()) }}"
+          },
+          "high" : {
+            "value" : "{{? iif(NormaalwaardeBovengrens.exists() and NormaalwaardeBovengrens != '', NormaalwaardeBovengrens.replace(',', '.').toDecimal()) }}"
+          }
+        } ]
+      }
+    }
+  } ]
+}
