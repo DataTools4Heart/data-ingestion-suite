@@ -2,6 +2,6 @@ source_code,target_code,target_display
 "IMP","IMP","Inpatient encounter"
 "ACUTE","IMP","Inpatient encounter"
 "SS","SS","Short stay"
-"NONAC","IMP","Inpatient encounter"
+"NONAC"," OBSENC","Observation encounter"
 "OTHER","IMP","Inpatient encounter"
 "AMB","AMB","Ambulatory"
