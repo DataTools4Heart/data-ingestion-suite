@@ -54,7 +54,7 @@
     }, {
       "id" : "EncounterDetails.DATA_DIMISSIONE",
       "path" : "EncounterDetails.DATA_DIMISSIONE",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",

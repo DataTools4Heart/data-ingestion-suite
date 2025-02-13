@@ -2,6 +2,7 @@
   "id" : "labresultvitalsign",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/labresultvitalsign",
+  "version" : "latest",
   "name" : "LabResultVitalSign",
   "description" : "Represents diario_misure table",
   "status" : "draft",
@@ -31,16 +32,6 @@
       } ],
       "short" : "Patient id"
     }, {
-      "id" : "LabResultVitalSign.DATA_ESAME",
-      "path" : "LabResultVitalSign.DATA_ESAME",
-      "min" : 1,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "short" : "Measurement date"
-    }, {
       "id" : "LabResultVitalSign.DATA_ORA_ESAME",
       "path" : "LabResultVitalSign.DATA_ORA_ESAME",
       "min" : 1,
@@ -50,6 +41,16 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
       "short" : "Measurement datetime"
+    }, {
+      "id" : "LabResultVitalSign.DATA_ESAME",
+      "path" : "LabResultVitalSign.DATA_ESAME",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Measurement date"
     }, {
       "id" : "LabResultVitalSign.CODICE_ESAME",
       "path" : "LabResultVitalSign.CODICE_ESAME",
@@ -81,6 +82,17 @@
       } ],
       "short" : "Measure unit"
     }, {
+      "id" : "LabResultVitalSign.VALUE_C",
+      "path" : "LabResultVitalSign.VALUE_C",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "It could be corrected or calibrated value of the measurement",
+      "short" : "No information"
+    }, {
       "id" : "LabResultVitalSign.VALUE",
       "path" : "LabResultVitalSign.VALUE",
       "min" : 1,
@@ -90,17 +102,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
       "short" : "Measured value"
-    }, {
-      "id" : "LabResultVitalSign.VALUE_C",
-      "path" : "LabResultVitalSign.VALUE_C",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "No information",
-      "definition": "It could be corrected or calibrated value of the measurement"
     }, {
       "id" : "LabResultVitalSign.VALORE_MINIMO",
       "path" : "LabResultVitalSign.VALORE_MINIMO",
