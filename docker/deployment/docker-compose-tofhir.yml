@@ -24,7 +24,12 @@ services:
       test: curl --fail --request OPTIONS http://localhost:8085/tofhir || exit 1
       interval: 20s
       timeout: 10s
-      retries: 5      
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "24.0"
+          memory: "20G"
   tofhir-web:
     image: srdc/tofhir-web:dt4h
     container_name: dt4h-tofhir-web
