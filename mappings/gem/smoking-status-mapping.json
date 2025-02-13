@@ -7,10 +7,18 @@
   "source" : [ {
     "alias" : "patology",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/condition",
-    "joinOn" : [ ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
+  }, {
+    "alias" : "encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
+    "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "%encounter.where(DATA_IN.toDate() <= %context.data_in.toDate() and DATA_OUT.toDate() >= %context.data_in.toDate()).first()"
+  } ],
   "mapping" : [ {
     "precondition" : {
       "name" : "smokingPatology",
@@ -49,6 +57,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "effectiveDateTime" : "{{? data_in.utl:toFhirDate('yyyy-MM-dd'))}}",
         "status" : "final"
       }

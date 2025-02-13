@@ -25,16 +25,11 @@
     "expression" : "%encounters.where(DATA_IN <= %context.DATAREFERTO and DATA_OUT >= %context.DATAREFERTO).first()"
   } ],
   "mapping" : [ {
-    "precondition" : {
-      "name" : "relatedEncounterExists",
-      "language" : "text/fhirpath",
-      "expression" : "%relatedEncounter.exists()"
-    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & %relatedEncounter.NOSOGRAFICO & DATAREFERTO)}}",
+        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS) & DATAREFERTO)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
         },
@@ -61,8 +56,7 @@
             "{{#echoCode}}" : "{{mpp:getConcept(%echoCodeMappings, %measurement.utl:split('|').first() ) }}",
             "{{?}}" : {
               "code" : {
-                "coding" : [ "{{utl:createFhirCoding(%echoCode.code_system, %echoCode.target_code, %echoCode.target_display)}}" ],
-                "@sliceName" : "echoParameter"
+                "coding" : [ "{{utl:createFhirCoding(%echoCode.code_system, %echoCode.target_code, %echoCode.target_display)}}" ]
               },
               "valueQuantity" : {
                 "system" : "http://unitsofmeasure.org",
@@ -74,7 +68,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "status" : "final"
       }
     }

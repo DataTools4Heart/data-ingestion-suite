@@ -20,11 +20,6 @@
     "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA.toDate() and DATA_OUT.toDate() >= %context.DATA.toDate()).first()"
   } ],
   "mapping" : [ {
-    "precondition" : {
-      "name" : "relatedEncounterExists",
-      "language" : "text/fhirpath",
-      "expression" : "%relatedEncounter.exists()"
-    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -47,7 +42,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "occurenceDateTime" : "{{DATA}}",
         "dosage" : {
           "text" : "No data"

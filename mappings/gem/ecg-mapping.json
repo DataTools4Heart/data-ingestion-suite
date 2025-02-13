@@ -7,10 +7,18 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/ecg",
-    "joinOn" : [ ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
+  }, {
+    "alias" : "encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
+    "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "%encounter.where(DATA_IN <= %context.DATA_ESECUZIONE and DATA_OUT >= %context.DATA_ESECUZIONE).first()"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -322,6 +330,10 @@
           },
           "@sliceName" : "samplingFrequency"
         } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
+        "effectiveDateTime" : "{{(DATA_ESECUZIONE & iif(ORA_ESECUZIONE.exists(), ORA_ESECUZIONE) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd') }}",
+        "status" : "final",
         "category" : [ {
           "coding" : [ {
             "code" : "vital-signs",
@@ -329,9 +341,6 @@
             "display" : "Vital Signs"
           } ]
         } ],
-        "effectiveDateTime" : "{{(DATA_ESECUZIONE & iif(ORA_ESECUZIONE.exists(), ORA_ESECUZIONE) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd') }}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
-        "status" : "final",
         "extension" : {
           "{{#durationVar}}" : "{{DURATION}}",
           "{{?}}" : [ {

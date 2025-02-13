@@ -7,11 +7,7 @@
   "source" : [ {
     "alias" : "encounterDetails",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounterdetails",
-    "joinOn" : [ "CODICE_SANITARIO" ]
-  }, {
-    "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
-    "joinOn" : [ "CODICE_SANITARIO" ]
+    "joinOn" : [ ]
   } ],
   "context" : {
     "icd9toIcd10PCS" : {
@@ -20,10 +16,6 @@
     }
   },
   "variable" : [ {
-    "name" : "relatedEncounter",
-    "language" : "text/fhirpath",
-    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA_RICOVERO.toDate() and DATA_OUT.toDate() >= %context.DATA_DIMISSIONE.toDate()).first()"
-  }, {
     "name" : "mainDiagnosisCodes",
     "language" : "text/fhirpath",
     "expression" : " DIAG1_ICD9CM.nav:orElse(DIAG2_ICD9CM | DIAG3_ICD9CM | DIAG4_ICD9CM | DIAG5_ICD9CM | DIAG6_ICD9CM | DIAG7_ICD9CM) "
@@ -59,7 +51,7 @@
               }
             },
             "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
-            "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter',  %relatedEncounter.NOSOGRAFICO)}}",
+            "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter',  NOSOGRAFICO_ADT)}}",
             "occurrenceDateTime" : "{{DATAPROC[%ind]}}",
             "reason" : {
               "{{#mainDiagnosisCode}}" : "{{%mainDiagnosisCodes}}",

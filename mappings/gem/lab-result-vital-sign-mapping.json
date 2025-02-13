@@ -72,7 +72,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "effectiveDateTime" : "{{DATA_ORA_ESAME.toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALUE, UNITA_MISURA).nav:orElse(utl:createFhirQuantity(VALUE, UNITA_MISURA, 'http://unitsofmeasure.org', CODICE_ESAME)), utl:createFhirQuantity(VALUE, %vitalSign.unit, 'http://unitsofmeasure.org', %vitalSign.target_code) )  }}",
         "referenceRange" : [ {

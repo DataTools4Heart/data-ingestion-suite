@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "encounterMain",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
-    "joinOn" : [ "CODICE_SANITARIO" ]
+    "joinOn" : [ "CODICE_SANITARIO", "NOSOGRAFICO" ]
   }, {
     "alias" : "encounterDetails",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounterdetails",
-    "joinOn" : [ "CODICE_SANITARIO" ]
+    "joinOn" : [ "CODICE_SANITARIO", "NOSOGRAFICO_ADT" ]
   } ],
   "context" : {
     "icd9toIcd10CM" : {
@@ -24,29 +24,20 @@
     }
   },
   "variable" : [ {
-    "name" : "relatedEncounter",
-    "language" : "text/fhirpath",
-    "expression" : "%encounterDetails.where(%context.DATA_IN.toDate() <= DATA_RICOVERO.toDate() and %context.DATA_OUT.toDate() >= DATA_DIMISSIONE.toDate()).first()"
-  }, {
     "name" : "dischargeDate",
     "language" : "text/fhirpath",
     "expression" : "(DATA_OUT & iif(ORA_OUT.exists(), ORA_OUT) )"
   }, {
     "name" : "mainDiagnosisCodes",
     "language" : "text/fhirpath",
-    "expression" : " %relatedEncounter.DIAG1_ICD9CM.nav:orElse(%relatedEncounter.DIAG2_ICD9CM | %relatedEncounter.DIAG3_ICD9CM | %relatedEncounter.DIAG4_ICD9CM | %relatedEncounter.DIAG5_ICD9CM | %relatedEncounter.DIAG6_ICD9CM | %relatedEncounter.DIAG7_ICD9CM) "
+    "expression" : " %encounterDetails.DIAG1_ICD9CM.nav:orElse(%encounterDetails.DIAG2_ICD9CM | %encounterDetails.DIAG3_ICD9CM | %encounterDetails.DIAG4_ICD9CM | %encounterDetails.DIAG5_ICD9CM | %encounterDetails.DIAG6_ICD9CM | %encounterDetails.DIAG7_ICD9CM) "
   } ],
   "mapping" : [ {
-    "precondition" : {
-      "name" : "encounterIdExists",
-      "language" : "text/fhirpath",
-      "expression" : " NOSOGRAFICO.exists() and %relatedEncounter.exists() "
-    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Encounter', NOSOGRAFICO)}}",
+        "id" : "{{mpp:getHashedId('Encounter', NOSOGRAFICO.nav:orElse(NUM_PS))}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
@@ -82,7 +73,7 @@
     "precondition" : {
       "name" : "relatedEncounterExists",
       "language" : "text/fhirpath",
-      "expression" : "%relatedEncounter.exists()"
+      "expression" : "%encounterDetails.exists()"
     },
     "expression" : {
       "name" : "condition",

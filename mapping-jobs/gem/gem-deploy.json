@@ -134,6 +134,13 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
+      },
+      "encounter" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -147,13 +154,6 @@
         "options" : { },
         "preprocessSql" : "select CODICE_SANITARIO, NOSOGRAFICO_ADT, DATA_RICOVERO, ORA_RICOVERO, DATA_DIMISSIONE, ORA_DIMISSIONE, DESC_REPARTO_RICOVERO, DIAG1_ICD9CM, DIAG2_ICD9CM, DIAG3_ICD9CM, DIAG4_ICD9CM, DIAG5_ICD9CM, DIAG6_ICD9CM, DIAG7_ICD9CM, ARRAY(PROC1, PROC2, PROC3, PROC4, PROC5, PROC6, PROC7) as PROC, ARRAY(DATAPROC1, DATAPROC2, DATAPROC3, DATAPROC4, DATAPROC5, DATAPROC6, DATAPROC7) as DATAPROC, TIPO from encounterDetails",
         "sourceRef" : "gem-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
       }
     }
   }, {
@@ -163,6 +163,13 @@
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "ecg.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      },
+      "encounter" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"

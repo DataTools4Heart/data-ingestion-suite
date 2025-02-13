@@ -26,11 +26,6 @@
   } ],
   "mapping" : [ {
     "description" : "Since there is no encounter ID linked between tables, we make some timeframe calculations after joining by patient ID. In order to find the relevant encounter, we find the encounters where NYHA-date is in between admission and discharge date and choose the first one compulsorily.",
-    "precondition" : {
-      "name" : "relatedEncounterExists",
-      "language" : "text/fhirpath",
-      "expression" : "%relatedEncounter.exists()"
-    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -64,7 +59,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', iif(%relatedEncounter.NOSOGRAFICO.exists(), %relatedEncounter.NOSOGRAFICO, %relatedEncounter.NUM_PS) )}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS) )}}",
         "status" : "final"
       }
     }
