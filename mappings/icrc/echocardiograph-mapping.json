@@ -63,7 +63,7 @@
             "code" : {
               "coding" : [ {
                 "system" : "https://datatools4heart.eu/fhir/CodeSystem/echo-parameter",
-                "code" : "Rhythm",
+                "code" : "RhythmEcho",
                 "display" : "Cardiac rhythm at echocardiography"
               } ]
             },
