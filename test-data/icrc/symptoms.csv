@@ -1,2 +1,2 @@
-"subject","effective_date_time","code","value","encounter"
-65413,2018-11-08 11:00:00,267039000,true,219732
+"id_symptom","id_patient","id_encounter","id_department","observation_date_time",code_snomed,value,category_code,category_text
+11,1,1,1,2023-06-16 11:00:00,29857009,true,exam,Exam

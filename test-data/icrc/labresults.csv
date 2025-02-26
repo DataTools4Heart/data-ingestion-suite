@@ -1,5 +1,7 @@
 id_lab,id_patient,id_encounter,id_department,effective_date,code_his,lab_name_his,code_loinc,value_result,value_unit
-1,2,2,1,2018-09-27,2951-2,Glucose,2951-2-7,5.6,mmol/L
+1,2,2,1,2018-09-27,2951-2,Glucose,2951-2,5.6,mmol/L
 2,2,2,1,2018-09-27,2160-0,Cholesterol,2160-0,190,mg/dL
 3,2,2,1,2018-09-27,2161-8,Hemoglobin,2161-8,13.5,g/dL
 4,2,2,1,2018-09-29,2951-2,Sodium,2951-2,140,mmol/L
+5,2,2,1,2018-09-29,2823-3,Potassium [Moles/volume] in Serum or Plasma,2823-3,5.3,Moles/
+6,2,2,1,2018-09-29,69405-9,Glomerular filtration rate,69405-9,16,mL/min/1.73m²

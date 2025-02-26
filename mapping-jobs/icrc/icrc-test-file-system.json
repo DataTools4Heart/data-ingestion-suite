@@ -107,6 +107,52 @@
           "sourceRef": "icrc-file-system-data"
         }
       }
+    },
+    {
+      "name": "echocardiograph-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/echocardiograph-mapping",
+      "sourceBinding": {
+        "echoObservation": {
+          "jsonClass": "FileSystemSource",
+          "path": "echoobservation.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        },
+        "echoMeasurements": {
+          "jsonClass": "FileSystemSource",
+          "path": "echomeasurement.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "ECG-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/ECG-mapping",
+      "sourceBinding": {
+        "ecg": {
+          "jsonClass": "FileSystemSource",
+          "path": "electrocardiograph.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
+    },
+    {
+      "name": "symptom-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/icrc/symptom-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "symptoms.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "icrc-file-system-data"
+        }
+      }
     }
   ],
   "dataProcessingSettings": {

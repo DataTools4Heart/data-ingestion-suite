@@ -1,0 +1,2 @@
+id_echo,id_patient,id_encounter,id_department,date_exec,rhythm,bsa
+1,1,1,1,2023-06-16,1,1.85
