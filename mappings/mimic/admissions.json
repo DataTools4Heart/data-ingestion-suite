@@ -80,6 +80,9 @@
         },
         "length" : "{{utl:getDurationAsQuantityObject(admittime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00'), dischtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00'))}}",
         "reason" : [ {
+          "use": [ {
+                    "coding": [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
+          } ],
           "value" : {
             "{{#proc}}" : "{{%procedures}}",
             "{{*}}" : {
