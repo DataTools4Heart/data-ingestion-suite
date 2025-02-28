@@ -1,7 +1,7 @@
 id_condition,id_patient,id_encounter,on_set_date,code_icd_10,name_english,name_czech
 1,1,1,2023-06-15,I50,Heart failure,Srdeční selhání
-2,2,2,2018-09-26,I13.0,Heart failure,Srdeční selhání
+2,2,2,2018-09-26,I13.0,Hypertensive heart and renal disease with (congestive) heart failure,Srdeční selhání
 3,3,3,2020-12-15,I50,Heart failure,Srdeční selhání
-4,3,3,2020-12-15,J40,Heart failure,Srdeční selhání
+4,3,3,2020-12-15,J40,Bronchitis,Srdeční selhání
 5,3,4,2021-07-11,I50,Heart failure,Srdeční selhání
 6,2,5,2022-02-11,I50,Heart failure,Srdeční selhání

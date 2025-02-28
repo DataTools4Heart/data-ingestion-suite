@@ -43,7 +43,14 @@
             "code" : "active",
             "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
           } ]
-        }
+        },
+        "category" : [ {
+          "coding" : [ {
+            "code" : "encounter-diagnosis",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+            "display" : "Encounter Diagnosis"
+          } ]
+        } ]
       }
     }
   } ]
