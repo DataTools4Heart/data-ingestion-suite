@@ -98,6 +98,15 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
+    }, {
+      "id" : "VitalSignBp.ValueUnit",
+      "path" : "VitalSignBp.ValueUnit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     } ]
   }
 }

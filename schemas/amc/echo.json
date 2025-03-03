@@ -81,6 +81,15 @@
       } ],
       "short" : "Measured value"
     }, {
+      "id" : "Echo.ValueUnit",
+      "path" : "Echo.ValueUnit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "Echo.LOINCcode",
       "path" : "Echo.LOINCcode",
       "min" : 0,

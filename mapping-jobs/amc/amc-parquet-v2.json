@@ -75,7 +75,7 @@
         "path" : "Echocardiography.parquet",
         "contentType" : "parquet",
         "options" : { },
-        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\ngroup by pseudo_id, Accessionnummer",
+        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\ngroup by pseudo_id, Accessionnummer",
         "sourceRef" : "amc-source"
       }
     }
