@@ -50,7 +50,9 @@
             },
             "valueQuantity" : {
               "system" : "http://unitsofmeasure.org",
-              "value" : "{{ValueQuantity[%ind].replace(',', '.').toDecimal()}}"
+              "code" : "{{ValueUnit[%ind]}}",
+              "value" : "{{ValueQuantity[%ind].replace(',', '.').toDecimal()}}",
+              "unit" : "{{ValueUnit[%ind]}}"
             }
           }
         },
