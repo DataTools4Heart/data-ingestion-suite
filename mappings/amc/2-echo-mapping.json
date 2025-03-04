@@ -40,19 +40,22 @@
         "component" : {
           "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
           "{{*}}" : {
-            "code" : {
-              "coding" : [ {
-                "system" : "http://loinc.org",
-                "code" : "{{LOINCcode[%ind]}}",
-                "display" : "{{LOINCdisplay[%ind]}}"
-              } ],
-              "@sliceName" : "echoParameter"
-            },
-            "valueQuantity" : {
-              "system" : "http://unitsofmeasure.org",
-              "code" : "{{ValueUnit[%ind]}}",
-              "value" : "{{ValueQuantity[%ind].replace(',', '.').toDecimal()}}",
-              "unit" : "{{ValueUnit[%ind]}}"
+            "{{#canValueConvert}}" : "{{iif(ValueQuantity[%ind].replace(',', '.').convertsToDecimal(), true) }}",
+            "{{?}}" : {
+              "code" : {
+                "coding" : [ {
+                  "system" : "http://loinc.org",
+                  "code" : "{{LOINCcode[%ind]}}",
+                  "display" : "{{LOINCdisplay[%ind]}}"
+                } ],
+                "@sliceName" : "echoParameter"
+              },
+              "valueQuantity" : {
+                "system" : "http://unitsofmeasure.org",
+                "code" : "{{ValueUnit[%ind]}}",
+                "value" : "{{ValueQuantity[%ind].replace(',', '.').toDecimal()}}",
+                "unit" : "{{ValueUnit[%ind]}}"
+              }
             }
           }
         },
