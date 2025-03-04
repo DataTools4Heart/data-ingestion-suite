@@ -16,7 +16,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid & MeetDatum.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid & MeetDatum.toString() & LOINCcode)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
