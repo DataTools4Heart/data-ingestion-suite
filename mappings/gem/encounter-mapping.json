@@ -96,11 +96,19 @@
             }
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
+          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', NOSOGRAFICO.nav:orElse(NUM_PS))}}",
           "clinicalStatus" : {
             "coding" : [ {
               "code" : "active"
             } ]
-          }
+          },
+          "category" : [ {
+            "coding" : [ {
+              "code" : "encounter-diagnosis",
+              "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+              "display" : "Encounter Diagnosis"
+            } ]
+          } ]
         }
       }
     }
