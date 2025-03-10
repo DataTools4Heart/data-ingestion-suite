@@ -47,8 +47,8 @@
         } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "actualPeriod" : {
-          "start" : "{{StartDate}}",
-          "end" : "{{EndDate}}"
+          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}"
         },
         "reason" : [ {
           "use" : [ {
