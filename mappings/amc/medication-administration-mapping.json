@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
   "name" : "medication-administration-during-hospitalization-mapping",
   "title" : "Mapping of AMC's MedicatieToediening table to DT4H-MedicationAdministration FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "MedicationAdministration",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationadministration",
@@ -11,10 +12,20 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "atcCodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "ATCKlasseCode.exists() and (ATCKlasseCode in ('NA'| '' | 'null')).not()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id.toString() & ToedieningsDatumTijd.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration",
         "medication" : {
           "concept" : {
             "coding" : [ {
@@ -36,18 +47,8 @@
             }
           }
         },
-        "status" : "completed",
-        "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id.toString() & ToedieningsDatumTijd.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
-        },
-        "resourceType" : "MedicationAdministration"
+        "status" : "completed"
       }
-    },
-    "precondition" : {
-      "name" : "atcCodeExists",
-      "language" : "text/fhirpath",
-      "expression" : "ATCKlasseCode.exists() and (ATCKlasseCode in ('NA'| '' | 'null')).not()"
     }
   } ]
 }

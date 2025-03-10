@@ -21,187 +21,6 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Encounter.pseudo_id",
-      "path" : "Encounter.pseudo_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Patient ID"
-    }, {
-      "id" : "Encounter.OpnameDatum",
-      "path" : "Encounter.OpnameDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "short" : "Date of hospitalisation"
-    }, {
-      "id" : "Encounter.OntslagDatum",
-      "path" : "Encounter.OntslagDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "short" : "Date of discharge"
-    }, {
-      "id" : "Encounter.OpnameSpecialismeCode",
-      "path" : "Encounter.OpnameSpecialismeCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Admission Specialism Code"
-    }, {
-      "id" : "Encounter.OpnameSpecialisme",
-      "path" : "Encounter.OpnameSpecialisme",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Admission Specialism"
-    }, {
-      "id" : "Encounter.OpnameSubspecialismeCode",
-      "path" : "Encounter.OpnameSubspecialismeCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Admission Subspecialism Code"
-    }, {
-      "id" : "Encounter.OpnameSubspecialismeAfkorting",
-      "path" : "Encounter.OpnameSubspecialismeAfkorting",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Admission Subspecialism Abbreviation"
-    }, {
-      "id" : "Encounter.OpnameSubspecialisme",
-      "path" : "Encounter.OpnameSubspecialisme",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Admission Subspecialism"
-    }, {
-      "id" : "Encounter.OntslagSpecialismeCode",
-      "path" : "Encounter.OntslagSpecialismeCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Discharge Specialism Code"
-    }, {
-      "id" : "Encounter.OntslagSpecialismeAfkorting",
-      "path" : "Encounter.OntslagSpecialismeAfkorting",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Discharge Specialism Abbreviation"
-    }, {
-      "id" : "Encounter.OntslagSpecialisme",
-      "path" : "Encounter.OntslagSpecialisme",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Discharge Specialism"
-    }, {
-      "id" : "Encounter.OntslagSubspecialismeCode",
-      "path" : "Encounter.OntslagSubspecialismeCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Discharge Subspecialty Code"
-    }, {
-      "id" : "Encounter.OntslagSubspecialismeAfkorting",
-      "path" : "Encounter.OntslagSubspecialismeAfkorting",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Discharge Subspecialism Abbreviation"
-    }, {
-      "id" : "Encounter.OntslagSubspecialisme",
-      "path" : "Encounter.OntslagSubspecialisme",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Discharge Subspecialism"
-    }, {
-      "id" : "Encounter.ziekenhuislocatie",
-      "path" : "Encounter.ziekenhuislocatie",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Hospital Location"
-    }, {
-      "id" : "Encounter.VerwijzendZorgverlenerType",
-      "path" : "Encounter.VerwijzendZorgverlenerType",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Referring Healthcareprovider Type"
-    }, {
-      "id" : "Encounter.VerwijzendZorgverlenerIsIntern",
-      "path" : "Encounter.VerwijzendZorgverlenerIsIntern",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Referring Care Provider Is In Same Hospital?"
-    }, {
-      "id" : "Encounter.Opnametype",
-      "path" : "Encounter.Opnametype",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Admission type (in-patient, day, ED, observation, others)",
-      "short" : "Admission Type"
-    }, {
       "id" : "Encounter.Patientcontactid",
       "path" : "Encounter.Patientcontactid",
       "min" : 0,
@@ -212,15 +31,111 @@
       } ],
       "short" : "Encounter ID"
     }, {
-      "id" : "Encounter.uitgifteDT",
-      "path" : "Encounter.uitgifteDT",
+      "id" : "Encounter.pseudo_id",
+      "path" : "Encounter.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Issuance DT"
+      "short" : "Patient ID"
+    }, {
+      "id" : "Encounter.ZiekenhuisLocatie",
+      "path" : "Encounter.ZiekenhuisLocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.StartDate",
+      "path" : "Encounter.StartDate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Admission date"
+    }, {
+      "id" : "Encounter.EndDate",
+      "path" : "Encounter.EndDate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Dishcarge date"
+    }, {
+      "id" : "Encounter.DepartmentAdmission",
+      "path" : "Encounter.DepartmentAdmission",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Admission Specialism"
+    }, {
+      "id" : "Encounter.DepartmentDischarge",
+      "path" : "Encounter.DepartmentDischarge",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Discharge Specialism"
+    }, {
+      "id" : "Encounter.admitSource_code",
+      "path" : "Encounter.admitSource_code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.EncounterStatus",
+      "path" : "Encounter.EncounterStatus",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.EncounterClassCode",
+      "path" : "Encounter.EncounterClassCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "SS, AMB, EMER"
+    }, {
+      "id" : "Encounter.ViaEmergencyDEP",
+      "path" : "Encounter.ViaEmergencyDEP",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "1 or 0"
+    }, {
+      "id" : "Encounter.PrimaryICDcode",
+      "path" : "Encounter.PrimaryICDcode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     } ]
   }
 }

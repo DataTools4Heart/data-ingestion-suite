@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
   "name" : "condition-medical-diagnosis-mapping",
   "title" : "Mapping of AMC's MedischeDiagnose table to DT4H-Condition FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "ConditionMedicalDiagnosis",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/conditionmedicaldiagnosis",
@@ -11,14 +12,24 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "dateExists",
+      "language" : "text/fhirpath",
+      "expression" : "DiagnoseContactDatum.exists() and DiagnoseContactDatum != 'NA'"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Condition', pseudo_id.toString() & PatientContactId & DiagnoseContactDatum)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
         "code" : {
           "coding" : [ {
-            "system" : "http://hl7.org/fhir/sid/icd-10",
             "code" : "{{DiagnoseCode}}",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
             "@sliceName" : "icd10Code"
           } ]
         },
@@ -27,21 +38,11 @@
         "onsetDateTime" : "{{DiagnoseContactDatum.utl:toFhirDate('yyyy-MM-dd')}}",
         "clinicalStatus" : {
           "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
-            "code" : "active"
+            "code" : "active",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
           } ]
-        },
-        "id" : "{{mpp:getHashedId('Condition', pseudo_id.toString() & PatientContactId & DiagnoseContactDatum)}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
-        },
-        "resourceType" : "Condition"
+        }
       }
-    },
-    "precondition" : {
-      "name" : "dateExists",
-      "language" : "text/fhirpath",
-      "expression" : "DiagnoseContactDatum.exists() and DiagnoseContactDatum != 'NA'"
     }
   } ]
 }

@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-request-mapping",
   "name" : "medication-request",
   "title" : "Mapping of AMC's MedicatieVoorschrift table to HFR-MedicationRequest FHIR profile",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "MedicationRequest",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationrequest",
@@ -21,6 +21,11 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', pseudo_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
         "medication" : {
           "concept" : {
             "coding" : [ {
@@ -61,12 +66,7 @@
         "effectiveDosePeriod" : {
           "start" : "{{? StartDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
           "end" : "{{? StopDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
-        },
-        "id" : "{{mpp:getHashedId('MedicationRequest', pseudo_id.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
-        },
-        "resourceType" : "MedicationRequest"
+        }
       }
     }
   } ]

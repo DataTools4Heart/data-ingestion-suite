@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
   "name" : "history-condition-mapping",
   "title" : "Mapping of AMC's VoorgeschiedenisMedisch table to DT4H-Condition FHIR profile",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "HistoryCondition",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/historycondition",
@@ -11,14 +12,24 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "dateExists",
+      "language" : "text/fhirpath",
+      "expression" : "IndicatieDatumVaststelling.exists() and IndicatieDatumVaststelling != ''"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Condition', pseudo_id.toString() & diagnosecode.toString() & IndicatieDatumVaststelling.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
         "code" : {
           "coding" : [ {
-            "system" : "http://hl7.org/fhir/sid/icd-10",
             "code" : "{{diagnosecode}}",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
             "@sliceName" : "icd10Code"
           } ]
         },
@@ -27,22 +38,12 @@
         "onsetDateTime" : "{{IndicatieDatumVaststelling.utl:toFhirDateTime('d-M-yyyy' | 'yyyy' | 'M-yyyy')}}",
         "clinicalStatus" : {
           "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
             "code" : "active",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
             "display" : "Active"
           } ]
-        },
-        "id" : "{{mpp:getHashedId('Condition', pseudo_id.toString() & diagnosecode.toString() & IndicatieDatumVaststelling.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
-        },
-        "resourceType" : "Condition"
+        }
       }
-    },
-    "precondition" : {
-      "name" : "dateExists",
-      "language" : "text/fhirpath",
-      "expression" : "IndicatieDatumVaststelling.exists() and IndicatieDatumVaststelling != ''"
     }
   } ]
 }
