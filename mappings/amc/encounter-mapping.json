@@ -22,13 +22,13 @@
   "variable" : [ {
     "name" : "mainDiagnosisCodes",
     "language" : "text/fhirpath",
-    "expression" : "PrimaryICDcode.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim())"
+    "expression" : "iif(PrimaryICDcode.exists(), PrimaryICDcode.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim()) )"
   } ],
   "mapping" : [ {
     "precondition" : {
       "name" : "idExists",
       "language" : "text/fhirpath",
-      "expression" : "Patientcontactid.exists() and %mainDiagnosisCodes.length() > 0"
+      "expression" : "Patientcontactid.exists() and PrimaryICDcode.exists() and EncounterClassCode.exists() and EncounterClassCode != 'Other'"
     },
     "expression" : {
       "name" : "result",
@@ -79,6 +79,42 @@
           }
         } ],
         "serviceProvider" : "{{mpp:createFhirReferenceWithHashedId('Organization', ZiekenhuisLocatie)}}"
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "condition",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#mainDiagnosisCode}}" : "{{%mainDiagnosisCodes}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Condition', Patientcontactid & %mainDiagnosisCode)}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+          },
+          "resourceType" : "Condition",
+          "code" : {
+            "coding" : [ {
+              "code" : "{{%mainDiagnosisCode}}",
+              "system" : "http://hl7.org/fhir/sid/icd-10",
+              "@sliceName" : "icd10Code"
+            } ]
+          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+          "clinicalStatus" : {
+            "coding" : [ {
+              "code" : "active"
+            } ]
+          },
+          "category" : [ {
+            "coding" : [ {
+              "code" : "encounter-diagnosis",
+              "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+              "display" : "Encounter Diagnosis"
+            } ]
+          } ]
+        }
       }
     }
   } ]
