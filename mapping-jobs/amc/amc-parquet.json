@@ -87,20 +87,6 @@
       }
     }
   }, {
-    "name" : "history-condition-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
-    "sourceBinding" : {
-      "HistoryCondition" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VoorgeschiedenisMedisch",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
     "name" : "history-surgery-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
     "sourceBinding" : {

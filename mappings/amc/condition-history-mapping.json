@@ -1,9 +1,9 @@
 {
-  "id" : "history-condition-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
-  "name" : "history-condition-mapping",
+  "id" : "condition-history-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/condition-history-mapping",
+  "name" : "condition-history-mapping",
   "title" : "Mapping of AMC's VoorgeschiedenisMedisch table to DT4H-Condition FHIR profile",
-  "isDraft" : true,
+  "isDraft" : false,
   "source" : [ {
     "alias" : "HistoryCondition",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/historycondition",
@@ -35,7 +35,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
-        "onsetDateTime" : "{{IndicatieDatumVaststelling.utl:toFhirDateTime('d-M-yyyy' | 'yyyy' | 'M-yyyy')}}",
+        "onsetDateTime" : "{{? IndicatieDatumVaststelling.utl:toFhirDateTime('d-M-yyyy' | 'yyyy' | 'M-yyyy')}}",
         "clinicalStatus" : {
           "coding" : [ {
             "code" : "active",

@@ -87,20 +87,6 @@
       }
     }
   }, {
-    "name" : "history-condition-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-condition-mapping",
-    "sourceBinding" : {
-      "HistoryCondition" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VoorgeschiedenisMedisch.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
     "name" : "history-surgery-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
     "sourceBinding" : {
@@ -201,14 +187,16 @@
   }, {
     "name" : "vital-sign-heartrate-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-heartrate-mapping",
+    "sourceBinding" : { }
+  }, {
+    "name" : "condition-history-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-history-mapping",
     "sourceBinding" : {
-      "HeartRate" : {
+      "HistoryCondition" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MetingHartfrequentie.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true"
-        },
+        "path" : "Datatools4heart_VoorgeschiedenisMedisch.tsv",
+        "contentType" : "tsv",
+        "options" : { },
         "sourceRef" : "amc-source"
       }
     }
