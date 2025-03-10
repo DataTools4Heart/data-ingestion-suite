@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
   "name" : "smoking-status-mapping",
   "title" : "Mapping of AMC's Tabakgebruik table to DT4H-SmokingStatus FHIR profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "SmokingStatus",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/smokingstatus",
@@ -16,10 +17,26 @@
   },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "smokingStatusExists",
+      "language" : "text/fhirpath",
+      "expression" : "StatusTabakgebruik.exists() and (StatusTabakgebruik in ('NA'| '' | 'null' | 'Passief')).not()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid & 'smoking')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "effectivePeriod" : {
+          "start" : "{{? iif(StartDatum.exists() and StartDatum != '1753-01-01', StartDatum) }}",
+          "end" : "{{? iif(StopDatum.exists() and StopDatum != '9999-12-31', StopDatum) }}"
+        },
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -42,24 +59,8 @@
             "display" : "{{ mpp:getConcept(%smokingStatusContextMap, StatusTabakgebruik, 'target_display') }}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
-        "effectivePeriod" : {
-          "start" : "{{StartDatum}}",
-          "end" : "{{StopDatum}}"
-        },
-        "status" : "final",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid)}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
-        },
-        "resourceType" : "Observation"
+        "status" : "final"
       }
-    },
-    "precondition" : {
-      "name" : "smokingStatusExists",
-      "language" : "text/fhirpath",
-      "expression" : "StatusTabakgebruik.exists() and (StatusTabakgebruik in ('NA'| '' | 'null' | 'Passief')).not()"
     }
   } ]
 }

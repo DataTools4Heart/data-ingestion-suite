@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
   "name" : "cause-of-death-mapping",
   "title" : "Mapping of AMC's OverlijdensRegistratie table to DT4H-CauseOfDeath FHIR profile",
-  "isDraft" : true,
+  "isDraft" : false,
   "source" : [ {
     "alias" : "CauseOfDeath",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/causeofdeath",
@@ -16,6 +16,11 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & MeetDatum)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation",
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -36,15 +41,11 @@
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
-            "code" : "{{VermoedelijkeDoodsoorzaak}}"
+            "code" : "{{ICDcode}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id & MeetDatum)}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
-        },
-        "resourceType" : "Observation"
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid.toString())}}"
       }
     }
   } ]

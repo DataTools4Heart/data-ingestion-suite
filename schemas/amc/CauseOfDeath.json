@@ -86,20 +86,20 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Encounter ID"
     }, {
-      "id" : "CauseOfDeath.uitgifteDT",
-      "path" : "CauseOfDeath.uitgifteDT",
+      "id" : "CauseOfDeath.ICDcode",
+      "path" : "CauseOfDeath.ICDcode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Issuance DT"
+      "short" : "ICD10 code"
     } ]
   }
 }
