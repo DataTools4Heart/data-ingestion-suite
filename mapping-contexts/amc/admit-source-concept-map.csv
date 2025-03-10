@@ -1,0 +1,4 @@
+"source_code","code_system","display"
+"mp","http://terminology.hl7.org/CodeSystem/admit-source","Medical Practitioner/physician referral"
+"gp","http://terminology.hl7.org/CodeSystem/admit-source","General Practitioner referral"
+"other","http://terminology.hl7.org/CodeSystem/admit-source","Other"

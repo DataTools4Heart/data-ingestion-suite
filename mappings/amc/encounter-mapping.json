@@ -14,9 +14,9 @@
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/amc/encounter-class-concept-map.csv"
     },
-    "encounterSpecialitiesConceptMap" : {
+    "admitSourceConceptMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/amc/encounter-specialities-concept-map.csv"
+      "url" : "$CONTEXT_REPO/amc/admit-source-concept-map.csv"
     }
   },
   "variable" : [ {
@@ -42,7 +42,8 @@
         "class" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-            "code" : "{{EncounterClassCode}}"
+            "code" : "{{EncounterClassCode}}",
+            "display" : "{{mpp:getConcept(%encounterClassMap, EncounterClassCode, 'display')}}"
           } ]
         } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
@@ -68,7 +69,8 @@
         "admission" : {
           "admitSource" : {
             "coding" : [ {
-              "code" : "{{? admitSource_code}}"
+              "{{#codingVar}}" : "{{admitSource_code}}",
+              "{{?}}" : "{{utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/admit-source', %codingVar, mpp:getConcept(%admitSourceConceptMap, %codingVar, 'display') )}}"
             } ]
           }
         },
