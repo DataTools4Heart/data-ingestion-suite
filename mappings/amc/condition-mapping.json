@@ -10,33 +10,51 @@
     "joinOn" : [ ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "diagnoseCodes",
+    "language" : "text/fhirpath",
+    "expression" : "iif(DiagnoseCode.exists(), DiagnoseCode.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim()) )"
+  } ],
   "mapping" : [ {
+    "description" : "Run this mapping before encounter mapping. Because Encounter mapping also creates Conditions and it makes Conditions primary diagnoses.",
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Condition', PatientContactId & ProbleemlijstId )}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
-        },
-        "resourceType" : "Condition",
-        "code" : {
-          "coding" : [ {
-            "code" : "{{DiagnoseCode}}",
-            "system" : "http://hl7.org/fhir/sid/icd-10",
-            "@sliceName" : "icd10Code"
-          } ]
-        },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
-        "onsetDateTime" : "{{ConstateringsDatum}}",
-        "abatementDateTime" : "{{? iif(PatientProbleemstatus = 'Actief', {}, SluitDatum) }}",
-        "clinicalStatus" : {
-          "coding" : [ {
-            "code" : "{{iif(PatientProbleemstatus = 'Actief', 'active', 'inactive') }}",
-            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
-            "display" : "{{iif(PatientProbleemstatus = 'Actief', 'Active', 'Inactive') }}"
+        "{{#diagnoseCode}}" : "{{%diagnoseCodes}}",
+        "{{*}}" : {
+          "id" : "{{ iif(PatientContactId != '', mpp:getHashedId('Condition', PatientContactId & %diagnoseCode), mpp:getHashedId('Condition', ProbleemlijstId & %diagnoseCode))  }}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+          },
+          "resourceType" : "Condition",
+          "code" : {
+            "coding" : [ {
+              "code" : "{{%diagnoseCode}}",
+              "system" : "http://hl7.org/fhir/sid/icd-10",
+              "@sliceName" : "icd10Code"
+            } ]
+          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+          "encounter" : "{{? iif(PatientContactId != '', mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)) }}",
+          "onsetDateTime" : "{{ConstateringsDatum}}",
+          "abatementDateTime" : "{{? iif(PatientProbleemstatus = 'Actief', {}, SluitDatum) }}",
+          "identifier" : [ {
+            "value" : "{{ iif(PatientContactId != '', PatientContactId & '-' & %diagnoseCode, ProbleemlijstId & '-' & %diagnoseCode) }}"
+          } ],
+          "clinicalStatus" : {
+            "coding" : [ {
+              "code" : "{{iif(PatientProbleemstatus = 'Actief', 'active', 'inactive') }}",
+              "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "display" : "{{iif(PatientProbleemstatus = 'Actief', 'Active', 'Inactive') }}"
+            } ]
+          },
+          "category" : [ {
+            "coding" : [ {
+              "code" : "problem-list-item",
+              "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+              "display" : "Problem List Item"
+            } ]
           } ]
         }
       }

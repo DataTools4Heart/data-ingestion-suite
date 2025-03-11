@@ -22,13 +22,14 @@
   "variable" : [ {
     "name" : "mainDiagnosisCodes",
     "language" : "text/fhirpath",
-    "expression" : "iif(PrimaryICDcode.exists(), PrimaryICDcode.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim()) )"
+    "expression" : "iif(PrimaryICDcode.exists(), PrimaryICDcode.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim()).distinct() )"
   } ],
   "mapping" : [ {
+    "description" : "This mappings should be run after condition mapping. Because this mapping also creates Conditions and it makes Conditions primary diagnoses.",
     "precondition" : {
       "name" : "idExists",
       "language" : "text/fhirpath",
-      "expression" : "Patientcontactid.exists() and PrimaryICDcode.exists() and EncounterClassCode.exists() and EncounterClassCode != 'Other'"
+      "expression" : "Patientcontactid.exists() and EncounterClassCode.exists() and EncounterClassCode != 'Other'"
     },
     "expression" : {
       "name" : "result",
@@ -49,19 +50,22 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "actualPeriod" : {
           "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
-          "end" : "{{EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}"
+          "end" : "{{? iif(EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') > StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
         },
         "reason" : [ {
-          "use" : [ {
-            "coding" : [ {
-              "system" : "http://hl7.org/fhir/encounter-reason-use",
-              "code" : "AD"
-            } ]
-          } ],
-          "value" : {
-            "{{#primaryReasonCode}}" : "{{%mainDiagnosisCodes}}",
-            "{{*}}" : {
-              "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', Patientcontactid & StartDate & %primaryReasonCode )}}"
+          "{{#reasonVar}}" : "{{ iif(%mainDiagnosisCodes.count() > 0, true) }}",
+          "{{?}}" : {
+            "use" : [ {
+              "coding" : [ {
+                "system" : "http://hl7.org/fhir/encounter-reason-use",
+                "code" : "AD"
+              } ]
+            } ],
+            "value" : {
+              "{{#primaryReasonCode}}" : "{{%mainDiagnosisCodes}}",
+              "{{*}}" : {
+                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', Patientcontactid & %primaryReasonCode )}}"
+              }
             }
           },
           "@sliceName" : "admittingDiagnosis"
@@ -74,6 +78,9 @@
             } ]
           }
         },
+        "identifier" : [ {
+          "value" : "{{Patientcontactid}}"
+        } ],
         "status" : "{{EncounterStatus}}",
         "serviceType" : [ {
           "concept" : {
@@ -104,6 +111,9 @@
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
           "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+          "identifier" : [ {
+            "value" : "{{Patientcontactid & '-' & %mainDiagnosisCode}}"
+          } ],
           "clinicalStatus" : {
             "coding" : [ {
               "code" : "active"
