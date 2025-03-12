@@ -12,16 +12,11 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
-    "precondition" : {
-      "name" : "atcCodeExists",
-      "language" : "text/fhirpath",
-      "expression" : "ATCKlasseCode.exists() and (ATCKlasseCode in ('NA'| '' | 'null')).not()"
-    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationAdministration', pseudo_id.toString() & ToedieningsDatumTijd.toString())}}",
+        "id" : "{{mpp:getHashedId('MedicationAdministration', PatientContactId & prescriptionID & ATCCode & AdministrationDateTime.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
         },
@@ -30,20 +25,20 @@
           "concept" : {
             "coding" : [ {
               "system" : "http://www.whocc.no/atc",
-              "code" : "{{ATCKlasseCode}}",
+              "code" : "{{ATCCode}}",
               "@sliceName" : "atcCode"
             } ]
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
-        "occurenceDateTime" : "{{ToedieningsDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "occurenceDateTime" : "{{AdministrationDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "dosage" : {
-          "{{#doseVar}}" : "{{iif(ToegediendeHoeveelheid.exists() and ToegediendeHoeveelheid != 'NA', ToegediendeHoeveelheid , {})}}",
+          "{{#doseVar}}" : "{{iif(AdministeredAmount.exists(), true)}}",
           "{{?}}" : {
             "dose" : {
-              "value" : "{{ToegediendeHoeveelheid}}",
-              "unit" : "{{? ToegediendeHoeveelheidEenheid}}"
+              "value" : "{{AdministeredAmount}}",
+              "unit" : "{{? AdministeredAmountUnit}}"
             }
           }
         },

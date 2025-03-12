@@ -179,6 +179,20 @@
         "sourceRef" : "amc-source"
       }
     }
+  }, {
+    "name" : "medication-administration-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
+    "sourceBinding" : {
+      "MedicationAdministration" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MedicationAdministration.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "amc-source"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
