@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/condition-history-mapping",
   "name" : "condition-history-mapping",
   "title" : "Mapping of AMC's VoorgeschiedenisMedisch table to DT4H-Condition FHIR profile",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "HistoryCondition",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/historycondition",
@@ -21,7 +21,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Condition', pseudo_id.toString() & diagnosecode.toString() & IndicatieDatumVaststelling.toString())}}",
+        "id" : "{{mpp:getHashedId('Condition', Patientcontactid & diagnosecode)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },

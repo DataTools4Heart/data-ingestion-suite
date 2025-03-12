@@ -7,10 +7,22 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/ecg",
-    "joinOn" : [ ]
+    "joinOn" : [ "pseudo_id" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
+    "joinOn" : [ "pseudo_id" ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "relatedEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.EcgAfnameDatumTijd.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.EcgAfnameDatumTijd.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))"
+  }, {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%relatedEncounters.exists(PrimaryICDcode.exists() and PrimaryICDcode != ''), %relatedEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').first(), %relatedEncounters.first())"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -35,7 +47,7 @@
             "code" : {
               "coding" : [ {
                 "code" : "{{LOINCcode[%ind]}}",
-                "system" : "loinc.org",
+                "system" : "http://loinc.org",
                 "display" : "{{LOINCdisplay[%ind]}}"
               } ]
             },
@@ -45,7 +57,8 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "effectiveDateTime" : "{{EcgAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "encounter" : "{{?  mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
+        "effectiveDateTime" : "{{EcgAfnameDatumTijd.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "identifier" : [ {
           "value" : "{{pseudo_id.toString() & '-' & EcgMetingId}}"
         } ],

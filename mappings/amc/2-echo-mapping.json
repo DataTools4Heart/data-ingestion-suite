@@ -7,11 +7,24 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/Echo",
-    "joinOn" : [ ]
+    "joinOn" : [ "pseudo_id" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
+    "joinOn" : [ "pseudo_id" ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "relatedEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.Onderzoeksdatum.first().utl:toFhirDateTime('yyyy-MM-dd') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.Onderzoeksdatum.first().utl:toFhirDateTime('yyyy-MM-dd'))"
+  }, {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%relatedEncounters.exists(PrimaryICDcode.exists() and PrimaryICDcode != ''), %relatedEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').first(), %relatedEncounters.first())"
+  } ],
   "mapping" : [ {
+    "description" : "Here are the steps to find related encounter: 1. Join encounter data by patient ID. 2. Do date window calculation (see relatedEncounters variable) 3. Prioritise the encounter having a value in PrimaryICDcode column and select first one.",
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -60,6 +73,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
         "identifier" : [ {
           "value" : "{{pseudo_id.toString() & '-' & Accessionnummer}}"
         } ],
