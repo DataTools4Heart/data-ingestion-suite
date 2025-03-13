@@ -2,6 +2,7 @@ services:
   nginx:
     image: nginx:1.25.4
     container_name: dt4h-nginx
+    restart: always
     volumes:
       - type: bind
         source: ./data-ingestion-suite/docker/proxy/nginx.conf
