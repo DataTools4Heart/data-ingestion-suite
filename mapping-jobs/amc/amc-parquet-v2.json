@@ -106,7 +106,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\ngroup by pseudo_id, EcgMetingId",
+        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0\r\ngroup by pseudo_id, EcgMetingId",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -183,13 +183,25 @@
     "name" : "medication-administration-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
     "sourceBinding" : {
-      "MedicationAdministration" : {
+      "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "MedicationAdministration.parquet",
         "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
+        "options" : { },
+        "preprocessSql" : "select * \nfrom source\nwhere ATCCode != '' and AdministeredAmount IS NOT NULL",
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "medication-statement-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-statement-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MedicationPrescription.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",
         "sourceRef" : "amc-source"
       }
     }

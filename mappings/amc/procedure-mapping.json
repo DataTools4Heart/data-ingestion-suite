@@ -21,10 +21,20 @@
     "expression" : "mpp:getConcept(%procedureCodeMap, VerrichtingCode, 'target_code')"
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "isValidProcedure",
+      "language" : "text/fhirpath",
+      "expression" : "ProcedureCode.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Procedure', Pseudo_id & Verrichtingdatum)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+        },
+        "resourceType" : "Procedure",
         "category" : [ {
           "coding" : [ {
             "system" : "http://snomed.info/sct",
@@ -42,18 +52,8 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id)}}",
         "occurrenceDateTime" : "{{Verrichtingdatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
-        "status" : "completed",
-        "id" : "{{mpp:getHashedId('Procedure', Pseudo_id & Verrichtingdatum)}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
-        },
-        "resourceType" : "Procedure"
+        "status" : "completed"
       }
-    },
-    "precondition" : {
-      "name" : "isValidProcedure",
-      "language" : "text/fhirpath",
-      "expression" : "procedureCode.exists()"
     }
   } ]
 }

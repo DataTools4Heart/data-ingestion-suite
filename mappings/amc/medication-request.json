@@ -6,7 +6,7 @@
   "isDraft" : true,
   "source" : [ {
     "alias" : "MedicationRequest",
-    "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationrequest",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationStatement",
     "joinOn" : [ ]
   } ],
   "context" : { },

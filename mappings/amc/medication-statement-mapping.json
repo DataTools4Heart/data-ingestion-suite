@@ -1,0 +1,65 @@
+{
+  "id" : "medication-statement-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-statement-mapping",
+  "name" : "medication-statement-mapping",
+  "title" : "Mapping of AMC's MedicationPrescription table to HFR-MedicationStatement FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationStatement",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationStatement', prescriptionID)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationStatement" ]
+        },
+        "resourceType" : "MedicationStatement",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ATCCode}}",
+              "@sliceName" : "atcCode"
+            } ],
+            "text" : "{{? OrigialMedName}}"
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "effectivePeriod" : {
+          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
+          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd') > StartDate.utl:toFhirDateTime('yyyy-MM-dd'), StopDate.utl:toFhirDateTime('yyyy-MM-dd')) }}"
+        },
+        "identifier" : [ {
+          "value" : "{{prescriptionID}}"
+        } ],
+        "status" : "recorded",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/medicationrequest-admin-location",
+            "code" : "{{ iif(IsHomeMedication = 'Ja', 'community', 'outpatient') }}"
+          } ]
+        } ],
+        "dosage" : [ {
+          "text" : "{{? timing }}",
+          "route" : {
+            "text" : "{{? AdministrationRoute}}"
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{? Dosage }}",
+              "unit" : "{{? iif(UnitDosage != '', UnitDosage) }}"
+            }
+          } ]
+        } ]
+      }
+    }
+  } ]
+}

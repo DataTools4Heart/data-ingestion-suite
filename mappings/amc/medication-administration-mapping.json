@@ -3,9 +3,9 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
   "name" : "medication-administration-during-hospitalization-mapping",
   "title" : "Mapping of AMC's MedicatieToediening table to DT4H-MedicationAdministration FHIR profile",
-  "isDraft" : true,
+  "isDraft" : false,
   "source" : [ {
-    "alias" : "MedicationAdministration",
+    "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationadministration",
     "joinOn" : [ ]
   } ],
@@ -26,6 +26,7 @@
             "coding" : [ {
               "system" : "http://www.whocc.no/atc",
               "code" : "{{ATCCode}}",
+              "display" : "{{? OrigialMedName}}",
               "@sliceName" : "atcCode"
             } ]
           }
@@ -34,14 +35,17 @@
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "occurenceDateTime" : "{{AdministrationDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "dosage" : {
-          "{{#doseVar}}" : "{{iif(AdministeredAmount.exists(), true)}}",
-          "{{?}}" : {
-            "dose" : {
-              "value" : "{{AdministeredAmount}}",
-              "unit" : "{{? AdministeredAmountUnit}}"
-            }
+          "route" : {
+            "text" : "{{? AdministrationRoute}}"
+          },
+          "dose" : {
+            "value" : "{{AdministeredAmount}}",
+            "unit" : "{{AdministeredAmountUnit}}"
           }
         },
+        "identifier" : [ {
+          "value" : "{{PatientContactId & '-' & prescriptionID & '-' & ATCCode & '-' & AdministrationDateTime.toString()}}"
+        } ],
         "status" : "completed"
       }
     }

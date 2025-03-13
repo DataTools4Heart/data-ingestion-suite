@@ -1,0 +1,164 @@
+{
+  "id" : "medicationstatement",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationStatement",
+  "version" : "latest",
+  "name" : "MedicationStatement",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "MedicationStatement",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "MedicationStatement",
+      "path" : "MedicationStatement",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "MedicationStatement.pseudo_id",
+      "path" : "MedicationStatement.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "MedicationStatement.PatientContactId",
+      "path" : "MedicationStatement.PatientContactId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter ID"
+    }, {
+      "id" : "MedicationStatement.prescriptionID",
+      "path" : "MedicationStatement.prescriptionID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Prescription ID linkage different meds prescribed at the same time.",
+      "short" : "Related prescription ID"
+    }, {
+      "id" : "MedicationStatement.Ziekenhuislocatie",
+      "path" : "MedicationStatement.Ziekenhuislocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital Location"
+    }, {
+      "id" : "MedicationStatement.StartDate",
+      "path" : "MedicationStatement.StartDate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Prescription Start Date"
+    }, {
+      "id" : "MedicationStatement.StopDate",
+      "path" : "MedicationStatement.StopDate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Prescription End Date"
+    }, {
+      "id" : "MedicationStatement.IsHomeMedication",
+      "path" : "MedicationStatement.IsHomeMedication",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Indicates whether the medication is prescribed for home use. Values: 'Ja' ('yes') or 'Nee' ('no')",
+      "short" : "Is Home Medication?"
+    }, {
+      "id" : "MedicationStatement.OrigialMedName",
+      "path" : "MedicationStatement.OrigialMedName",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "This is the name of the medication. e.g. LOPERAMIDE CAPSULE 2MG."
+    }, {
+      "id" : "MedicationStatement.Dosage",
+      "path" : "MedicationStatement.Dosage",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationStatement.UnitDosage",
+      "path" : "MedicationStatement.UnitDosage",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Prescribed Dosage "
+    }, {
+      "id" : "MedicationStatement.AdministrationRoute",
+      "path" : "MedicationStatement.AdministrationRoute",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "The route of administration of the medication. E.g. 'oraal' ('oral'), 'intraveneus' ('intravenous')",
+      "short" : "Administration Route"
+    }, {
+      "id" : "MedicationStatement.Status",
+      "path" : "MedicationStatement.Status",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationStatement.ATCCode",
+      "path" : "MedicationStatement.ATCCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationStatement.timing",
+      "path" : "MedicationStatement.timing",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

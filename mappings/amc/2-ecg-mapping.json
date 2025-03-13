@@ -13,7 +13,12 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
     "joinOn" : [ "pseudo_id" ]
   } ],
-  "context" : { },
+  "context" : {
+    "ecgComponentUnitsMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/ecg-component-units-concept-map.csv"
+    }
+  },
   "variable" : [ {
     "name" : "relatedEncounters",
     "language" : "text/fhirpath",
@@ -52,7 +57,10 @@
               } ]
             },
             "valueQuantity" : {
-              "value" : "{{ValueQuantity[%ind].toDecimal()}}"
+              "code" : "{{ mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_code') }}",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{ValueQuantity[%ind].toDecimal()}}",
+              "unit" : "{{ mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_display') }}"
             }
           }
         },
