@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
   "name" : "patient-mapping",
   "title" : "Mapping from OMOP person to the DT4h-Patient profile",
+  "isDraft" : false,
   "source" : [ {
     "alias" : "omopPerson",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
@@ -19,21 +20,29 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Patient',person_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "resourceType" : "Patient",
         "gender" : "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
-        "birthDate" : "{{iif(birthdate.empty(), birth_datetime, birthdate)}}",
-        "deceasedDateTime" : "{{? %omopDeath.death_datetime}}",
+        "birthDate" : "{{iif(birth_datetime.exists(), birth_datetime.utl:toFhirDate('yyyy-MM-dd'), iif(month_of_birth.exists() and day_of_birth.exists(), (year_of_birth + '-' + month_of_birth + '-' + day_of_birth).utl:toFhirDate('yyyy-MM-dd'), iif(month_of_birth.exists(), (year_of_birth + '-' + month_of_birth).utl:toFhirDate('yyyy-MM'), year_of_birth.utl:toFhirDate('yyyy'))))}}",
+        "deceasedDateTime" : "{{? iif(%omopDeath.death_datetime.exists(), %omopDeath.death_datetime.utl:toFhirDate('yyyy-MM-dd'), %omopDeath.death_date.utl:toFhirDate('yyyy-MM-dd'))}}",
         "identifier" : [ {
           "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}",
           "value" : "{{person_id.toString()}}"
         } ],
         "active" : true,
-        "id" : "{{mpp:getHashedId('Patient',person_id.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
-        },
-        "resourceType" : "Patient"
+        "extension" : [ {
+          "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Ethnicity",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "system" : "http://snomed.info/sct"
+            } ]
+          }
+        } ]
       }
     }
   } ]
