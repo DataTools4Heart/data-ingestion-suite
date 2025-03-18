@@ -21,6 +21,10 @@
     "dischargeCodes" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/umcu/encounter-discharge-codes.csv"
+    },
+    "serviceTypeMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/encounter-service-type-map.csv"
     }
   },
   "variable" : [ ],
@@ -73,7 +77,19 @@
             } ]
           }
         },
-        "status" : "completed"
+        "status" : "completed",
+        "serviceType" : [ {
+          "concept" : {
+            "coding" : [ {
+              "{{#serviceCoding}}" : "{{ iif(serviceType.exists(), mpp:getConcept(%serviceTypeMap, serviceType) ) }}",
+              "{{?}}" : {
+                "system" : "http://snomed.info/sct",
+                "code" : "{{%serviceCoding.snomed}}",
+                "display" : "{{%serviceCoding.display}}"
+              }
+            } ]
+          }
+        } ]
       }
     }
   } ]

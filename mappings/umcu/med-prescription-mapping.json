@@ -16,7 +16,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', identifier_value)}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', studyId_0763.toString() & identifier_value & periodOfUse_valuePeriod_start.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
@@ -33,6 +33,9 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "identifier" : [ {
+          "value" : "{{studyId_0763.toString() & '-' & identifier_value & '-' & periodOfUse_valuePeriod_start.toString()}}"
+        } ],
         "status" : "unknown",
         "intent" : "order",
         "effectiveDosePeriod" : {
@@ -57,8 +60,8 @@
           },
           "doseAndRate" : [ {
             "doseQuantity" : {
-              "value" : "{{DI_doseQuantity_value}}",
-              "unit" : "{{DI_doseQuantity_unit}}"
+              "value" : "{{? DI_doseQuantity_value}}",
+              "unit" : "{{? iif(DI_doseQuantity_unit.exists() and DI_doseQuantity_unit != '', DI_doseQuantity_unit) }}"
             }
           } ]
         } ]

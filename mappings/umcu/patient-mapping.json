@@ -24,7 +24,10 @@
         "resourceType" : "Patient",
         "gender" : "{{ gender }}",
         "birthDate" : "{{ birthDate.toString().utl:toFhirDate('yyyy') }}",
-        "deceasedDateTime" : "{{? deceasedDateTime.toString().utl:toFhirDate('yyyy').nav:orElse({}) }}"
+        "deceasedDateTime" : "{{? deceasedDateTime.toString().utl:toFhirDate('yyyy').nav:orElse({}) }}",
+        "identifier" : [ {
+          "value" : "{{studyId_0763.toString()}}"
+        } ]
       }
     }
   } ]

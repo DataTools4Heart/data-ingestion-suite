@@ -7,10 +7,23 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/VitalSign",
-    "joinOn" : [ ]
+    "joinOn" : [ "studyId_0763" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
+    "joinOn" : [ "studyId_0763" ]
   } ],
-  "context" : { },
-  "variable" : [ ],
+  "context" : {
+    "vitalsignUnitsMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/vital-sign-units.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " context_Encounter_value.nav:orElse( %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first().identifier_value ) "
+  } ],
   "mapping" : [ {
     "precondition" : {
       "name" : "valueExists",
@@ -21,7 +34,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', identifier_value)}}",
+        "id" : "{{mpp:getHashedId('Observation', identifier_value & effectivedatetime.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -45,12 +58,15 @@
         "effectiveDateTime" : "{{effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
-          "code" : "{{iif(valueQuantity_unit_original.exists() and valueQuantity_unit_original != '', valueQuantity_unit_original, component_valueQuantity_unit_ori)}}",
+          "code" : "{{mpp:getConcept(%vitalsignUnitsMap, LOINCcode, 'unit_code')}}",
           "value" : "{{iif(valueQuantity_value.exists() and valueQuantity_value != '', valueQuantity_value, component_valueQuantity_value)}}",
-          "unit" : "{{iif(valueQuantity_unit_original.exists() and valueQuantity_unit_original != '', valueQuantity_unit_original, component_valueQuantity_unit_ori)}}"
+          "unit" : "{{mpp:getConcept(%vitalsignUnitsMap, LOINCcode, 'unit_display')}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', context_Encounter_value.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', context_Encounter_value.toString())}}",
+        "identifier" : [ {
+          "value" : "{{ identifier_value & '-' & effectivedatetime.toString() }}"
+        } ],
         "status" : "final"
       }
     }

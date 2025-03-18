@@ -7,10 +7,18 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Echo",
-    "joinOn" : [ ]
+    "joinOn" : [ "studyId_0763" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
+    "joinOn" : [ "studyId_0763" ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -55,6 +63,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
         "status" : "final"
       }
     }

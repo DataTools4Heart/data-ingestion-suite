@@ -7,7 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/LabResult",
-    "joinOn" : [ ]
+    "joinOn" : [ "studyId_0763" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
+    "joinOn" : [ "studyId_0763" ]
   } ],
   "context" : {
     "interpretationMap" : {
@@ -15,7 +19,11 @@
       "url" : "$CONTEXT_REPO/umcu/lab-interpretation.csv"
     }
   },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -59,6 +67,10 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
+        "identifier" : [ {
+          "value" : "{{identifier_value}}"
+        } ],
         "interpretation" : [ {
           "{{#interpretationVar}}" : "{{iif(interpretation_display.exists() and interpretation_display != '', interpretation_display) }}",
           "{{?}}" : {
