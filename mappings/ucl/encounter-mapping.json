@@ -67,25 +67,6 @@
             "start": "{{? iif(visit_start_datetime.empty(), visit_start_date, visit_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'))}}",
             "end": "{{? iif(visit_end_datetime.empty(), visit_end_date, visit_end_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'))}}"
           },
-          "reason": {
-            "{{#reasonCodeVar}}": "{{%reasonCode}}",
-            "{{?}}": [
-              {
-                "value": [
-                  {
-                    "concept": {
-                      "coding": [
-                        {
-                          "system": "http://hl7.org/fhir/sid/icd-10",
-                          "code": "{{%reasonCodeVar}}"
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            ]
-          },
           "status": "completed",
           "diagnosis": [
             {
