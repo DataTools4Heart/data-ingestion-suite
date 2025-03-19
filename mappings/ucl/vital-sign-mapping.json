@@ -8,7 +8,16 @@
     {
       "alias": "omopMeasurement",
       "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Measurement",
-      "joinOn": []
+      "joinOn": [
+        "person_id"
+      ]
+    },
+    {
+      "alias": "omopVisit",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
+      "joinOn": [
+        "person_id"
+      ]
     }
   ],
   "context": {
@@ -75,7 +84,7 @@
           "effectiveDateTime": "{{iif(measurement_datetime.empty(),measurement_date,measurement_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'))}}",
           "valueQuantity": "{{mpp:convertAndReturnQuantity(%vitalSignUnitConversion, measurement_concept_id.toString() , value_as_number, unit_concept_id.toString())}}",
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+          "encounter": "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.measurement_date and $this.visit_end_date >= %context.measurement_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
           "status": "final"
         }
       }
