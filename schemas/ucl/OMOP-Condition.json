@@ -2,7 +2,9 @@
   "id" : "OMOP-Condition",
   "resourceType" : "StructureDefinition",
   "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
+  "version" : "latest",
   "name" : "OMOP-Condition",
+  "description" : "OMOP condition_occurrence table v5.3",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -49,29 +51,11 @@
     }, {
       "id" : "OMOP-Condition.condition_start_date",
       "path" : "OMOP-Condition.condition_start_date",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ]
-    }, {
-      "id" : "OMOP-Condition.condition_type_concept_id",
-      "path" : "OMOP-Condition.condition_type_concept_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "OMOP-Condition.condition_status_concept_id",
-      "path" : "OMOP-Condition.condition_status_concept_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
       "id" : "OMOP-Condition.condition_start_datetime",
@@ -88,8 +72,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
       "id" : "OMOP-Condition.condition_end_datetime",
@@ -97,8 +81,44 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.condition_type_concept_id",
+      "path" : "OMOP-Condition.condition_type_concept_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.condition_status_concept_id",
+      "path" : "OMOP-Condition.condition_status_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.stop_reason",
+      "path" : "OMOP-Condition.stop_reason",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.provider_id",
+      "path" : "OMOP-Condition.provider_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
       "id" : "OMOP-Condition.visit_occurrence_id",
@@ -106,8 +126,17 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.visit_detail_id",
+      "path" : "OMOP-Condition.visit_detail_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
       "id" : "OMOP-Condition.condition_source_value",
@@ -126,6 +155,15 @@
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.condition_status_source_value",
+      "path" : "OMOP-Condition.condition_status_source_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     } ]
   }
