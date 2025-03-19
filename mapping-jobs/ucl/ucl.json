@@ -1,6 +1,7 @@
 {
   "id" : "ucl",
   "name" : "ucl",
+  "description" : "",
   "sourceSettings" : {
     "ucl-data" : {
       "jsonClass" : "FileSystemSourceSettings",
@@ -182,6 +183,13 @@
       "omopDeath" : {
         "jsonClass" : "FileSystemSource",
         "path" : "DEATH.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopLocation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "LOCATION.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
