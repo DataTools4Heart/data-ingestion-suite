@@ -7,11 +7,15 @@
   "source" : [ {
     "alias" : "omopPerson",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
-    "joinOn" : [ "person_id" ]
+    "joinOn" : [ "person_id", "location_id" ]
   }, {
     "alias" : "omopDeath",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
     "joinOn" : [ "person_id" ]
+  }, {
+    "alias" : "omopLocation",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Location",
+    "joinOn" : [ null, "location_id" ]
   } ],
   "context" : { },
   "variable" : [ ],
@@ -35,6 +39,15 @@
           "value" : "{{person_id.toString()}}"
         } ],
         "active" : true,
+        "address" : [ {
+          "{{#addressVar}}" : "{{location_id}}",
+          "{{?}}" : {
+            "use" : "home",
+            "city" : "{{? %omopLocation.city}}",
+            "district" : "{{? %omopLocation.county}}",
+            "postalCode" : "{{? %omopLocation.zip}}"
+          }
+        } ],
         "extension" : [ {
           "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Ethnicity",
           "valueCodeableConcept" : {
