@@ -1,80 +1,77 @@
 {
-  "id" : "procedure-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
-  "name" : "procedure-mapping",
-  "title" : "Mapping of OMOP procedure occurrence to the DT4H-Procedure profile",
-  "source" : [ {
-    "alias" : "omopProcedure",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
-    "joinOn" : [ ]
-  } ],
-  "context" : { },
-  "variable" : [ {
-    "name" : "isProcedure",
-    "language" : "text/fhirpath",
-    "expression" : "trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs').first().exists()"
-  }, {
-    "name" : "isCondition",
-    "language" : "text/fhirpath",
-    "expression" : "trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').first().exists()"
-  } ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "category" : [ {
-          "coding" : [ {
-            "system" : "http://snomed.info/sct",
-            "code" : "387713003",
-            "display" : "Surgical procedure (procedure)"
-          } ]
-        } ],
-        "code" : {
-          "coding" : [ "{{trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs').first()}}" ]
-        },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "occurrenceDateTime" : "{{iif(procedure_datetime.empty(), procedure_date, procedure_datetime)}}",
-        "status" : "completed",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
-        },
-        "resourceType" : "Procedure"
-      }
+  "id": "procedure-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
+  "name": "procedure-mapping",
+  "title": "Mapping of OMOP procedure occurrence to the DT4H-Procedure profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "omopProcedure",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+      "joinOn": [
+        "person_id"
+      ]
     },
-    "precondition" : {
-      "name" : "isValidProcedure",
-      "language" : "text/fhirpath",
-      "expression" : "%isProcedure"
+    {
+      "alias": "omopVisit",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
+      "joinOn": [
+        "person_id"
+      ]
     }
-  }, {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "clinicalStatus" : {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
-            "code" : "active"
-          } ]
-        },
-        "code" : {
-          "coding" : [ "{{trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').first()}}" ]
-        },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "onsetDateTime" : "{{iif(procedure_datetime.empty(), procedure_date, procedure_datetime)}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "id" : "{{mpp:getHashedId('Condition', 'Procedure' & procedure_occurrence_id.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
-        },
-        "resourceType" : "Condition"
+  ],
+  "context": {},
+  "variable": [
+    {
+      "name": "isProcedure",
+      "language": "text/fhirpath",
+      "expression": "trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs').first().exists()"
+    }
+  ],
+  "mapping": [
+    {
+      "description": "A FHIR Procedure resource is generated for each row in the source data. If the 'quantity' field indicates a value greater than 1, multiple Procedure resources are created accordingly. For example, if 'quantity' equals 3, three identical Procedure resources are generated, differing only in their unique IDs.",
+      "precondition": {
+        "name": "isValidProcedure",
+        "language": "text/fhirpath",
+        "expression": "%isProcedure"
+      },
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "{{#index}}": "{{utl:indices(1, iif(quantity.exists(),quantity.toInteger(),1))}}",
+          "{{*}}": {
+            "id": "{{mpp:getHashedId('Procedure', procedure_occurrence_id.toString() & %index.toString())}}",
+            "meta": {
+              "profile": [
+                "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure"
+              ]
+            },
+            "resourceType": "Procedure",
+            "category": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "387713003",
+                    "display": "Surgical procedure (procedure)"
+                  }
+                ]
+              }
+            ],
+            "code": {
+              "coding": [
+                "{{trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs').first()}}"
+              ]
+            },
+            "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+            "encounter": "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.procedure_date and $this.visit_end_date >= %context.procedure_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
+            "occurrenceDateTime": "{{iif(procedure_datetime.empty(), procedure_date, procedure_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'))}}",
+            "status": "completed"
+          }
+        }
       }
-    },
-    "precondition" : {
-      "name" : "isValidCondition",
-      "language" : "text/fhirpath",
-      "expression" : "%isCondition"
     }
-  } ]
+  ]
 }
