@@ -98,6 +98,13 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
