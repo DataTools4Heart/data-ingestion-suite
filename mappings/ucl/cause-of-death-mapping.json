@@ -18,7 +18,7 @@
       "precondition": {
         "name": "causeExists",
         "language": "text/fhirpath",
-        "expression": "(cause_concept_id.exists() and cause_concept_id != 'NA') or (cause_source_value.exists() and cause_source_value != 'NA')"
+        "expression": "cause_concept_id.exists() or cause_source_concept_id.exists() or cause_source_value.exists()"
       },
       "expression": {
         "name": "result",
@@ -55,7 +55,7 @@
           },
           "effectiveDateTime": "{{iif(death_datetime.empty(), death_date, death_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'))}}",
           "valueCodeableConcept": {
-            "coding": "{{* iif(cause_source_value.empty() or cause_source_value = 'NA', trms:translateToCoding(cause_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10').first(), utl:createFhirCoding('http://hl7.org/fhir/sid/icd-10', cause_source_value, {}))}}"
+            "coding": "{{* iif(cause_concept_id.exists(),trms:translateToCoding(cause_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').first(),iif(cause_source_concept_id.exists(), trms:translateToCoding(cause_source_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').first() , {}))}}"
           },
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}"
         }
