@@ -266,6 +266,25 @@
         "sourceRef" : "ucl-data"
       }
     }
+  }, {
+    "name" : "nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/nyha-mapping",
+    "sourceBinding" : {
+      "observation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "OBSERVATION.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
