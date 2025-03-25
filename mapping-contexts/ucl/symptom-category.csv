@@ -1,0 +1,30 @@
+source_code,source_display,target_system,target_code,target_display
+267039000,Ankle swelling,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+389026000,Ascites,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+267036007,Breathlessness,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+59495006,Cardiac murmur,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+29857009,Chest pain,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+90480005,Cheyne-stokes respiration,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+35489007,Depression,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+404640003,Dizziness,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+22447003,Elevated jugular venous pressure,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+84229001,Fatigue,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+72196001,Hepatojugular reflux,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+80515008,Hepatomegaly,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+361137007,Irregular pulse,http://terminology.hl7.org/CodeSystem/observation-category,vital-signs,Vital Signs
+79890006,Loss of appetite,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+161947006,Nocturnal cough,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+83128009,Oliguria,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+62744007,Orthopnoea,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+80313002,Palpitations,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+55442000,Paroxysmal nocturnal dyspnea,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+271809000,Peripheral edema,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+48409008,Pulmonary crepitations,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+267044007,Reduced exercise tolerance,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+272030005,Syncope,http://terminology.hl7.org/CodeSystem/observation-category,survey,Survey
+3424008,Tachycardia,http://terminology.hl7.org/CodeSystem/observation-category,vital-signs,Vital Signs
+271823003,Tachypnoea,http://terminology.hl7.org/CodeSystem/observation-category,vital-signs,Vital Signs
+1285004,Third heart sound,http://terminology.hl7.org/CodeSystem/observation-category,exam,Exam
+8943002,Weight gain,http://terminology.hl7.org/CodeSystem/observation-category,vital-signs,Vital Signs
+89362005,Weight loss,http://terminology.hl7.org/CodeSystem/observation-category,vital-signs,Vital Signs
+60046008,Pleural effusion,http://terminology.hl7.org/CodeSystem/observation-category,imaging,Imaging
