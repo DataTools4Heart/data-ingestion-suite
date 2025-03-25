@@ -73,6 +73,12 @@
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed",
       "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
       "targetValueSetUrl" : "http://snomed.info/sct"
+    }, {
+      "id" : "symptomsOmopToSnomed.csv",
+      "name" : "symptomsOmopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
     } ],
     "codeSystemFiles" : [ ]
   },
