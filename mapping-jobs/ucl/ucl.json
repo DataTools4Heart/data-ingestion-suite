@@ -133,25 +133,6 @@
       }
     }
   }, {
-    "name" : "lab-result-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
-    "sourceBinding" : {
-      "omopMeasurement" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "MEASUREMENT.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      },
-      "omopVisit" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "VISIT_OCCURRENCE.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      }
-    }
-  }, {
     "name" : "medication-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
     "sourceBinding" : {
@@ -235,25 +216,6 @@
       }
     }
   }, {
-    "name" : "vital-sign-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
-    "sourceBinding" : {
-      "omopMeasurement" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "MEASUREMENT.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      },
-      "omopVisit" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "VISIT_OCCURRENCE.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      }
-    }
-  }, {
     "name" : "smoking-status-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/smoking-status-mapping",
     "sourceBinding" : {
@@ -279,6 +241,25 @@
       "observation" : {
         "jsonClass" : "FileSystemSource",
         "path" : "OBSERVATION.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MEASUREMENT.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
