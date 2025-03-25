@@ -1,0 +1,10 @@
+source_code,source_display
+"38000180","Inpatient administration"
+"38000179","Physician administered drug (identified as procedure)"
+"43542354","Physician administered drug (identified as procedure)"
+"43542358","Physician administered drug (identified from EHR observation)"
+"581373","Physician administered drug (identified from EHR order)"
+"43542357","Physician administered drug (identified from referral record)"
+"43542356","Physician administered drug (identified from EHR problem list)"
+"44787730","Patient Self-Reported Medication"
+"44789745","Personally Administered Medication"
