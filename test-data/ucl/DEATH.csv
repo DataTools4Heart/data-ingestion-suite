@@ -1,6 +1,2 @@
-person_id,death_datetime,death_date,death_type_concept_id,cause_concept_id,cause_source_value,cause_source_concept_id
-8216,2020-06-01T23:00:00Z,2020-03-01,NA,,I50,NA
-3569,2020-10-26T00:00:00Z,2022-04-06,NA,444074,NA,NA
-8490,2020-03-24T00:00:00Z,2020-02-25,NA,NA,NA,NA
-9855,2019-07-21T12:41:00Z,2020-07-20,NA,NA,NA,NA
-4004,2019-08-12T23:00:00Z,2020-08-15,NA,NA,NA,NA
+"person_id","death_date","death_datetime","death_type_concept_id","cause_concept_id","cause_source_value","cause_source_concept_id"
+2,2022-03-27,2022-03-27 00:00:00.000,32817,45600791,"G45.3",45600791

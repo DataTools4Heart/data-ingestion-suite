@@ -1,0 +1,4 @@
+"measurement_id","person_id","measurement_concept_id","measurement_date","measurement_datetime","measurement_time","measurement_type_concept_id","operator_concept_id","value_as_number","value_as_concept_id","unit_concept_id","range_low","range_high","provider_id","visit_occurrence_id","visit_detail_id","measurement_source_value",measurement_source_concept_id,"unit_source_value","value_source_value"
+1,1,3000963,2015-06-10,2015-06-10 00:00:00.000,"2015-07-10",32827,0,16.4,0,8713,,,285,1,1000011,"16.4",3000963,g/dL,"16.4"
+2,1,3004249,2015-06-10,2015-06-10 00:00:00.000,"1989-03-21",32827,0,95.0,0,8876,,,56,1,1008969,"95.0",3004249,mm[Hg],"95.0"
+3,1,3019817,2015-06-10,2015-06-10 00:00:00.000,1989-03-21,"32827",32827,30,0,8554,,,56,1,1008969,30,3019817,%,30

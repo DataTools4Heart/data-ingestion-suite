@@ -1,3 +1,2 @@
-concept_id,concept_name,domain_id,vocabulary_id,concept_class_id,standard_concept,concept_code,valid_start_date,valid_end_date,invalid_reason
-4214376,Hyperglycemia,Condition,SNOMED,Disorder,S,80394007,20020131,20991231,
-42618389,"Syphilitic bursitis, other",Condition,ICD10,"ICD10 code",,M73.18,20161201,20991231,
+"concept_id","concept_name","domain_id","vocabulary_id","concept_class_id","standard_concept","concept_code","valid_start_date","valid_end_date","invalid_reason"
+45542533,Chlamydial infection of anus and rectum,Condition,ICD10,ICD10 code,,A56.3,1990-05-01,2099-12-31,

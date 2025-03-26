@@ -1,0 +1,4 @@
+"visit_occurrence_id","person_id","visit_concept_id","visit_start_date","visit_start_datetime","visit_end_date","visit_end_datetime","visit_type_concept_id","provider_id","care_site_id","visit_source_value","visit_source_concept_id","admitting_source_concept_id","admitting_source_value","discharge_to_concept_id","discharge_to_source_value","preceding_visit_occurrence_id"
+1,1,9203,2015-06-10,2015-06-10 00:00:00.000,2015-06-10,2015-06-10 00:00:00.000,32827,6,229,"11690e86-9303-d39d-9e7a-cc380e2e59e6",0,0,,0,,
+2,2,9202,2015-07-10,2015-07-10 00:00:00.000,2015-07-10,2015-07-10 00:00:00.000,32827,285,279,b90420b8-edb6-9c4d-b7ea-23c6fabc1666,0,0,,0,,18
+3,3,9202,2015-09-03,2015-09-03 00:00:00.000,2015-09-03,2015-09-03 00:00:00.000,32827,184,282,"678ce2f1-a893-a835-6adb-1b0156be2b67",0,0,,0,,11
