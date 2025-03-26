@@ -1,0 +1,2 @@
+"procedure_occurrence_id","person_id","procedure_concept_id","procedure_date","procedure_datetime","procedure_type_concept_id","modifier_concept_id","quantity","provider_id","visit_occurrence_id","visit_detail_id","procedure_source_value","procedure_source_concept_id","modifier_source_value"
+1,1,4094240,2023-09-15,2023-09-15 00:00:00.000,32827,0,,184,2,1000002,"1260009003",37166719,
