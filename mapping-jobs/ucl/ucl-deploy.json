@@ -123,13 +123,6 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
-      },
-      "omopConditionOccurrence" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "CONDITION_OCCURRENCE.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
       }
     }
   }, {
