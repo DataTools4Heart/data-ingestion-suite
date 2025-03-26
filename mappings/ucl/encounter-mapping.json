@@ -8,16 +8,7 @@
     {
       "alias": "omopVisitOccurrence",
       "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
-      "joinOn": [
-        "visit_occurrence_id"
-      ]
-    },
-    {
-      "alias": "omopConditionOccurrence",
-      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
-      "joinOn": [
-        "visit_occurrence_id"
-      ]
+      "joinOn": []
     }
   ],
   "context": {
@@ -31,11 +22,6 @@
       "name": "encounterClass",
       "language": "text/fhirpath",
       "expression": "mpp:getConcept(%encounterClassConceptMap, visit_concept_id.toString())"
-    },
-    {
-      "name": "reasonCode",
-      "language": "text/fhirpath",
-      "expression": "%omopConditionOccurrence.first().condition_source_value"
     }
   ],
   "mapping": [
