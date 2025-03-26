@@ -1,6 +1,7 @@
 {
   "id" : "ucl-deploy",
   "name" : "ucl-deploy",
+  "description" : "",
   "sourceSettings" : {
     "ucl-data" : {
       "jsonClass" : "FileSystemSourceSettings",
@@ -215,50 +216,31 @@
       }
     }
   }, {
-    "name" : "smoking-status-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/smoking-status-mapping",
-    "sourceBinding" : {
-      "observation" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "OBSERVATION.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      },
-      "omopVisit" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "VISIT_OCCURRENCE.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      }
-    }
-  }, {
-    "name" : "nyha-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/nyha-mapping",
-    "sourceBinding" : {
-      "observation" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "OBSERVATION.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      },
-      "omopVisit" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "VISIT_OCCURRENCE.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      }
-    }
-  }, {
     "name" : "measurement-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/measurement-mapping",
     "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
         "path" : "MEASUREMENT.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "observation-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/observation-mapping",
+    "sourceBinding" : {
+      "observation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "OBSERVATION.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
