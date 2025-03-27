@@ -1,7 +1,7 @@
 {
   "id" : "ucl-deploy",
   "name" : "ucl-deploy",
-  "description" : "",
+  "description" : "Executes OMOP mappings and stores the generated FHIR resources in the deployed onFHIR server.",
   "sourceSettings" : {
     "ucl-data" : {
       "jsonClass" : "FileSystemSourceSettings",

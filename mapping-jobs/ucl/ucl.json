@@ -1,7 +1,7 @@
 {
   "id" : "ucl",
   "name" : "ucl",
-  "description" : "",
+  "description" : "Executes OMOP mappings and stores the generated FHIR resources in the local onFHIR server.",
   "sourceSettings" : {
     "ucl-data" : {
       "jsonClass" : "FileSystemSourceSettings",
