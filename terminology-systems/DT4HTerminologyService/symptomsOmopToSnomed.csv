@@ -1,0 +1,91 @@
+source_system,source_code,target_system,target_code,target_display
+https://www.ohdsi.org/omop,4060313,http://snomed.info/sct,161947006,Nocturnal cough and wheeze
+https://www.ohdsi.org/omop,312437,http://snomed.info/sct,267036007,Dyspnea
+https://www.ohdsi.org/omop,4144411,http://snomed.info/sct,267039000,Swollen ankle region
+https://www.ohdsi.org/omop,4147189,http://snomed.info/sct,267044007,Impaired exercise tolerance
+https://www.ohdsi.org/omop,77670,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,440383,http://snomed.info/sct,35489007,Depressive disorder
+https://www.ohdsi.org/omop,4263255,http://snomed.info/sct,361137007,Irregular heart beat
+https://www.ohdsi.org/omop,4223938,http://snomed.info/sct,404640003,Dizziness
+https://www.ohdsi.org/omop,4206307,http://snomed.info/sct,55442000,Paroxysmal nocturnal dyspnea
+https://www.ohdsi.org/omop,315361,http://snomed.info/sct,62744007,Orthopnea
+https://www.ohdsi.org/omop,442774,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,4218285,http://snomed.info/sct,72196001,Hepatojugular reflux
+https://www.ohdsi.org/omop,4158343,http://snomed.info/sct,271809000,Peripheral edema
+https://www.ohdsi.org/omop,4027737,http://snomed.info/sct,1285004,Third heart sound S-3
+https://www.ohdsi.org/omop,4306451,http://snomed.info/sct,83128009,Oliguria
+https://www.ohdsi.org/omop,4233530,http://snomed.info/sct,90480005,Interrupted breathing
+https://www.ohdsi.org/omop,200528,http://snomed.info/sct,389026000,Ascites
+https://www.ohdsi.org/omop,4245647,http://snomed.info/sct,59495006,"Heart murmur, categorized by configuration"
+https://www.ohdsi.org/omop,4223659,http://snomed.info/sct,84229001,Fatigue
+https://www.ohdsi.org/omop,317376,http://snomed.info/sct,271823003,Tachypnea
+https://www.ohdsi.org/omop,4152505,http://snomed.info/sct,272030005,Syncope symptom
+https://www.ohdsi.org/omop,444070,http://snomed.info/sct,3424008,Tachycardia
+https://www.ohdsi.org/omop,4167669,http://snomed.info/sct,48409008,Respiratory crackles
+https://www.ohdsi.org/omop,315078,http://snomed.info/sct,80313002,Palpitations
+https://www.ohdsi.org/omop,4229881,http://snomed.info/sct,89362005,Weight loss
+https://www.ohdsi.org/omop,4232487,http://snomed.info/sct,8943002,Weight gain
+https://www.ohdsi.org/omop,4329988,http://snomed.info/sct,22447003,Raised jugular venous pressure
+https://www.ohdsi.org/omop,254061,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,442165,http://snomed.info/sct,79890006,Loss of appetite
+https://www.ohdsi.org/omop,197676,http://snomed.info/sct,80515008,Large liver
+https://www.ohdsi.org/omop,35207154,http://snomed.info/sct,35489007,Depressive disorder
+https://www.ohdsi.org/omop,45534432,http://snomed.info/sct,80515008,Large liver
+https://www.ohdsi.org/omop,45596244,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,35211263,http://snomed.info/sct,80313002,Palpitations
+https://www.ohdsi.org/omop,45548949,http://snomed.info/sct,389026000,Ascites
+https://www.ohdsi.org/omop,45558446,http://snomed.info/sct,80313002,Palpitations
+https://www.ohdsi.org/omop,45587499,http://snomed.info/sct,389026000,Ascites
+https://www.ohdsi.org/omop,1569314,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45534458,http://snomed.info/sct,84229001,Fatigue
+https://www.ohdsi.org/omop,45538433,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45538435,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45548070,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45572126,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45586617,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45567276,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,1569505,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,45597165,http://snomed.info/sct,62744007,Orthopnea
+https://www.ohdsi.org/omop,45606790,http://snomed.info/sct,3424008,Tachycardia
+https://www.ohdsi.org/omop,44821245,http://snomed.info/sct,3424008,Tachycardia
+https://www.ohdsi.org/omop,44824624,http://snomed.info/sct,62744007,Orthopnea
+https://www.ohdsi.org/omop,44829017,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,44837139,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,44824625,http://snomed.info/sct,267036007,Dyspnea
+https://www.ohdsi.org/omop,44825808,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,45587496,http://snomed.info/sct,267036007,Dyspnea
+https://www.ohdsi.org/omop,44831589,http://snomed.info/sct,80313002,Palpitations
+https://www.ohdsi.org/omop,44831598,http://snomed.info/sct,80515008,Large liver
+https://www.ohdsi.org/omop,44820070,http://snomed.info/sct,389026000,Ascites
+https://www.ohdsi.org/omop,44822307,http://snomed.info/sct,389026000,Ascites
+https://www.ohdsi.org/omop,35211295,http://snomed.info/sct,80515008,Large liver
+https://www.ohdsi.org/omop,44831282,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,35208081,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,1572191,http://snomed.info/sct,267036007,Dyspnea
+https://www.ohdsi.org/omop,1572194,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,44823450,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,44825809,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,766349,http://snomed.info/sct,35489007,Depressive disorder
+https://www.ohdsi.org/omop,44833421,http://snomed.info/sct,35489007,Depressive disorder
+https://www.ohdsi.org/omop,1572207,http://snomed.info/sct,389026000,Ascites
+https://www.ohdsi.org/omop,45539314,http://snomed.info/sct,271823003,Tachypnea
+https://www.ohdsi.org/omop,45557584,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45557588,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,44825447,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,44825807,http://snomed.info/sct,271823003,Tachypnea
+https://www.ohdsi.org/omop,45538429,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45538434,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,1569306,http://snomed.info/sct,63491006,Intermittent claudication
+https://www.ohdsi.org/omop,45586684,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,45605897,http://snomed.info/sct,60046008,Pleural effusion
+https://www.ohdsi.org/omop,35211261,http://snomed.info/sct,3424008,Tachycardia
+https://www.ohdsi.org/omop,45534424,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,45558449,http://snomed.info/sct,267036007,Dyspnea
+https://www.ohdsi.org/omop,45548944,http://snomed.info/sct,267036007,Dyspnea
+https://www.ohdsi.org/omop,45558450,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,45597166,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,45602002,http://snomed.info/sct,29857009,Chest pain
+https://www.ohdsi.org/omop,45534422,http://snomed.info/sct,267036007,Dyspnea
+https://www.ohdsi.org/omop,37402403,http://snomed.info/sct,35489007,Depressive disorder
+https://www.ohdsi.org/omop,45571759,http://snomed.info/sct,35489007,Depressive disorder
+https://www.ohdsi.org/omop,37200320,http://snomed.info/sct,35489007,Depressive disorder
