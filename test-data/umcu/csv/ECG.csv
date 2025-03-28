@@ -1,0 +1,2 @@
+studyId_0763,ECGTestID,AcquisitionDateTime,ValueQuantity,LOINCcode,LOINCdisplay,Units
+1,ecg-1,2021-07-02 12:00:00,3,8633-0,ecg_qrs_duration,ms

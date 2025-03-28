@@ -43,7 +43,7 @@
           "end" : "{{? periodOfUse_valuePeriod_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
         "dosageInstruction" : [ {
-          "text" : "{{dosageInstruction_text}}",
+          "text" : "{{? dosageInstruction_text}}",
           "timing" : {
             "repeat" : {
               "{{#repeatVar}}" : "{{CheckedFrequency}}",
@@ -54,7 +54,7 @@
               }
             }
           },
-          "asNeeded" : "{{dosage_ifNeededStatement}}",
+          "asNeeded" : "{{? dosage_ifNeededStatement}}",
           "route" : {
             "text" : "{{? dosageInstruction_route_display}}"
           },

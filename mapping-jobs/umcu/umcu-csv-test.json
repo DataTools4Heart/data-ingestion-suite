@@ -1,0 +1,199 @@
+{
+  "id": "umcu-csv-test",
+  "name": "umcu-csv-test",
+  "description": "Executes UMCU mappings on the CSV test dataset and stores the results in the local onFHIR server.",
+  "sourceSettings": {
+    "file-system-csv": {
+      "jsonClass": "FileSystemSourceSettings",
+      "name": "file-system-csv",
+      "sourceUri": "http://file-system-test-csv",
+      "dataFolderPath": "test-data/umcu/csv",
+      "asStream": false
+    }
+  },
+  "sinkSettings": {
+    "jsonClass": "FhirRepositorySinkSettings",
+    "fhirRepoUrl": "http://localhost:8080/fhir",
+    "returnMinimal": true
+  },
+  "mappings": [
+    {
+      "name": "patient-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/patient-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "Patient.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "vital-sign-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/vital-sign-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "VitalSigns.csv",
+          "contentType": "csv",
+          "options": {
+            "distinct": "true"
+          },
+          "sourceRef": "file-system-csv"
+        },
+        "encounters": {
+          "jsonClass": "FileSystemSource",
+          "path": "Encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "nyha-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/nyha-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "NYHA.csv",
+          "contentType": "csv",
+          "options": {
+            "distinct": "true"
+          },
+          "preprocessSql": "select *\nfrom source\nwhere NYHA_class NOT LIKE '%/%' and NYHA_class NOT LIKE '%-%'",
+          "sourceRef": "file-system-csv"
+        },
+        "encounters": {
+          "jsonClass": "FileSystemSource",
+          "path": "Encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "encounter-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/encounter-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "Encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "med-prescription-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/med-prescription-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "Medications.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "lab-result-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/lab-result-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "Labresults.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        },
+        "encounters": {
+          "jsonClass": "FileSystemSource",
+          "path": "Encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "ecg-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/ecg-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "ECG.csv",
+          "contentType": "csv",
+          "options": {
+            "distinct": "true"
+          },
+          "preprocessSql": "select studyId_0763, ECGTestID, AcquisitionDateTime, \narray_agg(ValueQuantity) as ValueQuantity, \narray_agg(LOINCcode) as LOINCcode, \narray_agg(LOINCdisplay) as LOINCdisplay, \narray_agg(Units) as Units,\ncount(*) as count\nfrom source \ngroup by studyId_0763, ECGTestID, AcquisitionDateTime",
+          "sourceRef": "file-system-csv"
+        },
+        "encounters": {
+          "jsonClass": "FileSystemSource",
+          "path": "Encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "echo-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/echo-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "Echocardiography.csv",
+          "contentType": "csv",
+          "options": {
+            "distinct": "true",
+            "timestampFormat": "yyyy-MM-dd HH:mm:ss"
+          },
+          "preprocessSql": "select studyId_0763, identifier_value, effectiveDateTime, array_agg(Value) as Value, array_agg(UnitName) as UnitName, array_agg(LOINCcode) as LOINCcode, array_agg(LOINCdisplay) as LOINCdisplay, count(*) as count\nfrom source \ngroup by studyId_0763, identifier_value, effectiveDateTime",
+          "sourceRef": "file-system-csv"
+        },
+        "encounters": {
+          "jsonClass": "FileSystemSource",
+          "path": "Encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    },
+    {
+      "name": "smoking-status-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/umcu/smoking-status-mapping",
+      "sourceBinding": {
+        "source": {
+          "jsonClass": "FileSystemSource",
+          "path": "Smoking.csv",
+          "contentType": "csv",
+          "options": {
+            "distinct": "true"
+          },
+          "sourceRef": "file-system-csv"
+        },
+        "encounters": {
+          "jsonClass": "FileSystemSource",
+          "path": "Encounters.csv",
+          "contentType": "csv",
+          "options": {},
+          "sourceRef": "file-system-csv"
+        }
+      }
+    }
+  ],
+  "dataProcessingSettings": {
+    "saveErroneousRecords": false,
+    "archiveMode": "off"
+  },
+  "useFhirSinkAsIdentityService": false
+}
