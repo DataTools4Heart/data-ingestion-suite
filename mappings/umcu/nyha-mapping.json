@@ -22,14 +22,14 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.create_dt.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.create_dt.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+    "expression" : " %encounters.where(period_start.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') <= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd') and period_end.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') >= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd')).first() "
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & NYHA_standard & create_dt.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & NYHA_class & effectivedate.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
@@ -50,16 +50,19 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{create_dt.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "effectiveDateTime" : "{{effectivedate.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%nyhaConceptMap, NYHA_standard, 'target_code')}}",
-            "display" : "{{mpp:getConcept(%nyhaConceptMap, NYHA_standard, 'target_display')}}"
+            "code" : "{{mpp:getConcept(%nyhaConceptMap, NYHA_class, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%nyhaConceptMap, NYHA_class, 'target_display')}}"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
+        "identifier" : [ {
+          "value" : "{{studyId_0763.toString() & '-' & NYHA_class & '-' & effectivedate.toString()}}"
+        } ],
         "status" : "final"
       }
     }

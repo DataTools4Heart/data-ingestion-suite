@@ -7,16 +7,29 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/ECG",
-    "joinOn" : [ ]
+    "joinOn" : [ "studyId_0763" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
+    "joinOn" : [ "studyId_0763" ]
   } ],
-  "context" : { },
-  "variable" : [ ],
+  "context" : {
+    "ecgUnitMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/ecg-units.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.AcquisitionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.AcquisitionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & identifier_value)}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & ECGTestID)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
@@ -30,24 +43,30 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "component" : [ {
-          "code" : {
-            "coding" : [ {
-              "code" : "8633-0",
-              "system" : "http://loinc.org",
-              "version" : "QRS duration"
-            } ]
-          },
-          "valueQuantity" : {
-            "code" : "ms",
-            "system" : "http://unitsofmeasure.org",
-            "value" : "{{ValueQuantity}}",
-            "unit" : "millisecond"
-          },
-          "@sliceName" : "qrsDuration"
-        } ],
+        "component" : {
+          "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "{{LOINCcode[%ind]}}",
+                "system" : "http://loinc.org",
+                "display" : "{{LOINCdisplay[%ind]}}"
+              } ]
+            },
+            "valueQuantity" : {
+              "code" : "{{mpp:getConcept(%ecgUnitMap, Units[%ind], 'target_code')}}",
+              "system" : "http://unitsofmeasure.org",
+              "value" : "{{ValueQuantity[%ind].toDecimal()}}",
+              "unit" : "{{mpp:getConcept(%ecgUnitMap, Units[%ind], 'target_display')}}"
+            }
+          }
+        },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
         "effectiveDateTime" : "{{AcquisitionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "identifier" : [ {
+          "value" : "{{studyId_0763.toString() & '-' & ECGTestID}}"
+        } ],
         "status" : "final"
       }
     }

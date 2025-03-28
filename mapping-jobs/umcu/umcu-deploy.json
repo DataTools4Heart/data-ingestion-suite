@@ -57,8 +57,10 @@
         "jsonClass" : "FileSystemSource",
         "path" : "NYHA.parquet",
         "contentType" : "parquet",
-        "options" : { },
-        "preprocessSql" : "select *\nfrom source\nwhere NYHA_standard NOT LIKE '%/%' and NYHA_standard NOT LIKE '%-%'",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select *\nfrom source\nwhere NYHA_class NOT LIKE '%/%' and NYHA_class NOT LIKE '%-%'",
         "sourceRef" : "umcu-source"
       },
       "encounters" : {
@@ -120,6 +122,16 @@
         "jsonClass" : "FileSystemSource",
         "path" : "ECG.parquet",
         "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select studyId_0763, ECGTestID, AcquisitionDateTime, \narray_agg(ValueQuantity) as ValueQuantity, \narray_agg(LOINCcode) as LOINCcode, \narray_agg(LOINCdisplay) as LOINCdisplay, \narray_agg(Units) as Units,\ncount(*) as count\nfrom source \ngroup by studyId_0763, ECGTestID, AcquisitionDateTime",
+        "sourceRef" : "umcu-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
         "options" : { },
         "sourceRef" : "umcu-source"
       }
@@ -136,6 +148,27 @@
           "distinct" : "true"
         },
         "preprocessSql" : "select studyId_0763, identifier_value, effectiveDateTime, array_agg(Value) as Value, array_agg(UnitName) as UnitName, array_agg(LOINCcode) as LOINCcode, array_agg(LOINCdisplay) as LOINCdisplay, count(*) as count\nfrom source \ngroup by studyId_0763, identifier_value, effectiveDateTime",
+        "sourceRef" : "umcu-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "umcu-source"
+      }
+    }
+  }, {
+    "name" : "smoking-status-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/smoking-status-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Smoking.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "umcu-source"
       },
       "encounters" : {

@@ -31,23 +31,15 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "Encounter.identifier_system",
-      "path" : "Encounter.identifier_system",
+      "id" : "Encounter.hospitalization_ID",
+      "path" : "Encounter.hospitalization_ID",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Encounter.identifier_value",
-      "path" : "Encounter.identifier_value",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "short" : "Encounter ID"
     }, {
       "id" : "Encounter.class_code",
       "path" : "Encounter.class_code",
@@ -71,17 +63,6 @@
       "definition" : "Possible values:\ninpatient encounter; inpatient acute; short stay; inpatient non-acute; other; Ambulatory",
       "short" : "Type of encounter full name"
     }, {
-      "id" : "Encounter.hospitalization_admitSource_cod0",
-      "path" : "Encounter.hospitalization_admitSource_cod0",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Possible values:\nW; ; A; S; H; P; E; T; B; R; C; I",
-      "short" : "Admission source (code)"
-    }, {
       "id" : "Encounter.hospitalization_admitSource_disp",
       "path" : "Encounter.hospitalization_admitSource_disp",
       "min" : 0,
@@ -93,19 +74,8 @@
       "definition" : "Possible values:\nOther; ; Hospital; From accident/emergency department; Home; From outpatient department; Rehabilitation hospital; Nursing home",
       "short" : "Admission source (display)"
     }, {
-      "id" : "Encounter.hospitalization_dischargeDispos0",
-      "path" : "Encounter.hospitalization_dischargeDispos0",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Possible values:\nH; ; M; E; A; O; R; S; T; V; P",
-      "short" : "Discharged to (code)"
-    }, {
-      "id" : "Encounter.hospitalization_dischargeDispos1",
-      "path" : "Encounter.hospitalization_dischargeDispos1",
+      "id" : "Encounter.hospitalization_discharge_disp",
+      "path" : "Encounter.hospitalization_discharge_disp",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -114,16 +84,6 @@
       } ],
       "definition" : "Possible values:\nHome; ; Died in hospital; Other; Hospital; Rehabilitation hospital; Left against medical advice; Nursing home; Psychiatric hospital",
       "short" : "Discharged to (display)"
-    }, {
-      "id" : "Encounter.period_end",
-      "path" : "Encounter.period_end",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "instant",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
-      } ],
-      "short" : "End of admission"
     }, {
       "id" : "Encounter.period_start",
       "path" : "Encounter.period_start",
@@ -134,6 +94,16 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ],
       "short" : "Start of admission"
+    }, {
+      "id" : "Encounter.period_end",
+      "path" : "Encounter.period_end",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "End of admission"
     }, {
       "id" : "Encounter.status",
       "path" : "Encounter.status",
@@ -146,8 +116,8 @@
       "definition" : "Possible values:\nfinished",
       "short" : "Status of admission"
     }, {
-      "id" : "Encounter.serviceType",
-      "path" : "Encounter.serviceType",
+      "id" : "Encounter.AdmissionDepartment",
+      "path" : "Encounter.AdmissionDepartment",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -156,6 +126,27 @@
       } ],
       "definition" : "Possible values:\nCAR; VCT; VCA; LON; CTC; MDL; INT; VIN; NCH; INF; NEU; PLA; GER; CTR; QHE; VQH; VAT; KNO; CGO; ORT; VLO; CHI; VAS; VCH; OBS; REU; NEF; VVA; QKN; DER; HAE; THU; VNR; ONC; GYN; VMD; OOG; KCH; END; ANE",
       "short" : "Department of admission"
+    }, {
+      "id" : "Encounter.DischargeDepartment",
+      "path" : "Encounter.DischargeDepartment",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nCAR; VCT; VCA; LON; CTC; MDL; INT; VIN; NCH; INF; NEU; PLA; GER; CTR; QHE; VQH; VAT; KNO; CGO; ORT; VLO; CHI; VAS; VCH; OBS; REU; NEF; VVA; QKN; DER; HAE; THU; VNR; ONC; GYN; VMD; OOG; KCH; END; ANE",
+      "short" : "Department of discharge"
+    }, {
+      "id" : "Encounter.ICD10_DBC",
+      "path" : "Encounter.ICD10_DBC",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Primary diagnose codes (ICD10)"
     } ]
   }
 }

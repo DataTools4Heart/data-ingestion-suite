@@ -1,0 +1,71 @@
+{
+  "id" : "smoking-status-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/smoking-status-mapping",
+  "name" : "smoking-status-mapping",
+  "title" : "Mapping of UMCU's Smoking table to HFR-SmokingStatus FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/SmokingStatus",
+    "joinOn" : [ "studyId_0763" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
+    "joinOn" : [ "studyId_0763" ]
+  } ],
+  "context" : {
+    "smokingMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/smoking-status-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(period_start.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') <= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd') and period_end.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') >= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd')).first() "
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & smok_label & effectivedate.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
+        "effectivePeriod" : {
+          "start" : "{{effectivedate.utl:toFhirDateTime('yyyy-MM-dd')}}"
+        },
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "social-history",
+            "display" : "Social History"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "72166-2",
+            "display" : "Tobacco smoking status",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "{{mpp:getConcept(%smokingMap, smok_label, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%smokingMap, smok_label, 'target_display')}}"
+          } ]
+        },
+        "identifier" : [ {
+          "value" : "{{studyId_0763.toString() & '-' & smok_label & '-' & effectivedate.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

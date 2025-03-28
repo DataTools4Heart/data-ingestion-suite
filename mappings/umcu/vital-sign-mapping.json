@@ -22,7 +22,7 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : " context_Encounter_value.nav:orElse( %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first().identifier_value ) "
+    "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first().hospitalization_ID "
   } ],
   "mapping" : [ {
     "precondition" : {
@@ -63,7 +63,7 @@
           "unit" : "{{mpp:getConcept(%vitalsignUnitsMap, LOINCcode, 'unit_display')}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', context_Encounter_value.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter)}}",
         "identifier" : [ {
           "value" : "{{ identifier_value & '-' & effectivedatetime.toString() }}"
         } ],

@@ -23,8 +23,52 @@
         },
         "resourceType" : "Patient",
         "gender" : "{{ gender }}",
-        "birthDate" : "{{ birthDate.toString().utl:toFhirDate('yyyy') }}",
-        "deceasedDateTime" : "{{? deceasedDateTime.toString().utl:toFhirDate('yyyy').nav:orElse({}) }}",
+        "birthDate" : "{{ birthDate.toString().utl:toFhirDate('dd-M-yyyy') }}",
+        "deceasedDateTime" : "{{? deceasedDate.utl:toFhirDate('dd-M-yyyy').nav:orElse({}) }}",
+        "identifier" : [ {
+          "value" : "{{studyId_0763.toString()}}"
+        } ]
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "deceased",
+      "language" : "text/fhirpath",
+      "expression" : "deceasedDate.exists()"
+    },
+    "expression" : {
+      "name" : "death",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "79378-6",
+            "display" : "Cause of death",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{deceasedDate.utl:toFhirDate('dd-M-yyyy')}}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "{{causeofDeath}}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
         "identifier" : [ {
           "value" : "{{studyId_0763.toString()}}"
         } ]

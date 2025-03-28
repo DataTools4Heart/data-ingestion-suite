@@ -46,20 +46,28 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "definition" : "Currently only years available \nPossible values: 1914 to 2003"
     }, {
-      "id" : "Patient.deceasedDateTime",
-      "path" : "Patient.deceasedDateTime",
+      "id" : "Patient.deceasedDate",
+      "path" : "Patient.deceasedDate",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "definition" : "Currently only years available \nPossible values: 2012 to 2023"
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Patient.causeofDeath",
+      "path" : "Patient.causeofDeath",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     } ]
   }
 }
