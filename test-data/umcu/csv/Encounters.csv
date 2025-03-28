@@ -1,0 +1,3 @@
+studyId_0763,hospitalization_ID,class_code,class_display,hospitalization_admitSource_disp,hospitalization_discharge_disp,period_start,period_end,status,AdmissionDepartment,DischargeDepartment,ICD10_DBC
+1,1,AMB,Ambulatory,,,2019-03-25T00:00:00Z,2019-04-02T00:00:00Z,,,,W61.62XD
+1,2,NONAC,inpatient non-acute,,,2021-07-02T00:00:00Z,2021-07-12T00:00:00Z,,,,I50

@@ -101,6 +101,7 @@
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
           "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', hospitalization_ID)}}",
+          "onsetDateTime" : "{{period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
           "identifier" : [ {
             "value" : "{{hospitalization_ID & '-' & %mainDiagnosisCode}}"
           } ],
