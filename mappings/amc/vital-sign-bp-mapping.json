@@ -1,7 +1,7 @@
 {
-  "id" : "2-vital-sign-bp-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-vital-sign-bp-mapping",
-  "name" : "2-vital-sign-bp-mapping",
+  "id" : "vital-sign-bp-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
+  "name" : "vital-sign-bp-mapping",
   "title" : "Mapping of AMC's BloodPressure table to DT4H-VitalSign FHIR profile",
   "isDraft" : false,
   "source" : [ {

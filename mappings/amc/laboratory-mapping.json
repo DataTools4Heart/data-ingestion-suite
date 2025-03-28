@@ -1,7 +1,7 @@
 {
-  "id" : "2-laboratory-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-laboratory-mapping",
-  "name" : "2-laboratory-mapping",
+  "id" : "laboratory-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+  "name" : "laboratory-mapping",
   "title" : "Mapping of AMC's Laboratory table to DT4H-LabResult FHIR profile",
   "isDraft" : false,
   "source" : [ {

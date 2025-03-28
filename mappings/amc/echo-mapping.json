@@ -1,7 +1,7 @@
 {
-  "id" : "2-echo-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-echo-mapping",
-  "name" : "2-echo-mapping",
+  "id" : "echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
+  "name" : "echo-mapping",
   "title" : "Mapping of AMC's Echocardiography table to DT4H-ECG FHIR profile",
   "isDraft" : false,
   "source" : [ {

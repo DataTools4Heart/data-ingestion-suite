@@ -2,7 +2,7 @@
   "id" : "procedure-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
   "name" : "procedure-mapping",
-  "title" : "Mapping of AMC's VerrichtingUitgevoerd table to DT4H-Procedure FHIR profile",
+  "title" : "Mapping of AMC's Procedures table to DT4H-Procedure FHIR profile",
   "isDraft" : true,
   "source" : [ {
     "alias" : "Procedure",

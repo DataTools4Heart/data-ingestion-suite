@@ -1,12 +1,12 @@
 {
-  "id" : "2-vital-sign-length-weight-bmi-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/2-vital-sign-length-weight-bmi-mapping",
-  "name" : "2-vital-sign-length-weight-bmi-mapping",
-  "title" : "Mapping of AMC's LengthWeightBMI table to DT4H-VitalSign FHIR profile",
+  "id" : "vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
+  "name" : "vital-sign-mapping",
+  "title" : "Mapping of AMC's VitalSign (Oxygen saturation in Arterial blood by Pulse oximetry, Heart rate) table to DT4H-VitalSign FHIR profile",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/amc/VitalSignLengthWeightBMI",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/vitalsign",
     "joinOn" : [ ]
   } ],
   "context" : { },
@@ -16,7 +16,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid & MeetDatum.toString() & LOINCcode)}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid.toString() & MeetDatum.toString() & MeetTijd.toString() & LOINCcode)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -46,7 +46,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "identifier" : [ {
-          "value" : "{{pseudo_id.toString() & '-' & Patientcontactid & '-' & MeetDatum.toString()}}"
+          "value" : "{{pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetDatum.toString()}}"
         } ],
         "status" : "final"
       }

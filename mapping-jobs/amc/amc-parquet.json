@@ -7,26 +7,149 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "amc-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
-      "dataFolderPath" : "test-data/amc",
+      "dataFolderPath" : "test-data/datasource",
       "asStream" : false
     }
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
     "returnMinimal" : true
   },
   "mappings" : [ {
+    "name" : "vital-sign-bp-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
+    "sourceBinding" : {
+      "VitalSignBp" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "BloodPressure.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-length-weight-bmi-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-weight-bmi-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "LengthWeightBMI.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VitalSigns.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "laboratory-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Laboratory.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Echocardiography.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ECG.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0\r\ngroup by pseudo_id, EcgMetingId",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
+    "sourceBinding" : {
+      "patient" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Patient.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "smoking-status-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
+    "sourceBinding" : {
+      "SmokingStatus" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Tabakgebruik.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
     "name" : "cause-of-death-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
     "sourceBinding" : {
       "CauseOfDeath" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_OverlijdensRegistratie",
+        "path" : "Overlijdensregistratie.parquet",
         "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
+        "options" : { },
         "sourceRef" : "amc-source"
       }
     }
@@ -36,35 +159,7 @@
     "sourceBinding" : {
       "Condition" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Probleemlijst",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "condition-medical-diagnosis-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-medical-diagnosis-mapping",
-    "sourceBinding" : {
-      "ConditionMedicalDiagnosis" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MedischeDiagnose",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "encounter-emergency-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-emergency-mapping",
-    "sourceBinding" : {
-      "EncounterEmergency" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_SEHtraject",
+        "path" : "Probleemlijst.parquet",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
@@ -80,23 +175,7 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Encounters.parquet",
         "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "history-surgery-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/history-surgery-mapping",
-    "sourceBinding" : {
-      "SurgeryHistory" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VoorgeschiedenisChirurgie",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
+        "options" : { },
         "sourceRef" : "amc-source"
       }
     }
@@ -104,83 +183,25 @@
     "name" : "medication-administration-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
     "sourceBinding" : {
-      "MedicationAdministration" : {
+      "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MedicatieToediening",
+        "path" : "MedicationAdministration.parquet",
         "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
+        "options" : { },
+        "preprocessSql" : "select * \nfrom source\nwhere ATCCode != '' and AdministeredAmount IS NOT NULL",
         "sourceRef" : "amc-source"
       }
     }
   }, {
-    "name" : "medication-request-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-request-mapping",
+    "name" : "medication-statement-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-statement-mapping",
     "sourceBinding" : {
-      "MedicationRequest" : {
+      "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_MedicatieVoorschrift",
+        "path" : "MedicationPrescription.parquet",
         "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "patient-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
-    "sourceBinding" : {
-      "patient" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Patient",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "procedure-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
-    "sourceBinding" : {
-      "Procedure" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_VerrichtingUitgevoerd",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "procedure-surgery-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-surgery-mapping",
-    "sourceBinding" : {
-      "ProcedureSurgery" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_OKVerrichtingUitgevoerd",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "smoking-status-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
-    "sourceBinding" : {
-      "SmokingStatus" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Datatools4heart_Tabakgebruik",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
+        "options" : { },
+        "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",
         "sourceRef" : "amc-source"
       }
     }
