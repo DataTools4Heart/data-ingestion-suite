@@ -17,6 +17,10 @@
     "admitSourceConceptMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/amc/admit-source-concept-map.csv"
+    },
+    "serviceTypeMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/encounter-service-type-map.csv"
     }
   },
   "variable" : [ {
@@ -84,6 +88,14 @@
         "status" : "{{EncounterStatus}}",
         "serviceType" : [ {
           "concept" : {
+            "coding" : [ {
+              "{{#serviceCoding}}" : "{{ iif(DepartmentAdmission.exists(), mpp:getConcept(%serviceTypeMap, DepartmentAdmission) ) }}",
+              "{{?}}" : {
+                "system" : "http://snomed.info/sct",
+                "code" : "{{%serviceCoding.snomed}}",
+                "display" : "{{%serviceCoding.display}}"
+              }
+            } ],
             "text" : "{{? DepartmentAdmission}}"
           }
         } ],
