@@ -123,6 +123,7 @@
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
           "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+          "onsetDateTime" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
           "identifier" : [ {
             "value" : "{{Patientcontactid & '-' & %mainDiagnosisCode}}"
           } ],

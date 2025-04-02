@@ -1,0 +1,2 @@
+pseudo_id,MonsterId,MateriaalAfnameDatumTijd,Bepaling,MateriaalSoort,UitslagEenheid,AanvragendeWerkplekAfkorting,AanvragendeWerkplek,AanvragendeZiekenhuisLocatie,UitslagDatumtijd,NormaalwaardeOndergrens,NormaalwaardeBovengrens,UitslagNumeriek,UitslagOpmerking,LOINCcode,LOINCdisplay
+1,lab-1,2021-07-04 12:00:00,sodium,,unit,,,,2021-07-04 12:00:00,,,15,,2951-2,Sodium
