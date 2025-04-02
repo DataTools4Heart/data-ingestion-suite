@@ -1,0 +1,2 @@
+pseudo_id,prescriptionID,PatientContactId,AdministrationDateTime,AdministrationRate,AdministrationRateUnit,AdministeredAmount,AdministeredAmountUnit,OrigialMedName,ATCCode,Ziekenhuislocatie,AdministrationStatus,AdministrationRoute
+1,m1,e2,2021-07-05 12:00:00,,,3,unit,esmolol,C07AB09,,oral

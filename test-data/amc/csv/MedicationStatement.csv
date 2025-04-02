@@ -1,0 +1,2 @@
+pseudo_id,PatientContactId,prescriptionID,Ziekenhuislocatie,StartDate,StopDate,IsHomeMedication,OrigialMedName,Dosage,UnitDosage,AdministrationRoute,Status,ATCCode,timing
+1,e2,pr1,,2021-07-06,2021-07-10,,,3,unit,oraal,,C07CG01,

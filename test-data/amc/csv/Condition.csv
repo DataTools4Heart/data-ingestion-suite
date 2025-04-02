@@ -1,0 +1,2 @@
+EPDGebruiker_pseudo,Pseudo_id,ProbleemlijstId,ProbleemOmschrijving,ProbleemCode,DiagnoseCode,DiagnoseCategorie,PatientProbleemstatus,PatientContactId,PatientContactTypeCode,PatientContactType,PatientContactDatum,PatientContactDatumTijd,ConstateringsDatum,RegistratieDatum,SluitDatum,IsChronisch,IsHoofdprobleem,IsZiekenhuisProbleem,ZiekenhuisLocatie,DiagnosethesaurusCode,SNOMEDCode,Bron,DCMVerverstDatumTijd,uitgifteDT
+1,1,1,description,code,I48,ICD-10,Actief,e2,,,2021-07-04,2021-07-04,2021-07-04,2021-07-04,2021-07-08,,,,,,,,,

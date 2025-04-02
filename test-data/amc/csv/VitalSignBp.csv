@@ -1,0 +1,2 @@
+pseudo_id,Patientcontactid,ZiekenhuisLocatie,MeetTijd,MeetDatum,ValueQuantity,LOINCcode,LOINCdisplay,ValueUnit
+1,e2,,2021-07-07 12:00:00,2021-07-07,12,8480-6,Systolic blood pressure,Unit

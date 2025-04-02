@@ -1,0 +1,3 @@
+Patientcontactid,pseudo_id,ZiekenhuisLocatie,StartDate,EndDate,DepartmentAdmission,DepartmentDischarge,admitSource_code,EncounterStatus,EncounterClassCode,ViaEmergencyDEP,PrimaryICDcode
+e1,1,loc,2019-04-06,2019-04-16,,,,completed,AMB,,w61.62XD
+e2,1,loc,2021-07-04,2021-07-21,,,,completed,AMB,,I50
