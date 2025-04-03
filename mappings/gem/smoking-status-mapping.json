@@ -58,7 +58,9 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
-        "effectiveDateTime" : "{{? data_in.utl:toFhirDate('yyyy-MM-dd'))}}",
+        "effectivePeriod" : {
+          "start" : "{{? data_in.utl:toFhirDate('yyyy-MM-dd')}}"
+        },
         "status" : "final"
       }
     }

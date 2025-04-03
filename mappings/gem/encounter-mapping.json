@@ -97,6 +97,7 @@
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
           "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', NOSOGRAFICO.nav:orElse(NUM_PS))}}",
+          "onsetDateTime" : "{{(DATA_IN & iif(ORA_IN.exists(), ORA_IN) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}",
           "clinicalStatus" : {
             "coding" : [ {
               "code" : "active"
