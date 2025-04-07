@@ -1,0 +1,2 @@
+subject_id,hadm_id,seq_num,icd_code,icd_version
+1,2000000,1,I50,10

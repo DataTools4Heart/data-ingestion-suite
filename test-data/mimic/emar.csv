@@ -1,0 +1,2 @@
+subject_id,hadm_id,emar_id,emar_seq,poe_id,pharmacy_id,enter_provider_id,charttime,medication,event_txt,scheduletime,storetime
+1,2000000,1-1,1,1,1,,2021-04-06 12:00:00,timolol,Administered,,

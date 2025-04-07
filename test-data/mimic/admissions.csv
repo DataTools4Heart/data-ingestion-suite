@@ -1,0 +1,2 @@
+subject_id,hadm_id,admittime,dischtime,deathtime,admission_type,admit_provider_id,admission_location,discharge_location,insurance,language,marital_status,race,edregtime,edouttime,hospital_expire_flag
+1,2000000,2021-04-06 12:00:00,2021-04-12 12:00:00,2023-05-04,AMBULATORY OBSERVATION,,,,,,,,,,0
