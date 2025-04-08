@@ -25,6 +25,10 @@
     "routeConceptMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/mimic/med-routes-to-snomed.csv"
+    },
+    "ndcToMedDetails" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
     }
   },
   "variable" : [ {
@@ -48,6 +52,12 @@
             },
             "resourceType" : "MedicationAdministration",
             "medication" : {
+              "concept" : {
+                "coding" : {
+                  "{{#rxCode}}" : "{{mpp:getConcept(%ndcToMedDetails, %prescription.ndc.toString())}}",
+                  "{{?}}" : [ "{{* trms:translateToCoding(%rxCode.activeIngredientRxcui, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc')}}" ]
+                }
+              },
               "reference" : {
                 "reference" : "{{? mpp:createFhirReferenceWithHashedId('Medication', %prescriptionVar.drug & %prescriptionVar.gsn.toString() & %prescriptionVar.ndc.toString() & %prescriptionVar.formulary_drug_cd).reference}}",
                 "display" : "{{? medication}}"
