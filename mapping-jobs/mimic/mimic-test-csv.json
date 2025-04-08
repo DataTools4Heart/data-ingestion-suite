@@ -1,24 +1,20 @@
 {
-  "id" : "mimic-hosp-csv-to-fhir-server",
-  "name" : "mimic-hosp-csv-to-fhir-server",
-  "description" : "",
+  "id" : "mimic-test-csv",
+  "name" : "mimic-test-csv",
+  "description" : "Executes MIMIC mappings on the CSV test dataset and stores the results in the local onFHIR server.",
   "sourceSettings" : {
-    "MIMIC-IV v3.1" : {
+    "file-system-csv" : {
       "jsonClass" : "FileSystemSourceSettings",
-      "name" : "MIMIC-IV v3.1",
-      "sourceUri" : "https://physionet.org/content/mimiciv/3.1",
-      "dataFolderPath" : "${DATA_FOLDER_PATH}",
+      "name" : "file-system-csv",
+      "sourceUri" : "http://file-system-test-csv",
+      "dataFolderPath" : "test-data/mimic",
       "asStream" : false
     }
   },
   "sinkSettings" : {
-    "jsonClass" : "FileSystemSinkSettings",
-    "path" : "/usr/local/tofhir/data/mimic-iv-3.1/output",
-    "contentType" : "ndjson",
-    "numOfPartitions" : 1,
-    "options" : { },
-    "partitionByResourceType" : false,
-    "partitioningColumns" : { }
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
@@ -172,30 +168,17 @@
     "sourceBinding" : {
       "patients" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/patients.csv",
+        "path" : "patients.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "admissions" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/admissions.csv",
+        "path" : "admissions.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
-      }
-    }
-  }, {
-    "name" : "careunit-mapping",
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/careunits",
-    "sourceBinding" : {
-      "careunits" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/transfers.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "preprocessSql" : "SELECT DISTINCT CU.careunit FROM careunits CU WHERE CU.careunit IS NOT NULL",
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       }
     }
   }, {
@@ -204,38 +187,38 @@
     "sourceBinding" : {
       "services" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/services.csv",
+        "path" : "services.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "diagnoses" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/diagnoses_icd.csv",
+        "path" : "diagnoses_icd.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "procedures" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/procedures_icd.csv",
+        "path" : "procedures_icd.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "transfers" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/transfers.csv",
+        "path" : "transfers.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "admissions" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/admissions.csv",
+        "path" : "admissions.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       }
     }
   }, {
@@ -244,43 +227,24 @@
     "sourceBinding" : {
       "diagnoses" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/diagnoses_icd.csv",
+        "path" : "diagnoses_icd.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "icdConceptMap" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/d_icd_diagnoses.csv",
+        "path" : "d_icd_diagnoses.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "admissions" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/admissions.csv",
+        "path" : "admissions.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
-      }
-    }
-  }, {
-    "name" : "procedures-mapping",
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/procedures-icd",
-    "sourceBinding" : {
-      "procedures" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/procedures_icd.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
-      },
-      "icdConceptMap" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/d_icd_procedures.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       }
     }
   }, {
@@ -289,47 +253,10 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/labevents.csv",
+        "path" : "labevents.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
-      }
-    }
-  }, {
-    "name" : "medications-mapping",
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
-    "sourceBinding" : {
-      "prescribed_meds" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/prescriptions.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "preprocessSql" : "SELECT P.drug,P.gsn,P.ndc,P.formulary_drug_cd,first(P.prod_strength) as prod_strength,first(P.form_unit_disp) as form_unit_disp FROM prescribed_meds P GROUP BY P.drug, P.gsn, P.ndc, P.formulary_drug_cd",
-        "sourceRef" : "MIMIC-IV v3.1"
-      }
-    }
-  }, {
-    "name" : "prescriptions-mapping",
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/prescriptions",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/prescriptions.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
-      }
-    }
-  }, {
-    "name" : "poe-mapping",
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/poe",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/poe.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       }
     }
   }, {
@@ -338,23 +265,10 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/omr.csv",
+        "path" : "omr.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
-      }
-    }
-  }, {
-    "name" : "microbiologyevents",
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/microbiologyevents",
-    "sourceBinding" : {
-      "microbiologyevents" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/microbiologyevents.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "preprocessSql" : "select subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc, count(*) as count, \narray_agg(microevent_id) as microevent_id, array_agg(chartdate) as chartdate, array_agg(charttime) as charttime, \narray_agg(test_seq) as test_seq, array_agg(storedate) as storedate, array_agg(storetime) as storetime,\narray_agg(test_itemid) as test_itemid, array_agg(test_name) as test_name,\narray_agg(org_itemid) as org_itemid, array_agg(org_name) as org_name,\narray_agg(isolate_num) as isolate_num, array_agg(quantity) as quantity, \narray_agg(ab_itemid) as ab_itemid, array_agg(ab_name) as ab_name,\narray_agg(dilution_text) as dilution_text, array_agg(dilution_comparison) as dilution_comparison, array_agg(dilution_value) as dilution_value,\narray_agg(interpretation) as interpretation, array_agg(comments) as comments\nfrom microbiologyevents group by subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc",
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       }
     }
   }, {
@@ -363,24 +277,24 @@
     "sourceBinding" : {
       "emar" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/emar.csv",
+        "path" : "emar.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "emarDetail" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/emar_detail.csv",
+        "path" : "emar_detail.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       },
       "prescription" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hosp/prescriptions.csv",
+        "path" : "prescriptions.csv",
         "contentType" : "csv",
         "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
+        "sourceRef" : "file-system-csv"
       }
     }
   } ],

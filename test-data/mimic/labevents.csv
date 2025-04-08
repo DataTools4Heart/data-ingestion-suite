@@ -1,0 +1,2 @@
+labevent_id,subject_id,hadm_id,specimen_id,itemid,order_provider_id,charttime,storetime,value,valuenum,valueuom,ref_range_lower,ref_range_upper,flag,priority,comments
+1,1,2000000,1,50983,1,2021-04-07 12:00:00,,,42,unit
