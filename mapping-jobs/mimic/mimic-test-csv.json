@@ -297,6 +297,18 @@
         "sourceRef" : "file-system-csv"
       }
     }
+  }, {
+    "name" : "medications-without-rxn",
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
+    "sourceBinding" : {
+      "prescribed_meds" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "medications.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
