@@ -1,0 +1,35 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 6831,
+                "clinical_site_id": 8383,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:52:16.627592",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 8259,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:39.625977",
+                "record_extraction_date": "2025-03-06T16:52:16.627586",
+                "record_format": "json",
+                "record_id": "31326486_3",
+                "record_lastupdate_date": "2025-03-06T16:52:16.627567",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Progress Note",
+                "text": "49let\u00e1 \u017eena s rizikov\u00fdmi faktory hypertenze, hypercholesterolemie, obezity a kou\u0159en\u00ed se dostavila na na\u0161e pohotovostn\u00ed odd\u011blen\u00ed s p\u0159etrv\u00e1vaj\u00edc\u00ed bolest\u00ed na hrudi. Elektrokardiogram prok\u00e1zal akutn\u00ed anterosept\u00e1ln\u00ed infarkt myokardu s elevac\u00ed \u00faseku ST. Invazivn\u00ed koronarografie prok\u00e1zala kompletn\u00ed uz\u00e1v\u011br st\u0159edn\u00ed \u010d\u00e1sti LAD. Vin\u00edkov\u00e1 c\u00e9va byla \u00fasp\u011b\u0161n\u011b revaskularizov\u00e1na prim\u00e1rn\u00ed perkut\u00e1nn\u00ed koron\u00e1rn\u00ed intervenc\u00ed. GWE byla 87 %, GCW byla 1 906 mm Hg %, GWW byla 217 mm Hg % a GWI byla 1 812 mm Hg %. Hodnoty pracovn\u00ed \u00fa\u010dinnosti a pracovn\u00edho indexu byly sn\u00ed\u017eeny na p\u0159edn\u00ed st\u011bn\u011b (z\u00e1sobovan\u00e9 LAD), s kompenza\u010dn\u00edm zv\u00fd\u0161en\u00edm nap\u0159\u00edklad na bo\u010dn\u00ed st\u011bn\u011b. K definov\u00e1n\u00ed u\u017eite\u010dnosti neinvazivn\u00edch pracovn\u00edch index\u016f myokardu pro progn\u00f3zu t\u00e9to populace jsou nutn\u00e9 dal\u0161\u00ed studie. LAD = lev\u00e1 p\u0159edn\u00ed sestupn\u00e1 v\u011bn\u010dit\u00e1 tepna.\n\n      zobrazov\u00e1n\u00ed/etiologie/fyziopatologie/terapie"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

@@ -1,0 +1,78 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [
+                {
+                    "concept_class": "medication",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "metoprolol",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "372826007",
+                    "end_offset": 3947,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 3937
+                },
+                {
+                    "concept_class": "signs and symptoms",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "ascites",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "389026000",
+                    "end_offset": 4139,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 4132
+                }
+            ],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 7860,
+                "clinical_site_id": 8500,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T17:04:34.190982",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 4258,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:44.773346",
+                "record_extraction_date": "2025-03-06T17:04:34.190978",
+                "record_format": "json",
+                "record_id": "37216928",
+                "record_lastupdate_date": "2025-03-06T17:04:34.190965",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Progress Note",
+                "text": "35let\u00e1 nullipara s prim\u00e1rn\u00ed neplodnost\u00ed byla vy\u0161et\u0159ena pro abnorm\u00e1ln\u00ed d\u011blo\u017en\u00ed krv\u00e1cen\u00ed a dysmenoreu. Bylo zji\u0161t\u011bno n\u011bkolik nitrod\u011blo\u017en\u00edch \u00fatvar\u016f. P\u0159i pl\u00e1nov\u00e1n\u00ed elektivn\u00ed hysterektomie bylo provedeno rutinn\u00ed echokardiografick\u00e9 vy\u0161et\u0159en\u00ed, kter\u00e9 odhalilo nitrod\u011blo\u017en\u00ed masy. Tento n\u00e1lez vedl ke zm\u011bn\u011b pl\u00e1nu \u0159e\u0161en\u00ed na urgentn\u00ed operaci na otev\u0159en\u00e9m srdci.\n\nP\u0159i operaci na otev\u0159en\u00e9m srdci byly extrahov\u00e1ny mnoho\u010detn\u00e9 masy z plicn\u00ed tepny, prav\u00e9 komory a prav\u00e9 s\u00edn\u011b s roz\u0161\u00ed\u0159en\u00edm do doln\u00ed dut\u00e9 \u017e\u00edly. Histopatologie odhalila v\u0159etenobun\u011b\u010dn\u00fd tumor n\u00edzk\u00e9ho stupn\u011b. Jednotliv\u00e9 n\u00e1dorov\u00e9 bu\u0148ky vykazovaly hojnou prot\u00e1hlou eozinofiln\u00ed cytoplazmu, kompatibiln\u00ed s hladk\u00fdm svalov\u00fdm p\u016fvodem. Imunohistochemie prok\u00e1zala expresi hladkosvalov\u00e9ho aktinu, lidsk\u00e9ho svalov\u00e9ho aktinu, caldesmonu a desminu a byla negativn\u00ed pro myogenin, vimentin, MyoD1, CD34 a S100. Ki67 nebyl v n\u00e1dorov\u00fdch bu\u0148k\u00e1ch zv\u00fd\u0161en (<1 %). N\u00e1lezy sv\u011bd\u010dily ve prosp\u011bch n\u00e1dor\u016f hladk\u00e9 svaloviny (leiomyomu).\n\nO dva roky pozd\u011bji podstoupila tot\u00e1ln\u00ed abdomin\u00e1ln\u00ed hysterektomii s bilater\u00e1ln\u00ed salpingo-oforektomi\u00ed sekund\u00e1rn\u011b pro t\u011b\u017ekou menometoragii. V t\u011ble d\u011blohy byly pozorov\u00e1ny mnoho\u010detn\u00e9 \u00fatvary ov\u00e1ln\u00e9ho tvaru o velikosti od 0,5 do 3 cm. Mikroskopick\u00e9 vy\u0161et\u0159en\u00ed odhalilo typick\u00e9 benign\u00ed leiomyomy bez zn\u00e1mek malignity. Imunohistochemie prok\u00e1zala silnou expresi aktinu hladk\u00e9ho svalstva a absenci exprese CD10, inhibinu a CD99. Po druh\u00e9m z\u00e1kroku byla propu\u0161t\u011bna ve stabilizovan\u00e9m stavu a byla ztracena ze sledov\u00e1n\u00ed.\n\nPacientka se vr\u00e1tila o 4 roky pozd\u011bji s otokem doln\u00edch kon\u010detin 2+ a du\u0161nost\u00ed. Tentokr\u00e1t echokardiografie prok\u00e1zala m\u00edrn\u00e9 zv\u011bt\u0161en\u00ed a dysfunkci lev\u00e9 komory, ejek\u010dn\u00ed frakci lev\u00e9 komory 45 %, abnorm\u00e1ln\u00ed pohyb septa, z\u00e1va\u017en\u00e9 zv\u011bt\u0161en\u00ed a st\u0159edn\u011b z\u00e1va\u017enou dysfunkci prav\u00e9 komory, m\u00edrnou a\u017e st\u0159edn\u011b z\u00e1va\u017enou regurgitaci mitr\u00e1ln\u00ed chlopn\u011b, trivi\u00e1ln\u00ed regurgitace aort\u00e1ln\u00ed chlopn\u011b, m\u00edrn\u00e1 a\u017e st\u0159edn\u011b t\u011b\u017ek\u00e1 insuficience plicn\u00ed chlopn\u011b, dilatace hlavn\u00ed plicn\u00ed tepny, t\u011b\u017ek\u00e1 trikuspid\u00e1ln\u00ed regurgitace a t\u011b\u017ek\u00e1 plicn\u00ed hypertenze (systolick\u00fd tlak v plicnici odhadov\u00e1n na ~75 mmHg). Doln\u00ed dut\u00e1 \u017e\u00edla byla dilatovan\u00e1 se sn\u00ed\u017een\u00fdm (<30 %) respira\u010dn\u00edm kolapsem a kolem jater byl patrn\u00fd mal\u00fd v\u00fdpotek.\n\nPo\u010d\u00edta\u010dov\u00e1 tomografie (CT) plicn\u00edch tepen uk\u00e1zala dilatovan\u00e9 plicn\u00ed tepny bez defektu pln\u011bn\u00ed. V obou plic\u00edch byl patrn\u00fd mozaikovit\u00fd \u00fatlum plic a drobn\u00e9 uzl\u00edky o velikosti 3-4 mm. Plicn\u00ed funk\u010dn\u00ed test byl norm\u00e1ln\u00ed. V plynn\u00e9 ven\u00f3zn\u00ed krvi bylo zji\u0161t\u011bno pH 7,42, pO2 39, saturace O2 74, pCO2 38 a HCO3 24. V plicn\u00ed krvi bylo zji\u0161t\u011bno pH 7,42, pO2 39, saturace O2 74, pCO2 38 a HCO3 24.\n\nVysok\u00fd srde\u010dn\u00ed v\u00fddej a izolovan\u00e1 postkapil\u00e1rn\u00ed plicn\u00ed hypertenze byly potvrzeny katetrizac\u00ed prav\u00e9ho srdce.\n\nCT vy\u0161et\u0159en\u00ed b\u0159icha odhalilo velk\u00e9 mno\u017estv\u00ed ascitu, dilataci suprahepat\u00e1ln\u00ed \u017e\u00edly a doln\u00ed dut\u00e9 \u017e\u00edly, obrovskou masivn\u00ed l\u00e9zi tvo\u0159enou m\u011bkkou tk\u00e1n\u00ed a c\u00e9vn\u00ed strukturu ve tvaru varix\u016f v p\u00e1nevn\u00ed dutin\u011b o d\u00e9lce v\u00edce ne\u017e 18 cm s velk\u00fdmi \u017eilami \u00fast\u00edc\u00edmi do lev\u00e9 a prav\u00e9 vnit\u0159n\u00ed ilick\u00e9 \u017e\u00edly. Oboustrann\u00e1 hydroureteronefr\u00f3za zp\u016fsoben\u00e1 obklopen\u00edm dist\u00e1ln\u00ed t\u0159etiny ka\u017ed\u00e9ho mo\u010dovodu n\u00e1dorem p\u00e1nve vytvo\u0159ila levostrannou obstruk\u010dn\u00ed nefropatii. Byla provedena biopsie j\u00e1drovou jehlou a mikroskopick\u00e9 vy\u0161et\u0159en\u00ed prok\u00e1zalo nev\u00fdrazn\u00e9 c\u00e9vy a svazky hladk\u00fdch svalov\u00fdch vl\u00e1ken ve fibrotick\u00e9m a \u010d\u00e1ste\u010dn\u011b hyalinizovan\u00e9m stromatu.\n\nP\u0159i druh\u00e9m hodnocen\u00ed masy po rozvoji ren\u00e1ln\u00edho selh\u00e1n\u00ed byla provedena angiografie magnetickou rezonanc\u00ed, kter\u00e1 odhalila obrovskou vysoce vaskul\u00e1rn\u00ed l\u00e9zi v p\u00e1nevn\u00ed dutin\u011b s velmi rozs\u00e1hl\u00fdmi \u017eiln\u00edmi kan\u00e1ly \u00fast\u00edc\u00edmi do obou vnit\u0159n\u00edch ilick\u00fdch \u017eil a tak\u00e9 p\u0159\u00edmo do doln\u00ed dut\u00e9 \u017e\u00edly.\n\nNa z\u00e1klad\u011b klinick\u00e9ho pozad\u00ed a aktu\u00e1ln\u00edch n\u00e1lez\u016f byla vyslovena diagn\u00f3za IVL komplikovan\u00e1 stavem vysok\u00e9ho v\u00fddeje, nejsp\u00ed\u0161e v d\u016fsledku arterio-ven\u00f3zn\u00edho zkratu v c\u00e9vn\u00edm \u00fatvaru p\u00e1nve.\n\nVzhledem k vysok\u00e9mu opera\u010dn\u00edmu riziku bylo u pacienta napl\u00e1nov\u00e1no perkut\u00e1nn\u00ed o\u0161et\u0159en\u00ed \u00fatvaru a l\u00e9ka\u0159sk\u00e1 paliativn\u00ed p\u00e9\u010de. Perkut\u00e1nn\u00ed l\u00e9\u010dba nebyla \u00fasp\u011b\u0161n\u00e1 a pacientka byla medikament\u00f3zn\u011b sledov\u00e1na na furosemidu, spironolaktonu, metolazonu, digoxinu, metoprolol sukcin\u00e1tu a hydralazinu. Pravideln\u011b byla p\u0159ij\u00edm\u00e1na s dekompenzovan\u00fdm srde\u010dn\u00edm selh\u00e1n\u00edm, klinick\u00fd stav se v\u0161ak zhor\u0161oval s n\u011bkolika prodlou\u017een\u00fdmi hospitalizacemi pro refraktern\u00ed otoky, ascites, kachexii a ren\u00e1ln\u00ed selh\u00e1n\u00ed, co\u017e si vy\u017e\u00e1dalo hemodial\u00fdzu a inotropn\u00ed l\u00e9\u010dbu. O n\u011bkolik m\u011bs\u00edc\u016f pozd\u011bji byla pacientka p\u0159ijata pro exacerbaci COVID-19 pneumonie, sepsi a jatern\u00ed selh\u00e1n\u00ed a zem\u0159ela v roce 2021 po 8 letech od prvn\u00ed operace. Pitva nebyla provedena.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

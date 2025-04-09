@@ -1,0 +1,35 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 6026,
+                "clinical_site_id": 5758,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:51:31.401921",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 9508,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:38.733522",
+                "record_extraction_date": "2025-03-06T16:51:31.401917",
+                "record_format": "json",
+                "record_id": "30503742_3",
+                "record_lastupdate_date": "2025-03-06T16:51:31.401903",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Radiology Report",
+                "text": "Prvn\u00ed pacientka, 68let\u00e1 \u017eena s revmatoidn\u00ed artritidou v anamn\u00e9ze, karcinomem prsu l\u00e9\u010den\u00fdm radik\u00e1ln\u00ed mastektomi\u00ed, chronick\u00fdm systolick\u00fdm srde\u010dn\u00edm selh\u00e1n\u00edm vyvolan\u00fdm chemoterapi\u00ed (ejek\u010dn\u00ed frakce 25 %) a LVAD HeartMate II (St Jude Medical, St Paul, Minn), se 26 m\u011bs\u00edc\u016f po implantaci LVAD dostavila do nemocnice s neust\u00e1l\u00fdmi alarmy n\u00edzk\u00e9ho pr\u016ftoku na ovlada\u010di LVAD, ka\u0161lem a du\u0161nost\u00ed. Po p\u0159ijet\u00ed do nemocnice podstoupila transtorak\u00e1ln\u00ed echokardiografii s \u00fapravou rychlosti p\u0159i zvy\u0161ov\u00e1n\u00ed rychlosti LVAD z 9000 ot\u00e1\u010dek za minutu (RPM) na 10 200 RPM v kroc\u00edch po 200 RPM. Echokardiografie neprok\u00e1zala \u017e\u00e1dnou zm\u011bnu vnit\u0159n\u00edho diastolick\u00e9ho pr\u016fm\u011bru lev\u00e9 komory (5,5-5,6 cm) navzdory zvy\u0161uj\u00edc\u00edm se rychlostem a \u017e\u00e1dn\u00e9 zm\u011bny parametr\u016f LVAD (tj. v\u00fdkonu, pr\u016ftoku nebo indexu pulzatility) p\u0159i v\u0161ech rychlostech v pr\u016fb\u011bhu studie. Tato zji\u0161t\u011bn\u00ed vyvolala obavy z poruchy za\u0159\u00edzen\u00ed LVAD. Po\u010d\u00edta\u010dov\u00e1 tomografie srdce s angiografi\u00ed (CCTA) prok\u00e1zala t\u00e9m\u011b\u0159 vertik\u00e1ln\u00ed orientaci p\u0159\u00edvodn\u00ed kanyly LVAD na hrotu lev\u00e9 komory s nep\u0159ek\u00e1\u017eej\u00edc\u00edm kontrastn\u00edm sloupcem. Na dist\u00e1ln\u00ed stran\u011b v\u00fdtokov\u00e9ho \u0161t\u011bpu v bl\u00edzkosti anastom\u00f3zy s vzestupnou aortou byla z\u00e1va\u017en\u00e1 sten\u00f3za, pravd\u011bpodobn\u011b zp\u016fsoben\u00e1 trombem. Pacient podstoupil redo sternotomii s reviz\u00ed v\u00fdtokov\u00e9ho \u0161t\u011bpu HeartMate II. Intraopera\u010dn\u00ed chirurgick\u00fd n\u00e1lez odhalil viditelnou silnou zevn\u00ed kompresi \u0161t\u011bpu poch\u00e1zej\u00edc\u00ed mezi \u0161t\u011bpem a okoln\u00ed f\u00f3li\u00ed Gore-Tex (W.L. Gore and Associates, Newark, Del) pou\u017eitou ke zpevn\u011bn\u00ed p\u0159i p\u016fvodn\u00ed implantaci za\u0159\u00edzen\u00ed. U pacienta napojen\u00e9ho na kardiopulmon\u00e1ln\u00ed bypass byl odtokov\u00fd \u0161t\u011bp uzav\u0159en a LVAD byl vypnut. Dist\u00e1ln\u00ed \u010d\u00e1st v\u00fdtokov\u00e9ho \u0161t\u011bpu v m\u00edst\u011b anastom\u00f3zy byla p\u0159eru\u0161ena. Proxim\u00e1ln\u00ed \u010d\u00e1st v\u00fdtokov\u00e9ho \u0161t\u011bpu byla odpojena od t\u011bla pumpy a zkontrolov\u00e1na. V m\u00edst\u011b anastom\u00f3zy \u0161t\u011bpu s aortou nebyly nalezeny \u017e\u00e1dn\u00e9 zn\u00e1mky trombu uvnit\u0159 \u0161t\u011bpu ani pseudoaneuryzmatu. Byl um\u00edst\u011bn nov\u00fd v\u00fdtokov\u00fd \u0161t\u011bp s anastom\u00f3zou na vzestupnou aortu. Na opera\u010dn\u00edm s\u00e1le byla znovu spu\u0161t\u011bna pumpa a optimalizov\u00e1ny pr\u016ftoky. Pacient byl \u00fasp\u011b\u0161n\u011b extubov\u00e1n a odpojen od inotropn\u00ed podpory 0. poopera\u010dn\u00ed den. Po operaci se nevyskytly \u017e\u00e1dn\u00e9 p\u0159\u00edhody indexu pulzatility ani alarmy n\u00edzk\u00e9ho pr\u016ftoku a po nekomplikovan\u00e9m zotaven\u00ed byla propu\u0161t\u011bna dom\u016f. B\u011bhem 7 m\u011bs\u00edc\u016f od operace nem\u011bla \u017e\u00e1dn\u00e9 dal\u0161\u00ed alarmy LVAD a \u017e\u00e1dn\u00e9 p\u0159\u00edznaky suboptim\u00e1ln\u00edho odleh\u010den\u00ed LVAD.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

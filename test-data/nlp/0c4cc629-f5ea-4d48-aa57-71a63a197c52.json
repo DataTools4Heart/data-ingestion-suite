@@ -1,0 +1,35 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 7658,
+                "clinical_site_id": 6812,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:50:15.918563",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 2928,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:37.675966",
+                "record_extraction_date": "2025-03-06T16:50:15.918559",
+                "record_format": "json",
+                "record_id": "28924116",
+                "record_lastupdate_date": "2025-03-06T16:50:15.918546",
+                "record_type": 44814653,
+                "report_language": "cs",
+                "report_section": "Radiology Report",
+                "text": "52let\u00fd Japonec s v\u00fd\u0161kou 172 cm a hmotnost\u00ed 51,4 kg (body mass index 17,5 kg/m2) byl p\u0159ijat na na\u0161i pohotovost kv\u016fli poru\u0161e v\u011bdom\u00ed. Po dobu dvou t\u00fddn\u016f zneu\u017e\u00edval alkohol a m\u011bl \u010dast\u00e9 pr\u016fjmy a nejm\u00e9n\u011b t\u0159i dny p\u0159ed p\u0159ijet\u00edm nic nejedl. Nikdy mu nebyly p\u0159edeps\u00e1ny \u017e\u00e1dn\u00e9 l\u00e9ky. Jeho krevn\u00ed tlak byl 117/81 mmHg, tepov\u00e1 frekvence 100 tep\u016f/min a pravideln\u00e1, dechov\u00e1 frekvence 30 dech\u016f/min a t\u011blesn\u00e1 teplota 37,7 \u00b0C. Fyzik\u00e1ln\u00ed vy\u0161et\u0159en\u00ed odhalilo sk\u00f3re Glasgowsk\u00e9 \u0161k\u00e1ly k\u00f3matu 14 (E4V4M6), ale nebyly patrn\u00e9 \u017e\u00e1dn\u00e9 zn\u00e1mky srde\u010dn\u00edho selh\u00e1n\u00ed nebo lo\u017eiskov\u00e9ho neurologick\u00e9ho deficitu s v\u00fdjimkou bolesti sval\u016f p\u0159i uchopov\u00e1n\u00ed. Jak je uvedeno v, krevn\u00ed testy odhalily hladinu gluk\u00f3zy 168 mg/dl a zv\u00fd\u0161en\u00e9 hladiny aspart\u00e1ttransamin\u00e1zy a alanintransamin\u00e1zy 247 a 134 U/l, ale sn\u00ed\u017een\u00e9 koncentrace iont\u016f drasl\u00edku (1.1 mmol/l; norm\u00e1ln\u00ed rozmez\u00ed 3,6-4,8), fosf\u00e1t\u016f (2,0 mg/dl; norm\u00e1ln\u00ed rozmez\u00ed 2,7-4,6), ho\u0159\u010d\u00edku (1,4 mg/dl; norm\u00e1ln\u00ed rozmez\u00ed 1,8-2,3) a albuminem korigovan\u00e9ho v\u00e1pn\u00edku (8,63 mg/dl; norm\u00e1ln\u00ed rozmez\u00ed 8,8-10,1). Krevn\u00ed testy rovn\u011b\u017e prok\u00e1zaly zv\u00fd\u0161enou hladinu kreatinkin\u00e1zy (11 064 U/l; norm\u00e1ln\u00ed rozmez\u00ed 59-248) s 28 IU/l pro izoformu MB (kreatinkin\u00e1zov\u00fd izozym BB, 0 %; MB, 0 %; MM 100 %) a metabolickou alkal\u00f3zu (pH 7,62, parci\u00e1ln\u00ed tlak oxidu uhli\u010dit\u00e9ho (pCO2) 46,5 mmHg, HCO3- 47,7 mmol/l). Rentgenov\u00fd sn\u00edmek hrudn\u00edku prok\u00e1zal 47% pom\u011br kardio-hrudn\u00ed kapacity bez plicn\u00ed kongesce , 12svodov\u00fd povrchov\u00fd elektrokardiogram prok\u00e1zal sinusov\u00fd rytmus o frekvenci 100 tep\u016f/min a prodlou\u017een\u00ed korigovan\u00e9ho intervalu QT (654 ms) bez elevace ST. K prevenci refeeding syndromu byly intraven\u00f3zn\u011b korigov\u00e1ny elektrolyty, miner\u00e1ly a vitaminy za \u010dast\u00e9ho monitorov\u00e1n\u00ed a byla zah\u00e1jena enter\u00e1ln\u00ed v\u00fd\u017eiva 300 kcal/den.\n\n\u010ctvrt\u00fd den po p\u0159ijet\u00ed si st\u011b\u017eoval na du\u0161nost po vypit\u00ed velk\u00e9ho mno\u017estv\u00ed vody a rentgenov\u00fd sn\u00edmek hrudn\u00edku odhalil oboustrannou plicn\u00ed kongesci. Dvan\u00e1ctisvodov\u00fd elektrokardiogram odhalil prodlou\u017een\u00ed korigovan\u00e9ho QT intervalu (626 ms) a symetrickou inverzi vlny T v prekordi\u00e1ln\u00edch svodech V2-4. V pr\u016fb\u011bhu vy\u0161et\u0159en\u00ed byl zji\u0161t\u011bn i n\u00e1lez na kardiografu. Krevn\u00ed testy prok\u00e1zaly op\u011btovn\u00e9 zv\u00fd\u0161en\u00ed hladiny kreatinkin\u00e1zy (14 123 U/l) doprov\u00e1zen\u00e9 zv\u00fd\u0161enou hladinou izoformy MB (60 IU/l) a troponinu-T (0,1 ng/ml; norm\u00e1ln\u00ed rozmez\u00ed \uff1c0,02). Krom\u011b toho se hladina mozkov\u00e9ho natriuretick\u00e9ho peptidu zv\u00fd\u0161ila ze 47,3 pg/ml v den p\u0159ijet\u00ed na 361 pg/ml, ale ionty ho\u0159\u010d\u00edku (5,1 mg/dl) a drasl\u00edku (4,8 mmol/l) se upravily do norm\u00e1ln\u00edho rozmez\u00ed. Transtorak\u00e1ln\u00ed echokardiografie odhalila z\u00e1va\u017enou hypokinezi apik\u00e1ln\u00edch a st\u0159edokomorov\u00fdch segment\u016f, s v\u00fdjimkou baz\u00e1ln\u00edch segment\u016f st\u011bny LK (ejek\u010dn\u00ed frakce 35 %). Intraven\u00f3zn\u011b mu bylo pod\u00e1no deset miligram\u016f furosemidu, co\u017e vedlo ke zm\u00edrn\u011bn\u00ed p\u0159\u00edznak\u016f. Pacient odm\u00edtl podstoupit koronarografii. Scintigrafie myokardu thaliem-201 proveden\u00e1 7. den nazna\u010dila zachovalou perfuzi, ale scintigrafie 123I-metaiodobenzylguanidinem prok\u00e1zala 34% zv\u00fd\u0161en\u00fd v\u00fdplach. N\u00e1sledn\u00fd rentgenov\u00fd sn\u00edmek hrudn\u00edku uk\u00e1zal 8. den zlep\u0161en\u00ed plicn\u00ed kongesce a 12. den byl na elektrokardiogramu zaznamen\u00e1n trend ke zlep\u0161en\u00ed inverze vlny T v prekordi\u00e1ln\u00edch svodech. Transtorak\u00e1ln\u00ed echokardiogram proveden\u00fd 12. den odhalil dramatick\u00e9 zlep\u0161en\u00ed systolick\u00e9 funkce LK (ejek\u010dn\u00ed frakce 55 %). Po 15 dnech od p\u0159ijet\u00ed byl p\u0159elo\u017een do rehabilita\u010dn\u00ed nemocnice.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

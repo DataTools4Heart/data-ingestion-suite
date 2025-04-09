@@ -1,0 +1,78 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [
+                {
+                    "concept_class": "demographic",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "\u017eeny",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "248152002",
+                    "end_offset": 13,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 9
+                },
+                {
+                    "concept_class": "cv diseases",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "kardiomyopatie",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "85898001",
+                    "end_offset": 357,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 343
+                }
+            ],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 8871,
+                "clinical_site_id": 7024,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:53:33.094762",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 9024,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:39.137642",
+                "record_extraction_date": "2025-03-06T16:53:33.094756",
+                "record_format": "json",
+                "record_id": "30971480_1",
+                "record_lastupdate_date": "2025-03-06T16:53:33.094738",
+                "record_type": 44814653,
+                "report_language": "cs",
+                "report_section": "Radiology Report",
+                "text": "U 67let\u00e9 \u017eeny s recidivuj\u00edc\u00edm leiomyosarkomem bylo p\u0159i echokardiografick\u00e9m vy\u0161et\u0159en\u00ed (ECHO) zji\u0161t\u011bno LVEF 60 % s norm\u00e1ln\u00ed srde\u010dn\u00ed funkc\u00ed. Za\u010dala u\u017e\u00edvat doxorubicin a olaratumab, ale po 6 m\u011bs\u00edc\u00edch do\u0161lo k progresi. N\u00e1dor progredoval na trabektedinu a byl zah\u00e1jen pazopanib; o 5 dn\u00ed pozd\u011bji byla p\u0159ijata pro du\u0161nost a byla zji\u0161t\u011bna neischemick\u00e1 kardiomyopatie a KV se sledovanou LVEF 12,9 %. Pazopanib byl vysazen a byla zah\u00e1jena medikament\u00f3zn\u00ed l\u00e9\u010dba. O p\u011bt dn\u00ed pozd\u011bji se c\u00edtila l\u00e9pe a z\u00e1t\u011b\u017eov\u00fd test magnetickou rezonanc\u00ed (MRI) prok\u00e1zal LVEF 21 %, ale \u017e\u00e1dn\u00e9 onemocn\u011bn\u00ed chlopn\u00ed, infarkt, fibr\u00f3zu ani ischemii. Osm dn\u00ed po vysazen\u00ed pazopanibu nem\u011bla \u017e\u00e1dnou du\u0161nost p\u0159i n\u00e1maze; o 4 dny pozd\u011bji zah\u00e1jila l\u00e9\u010dbu ifosfamidem bez recidivy srde\u010dn\u00edch p\u0159\u00edznak\u016f; o p\u011bt m\u011bs\u00edc\u016f pozd\u011bji byla LVEF 47 % podle ECHO a o m\u011bs\u00edc pozd\u011bji byla LVEF 51 % s norm\u00e1ln\u00ed systolickou funkc\u00ed na MRI srdce.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

@@ -1,0 +1,39 @@
+{
+  "id" : "nlp-job",
+  "name" : "nlp-job",
+  "description" : "",
+  "sourceSettings" : {
+    "nlp-outputs" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "nlp-outputs",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/nlp-outputs",
+      "dataFolderPath" : "test-data",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "nlp-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/nlp/nlp-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "nlp",
+        "contentType" : "json",
+        "options" : {
+          "multiLine" : "true"
+        },
+        "sourceRef" : "nlp-outputs"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

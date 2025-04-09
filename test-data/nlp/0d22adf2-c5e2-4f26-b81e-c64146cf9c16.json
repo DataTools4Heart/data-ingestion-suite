@@ -1,0 +1,35 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 7741,
+                "clinical_site_id": 9377,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T17:04:52.022075",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 1311,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:45.420719",
+                "record_extraction_date": "2025-03-06T17:04:52.022068",
+                "record_format": "json",
+                "record_id": "38241553_3",
+                "record_lastupdate_date": "2025-03-06T17:04:52.022049",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Radiology Report",
+                "text": "V b\u0159eznu 2020 p\u0159i\u0161el do na\u0161\u00ed nemocnice 74let\u00fd mu\u017e kv\u016fli pot\u00ed\u017e\u00edm na hrudi a du\u0161nosti. P\u0159ed rokem byl u pacienta diagnostikov\u00e1n akutn\u00ed mozkov\u00fd infarkt. Byla provedena bal\u00f3nkov\u00e1 dilatace lev\u00e9 podkl\u00ed\u010dkov\u00e9 tepny a implantace stentu do prav\u00e9 ilick\u00e9 tepny. P\u0159ed t\u0159emi m\u011bs\u00edci byl hospitalizov\u00e1n s hrudn\u00ed t\u00edsn\u00ed a du\u0161nost\u00ed. CT angiografie plicn\u00edch tepen prok\u00e1zala plicn\u00ed embolii v lev\u00e9m horn\u00edm a prav\u00e9m doln\u00edm laloku. Echokardiografie prok\u00e1zala norm\u00e1ln\u00ed srde\u010dn\u00ed strukturu a ejek\u010dn\u00ed frakci. Rozd\u00edl systolick\u00e9ho krevn\u00edho tlaku na obou horn\u00edch kon\u010detin\u00e1ch byl > 10 mm Hg. Koncentrace rychlosti sedimentace erytrocyt\u016f a interleukinu-6 byly v\u00fdznamn\u011b zv\u00fd\u0161en\u00e9. Pacient spl\u0148oval 4 ze 6 krit\u00e9ri\u00ed klasifikace American College of Rheumatology z roku 1990[4] a byla u n\u011bj diagnostikov\u00e1na Takayasuova arteritida. Dal\u0161\u00ed vy\u0161et\u0159en\u00ed a pravidelnou injekci tocilizumabu v\u0161ak z ekonomick\u00fdch d\u016fvod\u016f nepodstupoval. B\u011bhem sledov\u00e1n\u00ed opakovan\u011b trp\u011bl du\u0161nost\u00ed s hrudn\u00ed t\u00edsn\u00ed. Opakovan\u00e9 echokardiografick\u00e9 vy\u0161et\u0159en\u00ed prok\u00e1zalo zv\u011bt\u0161en\u00ed lev\u00e9 s\u00edn\u011b a lev\u00e9 komory, sn\u00ed\u017eenou pulza\u010dn\u00ed amplitudu zadn\u00ed st\u011bny lev\u00e9 komory a sn\u00ed\u017eenou LVEF 37 %. Od t\u00e9 doby pravideln\u011b u\u017e\u00edval l\u00e9ky na l\u00e9\u010dbu Takayasuovy arteritidy a ischemick\u00e9 choroby srde\u010dn\u00ed a c\u00edtil se mnohem l\u00e9pe ne\u017e d\u0159\u00edve.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

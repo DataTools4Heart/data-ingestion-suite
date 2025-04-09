@@ -1,0 +1,78 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [
+                {
+                    "concept_class": "medication",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "heparin",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "372877000",
+                    "end_offset": 1673,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 1666
+                },
+                {
+                    "concept_class": "medication",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "heparin",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "372877000",
+                    "end_offset": 2236,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 2229
+                }
+            ],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 7233,
+                "clinical_site_id": 6114,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:58:21.549493",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 9081,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:41.030159",
+                "record_extraction_date": "2025-03-06T16:58:21.549489",
+                "record_format": "json",
+                "record_id": "32729665",
+                "record_lastupdate_date": "2025-03-06T16:58:21.549475",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Consultation Note",
+                "text": "B\u011bhem tohoto obdob\u00ed podstoupilo 11 (11 %) pacient\u016f AVR: dev\u011bt sou\u010dasn\u011b b\u011bhem operace LVAD, jedna transkatetrov\u00e1 AVR 337 dn\u00ed po operaci LVAD a jedna chirurgick\u00e1 AVR 520 dn\u00ed po operaci LVAD (tabulka 1).1). U v\u0161ech pacient\u016f byl proveden angiogram po\u010d\u00edta\u010dovou tomografi\u00ed (CT) k zobrazen\u00ed polohy a funkce AVR. Po medi\u00e1nu sledov\u00e1n\u00ed 23,5 dne (20,0-654,0) po operaci LVAD byla u \u010dty\u0159 pacient\u016f (36 %) diagnostikov\u00e1na tromb\u00f3za ko\u0159ene aorty pomoc\u00ed CT angiogramu. U t\u0159\u00ed pacient\u016f byl CT angiogram proveden b\u011bhem pravideln\u00e9ho sledov\u00e1n\u00ed, zat\u00edmco u jednoho pacienta byly v\u00fdsledky transtorak\u00e1ln\u00edho echokardiografick\u00e9ho vy\u0161et\u0159en\u00ed (TTE) podez\u0159el\u00e9 z tromb\u00f3zy ko\u0159ene aorty, kter\u00e1 byla potvrzena na CT angiogramu. Naopak u \u017e\u00e1dn\u00e9ho z pacient\u016f bez AVR nebyla diagnostikov\u00e1na tromb\u00f3za ko\u0159ene aorty. Ze \u010dty\u0159 pacient\u016f, u nich\u017e byla diagnostikov\u00e1na tromb\u00f3za ko\u0159ene aorty, v\u0161echny z\u0159ejm\u011b vych\u00e1zely z lev\u00e9ho koron\u00e1rn\u00edho hrotu, ale zas\u00e1hly v\u0161echny hroty a byly velk\u00e9 mezi 3 a 5 mm, p\u0159i\u010dem\u017e v\u0161echny br\u00e1nily otev\u0159en\u00ed AV. Anatomie aorty na CT angiogramu byla porovn\u00e1na mezi ob\u011bma skupinami pacient\u016f, nebyly zji\u0161t\u011bny \u017e\u00e1dn\u00e9 rozd\u00edly v pr\u016fm\u011bru ko\u0159ene aorty a nebyla zji\u0161t\u011bna \u017e\u00e1dn\u00e1 patologie ko\u0159ene aorty zvy\u0161uj\u00edc\u00ed riziko tromb\u00f3zy ko\u0159ene aorty.\n\nNebyly pozorov\u00e1ny \u017e\u00e1dn\u00e9 v\u00fdznamn\u00e9 rozd\u00edly v po\u010dtu krevn\u00edch desti\u010dek p\u0159ed operac\u00ed LVAD (181,0 [157,0-211,0] vs. 167,5 [115,3-204,0], P = 0,788) a po operaci LVAD (102,0 [95,0-156,0] vs. 90,0 [65,3-115,5], P = 0,648) u pacient\u016f s tromb\u00f3zou ko\u0159ene aorty a bez n\u00ed. \u017d\u00e1dn\u00fd z pacient\u016f nav\u00edc nem\u011bl v anamn\u00e9ze krv\u00e1civ\u00e9 poruchy nebo tromboembolick\u00e9 p\u0159\u00edhody, jako je c\u00e9vn\u00ed mozkov\u00e1 p\u0159\u00edhoda nebo hlubok\u00e1 \u017eiln\u00ed tromb\u00f3za.\n\nBezprost\u0159edn\u011b po operaci, od 1. dne po operaci, byl heparin zav\u00e1d\u011bn s postupn\u011b se zvy\u0161uj\u00edc\u00edmi d\u00e1vkami jak u pacient\u016f s diagnostikovanou tromb\u00f3zou ko\u0159ene aorty, tak u pacient\u016f bez tromb\u00f3zy ko\u0159ene aorty. Mezi skupinami nebyl pozorov\u00e1n \u017e\u00e1dn\u00fd rozd\u00edl v dob\u011b do zah\u00e1jen\u00ed l\u00e9\u010dby heparinem: medi\u00e1n doby byl 3,5 (1,0-5,0), resp. 4,0 (2,0-7,0) dne. V obou skupin\u00e1ch pacient\u016f dos\u00e1hli n\u011bkte\u0159\u00ed pacienti terapeutick\u00e9 d\u00e1vky heparinu v d\u016fsledku poopera\u010dn\u00edch krv\u00e1civ\u00fdch p\u0159\u00edhod, kter\u00e9 vedly k do\u010dasn\u00e9mu sn\u00ed\u017een\u00ed d\u00e1vek heparinu. Kdy\u017e byli pacienti propu\u0161t\u011bni z jednotky intenzivn\u00ed p\u00e9\u010de a nem\u011bli \u017e\u00e1dn\u00e9 krv\u00e1civ\u00e9 p\u0159\u00edhody, byl intraven\u00f3zn\u00ed heparin vym\u011bn\u011bn za peror\u00e1ln\u00ed antagonistu vitaminu K. Aspirin byl u pacient\u016f s diagn\u00f3zou tromb\u00f3zy ko\u0159ene aorty zaveden pozd\u011bji po operaci LVAD ve srovn\u00e1n\u00ed s pacienty bez tromb\u00f3zy ko\u0159ene aorty [medi\u00e1n doby do zaveden\u00ed aspirinu 22,0 (12,0-32,0) vs. 10,0 dn\u00ed (5,0-39,0), v tomto po\u0159ad\u00ed]. Opo\u017ed\u011bn\u00e9 zaveden\u00ed aspirinu v obou skupin\u00e1ch bylo zp\u016fsobeno p\u0159edev\u0161\u00edm vysok\u00fdm rizikem krv\u00e1cen\u00ed nebo skute\u010dn\u00fdmi krv\u00e1civ\u00fdmi p\u0159\u00edhodami.\n\nU jednoho pacienta s diagn\u00f3zou tromb\u00f3zy ko\u0159ene aorty do\u0161lo 24 dn\u00ed po AVR k ischemick\u00e9 c\u00e9vn\u00ed mozkov\u00e9 p\u0159\u00edhod\u011b. Tento pacient bohu\u017eel utrp\u011bl rozs\u00e1hl\u00e9 neurologick\u00e9 po\u0161kozen\u00ed a zem\u0159el 39 dn\u00ed po AVR. U ostatn\u00edch pacient\u016f prob\u00edhalo sledov\u00e1n\u00ed bez tromboembolick\u00fdch p\u0159\u00edhod.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

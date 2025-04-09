@@ -1,0 +1,71 @@
+{
+  "id" : "nlp-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/nlp/nlp-mapping",
+  "name" : "nlp-mapping",
+  "title" : "Mapping of NLP outputs to DataTools4Heart FHIR profiles",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "symptomMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/nlp/symptom-category-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "nlpAnnotations",
+    "language" : "text/fhirpath",
+    "expression" : "nlp_output.annotations"
+  }, {
+    "name" : "metadata",
+    "language" : "text/fhirpath",
+    "expression" : "nlp_output.record_metadata"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#nlpAnn}}" : "{{%nlpAnnotations}}",
+        "{{*}}" : {
+          "{{#rootVar1}}" : "{{iif(%nlpAnn.concept_class = 'signs and symptoms', true)}}",
+          "{{?}}" : {
+            "{{#symptomCat}}" : "{{mpp:getConcept(%symptomMap, %nlpAnn.dt4h_concept_identifier)}}",
+            "{{?}}" : {
+              "id" : "{{mpp:getHashedId('Observation', %metadata.record_id & %nlpAnn.dt4h_concept_identifier & %nlpAnn.start_offset.toString())}}",
+              "meta" : {
+                "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom" ]
+              },
+              "resourceType" : "Observation",
+              "category" : [ {
+                "coding" : [ {
+                  "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code" : "{{%symptomCat.category_code}}",
+                  "display" : "{{%symptomCat.category_display}}"
+                } ]
+              } ],
+              "code" : {
+                "coding" : [ {
+                  "system" : "http://snomed.info/sct",
+                  "code" : "{{%nlpAnn.dt4h_concept_identifier}}",
+                  "@sliceName" : "snomedCode"
+                } ]
+              },
+              "effectiveDateTime" : "{{%metadata.record_creation_date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSSSSS')}}",
+              "valueBoolean" : true,
+              "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %metadata.patient_id.toString())}}",
+              "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %metadata.admission_id.toString())}}",
+              "identifier" : [ {
+                "value" : "{{%metadata.record_id & '-' & %nlpAnn.dt4h_concept_identifier}}"
+              } ],
+              "status" : "final"
+            }
+          }
+        }
+      }
+    }
+  } ]
+}

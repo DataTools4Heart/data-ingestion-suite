@@ -1,0 +1,35 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 6852,
+                "clinical_site_id": 5181,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:58:23.631805",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 7220,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:41.655120",
+                "record_extraction_date": "2025-03-06T16:58:23.631801",
+                "record_format": "json",
+                "record_id": "33452872_3",
+                "record_lastupdate_date": "2025-03-06T16:58:23.631787",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Radiology Report",
+                "text": "V roce 2015 bylo dev\u00edtilet\u00e9 d\u00edt\u011b hospitalizov\u00e1no kv\u016fli bolesti na hrudi, bu\u0161en\u00ed srdce a \u00fanav\u011b. Krevn\u00ed testy uk\u00e1zaly negativn\u00ed troponin, norm\u00e1ln\u00ed funkci ledvin, jater, \u0161t\u00edtn\u00e9 \u017el\u00e1zy a z\u00e1n\u011btliv\u00e9 markery. CXR uk\u00e1zal kardiomegalii a p\u0159ekrven\u00ed plicn\u00edch c\u00e9v; EKG uk\u00e1zalo blok\u00e1du lev\u00e9ho ram\u00e9nka (LBBB); echokardiografie odhalila t\u011b\u017ece dilatovanou levou komoru (LK) s glob\u00e1ln\u00ed hypokinez\u00ed a LVEF 18 %, st\u0159edn\u011b t\u011b\u017ekou funk\u010dn\u00ed mitr\u00e1ln\u00ed regurgitaci a dilataci lev\u00e9 s\u00edn\u011b; NT-proBNP byl 5000 ng/l. CMR potvrdila t\u011b\u017ece dilatovanou a dysfunk\u010dn\u00ed LK (LVEF 20 %) s glob\u00e1ln\u00ed hypokinez\u00ed a interventrikul\u00e1rn\u00ed desynchroni\u00ed, ale bez ed\u00e9mu myokardu nebo fibr\u00f3zy. Test tolerance z\u00e1t\u011b\u017ee prok\u00e1zal sn\u00ed\u017eenou funk\u010dn\u00ed kapacitu a n\u00e1mahou indukovanou LBBB; 24hodinov\u00e9 holterovsk\u00e9 EKG vylou\u010dilo komorov\u00e9 arytmie. P\u0159i s\u00e9riov\u00e9m echokardiografick\u00e9m sledov\u00e1n\u00ed z\u016fstal stabiln\u00ed na \u00farovni II. t\u0159\u00eddy New York Heart Association, s t\u011b\u017ece dilatovanou LK a systolickou dysfunkc\u00ed, LBBB a zv\u00fd\u0161enou hladinou NT-proBNP (4000 ng/l) p\u0159i standardn\u00ed medikaci srde\u010dn\u00edho selh\u00e1n\u00ed. O \u010dty\u0159i roky pozd\u011bji byl op\u011bt hospitalizov\u00e1n pro opakovanou du\u0161nost a oligurii. M\u011bl t\u011b\u017ece dilatovanou a hypokinetickou LK s LVEF 9 %, p\u0159etrv\u00e1vaj\u00edc\u00ed LBBB a NT-proBNP 11 000 ng/L. V roce 2009 byl hospitalizov\u00e1n na klinice v Praze. Okam\u017eit\u011b byl p\u0159ijat na d\u011btskou JIP, byla zah\u00e1jena ino-dilata\u010dn\u00ed l\u00e9\u010dba, neinvazivn\u00ed mechanick\u00e1 ventilace a maxim\u00e1ln\u00ed konven\u010dn\u00ed l\u00e9\u010dba dekompenzovan\u00e9ho akutn\u00edho chronick\u00e9ho srde\u010dn\u00edho selh\u00e1n\u00ed, v\u010detn\u011b dvou cykl\u016f pod\u00e1v\u00e1n\u00ed levosimendanu. Po kolegi\u00e1ln\u00ed diskusi s d\u011btsk\u00fdmi kardiochirurgy byla napl\u00e1nov\u00e1na hemodynamick\u00e1 studie k posouzen\u00ed mo\u017en\u00e9 indikace k implantaci komorov\u00e9ho asisten\u010dn\u00edho za\u0159\u00edzen\u00ed (VAD) jako mostu k transplantaci srdce. Srde\u010dn\u00ed katetrizace prok\u00e1zala postkapil\u00e1rn\u00ed plicn\u00ed hypertenzi (st\u0159edn\u00ed tlak v plicnici 34 mmHg, tlak v zakl\u00edn\u011bn\u00ed 26 mmHg) se zv\u00fd\u0161en\u00fdm indexem plicn\u00ed c\u00e9vn\u00ed rezistence (4,3 UW/m2) a n\u00edzk\u00fdm srde\u010dn\u00edm v\u00fddejem (1,88 l/min/m2). EMB prok\u00e1zala virus negativn\u00ed, aktivn\u00ed lymfocyt\u00e1rn\u00ed myokarditidu, nekr\u00f3zu kardiomyocyt\u016f a n\u00e1hradn\u00ed fibr\u00f3zu. Testy AHA a AIDA byly pozitivn\u00ed. Pot\u00e9 mu byl nasazen i.v. metylprednisolon v d\u00e1vce 1 mg/kg/die, n\u00e1sledn\u011b byl p\u0159eveden na peror\u00e1ln\u00ed prednison v d\u00e1vce 50 mg o.d. B\u011bhem jednoho m\u011bs\u00edce echokardiografie prok\u00e1zala postupn\u00e9 zlep\u0161ov\u00e1n\u00ed LVEF (33 %) a NT-proBNP klesl na 400 ng/l. Na z\u00e1klad\u011b v\u00fdsledk\u016f echokardiografie bylo zji\u0161t\u011bno, \u017ee se LVEF postupn\u011b zlep\u0161uje. O t\u0159i m\u011bs\u00edce pozd\u011bji se LVEF zlep\u0161ila na > 40 %, NT-proBNP se vr\u00e1til do norm\u00e1ln\u00edho rozmez\u00ed a LBBB ustoupila. Kontroln\u00ed katetrizace s odstupem 5 m\u011bs\u00edc\u016f uk\u00e1zala z\u0159eteln\u00e9 zlep\u0161en\u00ed st\u0159edn\u00edho tlaku v plicnici (PAP, 24 mmHg), tlaku v zakl\u00edn\u011bn\u00ed plicnice (7 mmHg), indexu plicn\u00ed c\u00e9vn\u00ed rezistence (PVRI, 4,8 UW/m2) a srde\u010dn\u00edho v\u00fddeje (3,95 l/min/m2). Po negativn\u00edm vy\u0161et\u0159en\u00ed na mutaci thiopurin-methyl-transfer\u00e1zy byl p\u0159id\u00e1n azathioprin, 2 m/kg/den, umo\u017e\u0148uj\u00edc\u00ed sn\u00ed\u017een\u00ed d\u00e1vky prednisonu. T\u0159et\u00ed katetrizace v \u010dervenci 2020 prok\u00e1zala normalizaci PAP, PVRI a LVEF (59 %) a p\u0159etrv\u00e1vaj\u00edc\u00ed z\u00e1n\u011bt myokardu na EMB; na EKG vymizel LBBB a st\u00e1le je na IS.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

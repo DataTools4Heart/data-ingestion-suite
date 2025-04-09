@@ -1,0 +1,78 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [
+                {
+                    "concept_class": "signs and symptoms",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "tachykardie",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "3424008",
+                    "end_offset": 601,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 590
+                },
+                {
+                    "concept_class": "medication",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "furosemid",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "387475002",
+                    "end_offset": 2566,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 2557
+                }
+            ],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 7272,
+                "clinical_site_id": 6322,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:50:05.411916",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 9600,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:37.801366",
+                "record_extraction_date": "2025-03-06T16:50:05.411913",
+                "record_format": "json",
+                "record_id": "29445057",
+                "record_lastupdate_date": "2025-03-06T16:50:05.411898",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Operative Report",
+                "text": "39let\u00e1 Japonka nav\u0161t\u00edvila na\u0161i nemocnici kv\u016fli sv\u00e9mu t\u0159et\u00edmu t\u011bhotenstv\u00ed. V 8 m\u011bs\u00edc\u00edch j\u00ed byla diagnostikov\u00e1na koarktace aorty (CoA) a patentn\u00ed duktus arteriosus (PDA). Ve 2 letech v\u011bku podstoupila ligaci PDA a opravu CoA. Ve 25 letech j\u00ed byla p\u0159i srde\u010dn\u00ed katetrizaci diagnostikov\u00e1na bikuspid\u00e1ln\u00ed aort\u00e1ln\u00ed chlope\u0148 s t\u011b\u017ekou aort\u00e1ln\u00ed regurgitac\u00ed a m\u00edrnou aort\u00e1ln\u00ed sten\u00f3zou. Proto\u017ee jej\u00ed lev\u00e1 komora byla dilatovan\u00e1 a jej\u00ed kontrakce byla sn\u00ed\u017een\u00e1, byla j\u00ed nab\u00eddnuta chirurgick\u00e1 n\u00e1hrada chlopn\u011b, kterou v\u0161ak odm\u00edtla. Ve 30 letech byla na jej\u00edm holterovsk\u00e9m monitoru zji\u0161t\u011bna nesetrval\u00e1 komorov\u00e1 tachykardie (NSVT). O m\u011bs\u00edc pozd\u011bji utrp\u011bla kardiopulmon\u00e1ln\u00ed z\u00e1stavu s fibrilac\u00ed komor a byla resuscitov\u00e1na elektrickou defibrilac\u00ed. Pot\u00e9 zah\u00e1jila medikament\u00f3zn\u00ed l\u00e9\u010dbu \u03b2-blok\u00e1tory a mexiletinem a rozhodla se podstoupit operaci. Podstoupila n\u00e1hradu aort\u00e1ln\u00ed chlopn\u011b biologickou chlopn\u00ed a implantaci ICD. Po t\u011bchto z\u00e1kroc\u00edch se c\u00edtila dob\u0159e. V jej\u00edm ICD neprob\u00edhala \u017e\u00e1dn\u00e1 \u0159\u00e1dn\u00e1 pr\u00e1ce pro arytmii. Dvakr\u00e1t rodila c\u00edsa\u0159sk\u00fdm \u0159ezem z porodnick\u00fdch d\u016fvod\u016f, a to ve 32 a 34 letech. Ve 36 letech j\u00ed byl ICD vym\u011bn\u011bn za ICD Evera XT VR (Medtronic, Minneapolis, MN, USA), proto\u017ee se vyb\u00edjela baterie.\nEchokardiografie v \u010dasn\u00e9m gesta\u010dn\u00edm obdob\u00ed prok\u00e1zala dob\u0159e zachovanou funkci chlopn\u00ed a zlep\u0161enou systolickou funkci srdce s ejek\u010dn\u00ed frakc\u00ed lev\u00e9 komory (LVEF) 58 %. P\u0159etrv\u00e1vala v\u0161ak diastolick\u00e1 dysfunkce; pom\u011br vrcholov\u00e9 \u010dasn\u00e9 diastolick\u00e9 rychlosti pln\u011bn\u00ed lev\u00e9 komory a vrcholov\u00e9 rychlosti pln\u011bn\u00ed s\u00edn\u00ed (E/A) byl 1,8, decelera\u010dn\u00ed \u010das byl 268 milisekund a vrcholov\u00e1 \u010dasn\u00e1 diastolick\u00e1 rychlost pln\u011bn\u00ed lev\u00e9 komory a vrcholov\u00e1 \u010dasn\u00e1 diastolick\u00e1 rychlost mitr\u00e1ln\u00edho anulu (E/e') byla 17,6. P\u0159i vy\u0161et\u0159en\u00ed bylo zji\u0161t\u011bno, \u017ee se jedn\u00e1 o poruchu diastolick\u00e9 funkce.\nVe 27. t\u00fddnu t\u011bhotenstv\u00ed byl na Holterov\u011b monitoru zaznamen\u00e1n NSVT. Nem\u011bla \u017e\u00e1dn\u00e9 v\u00fdznamn\u00e9 p\u0159\u00edznaky a p\u0159i fyzik\u00e1ln\u00edch vy\u0161et\u0159en\u00edch, kter\u00e1 byla prov\u00e1d\u011bna p\u0159i ka\u017ed\u00e9 n\u00e1v\u0161t\u011bv\u011b, nebyly pozorov\u00e1ny \u017e\u00e1dn\u00e9 zn\u00e1mky srde\u010dn\u00edho selh\u00e1n\u00ed. Ve 36. t\u00fddnu t\u011bhotenstv\u00ed vykazovala hladina jej\u00edho mozkov\u00e9ho natriuretick\u00e9ho peptidu (BNP) vzestupn\u00fd trend a echokardiografie prok\u00e1zala zachovalou kontrakci lev\u00e9 komory (LVEF 58 %) a m\u00edrnou plicn\u00ed hypertenzi (gradient tlaku v trikuspid\u00e1ln\u00ed regurgitaci [TRPG]: 35 mmHg) v d\u016fsledku diastolick\u00e9 dysfunkce, kter\u00e1 se vyvinula v reakci na objemov\u00e9 p\u0159et\u00ed\u017een\u00ed. O t\u00fdden pozd\u011bji, ve 37. t\u00fddnu a 2 dnech t\u011bhotenstv\u00ed, byla p\u0159ijata k opakovan\u00e9mu c\u00edsa\u0159sk\u00e9mu \u0159ezu. Hodnoty nitrohrudn\u00ed impedance v t\u00e9 dob\u011b nep\u0159ekro\u010dily prahovou hodnotu. Echokardiografie v\u0161ak prok\u00e1zala v\u00edce zv\u00fd\u0161en\u00e9 TRPG 45 mmHg a podali jsme diuretika (furosemid). C\u00edsa\u0159sk\u00fd \u0159ez byl proveden ve spir\u00e1ln\u00ed a epidur\u00e1ln\u00ed anestezii ve 37. t\u00fddnu a 6 dnech t\u011bhotenstv\u00ed a bylo porozeno d\u00edt\u011b o hmotnosti 2 548 g. Na konci t\u011bhotenstv\u00ed byl porod ukon\u010den. Celkov\u00e9 mno\u017estv\u00ed krv\u00e1cen\u00ed bylo 540 ml.\nV 1. poopera\u010dn\u00ed den byl kardiotorak\u00e1ln\u00ed pom\u011br stanoven\u00fd pomoc\u00ed rentgenov\u00e9ho sn\u00edmku hrudn\u00edku (dekubitus) 67 %, co\u017e bylo v\u00fdrazn\u011b v\u00edce ne\u017e p\u0159edchoz\u00ed hodnota.\nZa\u010dala u\u017e\u00edvat diuretika, v\u010detn\u011b furosemidu a spironolaktonu, a rentgenov\u00fd sn\u00edmek hrudn\u00edku o t\u0159i dny pozd\u011bji uk\u00e1zal dramatick\u00e9 zlep\u0161en\u00ed. Po vysazen\u00ed diuretik op\u011bt p\u0159ibrala na v\u00e1ze se zhor\u0161en\u00edm oboustrann\u00fdch perifern\u00edch otok\u016f a zv\u00fd\u0161ila se j\u00ed hladina BNP. Diuretika byla proto znovu nasazena. Osm\u00fd poopera\u010dn\u00ed den p\u0159etrv\u00e1vala plicn\u00ed hypertenze (TRPG: 43 mmHg). Nav\u00edc m\u011bla zv\u00fd\u0161en\u00fd krevn\u00ed tlak, a proto j\u00ed byl p\u0159id\u00e1n antagonista kalcia. V 9. poopera\u010dn\u00ed den byla propu\u0161t\u011bna s mexiletinem, diuretiky a antagonistou kalcia.\nV pr\u016fb\u011bhu jej\u00edho klinick\u00e9ho pr\u016fb\u011bhu byla n\u011bkolikr\u00e1t provedena intervize ICD p\u0159\u00edstroje, jeho\u017e funkce byla norm\u00e1ln\u00ed.\nObjemov\u00fd stav pacientky v pr\u016fb\u011bhu p\u0159edchoz\u00edch 12 t\u00fddn\u016f, jak vypl\u00fdv\u00e1 z ulo\u017een\u00e9ho indexu tekutin ICD OptiVol\u2122, stejn\u011b jako hrudn\u00ed impedance. Hrudn\u00ed impedance se za\u010dala sni\u017eovat p\u0159ed porodem a OptiVol\u2122 Fluid Index p\u0159ekro\u010dil alarmov\u00fd pr\u00e1h 3. poopera\u010dn\u00ed den. Hrudn\u00ed impedance se okam\u017eit\u011b zv\u00fd\u0161ila se zah\u00e1jen\u00edm diuretick\u00e9 l\u00e9\u010dby.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

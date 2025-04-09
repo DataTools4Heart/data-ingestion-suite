@@ -1,0 +1,35 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 6003,
+                "clinical_site_id": 9550,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T17:03:10.236795",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 7004,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:44.548149",
+                "record_extraction_date": "2025-03-06T17:03:10.236792",
+                "record_format": "json",
+                "record_id": "36907741",
+                "record_lastupdate_date": "2025-03-06T17:03:10.236777",
+                "record_type": 44814653,
+                "report_language": "cs",
+                "report_section": "Progress Note",
+                "text": "29let\u00e1 \u017eena (v\u00fd\u0161ka 162 cm a hmotnost 84,5 kg) se dostavila do na\u0161\u00ed nemocnice se st\u00ed\u017enost\u00ed na 35+3. t\u00fdden t\u011bhotenstv\u00ed doprov\u00e1zen\u00fd vagin\u00e1ln\u00edm krv\u00e1cen\u00edm 3 hodiny p\u0159ed p\u0159ijet\u00edm. V posledn\u00edm m\u011bs\u00edci si st\u011b\u017eovala na m\u00edrn\u00e9 omezen\u00ed fyzick\u00e9 aktivity a pot\u00ed\u017ee p\u0159i no\u010dn\u00edm le\u017een\u00ed. P\u0159ed \u0161esti lety podstoupila c\u00edsa\u0159sk\u00fd \u0159ez pro makrosomii a prvn\u00ed t\u011bhotenstv\u00ed sn\u00e1\u0161ela dob\u0159e. Jej\u00ed otec n\u00e1hle zem\u0159el ve sv\u00fdch 30 letech. Jej\u00ed krevn\u00ed tlak (TK) byl p\u0159i p\u0159ijet\u00ed 115/70 mmHg, s konstantn\u00ed tepovou frekvenc\u00ed 106 tep\u016f za minutu. Vzhledem k diagn\u00f3ze abrupce placenty byl napl\u00e1nov\u00e1n akutn\u00ed c\u00edsa\u0159sk\u00fd \u0159ez a \u00fasp\u011b\u0161n\u011b se narodila hol\u010di\u010dka o hmotnosti 3285 g. Narozen\u00e1 hol\u010di\u010dka byla v po\u0159\u00e1dku. Apgar sk\u00f3re bylo 7-9-10 v 1-5-10 min. B\u011bhem c\u00edsa\u0159sk\u00e9ho \u0159ezu dostala rodi\u010dka zhruba 1600 ml tekutin. Pot\u00e9 j\u00ed bylo b\u011bhem 12 h pod\u00e1no 1200 ml tekutiny k prevenci infekce a k vyvol\u00e1n\u00ed d\u011blo\u017en\u00ed kontrakce. Pot\u00e9 se objevila du\u0161nost s dechovou frekvenc\u00ed 25-35kr\u00e1t/min a saturac\u00ed krve kysl\u00edkem 79-85 %. Echokardiogram prok\u00e1zal tlou\u0161\u0165ku IVS 28 mm, zadn\u00ed st\u011bnu lev\u00e9 komory (LVPW) 13 mm s gradientem LVOT 24 mmHg a ejek\u010dn\u00ed frakc\u00ed LK (EF) 77,5 %, v osrde\u010dn\u00edku bylo velk\u00e9 mno\u017estv\u00ed tekutiny. D\u00e1le se v\u00fdrazn\u011b zv\u00fd\u0161il natriuretick\u00fd peptid typu B (4296,47 pg/ml, referen\u010dn\u00ed hodnota: 0-100 pg/ml), troponin I (0,698 ng/ml, referen\u010dn\u00ed hodnota: 0,008-0,043 ng/ml), izoenzym kreatinkin\u00e1zy (11,85 ng/ml, referen\u010dn\u00ed hodnota: 0-5 ng/ml) a kreatinkin\u00e1za (418,2 U/l, referen\u010dn\u00ed hodnota: 40-200 U/l). Vzhledem k akutn\u00edmu srde\u010dn\u00edmu selh\u00e1n\u00ed byla pacientce pod\u00e1v\u00e1na diur\u00e9za, korekce hypoproteinemie, prevence hlubok\u00e9 \u017eiln\u00ed tromb\u00f3zy, prevence infekce a p\u0159\u00edsn\u00e9 omezen\u00ed mno\u017estv\u00ed a rychlosti infuze tekutin. Jej\u00ed p\u0159\u00edznaky se zm\u00edrnily 4. den po operaci. Echokardiografick\u00e9 vy\u0161et\u0159en\u00ed 3 m\u011bs\u00edce po porodu uk\u00e1zalo, \u017ee tlou\u0161\u0165ka IVS byla 28 mm, LVPW 12 mm, gradient LVOT 27 mmHg a EF LK 0,58. V dob\u011b po porodu byla tlou\u0161\u0165ka IVS 2,5 mm, LVPW 12 mm a EF LK 0,58 mm. Patogenn\u00ed genov\u00e1 mutace v\u0161ak nebyla zn\u00e1ma, proto\u017ee odm\u00edtla podstoupit genetick\u00e9 vy\u0161et\u0159en\u00ed.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [
+                {
+                    "concept_class": "cv diseases",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "kardiomyopatie",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "85898001",
+                    "end_offset": 171,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 157
+                }
+            ],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 8046,
+                "clinical_site_id": 5236,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:58:43.573242",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 2488,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:40.797539",
+                "record_extraction_date": "2025-03-06T16:58:43.573237",
+                "record_format": "json",
+                "record_id": "32470561",
+                "record_lastupdate_date": "2025-03-06T16:58:43.573222",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Radiology Report",
+                "text": "46let\u00e1 \u017eena byla p\u0159ijata na na\u0161e odd\u011blen\u00ed pro zhor\u0161en\u00ed chronick\u00e9ho srde\u010dn\u00edho selh\u00e1n\u00ed se sn\u00ed\u017eenou ejek\u010dn\u00ed frakc\u00ed lev\u00e9 komory (LVEF\u224820 %) v d\u016fsledku poporodn\u00ed kardiomyopatie. Pacientka byla po mnoho let stabiln\u00ed p\u0159i optim\u00e1ln\u00ed medikament\u00f3zn\u00ed l\u00e9\u010db\u011b a ji\u017e podstoupila implantaci automatick\u00e9ho kardioverteru-defibril\u00e1toru. Katetrizace prav\u00e9ho srdce odhalila n\u00edzk\u00fd srde\u010dn\u00ed v\u00fddej (CO) (2,57 l/min), zv\u00fd\u0161en\u00e9 plnic\u00ed tlaky lev\u00e9 komory a p\u0159et\u00ed\u017een\u00ed tekutinami. N\u00e1sledn\u011b byly p\u0159edeps\u00e1ny vysok\u00e9 d\u00e1vky diuretik s c\u00edlem dekongesce pacienta.\n\nNepravd\u011bpodobn\u011b b\u011bhem hospitalizace se u pacienta objevila hore\u010dka a byla diagnostikov\u00e1na ch\u0159ipka typu A. Infekce vedla k hemodynamick\u00e9 nestabilit\u011b, tak\u017ee k udr\u017een\u00ed adekv\u00e1tn\u00ed cirkulace byly postupn\u011b nuceny inotropika a vazopresory. Vzhledem k elektrick\u00e9 bou\u0159i byl pacient resuscitov\u00e1n, intubov\u00e1n a p\u0159evezen na kardiologickou jednotku intenzivn\u00ed p\u00e9\u010de k dal\u0161\u00ed l\u00e9\u010db\u011b. V t\u00e9to kritick\u00e9 situaci byl srde\u010dn\u00ed v\u00fddej vyhodnocen jako nedostate\u010dn\u00fd pro zv\u00fd\u0161en\u00e9 pot\u0159eby pacienta, tak\u017ee bylo spln\u011bno rozhodnut\u00ed o implantaci mechanick\u00e9ho podp\u016frn\u00e9ho za\u0159\u00edzen\u00ed.\n\nPo z\u00edsk\u00e1n\u00ed perkut\u00e1nn\u00edho femor\u00e1ln\u00edho p\u0159\u00edstupu byl p\u0159es supertuh\u00fd vodi\u010d zaveden speci\u00e1ln\u00ed sheath 18Fr. Pot\u00e9 bylo zavedeno za\u0159\u00edzen\u00ed iVAC2L a spr\u00e1vn\u011b um\u00edst\u011bno pomoc\u00ed kontralater\u00e1ln\u011b zaveden\u00e9ho pigtailov\u00e9ho kat\u00e9tru um\u00edst\u011bn\u00e9ho na aort\u00e1ln\u00ed c\u00edpy a t\u00edm byla ozna\u010dena poloha aort\u00e1ln\u00ed chlopn\u011b. Tato technika vzbudila pozornost, \u017ee u velk\u00fdch komor by se za\u0159\u00edzen\u00ed mohlo nakonec zcela zano\u0159it do lev\u00e9 komory a n\u00e1sledn\u011b nefungovat spr\u00e1vn\u011b.\n\nSrde\u010dn\u00ed v\u00fddej a srde\u010dn\u00ed index (CI), kontinu\u00e1ln\u011b monitorovan\u00e9 pomoc\u00ed Swan-Ganzova kat\u00e9tru, se zv\u00fd\u0161ily z 2,5 l/min a 1,2 l/min/m2 na 5,2 l/min a 2,5 l/min/m2. Za\u0159\u00edzen\u00ed z\u016fstalo v provozu a \u00fa\u010dinn\u011b podporovalo pacienta po dobu del\u0161\u00ed ne\u017e 48 hodin. Stav pacienta se v\u0161ak postupn\u011b zhor\u0161oval a zem\u0159el v septick\u00e9m stavu, kdy syst\u00e9mov\u00e9 c\u00e9vn\u00ed odpory neust\u00e1le klesaly.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

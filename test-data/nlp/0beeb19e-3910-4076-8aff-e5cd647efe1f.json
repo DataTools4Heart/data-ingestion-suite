@@ -1,0 +1,35 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 6667,
+                "clinical_site_id": 5987,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T16:59:47.309072",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 2086,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:43.782097",
+                "record_extraction_date": "2025-03-06T16:59:47.309067",
+                "record_format": "json",
+                "record_id": "35801756",
+                "record_lastupdate_date": "2025-03-06T16:59:47.309051",
+                "record_type": 32817,
+                "report_language": "cs",
+                "report_section": "Discharge Summary",
+                "text": "Obavy pacient\u016f:\n38let\u00fd mu\u017e byl hospitalizov\u00e1n 20 dn\u00ed pro idiopatickou z\u00e1chvatovitou du\u0161nost. Objevily se u n\u011bj zhor\u0161en\u00e9 p\u0159\u00edznaky du\u0161nosti v noci, doprov\u00e1zen\u00e9 ka\u0161lem a sputem.\n\nDiagn\u00f3za:\nFyzik\u00e1ln\u00ed vy\u0161et\u0159en\u00ed odhalilo, \u017ee v apik\u00e1ln\u00ed oblasti srdce byl sly\u0161et systolick\u00fd \u0161elest stupn\u011b 4/6 a na obou doln\u00edch kon\u010detin\u00e1ch byly p\u0159\u00edtomny m\u00edrn\u00e9 otoky. Laboratorn\u00edm vy\u0161et\u0159en\u00edm bylo zji\u0161t\u011bno, \u017ee natriuretick\u00fd peptid typu B byl v\u00fdrazn\u011b zv\u00fd\u0161en. Echokardiografie uk\u00e1zala, \u017ee vnit\u0159n\u00ed pr\u016fm\u011br lev\u00e9 s\u00edn\u011b, vnit\u0159n\u00ed pr\u016fm\u011br prav\u00e9 komory a diastolick\u00fd pr\u016fm\u011br lev\u00e9 komory jsou zv\u011bt\u0161en\u00e9 a ejek\u010dn\u00ed frakce je v\u00fdrazn\u011b sn\u00ed\u017een\u00e1. Krom\u011b toho byla pulzace st\u011bny difuzn\u011b oslabena. Elektrokardiogram sv\u011bd\u010dil pro tachykardii a CLBBB. Na z\u00e1klad\u011b komplexn\u00edho zhodnocen\u00ed fyzik\u00e1ln\u00edho vy\u0161et\u0159en\u00ed, laboratorn\u00edho vy\u0161et\u0159en\u00ed, echokardiografie a elektrokardiogramu byla zv\u00e1\u017eena diagn\u00f3za DCM s CLBBB.\n\nIntervence:\nPacient byl l\u00e9\u010den ARNI nejprve v d\u00e1vce 50 mg (dvakr\u00e1t denn\u011b), kter\u00e1 se v n\u00e1sleduj\u00edc\u00edch 9 m\u011bs\u00edc\u00edch postupn\u011b zvy\u0161ovala na c\u00edlovou d\u00e1vku (200 mg, dvakr\u00e1t denn\u011b), spolu s metoprololem 25 mg (jednou denn\u011b [qd]), diuretiky 20 mg (qd) a aldosteronem 20 mg (qd).\n\nV\u00fdsledky:\nPo l\u00e9\u010db\u011b ARNI b\u011bhem 9m\u011bs\u00ed\u010dn\u00edho sledov\u00e1n\u00ed se symptomy pacienta zlep\u0161ily a CLBBB se vr\u00e1til do norm\u00e1lu.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]

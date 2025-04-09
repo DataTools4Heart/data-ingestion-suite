@@ -1,0 +1,57 @@
+[
+  {
+    "nlp_output": {
+      "annotations": [
+        {
+          "concept_class": "cv diseases",
+          "concept_confidence": 0.95,
+          "concept_mention_string": "kardiomyopatie",
+          "controlled_vocabulary_concept_identifier": "",
+          "controlled_vocabulary_concept_official_term": "",
+          "controlled_vocabulary_namespace": "none",
+          "controlled_vocabulary_source": "original",
+          "controlled_vocabulary_version": "",
+          "dt4h_concept_identifier": "85898001",
+          "end_offset": 3264,
+          "negation": "no",
+          "negation_confidence": 1.0,
+          "nel_component_type": "DT4H",
+          "nel_component_version": "2024-06-01",
+          "ner_component_type": "dictionary lookup",
+          "ner_component_version": "3.8.0",
+          "qualifier_negation": "",
+          "qualifier_temporal": "",
+          "start_offset": 3250
+        }
+      ],
+      "processing_success": true,
+      "record_metadata": {
+        "admission_id": 6203,
+        "clinical_site_id": 6368,
+        "deidentification_pipeline_name": "",
+        "deidentification_pipeline_version": "",
+        "deidentified": "no",
+        "nlp_processing_date": "2025-03-06T17:01:48.171914",
+        "nlp_processing_pipeline_name": "DictionaryLookupModel",
+        "nlp_processing_pipeline_version": "1.0",
+        "patient_id": 9239,
+        "record_character_encoding": "UTF-8",
+        "record_creation_date": "2025-03-04 15:43:42.108922",
+        "record_extraction_date": "2025-03-06T17:01:48.171911",
+        "record_format": "json",
+        "record_id": "33862215",
+        "record_lastupdate_date": "2025-03-06T17:01:48.171897",
+        "record_type": 44814653,
+        "report_language": "cs",
+        "report_section": "Consultation Note",
+        "text": "Pades\u00e1tilet\u00fd pacient, \u0161est let po transplantaci srdce (kv\u016fli dilata\u010dn\u00ed kardiomyopatii), kter\u00fd m\u011bl v b\u0159eznu 2020 p\u0159ij\u00edt na ro\u010dn\u00ed kontrolu, zavolal do ambulance se st\u00ed\u017enostmi na hore\u010dku (38,5 \u00b0C), du\u0161nost a mal\u00e1tnost. Pacient byl vy\u0161et\u0159en na pohotovosti a byl p\u0159ijat s desaturac\u00ed (92 %) a oboustrann\u00fdmi krepitacemi v baz\u00e1ln\u00edch plicn\u00edch pol\u00edch. Po\u010d\u00edta\u010dov\u00e1 tomografie (CT) hrudn\u00edku prok\u00e1zala abnormality plic s vysok\u00fdm podez\u0159en\u00edm (CO-RADS 5) na infekci t\u011b\u017ek\u00fdm akutn\u00edm respira\u010dn\u00edm syndromem s koronavirem 2 (SARS-CoV-2) (sk\u00f3re z\u00e1va\u017enosti 15). V\u00fdt\u011br z nosohltanu byl pozitivn\u00ed na SARS-CoV-2 RNA pomoc\u00ed polymer\u00e1zov\u00e9 \u0159et\u011bzov\u00e9 reakce v re\u00e1ln\u00e9m \u010dase (RT-PCR). Do\u010dasn\u011b byl vysazen mykofenol\u00e1t mofetil a pacientovi byla zv\u00fd\u0161ena d\u00e1vka prednisonu, zat\u00edmco takrolimus byl pod\u00e1v\u00e1n i nad\u00e1le. D\u00e1le pacient dost\u00e1val chlorochin: 600 mg zahajovac\u00ed d\u00e1vku a 300 mg o 12 hodin pozd\u011bji, n\u00e1sledn\u011b 300 mg chlorochinu dvakr\u00e1t denn\u011b s celkovou d\u00e9lkou l\u00e9\u010dby p\u011bt dn\u00ed. B\u011bhem p\u0159ijet\u00ed nebylo nutn\u00e9 prov\u00e1d\u011bt intubaci, byl v\u0161ak pod\u00e1v\u00e1n dopl\u0148kov\u00fd kysl\u00edk (maxim\u00e1ln\u011b p\u011bt litr\u016f). Pacient byl propu\u0161t\u011bn po \u0161esti dnech.\n\nV \u010dervnu pacient podstoupil odlo\u017eenou ro\u010dn\u00ed kontrolu po transplantaci srdce. Krevn\u00ed v\u00fdsledky prok\u00e1zaly pozitivn\u00ed s\u00e9rologii na SARS-CoV-2 (Wantai SARS-CoV-2 Ab ELISA a Wantai SARS-CoV-2 IgM ELISA) a m\u00edrn\u011b zv\u00fd\u0161en\u00fd N-termin\u00e1ln\u00ed prohormon mozkov\u00e9ho natriuretick\u00e9ho peptidu (NT-proBNP) 113 pmol/l ve srovn\u00e1n\u00ed s 26 pmol/l p\u0159ed rokem. Transtorak\u00e1ln\u00ed echokardiografie prok\u00e1zala norm\u00e1ln\u00ed funkci lev\u00e9 i prav\u00e9 komory s E: E\u2032, kter\u00e1 se zv\u00fd\u0161ila z 9 na 15, a \u017e\u00e1dn\u00e9 chlopenn\u00ed abnormality. Koron\u00e1rn\u00ed CT zobrazilo Agatstonovo kalciov\u00e9 sk\u00f3re 0 a mal\u00fd excentrick\u00fd plak v proxim\u00e1ln\u00ed \u010d\u00e1sti lev\u00e9 p\u0159edn\u00ed sestupn\u00e9 tepny, bez v\u00fdznamn\u00fdch sten\u00f3z. Na plic\u00edch nebyly pozorov\u00e1ny \u017e\u00e1dn\u00e9 p\u0159etrv\u00e1vaj\u00edc\u00ed abnormality.\n\nPacientovi byla zv\u00fd\u0161ena d\u00e1vka mykofenol\u00e1t mofetilu a bylo napl\u00e1nov\u00e1no sledov\u00e1n\u00ed NT-proBNP. B\u011bhem \u0161esti t\u00fddn\u016f se v\u0161ak u pacienta objevily akutn\u00ed p\u0159\u00edznaky srde\u010dn\u00ed dekompenzace s hodnotou NT-proBNP 212 pmol/l, kter\u00e1 se b\u011bhem dvou dn\u016f zv\u00fd\u0161ila na 519 pmol/l, a vysoce citliv\u00fdm troponinem 55 ng/l. V pr\u016fb\u011bhu vy\u0161et\u0159en\u00ed se objevily p\u0159\u00edznaky kardi\u00e1ln\u00ed dekompenzace. Transtorak\u00e1ln\u00ed echokardiografie prok\u00e1zala biventrikul\u00e1rn\u00ed selh\u00e1n\u00ed a p\u0159et\u00ed\u017een\u00ed. Vzhledem k podez\u0159en\u00ed na rejekci byl pod\u00e1v\u00e1n metylprednisolon 1 g jednou denn\u011b po dobu t\u0159\u00ed po sob\u011b jdouc\u00edch dn\u016f, stejn\u011b jako intraven\u00f3zn\u00ed diuretika. Biopsie prok\u00e1zala fok\u00e1ln\u00ed subendokardi\u00e1ln\u00ed fibr\u00f3zu a \u017e\u00e1dn\u00e9 zn\u00e1mky klinicky relevantn\u00ed rejekce (Mezin\u00e1rodn\u00ed spole\u010dnost pro transplantace srdce a plic stupe\u0148 1R. Byly stanoveny d\u00e1rcovsky specifick\u00e9 protil\u00e1tky (DSA), kter\u00e9 byly negativn\u00ed.\n\nProto\u017ee p\u0159\u00ed\u010dina n\u00e1hl\u00e9ho biventrikul\u00e1rn\u00edho selh\u00e1n\u00ed nebyla zn\u00e1ma, byla provedena kardiovaskul\u00e1rn\u00ed magnetick\u00e1 rezonance (CMR), kter\u00e1 prok\u00e1zala ejek\u010dn\u00ed frakci lev\u00e9 komory (LVEF) 22 % a ejek\u010dn\u00ed frakci prav\u00e9 komory 35 %. Obrazy s pozdn\u00edm gadoliniov\u00fdm enhancementem (LGE) uk\u00e1zaly obraz rozs\u00e1hl\u00e9ho subepikardi\u00e1ln\u00edho enhancementu a n\u011bkolik st\u0159edost\u011bnn\u00fdch a\u017e subepikardi\u00e1ln\u00edch m\u00edst enhancementu lev\u00e9 komory. Na T2 v\u00e1\u017een\u00fdch sn\u00edmc\u00edch a T2 mapov\u00e1n\u00ed nebyl p\u0159\u00edtomen ed\u00e9m myokardu. Krom\u011b toho byla hodnota T1 nativn\u00edho septa a extracelul\u00e1rn\u00ed objem norm\u00e1ln\u00ed, co\u017e sv\u011bd\u010d\u00ed o tom, \u017ee nedo\u0161lo k akutn\u00ed rejekci (Vermes et al., 2018). Sn\u00edmky neodpov\u00eddaly abnormalit\u00e1m pozorovan\u00fdm u z\u00e1t\u011b\u017eov\u00e9 kardiomyopatie. CMR n\u00e1lezy byly s nejv\u011bt\u0161\u00ed pravd\u011bpodobnost\u00ed v\u00fdsledkem stavu po myokarditid\u011b bez zn\u00e1mek aktivn\u00ed myokarditidy na z\u00e1klad\u011b modifikovan\u00fdch Lake Louisov\u00fdch krit\u00e9ri\u00ed.\n\nN\u00e1sledn\u011b bylo zah\u00e1jeno vy\u0161et\u0159en\u00ed virov\u00e9 myokarditidy z krve (vy\u0161et\u0159en\u00ed protil\u00e1tek, antigen\u016f a/nebo PCR): testy na HIV, virus hepatitidy B, virus hepatitidy C, virus hepatitidy E a cytomegalovirus byly negativn\u00ed. Nebyly nalezeny \u017e\u00e1dn\u00e9 d\u016fkazy o ned\u00e1vn\u00e9 infekci parechovirem, parvovirem B19, lidsk\u00fdm herpes virem typu 6, virem Epstein-Barrov\u00e9, virem varicella zoster, adenovirem nebo enterovirem. Testy PCR na plazm\u011b a srde\u010dn\u00ed biopsii byly negativn\u00ed na p\u0159\u00edtomnost SARS-CoV-2 RNA pomoc\u00ed RT-PCR. Vzhledem k ned\u00e1vno dokumentovan\u00e9 infekci SARS-CoV-2, absenci akutn\u00ed rejekce nebo zn\u00e1mek koron\u00e1rn\u00ed patologie a n\u00e1lezu CMR bylo jako kone\u010dn\u00e1 diagn\u00f3za podez\u0159en\u00ed na stav po myokarditid\u011b souvisej\u00edc\u00ed s COVID-19.\n\nU pacienta byla zah\u00e1jena medikace srde\u010dn\u00edho selh\u00e1n\u00ed a kv\u016fli neudr\u017eiteln\u00fdm komorov\u00fdm tachykardi\u00edm byl implantov\u00e1n implantabiln\u00ed kardioverter-defibril\u00e1tor. P\u0159i propu\u0161t\u011bn\u00ed klesla hodnota NT-proBNP na 49 pmol/l. Dva m\u011bs\u00edce po propu\u0161t\u011bn\u00ed se ejek\u010dn\u00ed frakce \u010d\u00e1ste\u010dn\u011b obnovila (LVEF 46 %).\n\n"
+      }
+    },
+    "nlp_service_info": {
+      "service_app_name": "DT4H NLP Processor",
+      "service_language": "cs",
+      "service_model": "DictionaryLookupModel",
+      "service_version": "1.0"
+    }
+  }
+]

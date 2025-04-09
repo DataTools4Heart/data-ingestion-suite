@@ -1,0 +1,57 @@
+[
+    {
+        "nlp_output": {
+            "annotations": [
+                {
+                    "concept_class": "signs and symptoms",
+                    "concept_confidence": 0.95,
+                    "concept_mention_string": "tachykardie",
+                    "controlled_vocabulary_concept_identifier": "",
+                    "controlled_vocabulary_concept_official_term": "",
+                    "controlled_vocabulary_namespace": "none",
+                    "controlled_vocabulary_source": "original",
+                    "controlled_vocabulary_version": "",
+                    "dt4h_concept_identifier": "3424008",
+                    "end_offset": 972,
+                    "negation": "no",
+                    "negation_confidence": 1.0,
+                    "nel_component_type": "DT4H",
+                    "nel_component_version": "2024-06-01",
+                    "ner_component_type": "dictionary lookup",
+                    "ner_component_version": "3.8.0",
+                    "qualifier_negation": "",
+                    "qualifier_temporal": "",
+                    "start_offset": 961
+                }
+            ],
+            "processing_success": true,
+            "record_metadata": {
+                "admission_id": 8731,
+                "clinical_site_id": 7660,
+                "deidentification_pipeline_name": "",
+                "deidentification_pipeline_version": "",
+                "deidentified": "no",
+                "nlp_processing_date": "2025-03-06T17:01:21.884085",
+                "nlp_processing_pipeline_name": "DictionaryLookupModel",
+                "nlp_processing_pipeline_version": "1.0",
+                "patient_id": 3106,
+                "record_character_encoding": "UTF-8",
+                "record_creation_date": "2025-03-04 15:43:42.633815",
+                "record_extraction_date": "2025-03-06T17:01:21.884080",
+                "record_format": "json",
+                "record_id": "34449509",
+                "record_lastupdate_date": "2025-03-06T17:01:21.884064",
+                "record_type": 44814653,
+                "report_language": "cs",
+                "report_section": "Operative Report",
+                "text": "38let\u00e1 \u017eena po porodu, gravida 3, para 2, ab 1, bez anamn\u00e9zy diabetu, hypertenze nebo kardiovaskul\u00e1rn\u00edho onemocn\u011bn\u00ed byla p\u0159ijata do nemocnice pro akutn\u00ed du\u0161nost a otoky nohou.\n\nPacientka prod\u011blala p\u0159ed\u010dasn\u00fd porod ve 36. t\u00fddnu t\u011bhotenstv\u00ed ve sv\u00e9m prvn\u00edm t\u011bhotenstv\u00ed p\u0159ed 12 lety, kter\u00fd nevy\u017eadoval cerkl\u00e1\u017e d\u011blo\u017en\u00edho hrdla ani tokol\u00fdzu. Jej\u00ed otec m\u011bl hypertenzi. Do porodnice se dostavila ve 21. t\u00fddnu t\u011bhotenstv\u00ed a podstoupila cerkl\u00e1\u017e d\u011blo\u017en\u00edho hrdla pot\u00e9, co byla zji\u0161t\u011bna jeho d\u00e9lka < 19 mm. Byla j\u00ed pod\u00e1na tokolytick\u00e1 l\u00e9\u010dba ritodrinem, nifedipinem a diklofenakem, kter\u00e1 pokra\u010dovala 100 dn\u00ed a\u017e do porodu. Pacientka z\u016fstala zdrav\u00e1 a\u017e do posledn\u00edho t\u00fddne t\u011bhotenstv\u00ed, kdy se u n\u00ed objevila m\u00edrn\u00e1 du\u0161nost a zv\u00fd\u0161en\u00e9 otoky nohou. Porodila vagin\u00e1ln\u011b ve 37. t\u00fddnu t\u011bhotenstv\u00ed.\n\nT\u0159i dny po porodu se pacientka dostavila na pohotovost s progreduj\u00edc\u00ed du\u0161nost\u00ed, ortopno\u00ed a v\u00fdrazn\u00fdmi oboustrann\u00fdmi otoky nohou. Jej\u00ed krevn\u00ed tlak byl 161/110 mmHg, dechov\u00e1 frekvence 30/min a tachykardie 118/min. Podle laboratorn\u00edch \u00fadaj\u016f m\u011bla hladinu troponinu T 0,13 ug/l a hladinu N-termin\u00e1ln\u00edho pro-mozkov\u00e9ho natriuretick\u00e9ho peptidu 5 430 pg/ml. Zobrazen\u00ed hrudn\u00edku odhalilo plicn\u00ed ed\u00e9m a oboustrann\u00fd pleur\u00e1ln\u00ed v\u00fdpotek. Plicn\u00ed angiogram proveden\u00fd po\u010d\u00edta\u010dovou tomografi\u00ed byl negativn\u00ed na plicn\u00ed embolii a elektrokardiografie odhalila sinusovou tachykardii. Echokardiografick\u00e9 vy\u0161et\u0159en\u00ed uk\u00e1zalo generalizovanou hypokinezi pohybu st\u011bn lev\u00e9 komory (LK) a n\u00edzkou ejek\u010dn\u00ed frakci 34 %.\n\nPacientce byla diagnostikov\u00e1na PPCM a byla j\u00ed pod\u00e1na standardn\u00ed l\u00e9\u010dba akutn\u00edho srde\u010dn\u00edho selh\u00e1n\u00ed, v\u010detn\u011b inotrop\u016f, vazodilatanci\u00ed, ACE-inhibitor\u016f, beta-blok\u00e1tor\u016f a diuretik; klinicky se zlep\u0161ila a plicn\u00ed ed\u00e9m odezn\u011bl do p\u00e1t\u00e9ho dne hospitalizace. Pacientka byla pln\u011b ambulantn\u00ed a byla propu\u0161t\u011bna 6 dn\u00ed po p\u0159ijet\u00ed. Kontroln\u00ed echokardiografick\u00e9 vy\u0161et\u0159en\u00ed po 3 m\u011bs\u00edc\u00edch a 12 m\u011bs\u00edc\u00edch uk\u00e1zalo normalizaci jej\u00ed ejek\u010dn\u00ed frakce na 64 %, resp. 80 %. Pacientka vyk\u00e1zala \u00fapln\u00e9 zotaven\u00ed z PPCM a z\u016fstala asymptomatick\u00e1.\n\n"
+            }
+        },
+        "nlp_service_info": {
+            "service_app_name": "DT4H NLP Processor",
+            "service_language": "cs",
+            "service_model": "DictionaryLookupModel",
+            "service_version": "1.0"
+        }
+    }
+]
