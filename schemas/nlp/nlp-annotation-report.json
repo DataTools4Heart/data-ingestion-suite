@@ -1,0 +1,326 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "nlp-annotation-report",
+  "url" : "http://example.org/fhir/StructureDefinition/nlp-annotation-report",
+  "version" : "1.0.0",
+  "name" : "NLPAnnotationReport",
+  "title" : "NLP Annotation Report",
+  "status" : "draft",
+  "date" : "2025-04-09",
+  "publisher" : "Your Organization",
+  "kind" : "resource",
+  "abstract" : false,
+  "type" : "NLPAnnotationReport",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "constraint",
+  "differential" : {
+    "element" : [ {
+      "id" : "NLPAnnotationReport",
+      "path" : "NLPAnnotationReport",
+      "short" : "Report from NLP engine",
+      "definition" : "A structured output from an NLP engine analyzing clinical text."
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output",
+      "path" : "NLPAnnotationReport.nlp_output",
+      "short" : "Output section from NLP processing",
+      "type" : [ {
+        "code" : "BackboneElement"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations",
+      "path" : "NLPAnnotationReport.nlp_output.annotations",
+      "short" : "List of detected concepts",
+      "type" : [ {
+        "code" : "BackboneElement"
+      } ],
+      "max" : "*"
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.concept_class",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.concept_class",
+      "short" : "Class of the concept (e.g., 'demographic')",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.concept_confidence",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.concept_confidence",
+      "short" : "Confidence score",
+      "type" : [ {
+        "code" : "decimal"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.concept_mention_string",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.concept_mention_string",
+      "short" : "Text mention in clinical document",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_concept_identifier",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_concept_identifier",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_concept_official_term",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_concept_official_term",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_namespace",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_namespace",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_source",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_source",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_version",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.controlled_vocabulary_version",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.dt4h_concept_identifier",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.dt4h_concept_identifier",
+      "short" : "An identifier (SNOMED CT) for the concept in the DT4H system",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.end_offset",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.end_offset",
+      "short" : "End offset in original text",
+      "type" : [ {
+        "code" : "integer"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.negation",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.negation",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.negation_confidence",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.negation_confidence",
+      "type" : [ {
+        "code" : "decimal"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.nel_component_type",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.nel_component_type",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.nel_component_version",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.nel_component_version",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.ner_component_type",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.ner_component_type",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.ner_component_version",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.ner_component_version",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.qualifier_negation",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.qualifier_negation",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.qualifier_temporal",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.qualifier_temporal",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.annotations.startOffset",
+      "path" : "NLPAnnotationReport.nlp_output.annotations.startOffset",
+      "short" : "Start offset in original text",
+      "type" : [ {
+        "code" : "integer"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.processing_success",
+      "path" : "NLPAnnotationReport.nlp_output.processing_success",
+      "short" : "A flag indicating if the NLP processing was successful",
+      "type" : [ {
+        "code" : "boolean"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata",
+      "short" : "Metadata about the processed record",
+      "type" : [ {
+        "code" : "BackboneElement"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.admission_id",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.admission_id",
+      "short" : "Admission ID",
+      "type" : [ {
+        "code" : "integer"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.clinical_site_id",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.clinical_site_id",
+      "short" : "Clinical site ID",
+      "type" : [ {
+        "code" : "integer"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.deidentification_pipeline_name",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.deidentification_pipeline_name",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.deidentification_pipeline_version",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.deidentification_pipeline_version",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.deidentified",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.deidentified",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.nlp_processing_date",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.nlp_processing_date",
+      "short" : "When the NER model was applied.",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.nlp_processing_pipeline_name",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.nlp_processing_pipeline_name",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.nlp_processing_pipeline_version",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.nlp_processing_pipeline_version",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.patient_id",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.patient_id",
+      "type" : [ {
+        "code" : "integer"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.record_character_encoding",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.record_character_encoding",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.record_creation_date",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.record_creation_date",
+      "short" : "Will be used as admission date",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.record_extraction_date",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.record_extraction_date",
+      "short" : "When the record was extracted for processing",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.record_format",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.record_format",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.record_id",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.record_id",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.record_lastupdate_date",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.record_lastupdate_date",
+      "short" : "When the record was updated",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.record_type",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.record_type",
+      "type" : [ {
+        "code" : "integer"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.report_language",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.report_language",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.report_section",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.report_section",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_output.record_metadata.text",
+      "path" : "NLPAnnotationReport.nlp_output.record_metadata.text",
+      "short" : "Actual text of the record",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_service_info",
+      "path" : "NLPAnnotationReport.nlp_service_info",
+      "short" : "NLP processing engine details",
+      "type" : [ {
+        "code" : "BackboneElement"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_service_info.service_app_name",
+      "path" : "NLPAnnotationReport.nlp_service_info.service_app_name",
+      "short" : "Name of the NLP app",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_service_info.service_language",
+      "path" : "NLPAnnotationReport.nlp_service_info.service_language",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_service_info.service_model",
+      "path" : "NLPAnnotationReport.nlp_service_info.service_model",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "id" : "NLPAnnotationReport.nlp_service_info.service_version",
+      "path" : "NLPAnnotationReport.nlp_service_info.service_version",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    } ]
+  }
+}

@@ -6,7 +6,7 @@
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "",
+    "url" : "http://example.org/fhir/StructureDefinition/nlp-annotation-report",
     "joinOn" : [ ]
   } ],
   "context" : {
