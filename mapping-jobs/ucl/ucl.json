@@ -1,6 +1,7 @@
 {
   "id" : "ucl",
   "name" : "ucl",
+  "description" : "Executes OMOP mappings and stores the generated FHIR resources in the local onFHIR server.",
   "sourceSettings" : {
     "ucl-data" : {
       "jsonClass" : "FileSystemSourceSettings",
@@ -66,6 +67,18 @@
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
       "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
       "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "ethnicityOmopToSnomed.csv",
+      "name" : "ethnicityOmopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
+    }, {
+      "id" : "symptomsOmopToSnomed.csv",
+      "name" : "symptomsOmopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
     } ],
     "codeSystemFiles" : [ ]
   },
@@ -91,6 +104,13 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
@@ -100,25 +120,6 @@
       "omopVisitOccurrence" : {
         "jsonClass" : "FileSystemSource",
         "path" : "VISIT_OCCURRENCE.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      },
-      "omopConditionOccurrence" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "CONDITION_OCCURRENCE.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "ucl-data"
-      }
-    }
-  }, {
-    "name" : "lab-result-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/lab-result-mapping",
-    "sourceBinding" : {
-      "omopMeasurement" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "MEASUREMENT.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
@@ -179,6 +180,13 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
+      },
+      "omopLocation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "LOCATION.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
@@ -191,15 +199,48 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
       }
     }
   }, {
-    "name" : "vital-sign-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/vital-sign-mapping",
+    "name" : "measurement-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/measurement-mapping",
     "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
         "path" : "MEASUREMENT.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "observation-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/observation-mapping",
+    "sourceBinding" : {
+      "observation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "OBSERVATION.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "ucl-data"
