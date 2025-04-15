@@ -23,18 +23,18 @@
   "context": {},
   "variable": [
     {
-      "name": "isProcedure",
+      "name": "procedureCodes",
       "language": "text/fhirpath",
-      "expression": "trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs').first().exists()"
+      "expression": "trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs')"
     }
   ],
   "mapping": [
     {
       "description": "A FHIR Procedure resource is generated for each row in the source data. If the 'quantity' field indicates a value greater than 1, multiple Procedure resources are created accordingly. For example, if 'quantity' equals 3, three identical Procedure resources are generated, differing only in their unique IDs.",
       "precondition": {
-        "name": "isValidProcedure",
+        "name": "procedureCodesExist",
         "language": "text/fhirpath",
-        "expression": "%isProcedure"
+        "expression": "%procedureCodes.exists()"
       },
       "expression": {
         "name": "result",
@@ -62,7 +62,7 @@
             ],
             "code": {
               "coding": [
-                "{{trms:translateToCoding(procedure_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs').first()}}"
+                "{{* %procedureCodes}}"
               ]
             },
             "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",

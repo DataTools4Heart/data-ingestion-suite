@@ -28,14 +28,14 @@
   },
   "variable": [
     {
-      "name": "code",
+      "name": "codings",
       "language": "text/fhirpath",
-      "expression": "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10').code.first()"
+      "expression": "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10')"
     },
     {
       "name": "symptomCoding",
       "language": "text/fhirpath",
-      "expression": "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed').first()"
+      "expression": "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed')"
     }
   ],
   "mapping": [
@@ -44,7 +44,7 @@
       "precondition": {
         "name": "codeExists",
         "language": "text/fhirpath",
-        "expression": "%code.exists() and %symptomCoding.exists().not()"
+        "expression": "%codings.exists() and %symptomCoding.exists().not()"
       },
       "expression": {
         "name": "result",
@@ -60,8 +60,11 @@
           "code": {
             "coding": [
               {
-                "code": "{{%code}}",
-                "system": "http://hl7.org/fhir/sid/icd-10",
+                "{{#coding}}": "{{%codings}}",
+                "{{*}}": {
+                  "code": "{{%coding.code}}",
+                  "system": "{{%coding.system}}"
+                },
                 "@sliceName": "icd10Code"
               }
             ]
@@ -103,16 +106,19 @@
           },
           "resourceType": "Observation",
           "category": {
-            "{{#concept}}": "{{mpp:getConcept(%symptomMappingContext, %symptomCoding.code)}}",
+            "{{#concept}}": "{{mpp:getConcept(%symptomMappingContext, %symptomCoding.first().code)}}",
             "{{*}}": "{{utl:createFhirCodeableConcept(%concept.target_system, %concept.target_code, %concept.target_display)}}"
           },
           "code": {
             "coding": [
               {
-                "code": "{{%symptomCoding.code}}",
-                "system": "http://snomed.info/sct",
-                "display": "{{%symptomCoding.display}}",
-                "@sliceName": "snomedCode"
+                "{{#coding}}": "{{%symptomCoding}}",
+                "{{*}}": {
+                  "code": "{{%coding.code}}",
+                  "system": "{{%coding.system}}",
+                  "display": "{{%coding.display}}",
+                  "@sliceName": "snomedCode"
+                }
               }
             ]
           },

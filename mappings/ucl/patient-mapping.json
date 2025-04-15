@@ -51,7 +51,7 @@
         "extension" : [ {
           "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Ethnicity",
           "valueCodeableConcept" : {
-            "coding" : [ "{{iif(ethnicity_concept_id = 38003564, trms:translateToCoding(race_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed').first(),trms:translateToCoding(ethnicity_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed')).first()}}" ]
+            "coding" : [ "{{* iif(ethnicity_concept_id = 38003564, trms:translateToCoding(race_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed'),trms:translateToCoding(ethnicity_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed'))}}" ]
           }
         } ]
       }

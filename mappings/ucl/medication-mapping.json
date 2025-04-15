@@ -19,14 +19,14 @@
   },
   "variable": [
     {
-      "name": "rxNormCode",
+      "name": "rxNormCodes",
       "language": "text/fhirpath",
       "expression": "trms:translateToCoding(drug_concept_id.toString(),'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm').code"
     },
     {
       "name": "atcIngredientCodes",
       "language": "text/fhirpath",
-      "expression": "rxn:getMedicationDetails(%rxNormCode).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
+      "expression": "rxn:getMedicationDetails(%rxNormCodes).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
     }
   ],
   "mapping": [
