@@ -24,11 +24,11 @@
     "language" : "text/fhirpath",
     "expression" : "CONCEPT_CD.startsWith('ICD9')"
   }, {
-    "name" : "icd10Code",
+    "name" : "icd10Codes",
     "language" : "text/fhirpath",
     "expression" : "mpp:getConcept(%icd9toIcd10CM, CONCEPT_CD.split(':').last())"
   }, {
-    "name" : "icd10PcsCode",
+    "name" : "icd10PcsCodes",
     "language" : "text/fhirpath",
     "expression" : "mpp:getConcept(%icd9toIcd10PCS, CONCEPT_CD.split(':').last())"
   } ],
@@ -36,7 +36,7 @@
     "precondition" : {
       "name" : "isIcdCode",
       "language" : "text/fhirpath",
-      "expression" : "%isIcdCode and %icd10Code.exists()"
+      "expression" : "%isIcdCode and %icd10Codes.exists()"
     },
     "expression" : {
       "name" : "condition",
@@ -49,11 +49,13 @@
         },
         "resourceType" : "Condition",
         "code" : {
-          "coding" : [ {
-            "code" : "{{%icd10Code.first().target_code}}",
-            "system" : "{{%icd10Code.first().target_system}}",
-            "@sliceName" : "icd10Code"
-          } ]
+          "coding" : {
+            "{{#icd10Code}}" : "{{%icd10Codes}}",
+            "{{*}}" : {
+              "code" : "{{%icd10Code.target_code}}",
+              "system" : "http://hl7.org/fhir/sid/icd-10"
+            }
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', ENCOUNTER_NUM.toString())}}",
@@ -73,7 +75,7 @@
     "precondition" : {
       "name" : "isProcedure",
       "language" : "text/fhirpath",
-      "expression" : "%isIcdCode and %icd10PcsCode.exists()"
+      "expression" : "%isIcdCode and %icd10PcsCodes.exists()"
     },
     "expression" : {
       "name" : "procedure",
@@ -92,11 +94,13 @@
           } ]
         } ],
         "code" : {
-          "coding" : [ {
-            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
-            "code" : "{{%icd10PcsCode.first().target_code}}",
-            "@sliceName" : "icdCode"
-          } ]
+          "coding" : {
+            "{{#icd10PcsCode}}" : "{{%icd10PcsCodes}}",
+            "{{*}}" : {
+              "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+              "code" : "{{%icd10PcsCode.target_code}}"
+            }
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PATIENT_NUM.toString())}}",
         "occurrenceDateTime" : "{{START_DATE.substring(0, 10).utl:toFhirDateTime('yyyy.MM.dd') }}",
