@@ -180,7 +180,7 @@
     "id" : "test-itemids-to-loinc.csv",
     "name" : "test-itemids-to-loinc.csv",
     "conceptMapUrl" : "https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/test-itemids-to-loinc",
-    "sourceValueSetUrl" : "https://mimic.mit.edu/fhir/ValueSet/testitems",
+    "sourceValueSetUrl" : "https://mimic.mit.edu/fhir/CodeSystem/testitems",
     "targetValueSetUrl" : "http://loinc.org/vs"
   }, {
     "id" : "rx-norm-to-atc.csv",
