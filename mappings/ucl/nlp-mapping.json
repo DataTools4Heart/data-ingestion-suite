@@ -18,7 +18,7 @@
   } ],
   "context" : { },
   "variable" : [ {
-    "name" : "code",
+    "name" : "codes",
     "language" : "text/fhirpath",
     "expression" : "trms:translateToCoding(note_nlp_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10').code"
   } ],
@@ -29,7 +29,7 @@
       "value" : {
         "code" : {
           "coding" : {
-            "{{#codingVar}}" : "{{iif(%concept.vocabulary_id = 'ICD10', %concept.concept_code, %code)}}",
+            "{{#codingVar}}" : "{{iif(%concept.vocabulary_id = 'ICD10', %concept.concept_code, %codes)}}",
             "{{*}}" : {
               "system" : "http://hl7.org/fhir/sid/icd-10",
               "code" : "{{%codingVar}}"
@@ -55,7 +55,7 @@
     "precondition" : {
       "name" : "isConditionAndCodeExists",
       "language" : "text/fhirpath",
-      "expression" : "%concept.domain_id = 'Condition' and (%code.exists() or %concept.vocabulary_id = 'ICD10')"
+      "expression" : "%concept.domain_id = 'Condition' and (%codes.exists() or %concept.vocabulary_id = 'ICD10')"
     }
   } ]
 }

@@ -1,51 +1,134 @@
 {
-  "id" : "condition-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
-  "name" : "condition-mapping",
-  "title" : "Mapping of OMOP condition occurrence to the DT4H-Condition FHIR profile",
-  "source" : [ {
-    "alias" : "omopCondition",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
-    "joinOn" : [ ]
-  } ],
-  "context" : { },
-  "variable" : [ {
-    "name" : "code",
-    "language" : "text/fhirpath",
-    "expression" : "iif(condition_source_value.empty() or condition_source_value = 'NA', trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10').code.first(), condition_source_value)"
-  } ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "code" : {
-          "coding" : [ {
-            "system" : "http://hl7.org/fhir/sid/icd-10",
-            "code" : "{{%code}}",
-            "@sliceName" : "icd10Code"
-          } ]
-        },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "onsetDateTime" : "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime)}}",
-        "clinicalStatus" : {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
-            "code" : "active"
-          } ]
-        },
-        "id" : "{{mpp:getHashedId('Condition', condition_occurrence_id.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
-        },
-        "resourceType" : "Condition"
+  "id": "condition-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
+  "name": "condition-mapping",
+  "title": "Mapping of OMOP condition occurrence to the DT4H-Condition FHIR profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "omopCondition",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
+      "joinOn": [
+        "person_id"
+      ]
+    },
+    {
+      "alias": "omopVisit",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
+      "joinOn": [
+        "person_id"
+      ]
+    }
+  ],
+  "context": {
+    "symptomMappingContext": {
+      "category": "concept-map",
+      "url": "$CONTEXT_REPO/ucl/symptom-category.csv"
+    }
+  },
+  "variable": [
+    {
+      "name": "codings",
+      "language": "text/fhirpath",
+      "expression": "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10')"
+    },
+    {
+      "name": "symptomCoding",
+      "language": "text/fhirpath",
+      "expression": "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed')"
+    }
+  ],
+  "mapping": [
+    {
+      "description": "Generates a FHIR Condition resource if a condition code is present and does not represent a symptom.",
+      "precondition": {
+        "name": "codeExists",
+        "language": "text/fhirpath",
+        "expression": "%codings.exists() and %symptomCoding.exists().not()"
+      },
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Condition', condition_occurrence_id.toString())}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition"
+            ]
+          },
+          "resourceType": "Condition",
+          "code": {
+            "coding": [
+              {
+                "{{#coding}}": "{{%codings}}",
+                "{{*}}": {
+                  "code": "{{%coding.code}}",
+                  "system": "{{%coding.system}}"
+                },
+                "@sliceName": "icd10Code"
+              }
+            ]
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+          "encounter": "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.condition_start_date and $this.visit_end_date >= %context.condition_start_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
+          "onsetDateTime": "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'))}}",
+          "clinicalStatus": {
+            "coding": [
+              {
+                "code": "active",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+              }
+            ]
+          },
+          "category": {
+            "{{#isPrimaryReason}}": "{{iif(condition_status_concept_id.exists() and (condition_status_concept_id = 32901 or condition_status_concept_id = 32902 or condition_status_concept_id = 32904),true,{})}}",
+            "{{*}}": "{{utl:createFhirCodeableConcept('http://terminology.hl7.org/CodeSystem/condition-category','encounter-diagnosis','Encounter Diagnosis')}}"
+          }
+        }
       }
     },
-    "precondition" : {
-      "name" : "codeExists",
-      "language" : "text/fhirpath",
-      "expression" : "%code.exists()"
+    {
+      "description": "Generates an Observation resource using the https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom profile if the source data corresponds to a symptom.",
+      "precondition": {
+        "name": "isSymptom",
+        "language": "text/fhirpath",
+        "expression": "%symptomCoding.exists()"
+      },
+      "expression": {
+        "name": "symptom",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Condition', condition_occurrence_id.toString())}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom"
+            ]
+          },
+          "resourceType": "Observation",
+          "category": {
+            "{{#concept}}": "{{mpp:getConcept(%symptomMappingContext, %symptomCoding.first().code)}}",
+            "{{*}}": "{{utl:createFhirCodeableConcept(%concept.target_system, %concept.target_code, %concept.target_display)}}"
+          },
+          "code": {
+            "coding": [
+              {
+                "{{#coding}}": "{{%symptomCoding}}",
+                "{{*}}": {
+                  "code": "{{%coding.code}}",
+                  "system": "{{%coding.system}}",
+                  "display": "{{%coding.display}}",
+                  "@sliceName": "snomedCode"
+                }
+              }
+            ]
+          },
+          "effectiveDateTime": "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'))}}",
+          "valueBoolean": true,
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+          "encounter": "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.condition_start_date and $this.visit_end_date >= %context.condition_start_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
+          "status": "final"
+        }
+      }
     }
-  } ]
+  ]
 }

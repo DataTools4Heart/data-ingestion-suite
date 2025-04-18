@@ -7,11 +7,15 @@
   "source" : [ {
     "alias" : "omopPerson",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
-    "joinOn" : [ "person_id" ]
+    "joinOn" : [ "person_id", "location_id" ]
   }, {
     "alias" : "omopDeath",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
     "joinOn" : [ "person_id" ]
+  }, {
+    "alias" : "omopLocation",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Location",
+    "joinOn" : [ null, "location_id" ]
   } ],
   "context" : { },
   "variable" : [ ],
@@ -27,20 +31,27 @@
         },
         "resourceType" : "Patient",
         "gender" : "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
-        "birthDate" : "{{iif(birth_datetime.exists(), birth_datetime.utl:toFhirDate('yyyy-MM-dd'), iif(month_of_birth.exists() and day_of_birth.exists(), (year_of_birth + '-' + month_of_birth + '-' + day_of_birth).utl:toFhirDate('yyyy-MM-dd'), iif(month_of_birth.exists(), (year_of_birth + '-' + month_of_birth).utl:toFhirDate('yyyy-MM'), year_of_birth.utl:toFhirDate('yyyy'))))}}",
-        "deceasedDateTime" : "{{? iif(%omopDeath.death_datetime.exists(), %omopDeath.death_datetime.utl:toFhirDate('yyyy-MM-dd'), %omopDeath.death_date.utl:toFhirDate('yyyy-MM-dd'))}}",
+        "birthDate" : "{{iif(birth_datetime.exists(), birth_datetime.substring(0,10), iif(month_of_birth.exists() and day_of_birth.exists(), (year_of_birth + '-' + month_of_birth + '-' + day_of_birth).utl:toFhirDate('yyyy-MM-dd'), iif(month_of_birth.exists(), (year_of_birth + '-' + month_of_birth).utl:toFhirDate('yyyy-MM'), year_of_birth.utl:toFhirDate('yyyy'))))}}",
+        "deceasedDateTime" : "{{? iif(%omopDeath.death_datetime.exists(), %omopDeath.death_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'), %omopDeath.death_date.utl:toFhirDate('yyyy-MM-dd'))}}",
         "identifier" : [ {
           "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}",
           "value" : "{{person_id.toString()}}"
         } ],
         "active" : true,
+        "address" : [ {
+          "{{#addressVar}}" : "{{location_id}}",
+          "{{?}}" : {
+            "use" : "home",
+            "city" : "{{? %omopLocation.city}}",
+            "district" : "{{? %omopLocation.county}}",
+            "postalCode" : "{{? %omopLocation.zip}}"
+          }
+        } ],
         "extension" : [ {
           "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Ethnicity",
           "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct"
-            } ]
+            "coding" : [ "{{* iif(ethnicity_concept_id = 38003564, trms:translateToCoding(race_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed'),trms:translateToCoding(ethnicity_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed'))}}" ]
           }
         } ]
       }

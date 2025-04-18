@@ -50,6 +50,18 @@
     "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
     "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
     "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+  }, {
+    "id" : "ethnicityOmopToSnomed.csv",
+    "name" : "ethnicityOmopToSnomed.csv",
+    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed",
+    "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+    "targetValueSetUrl" : "http://snomed.info/sct"
+  }, {
+    "id" : "symptomsOmopToSnomed.csv",
+    "name" : "symptomsOmopToSnomed.csv",
+    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed",
+    "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+    "targetValueSetUrl" : "http://snomed.info/sct"
   } ],
   "codeSystems" : [ ]
 }, {
