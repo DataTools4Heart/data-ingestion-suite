@@ -1,0 +1,60 @@
+{
+  "id" : "medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/medication-mapping",
+  "name" : "medication-mapping",
+  "title" : "MedicationOrdination table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Medication",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', identifier)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{medication}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
+        "identifier" : [ {
+          "value" : "{{identifier}}"
+        } ],
+        "status" : "completed",
+        "intent" : "{{intent}}",
+        "authoredOn" : "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "dosageInstruction" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "{{? iif(dosage > 0, dosage)}}",
+              "period" : "{{1}}",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "system" : "http://unitsofmeasure.org",
+              "code" : "{{dosageUnit}}",
+              "value" : "{{dosageStrength}}",
+              "unit" : "{{dosageUnit}}"
+            }
+          } ]
+        } ]
+      }
+    }
+  } ]
+}
