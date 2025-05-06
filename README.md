@@ -114,7 +114,7 @@ location /dt4h/tofhir/kibana/ {
 }
 
 location /dt4h/onfhir {
-   proxy_pass http://onfhir:8080/fhir;
+   proxy_pass http://127.0.0.1:6080/fhir;
    proxy_set_header Host $host;
    proxy_set_header X-Real-IP $remote_addr;
 }
