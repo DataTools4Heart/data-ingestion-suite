@@ -108,7 +108,7 @@ location /dt4h/tofhir {
 }
 
 location /dt4h/tofhir/kibana/ {
-    proxy_pass http://127.0.0.1:5601/;
+    proxy_pass http://127.0.0.1:6601/;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
 }
