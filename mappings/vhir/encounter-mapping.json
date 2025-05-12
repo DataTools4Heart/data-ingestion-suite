@@ -1,72 +1,66 @@
 {
-  "id" : "encounter-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/vhir/encounter-mapping",
-  "name" : "encounter-mapping",
-  "title" : "Mapping of OMOP visit occurrence to the DT4H-Encounter profile",
-  "source" : [ {
-    "alias" : "omopVisitOccurrence",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
-    "joinOn" : [ "visit_occurrence_id" ]
-  }, {
-    "alias" : "omopConditionOccurrence",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
-    "joinOn" : [ "visit_occurrence_id" ]
-  } ],
-  "context" : {
-    "encounterClassConceptMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/vhir/encounter-class-concept-map.csv"
+  "id": "encounter-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/vhir/encounter-mapping",
+  "name": "encounter-mapping",
+  "title": "Mapping of OMOP visit occurrence to the DT4H-Encounter profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "omopVisitOccurrence",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
+      "joinOn": []
+    }
+  ],
+  "context": {
+    "encounterClassConceptMap": {
+      "category": "concept-map",
+      "url": "$CONTEXT_REPO/vhir/encounter-class-concept-map.csv"
     }
   },
-  "variable" : [ {
-    "name" : "encounterClass",
-    "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%encounterClassConceptMap, visit_concept_id.toString())"
-  }, {
-    "name" : "reasonCode",
-    "language" : "text/fhirpath",
-    "expression" : "%omopConditionOccurrence.first().condition_source_value"
-  } ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "class" : [ {
-          "coding" : [ {
-            "system" : "{{%encounterClass.code_system}}",
-            "code" : "{{%encounterClass.target_code}}"
-          } ]
-        } ],
-        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "actualPeriod" : {
-          "start" : "{{? iif(visit_start_datetime.empty(), visit_start_date, visit_start_datetime)}}",
-          "end" : "{{? iif(visit_end_datetime.empty(), visit_end_date, visit_end_datetime)}}"
-        },
-        "status" : "completed",
-        "reason" : {
-          "{{#reasonCodeVar}}" : "{{%reasonCode}}",
-          "{{?}}" : [ {
-            "value" : [ {
-              "concept" : {
-                "coding" : [ {
-                  "system" : "http://hl7.org/fhir/sid/icd-10",
-                  "code" : "{{%reasonCodeVar}}"
-                } ]
-              }
-            } ]
-          } ]
-        },
-        "diagnosis" : [ {
-          "condition" : "{{? mpp:createFhirReferenceWithHashedId('Condition', condition_occurrence_id.toString())}}"
-        } ],
-        "id" : "{{mpp:getHashedId('Encounter', visit_occurrence_id.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
-        },
-        "resourceType" : "Encounter"
+  "variable": [
+    {
+      "name": "encounterClass",
+      "language": "text/fhirpath",
+      "expression": "mpp:getConcept(%encounterClassConceptMap, VISIT_CONCEPT_ID.toString())"
+    }
+  ],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Encounter', VISIT_OCCURRENCE_ID.toString())}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}",
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter"
+            ]
+          },
+          "resourceType": "Encounter",
+          "class": [
+            {
+              "coding": [
+                {
+                  "system": "{{%encounterClass.code_system}}",
+                  "code": "{{%encounterClass.target_code}}"
+                }
+              ]
+            }
+          ],
+          "subject": "{{? mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
+          "actualPeriod": {
+            "start": "{{? iif(VISIT_START_DATETIME.empty(), VISIT_START_DATE, VISIT_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+            "end": "{{? iif(VISIT_END_DATEtime.empty(), VISIT_END_DATE, VISIT_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}"
+          },
+          "status": "completed",
+          "diagnosis": [
+            {
+              "condition": "{{? mpp:createFhirReferenceWithHashedId('Condition', CONDITION_OCCURRENCE_ID.toString())}}"
+            }
+          ]
+        }
       }
     }
-  } ]
+  ]
 }

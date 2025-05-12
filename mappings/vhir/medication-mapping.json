@@ -1,60 +1,72 @@
 {
-  "id" : "medication-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/vhir/medication-mapping",
-  "name" : "medication-mapping",
-  "title" : "Mapping of OMOP drug exposure to the DT4H medication administration profile",
-  "source" : [ {
-    "alias" : "omopDrugExposure",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
-    "joinOn" : [ ]
-  } ],
-  "context" : { },
-  "variable" : [ {
-    "name" : "rxNormCode",
-    "language" : "text/fhirpath",
-    "expression" : "trms:translateToCoding(drug_concept_id.toString(),'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm').code"
-  }, {
-    "name" : "atcIngredientCodes",
-    "language" : "text/fhirpath",
-    "expression" : "rxn:getMedicationDetails(%rxNormCode).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
-  } ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "{{#ingredient}}" : "{{%atcIngredientCodes}}",
-        "{{*}}" : {
-          "status" : "completed",
-          "medication" : {
-            "concept" : {
-              "{{#medicationCodeableConceptVar}}" : "{{%atcIngredientCodes}}",
-              "{{?}}" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %medicationCodeableConceptVar, {})}}"
-            }
-          },
-          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-          "occurencePeriod" : {
-            "start" : "{{drug_exposure_start_datetime}}",
-            "end" : "{{? drug_exposure_end_datetime}}"
-          },
-          "dosage" : {
-            "dose" : {
-              "value" : "{{quantity.toDecimal()}}"
-            }
-          },
-          "id" : "{{mpp:getHashedId('MedicationAdministration', drug_exposure_id.toString() & '_' & %ingredient)}}",
-          "meta" : {
-            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
-          },
-          "resourceType" : "MedicationAdministration"
+  "id": "medication-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/vhir/medication-mapping",
+  "name": "medication-mapping",
+  "title": "Mapping of OMOP drug exposure to the DT4H medication administration profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "omopDrugExposure",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
+      "joinOn": []
+    }
+  ],
+  "context": {
+    "medicationTypeConceptMap": {
+      "category": "concept-map",
+      "url": "$CONTEXT_REPO/vhir/medication-type.csv"
+    }
+  },
+  "variable": [
+    {
+      "name": "rxNormCodes",
+      "language": "text/fhirpath",
+      "expression": "trms:translateToCoding(DRUG_CONCEPT_ID.toString(),'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm').code"
+    },
+    {
+      "name": "atcIngredientCodes",
+      "language": "text/fhirpath",
+      "expression": "rxn:getMedicationDetails(%rxNormCodes).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
+    }
+  ],
+  "mapping": [
+    {
+      "precondition": {
+        "name": "isMedicationAdministration",
+        "language": "text/fhirpath",
+        "expression": "mpp:getConcept(%medicationTypeConceptMap, DRUG_TYPE_CONCEPT_ID.toString(), 'source_display').exists()"
+      },
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "{{#ingredient}}": "{{%atcIngredientCodes}}",
+          "{{*}}": {
+            "id": "{{mpp:getHashedId('MedicationAdministration', DRUG_EXPOSURE_ID.toString() & '_' & %ingredient)}}",
+            "meta": {
+              "profile": [
+                "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration"
+              ]
+            },
+            "resourceType": "MedicationAdministration",
+            "medication": {
+              "concept": "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %ingredient, {})}}"
+            },
+            "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
+            "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString())}}",
+            "occurencePeriod": {
+              "start": "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
+              "end": "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
+            },
+            "dosage": {
+              "dose": {
+                "value": "{{QUANTITY.toDecimal()}}"
+              }
+            },
+            "status": "completed"
+          }
         }
       }
-    },
-    "precondition" : {
-      "name" : "mandatoryElementsExist",
-      "language" : "text/fhirpath",
-      "expression" : "%atcIngredientCodes.exists() and quantity.exists() and quantity != 'NA'"
     }
-  } ]
+  ]
 }
