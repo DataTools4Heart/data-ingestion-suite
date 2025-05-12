@@ -44,23 +44,7 @@ git clone https://github.com/DataTools4Heart/common-data-model.git
 
 ---
 
-## onFHIR Deployment
-
-Run inside the working directory:
-
-```bash
-sh ./common-data-model/docker/run.sh
-```
-
-If you don't have execution access:
-
-```bash
-chmod +x ./common-data-model/docker/run.sh
-```
-
----
-
-## toFHIR Deployment
+## onFHIR & toFHIR Deployment
 
 1. Download the password file for SRDC’s private Docker repository:
    [Download password file](https://srdcltd.sharepoint.com/:t:/s/DataTools4Heart/ERRInhWGLy5Cvfwn9JFaNOEBUmc1jjjP-bjCz3lAvYu9DQ?e=AsvrVi). Please contact us for access.
@@ -70,15 +54,15 @@ chmod +x ./common-data-model/docker/run.sh
 3. Run the following scripts:
 
 ```bash
-sh ./data-ingestion-suite/docker/deployment/pull.sh
-sh ./data-ingestion-suite/docker/deployment/run.sh
+sh ./data-ingestion-suite/docker/server/pull.sh
+sh ./data-ingestion-suite/docker/server/run.sh
 ```
 
 If needed, give execution access and run the scripts:
 
 ```bash
-chmod +x ./data-ingestion-suite/docker/deployment/pull.sh
-chmod +x ./data-ingestion-suite/docker/deployment/run.sh
+chmod +x ./data-ingestion-suite/docker/server/pull.sh
+chmod +x ./data-ingestion-suite/docker/server/run.sh
 ```
 
 ---
@@ -92,7 +76,7 @@ To use our predefined Nginx Docker container:
 sh ./data-ingestion-suite/docker/proxy/run.sh
 ```
 
-If your host machine is already running Nginx, add the following proxy configuration and restart Nginx:
+If your host machine is already running Nginx, add the following proxy configuration and restart your Nginx:
 
 ```nginx
 location /dt4h/tofhir/api {
@@ -141,9 +125,9 @@ C:/development/data/mimic-iv-3.1/
 ```
 
 ### Update Dataset Path
-Uncomment the line 23 of:
+Uncomment line 77 in:
 ```bash
-./data-ingestion-suite/docker/deployment/docker-compose-tofhir.yml
+./data-ingestion-suite/docker/server/docker-compose-tofhir.yml
 ```
 Replace only the part before the colon (`:`) with your dataset path.
 
@@ -187,8 +171,7 @@ Replace only the part before the colon (`:`) with your dataset path.
 ### 1. Stop all running containers
 
 ```bash
-sh ./data-ingestion-suite/docker/deployment/stop.sh
-sh ./common-data-model/docker/stop.sh
+sh ./data-ingestion-suite/docker/server/stop.sh
 sh ./data-ingestion-suite/docker/proxy/stop.sh  # Optional
 ```
 
@@ -198,19 +181,17 @@ sh ./data-ingestion-suite/docker/proxy/stop.sh  # Optional
 cd common-data-model
 git pull
 cd ..
-sh ./common-data-model/docker/pull.sh
 
 cd data-ingestion-suite
 git pull
 cd ..
-sh ./data-ingestion-suite/docker/deployment/pull.sh
+sh ./data-ingestion-suite/docker/server/pull.sh
 ```
 
 ### 3. Restart all containers
 
 ```bash
-sh ./common-data-model/docker/run.sh
-sh ./data-ingestion-suite/docker/deployment/run.sh
+sh ./data-ingestion-suite/docker/server/run.sh
 sh ./data-ingestion-suite/docker/proxy/run.sh  # Optional
 ```
 

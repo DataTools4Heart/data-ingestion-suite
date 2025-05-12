@@ -1,4 +1,58 @@
 services:
+  mongo:
+    image: mongo:7.0
+    container_name: dt4h-mongo
+    restart: always
+    ports:
+      - "6017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - onfhir-network
+    volumes:
+      - onfhirdata:/data/db
+  #    deploy:
+  #      resources:
+  #        limits:
+  #          cpus: "2.0"
+  #          memory: "8G"
+  #        reservations:
+  #          cpus: "1.0"
+  #          memory: "2G"
+  onfhir:
+    image: srdc/onfhir:r5
+    container_name: dt4h-onfhir
+    restart: always
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:8080/fhir/metadata || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    environment:
+      - APP_CONF_FILE=/usr/local/onfhir/conf/docker/onfhir-docker.conf
+      - FHIR_ROOT_URL=http://onfhir:8080/fhir
+      - DB_EMBEDDED=false
+      - DB_HOST=mongo:27017
+    ports:
+      - "6080:8080"
+    networks:
+      - onfhir-network
+    volumes:
+      - ./common-data-model:/usr/local/onfhir/conf
+  #    deploy:
+  #      resources:
+  #        limits:
+  #          cpus: "2.0"
+  #          memory: "8G"
+  #        reservations:
+  #          cpus: "1.0"
+  #          memory: "2G"
   tofhir-server:
     image: srdc/tofhir-server:latest
     container_name: dt4h-tofhir-server
@@ -14,9 +68,9 @@ services:
       - JAVA_OPTIONS=-Xms5g -Xmx15g -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35
     ports:
       - "6085:8085"
-      - "4040:4040"
+      # - "4040:4040"
     networks:
-      - tofhir-network
+      - onfhir-network
     volumes:
       - './data-ingestion-suite:/usr/local/tofhir/conf'
       - './tofhir-docker-logs:/usr/local/tofhir/logs'
@@ -26,6 +80,9 @@ services:
       interval: 20s
       timeout: 10s
       retries: 5
+    depends_on:
+      onfhir:
+        condition: service_healthy
 #    deploy:
 #      resources:
 #        limits:
@@ -38,7 +95,7 @@ services:
     ports:
       - "6082:80"
     networks:
-      - tofhir-network
+      - onfhir-network
     depends_on:
       tofhir-server:
         condition: service_healthy      
@@ -51,7 +108,7 @@ services:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms256m -Xmx2g"
     networks:
-      - tofhir-network
+      - onfhir-network
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
   fluentd:
@@ -66,7 +123,7 @@ services:
       - HOST=elasticsearch
       - PORT=9200
     networks:
-      - tofhir-network
+      - onfhir-network
   kibana:
     image: srdc/tofhir-kibana:latest
     container_name: dt4h-kibana
@@ -77,13 +134,14 @@ services:
     ports:
       - "6601:5601"
     networks:
-      - tofhir-network
+      - onfhir-network
     depends_on:
       - elasticsearch
 networks:
-  tofhir-network:
+  onfhir-network:
     name: onfhir-network
-    external: true
 volumes:
   elasticsearch_data:
+    driver: local
+  onfhirdata:
     driver: local
