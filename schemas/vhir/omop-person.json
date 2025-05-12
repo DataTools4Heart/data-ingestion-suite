@@ -1,0 +1,188 @@
+{
+  "id" : "omop-person",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
+  "version" : "latest",
+  "name" : "OMOP-Person",
+  "description" : "OMOP person table v5.3",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "OMOP-Person",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "OMOP-Person",
+      "path" : "OMOP-Person",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "OMOP-Person.PERSON_ID",
+      "path" : "OMOP-Person.PERSON_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.GENDER_CONCEPT_ID",
+      "path" : "OMOP-Person.GENDER_CONCEPT_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.YEAR_OF_BIRTH",
+      "path" : "OMOP-Person.YEAR_OF_BIRTH",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.MONTH_OF_BIRTH",
+      "path" : "OMOP-Person.MONTH_OF_BIRTH",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.DAY_OF_BIRTH",
+      "path" : "OMOP-Person.DAY_OF_BIRTH",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.BIRTH_DATETIME",
+      "path" : "OMOP-Person.BIRTH_DATETIME",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.RACE_CONCEPT_ID",
+      "path" : "OMOP-Person.RACE_CONCEPT_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.ETHNICITY_CONCEPT_ID",
+      "path" : "OMOP-Person.ETHNICITY_CONCEPT_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.LOCATION_ID",
+      "path" : "OMOP-Person.LOCATION_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.PROVIDER_ID",
+      "path" : "OMOP-Person.PROVIDER_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.CARE_SITE_ID",
+      "path" : "OMOP-Person.CARE_SITE_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.PERSON_SOURCE_VALUE",
+      "path" : "OMOP-Person.PERSON_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.GENDER_SOURCE_VALUE",
+      "path" : "OMOP-Person.GENDER_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.GENDER_SOURCE_CONCEPT_ID",
+      "path" : "OMOP-Person.GENDER_SOURCE_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.RACE_SOURCE_VALUE",
+      "path" : "OMOP-Person.RACE_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.RACE_SOURCE_CONCEPT_ID",
+      "path" : "OMOP-Person.RACE_SOURCE_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.ETHNICITY_SOURCE_VALUE",
+      "path" : "OMOP-Person.ETHNICITY_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Person.ETHNICITY_SOURCE_CONCEPT_ID",
+      "path" : "OMOP-Person.ETHNICITY_SOURCE_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    } ]
+  }
+}

@@ -1,24 +1,25 @@
 {
-  "id" : "vhir",
-  "name" : "vhir",
+  "id" : "vhir-deploy",
+  "name" : "vhir-deploy",
+  "description" : "",
   "sourceSettings" : {
     "vhir-source" : {
       "jsonClass" : "SqlSourceSettings",
       "name" : "vhir-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/vhir-data",
-      "databaseUrl" : "jdbc:postgresql://localhost:5432/vhir",
-      "username" : "postgres",
-      "password" : "password123"
+      "databaseUrl" : "jdbc:db2://localhost:50000/testdb",
+      "username" : "db2inst1",
+      "password" : "password"
     }
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
     "returnMinimal" : true
   },
   "terminologyServiceSettings" : {
     "jsonClass" : "LocalFhirTerminologyServiceSettings",
-    "folderPath" : "./terminology-systems/DT4HTerminologyService",
+    "folderPath" : "terminology-systems/DT4HTerminologyService",
     "conceptMapFiles" : [ {
       "id" : "snomedToIcd10.csv",
       "name" : "snomedToIcd10.csv",
@@ -67,16 +68,56 @@
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
       "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
       "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "ethnicityOmopToSnomed.csv",
+      "name" : "ethnicityOmopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
+    }, {
+      "id" : "symptomsOmopToSnomed.csv",
+      "name" : "symptomsOmopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
     } ],
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
+    "name" : "test-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/test-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "MY_SCHEMA.MY_TABLE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "cause-of-death-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/cause-of-death-mapping",
+    "sourceBinding" : {
+      "omopDeath" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".DEATH",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
     "name" : "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/condition-mapping",
     "sourceBinding" : {
       "omopCondition" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "condition_occurrence",
+        "tableName" : "\"0000000004_DT4H\".CONDITION_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
         "options" : { },
         "sourceRef" : "vhir-source"
       }
@@ -87,24 +128,24 @@
     "sourceBinding" : {
       "omopVisitOccurrence" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "visit_occurrence",
-        "options" : { },
-        "sourceRef" : "vhir-source"
-      },
-      "omopConditionOccurrence" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "condition_occurrence",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
         "options" : { },
         "sourceRef" : "vhir-source"
       }
     }
   }, {
-    "name" : "lab-result-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/lab-result-mapping",
+    "name" : "measurement-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
     "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "measurement",
+        "tableName" : "\"0000000004_DT4H\".MEASUREMENT",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
         "options" : { },
         "sourceRef" : "vhir-source"
       }
@@ -115,7 +156,24 @@
     "sourceBinding" : {
       "omopDrugExposure" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "drug_exposure",
+        "tableName" : "\"0000000004_DT4H\".DRUG_EXPOSURE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "observation-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/observation-mapping",
+    "sourceBinding" : {
+      "observation" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".OBSERVATION",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
         "options" : { },
         "sourceRef" : "vhir-source"
       }
@@ -126,7 +184,19 @@
     "sourceBinding" : {
       "omopPerson" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "person",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopDeath" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".DEATH",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopLocation" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".LOCATION",
         "options" : { },
         "sourceRef" : "vhir-source"
       }
@@ -137,18 +207,13 @@
     "sourceBinding" : {
       "omopProcedure" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "procedure_occurrence",
+        "tableName" : "\"0000000004_DT4H\".PROCEDURE_OCCURRENCE",
         "options" : { },
         "sourceRef" : "vhir-source"
-      }
-    }
-  }, {
-    "name" : "vital-sign-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/vital-sign-mapping",
-    "sourceBinding" : {
-      "omopMeasurement" : {
+      },
+      "omopVisit" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "measurement",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
         "options" : { },
         "sourceRef" : "vhir-source"
       }

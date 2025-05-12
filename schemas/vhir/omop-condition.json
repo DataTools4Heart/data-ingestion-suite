@@ -1,0 +1,170 @@
+{
+  "id" : "omop-condition",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
+  "version" : "latest",
+  "name" : "OMOP-Condition",
+  "description" : "OMOP condition_occurrence table v5.3",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "OMOP-Condition",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "OMOP-Condition",
+      "path" : "OMOP-Condition",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_OCCURRENCE_ID",
+      "path" : "OMOP-Condition.CONDITION_OCCURRENCE_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.PERSON_ID",
+      "path" : "OMOP-Condition.PERSON_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_CONCEPT_ID",
+      "path" : "OMOP-Condition.CONDITION_CONCEPT_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_START_DATE",
+      "path" : "OMOP-Condition.CONDITION_START_DATE",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_START_DATETIME",
+      "path" : "OMOP-Condition.CONDITION_START_DATETIME",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_END_DATE",
+      "path" : "OMOP-Condition.CONDITION_END_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_END_DATETIME",
+      "path" : "OMOP-Condition.CONDITION_END_DATETIME",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_TYPE_CONCEPT_ID",
+      "path" : "OMOP-Condition.CONDITION_TYPE_CONCEPT_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_STATUS_CONCEPT_ID",
+      "path" : "OMOP-Condition.CONDITION_STATUS_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.STOP_REASON",
+      "path" : "OMOP-Condition.STOP_REASON",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.PROVIDER_ID",
+      "path" : "OMOP-Condition.PROVIDER_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.VISIT_OCCURRENCE_ID",
+      "path" : "OMOP-Condition.VISIT_OCCURRENCE_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.VISIT_DETAIL_ID",
+      "path" : "OMOP-Condition.VISIT_DETAIL_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_SOURCE_VALUE",
+      "path" : "OMOP-Condition.CONDITION_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_SOURCE_CONCEPT_ID",
+      "path" : "OMOP-Condition.CONDITION_SOURCE_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Condition.CONDITION_STATUS_SOURCE_VALUE",
+      "path" : "OMOP-Condition.CONDITION_STATUS_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

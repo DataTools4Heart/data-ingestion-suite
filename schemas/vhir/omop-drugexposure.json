@@ -1,0 +1,233 @@
+{
+  "id" : "omop-drugexposure",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
+  "version" : "latest",
+  "name" : "OMOP-DrugExposure",
+  "description" : "OMOP drug_exposure table v5.3",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "OMOP-DrugExposure",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "OMOP-DrugExposure",
+      "path" : "OMOP-DrugExposure",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_EXPOSURE_ID",
+      "path" : "OMOP-DrugExposure.DRUG_EXPOSURE_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.PERSON_ID",
+      "path" : "OMOP-DrugExposure.PERSON_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_CONCEPT_ID",
+      "path" : "OMOP-DrugExposure.DRUG_CONCEPT_ID",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_EXPOSURE_START_DATE",
+      "path" : "OMOP-DrugExposure.DRUG_EXPOSURE_START_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_EXPOSURE_START_DATETIME",
+      "path" : "OMOP-DrugExposure.DRUG_EXPOSURE_START_DATETIME",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_EXPOSURE_END_DATE",
+      "path" : "OMOP-DrugExposure.DRUG_EXPOSURE_END_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_EXPOSURE_END_DATETIME",
+      "path" : "OMOP-DrugExposure.DRUG_EXPOSURE_END_DATETIME",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.VERBATIM_END_DATE",
+      "path" : "OMOP-DrugExposure.VERBATIM_END_DATE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_TYPE_CONCEPT_ID",
+      "path" : "OMOP-DrugExposure.DRUG_TYPE_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.STOP_REASON",
+      "path" : "OMOP-DrugExposure.STOP_REASON",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.REFILLS",
+      "path" : "OMOP-DrugExposure.REFILLS",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.QUANTITY",
+      "path" : "OMOP-DrugExposure.QUANTITY",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DAYS_SUPPLY",
+      "path" : "OMOP-DrugExposure.DAYS_SUPPLY",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.SIG",
+      "path" : "OMOP-DrugExposure.SIG",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.ROUTE_CONCEPT_ID",
+      "path" : "OMOP-DrugExposure.ROUTE_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.LOT_NUMBER",
+      "path" : "OMOP-DrugExposure.LOT_NUMBER",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.PROVIDER_ID",
+      "path" : "OMOP-DrugExposure.PROVIDER_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.VISIT_OCCURRENCE_ID",
+      "path" : "OMOP-DrugExposure.VISIT_OCCURRENCE_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.VISIT_DETAIL_ID",
+      "path" : "OMOP-DrugExposure.VISIT_DETAIL_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_SOURCE_VALUE",
+      "path" : "OMOP-DrugExposure.DRUG_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_SOURCE_CONCEPT_ID",
+      "path" : "OMOP-DrugExposure.DRUG_SOURCE_CONCEPT_ID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.ROUTE_SOURCE_VALUE",
+      "path" : "OMOP-DrugExposure.ROUTE_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-DrugExposure.DOSE_UNIT_SOURCE_VALUE",
+      "path" : "OMOP-DrugExposure.DOSE_UNIT_SOURCE_VALUE",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

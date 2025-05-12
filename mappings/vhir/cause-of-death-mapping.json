@@ -1,0 +1,65 @@
+{
+  "id": "cause-of-death-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/vhir/cause-of-death-mapping",
+  "name": "cause-of-death-mapping",
+  "title": "Mapping of OMOP death to the DT4H-CauseOfDeath profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "omopDeath",
+      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
+      "joinOn": []
+    }
+  ],
+  "context": {},
+  "variable": [],
+  "mapping": [
+    {
+      "precondition": {
+        "name": "causeExists",
+        "language": "text/fhirpath",
+        "expression": "CAUSE_CONCEPT_ID.exists() or CAUSE_SOURCE_CONCEPT_ID.exists() or CAUSE_SOURCE_VALUE.exists()"
+      },
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Observation', 'Death' & PERSON_ID.toString())}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath"
+            ]
+          },
+          "resourceType": "Observation",
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "exam",
+                  "display": "Exam"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "79378-6",
+                "display": "Cause of death",
+                "@sliceName": "loincCode"
+              }
+            ]
+          },
+          "effectiveDateTime": "{{iif(DEATH_DATETIME.empty(), death_date, DEATH_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+          "valueCodeableConcept": {
+            "coding": "{{* iif(CAUSE_CONCEPT_ID.exists(),trms:translateToCoding(CAUSE_CONCEPT_ID.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10'),iif(CAUSE_SOURCE_CONCEPT_ID.exists(), trms:translateToCoding(CAUSE_SOURCE_CONCEPT_ID.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10'), {}))}}"
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}"
+        }
+      }
+    }
+  ]
+}
