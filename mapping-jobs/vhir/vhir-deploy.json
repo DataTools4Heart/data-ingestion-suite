@@ -84,17 +84,6 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "name" : "test-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/test-mapping",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "MY_SCHEMA.MY_TABLE",
-        "options" : { },
-        "sourceRef" : "vhir-source"
-      }
-    }
-  }, {
     "name" : "cause-of-death-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/cause-of-death-mapping",
     "sourceBinding" : {
@@ -191,12 +180,6 @@
       "omopDeath" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".DEATH",
-        "options" : { },
-        "sourceRef" : "vhir-source"
-      },
-      "omopLocation" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "\"0000000004_DT4H\".LOCATION",
         "options" : { },
         "sourceRef" : "vhir-source"
       }
