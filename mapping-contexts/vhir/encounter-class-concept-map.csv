@@ -3,3 +3,4 @@
 "9202","AMB","ambulatory","http://terminology.hl7.org/CodeSystem/v3-ActCode"
 "9203","EMER","emergency","http://terminology.hl7.org/CodeSystem/v3-ActCode"
 "262","EMAMB","emergency followed by hospitalization","https://datatools4heart.eu/fhir/CodeSystem/encounter-class"
+"581476","HH","home health","http://terminology.hl7.org/CodeSystem/v3-ActCode"
