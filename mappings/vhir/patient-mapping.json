@@ -27,7 +27,7 @@
         },
         "resourceType" : "Patient",
         "gender" : "{{iif(GENDER_CONCEPT_ID=8532, 'female', iif(GENDER_CONCEPT_ID=8507, 'male', 'unknown'))}}",
-        "birthDate" : "{{iif(BIRTH_DATETIME.exists(), BIRTH_DATETIME.substring(0,10), iif(MONTH_OF_BIRTH.exists() and DAY_OF_BIRTH.exists(), (YEAR_OF_BIRTH + '-' + MONTH_OF_BIRTH + '-' + DAY_OF_BIRTH).utl:toFhirDate('yyyy-MM-dd'), iif(MONTH_OF_BIRTH.exists(), (YEAR_OF_BIRTH + '-' + MONTH_OF_BIRTH).utl:toFhirDate('yyyy-MM'), YEAR_OF_BIRTH.utl:toFhirDate('yyyy'))))}}",
+        "birthDate" : "{{iif(BIRTH_DATETIME.exists(), BIRTH_DATETIME.substring(0,10), iif(MONTH_OF_BIRTH.exists() and DAY_OF_BIRTH.exists(), (YEAR_OF_BIRTH.toString() + '-' + MONTH_OF_BIRTH.toString() + '-' + DAY_OF_BIRTH.toString()).utl:toFhirDate('yyyy-MM-dd'), iif(MONTH_OF_BIRTH.exists(), (YEAR_OF_BIRTH.toString() + '-' + MONTH_OF_BIRTH.toString()).utl:toFhirDate('yyyy-MM'), YEAR_OF_BIRTH.toString().utl:toFhirDate('yyyy'))))}}",
         "deceasedDateTime" : "{{? iif(%omopDeath.DEATH_DATETIME.exists(), %omopDeath.DEATH_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), %omopDeath.DEATH_DATE.utl:toFhirDate('yyyy-MM-dd'))}}",
         "identifier" : [ {
           "use" : "official",
