@@ -123,23 +123,6 @@
       }
     }
   }, {
-    "name" : "measurement-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
-    "sourceBinding" : {
-      "omopMeasurement" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "\"0000000004_DT4H\".MEASUREMENT",
-        "options" : { },
-        "sourceRef" : "vhir-source"
-      },
-      "omopVisit" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
-        "options" : { },
-        "sourceRef" : "vhir-source"
-      }
-    }
-  }, {
     "name" : "medication-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/medication-mapping",
     "sourceBinding" : {
@@ -191,6 +174,227 @@
       "omopProcedure" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".PROCEDURE_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2013",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2013",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  } ,{
+    "name" : "measurement-mapping-2014",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2014",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2015",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2015",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2016",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2016",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2017",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2017",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2018",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2018",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2019",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2019",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2020",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2020",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2021",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2021",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2022",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2022",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2023",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2023",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2024",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2024",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping-2025",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2025",
         "options" : { },
         "sourceRef" : "vhir-source"
       },
