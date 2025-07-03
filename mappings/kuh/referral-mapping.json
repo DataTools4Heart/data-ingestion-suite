@@ -23,7 +23,7 @@
         "resourceType" : "ServiceRequest",
         "intent" : "order",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', status)}}",
-        "authoredOn" : "{{authoredOn.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "authoredOn" : "{{authoredOn.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
         "requester" : {
           "display" : "{{requester}}"
         },

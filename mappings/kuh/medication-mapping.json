@@ -36,7 +36,7 @@
         } ],
         "status" : "completed",
         "intent" : "{{intent}}",
-        "authoredOn" : "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "authoredOn" : "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
         "dosageInstruction" : [ {
           "timing" : {
             "repeat" : {
@@ -49,7 +49,7 @@
             "doseQuantity" : {
               "system" : "http://unitsofmeasure.org",
               "code" : "{{dosageUnit}}",
-              "value" : "{{dosageStrength}}",
+              "value" : "{{? dosageStrength}}",
               "unit" : "{{dosageUnit}}"
             }
           } ]
