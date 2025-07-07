@@ -1,7 +1,7 @@
 {
   "id" : "omop-observation",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Observation",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Observation",
   "version" : "latest",
   "name" : "OMOP-Observation",
   "description" : "OMOP observation table v5.3",

@@ -7,7 +7,7 @@
   "source": [
     {
       "alias": "omopDrugExposure",
-      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
+      "url": "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-DrugExposure",
       "joinOn": []
     }
   ],

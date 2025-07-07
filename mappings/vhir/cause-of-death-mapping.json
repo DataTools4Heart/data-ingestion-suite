@@ -7,7 +7,7 @@
   "source": [
     {
       "alias": "omopDeath",
-      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
+      "url": "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Death",
       "joinOn": []
     }
   ],

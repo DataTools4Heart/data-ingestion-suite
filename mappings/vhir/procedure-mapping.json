@@ -7,14 +7,14 @@
   "source": [
     {
       "alias": "omopProcedure",
-      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+      "url": "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
       "joinOn": [
         "PERSON_ID"
       ]
     },
     {
       "alias": "omopVisit",
-      "url": "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
+      "url": "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
       "joinOn": [
         "PERSON_ID"
       ]

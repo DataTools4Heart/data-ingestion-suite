@@ -1,7 +1,7 @@
 {
   "id" : "omop-person",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Person",
   "version" : "latest",
   "name" : "OMOP-Person",
   "description" : "OMOP person table v5.3",

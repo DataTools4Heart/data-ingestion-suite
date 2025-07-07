@@ -1,7 +1,7 @@
 {
   "id" : "omop-procedureoccurrence",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-ProcedureOccurrence",
   "version" : "latest",
   "name" : "OMOP-ProcedureOccurrence",
   "description" : "OMOP procedure_occurrence table v5.3",

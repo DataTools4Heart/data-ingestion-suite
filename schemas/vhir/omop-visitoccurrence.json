@@ -1,7 +1,7 @@
 {
   "id" : "omop-visitoccurrence",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-VisitOccurrence",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
   "version" : "latest",
   "name" : "OMOP-VisitOccurrence",
   "description" : "OMOP visit_occurrence table v5.3",

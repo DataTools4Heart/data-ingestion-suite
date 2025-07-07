@@ -1,7 +1,7 @@
 {
   "id" : "omop-measurement",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Measurement",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Measurement",
   "version" : "latest",
   "name" : "OMOP-Measurement",
   "description" : "OMOP measurement table v5.3",

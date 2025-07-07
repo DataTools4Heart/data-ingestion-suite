@@ -1,7 +1,7 @@
 {
   "id" : "omop-condition",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Condition",
   "version" : "latest",
   "name" : "OMOP-Condition",
   "description" : "OMOP condition_occurrence table v5.3",

@@ -1,7 +1,7 @@
 {
   "id" : "omop-death",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Death",
   "version" : "latest",
   "name" : "OMOP-Death",
   "description" : "OMOP death table v5.3",

@@ -6,11 +6,11 @@
   "isDraft" : false,
   "source" : [ {
     "alias" : "omopPerson",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
+    "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Person",
     "joinOn" : [ "PERSON_ID" ]
   }, {
     "alias" : "omopDeath",
-    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Death",
+    "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Death",
     "joinOn" : [ "PERSON_ID" ]
   } ],
   "context" : { },

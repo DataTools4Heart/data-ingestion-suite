@@ -1,7 +1,7 @@
 {
   "id" : "omop-drugexposure",
   "resourceType" : "StructureDefinition",
-  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-DrugExposure",
   "version" : "latest",
   "name" : "OMOP-DrugExposure",
   "description" : "OMOP drug_exposure table v5.3",
