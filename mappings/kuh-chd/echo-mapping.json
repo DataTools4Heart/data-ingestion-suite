@@ -1,0 +1,74 @@
+{
+  "id" : "echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/echo-mapping",
+  "name" : "echo-mapping",
+  "title" : "Echo table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Echo",
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Encounter",
+    "joinOn" : [ "subject" ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Patient', subject.toString() & effectiveDateTime.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "imaging",
+            "display" : "Imaging"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34552-0",
+            "display" : "Cardiac 2D echo panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "component" : [ {
+          "code" : {
+            "coding" : [ {
+              "system" : "http://loinc.org",
+              "code" : "8806-2",
+              "display" : "Left ventricular Ejection fraction by 2D echo"
+            } ]
+          },
+          "valueQuantity" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "%",
+            "value" : "{{iif(LVEF.contains('-'), (LVEF.utl:split('-')[0].toDecimal() + LVEF.utl:split('-')[1].toDecimal()) / 2, LVEF.replaceMatches('^(>=|<=|!=|=|>|<)', ' ').trim().toDecimal()) }}",
+            "comparator" : "{{? iif(LVEF.matches('^(>=|<=|!=|=|>|<).*'), LVEF.replaceMatches('^(>=|<=|!=|=|>|<).*', '$1') ) }}",
+            "unit" : "%"
+          },
+          "@sliceName" : "echoParameter"
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "identifier" : [ {
+          "value" : "{{subject.toString() & '-' & effectiveDateTime.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

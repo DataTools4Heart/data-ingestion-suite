@@ -1,0 +1,47 @@
+{
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Visit table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Encounter",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "encounterClass" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/kuh-chd/encounter-class.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Encounter', identifier)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter",
+        "class" : [ {
+          "coding" : {
+            "{{#codingVar}}" : "{{mpp:getConcept(%encounterClass, emergency.toString())}}",
+            "{{?}}" : [ "{{utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/v3-ActCode', %codingVar.target_code, %codingVar.target_display)}}" ]
+          }
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "actualPeriod" : {
+          "start" : "{{admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+          "end" : "{{dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+        },
+        "identifier" : [ {
+          "value" : "{{identifier}}"
+        } ],
+        "status" : "completed"
+      }
+    }
+  } ]
+}

@@ -1,0 +1,88 @@
+{
+  "id" : "ecg",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/ECG",
+  "version" : "latest",
+  "name" : "ECG",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "ECG",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "ECG",
+      "path" : "ECG",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "ECG.subject",
+      "path" : "ECG.subject",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "ECG.category",
+      "path" : "ECG.category",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ECG.code",
+      "path" : "ECG.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "ECG.effectiveDateTime",
+      "path" : "ECG.effectiveDateTime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "ECG.component",
+      "path" : "ECG.component",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ECG.value",
+      "path" : "ECG.value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ECG.Unit",
+      "path" : "ECG.Unit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

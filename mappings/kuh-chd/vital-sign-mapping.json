@@ -1,22 +1,22 @@
 {
-  "id" : "lab-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/lab-mapping",
-  "name" : "lab-mapping",
-  "title" : "LabResult table mapping",
+  "id" : "vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/vital-sign-mapping",
+  "name" : "vital-sign-mapping",
+  "title" : "VitalSign table mapping",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/LabResult",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/VitalSign",
     "joinOn" : [ "subject" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Encounter",
     "joinOn" : [ "subject" ]
   } ],
   "context" : {
     "vitalSignUnits" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/kuh/lab-units.csv"
+      "url" : "$CONTEXT_REPO/kuh-chd/vital-sign-units.csv"
     }
   },
   "variable" : [ {
@@ -29,17 +29,16 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', identifier)}}",
+        "id" : "{{mpp:getHashedId('Observation', subject.toString() & code.toString() & effectiveDateTime.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
         "resourceType" : "Observation",
-        "status" : "final",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "laboratory",
-            "display" : "Laboratory"
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
           } ]
         } ],
         "code" : {
@@ -53,14 +52,15 @@
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
-          "unit" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
-          "value" : "{{value}}"
+          "value" : "{{value}}",
+          "unit" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
         "identifier" : [ {
-          "value" : "{{identifier}}"
-        } ]
+          "value" : "{{subject.toString() & '-' & code.toString() & '-' & effectiveDateTime.toString()}}"
+        } ],
+        "status" : "final"
       }
     }
   } ]

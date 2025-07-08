@@ -6,17 +6,17 @@
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/LabResult",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/LabResult",
     "joinOn" : [ "subject" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Encounter",
     "joinOn" : [ "subject" ]
   } ],
   "context" : {
     "vitalSignUnits" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/kuh/lab-units.csv"
+      "url" : "$CONTEXT_REPO/kuh-chd/lab-units.csv"
     }
   },
   "variable" : [ {
@@ -25,6 +25,11 @@
     "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')).first() "
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "labValueExists",
+      "language" : "text/fhirpath",
+      "expression" : "value.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",

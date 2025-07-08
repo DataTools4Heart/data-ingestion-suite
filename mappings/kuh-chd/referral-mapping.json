@@ -6,7 +6,7 @@
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Referral",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Referral",
     "joinOn" : [ ]
   } ],
   "context" : { },
@@ -16,14 +16,14 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('ServiceRequest', identifier)}}",
+        "id" : "{{mpp:getHashedId('ServiceRequest', subject.toString() & DocumentID.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Referral" ]
         },
         "resourceType" : "ServiceRequest",
         "intent" : "order",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
-        "authoredOn" : "{{authoredOn.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "authoredOn" : "{{ReferralDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "requester" : {
           "display" : "{{requester}}"
         },
@@ -31,7 +31,7 @@
           "display" : "{{performer}}"
         } ],
         "identifier" : [ {
-          "value" : "{{identifier}}"
+          "value" : "{{subject.toString() & '-' & DocumentID.toString()}}"
         } ],
         "status" : "completed"
       }

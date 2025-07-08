@@ -1,0 +1,88 @@
+{
+  "id" : "labresult",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/LabResult",
+  "version" : "latest",
+  "name" : "LabResult",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "LabResult",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "LabResult",
+      "path" : "LabResult",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "LabResult.identifier",
+      "path" : "LabResult.identifier",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "LabResult.subject",
+      "path" : "LabResult.subject",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "LabResult.center",
+      "path" : "LabResult.center",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "LabResult.code",
+      "path" : "LabResult.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "LabResult.effectiveDateTime",
+      "path" : "LabResult.effectiveDateTime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "LabResult.value",
+      "path" : "LabResult.value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "LabResult.category",
+      "path" : "LabResult.category",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}
