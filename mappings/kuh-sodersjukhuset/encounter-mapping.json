@@ -12,7 +12,7 @@
   "context" : {
     "encounterClass" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/kuh/encounter-class.csv"
+      "url" : "$CONTEXT_REPO/kuh-sodersjukhuset/encounter-class.csv"
     }
   },
   "variable" : [ ],

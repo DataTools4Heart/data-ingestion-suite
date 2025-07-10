@@ -16,7 +16,7 @@
   "context" : {
     "vitalSignUnits" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/kuh/lab-units.csv"
+      "url" : "$CONTEXT_REPO/kuh-sodersjukhuset/lab-units.csv"
     }
   },
   "variable" : [ {
