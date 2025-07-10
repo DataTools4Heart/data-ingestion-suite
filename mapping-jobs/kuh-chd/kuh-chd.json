@@ -13,7 +13,7 @@
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
     "returnMinimal" : true
   },
   "mappings" : [ {
@@ -22,7 +22,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Patient.tsv",
+        "path" : "Patient.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -34,7 +34,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "VitalSign.tsv",
+        "path" : "VitalSign.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -43,7 +43,7 @@
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -55,14 +55,14 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "NYHAAssessment.tsv",
+        "path" : "NYHAAssessment.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -74,14 +74,14 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Echo.tsv",
+        "path" : "Echo.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -93,14 +93,14 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "LabResult.tsv",
+        "path" : "LabResult.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -112,7 +112,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Symptom.tsv",
+        "path" : "Symptom.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -121,7 +121,7 @@
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -133,7 +133,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Referral.tsv",
+        "path" : "Referral.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -145,7 +145,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -157,7 +157,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "ECG.tsv",
+        "path" : "ECG.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -167,7 +167,7 @@
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
@@ -179,14 +179,14 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Condition.tsv",
+        "path" : "Condition.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.tsv",
+        "path" : "hospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
