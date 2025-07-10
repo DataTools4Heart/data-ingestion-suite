@@ -21,7 +21,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Encounter', identifier)}}",
+        "id" : "{{mpp:getHashedId('Encounter', 'chd' & identifier)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },

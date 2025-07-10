@@ -16,7 +16,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('ServiceRequest', subject.toString() & DocumentID.toString())}}",
+        "id" : "{{mpp:getHashedId('ServiceRequest', 'chd' & subject.toString() & DocumentID.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Referral" ]
         },
