@@ -1,7 +1,7 @@
 {
   "id" : "labresult",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/kuh/LabResult",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/LabResult",
   "version" : "latest",
   "name" : "LabResult",
   "status" : "draft",

@@ -1,28 +1,28 @@
 {
-  "id" : "ecg",
+  "id" : "echo",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/kuh/ECG",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Echo",
   "version" : "latest",
-  "name" : "ECG",
+  "name" : "Echo",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "ECG",
+  "type" : "Echo",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "ECG",
-      "path" : "ECG",
+      "id" : "Echo",
+      "path" : "Echo",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "ECG.identifier",
-      "path" : "ECG.identifier",
+      "id" : "Echo.identifier",
+      "path" : "Echo.identifier",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -30,8 +30,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "ECG.subject",
-      "path" : "ECG.subject",
+      "id" : "Echo.subject",
+      "path" : "Echo.subject",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -39,8 +39,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "ECG.category",
-      "path" : "ECG.category",
+      "id" : "Echo.category",
+      "path" : "Echo.category",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -48,18 +48,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "ECG.code",
-      "path" : "ECG.code",
+      "id" : "Echo.code",
+      "path" : "Echo.code",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Fixed: 34534-8"
+      } ]
     }, {
-      "id" : "ECG.effectiveDateTime",
-      "path" : "ECG.effectiveDateTime",
+      "id" : "Echo.effectiveDateTime",
+      "path" : "Echo.effectiveDateTime",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -67,23 +66,13 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "ECG.component",
-      "path" : "ECG.component",
+      "id" : "Echo.LVEF",
+      "path" : "Echo.LVEF",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "There is only Rhythm type (76281-5) and QRSduration (8633-0)"
-    }, {
-      "id" : "ECG.value",
-      "path" : "ECG.value",
-      "min" : 1,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     } ]
   }

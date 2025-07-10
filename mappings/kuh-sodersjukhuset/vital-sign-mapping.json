@@ -1,16 +1,16 @@
 {
   "id" : "vital-sign-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/vital-sign-mapping",
   "name" : "vital-sign-mapping",
   "title" : "VitalSign table mapping",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/VitalSign",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/VitalSign",
     "joinOn" : [ "subject" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Encounter",
     "joinOn" : [ "subject" ]
   } ],
   "context" : {

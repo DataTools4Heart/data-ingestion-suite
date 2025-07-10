@@ -13,12 +13,12 @@
   },
   "sinkSettings" : {
     "jsonClass" : "FhirRepositorySinkSettings",
-    "fhirRepoUrl" : "http://onfhir:8080/fhir",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
     "returnMinimal" : true
   },
   "mappings" : [ {
     "name" : "patient-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/patient-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -30,7 +30,7 @@
     }
   }, {
     "name" : "vital-sign-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/vital-sign-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -49,7 +49,7 @@
     }
   }, {
     "name" : "nyha-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/nyha-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -68,7 +68,7 @@
     }
   }, {
     "name" : "echo-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/echo-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -87,7 +87,7 @@
     }
   }, {
     "name" : "lab-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/lab-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/lab-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -106,7 +106,7 @@
     }
   }, {
     "name" : "symptom-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/symptom-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/symptom-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -125,7 +125,7 @@
     }
   }, {
     "name" : "medication-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/medication-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/medication-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -137,7 +137,7 @@
     }
   }, {
     "name" : "referral-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/referral-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/referral-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -149,7 +149,7 @@
     }
   }, {
     "name" : "encounter-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/encounter-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -161,7 +161,7 @@
     }
   }, {
     "name" : "ecg-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/ecg-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -169,6 +169,25 @@
         "contentType" : "tsv",
         "options" : { },
         "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(identifier) as identifier,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\ngroup by subject, effectiveDateTime",
+        "sourceRef" : "kuh-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "kuh-source"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/condition-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Condition.txt",
+        "contentType" : "tsv",
+        "options" : { },
         "sourceRef" : "kuh-source"
       },
       "encounters" : {

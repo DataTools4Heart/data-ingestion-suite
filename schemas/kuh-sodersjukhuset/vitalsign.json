@@ -1,28 +1,28 @@
 {
-  "id" : "encounter",
+  "id" : "vitalsign",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/VitalSign",
   "version" : "latest",
-  "name" : "Encounter",
+  "name" : "VitalSign",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Encounter",
+  "type" : "VitalSign",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Encounter",
-      "path" : "Encounter",
+      "id" : "VitalSign",
+      "path" : "VitalSign",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Encounter.identifier",
-      "path" : "Encounter.identifier",
+      "id" : "VitalSign.identifier",
+      "path" : "VitalSign.identifier",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -30,8 +30,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter.subject",
-      "path" : "Encounter.subject",
+      "id" : "VitalSign.subject",
+      "path" : "VitalSign.subject",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -39,17 +39,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter.admissionDateTime",
-      "path" : "Encounter.admissionDateTime",
-      "min" : 1,
+      "id" : "VitalSign.category",
+      "path" : "VitalSign.category",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Encounter.dischargeDateTime",
-      "path" : "Encounter.dischargeDateTime",
+      "id" : "VitalSign.code",
+      "path" : "VitalSign.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "VitalSign.effectiveDateTime",
+      "path" : "VitalSign.effectiveDateTime",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -57,9 +66,9 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "Encounter.hospitalization",
-      "path" : "Encounter.hospitalization",
-      "min" : 1,
+      "id" : "VitalSign.value",
+      "path" : "VitalSign.value",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",

@@ -1,12 +1,12 @@
 {
   "id" : "encounter-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/encounter-mapping",
   "name" : "encounter-mapping",
   "title" : "Visit table mapping",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Encounter",
     "joinOn" : [ ]
   } ],
   "context" : {

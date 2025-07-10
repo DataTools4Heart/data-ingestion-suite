@@ -1,6 +1,6 @@
 {
   "id" : "encounter-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/encounter-mapping",
   "name" : "encounter-mapping",
   "title" : "Visit table mapping",
   "isDraft" : false,

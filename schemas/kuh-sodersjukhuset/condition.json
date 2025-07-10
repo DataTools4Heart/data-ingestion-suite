@@ -1,28 +1,28 @@
 {
-  "id" : "symptom",
+  "id" : "condition",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Symptom",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Condition",
   "version" : "latest",
-  "name" : "Symptom",
+  "name" : "Condition",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Symptom",
+  "type" : "Condition",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Symptom",
-      "path" : "Symptom",
+      "id" : "Condition",
+      "path" : "Condition",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Symptom.identifier",
-      "path" : "Symptom.identifier",
+      "id" : "Condition.identifier",
+      "path" : "Condition.identifier",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -30,8 +30,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Symptom.subject",
-      "path" : "Symptom.subject",
+      "id" : "Condition.subject",
+      "path" : "Condition.subject",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -39,8 +39,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Symptom.category",
-      "path" : "Symptom.category",
+      "id" : "Condition.code",
+      "path" : "Condition.code",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -48,17 +48,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Symptom.code",
-      "path" : "Symptom.code",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Symptom.effectiveDateTime",
-      "path" : "Symptom.effectiveDateTime",
+      "id" : "Condition.onsetDateTime",
+      "path" : "Condition.onsetDateTime",
       "min" : 0,
       "max" : "1",
       "type" : [ {

@@ -1,6 +1,6 @@
 {
   "id" : "echo-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/echo-mapping",
   "name" : "echo-mapping",
   "title" : "Echo table mapping",
   "isDraft" : false,

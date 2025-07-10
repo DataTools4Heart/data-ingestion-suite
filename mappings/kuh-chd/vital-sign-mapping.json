@@ -1,6 +1,6 @@
 {
   "id" : "vital-sign-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/vital-sign-mapping",
   "name" : "vital-sign-mapping",
   "title" : "VitalSign table mapping",
   "isDraft" : false,

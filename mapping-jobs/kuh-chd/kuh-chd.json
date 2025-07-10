@@ -18,7 +18,7 @@
   },
   "mappings" : [ {
     "name" : "patient-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/patient-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -30,7 +30,7 @@
     }
   }, {
     "name" : "vital-sign-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/vital-sign-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -51,7 +51,7 @@
     }
   }, {
     "name" : "nyha-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/nyha-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -70,7 +70,7 @@
     }
   }, {
     "name" : "echo-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/echo-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -89,7 +89,7 @@
     }
   }, {
     "name" : "lab-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/lab-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/lab-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -108,7 +108,7 @@
     }
   }, {
     "name" : "symptom-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/symptom-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/symptom-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -129,7 +129,7 @@
     }
   }, {
     "name" : "referral-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/referral-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/referral-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -141,7 +141,7 @@
     }
   }, {
     "name" : "encounter-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/encounter-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -153,7 +153,7 @@
     }
   }, {
     "name" : "ecg-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh/ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings-chd/kuh/ecg-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -163,6 +163,25 @@
           "distinct" : "true"
         },
         "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\ngroup by subject, effectiveDateTime",
+        "sourceRef" : "kuh-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.tsv",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "kuh-source"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/condition-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Condition.tsv",
+        "contentType" : "tsv",
+        "options" : { },
         "sourceRef" : "kuh-source"
       },
       "encounters" : {

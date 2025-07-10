@@ -1,0 +1,57 @@
+{
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Condition table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Condition",
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-chd/Encounter",
+    "joinOn" : [ "subject" ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') <= %context.onsetDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') >= %context.onsetDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')).first() "
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Condition', identifier)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
+        "code" : {
+          "coding" : [ {
+            "code" : "{{code}}",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "onsetDateTime" : "{{onsetDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+        "identifier" : [ {
+          "value" : "{{identifier}}"
+        } ],
+        "clinicalStatus" : {
+          "coding" : [ {
+            "code" : "active",
+            "display" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
+          } ]
+        },
+        "category" : [ {
+          "coding" : [ "{{iif(%relatedEncounter.exists() and IsMainDiagnosis == true, utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'encounter-diagnosis', 'Encounter Diagnosis'), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'problem-list-item', 'Problem List Item'))}}" ]
+        } ]
+      }
+    }
+  } ]
+}

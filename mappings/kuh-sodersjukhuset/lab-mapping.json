@@ -1,16 +1,16 @@
 {
   "id" : "lab-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/lab-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/lab-mapping",
   "name" : "lab-mapping",
   "title" : "LabResult table mapping",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/LabResult",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/LabResult",
     "joinOn" : [ "subject" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Encounter",
     "joinOn" : [ "subject" ]
   } ],
   "context" : {

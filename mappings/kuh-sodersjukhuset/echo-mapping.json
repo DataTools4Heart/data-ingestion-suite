@@ -1,16 +1,16 @@
 {
   "id" : "echo-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/echo-mapping",
   "name" : "echo-mapping",
   "title" : "Echo table mapping",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Echo",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Echo",
     "joinOn" : [ "subject" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Encounter",
     "joinOn" : [ "subject" ]
   } ],
   "context" : { },

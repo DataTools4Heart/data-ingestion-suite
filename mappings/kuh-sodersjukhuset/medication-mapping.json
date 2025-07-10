@@ -1,12 +1,12 @@
 {
   "id" : "medication-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/medication-mapping",
   "name" : "medication-mapping",
   "title" : "MedicationOrdination table mapping",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Medication",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Medication",
     "joinOn" : [ ]
   } ],
   "context" : { },

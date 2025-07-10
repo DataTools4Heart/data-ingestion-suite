@@ -1,6 +1,6 @@
 {
   "id" : "symptom-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/symptom-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/symptom-mapping",
   "name" : "symptom-mapping",
   "title" : "Symptom table mapping",
   "isDraft" : false,

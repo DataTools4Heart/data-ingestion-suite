@@ -1,16 +1,16 @@
 {
   "id" : "ecg-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/ecg-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-sodersjukhuset/ecg-mapping",
   "name" : "ecg-mapping",
   "title" : "ECG table mapping",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/ECG",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/ECG",
     "joinOn" : [ "subject" ]
   }, {
     "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Encounter",
     "joinOn" : [ "subject" ]
   } ],
   "context" : { },

@@ -1,6 +1,6 @@
 {
   "id" : "lab-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/lab-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/lab-mapping",
   "name" : "lab-mapping",
   "title" : "LabResult table mapping",
   "isDraft" : false,

@@ -1,7 +1,7 @@
 {
   "id" : "medication",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/kuh/Medication",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Medication",
   "version" : "latest",
   "name" : "Medication",
   "status" : "draft",

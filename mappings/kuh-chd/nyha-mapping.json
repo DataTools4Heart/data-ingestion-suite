@@ -1,6 +1,6 @@
 {
   "id" : "nyha-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/nyha-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/nyha-mapping",
   "name" : "nyha-mapping",
   "title" : "NYHAAssessment table mapping",
   "isDraft" : false,

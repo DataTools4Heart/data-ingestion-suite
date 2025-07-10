@@ -1,6 +1,6 @@
 {
   "id" : "patient-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/kuh/patient-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/kuh-chd/patient-mapping",
   "name" : "patient-mapping",
   "title" : "Patient table mapping",
   "isDraft" : false,

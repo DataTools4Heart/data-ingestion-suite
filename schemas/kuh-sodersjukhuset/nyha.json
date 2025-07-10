@@ -1,28 +1,28 @@
 {
-  "id" : "vitalsign",
+  "id" : "nyha",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/kuh/VitalSign",
+  "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/NYHA",
   "version" : "latest",
-  "name" : "VitalSign",
+  "name" : "NYHA",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "VitalSign",
+  "type" : "NYHA",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "VitalSign",
-      "path" : "VitalSign",
+      "id" : "NYHA",
+      "path" : "NYHA",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSign.identifier",
-      "path" : "VitalSign.identifier",
+      "id" : "NYHA.identifier",
+      "path" : "NYHA.identifier",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -30,8 +30,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "VitalSign.subject",
-      "path" : "VitalSign.subject",
+      "id" : "NYHA.subject",
+      "path" : "NYHA.subject",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -39,8 +39,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "VitalSign.category",
-      "path" : "VitalSign.category",
+      "id" : "NYHA.category",
+      "path" : "NYHA.category",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -48,17 +48,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "VitalSign.code",
-      "path" : "VitalSign.code",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "VitalSign.effectiveDateTime",
-      "path" : "VitalSign.effectiveDateTime",
+      "id" : "NYHA.code",
+      "path" : "NYHA.code",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -66,13 +57,22 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "VitalSign.value",
-      "path" : "VitalSign.value",
+      "id" : "NYHA.effectiveDateTime",
+      "path" : "NYHA.effectiveDateTime",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "NYHA.value",
+      "path" : "NYHA.value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     } ]
   }
