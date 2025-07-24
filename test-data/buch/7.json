@@ -1,0 +1,170 @@
+[
+  {
+    "output": [
+      {
+        "entity": "2023-11-06",
+        "concept_class": "admission_date",
+        "start_offset": 11,
+        "end_offset": 21,
+        "value": "2023-11-06",
+        "unit": "day"
+      },
+      {
+        "entity": "11:08:00",
+        "concept_class": "admission_time",
+        "start_offset": 22,
+        "end_offset": 30,
+        "value": "11:08:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "2023-11-07",
+        "concept_class": "discharge_date",
+        "start_offset": 42,
+        "end_offset": 52,
+        "value": "2023-11-07",
+        "unit": "day"
+      },
+      {
+        "entity": "12:33:00",
+        "concept_class": "discharge_time",
+        "start_offset": 53,
+        "end_offset": 61,
+        "value": "12:33:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "58 de ani",
+        "concept_class": "demographic",
+        "start_offset": 277,
+        "end_offset": 286,
+        "value": 58,
+        "unit": "ani"
+      },
+      {
+        "entity": "pacienta",
+        "concept_class": "demographic",
+        "start_offset": 255,
+        "end_offset": 263,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Angina pectorala  nespecificata",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 81,
+        "end_offset": 112,
+        "value": null,
+        "unit": null,
+        "icd_code": "I20.9"
+      },
+      {
+        "entity": "Hipertensiunea esentiala (primara)",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 117,
+        "end_offset": 151,
+        "value": null,
+        "unit": null,
+        "icd_code": "I10"
+      },
+      {
+        "entity": "Diabet mellitus tip 2 fara complicatii",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 158,
+        "end_offset": 196,
+        "value": null,
+        "unit": null,
+        "icd_code": "E11.9"
+      },
+      {
+        "entity": "Hiperlipidemia  nespecificata",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 203,
+        "end_offset": 232,
+        "value": null,
+        "unit": null,
+        "icd_code": "E78.5"
+      },
+      {
+        "entity": "TA",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1004,
+        "end_offset": 1006,
+        "value": "138/78",
+        "unit": "mmHg"
+      },
+      {
+        "entity": "SpO2",
+        "concept_class": "signs and symptoms",
+        "start_offset": 847,
+        "end_offset": 851,
+        "value": "98",
+        "unit": "%"
+      },
+      {
+        "entity": "AV",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1020,
+        "end_offset": 1022,
+        "value": "98",
+        "unit": "bpm"
+      },
+      {
+        "entity": "Betaloc-Zok 100mg 1cp /zi  dimineata cu monitorizarea pulsului  la puls sub 60/min nu se va administra doza resepctiva",
+        "concept_class": "Medication",
+        "start_offset": 2888,
+        "end_offset": 3006,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Atacand 8 mg 1cp x2/zi  dimineata si respective seara cu monitorizarea ionogramei (sodium potasiu) si functia renala (uree  creatinina)",
+        "concept_class": "Medication",
+        "start_offset": 3009,
+        "end_offset": 3144,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Diltiazem 60 mg 1 cp/zi  dimineata",
+        "concept_class": "Medication",
+        "start_offset": 3147,
+        "end_offset": 3181,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Famotidina cp 40mg 1cp/zi  dimineata",
+        "concept_class": "Medication",
+        "start_offset": 3184,
+        "end_offset": 3220,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Lipocomb 40/10 mg  1 cp/zi  seara cu monitorizarea lipidogramei si a AST  ALT",
+        "concept_class": "Medication",
+        "start_offset": 3222,
+        "end_offset": 3299,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Praluent 75 mg  1 pen sc/2 sapt",
+        "concept_class": "Medication",
+        "start_offset": 3301,
+        "end_offset": 3332,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Medicatia antidiabetica conform schemei personale",
+        "concept_class": "Medication",
+        "start_offset": 3335,
+        "end_offset": 3384,
+        "value": null,
+        "unit": null
+      }
+    ]
+  }
+]
