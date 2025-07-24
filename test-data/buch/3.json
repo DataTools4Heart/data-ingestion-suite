@@ -1,0 +1,222 @@
+[
+  {
+    "output": [
+      {
+        "entity": "2024-02-04",
+        "concept_class": "admission_date",
+        "start_offset": 11,
+        "end_offset": 21,
+        "value": "2024-02-04",
+        "unit": "day"
+      },
+      {
+        "entity": "11:05:00",
+        "concept_class": "admission_time",
+        "start_offset": 22,
+        "end_offset": 30,
+        "value": "11:05:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "2024-02-05",
+        "concept_class": "discharge_date",
+        "start_offset": 42,
+        "end_offset": 52,
+        "value": "2024-02-05",
+        "unit": "day"
+      },
+      {
+        "entity": "11:07:00",
+        "concept_class": "discharge_time",
+        "start_offset": 53,
+        "end_offset": 61,
+        "value": "11:07:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "60 de ani",
+        "concept_class": "demographic",
+        "start_offset": 489,
+        "end_offset": 498,
+        "value": 60,
+        "unit": "ani"
+      },
+      {
+        "entity": "pacienta",
+        "concept_class": "demographic",
+        "start_offset": 467,
+        "end_offset": 475,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Angina instabila",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 81,
+        "end_offset": 97,
+        "value": null,
+        "unit": null,
+        "icd_code": "I20.0"
+      },
+      {
+        "entity": "Tiroidita autoimuna",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 104,
+        "end_offset": 123,
+        "value": null,
+        "unit": null,
+        "icd_code": "E06.3"
+      },
+      {
+        "entity": "Hiperlipidemie mixta",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 130,
+        "end_offset": 150,
+        "value": null,
+        "unit": null,
+        "icd_code": "E78.2"
+      },
+      {
+        "entity": "Hipertensiunea esentiala (primara)",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 155,
+        "end_offset": 189,
+        "value": null,
+        "unit": null,
+        "icd_code": "I10"
+      },
+      {
+        "entity": "Cardiopatia aterosclerotica a arterei coronariene native",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 197,
+        "end_offset": 253,
+        "value": null,
+        "unit": null,
+        "icd_code": "I25.11"
+      },
+      {
+        "entity": "Insuficienta cardiaca congestiva",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 260,
+        "end_offset": 292,
+        "value": null,
+        "unit": null,
+        "icd_code": "I50.0"
+      },
+      {
+        "entity": "Rezultate anormale  in diagnosticul imagistic al inimii si al circulatiei coronare",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 299,
+        "end_offset": 381,
+        "value": null,
+        "unit": null,
+        "icd_code": "R93.1"
+      },
+      {
+        "entity": "Prezenta de implant si grefa de angioplastie coronariana",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 388,
+        "end_offset": 444,
+        "value": null,
+        "unit": null,
+        "icd_code": "Z95.5"
+      },
+      {
+        "entity": "TA",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1528,
+        "end_offset": 1530,
+        "value": "126/75",
+        "unit": "mmHg"
+      },
+      {
+        "entity": "SpO2",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1432,
+        "end_offset": 1436,
+        "value": "97",
+        "unit": "%"
+      },
+      {
+        "entity": "AV",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1546,
+        "end_offset": 1548,
+        "value": "69",
+        "unit": "bpm"
+      },
+      {
+        "entity": "FEVS",
+        "concept_class": "Heart Ultrasound",
+        "start_offset": 1942,
+        "end_offset": 1946,
+        "value": "55",
+        "unit": "%"
+      },
+      {
+        "entity": "Aspenter 75 mg  1 cp/zi  la pranz",
+        "concept_class": "Medication",
+        "start_offset": 3320,
+        "end_offset": 3353,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Brilique 90 mg  1 cp x 2/zi  dimineata si seara",
+        "concept_class": "Medication",
+        "start_offset": 3354,
+        "end_offset": 3401,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Mentine dubla terapie antiagreganta (Aspenter Brilique) timp de minim 12 luni de la ultima stentare (05.02.2024). Nu va intrerupe niciunul dintre aceste 2 medicamente fara acordul medicului cardiolog/cardiolog interventionist. Se va avea in vedere continuarea DAPT cu Aspenter si Brilique in doza redusa dupa cele 12 luni.",
+        "concept_class": "Medication",
+        "start_offset": 3402,
+        "end_offset": 3724,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Torvazin 40/10 mg  1 cp/zi  seara  cu dozare periodica proful lipidic cu fractiuni. LDLc tinta &lt; 55 mg/dl",
+        "concept_class": "Medication",
+        "start_offset": 3725,
+        "end_offset": 3833,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Praluent 150 mg  1 inj sc la 14 zile",
+        "concept_class": "Medication",
+        "start_offset": 3834,
+        "end_offset": 3870,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Betaloc Zok 100 mg  1 cp/ zi dimineata? si 1/2 cp seara ? cu monitorizarea AV. AV tinta 60 bpm",
+        "concept_class": "Medication",
+        "start_offset": 3871,
+        "end_offset": 3965,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Ramipril 2.5 mg  1 cp?dimineata cu monitorizarea TA si dozare periodica ionograma  creatinina",
+        "concept_class": "Medication",
+        "start_offset": 3966,
+        "end_offset": 4059,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Euthyrox 100 mcg  1 cp/zi  dimineata  conform schemei personale.",
+        "concept_class": "Medication",
+        "start_offset": 4060,
+        "end_offset": 4124,
+        "value": null,
+        "unit": null
+      }
+    ]
+  }
+]

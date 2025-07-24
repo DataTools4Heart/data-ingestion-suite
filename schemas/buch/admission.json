@@ -1,0 +1,26 @@
+{
+  "id" : "admission",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/buch/Admission",
+  "version" : "1.0.0",
+  "name" : "Admission",
+  "description" : "Schema is built manually with an added outer entity to create a proper tree structure, with an addition of 'output' item that holds all the data.",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Admission",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Admission",
+      "path" : "Admission",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    } ]
+  }
+}

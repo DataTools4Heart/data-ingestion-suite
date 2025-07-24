@@ -1,0 +1,221 @@
+[
+  {
+    "output": [
+      {
+        "entity": "2023-12-09",
+        "concept_class": "admission_date",
+        "start_offset": 11,
+        "end_offset": 21,
+        "value": "2023-12-09",
+        "unit": "day"
+      },
+      {
+        "entity": "18:23:00",
+        "concept_class": "admission_time",
+        "start_offset": 22,
+        "end_offset": 30,
+        "value": "18:23:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "2023-12-12",
+        "concept_class": "discharge_date",
+        "start_offset": 42,
+        "end_offset": 52,
+        "value": "2023-12-12",
+        "unit": "day"
+      },
+      {
+        "entity": "11:35:00",
+        "concept_class": "discharge_time",
+        "start_offset": 53,
+        "end_offset": 61,
+        "value": "11:35:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "60 de ani",
+        "concept_class": "demographic",
+        "start_offset": 395,
+        "end_offset": 404,
+        "value": 60,
+        "unit": "ani"
+      },
+      {
+        "entity": "pacienta",
+        "concept_class": "demographic",
+        "start_offset": 373,
+        "end_offset": 381,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Angina instabila",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 81,
+        "end_offset": 97,
+        "value": null,
+        "unit": null,
+        "icd_code": "I20.0"
+      },
+      {
+        "entity": "Prezenta de implante si de grefe cardiace si vasculare  nespecificate",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 104,
+        "end_offset": 173,
+        "value": null,
+        "unit": null,
+        "icd_code": "Z95.9"
+      },
+      {
+        "entity": "Infarct miocardic vechi",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 180,
+        "end_offset": 203,
+        "value": null,
+        "unit": null,
+        "icd_code": "I25.2"
+      },
+      {
+        "entity": "Prezenta de implant si grefa de angioplastie coronariana",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 210,
+        "end_offset": 266,
+        "value": null,
+        "unit": null,
+        "icd_code": "Z95.5"
+      },
+      {
+        "entity": "Cardiomiopatie ischemica",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 273,
+        "end_offset": 297,
+        "value": null,
+        "unit": null,
+        "icd_code": "I25.5"
+      },
+      {
+        "entity": "Hiperlipidemie mixta",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 304,
+        "end_offset": 324,
+        "value": null,
+        "unit": null,
+        "icd_code": "E78.2"
+      },
+      {
+        "entity": "Tiroidita autoimuna",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 331,
+        "end_offset": 350,
+        "value": null,
+        "unit": null,
+        "icd_code": "E06.3"
+      },
+      {
+        "entity": "TA",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1166,
+        "end_offset": 1168,
+        "value": "126/75",
+        "unit": "mmHg"
+      },
+      {
+        "entity": "SpO2",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1070,
+        "end_offset": 1074,
+        "value": "97",
+        "unit": "%"
+      },
+      {
+        "entity": "AV",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1184,
+        "end_offset": 1186,
+        "value": "69",
+        "unit": "bpm"
+      },
+      {
+        "entity": "FEVS",
+        "concept_class": "Heart Ultrasound",
+        "start_offset": 1500,
+        "end_offset": 1504,
+        "value": "55",
+        "unit": "%"
+      },
+      {
+        "entity": "colesterol",
+        "concept_class": "Lab",
+        "start_offset": 3667,
+        "end_offset": 3677,
+        "value": "80",
+        "unit": "mg/dl"
+      },
+      {
+        "entity": "Aspenter 75 mg  1 cp/zi  la pranz",
+        "concept_class": "Medication",
+        "start_offset": 4527,
+        "end_offset": 4560,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Brilique 90 mg  1 cp x 2/zi  dimineata si seara",
+        "concept_class": "Medication",
+        "start_offset": 4563,
+        "end_offset": 4610,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Mentine dubla terapie antiagreganta (Aspenter Brilique) timp de minim 12 luni. Nu va intrerupe niciunul dintre aceste 2 medicamente fara acordul medicului cardiolog/cardiolog interventionist.",
+        "concept_class": "Medication",
+        "start_offset": 4613,
+        "end_offset": 4804,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Torvazin 80/10 mg  1 cp/zi  seara  cu dozare periodica proful lipidic cu fractiuni. LDLc tinta &lt; 55 mg/dl",
+        "concept_class": "Medication",
+        "start_offset": 4807,
+        "end_offset": 4915,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Praluent 150 mg  1 inj sc la 14 zile",
+        "concept_class": "Medication",
+        "start_offset": 4918,
+        "end_offset": 4954,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Betaloc Zok 100 mg  1 cp/ zi dimineata? si 1/2 cp seara ? cu monitorizarea AV. AV tinta 60 bpm",
+        "concept_class": "Medication",
+        "start_offset": 4957,
+        "end_offset": 5051,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Ramipril 2.5 mg  1 cp?dimineata cu monitorizarea TA si dozare periodica ionograma  creatinina",
+        "concept_class": "Medication",
+        "start_offset": 5054,
+        "end_offset": 5147,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Euthyrox 100 mcg  1 cp/zi  dimineata  conform schemei personale.",
+        "concept_class": "Medication",
+        "start_offset": 5150,
+        "end_offset": 5214,
+        "value": null,
+        "unit": null
+      }
+    ]
+  }
+]
