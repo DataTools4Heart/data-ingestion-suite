@@ -1,0 +1,239 @@
+[
+  {
+    "output": [
+      {
+        "entity": "2022-04-19",
+        "concept_class": "admission_date",
+        "start_offset": 11,
+        "end_offset": 21,
+        "value": "2022-04-19",
+        "unit": "day"
+      },
+      {
+        "entity": "07:39:00",
+        "concept_class": "admission_time",
+        "start_offset": 22,
+        "end_offset": 30,
+        "value": "07:39:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "2022-04-20",
+        "concept_class": "discharge_date",
+        "start_offset": 42,
+        "end_offset": 52,
+        "value": "2022-04-20",
+        "unit": "day"
+      },
+      {
+        "entity": "17:33:00",
+        "concept_class": "discharge_time",
+        "start_offset": 53,
+        "end_offset": 61,
+        "value": "17:33:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "59 de ani",
+        "concept_class": "demographic",
+        "start_offset": 505,
+        "end_offset": 514,
+        "value": 59,
+        "unit": "ani"
+      },
+      {
+        "entity": "pacienta",
+        "concept_class": "demographic",
+        "start_offset": 483,
+        "end_offset": 491,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Ateroscleroza arterelor extremitatilor cu claudicatie intermitenta",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 82,
+        "end_offset": 148,
+        "value": null,
+        "unit": null,
+        "icd_code": "I70.21"
+      },
+      {
+        "entity": "Infarct miocardic vechi",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 155,
+        "end_offset": 178,
+        "value": null,
+        "unit": null,
+        "icd_code": "I25.2"
+      },
+      {
+        "entity": "Insuficienta cardiaca  nespecificata",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 185,
+        "end_offset": 221,
+        "value": null,
+        "unit": null,
+        "icd_code": "I50.9"
+      },
+      {
+        "entity": "Hipertensiunea esentiala (primara)",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 226,
+        "end_offset": 260,
+        "value": null,
+        "unit": null,
+        "icd_code": "I10"
+      },
+      {
+        "entity": "Obezitate  nespecificata",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 267,
+        "end_offset": 291,
+        "value": null,
+        "unit": null,
+        "icd_code": "E66.9"
+      },
+      {
+        "entity": "Alte infarcte cerebrale",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 298,
+        "end_offset": 321,
+        "value": null,
+        "unit": null,
+        "icd_code": "I63.8"
+      },
+      {
+        "entity": "Tutun si nicotina",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 328,
+        "end_offset": 345,
+        "value": null,
+        "unit": null,
+        "icd_code": "T65.2"
+      },
+      {
+        "entity": "Observatie pentru alte boli si afectiuni suspectate",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 352,
+        "end_offset": 403,
+        "value": null,
+        "unit": null,
+        "icd_code": "Z03.8"
+      },
+      {
+        "entity": "Contact cu sau expunere la alte boli transmisibile",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 410,
+        "end_offset": 460,
+        "value": null,
+        "unit": null,
+        "icd_code": "Z20.8"
+      },
+      {
+        "entity": "TA",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1457,
+        "end_offset": 1459,
+        "value": "120/70",
+        "unit": "mmHg"
+      },
+      {
+        "entity": "SpO2",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1287,
+        "end_offset": 1291,
+        "value": "95",
+        "unit": "%"
+      },
+      {
+        "entity": "AV",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1474,
+        "end_offset": 1476,
+        "value": "70",
+        "unit": "bpm"
+      },
+      {
+        "entity": "AV",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1791,
+        "end_offset": 1793,
+        "value": "75",
+        "unit": "bpm"
+      },
+      {
+        "entity": "Pradaxa 150mg  1cp x 2/zi  dimineata si seara.",
+        "concept_class": "Medication",
+        "start_offset": 4589,
+        "end_offset": 4635,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Aspenter 75mg  1cp/zi  seara.",
+        "concept_class": "Medication",
+        "start_offset": 4636,
+        "end_offset": 4665,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Plavix 75mg  1cp/zi  seara.",
+        "concept_class": "Medication",
+        "start_offset": 4666,
+        "end_offset": 4693,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "! Va mentine tripla terapie (Pradaxa  Aspenter  Plavix timp de 1 luna! Se va decide ulterior de catre medicul cardiolog curant conduita terapeutica- in functie de rezultatele investigatiilor hematologice si rezultatului Holter ECG!!!",
+        "concept_class": "Medication",
+        "start_offset": 4694,
+        "end_offset": 4927,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Coryol 6 25mg  1 cp x 2/zi  dimineata si seara.",
+        "concept_class": "Medication",
+        "start_offset": 4928,
+        "end_offset": 4975,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "CoApprovel 150/12.5mg  1cp/zi",
+        "concept_class": "Medication",
+        "start_offset": 4976,
+        "end_offset": 5005,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Caduet 5/20mg  1cp/zi.",
+        "concept_class": "Medication",
+        "start_offset": 5006,
+        "end_offset": 5028,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Dilvas 100mg  1cp x 2/zi.",
+        "concept_class": "Medication",
+        "start_offset": 5029,
+        "end_offset": 5054,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Controloc 40mg  1 cp/zi  dimineata cu 30 min ininate de masa.",
+        "concept_class": "Medication",
+        "start_offset": 5055,
+        "end_offset": 5116,
+        "value": null,
+        "unit": null
+      }
+    ]
+  }
+]

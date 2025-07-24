@@ -1,0 +1,223 @@
+[
+  {
+    "output": [
+      {
+        "entity": "2020-03-19",
+        "concept_class": "admission_date",
+        "start_offset": 11,
+        "end_offset": 21,
+        "value": "2020-03-19",
+        "unit": "day"
+      },
+      {
+        "entity": "08:58:00",
+        "concept_class": "admission_time",
+        "start_offset": 22,
+        "end_offset": 30,
+        "value": "08:58:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "2020-03-20",
+        "concept_class": "discharge_date",
+        "start_offset": 42,
+        "end_offset": 52,
+        "value": "2020-03-20",
+        "unit": "day"
+      },
+      {
+        "entity": "11:53:00",
+        "concept_class": "discharge_time",
+        "start_offset": 53,
+        "end_offset": 61,
+        "value": "11:53:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "55 ani",
+        "concept_class": "demographic",
+        "start_offset": 469,
+        "end_offset": 475,
+        "value": 55,
+        "unit": "ani"
+      },
+      {
+        "entity": "pacienta",
+        "concept_class": "demographic",
+        "start_offset": 447,
+        "end_offset": 455,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Angina instabila",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 81,
+        "end_offset": 97,
+        "value": null,
+        "unit": null,
+        "icd_code": "I20.0"
+      },
+      {
+        "entity": "Cardiomiopatie ischemica",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 104,
+        "end_offset": 128,
+        "value": null,
+        "unit": null,
+        "icd_code": "I25.5"
+      },
+      {
+        "entity": "Hipertensiunea esentiala (primara)",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 133,
+        "end_offset": 167,
+        "value": null,
+        "unit": null,
+        "icd_code": "I10"
+      },
+      {
+        "entity": "Diabet mellitus tip 2 cu complicatii nespecificate",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 174,
+        "end_offset": 224,
+        "value": null,
+        "unit": null,
+        "icd_code": "E11.8"
+      },
+      {
+        "entity": "Hiperlipidemie mixta",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 231,
+        "end_offset": 251,
+        "value": null,
+        "unit": null,
+        "icd_code": "E78.2"
+      },
+      {
+        "entity": "Sindromul apneei de somn obstructive",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 259,
+        "end_offset": 295,
+        "value": null,
+        "unit": null,
+        "icd_code": "G47.32"
+      },
+      {
+        "entity": "Obezitate datorita unui exces caloric",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 302,
+        "end_offset": 339,
+        "value": null,
+        "unit": null,
+        "icd_code": "E66.0"
+      },
+      {
+        "entity": "Tulburare depresiva recurenta  in remisie in prezent",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 346,
+        "end_offset": 398,
+        "value": null,
+        "unit": null,
+        "icd_code": "F33.4"
+      },
+      {
+        "entity": "Tiroidita autoimuna",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 405,
+        "end_offset": 424,
+        "value": null,
+        "unit": null,
+        "icd_code": "E06.3"
+      },
+      {
+        "entity": "TA",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1182,
+        "end_offset": 1184,
+        "value": "130/90",
+        "unit": "mmHg"
+      },
+      {
+        "entity": "Aspenter 75 mg  1 cp /zi la pranz",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 32,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Betaloc Zok 50 mg  1 cp x 2/zi dimineata si seara (cu monitorizarea AV)",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 70,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Tritace 10 mg  1 cp /zi seara (cu monitorizarea TA)",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 50,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Furosemid 40 mg  1 cp /zi dimineata (cu monitorizarea ionogramei)",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 64,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Sortis 40 mg  1 cp /zi seara (cu monitorizarea AST  ALT)",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 55,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Nitropector 20 mg  1 cp x 2 /zi la pranz si seara",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 48,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Pantoprazol 40 mg  1 cp /zi dimineata (cu 30 de minute inainte de masa)",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 70,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Trittico 150 mg  1 cp /zi seara",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 30,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Milurit 100 mg  1 cp /zi dimineata (de continuat tratamentul recomandat anterior  in total 2 luni)",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 97,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Cystone  1 cp x 2 /zi dimineata si seara",
+        "concept_class": "Medication",
+        "start_offset": -1,
+        "end_offset": 39,
+        "value": null,
+        "unit": null
+      }
+    ]
+  }
+]

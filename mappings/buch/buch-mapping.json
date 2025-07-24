@@ -1,0 +1,131 @@
+{
+  "id" : "buch-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/buch/BUCH-Mapping",
+  "name" : "BUCH-Mapping",
+  "title" : "BUCH Mappings Complete\n\nMedication mappings couldn't be created due to lack of clear data regarding Medication details. All Medication details are provided in unstructured, singular strings.",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "BS",
+    "url" : "https://datatools4heart.eu/fhir/schemas/buch/Admission",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "buchContext" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/buch/BUCH-Condition-Map.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "description" : "Condition Mapping FINISHED\nClinical status is left as unknown due to lack of data.",
+    "expression" : {
+      "name" : "Condition Expression",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#row}}" : "{{output.where(concept_class = 'Non-CV comorbidities')}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Condition', %row.start_offset.toString())}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+          },
+          "resourceType" : "Condition",
+          "code" : {
+            "coding" : [ {
+              "code" : "{{%row.icd_code}}",
+              "system" : "http://hl7.org/fhir/sid/icd-10",
+              "@sliceName" : "icd10Code"
+            } ]
+          },
+          "subject" : {
+            "reference" : "{{'Patient/' & mpp:getHashedId('Patient', output.where(concept_class = 'admission_date').start_offset.first().toString())}}"
+          },
+          "clinicalStatus" : {
+            "coding" : [ {
+              "code" : "unknown",
+              "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            } ]
+          }
+        }
+      }
+    }
+  }, {
+    "description" : "Patient Mapping FINISHED\nWith no Patient birthdate data, an assumption was used to determine the birthdate as the admission date subtracted by patient age.\nPatient gender can't be deduced from the data.",
+    "expression" : {
+      "name" : "Patient Expression",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#admRow}}" : "{{output.where(concept_class = 'admission_date')}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Patient',%admRow.start_offset.toString())}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+          },
+          "resourceType" : "Patient",
+          "gender" : "{{'unknown'}}",
+          "birthDate" : "{{((%admRow.value.substring(0,4).toInteger() - output.where(concept_class = 'demographic').value.first().toInteger()).toString()) & %admRow.value.substring(4)}}"
+        }
+      }
+    }
+  }, {
+    "description" : "Encounter Mapping FINISHED\nRequired source 'Class' is set to \"IMP\" due to the lack of data, and the lack of a placeholder entry type.",
+    "expression" : {
+      "name" : "Encounter Exp",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#admRow}}" : "{{output.where(concept_class = 'admission_date')}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Encounter', %admRow.start_offset.toString())}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+          },
+          "resourceType" : "Encounter",
+          "class" : [ {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+              "code" : "IMP"
+            } ]
+          } ],
+          "subject" : {
+            "reference" : "{{'Patient/' & mpp:getHashedId('Patient', %admRow.start_offset.toString())}}"
+          },
+          "actualPeriod" : {
+            "start" : "{{(%admRow.value & ' ' & output.where(concept_class = 'admission_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+            "end" : "{{(output.where(concept_class = 'discharge_date').value.first() & ' ' & output.where(concept_class = 'discharge_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+          },
+          "status" : "{{'completed'}}"
+        }
+      }
+    }
+  }, {
+    "description" : "Observation Mapping FINISHED",
+    "expression" : {
+      "name" : "Observation Exp",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#row}}" : "{{output.where(concept_class = 'signs and symptoms' or concept_class = 'Heart Ultrasound')}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Observation',%row.start_offset.toString())}}",
+          "meta" : {
+            "profile" : [ "http://hl7.org/fhir/StructureDefinition/Observation|5.0.0" ]
+          },
+          "resourceType" : "Observation",
+          "status" : "final",
+          "code" : {
+            "coding" : [ {
+              "code" : "{{(mpp:getConcept(%buchContext, %row.entity)).source_display}}",
+              "system" : "http://loinc.org",
+              "display" : "{{(mpp:getConcept(%buchContext, %row.entity)).source_code}}"
+            } ]
+          },
+          "valueString" : "{{%row.value}}",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "code" : "{{%row.unit}}",
+              "system" : "http://unitsofmeasure.org"
+            } ]
+          }
+        }
+      }
+    }
+  } ]
+}
