@@ -1,0 +1,229 @@
+[
+  {
+    "output": [
+      {
+        "entity": "2024-09-10",
+        "concept_class": "admission_date",
+        "start_offset": 11,
+        "end_offset": 21,
+        "value": "2024-09-10",
+        "unit": "day"
+      },
+      {
+        "entity": "07:31:00",
+        "concept_class": "admission_time",
+        "start_offset": 22,
+        "end_offset": 30,
+        "value": "07:31:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "2024-09-11",
+        "concept_class": "discharge_date",
+        "start_offset": 42,
+        "end_offset": 52,
+        "value": "2024-09-11",
+        "unit": "day"
+      },
+      {
+        "entity": "15:16:00",
+        "concept_class": "discharge_time",
+        "start_offset": 53,
+        "end_offset": 61,
+        "value": "15:16:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "61 ani",
+        "concept_class": "demographic",
+        "start_offset": 899,
+        "end_offset": 905,
+        "value": 61,
+        "unit": "ani"
+      },
+      {
+        "entity": "pacienta",
+        "concept_class": "demographic",
+        "start_offset": 877,
+        "end_offset": 885,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Alte  cardiomiopatii",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 81,
+        "end_offset": 101,
+        "value": null,
+        "unit": null,
+        "icd_code": "I42.8"
+      },
+      {
+        "entity": "Diabet mellitus tip 2 cu alte complicatii specificate",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 109,
+        "end_offset": 162,
+        "value": null,
+        "unit": null,
+        "icd_code": "E11.69"
+      },
+      {
+        "entity": "Obezitate datorita unui exces caloric",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 169,
+        "end_offset": 206,
+        "value": null,
+        "unit": null,
+        "icd_code": "E66.0"
+      },
+      {
+        "entity": "Hiperlipidemie mixta",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 213,
+        "end_offset": 233,
+        "value": null,
+        "unit": null,
+        "icd_code": "E78.2"
+      },
+      {
+        "entity": "Insuficienta mitrala (valva)",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 240,
+        "end_offset": 268,
+        "value": null,
+        "unit": null,
+        "icd_code": "I34.0"
+      },
+      {
+        "entity": "Insuficienta cardiaca congestiva",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 275,
+        "end_offset": 307,
+        "value": null,
+        "unit": null,
+        "icd_code": "I50.0"
+      },
+      {
+        "entity": "Ocluzia si stenoza arterei carotide",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 314,
+        "end_offset": 349,
+        "value": null,
+        "unit": null,
+        "icd_code": "I65.2"
+      },
+      {
+        "entity": "CLASA NYHA II",
+        "concept_class": "CV diseases",
+        "start_offset": 478,
+        "end_offset": 491,
+        "value": "II",
+        "unit": null
+      },
+      {
+        "entity": "NYHA II",
+        "concept_class": "CV diseases",
+        "start_offset": 5080,
+        "end_offset": 5087,
+        "value": "II",
+        "unit": null
+      },
+      {
+        "entity": "TA",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1748,
+        "end_offset": 1750,
+        "value": "130/80",
+        "unit": "mmHg"
+      },
+      {
+        "entity": "SpO2",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1660,
+        "end_offset": 1664,
+        "value": "97",
+        "unit": "%"
+      },
+      {
+        "entity": "FEVS",
+        "concept_class": "Heart Ultrasound",
+        "start_offset": 2159,
+        "end_offset": 2163,
+        "value": "25",
+        "unit": "%"
+      },
+      {
+        "entity": "ASPIRIN CARDIO 100 mg 1cp/zi la pranz  dozeaza periodic HLG",
+        "concept_class": "Medication",
+        "start_offset": 3139,
+        "end_offset": 3198,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "BETALOC ZOK 100 mg 1cp/zi dimineata si 1/2 cp seara cu posibilitrea cresterii dozei pana la 200 mg/zi",
+        "concept_class": "Medication",
+        "start_offset": 3199,
+        "end_offset": 3300,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "ATORIS 80 mg 1cp/zi seara  repeta periodic profil lipidic complet si profil de siguranta",
+        "concept_class": "Medication",
+        "start_offset": 3301,
+        "end_offset": 3389,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "ENTRESTO 97/103 mg mg 1cp x 2/zi dimineata si seara  repeta periodic uree  creatinina  ionograma",
+        "concept_class": "Medication",
+        "start_offset": 3390,
+        "end_offset": 3486,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "FUROSEMID 40mg 1cp la 2 zile  dimineata  repeta periodic uree  creatinina  ionograma",
+        "concept_class": "Medication",
+        "start_offset": 3487,
+        "end_offset": 3571,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "SPIRONOLACTONA 25 mg 1cp/zi la pranz",
+        "concept_class": "Medication",
+        "start_offset": 3572,
+        "end_offset": 3608,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "MILURIT 100 mg 1cp/zi dimineata",
+        "concept_class": "Medication",
+        "start_offset": 3609,
+        "end_offset": 3640,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "XIGDUO 5/1000 mg 1 cp x 2/zi dimineata si seara",
+        "concept_class": "Medication",
+        "start_offset": 3641,
+        "end_offset": 3688,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "INSULINOTERAPIE in functie de glicemie",
+        "concept_class": "Medication",
+        "start_offset": 3689,
+        "end_offset": 3727,
+        "value": null,
+        "unit": null
+      }
+    ]
+  }
+]
