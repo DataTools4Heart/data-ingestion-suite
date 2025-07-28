@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "amc-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
-      "dataFolderPath" : "test-data/datasource",
+      "dataFolderPath" : "test-data/amc",
       "asStream" : false
     }
   },
@@ -118,56 +118,6 @@
       }
     }
   }, {
-    "name" : "patient-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
-    "sourceBinding" : {
-      "patient" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Patient.parquet",
-        "contentType" : "parquet",
-        "options" : { },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "smoking-status-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
-    "sourceBinding" : {
-      "SmokingStatus" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Tabakgebruik.parquet",
-        "contentType" : "parquet",
-        "options" : { },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "cause-of-death-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
-    "sourceBinding" : {
-      "CauseOfDeath" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Overlijdensregistratie.parquet",
-        "contentType" : "parquet",
-        "options" : { },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "condition-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
-    "sourceBinding" : {
-      "Condition" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Probleemlijst.parquet",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
     "name" : "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
     "sourceBinding" : {
@@ -176,19 +126,6 @@
         "path" : "Encounters.parquet",
         "contentType" : "parquet",
         "options" : { },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "medication-administration-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "MedicationAdministration.parquet",
-        "contentType" : "parquet",
-        "options" : { },
-        "preprocessSql" : "select * \nfrom source\nwhere ATCCode != '' and AdministeredAmount IS NOT NULL",
         "sourceRef" : "amc-source"
       }
     }
