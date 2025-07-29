@@ -12,7 +12,7 @@
   "context" : {
     "buchContext" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/buch/BUCH-Condition-Map.csv"
+      "url" : "$CONTEXT_REPO/buch/condition-map.csv"
     }
   },
   "variable" : [ ],
