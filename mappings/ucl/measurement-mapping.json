@@ -44,7 +44,7 @@
   },
   "variable": [
     {
-      "name": "vitalSignCodings",
+      "name": "measurementCodings",
       "language": "text/fhirpath",
       "expression": "trms:translateToCoding(measurement_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc')"
     }
@@ -84,7 +84,7 @@
           "code": {
             "coding": [
               {
-                "{{#loincCoding}}": "{{%vitalSignCodings}}",
+                "{{#loincCoding}}": "{{%measurementCodings}}",
                 "{{*}}": {
                   "system": "http://loinc.org",
                   "code": "{{%loincCoding.code}}",
@@ -106,7 +106,7 @@
       "precondition": {
         "name": "isVitalSign",
         "language": "text/fhirpath",
-        "expression": "mpp:getConcept(%vitalSigns, measurement_concept_id.toString()).exists() and %vitalSignCodings.exists()"
+        "expression": "mpp:getConcept(%vitalSigns, measurement_concept_id.toString()).exists() and %measurementCodings.exists()"
       },
       "expression": {
         "name": "vitalSigns",
@@ -133,7 +133,7 @@
           "code": {
             "coding": [
               {
-                "{{#loincCoding}}": "{{%vitalSignCodings}}",
+                "{{#loincCoding}}": "{{%measurementCodings}}",
                 "{{*}}": {
                   "system": "http://loinc.org",
                   "code": "{{%loincCoding.code}}",
