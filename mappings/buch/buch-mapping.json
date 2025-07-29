@@ -36,9 +36,7 @@
               "@sliceName" : "icd10Code"
             } ]
           },
-          "subject" : {
-            "reference" : "{{'Patient/' & mpp:getHashedId('Patient', output.where(concept_class = 'admission_date').start_offset.first().toString())}}"
-          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', output.where(concept_class = 'admission_date').start_offset.first().toString())}}",
           "clinicalStatus" : {
             "coding" : [ {
               "code" : "unknown",
@@ -85,9 +83,7 @@
               "code" : "IMP"
             } ]
           } ],
-          "subject" : {
-            "reference" : "{{'Patient/' & mpp:getHashedId('Patient', %admRow.start_offset.toString())}}"
-          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %admRow.start_offset.toString())}}",
           "actualPeriod" : {
             "start" : "{{(%admRow.value & ' ' & output.where(concept_class = 'admission_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
             "end" : "{{(output.where(concept_class = 'discharge_date').value.first() & ' ' & output.where(concept_class = 'discharge_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
