@@ -1,26 +1,109 @@
 {
-  "id" : "admission",
-  "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/buch/Admission",
-  "version" : "1.0.0",
-  "name" : "Admission",
-  "description" : "Schema is built manually with an added outer entity to create a proper tree structure, with an addition of 'output' item that holds all the data.",
-  "status" : "draft",
-  "fhirVersion" : "5.0.0",
-  "kind" : "logical",
-  "abstract" : false,
-  "type" : "Admission",
-  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
-  "derivation" : "specialization",
-  "differential" : {
-    "element" : [ {
-      "id" : "Admission",
-      "path" : "Admission",
-      "min" : 0,
-      "max" : "*",
-      "type" : [ {
-        "code" : "Element"
-      } ]
-    } ]
+  "id": "admission",
+  "resourceType": "StructureDefinition",
+  "url": "https://datatools4heart.eu/fhir/schemas/buch/Admission",
+  "version": "1.0.0",
+  "name": "Admission",
+  "title": "Admission",
+  "description": "Schema is built manually with an added outer entity to create a proper tree structure, with an addition of 'output' item that holds all the data.",
+  "status": "draft",
+  "date": "2025-07-29",
+  "publisher": "SRDC",
+  "fhirVersion": "5.0.0",
+  "kind": "logical",
+  "abstract": false,
+  "type": "Admission",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "differential": {
+    "element": [
+      {
+        "id": "Admission",
+        "path": "Admission",
+        "short": "Report from the Bucharest hospital after text processing",
+        "definition": "Report from the Bucharest hospital after text processing"
+      },
+      {
+        "id": "Admission.output",
+        "path": "Admission.output",
+        "short": "Main field for all the data",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "max": "*"
+      },
+      {
+        "id": "Admission.output.entity",
+        "path": "Admission.output.entity",
+        "short": "Entity that was detected in the text",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Admission.output.concept_class",
+        "path": "Admission.output.concept_class",
+        "short": "Which medical concept class the entity belongs to",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Admission.output.start_offset",
+        "path": "Admission.output.start_offset",
+        "short": "Start offset of the concept in the text",
+        "type": [
+          {
+            "code": "integer"
+          }
+        ]
+      },
+      {
+        "id": "Admission.output.end_offset",
+        "path": "Admission.output.end_offset",
+        "short": "End offset of the concept in the text",
+        "type": [
+          {
+            "code": "integer"
+          }
+        ]
+      },
+      {
+        "id": "Admission.output.value",
+        "path": "Admission.output.value",
+        "short": "Field for the value of the concept if available",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Admission.output.unit",
+        "path": "Admission.output.unit",
+        "short": "Unit of the value if available",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Admission.output.icd_code",
+        "path": "Admission.output.icd_code",
+        "short": "ICD code for the concept if available",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      }
+    ]
   }
 }
