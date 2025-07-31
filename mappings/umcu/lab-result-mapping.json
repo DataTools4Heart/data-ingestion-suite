@@ -17,6 +17,14 @@
     "interpretationMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/umcu/lab-interpretation.csv"
+    },
+    "labCodeConversion" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu/lab-results-concept-map.csv"
+    },
+    "labUnitConversion" : {
+      "category" : "unit-conversion",
+      "url" : "$CONTEXT_REPO/umcu/lab-results-unit-conversion.csv"
     }
   },
   "variable" : [ {
@@ -46,8 +54,7 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{LOINCcode}}",
-            "display" : "{{LOINCdisplay}}",
+            "code" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_code')}}",
             "@sliceName" : "loincCode"
           }, {
             "code" : "{{? code_code_original\t}}",
@@ -58,13 +65,7 @@
         "valueString" : "{{? iif(valueString.exists() and valueString != '', valueString) }}",
         "valueQuantity" : {
           "{{#valueQuantityVar}}" : "{{valueQuantity_value}}",
-          "{{?}}" : {
-            "system" : "http://unitsofmeasure.org",
-            "code" : "{{valueQuantity_code_original}}",
-            "unit" : "{{valueQuantity_code_original}}",
-            "value" : "{{valueQuantity_value}}",
-            "comparator" : "{{? iif(valueQuantity_comparator.exists() and valueQuantity_comparator != '', valueQuantity_comparator) }}"
-          }
+          "{{?}}" : "{{mpp:convertAndReturnQuantity(%labUnitConversion, LOINCcode.toString(), valueQuantity_value, valueQuantity_code_original.toString())}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
