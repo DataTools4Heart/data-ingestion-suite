@@ -2,7 +2,7 @@
   "id" : "buch-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/buch/BUCH-Mapping",
   "name" : "BUCH-Mapping",
-  "title" : "BUCH Mappings Complete\n\nMedication mappings couldn't be created due to lack of clear data regarding Medication details. All Medication details are provided in unstructured, singular strings.",
+  "title" : "BUCH Mappings\n\nMedication mappings couldn't be created due to lack of clear data regarding Medication details. All Medication details are provided in unstructured, singular strings.",
   "isDraft" : false,
   "source" : [ {
     "alias" : "BS",
@@ -12,12 +12,12 @@
   "context" : {
     "buchContext" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/buch/condition-map.csv"
+      "url" : "$CONTEXT_REPO/buch/buch-codings-map.csv"
     }
   },
   "variable" : [ ],
   "mapping" : [ {
-    "description" : "Condition Mapping FINISHED\nClinical status is left as unknown due to lack of data.",
+    "description" : "Condition Mapping\nClinical status is left as unknown due to lack of data.",
     "expression" : {
       "name" : "Condition Expression",
       "language" : "application/fhir-template+json",
@@ -47,7 +47,7 @@
       }
     }
   }, {
-    "description" : "Patient Mapping FINISHED\nWith no Patient birthdate data, an assumption was used to determine the birthdate as the admission date subtracted by patient age.\nPatient gender can't be deduced from the data.",
+    "description" : "Patient Mapping\nWith no Patient birthdate data, an assumption was used to determine the birthdate as the admission date subtracted by patient age.\nPatient gender can't be deduced from the data.",
     "expression" : {
       "name" : "Patient Expression",
       "language" : "application/fhir-template+json",
@@ -59,13 +59,13 @@
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
           },
           "resourceType" : "Patient",
-          "gender" : "{{'unknown'}}",
+          "gender" : "unknown",
           "birthDate" : "{{((%admRow.value.substring(0,4).toInteger() - output.where(concept_class = 'demographic').value.first().toInteger()).toString()) & %admRow.value.substring(4)}}"
         }
       }
     }
   }, {
-    "description" : "Encounter Mapping FINISHED\nRequired source 'Class' is set to \"IMP\" due to the lack of data, and the lack of a placeholder entry type.",
+    "description" : "Encounter Mapping\nRequired source 'Class' is set to \"IMP\" due to the lack of data, and the lack of a placeholder entry type.",
     "expression" : {
       "name" : "Encounter Exp",
       "language" : "application/fhir-template+json",
@@ -93,33 +93,122 @@
       }
     }
   }, {
-    "description" : "Observation Mapping FINISHED",
+    "description" : "Observation Mapping for Non-TA Entities\nFEVS excluded due to lack of knowledge about what the entity stands for",
     "expression" : {
       "name" : "Observation Exp",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#row}}" : "{{output.where(concept_class = 'signs and symptoms' or concept_class = 'Heart Ultrasound')}}",
+        "{{#row}}" : "{{output.where((concept_class = 'signs and symptoms') and entity != 'TA')}}",
         "{{*}}" : {
           "id" : "{{mpp:getHashedId('Observation',%row.start_offset.toString())}}",
           "meta" : {
-            "profile" : [ "http://hl7.org/fhir/StructureDefinition/Observation|5.0.0" ]
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
           },
           "resourceType" : "Observation",
-          "status" : "final",
+          "category" : [ {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code" : "vital-signs",
+              "display" : "Vital Signs"
+            } ]
+          } ],
           "code" : {
             "coding" : [ {
-              "code" : "{{(mpp:getConcept(%buchContext, %row.entity)).source_display}}",
               "system" : "http://loinc.org",
-              "display" : "{{(mpp:getConcept(%buchContext, %row.entity)).source_code}}"
+              "code" : "{{(mpp:getConcept(%buchContext, %row.entity)).loinc_code}}",
+              "display" : "{{(mpp:getConcept(%buchContext, %row.entity)).target_display}}",
+              "@sliceName" : "loincCode"
             } ]
           },
-          "valueString" : "{{%row.value}}",
-          "valueCodeableConcept" : {
+          "effectiveDateTime" : "{{(output.where(concept_class = 'admission_date').value.first() & ' ' & output.where(concept_class = 'admission_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "valueQuantity" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{%row.unit}}",
+            "value" : "{{%row.value.toDecimal()}}",
+            "unit" : "{{%row.unit}}"
+          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', output.where(concept_class = 'admission_date').start_offset.first().toString())}}",
+          "status" : "final"
+        }
+      }
+    }
+  }, {
+    "description" : "TA-Systolic",
+    "expression" : {
+      "name" : "Observation TA",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#row}}" : "{{output.where(entity = 'TA')}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Observation', %row.start_offset.toString() & '-sys')}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+          },
+          "resourceType" : "Observation",
+          "category" : [ {
             "coding" : [ {
-              "code" : "{{%row.unit}}",
-              "system" : "http://unitsofmeasure.org"
+              "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code" : "vital-signs",
+              "display" : "Vital Signs"
             } ]
-          }
+          } ],
+          "code" : {
+            "coding" : [ {
+              "system" : "http://loinc.org",
+              "code" : "{{(mpp:getConcept(%buchContext, 'TA-Systolic')).loinc_code}}",
+              "display" : "{{(mpp:getConcept(%buchContext, 'TA-Systolic')).target_display}}",
+              "@sliceName" : "loincCode"
+            } ]
+          },
+          "effectiveDateTime" : "{{(output.where(concept_class = 'admission_date').value.first() & ' ' & output.where(concept_class = 'admission_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "valueQuantity" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{%row.unit}}",
+            "value" : "{{(%row.value).utl:split('/').first().toDecimal()}}",
+            "unit" : "{{%row.unit}}"
+          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', output.where(concept_class = 'admission_date').start_offset.first().toString())}}",
+          "status" : "final"
+        }
+      }
+    }
+  }, {
+    "description" : "TA-Diastolic",
+    "expression" : {
+      "name" : "Observation TA2",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#row}}" : "{{output.where(entity = 'TA')}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Observation', %row.start_offset.toString() & '-dia')}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+          },
+          "resourceType" : "Observation",
+          "category" : [ {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code" : "vital-signs",
+              "display" : "Vital Signs"
+            } ]
+          } ],
+          "code" : {
+            "coding" : [ {
+              "system" : "http://loinc.org",
+              "code" : "{{(mpp:getConcept(%buchContext, 'TA-Diastolic')).loinc_code}}",
+              "display" : "{{(mpp:getConcept(%buchContext, 'TA-Diastolic')).target_display}}",
+              "@sliceName" : "loincCode"
+            } ]
+          },
+          "effectiveDateTime" : "{{(output.where(concept_class = 'admission_date').value.first() & ' ' & output.where(concept_class = 'admission_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "valueQuantity" : {
+            "system" : "http://unitsofmeasure.org",
+            "code" : "{{%row.unit}}",
+            "value" : "{{(%row.value).utl:split('/').last().toDecimal()}}",
+            "unit" : "{{%row.unit}}"
+          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', output.where(concept_class = 'admission_date').start_offset.first().toString())}}",
+          "status" : "final"
         }
       }
     }
