@@ -1,0 +1,39 @@
+{
+  "id" : "buchjob",
+  "name" : "BuchJob",
+  "description" : "Buch",
+  "sourceSettings" : {
+    "buch" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "buch",
+      "sourceUri" : "http://file-system-test-buch",
+      "dataFolderPath" : "test-data/buch",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "BUCH-Mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/BUCH-Mapping",
+    "sourceBinding" : {
+      "BS" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "7.json",
+        "contentType" : "json",
+        "options" : {
+          "multiLine" : "true"
+        },
+        "sourceRef" : "buch"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

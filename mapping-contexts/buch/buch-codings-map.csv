@@ -1,0 +1,6 @@
+source_code,loinc_code,target_display
+"TA-Diastolic","8462-4","Diastolic BP"
+"AV","8867-4","Heart Rate"
+"SpO2","2708-6","Oxygen Saturation in Blood"
+"FEVS","8806‑2","Ventricular Ejection Fraction"
+"TA-Systolic","8480-6","Systolic BP"

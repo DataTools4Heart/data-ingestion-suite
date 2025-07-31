@@ -1,0 +1,221 @@
+[
+  {
+    "output": [
+      {
+        "entity": "2024-09-13",
+        "concept_class": "admission_date",
+        "start_offset": 11,
+        "end_offset": 21,
+        "value": "2024-09-13",
+        "unit": "day"
+      },
+      {
+        "entity": "09:50:00",
+        "concept_class": "admission_time",
+        "start_offset": 22,
+        "end_offset": 30,
+        "value": "09:50:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "2024-09-15",
+        "concept_class": "discharge_date",
+        "start_offset": 42,
+        "end_offset": 52,
+        "value": "2024-09-15",
+        "unit": "day"
+      },
+      {
+        "entity": "09:28:00",
+        "concept_class": "discharge_time",
+        "start_offset": 53,
+        "end_offset": 61,
+        "value": "09:28:00",
+        "unit": "hour:minute:second"
+      },
+      {
+        "entity": "61 ani",
+        "concept_class": "demographic",
+        "start_offset": 363,
+        "end_offset": 369,
+        "value": 61,
+        "unit": "ani"
+      },
+      {
+        "entity": "pacienta",
+        "concept_class": "demographic",
+        "start_offset": 341,
+        "end_offset": 349,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Angina instabila",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 81,
+        "end_offset": 97,
+        "value": null,
+        "unit": null,
+        "icd_code": "I20.0"
+      },
+      {
+        "entity": "Tiroidita autoimuna",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 104,
+        "end_offset": 123,
+        "value": null,
+        "unit": null,
+        "icd_code": "E06.3"
+      },
+      {
+        "entity": "Obezitate datorita unui exces caloric",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 130,
+        "end_offset": 167,
+        "value": null,
+        "unit": null,
+        "icd_code": "E66.0"
+      },
+      {
+        "entity": "Hiperlipidemie mixta",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 174,
+        "end_offset": 194,
+        "value": null,
+        "unit": null,
+        "icd_code": "E78.2"
+      },
+      {
+        "entity": "Infarct miocardic vechi",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 201,
+        "end_offset": 224,
+        "value": null,
+        "unit": null,
+        "icd_code": "I25.2"
+      },
+      {
+        "entity": "Cardiomiopatie ischemica",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 231,
+        "end_offset": 255,
+        "value": null,
+        "unit": null,
+        "icd_code": "I25.5"
+      },
+      {
+        "entity": "Prezenta de implant si grefa de angioplastie coronariana",
+        "concept_class": "Non-CV comorbidities",
+        "start_offset": 262,
+        "end_offset": 318,
+        "value": null,
+        "unit": null,
+        "icd_code": "Z95.5"
+      },
+      {
+        "entity": "TA",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1268,
+        "end_offset": 1270,
+        "value": "130/80",
+        "unit": "mmHg"
+      },
+      {
+        "entity": "SpO2",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1182,
+        "end_offset": 1186,
+        "value": "96",
+        "unit": "%"
+      },
+      {
+        "entity": "AV",
+        "concept_class": "signs and symptoms",
+        "start_offset": 1285,
+        "end_offset": 1287,
+        "value": "65",
+        "unit": "bpm"
+      },
+      {
+        "entity": "FEVS",
+        "concept_class": "Heart Ultrasound",
+        "start_offset": 1827,
+        "end_offset": 1831,
+        "value": "55",
+        "unit": "%"
+      },
+      {
+        "entity": "Aspenter 75 mg  1 cp/zi  la pranz",
+        "concept_class": "Medication",
+        "start_offset": 4270,
+        "end_offset": 4303,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Brilique 90 mg  1 cp x 2/zi  dimineata si seara",
+        "concept_class": "Medication",
+        "start_offset": 4304,
+        "end_offset": 4351,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Torvazin 40/10 mg  1 cp/zi  seara  cu dozare periodica proful lipidic cu fractiuni. LDLc tinta &lt; 55 mg/dl",
+        "concept_class": "Medication",
+        "start_offset": 4352,
+        "end_offset": 4460,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Praluent 150 mg  1 inj sc la 14 zile",
+        "concept_class": "Medication",
+        "start_offset": 4461,
+        "end_offset": 4497,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Betaloc Zok 100 mg  1 cp/ zi dimineata? si 1/2 cp seara ? cu monitorizarea AV. AV tinta 60 bpm",
+        "concept_class": "Medication",
+        "start_offset": 4498,
+        "end_offset": 4592,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Ramipril 2.5 mg  1 cp dimineata cu monitorizarea TA si dozare periodica ionograma  creatinina",
+        "concept_class": "Medication",
+        "start_offset": 4593,
+        "end_offset": 4686,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Nitropector 20mg  1cpx2/zi  dimineata si la pranz;",
+        "concept_class": "Medication",
+        "start_offset": 4687,
+        "end_offset": 4737,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Colchicina 0.5mg  1cp/zi  dimineata (repetare HLG peste o saptamana).",
+        "concept_class": "Medication",
+        "start_offset": 4738,
+        "end_offset": 4807,
+        "value": null,
+        "unit": null
+      },
+      {
+        "entity": "Euthyrox 100 mcg  1 cp/zi  dimineata  conform schemei personale.",
+        "concept_class": "Medication",
+        "start_offset": 4808,
+        "end_offset": 4872,
+        "value": null,
+        "unit": null
+      }
+    ]
+  }
+]
