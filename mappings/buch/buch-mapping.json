@@ -53,7 +53,7 @@
       "language" : "application/fhir-template+json",
       "value" : {
         "{{#admRow}}" : "{{output.where(concept_class = 'admission_date')}}",
-        "{{*}}" : {
+        "{{?}}" : {
           "id" : "{{mpp:getHashedId('Patient',%admRow.start_offset.toString())}}",
           "meta" : {
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
@@ -71,7 +71,7 @@
       "language" : "application/fhir-template+json",
       "value" : {
         "{{#admRow}}" : "{{output.where(concept_class = 'admission_date')}}",
-        "{{*}}" : {
+        "{{?}}" : {
           "id" : "{{mpp:getHashedId('Encounter', %admRow.start_offset.toString())}}",
           "meta" : {
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
@@ -88,7 +88,7 @@
             "start" : "{{(%admRow.value & ' ' & output.where(concept_class = 'admission_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
             "end" : "{{(output.where(concept_class = 'discharge_date').value.first() & ' ' & output.where(concept_class = 'discharge_time').value.first()).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
           },
-          "status" : "{{'completed'}}"
+          "status" : "completed"
         }
       }
     }
