@@ -1,2 +1,3 @@
 MeasName,studyId_0763,identifier_value,effectiveDateTime,Value,UnitName,LOINCcode,LOINCdisplay
 lvef,1,echo1,2021-07-03 10:00:00,14,s,8806-2,lvef
+lvef,1,echo2,2021-07-03 10:00:00,18,s,79990-8,lvef
