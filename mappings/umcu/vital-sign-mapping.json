@@ -14,9 +14,9 @@
     "joinOn" : [ "studyId_0763" ]
   } ],
   "context" : {
-    "vitalsignUnitsMap" : {
+    "vitalSignMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/umcu/vital-sign-units.csv"
+      "url" : "$CONTEXT_REPO/umcu/vital-sign-concept-map.csv"
     }
   },
   "variable" : [ {
@@ -50,7 +50,7 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{LOINCcode}}",
+            "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_code')}}",
             "display" : "{{LOINCdisplay}}",
             "@sliceName" : "loincCode"
           } ]
@@ -58,9 +58,9 @@
         "effectiveDateTime" : "{{effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
-          "code" : "{{mpp:getConcept(%vitalsignUnitsMap, LOINCcode, 'unit_code')}}",
+          "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_unit')}}",
           "value" : "{{iif(valueQuantity_value.exists() and valueQuantity_value != '', valueQuantity_value, component_valueQuantity_value)}}",
-          "unit" : "{{mpp:getConcept(%vitalsignUnitsMap, LOINCcode, 'unit_display')}}"
+          "unit" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_unit')}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter)}}",
