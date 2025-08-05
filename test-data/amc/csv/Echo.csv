@@ -1,2 +1,3 @@
 pseudo_id,Onderzoeksdatum,Onderzoeksstatus,Accessionnummer,OriginalName,ValueQuantity,ValueUnit,LOINCcode,LOINCdisplay
 1,2021-07-05,,echo1,,"1,5",unit,8806-2,LVEF
+1,2021-07-06,,echo1,,"4,5",unit,79992-4,LVEF

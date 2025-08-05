@@ -9,7 +9,12 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/VitalSignBp",
     "joinOn" : [ ]
   } ],
-  "context" : { },
+  "context" : {
+    "vitalSignMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/vital-sign-concept-map.csv"
+    }
+  },
   "variable" : [ ],
   "mapping" : [ {
     "expression" : {
@@ -31,7 +36,7 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{LOINCcode}}",
+            "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_code')}}",
             "display" : "{{LOINCdisplay}}",
             "@sliceName" : "loincCode"
           } ]

@@ -13,7 +13,16 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
     "joinOn" : [ "pseudo_id" ]
   } ],
-  "context" : { },
+  "context" : {
+    "labCodeConversion" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/lab-result-concept-map.csv"
+    },
+    "labUnitConversion" : {
+      "category" : "unit-conversion",
+      "url" : "$CONTEXT_REPO/amc/lab-result-unit-conversion.csv"
+    }
+  },
   "variable" : [ {
     "name" : "relatedEncounters",
     "language" : "text/fhirpath",
@@ -44,17 +53,14 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{LOINCcode}}",
-            "display" : "{{LOINCdisplay}}",
+            "code" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_code')}}",
             "@sliceName" : "loincCode"
           } ]
         },
         "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
-          "system" : "http://unitsofmeasure.org",
-          "code" : "{{UitslagEenheid}}",
-          "unit" : "{{UitslagEenheid}}",
-          "value" : "{{UitslagNumeriek}}"
+          "{{#valueQuantityVar}}" : "{{UitslagNumeriek}}",
+          "{{?}}" : "{{mpp:convertAndReturnQuantity(%labUnitConversion, LOINCcode.toString(), UitslagNumeriek, UitslagEenheid.toString())}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",

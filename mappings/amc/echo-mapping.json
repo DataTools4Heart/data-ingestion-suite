@@ -13,7 +13,12 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
     "joinOn" : [ "pseudo_id" ]
   } ],
-  "context" : { },
+  "context" : {
+    "lvefMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/echo-lvef.csv"
+    }
+  },
   "variable" : [ {
     "name" : "relatedEncounters",
     "language" : "text/fhirpath",
@@ -58,7 +63,7 @@
               "code" : {
                 "coding" : [ {
                   "system" : "http://loinc.org",
-                  "code" : "{{LOINCcode[%ind]}}",
+                  "code" : "{{mpp:getConcept(%lvefMap, LOINCcode[%ind], 'target_code').nav:orElse(LOINCcode[%ind])}}",
                   "display" : "{{LOINCdisplay[%ind]}}"
                 } ],
                 "@sliceName" : "echoParameter"
