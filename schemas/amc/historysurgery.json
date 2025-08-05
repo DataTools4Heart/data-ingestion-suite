@@ -1,28 +1,28 @@
 {
-  "id" : "EncounterEmergency",
+  "id" : "historysurgery",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounteremergency",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/historysurgery",
   "version" : "latest",
-  "name" : "EncounterEmergency",
+  "name" : "HistorySurgery",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "EncounterEmergency",
+  "type" : "HistorySurgery",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "EncounterEmergency",
-      "path" : "EncounterEmergency",
+      "id" : "HistorySurgery",
+      "path" : "HistorySurgery",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "EncounterEmergency.pseudo_id",
-      "path" : "EncounterEmergency.pseudo_id",
+      "id" : "HistorySurgery.pseudo_id",
+      "path" : "HistorySurgery.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -31,90 +31,68 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "EncounterEmergency.SEHOpnameDatum",
-      "path" : "EncounterEmergency.SEHOpnameDatum",
+      "id" : "HistorySurgery.RegistratieDatum",
+      "path" : "HistorySurgery.RegistratieDatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "ED Admission Date"
+      "short" : "Registration Date"
     }, {
-      "id" : "EncounterEmergency.SEHVertrekDatum",
-      "path" : "EncounterEmergency.SEHVertrekDatum",
+      "id" : "HistorySurgery.ProcedureStartDatum",
+      "path" : "HistorySurgery.ProcedureStartDatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "ED Discharge Date"
+      "short" : "Procedure Start Date"
     }, {
-      "id" : "EncounterEmergency.SEHSubSpecialisme",
-      "path" : "EncounterEmergency.SEHSubSpecialisme",
+      "id" : "HistorySurgery.ProcedureEindDatum",
+      "path" : "HistorySurgery.ProcedureEindDatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Procedure End Date"
+    }, {
+      "id" : "HistorySurgery.ChirurgischeVoorgeschiedenisCode",
+      "path" : "HistorySurgery.ChirurgischeVoorgeschiedenisCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ED Sub Specialism"
+      "short" : "Surgical History Code"
     }, {
-      "id" : "EncounterEmergency.HoofdSEHKlacht",
-      "path" : "EncounterEmergency.HoofdSEHKlacht",
+      "id" : "HistorySurgery.ChirurgischeVoorgeschiedenis",
+      "path" : "HistorySurgery.ChirurgischeVoorgeschiedenis",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Main ED Complaint"
+      "short" : "Surgical History Description"
     }, {
-      "id" : "EncounterEmergency.HoofdSEHIngangsklacht",
-      "path" : "EncounterEmergency.HoofdSEHIngangsklacht",
+      "id" : "HistorySurgery.Bron",
+      "path" : "HistorySurgery.Bron",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Main ED Entrance Complaint"
+      "short" : "Source"
     }, {
-      "id" : "EncounterEmergency.BestemmingNaSEH",
-      "path" : "EncounterEmergency.BestemmingNaSEH",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Discharged to (home, hospital, others)",
-      "short" : "Destination After ED"
-    }, {
-      "id" : "EncounterEmergency.VerwijzendZorgverlenerType",
-      "path" : "EncounterEmergency.VerwijzendZorgverlenerType",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Referral (self, GP, hospital, other)",
-      "short" : "Referring Caregiver Type"
-    }, {
-      "id" : "EncounterEmergency.IsEHHtraject",
-      "path" : "EncounterEmergency.IsEHHtraject",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Is first aid encounter?"
-    }, {
-      "id" : "EncounterEmergency.ziekenhuislocatie",
-      "path" : "EncounterEmergency.ziekenhuislocatie",
+      "id" : "HistorySurgery.ziekenhuislocatie",
+      "path" : "HistorySurgery.ziekenhuislocatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -123,8 +101,18 @@
       } ],
       "short" : "Hospital Location"
     }, {
-      "id" : "EncounterEmergency.Patientcontactid",
-      "path" : "EncounterEmergency.Patientcontactid",
+      "id" : "HistorySurgery.TypeCode",
+      "path" : "HistorySurgery.TypeCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Type of code (procedure, operation)"
+    }, {
+      "id" : "HistorySurgery.Patientcontactid",
+      "path" : "HistorySurgery.Patientcontactid",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -133,8 +121,8 @@
       } ],
       "short" : "Encounter ID"
     }, {
-      "id" : "EncounterEmergency.uitgifteDT",
-      "path" : "EncounterEmergency.uitgifteDT",
+      "id" : "HistorySurgery.uitgifteDT",
+      "path" : "HistorySurgery.uitgifteDT",
       "min" : 0,
       "max" : "1",
       "type" : [ {

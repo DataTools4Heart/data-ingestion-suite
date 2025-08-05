@@ -1,5 +1,5 @@
 {
-  "id" : "Condition",
+  "id" : "condition",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/condition",
   "version" : "latest",

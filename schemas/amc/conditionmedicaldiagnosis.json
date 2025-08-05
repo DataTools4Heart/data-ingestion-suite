@@ -1,5 +1,5 @@
 {
-  "id" : "ConditionMedicalDiagnosis",
+  "id" : "conditionmedicaldiagnosis",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/conditionmedicaldiagnosis",
   "version" : "latest",

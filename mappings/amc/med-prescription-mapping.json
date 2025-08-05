@@ -1,12 +1,12 @@
 {
-  "id" : "medication-statement-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/medication-statement-mapping",
-  "name" : "medication-statement-mapping",
-  "title" : "Mapping of AMC's MedicationPrescription table to HFR-MedicationStatement FHIR profile",
+  "id" : "med-prescription-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/med-prescription-mapping",
+  "name" : "med-prescription-mapping",
+  "title" : "Mapping of AMC's MedicationPrescription table to DT4H-MedicationRequest FHIR profile",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationStatement",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationPrescription",
     "joinOn" : [ ]
   } ],
   "context" : { },
@@ -18,9 +18,9 @@
       "value" : {
         "id" : "{{mpp:getHashedId('MedicationStatement', prescriptionID)}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationStatement" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
-        "resourceType" : "MedicationStatement",
+        "resourceType" : "MedicationRequest",
         "medication" : {
           "concept" : {
             "coding" : [ {
@@ -33,21 +33,22 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
-        "effectivePeriod" : {
-          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
-          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd') > StartDate.utl:toFhirDateTime('yyyy-MM-dd'), StopDate.utl:toFhirDateTime('yyyy-MM-dd')) }}"
-        },
         "identifier" : [ {
           "value" : "{{prescriptionID}}"
         } ],
-        "status" : "recorded",
+        "status" : "unknown",
+        "intent" : "order",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/medicationrequest-admin-location",
             "code" : "{{ iif(IsHomeMedication = 'Ja', 'community', 'outpatient') }}"
           } ]
         } ],
-        "dosage" : [ {
+        "effectiveDosePeriod" : {
+          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
+          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd') > StartDate.utl:toFhirDateTime('yyyy-MM-dd'), StopDate.utl:toFhirDateTime('yyyy-MM-dd')) }}"
+        },
+        "dosageInstruction" : [ {
           "text" : "{{? timing }}",
           "route" : {
             "text" : "{{? AdministrationRoute}}"

@@ -193,8 +193,8 @@
       }
     }
   }, {
-    "name" : "medication-statement-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-statement-mapping",
+    "name" : "med-prescription-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/med-prescription-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",

@@ -1,28 +1,28 @@
 {
-  "id" : "medicationstatement",
+  "id" : "medicationprescription",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationStatement",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationPrescription",
   "version" : "latest",
-  "name" : "MedicationStatement",
+  "name" : "MedicationPrescription",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "MedicationStatement",
+  "type" : "MedicationPrescription",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "MedicationStatement",
-      "path" : "MedicationStatement",
+      "id" : "MedicationPrescription",
+      "path" : "MedicationPrescription",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "MedicationStatement.pseudo_id",
-      "path" : "MedicationStatement.pseudo_id",
+      "id" : "MedicationPrescription.pseudo_id",
+      "path" : "MedicationPrescription.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -31,8 +31,8 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "MedicationStatement.PatientContactId",
-      "path" : "MedicationStatement.PatientContactId",
+      "id" : "MedicationPrescription.PatientContactId",
+      "path" : "MedicationPrescription.PatientContactId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -41,8 +41,8 @@
       } ],
       "short" : "Encounter ID"
     }, {
-      "id" : "MedicationStatement.prescriptionID",
-      "path" : "MedicationStatement.prescriptionID",
+      "id" : "MedicationPrescription.prescriptionID",
+      "path" : "MedicationPrescription.prescriptionID",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -52,8 +52,8 @@
       "definition" : "Prescription ID linkage different meds prescribed at the same time.",
       "short" : "Related prescription ID"
     }, {
-      "id" : "MedicationStatement.Ziekenhuislocatie",
-      "path" : "MedicationStatement.Ziekenhuislocatie",
+      "id" : "MedicationPrescription.Ziekenhuislocatie",
+      "path" : "MedicationPrescription.Ziekenhuislocatie",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -62,8 +62,8 @@
       } ],
       "short" : "Hospital Location"
     }, {
-      "id" : "MedicationStatement.StartDate",
-      "path" : "MedicationStatement.StartDate",
+      "id" : "MedicationPrescription.StartDate",
+      "path" : "MedicationPrescription.StartDate",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -72,8 +72,8 @@
       } ],
       "short" : "Prescription Start Date"
     }, {
-      "id" : "MedicationStatement.StopDate",
-      "path" : "MedicationStatement.StopDate",
+      "id" : "MedicationPrescription.StopDate",
+      "path" : "MedicationPrescription.StopDate",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -82,8 +82,8 @@
       } ],
       "short" : "Prescription End Date"
     }, {
-      "id" : "MedicationStatement.IsHomeMedication",
-      "path" : "MedicationStatement.IsHomeMedication",
+      "id" : "MedicationPrescription.IsHomeMedication",
+      "path" : "MedicationPrescription.IsHomeMedication",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -93,8 +93,8 @@
       "definition" : "Indicates whether the medication is prescribed for home use. Values: 'Ja' ('yes') or 'Nee' ('no')",
       "short" : "Is Home Medication?"
     }, {
-      "id" : "MedicationStatement.OrigialMedName",
-      "path" : "MedicationStatement.OrigialMedName",
+      "id" : "MedicationPrescription.OrigialMedName",
+      "path" : "MedicationPrescription.OrigialMedName",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -103,8 +103,8 @@
       } ],
       "definition" : "This is the name of the medication. e.g. LOPERAMIDE CAPSULE 2MG."
     }, {
-      "id" : "MedicationStatement.Dosage",
-      "path" : "MedicationStatement.Dosage",
+      "id" : "MedicationPrescription.Dosage",
+      "path" : "MedicationPrescription.Dosage",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -112,8 +112,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
-      "id" : "MedicationStatement.UnitDosage",
-      "path" : "MedicationStatement.UnitDosage",
+      "id" : "MedicationPrescription.UnitDosage",
+      "path" : "MedicationPrescription.UnitDosage",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -122,8 +122,8 @@
       } ],
       "short" : "Prescribed Dosage "
     }, {
-      "id" : "MedicationStatement.AdministrationRoute",
-      "path" : "MedicationStatement.AdministrationRoute",
+      "id" : "MedicationPrescription.AdministrationRoute",
+      "path" : "MedicationPrescription.AdministrationRoute",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -133,8 +133,8 @@
       "definition" : "The route of administration of the medication. E.g. 'oraal' ('oral'), 'intraveneus' ('intravenous')",
       "short" : "Administration Route"
     }, {
-      "id" : "MedicationStatement.Status",
-      "path" : "MedicationStatement.Status",
+      "id" : "MedicationPrescription.Status",
+      "path" : "MedicationPrescription.Status",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -142,8 +142,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "MedicationStatement.ATCCode",
-      "path" : "MedicationStatement.ATCCode",
+      "id" : "MedicationPrescription.ATCCode",
+      "path" : "MedicationPrescription.ATCCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -151,8 +151,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "MedicationStatement.timing",
-      "path" : "MedicationStatement.timing",
+      "id" : "MedicationPrescription.timing",
+      "path" : "MedicationPrescription.timing",
       "min" : 0,
       "max" : "1",
       "type" : [ {

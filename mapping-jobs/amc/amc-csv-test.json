@@ -220,12 +220,12 @@
       }
     },
     {
-      "name": "medication-statement-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/medication-statement-mapping",
+      "name": "med-prescription-mapping",
+      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/med-prescription-mapping",
       "sourceBinding": {
         "source": {
           "jsonClass": "FileSystemSource",
-          "path": "MedicationStatement.csv",
+          "path": "MedicationPrescription.csv",
           "contentType": "csv",
           "options": {},
           "preprocessSql": "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",

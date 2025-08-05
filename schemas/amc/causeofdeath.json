@@ -1,5 +1,5 @@
 {
-  "id" : "CauseOfDeath",
+  "id" : "causeofdeath",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/causeofdeath",
   "version" : "latest",

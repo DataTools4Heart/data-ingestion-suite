@@ -1,5 +1,5 @@
 {
-  "id" : "ECG",
+  "id" : "ecg",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/ecg",
   "version" : "latest",

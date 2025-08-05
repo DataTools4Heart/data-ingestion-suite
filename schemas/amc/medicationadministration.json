@@ -1,5 +1,5 @@
 {
-  "id" : "MedicationAdministration",
+  "id" : "medicationadministration",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/medicationadministration",
   "version" : "latest",

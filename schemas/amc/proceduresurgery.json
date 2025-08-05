@@ -1,5 +1,5 @@
 {
-  "id" : "ProcedureSurgery",
+  "id" : "proceduresurgery",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/amc/proceduresurgery",
   "version" : "latest",

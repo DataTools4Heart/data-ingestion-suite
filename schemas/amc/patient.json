@@ -1,28 +1,28 @@
 {
-  "id" : "HistoryCondition",
+  "id" : "patient",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/amc/historycondition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/amc/patient",
   "version" : "latest",
-  "name" : "HistoryCondition",
+  "name" : "Patient",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "HistoryCondition",
+  "type" : "Patient",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "HistoryCondition",
-      "path" : "HistoryCondition",
+      "id" : "Patient",
+      "path" : "Patient",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "HistoryCondition.pseudo_id",
-      "path" : "HistoryCondition.pseudo_id",
+      "id" : "Patient.pseudo_id",
+      "path" : "Patient.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -31,48 +31,60 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "HistoryCondition.RegistratieDatum",
-      "path" : "HistoryCondition.RegistratieDatum",
+      "id" : "Patient.Geboortejaar",
+      "path" : "Patient.Geboortejaar",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Registration Date"
+      "short" : "Year of Birth"
     }, {
-      "id" : "HistoryCondition.diagnosecode",
-      "path" : "HistoryCondition.diagnosecode",
+      "id" : "Patient.Geboortemaand",
+      "path" : "Patient.Geboortemaand",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Month of Birth"
+    }, {
+      "id" : "Patient.Geslacht",
+      "path" : "Patient.Geslacht",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diagnosis code (ICD-10)"
+      "short" : "Sex"
     }, {
-      "id" : "HistoryCondition.DiagnoseOmschrijving",
-      "path" : "HistoryCondition.DiagnoseOmschrijving",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Diagnosis Description"
-    }, {
-      "id" : "HistoryCondition.IndicatieDatumVaststelling",
-      "path" : "HistoryCondition.IndicatieDatumVaststelling",
+      "id" : "Patient.Overlijdensdatum",
+      "path" : "Patient.Overlijdensdatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Indication date of diagnosis"
+      "definition" : "Only in-hospital reliable registration date of death",
+      "short" : "Date of death"
     }, {
-      "id" : "HistoryCondition.Bron",
-      "path" : "HistoryCondition.Bron",
+      "id" : "Patient.IsOverleden",
+      "path" : "Patient.IsOverleden",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Only in-hospital reliable registration of death",
+      "short" : "Is Deceased?"
+    }, {
+      "id" : "Patient.Bron",
+      "path" : "Patient.Bron",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -81,28 +93,18 @@
       } ],
       "short" : "Source"
     }, {
-      "id" : "HistoryCondition.ziekenhuislocatie",
-      "path" : "HistoryCondition.ziekenhuislocatie",
+      "id" : "Patient.LandNaam",
+      "path" : "Patient.LandNaam",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Hospital Location"
+      "short" : "Country Name"
     }, {
-      "id" : "HistoryCondition.Patientcontactid",
-      "path" : "HistoryCondition.Patientcontactid",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Encounter ID"
-    }, {
-      "id" : "HistoryCondition.uitgifteDT",
-      "path" : "HistoryCondition.uitgifteDT",
+      "id" : "Patient.uitgifteDT",
+      "path" : "Patient.uitgifteDT",
       "min" : 0,
       "max" : "1",
       "type" : [ {
