@@ -1,2 +1,3 @@
 pseudo_id,EcgMetingId,EcgAfnameDatumTijd,ValueQuantity,LOINCcode,LOINCdisplay
-1,ecg1,2021-07-06 12:00:00,13,8633-0,QRS duration
+1,ecg1,2021-07-06 12:00:00,98,8633-0,QRS duration
+1,ecg2,2021-07-06 12:00:00,164,18505-8,R-R interval

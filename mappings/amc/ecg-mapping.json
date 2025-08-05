@@ -17,6 +17,10 @@
     "ecgComponentUnitsMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/amc/ecg-component-units-concept-map.csv"
+    },
+    "ecgCodeMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/ecg-code-concept-map.csv"
     }
   },
   "variable" : [ {
@@ -51,7 +55,7 @@
           "{{*}}" : {
             "code" : {
               "coding" : [ {
-                "code" : "{{LOINCcode[%ind]}}",
+                "code" : "{{mpp:getConcept(%ecgCodeMap, LOINCcode[%ind], 'target_code').nav:orElse(LOINCcode[%ind])}}",
                 "system" : "http://loinc.org",
                 "display" : "{{LOINCdisplay[%ind]}}"
               } ]
