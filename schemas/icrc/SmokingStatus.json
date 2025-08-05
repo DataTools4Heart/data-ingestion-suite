@@ -1,5 +1,5 @@
 {
-  "id" : "SmokingStatus",
+  "id" : "smokingstatus",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/smokingstatus",
   "version" : "latest",

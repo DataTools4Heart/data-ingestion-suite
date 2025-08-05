@@ -1,5 +1,5 @@
 {
-  "id" : "OMOP-Condition",
+  "id" : "omop-condition",
   "resourceType" : "StructureDefinition",
   "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Condition",
   "version" : "latest",

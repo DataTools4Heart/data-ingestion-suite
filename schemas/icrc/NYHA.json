@@ -1,5 +1,5 @@
 {
-  "id" : "NYHA",
+  "id" : "nyha",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/nyha",
   "name" : "NYHA",

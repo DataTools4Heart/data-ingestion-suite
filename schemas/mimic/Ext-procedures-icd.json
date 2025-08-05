@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-procedures-icd",
+  "id" : "ext-procedures-icd",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-procedures-icd",
   "version" : "latest",

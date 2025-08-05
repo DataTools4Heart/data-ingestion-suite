@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-d-icd-diagnoses",
+  "id" : "ext-d-icd-diagnoses",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-d-icd-diagnoses",
   "version" : "latest",

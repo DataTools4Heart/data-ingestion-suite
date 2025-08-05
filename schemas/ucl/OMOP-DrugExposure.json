@@ -1,5 +1,5 @@
 {
-  "id" : "OMOP-DrugExposure",
+  "id" : "omop-drugexposure",
   "resourceType" : "StructureDefinition",
   "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
   "version" : "latest",

@@ -1,5 +1,5 @@
 {
-  "id" : "Symptom",
+  "id" : "symptom",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/symptom",
   "version" : "latest",

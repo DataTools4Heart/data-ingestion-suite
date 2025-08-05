@@ -1,5 +1,5 @@
 {
-  "id" : "OMOP-Measurement",
+  "id" : "omop-measurement",
   "resourceType" : "StructureDefinition",
   "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Measurement",
   "version" : "latest",

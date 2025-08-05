@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-omr",
+  "id" : "ext-omr",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-omr",
   "version" : "latest",

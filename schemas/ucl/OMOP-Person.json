@@ -1,5 +1,5 @@
 {
-  "id" : "OMOP-Person",
+  "id" : "omop-person",
   "resourceType" : "StructureDefinition",
   "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Person",
   "version" : "latest",

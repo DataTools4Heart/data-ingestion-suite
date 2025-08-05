@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-careunits",
+  "id" : "ext-careunits",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-careunits",
   "version" : "latest",

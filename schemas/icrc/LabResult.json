@@ -1,5 +1,5 @@
 {
-  "id" : "LabResult",
+  "id" : "labresult",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/labresult",
   "version" : "latest",

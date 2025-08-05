@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-transfers",
+  "id" : "ext-transfers",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-transfers",
   "version" : "latest",

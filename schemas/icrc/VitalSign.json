@@ -1,5 +1,5 @@
 {
-  "id" : "VitalSign",
+  "id" : "vitalsign",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/vitalsign",
   "version" : "latest",

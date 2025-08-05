@@ -1,5 +1,5 @@
 {
-  "id" : "OMOP-NoteNlp",
+  "id" : "omop-notenlp",
   "resourceType" : "StructureDefinition",
   "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-NoteNlp",
   "version" : "latest",

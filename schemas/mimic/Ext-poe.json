@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-poe",
+  "id" : "ext-poe",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-poe",
   "version" : "latest",

@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-emar",
+  "id" : "ext-emar",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar",
   "version" : "latest",

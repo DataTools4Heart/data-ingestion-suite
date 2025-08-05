@@ -1,5 +1,5 @@
 {
-  "id" : "OMOP-Note",
+  "id" : "omop-note",
   "resourceType" : "StructureDefinition",
   "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Note",
   "version" : "latest",

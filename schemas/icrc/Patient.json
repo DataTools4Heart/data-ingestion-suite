@@ -1,5 +1,5 @@
 {
-  "id" : "Patient",
+  "id" : "patient",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/patient",
   "version" : "latest",

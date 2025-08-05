@@ -1,5 +1,5 @@
 {
-  "id" : "Ext-patients",
+  "id" : "ext-patients",
   "resourceType" : "StructureDefinition",
   "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-patients",
   "version" : "latest",

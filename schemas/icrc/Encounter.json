@@ -1,5 +1,5 @@
 {
-  "id" : "Encounter",
+  "id" : "encounter",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/encounter",
   "version" : "latest",
