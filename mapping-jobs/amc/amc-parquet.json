@@ -106,7 +106,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0\r\ngroup by pseudo_id, EcgMetingId",
+        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300)\r\ngroup by pseudo_id, EcgMetingId",
         "sourceRef" : "amc-source"
       },
       "encounters" : {

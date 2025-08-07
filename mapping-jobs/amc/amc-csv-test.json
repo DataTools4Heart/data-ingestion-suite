@@ -1,242 +1,227 @@
 {
-  "id": "amc-csv-test",
-  "name": "amc-csv-test",
-  "description": "Executes AMC mappings on the CSV test dataset and stores the results in the local onFHIR server.",
-  "sourceSettings": {
-    "file-system-csv": {
-      "jsonClass": "FileSystemSourceSettings",
-      "name": "file-system-csv",
-      "sourceUri": "http://file-system-test-csv",
-      "dataFolderPath": "test-data/amc/csv",
-      "asStream": false
+  "id" : "amc-csv-test",
+  "name" : "amc-csv-test",
+  "description" : "Executes AMC mappings on the CSV test dataset and stores the results in the local onFHIR server.",
+  "sourceSettings" : {
+    "file-system-csv" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "file-system-csv",
+      "sourceUri" : "http://file-system-test-csv",
+      "dataFolderPath" : "test-data/amc/csv",
+      "asStream" : false
     }
   },
-  "sinkSettings": {
-    "jsonClass": "FhirRepositorySinkSettings",
-    "fhirRepoUrl": "http://localhost:8080/fhir",
-    "returnMinimal": true
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
   },
-  "mappings": [
-    {
-      "name": "vital-sign-bp-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
-      "sourceBinding": {
-        "VitalSignBp": {
-          "jsonClass": "FileSystemSource",
-          "path": "VitalSignBp.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "vital-sign-length-weight-bmi-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-weight-bmi-mapping",
-      "sourceBinding": {
-        "source": {
-          "jsonClass": "FileSystemSource",
-          "path": "VitalSignLengthWeightBMI.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "vital-sign-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
-      "sourceBinding": {
-        "source": {
-          "jsonClass": "FileSystemSource",
-          "path": "VitalSign.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "laboratory-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
-      "sourceBinding": {
-        "source": {
-          "jsonClass": "FileSystemSource",
-          "path": "Laboratory.csv",
-          "contentType": "csv",
-          "options": {
-            "distinct": "true"
-          },
-          "sourceRef": "file-system-csv"
-        },
-        "encounters": {
-          "jsonClass": "FileSystemSource",
-          "path": "Encounter.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "echo-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
-      "sourceBinding": {
-        "source": {
-          "jsonClass": "FileSystemSource",
-          "path": "Echo.csv",
-          "contentType": "csv",
-          "options": {
-            "distinct": "true",
-            "timestampFormat": "yyyy-MM-dd HH:mm:ss"
-          },
-          "preprocessSql": "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
-          "sourceRef": "file-system-csv"
-        },
-        "encounters": {
-          "jsonClass": "FileSystemSource",
-          "path": "Encounter.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "ecg-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/ecg-mapping",
-      "sourceBinding": {
-        "source": {
-          "jsonClass": "FileSystemSource",
-          "path": "ECG.csv",
-          "contentType": "csv",
-          "options": {
-            "distinct": "true"
-          },
-          "preprocessSql": "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0\r\ngroup by pseudo_id, EcgMetingId",
-          "sourceRef": "file-system-csv"
-        },
-        "encounters": {
-          "jsonClass": "FileSystemSource",
-          "path": "Encounter.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "patient-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
-      "sourceBinding": {
-        "patient": {
-          "jsonClass": "FileSystemSource",
-          "path": "Patient.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "smoking-status-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
-      "sourceBinding": {
-        "SmokingStatus": {
-          "jsonClass": "FileSystemSource",
-          "path": "SmokingStatus.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "cause-of-death-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
-      "sourceBinding": {
-        "CauseOfDeath": {
-          "jsonClass": "FileSystemSource",
-          "path": "CauseOfDeath.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "condition-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
-      "sourceBinding": {
-        "Condition": {
-          "jsonClass": "FileSystemSource",
-          "path": "Condition.csv",
-          "contentType": "csv",
-          "options": {
-            "distinct": "true"
-          },
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "encounter-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
-      "sourceBinding": {
-        "Encounter": {
-          "jsonClass": "FileSystemSource",
-          "path": "Encounter.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "medication-administration-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
-      "sourceBinding": {
-        "source": {
-          "jsonClass": "FileSystemSource",
-          "path": "MedicationAdministration.csv",
-          "contentType": "csv",
-          "options": {},
-          "preprocessSql": "select * \nfrom source\nwhere ATCCode != '' and AdministeredAmount IS NOT NULL",
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "procedure-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
-      "sourceBinding": {
-        "Procedure": {
-          "jsonClass": "FileSystemSource",
-          "path": "Procedure.csv",
-          "contentType": "csv",
-          "options": {},
-          "sourceRef": "file-system-csv"
-        }
-      }
-    },
-    {
-      "name": "med-prescription-mapping",
-      "mappingRef": "https://datatools4heart.eu/fhir/mappings/amc/med-prescription-mapping",
-      "sourceBinding": {
-        "source": {
-          "jsonClass": "FileSystemSource",
-          "path": "MedicationPrescription.csv",
-          "contentType": "csv",
-          "options": {},
-          "preprocessSql": "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",
-          "sourceRef": "file-system-csv"
-        }
+  "mappings" : [ {
+    "name" : "vital-sign-bp-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
+    "sourceBinding" : {
+      "VitalSignBp" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VitalSignBp.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
       }
     }
-  ],
-  "dataProcessingSettings": {
-    "saveErroneousRecords": false,
-    "archiveMode": "off"
+  }, {
+    "name" : "vital-sign-length-weight-bmi-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-weight-bmi-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VitalSignLengthWeightBMI.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VitalSign.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "laboratory-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Laboratory.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "file-system-csv"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounter.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Echo.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true",
+          "timestampFormat" : "yyyy-MM-dd HH:mm:ss"
+        },
+        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
+        "sourceRef" : "file-system-csv"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounter.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ECG.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300)\r\ngroup by pseudo_id, EcgMetingId",
+        "sourceRef" : "file-system-csv"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounter.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
+    "sourceBinding" : {
+      "patient" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Patient.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "smoking-status-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
+    "sourceBinding" : {
+      "SmokingStatus" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "SmokingStatus.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "cause-of-death-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
+    "sourceBinding" : {
+      "CauseOfDeath" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "CauseOfDeath.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
+    "sourceBinding" : {
+      "Condition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Condition.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
+    "sourceBinding" : {
+      "Encounter" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounter.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "medication-administration-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MedicationAdministration.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "preprocessSql" : "select * \nfrom source\nwhere ATCCode != '' and AdministeredAmount IS NOT NULL",
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+    "sourceBinding" : {
+      "Procedure" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Procedure.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "med-prescription-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/med-prescription-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MedicationPrescription.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
   },
-  "useFhirSinkAsIdentityService": false
+  "useFhirSinkAsIdentityService" : false
 }
