@@ -28,5 +28,49 @@
         "active" : true
       }
     }
+  }, {
+    "precondition" : {
+      "name" : "deceased",
+      "language" : "text/fhirpath",
+      "expression" : "Deceduto = 1"
+    },
+    "expression" : {
+      "name" : "death",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "79378-6",
+            "display" : "Cause of death",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{Data_Diagnosi}}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "R99"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "identifier" : [ {
+          "value" : "{{CODICE_SANITARIO.toString()}}"
+        } ]
+      }
+    }
   } ]
 }
