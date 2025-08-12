@@ -1,0 +1,4 @@
+"person_id","gender_concept_id","year_of_birth","month_of_birth","day_of_birth","birth_datetime","race_concept_id","ethnicity_concept_id","location_id","provider_id","care_site_id","person_source_value","gender_source_value","gender_source_concept_id","race_source_value","race_source_concept_id","ethnicity_source_value","ethnicity_source_concept_id"
+1,8507,2009,7,24,2009-07-24 00:00:00.000,8527,38003564,1,,,"04683160-3dab-1094-6336-b64d63a18c38",M,0,white,0,nonhispanic,0
+2,8532,1968,8,13,1968-08-13 00:00:00.000,8527,38003564,2,,,"052f7c08-34f3-f465-2722-d347f1d6f296",F,0,white,0,nonhispanic,0
+3,8507,1995,12,21,1995-12-21 00:00:00.000,8527,38003564,3,,,"07779dd9-d9e7-ff52-289c-bbeaa9f26c72",M,0,white,0,nonhispanic,0

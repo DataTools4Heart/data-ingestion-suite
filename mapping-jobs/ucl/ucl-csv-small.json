@@ -1,0 +1,255 @@
+{
+  "id" : "ucl-csv-small",
+  "name" : "ucl-csv-small",
+  "description" : "Executes OMOP mappings and stores the generated FHIR resources in the local onFHIR server.",
+  "sourceSettings" : {
+    "ucl-data" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "ucl-data",
+      "sourceUri" : "http://datatools4heart.eu/data-ingestion-suite/ucl-data",
+      "dataFolderPath" : "test-data/ucl/small",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "terminologyServiceSettings" : {
+    "jsonClass" : "LocalFhirTerminologyServiceSettings",
+    "folderPath" : "./terminology-systems/DT4HTerminologyService",
+    "conceptMapFiles" : [ {
+      "id" : "snomedToIcd10.csv",
+      "name" : "snomedToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10",
+      "sourceValueSetUrl" : "http://snomed.info/sct",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "omopToIcd10.csv",
+      "name" : "omopToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "omopToRxNorm.csv",
+      "name" : "omopToRxNorm.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://www.nlm.nih.gov/research/umls/rxnorm"
+    }, {
+      "id" : "omopToIcd10Pcs.csv",
+      "name" : "omopToIcd10Pcs.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-icd10pcs",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+    }, {
+      "id" : "omopToLoinc.csv",
+      "name" : "omopToLoinc.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://loinc.org"
+    }, {
+      "id" : "omopToSnomed.csv",
+      "name" : "omopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
+    }, {
+      "id" : "snomedToIcd10Pcs.csv",
+      "name" : "snomedToIcd10Pcs.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/snomed-to-icd10pcs",
+      "sourceValueSetUrl" : "http://snomed.info/sct",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
+    }, {
+      "id" : "noteNlpSnomedToIcd10.csv",
+      "name" : "noteNlpSnomedToIcd10.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10"
+    }, {
+      "id" : "ethnicityOmopToSnomed.csv",
+      "name" : "ethnicityOmopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
+    }, {
+      "id" : "symptomsOmopToSnomed.csv",
+      "name" : "symptomsOmopToSnomed.csv",
+      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed",
+      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
+      "targetValueSetUrl" : "http://snomed.info/sct"
+    } ],
+    "codeSystemFiles" : [ ]
+  },
+  "mappings" : [ {
+    "name" : "cause-of-death-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/cause-of-death-mapping",
+    "sourceBinding" : {
+      "omopDeath" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "DEATH.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/condition-mapping",
+    "sourceBinding" : {
+      "omopCondition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "CONDITION_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/encounter-mapping",
+    "sourceBinding" : {
+      "omopVisitOccurrence" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "medication-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/medication-mapping",
+    "sourceBinding" : {
+      "omopDrugExposure" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "DRUG_EXPOSURE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "nlp-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping",
+    "sourceBinding" : {
+      "noteNlp" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NOTE_NLP.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "concept" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "CONCEPT.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "note" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NOTE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/patient-mapping",
+    "sourceBinding" : {
+      "omopPerson" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "PERSON.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopDeath" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "DEATH.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopLocation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "LOCATION.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/procedure-mapping",
+    "sourceBinding" : {
+      "omopProcedure" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "PROCEDURE_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MEASUREMENT.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
+    "name" : "observation-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/observation-mapping",
+    "sourceBinding" : {
+      "observation" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "OBSERVATION.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

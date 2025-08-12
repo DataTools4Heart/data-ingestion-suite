@@ -1,4 +1,6 @@
-"visit_occurrence_id","person_id","visit_concept_id","visit_start_date","visit_start_datetime","visit_end_date","visit_end_datetime","visit_type_concept_id","provider_id","care_site_id","visit_source_value","visit_source_concept_id","admitting_source_concept_id","admitting_source_value","discharge_to_concept_id","discharge_to_source_value","preceding_visit_occurrence_id"
-1,1,9203,2015-06-10,2015-06-10 00:00:00.000,2015-06-10,2015-06-10 00:00:00.000,32827,6,229,"11690e86-9303-d39d-9e7a-cc380e2e59e6",0,0,,0,,
-2,2,9202,2015-07-10,2015-07-10 00:00:00.000,2015-07-10,2015-07-10 00:00:00.000,32827,285,279,b90420b8-edb6-9c4d-b7ea-23c6fabc1666,0,0,,0,,18
-3,3,9202,2015-09-03,2015-09-03 00:00:00.000,2015-09-03,2015-09-03 00:00:00.000,32827,184,282,"678ce2f1-a893-a835-6adb-1b0156be2b67",0,0,,0,,11
+visit_occurrence_id,person_id,visit_concept_id,visit_start_date,visit_start_datetime,visit_end_date,visit_end_datetime,visit_type_concept_id,provider_id,care_site_id,visit_source_value,visit_source_concept_id,admitted_from_concept_id,admitted_from_source_value,discharged_to_concept_id,discharged_to_source_value,preceding_visit_occurrence_id
+23610,444,9202,2047-07-21,2047-07-21 00:00:00+00:00,2047-07-21,2047-07-21 00:00:00+00:00,32817,,1,,0,0,,0,,
+74675,581,9201,2054-10-16,,2054-10-16,2054-10-16 00:00:00+00:00,32817,,1,,0,0,,0,,
+11590,1095,9202,2058-07-24,2058-07-24 00:00:00+00:00,2058-07-24,2058-07-24 00:00:00+00:00,32817,,1,,0,0,,0,,
+34339,509,9202,2022-05-22,2022-05-22 00:00:00+00:00,2022-05-22,2022-05-22 00:00:00+00:00,32817,,1,,0,0,,0,,
+17903,1041,9202,2054-10-28,2054-10-28 00:00:00+00:00,2054-10-28,2054-10-28 00:00:00+00:00,32817,,1,,0,0,,0,,

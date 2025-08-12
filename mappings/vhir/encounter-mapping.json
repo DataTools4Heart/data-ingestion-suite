@@ -53,12 +53,7 @@
             "start": "{{? iif(VISIT_START_DATETIME.empty(), VISIT_START_DATE, VISIT_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
             "end": "{{? iif(VISIT_END_DATEtime.empty(), VISIT_END_DATE, VISIT_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}"
           },
-          "status": "completed",
-          "diagnosis": [
-            {
-              "condition": "{{? mpp:createFhirReferenceWithHashedId('Condition', CONDITION_OCCURRENCE_ID.toString())}}"
-            }
-          ]
+          "status": "completed"
         }
       }
     }

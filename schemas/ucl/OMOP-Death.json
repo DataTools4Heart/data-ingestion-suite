@@ -45,8 +45,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
       "id" : "OMOP-Death.death_type_concept_id",

@@ -63,8 +63,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
       "id" : "OMOP-DrugExposure.drug_exposure_end_date",
@@ -81,8 +81,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
       "id" : "OMOP-DrugExposure.verbatim_end_date",
@@ -90,8 +90,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
       "id" : "OMOP-DrugExposure.drug_type_concept_id",
@@ -126,8 +126,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "OMOP-DrugExposure.days_supply",
@@ -135,8 +135,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
       "id" : "OMOP-DrugExposure.sig",
@@ -171,8 +171,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "OMOP-DrugExposure.visit_occurrence_id",
@@ -180,8 +180,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "OMOP-DrugExposure.visit_detail_id",

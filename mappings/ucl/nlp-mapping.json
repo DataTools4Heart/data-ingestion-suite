@@ -3,6 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping",
   "name" : "nlp-mapping",
   "title" : "nlp-mapping",
+  "isDraft" : true,
   "source" : [ {
     "alias" : "noteNlp",
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-NoteNlp",
@@ -23,16 +24,26 @@
     "expression" : "trms:translateToCoding(note_nlp_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10').code"
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "isConditionAndCodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "%concept.domain_id = 'Condition' and (%codes.exists() or %concept.vocabulary_id = 'ICD10')"
+    },
     "expression" : {
       "name" : "condition",
       "language" : "application/fhir-template+json",
       "value" : {
+        "id" : "{{mpp:getHashedId('Condition', note_nlp_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
         "code" : {
           "coding" : {
             "{{#codingVar}}" : "{{iif(%concept.vocabulary_id = 'ICD10', %concept.concept_code, %codes)}}",
             "{{*}}" : {
-              "system" : "http://hl7.org/fhir/sid/icd-10",
-              "code" : "{{%codingVar}}"
+              "code" : "{{%codingVar}}",
+              "system" : "http://hl7.org/fhir/sid/icd-10"
             }
           }
         },
@@ -41,21 +52,11 @@
         "onsetDateTime" : "{{iif(nlp_datetime.empty(), nlp_date.toString(), nlp_datetime)}}",
         "clinicalStatus" : {
           "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
-            "code" : "active"
+            "code" : "active",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
           } ]
-        },
-        "id" : "{{mpp:getHashedId('Condition', note_nlp_id.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
-        },
-        "resourceType" : "Condition"
+        }
       }
-    },
-    "precondition" : {
-      "name" : "isConditionAndCodeExists",
-      "language" : "text/fhirpath",
-      "expression" : "%concept.domain_id = 'Condition' and (%codes.exists() or %concept.vocabulary_id = 'ICD10')"
     }
   } ]
 }

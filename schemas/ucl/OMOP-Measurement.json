@@ -63,8 +63,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
       "id" : "OMOP-Measurement.measurement_time",
@@ -126,8 +126,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "OMOP-Measurement.range_high",
@@ -135,8 +135,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "OMOP-Measurement.provider_id",
@@ -153,8 +153,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "OMOP-Measurement.visit_detail_id",
@@ -193,6 +193,15 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
+      "id" : "OMOP-Measurement.unit_source_concept_id",
+      "path" : "OMOP-Measurement.unit_source_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
       "id" : "OMOP-Measurement.value_source_value",
       "path" : "OMOP-Measurement.value_source_value",
       "min" : 0,
@@ -200,6 +209,24 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Measurement.measurement_event_id",
+      "path" : "OMOP-Measurement.measurement_event_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Measurement.meas_event_field_concept_id",
+      "path" : "OMOP-Measurement.meas_event_field_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     } ]
   }

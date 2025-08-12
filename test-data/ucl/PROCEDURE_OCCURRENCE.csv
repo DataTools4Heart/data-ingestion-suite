@@ -1,2 +1,6 @@
-"procedure_occurrence_id","person_id","procedure_concept_id","procedure_date","procedure_datetime","procedure_type_concept_id","modifier_concept_id","quantity","provider_id","visit_occurrence_id","visit_detail_id","procedure_source_value","procedure_source_concept_id","modifier_source_value"
-1,1,4094240,2023-09-15,2023-09-15 00:00:00.000,32827,0,,184,2,1000002,"1260009003",37166719,
+procedure_occurrence_id,person_id,procedure_concept_id,procedure_date,procedure_datetime,procedure_end_date,procedure_end_datetime,procedure_type_concept_id,modifier_concept_id,quantity,provider_id,visit_occurrence_id,visit_detail_id,procedure_source_value,procedure_source_concept_id,modifier_source_value
+257642,523,4300757,2041-11-14,2041-11-14 05:40:00+00:00,,,32817,0,,,,,,44514112,
+455331,338,4239130,2045-01-14,2045-01-14 02:00:00+00:00,2045-01-14,2045-01-14 02:00:00+00:00,32817,0,,,3542.0,,,0,
+312405,512,4094240,2040-04-19,2040-04-19 19:00:00+00:00,2040-04-19,2040-04-19 19:00:00+00:00,32817,0,,,42071.0,,,0,
+284337,117,37018292,2033-08-06,2033-08-06 19:00:00+00:00,2033-08-06,2033-08-06 19:00:00+00:00,32817,4049846,,,64217.0,,,0,
+151595,1041,4094240,2054-10-28,2054-10-28 14:30:00+00:00,,,32817,0,,,,,,44514603,

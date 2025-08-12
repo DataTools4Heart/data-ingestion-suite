@@ -93,6 +93,42 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
+    }, {
+      "id" : "OMOP-Location.country_concept_id",
+      "path" : "OMOP-Location.country_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "OMOP-Location.country_source_value",
+      "path" : "OMOP-Location.country_source_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Location.latitude",
+      "path" : "OMOP-Location.latitude",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "OMOP-Location.longitude",
+      "path" : "OMOP-Location.longitude",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
     } ]
   }
 }

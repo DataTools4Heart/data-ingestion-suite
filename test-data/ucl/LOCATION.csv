@@ -1,4 +1,6 @@
-"location_id","address_1","address_2","city","state","zip","county","location_source_value"
-1,,,Acton,MA,"0",,"0"
-2,,,Arlington,MA,"2476",,"2476"
-3,,,Avon,MA,"0",,"0"
+location_id,address_1,address_2,city,state,zip,county,location_source_value,country_concept_id,country_source_value,latitude,longitude
+1086,,,,,E01000851,,,0,,,
+932,,,,,E01004695,,,0,,,
+278,,,,,E01000870,,,0,,,
+901,,,,,E01002788,,,0,,,
+939,,,,,E01004754,,,0,,,

@@ -63,8 +63,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
       "id" : "OMOP-VisitOccurrence.visit_end_date",
@@ -81,8 +81,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
       "id" : "OMOP-VisitOccurrence.visit_type_concept_id",
@@ -130,8 +130,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-VisitOccurrence.admitting_source_concept_id",
-      "path" : "OMOP-VisitOccurrence.admitting_source_concept_id",
+      "id" : "OMOP-VisitOccurrence.admitted_from_concept_id",
+      "path" : "OMOP-VisitOccurrence.admitted_from_concept_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -139,8 +139,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-VisitOccurrence.admitting_source_value",
-      "path" : "OMOP-VisitOccurrence.admitting_source_value",
+      "id" : "OMOP-VisitOccurrence.admitted_from_source_value",
+      "path" : "OMOP-VisitOccurrence.admitted_from_source_value",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -148,8 +148,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "OMOP-VisitOccurrence.discharge_to_concept_id",
-      "path" : "OMOP-VisitOccurrence.discharge_to_concept_id",
+      "id" : "OMOP-VisitOccurrence.discharged_to_concept_id",
+      "path" : "OMOP-VisitOccurrence.discharged_to_concept_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -157,8 +157,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "OMOP-VisitOccurrence.discharge_to_source_value",
-      "path" : "OMOP-VisitOccurrence.discharge_to_source_value",
+      "id" : "OMOP-VisitOccurrence.discharged_to_source_value",
+      "path" : "OMOP-VisitOccurrence.discharged_to_source_value",
       "min" : 0,
       "max" : "1",
       "type" : [ {

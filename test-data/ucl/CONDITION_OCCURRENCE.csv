@@ -1,4 +1,6 @@
-"condition_occurrence_id",person_id,"condition_concept_id","condition_start_date","condition_start_datetime","condition_end_date","condition_end_datetime","condition_type_concept_id","condition_status_concept_id","stop_reason","provider_id",visit_occurrence_id,"visit_detail_id","condition_source_value","condition_source_concept_id","condition_status_source_value"
-1,1,45538369,2020-04-11,2020-04-11 00:00:00.000,2020-05-17,2020-05-17 00:00:00.000,32827,32902,,,1,1,"267036007",312437,
-2,2,45586581,2024-07-17,2024-07-17 00:00:00.000,2024-09-24,2024-09-24 00:00:00.000,32827,32901,,,2,2,"125605004",75053,
-3,1,45558450,2020-04-12,2020-04-12 00:00:00.000,2020-04-16,2020-04-16 00:00:00.000,32827,32901,,,1,2,"125605004",75053,
+condition_occurrence_id,person_id,condition_concept_id,condition_start_date,condition_start_datetime,condition_end_date,condition_end_datetime,condition_type_concept_id,condition_status_concept_id,stop_reason,provider_id,visit_occurrence_id,visit_detail_id,condition_source_value,condition_source_concept_id,condition_status_source_value
+49633,444,80180,2049-08-04,2049-08-04 00:00:00+00:00,,,32840,0,,,,,,0,
+143423,1238,4060313,2034-05-08,2034-05-08 09:48:52+00:00,,,32817,32892,,,,,,0,
+88817,783,439846,2055-09-01,2055-09-01 00:00:00+00:00,2055-09-21,2055-09-21 00:00:00+00:00,32821,32909,,,49544.0,,,45543181,
+111556,416,197320,2049-08-06,2049-08-06 00:00:00+00:00,2049-08-07,2049-08-07 00:00:00+00:00,32821,32909,,,83738.0,,,45567829,
+100661,1298,435829,2044-02-10,2044-02-10 00:00:00+00:00,2044-02-10,2044-02-10 00:00:00+00:00,32821,32909,,,29190.0,,,45548005,

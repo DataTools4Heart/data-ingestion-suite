@@ -1,4 +1,6 @@
-"drug_exposure_id","person_id","drug_concept_id","drug_exposure_start_date","drug_exposure_start_datetime","drug_exposure_end_date","drug_exposure_end_datetime","verbatim_end_date","drug_type_concept_id","stop_reason","refills","quantity","days_supply","sig","route_concept_id","lot_number","provider_id","visit_occurrence_id","visit_detail_id","drug_source_value","drug_source_concept_id","route_source_value","dose_unit_source_value"
-1,1,19080128,2015-04-14,2015-04-14 00:00:00.000,2015-07-07,2015-07-07 00:00:00.000,2015-07-07,38000180,,0,0,84,,0,"0",137,1,1000150,"314076",19080128,,
-2,1,19009384,2018-10-23,2018-10-23 00:00:00.000,2018-11-20,2018-11-20 00:00:00.000,2018-11-20,38000180,,0,0,28,,0,"0",137,1,1000035,"106892",19009384,,
-3,1,19033893,2015-07-07,2015-07-07 00:00:00.000,2015-07-21,2015-07-21 00:00:00.000,2015-07-21,38000180,,0,0,14,,0,"0",137,1,1000047,"206905",19033893,,
+drug_exposure_id,person_id,drug_concept_id,drug_exposure_start_date,drug_exposure_start_datetime,drug_exposure_end_date,drug_exposure_end_datetime,verbatim_end_date,drug_type_concept_id,stop_reason,refills,quantity,days_supply,sig,route_concept_id,lot_number,provider_id,visit_occurrence_id,visit_detail_id,drug_source_value,drug_source_concept_id,route_source_value,dose_unit_source_value
+517329,800,1334535,2046-07-30,2046-07-30 16:31:00+00:00,2046-07-30,2046-07-30 16:31:00+00:00,,32818,,,1.0,,,4132161,,33106.0,73769.0,,,0,,
+417519,536,42479436,2031-01-26,2031-01-26 11:00:00+00:00,2031-01-26,2031-01-26 11:00:00+00:00,,32818,,,,,,4171047,,32810.0,76286.0,,,21236850,,
+175261,1075,1334535,2031-09-09,2031-09-09 00:00:00+00:00,2032-03-15,2032-03-15 00:00:00+00:00,2032-03-15,32833,Reorder,,14.0,,,4132161,,11886.0,,,,0,,
+387822,469,1167323,2054-08-30,2054-08-30 05:20:00+00:00,2054-08-30,2054-08-30 05:20:00+00:00,,32818,,,1.0,,,4132161,,43507.0,63421.0,,,21274360,,
+64362,233,46234523,2032-12-18,2032-12-18 07:00:00+00:00,2032-12-18,2032-12-18 07:00:00+00:00,,32818,,,1.0,,,4132161,,34852.0,73026.0,,,0,,

@@ -1,0 +1,3 @@
+"observation_id","person_id","observation_concept_id","observation_date","observation_datetime","observation_type_concept_id","value_as_number","value_as_string","value_as_concept_id","qualifier_concept_id","unit_concept_id","provider_id","visit_occurrence_id","visit_detail_id","observation_source_value","observation_source_concept_id","unit_source_value","qualifier_source_value"
+1,2,36305765,2021-02-07,2021-02-07 00:00:00.000,38000280,,,0,0,0,1,2234,1002234,Class III,36305765,,
+2,1,43054909,2022-08-19,2022-08-19 00:00:00.000,38000280,,,0,0,0,2,23,1000023,Never smoked tobacco (finding),43054909,,

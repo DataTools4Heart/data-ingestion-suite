@@ -32,7 +32,7 @@
         "resourceType" : "Patient",
         "gender" : "{{iif(gender_concept_id=8532, 'female', iif(gender_concept_id=8507, 'male', 'unknown'))}}",
         "birthDate" : "{{iif(birth_datetime.exists(), birth_datetime.substring(0,10), iif(month_of_birth.exists() and day_of_birth.exists(), (year_of_birth + '-' + month_of_birth + '-' + day_of_birth).utl:toFhirDate('yyyy-MM-dd'), iif(month_of_birth.exists(), (year_of_birth + '-' + month_of_birth).utl:toFhirDate('yyyy-MM'), year_of_birth.utl:toFhirDate('yyyy'))))}}",
-        "deceasedDateTime" : "{{? iif(%omopDeath.death_datetime.exists(), %omopDeath.death_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS'), %omopDeath.death_date.utl:toFhirDate('yyyy-MM-dd'))}}",
+        "deceasedDateTime" : "{{? iif(%omopDeath.death_datetime.exists(), %omopDeath.death_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), %omopDeath.death_date.utl:toFhirDate('yyyy-MM-dd'))}}",
         "identifier" : [ {
           "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}",
@@ -53,6 +53,50 @@
           "valueCodeableConcept" : {
             "coding" : [ "{{* iif(ethnicity_concept_id = 38003564, trms:translateToCoding(race_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed'),trms:translateToCoding(ethnicity_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/ethnicity-omop-to-snomed'))}}" ]
           }
+        } ]
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "deceased",
+      "language" : "text/fhirpath",
+      "expression" : "%omopDeath.death_datetime.exists() or %omopDeath.death_date.exists()"
+    },
+    "expression" : {
+      "name" : "death",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', person_id.toString() & '_Death')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "79378-6",
+            "display" : "Cause of death",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{iif(%omopDeath.death_datetime.exists(), %omopDeath.death_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), %omopDeath.death_date.utl:toFhirDate('yyyy-MM-dd'))}}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "R99"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "identifier" : [ {
+          "value" : "{{person_id.toString()}}"
         } ]
       }
     }
