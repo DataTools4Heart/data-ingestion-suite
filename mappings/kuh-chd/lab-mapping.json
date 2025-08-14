@@ -61,7 +61,7 @@
           "unit" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
           "value" : "{{value}}"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
         "identifier" : [ {
           "value" : "{{identifier}}"
