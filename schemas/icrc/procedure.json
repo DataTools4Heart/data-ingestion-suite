@@ -1,5 +1,5 @@
 {
-  "id" : "Procedure",
+  "id" : "procedure",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/icrc/procedure",
   "version" : "latest",
