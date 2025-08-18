@@ -25,11 +25,8 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "authoredOn" : "{{ReferralDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "requester" : {
-          "display" : "{{requester}}"
+          "display" : "{{ReferringCareUnitAddress}}"
         },
-        "performer" : [ {
-          "display" : "{{performer}}"
-        } ],
         "identifier" : [ {
           "value" : "{{subject.toString() & '-' & DocumentID.toString()}}"
         } ],
