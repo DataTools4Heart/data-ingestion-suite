@@ -1,8 +1,8 @@
 source_code,source_unit,target_code,target_unit,conversion_function
 "29463-7","kg",29463-7,"kg","$this"
-"59408-5","%","2708-6","%","$this"
+"59408-5","%","59408-5","%","$this"
 "76534-7","mm[Hg]","8480-6","mm[Hg]","$this"
 "76535-4","mm[Hg]","8462-4","mm[Hg]","$this"
-"76536-2","mm[Hg]","8478-0","mm[Hg]","$this"
+"76536-2","mm[Hg]","76536-2","mm[Hg]","$this"
 "8302-2","cm","8302-2","cm","$this"
 "89270-3","kg/m2","39156-5","kg/m2","$this"
