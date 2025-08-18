@@ -34,7 +34,7 @@
         } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
         "actualPeriod" : {
-          "start" : "{{admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "start" : "{{admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
           "end" : "{{dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
         "identifier" : [ {

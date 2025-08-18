@@ -36,7 +36,9 @@
         } ],
         "status" : "completed",
         "intent" : "{{intent}}",
-        "authoredOn" : "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+        "effectiveDosePeriod" : {
+          "start": "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}"
+        },
         "dosageInstruction" : [ {
           "timing" : {
             "repeat" : {
