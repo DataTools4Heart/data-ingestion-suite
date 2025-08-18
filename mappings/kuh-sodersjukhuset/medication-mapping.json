@@ -7,10 +7,18 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Medication",
-    "joinOn" : [ ]
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/kuh-sodersjukhuset/Encounter",
+    "joinOn" : [ "subject" ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "encounter",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(admissionDateTime <= %context.date and dischargeDateTime >= %context.date).first()"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
@@ -31,6 +39,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %encounter.identifier)}}",
         "identifier" : [ {
           "value" : "{{identifier}}"
         } ],

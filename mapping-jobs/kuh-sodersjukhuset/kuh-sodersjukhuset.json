@@ -133,6 +133,13 @@
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "kuh-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "kuh-source"
       }
     }
   }, {
