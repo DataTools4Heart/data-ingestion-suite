@@ -1,0 +1,79 @@
+{
+  "id" : "ecg-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-chd/ecg-mapping",
+  "name" : "ecg-mapping",
+  "title" : "ECG table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/ECG",
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/Encounter",
+    "joinOn" : [ "subject" ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', 'chd' & subject.toString() & effectiveDateTime.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "code" : {
+          "coding" : [ {
+            "code" : "34534-8",
+            "system" : "http://loinc.org",
+            "display" : "12 lead EKG panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "component" : {
+          "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}" : {
+            "code" : {
+              "coding" : [ {
+                "code" : "{{component[%ind]}}",
+                "system" : "http://loinc.org"
+              } ]
+            },
+            "valueQuantity" : {
+              "{{#valueQuantityVar}}" : "{{ iif(component[%ind] = '8633-0', true) }}",
+              "{{?}}" : {
+                "code" : "ms",
+                "system" : "http://unitsofmeasure.org",
+                "value" : "{{value[%ind].toDecimal()}}",
+                "unit" : "millisecond"
+              }
+            },
+            "valueCodeableConcept" : {
+              "{{#valueCodeableConceptVar}}" : "{{ iif(component[%ind] = '76281-5', true) }}",
+              "{{?}}" : {
+                "coding" : [ {
+                  "code" : "{{value[%ind]}}",
+                  "system" : "http://loinc.org"
+                } ]
+              }
+            }
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "identifier" : [ {
+          "value" : "{{subject.toString() & effectiveDateTime.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

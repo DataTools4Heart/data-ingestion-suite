@@ -1,0 +1,90 @@
+{
+  "id" : "ecg",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/ECG",
+  "version" : "latest",
+  "name" : "ECG",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "ECG",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "ECG",
+      "path" : "ECG",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "ECG.identifier",
+      "path" : "ECG.identifier",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ECG.subject",
+      "path" : "ECG.subject",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ECG.category",
+      "path" : "ECG.category",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "ECG.code",
+      "path" : "ECG.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Fixed: 34534-8"
+    }, {
+      "id" : "ECG.effectiveDateTime",
+      "path" : "ECG.effectiveDateTime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "ECG.component",
+      "path" : "ECG.component",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "There is only Rhythm type (76281-5) and QRSduration (8633-0)"
+    }, {
+      "id" : "ECG.value",
+      "path" : "ECG.value",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

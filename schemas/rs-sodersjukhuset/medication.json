@@ -1,0 +1,106 @@
+{
+  "id" : "medication",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Medication",
+  "version" : "latest",
+  "name" : "Medication",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Medication",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Medication",
+      "path" : "Medication",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Medication.identifier",
+      "path" : "Medication.identifier",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.subject",
+      "path" : "Medication.subject",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.date",
+      "path" : "Medication.date",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "Medication.status",
+      "path" : "Medication.status",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.intent",
+      "path" : "Medication.intent",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.medication",
+      "path" : "Medication.medication",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.dosage",
+      "path" : "Medication.dosage",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Medication.dosageStrength",
+      "path" : "Medication.dosageStrength",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "Medication.dosageUnit",
+      "path" : "Medication.dosageUnit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

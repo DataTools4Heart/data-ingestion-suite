@@ -1,0 +1,67 @@
+{
+  "id" : "vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-chd/vital-sign-mapping",
+  "name" : "vital-sign-mapping",
+  "title" : "VitalSign table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/VitalSign",
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/Encounter",
+    "joinOn" : [ "subject" ]
+  } ],
+  "context" : {
+    "vitalSignUnits" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/rs-chd/vital-sign-units.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')).first() "
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', 'chd' & subject.toString() & code.toString() & effectiveDateTime.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{code}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
+          "value" : "{{value}}",
+          "unit" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "identifier" : [ {
+          "value" : "{{subject.toString() & '-' & code.toString() & '-' & effectiveDateTime.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

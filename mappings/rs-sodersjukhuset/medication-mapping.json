@@ -1,0 +1,71 @@
+{
+  "id" : "medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/medication-mapping",
+  "name" : "medication-mapping",
+  "title" : "MedicationOrdination table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Medication",
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Encounter",
+    "joinOn" : [ "subject" ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "encounter",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(admissionDateTime <= %context.date and dischargeDateTime >= %context.date).first()"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', identifier)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{medication}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %encounter.identifier)}}",
+        "identifier" : [ {
+          "value" : "{{identifier}}"
+        } ],
+        "status" : "completed",
+        "intent" : "{{intent}}",
+        "effectiveDosePeriod" : {
+          "start": "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}"
+        },
+        "dosageInstruction" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "{{? iif(dosage > 0, dosage)}}",
+              "period" : "{{1}}",
+              "periodUnit" : "d"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "system" : "http://unitsofmeasure.org",
+              "code" : "{{dosageUnit}}",
+              "value" : "{{? dosageStrength}}",
+              "unit" : "{{dosageUnit}}"
+            }
+          } ]
+        } ]
+      }
+    }
+  } ]
+}

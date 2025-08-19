@@ -1,0 +1,79 @@
+{
+  "id" : "referral",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Referral",
+  "version" : "latest",
+  "name" : "Referral",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Referral",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Referral",
+      "path" : "Referral",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Referral.identifier",
+      "path" : "Referral.identifier",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Referral.subject",
+      "path" : "Referral.subject",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Referral.status",
+      "path" : "Referral.status",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Referral.authoredOn",
+      "path" : "Referral.authoredOn",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "Referral.requester",
+      "path" : "Referral.requester",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Referral.performer",
+      "path" : "Referral.performer",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

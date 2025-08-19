@@ -1,0 +1,40 @@
+{
+  "id" : "referral-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/referral-mapping",
+  "name" : "referral-mapping",
+  "title" : "Referral table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Referral",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('ServiceRequest', identifier)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Referral" ]
+        },
+        "resourceType" : "ServiceRequest",
+        "intent" : "order",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
+        "authoredOn" : "{{authoredOn.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+        "requester" : {
+          "display" : "{{requester}}"
+        },
+        "performer" : [ {
+          "display" : "{{performer}}"
+        } ],
+        "identifier" : [ {
+          "value" : "{{identifier}}"
+        } ],
+        "status" : "completed"
+      }
+    }
+  } ]
+}

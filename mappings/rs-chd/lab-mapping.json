@@ -1,0 +1,72 @@
+{
+  "id" : "lab-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-chd/lab-mapping",
+  "name" : "lab-mapping",
+  "title" : "LabResult table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/LabResult",
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/Encounter",
+    "joinOn" : [ "subject" ]
+  } ],
+  "context" : {
+    "vitalSignUnits" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/rs-chd/lab-units.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')).first() "
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "labValueExists",
+      "language" : "text/fhirpath",
+      "expression" : "value.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', 'chd' & identifier)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{code}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
+          "unit" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
+          "value" : "{{value}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "identifier" : [ {
+          "value" : "{{identifier}}"
+        } ]
+      }
+    }
+  } ]
+}

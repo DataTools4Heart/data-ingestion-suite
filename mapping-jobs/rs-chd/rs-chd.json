@@ -1,0 +1,201 @@
+{
+  "id" : "rs-chd",
+  "name" : "rs-chd",
+  "description" : "For CHD hospitals (4 different hospitals) in Stockholm, Sweden",
+  "sourceSettings" : {
+    "rs-source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "rs-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/rs-data",
+      "dataFolderPath" : "test-data/rs/chd",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/patient-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Patient.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/vital-sign-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VitalSign.txt",
+        "contentType" : "tsv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/nyha-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NYHAAssessment.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/echo-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Echo.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "lab-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/lab-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "LabResult.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "symptom-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/symptom-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Symptom.txt",
+        "contentType" : "tsv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "referral-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/referral-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Referral.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/encounter-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/ecg-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ECG.txt",
+        "contentType" : "tsv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\ngroup by subject, effectiveDateTime",
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/condition-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Condition.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "hospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

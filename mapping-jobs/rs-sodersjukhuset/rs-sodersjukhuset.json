@@ -1,0 +1,214 @@
+{
+  "id" : "rs-sodersjukhuset",
+  "name" : "rs-sodersjukhuset",
+  "description" : "For Södersjukhuset hospital in Stockholm, Sweden",
+  "sourceSettings" : {
+    "rs-source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "rs-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/rs-data",
+      "dataFolderPath" : "test-data/rs/sodersjukhuset",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/patient-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Patient.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/vital-sign-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VitalSign.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/nyha-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NYHAAssessment.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/echo-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Echo.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "lab-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/lab-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "LabResult.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "symptom-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/symptom-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Symptom.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "medication-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/medication-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MedicationOrdination.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "referral-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/referral-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Referral.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/encounter-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/ecg-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ECG.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(identifier) as identifier,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\ngroup by subject, effectiveDateTime",
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/condition-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Condition.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

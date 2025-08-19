@@ -1,0 +1,79 @@
+{
+  "id" : "procedure",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/Procedure",
+  "version" : "latest",
+  "name" : "Procedure",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Procedure",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Procedure",
+      "path" : "Procedure",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Procedure.identifier",
+      "path" : "Procedure.identifier",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.subject",
+      "path" : "Procedure.subject",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.status",
+      "path" : "Procedure.status",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.category",
+      "path" : "Procedure.category",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Procedure.code",
+      "path" : "Procedure.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Procedure.occurenceDateTime",
+      "path" : "Procedure.occurenceDateTime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ]
+    } ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id" : "medicationrequest",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/MedicationRequest",
+  "version" : "latest",
+  "name" : "MedicationRequest",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "MedicationRequest",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "MedicationRequest",
+      "path" : "MedicationRequest",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "MedicationRequest.subject",
+      "path" : "MedicationRequest.subject",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.TimestampSaved",
+      "path" : "MedicationRequest.TimestampSaved",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.TimestampRead_pr",
+      "path" : "MedicationRequest.TimestampRead_pr",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.Dosage",
+      "path" : "MedicationRequest.Dosage",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.Strength",
+      "path" : "MedicationRequest.Strength",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.StrengthUnit",
+      "path" : "MedicationRequest.StrengthUnit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.DoseForm",
+      "path" : "MedicationRequest.DoseForm",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.PackageDescription",
+      "path" : "MedicationRequest.PackageDescription",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.MaxNumberOfDispensations",
+      "path" : "MedicationRequest.MaxNumberOfDispensations",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.NoOfPackages",
+      "path" : "MedicationRequest.NoOfPackages",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    } ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id" : "referral-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-chd/referral-mapping",
+  "name" : "referral-mapping",
+  "title" : "Referral table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/Referral",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('ServiceRequest', 'chd' & subject.toString() & DocumentID.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Referral" ]
+        },
+        "resourceType" : "ServiceRequest",
+        "intent" : "order",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "authoredOn" : "{{ReferralDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "requester" : {
+          "display" : "{{ReferringCareUnitAddress}}"
+        },
+        "identifier" : [ {
+          "value" : "{{subject.toString() & '-' & DocumentID.toString()}}"
+        } ],
+        "status" : "completed"
+      }
+    }
+  } ]
+}
