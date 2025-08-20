@@ -28,7 +28,7 @@
     "precondition" : {
       "name" : "labValueExists",
       "language" : "text/fhirpath",
-      "expression" : "value.exists()"
+      "expression" : "value.exists() and effectiveDateTime.exists() and code != 'S-TSH'"
     },
     "expression" : {
       "name" : "result",

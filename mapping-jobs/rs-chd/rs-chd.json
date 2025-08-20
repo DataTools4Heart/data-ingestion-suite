@@ -162,7 +162,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\ngroup by subject, effectiveDateTime",
+        "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\nwhere component IS NOT NULL\r\ngroup by subject, effectiveDateTime",
         "sourceRef" : "rs-source"
       },
       "encounters" : {

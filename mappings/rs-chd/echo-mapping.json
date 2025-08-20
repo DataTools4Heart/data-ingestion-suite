@@ -24,7 +24,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Patient', 'chd' & subject.toString() & effectiveDateTime.toString())}}",
+        "id" : "{{mpp:getHashedId('Patient', 'chd' & subject.toString() & effectiveDateTime.toString() & LVEF)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
         },
@@ -65,7 +65,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
         "identifier" : [ {
-          "value" : "{{subject.toString() & '-' & effectiveDateTime.toString()}}"
+          "value" : "{{subject.toString() & '-' & effectiveDateTime.toString() & '-' LVEF}}"
         } ],
         "status" : "final"
       }

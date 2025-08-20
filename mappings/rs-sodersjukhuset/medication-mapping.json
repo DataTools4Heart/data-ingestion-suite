@@ -20,6 +20,11 @@
     "expression" : "%encounters.where(admissionDateTime <= %context.date and dischargeDateTime >= %context.date).first()"
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "dateExists",
+      "language" : "text/fhirpath",
+      "expression" : "date.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -46,7 +51,7 @@
         "status" : "completed",
         "intent" : "{{intent}}",
         "effectiveDosePeriod" : {
-          "start": "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}"
+          "start" : "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}"
         },
         "dosageInstruction" : [ {
           "timing" : {
