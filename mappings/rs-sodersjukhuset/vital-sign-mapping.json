@@ -29,7 +29,7 @@
     "precondition" : {
       "name" : "filterOutExtremeValues",
       "language" : "text/fhirpath",
-      "expression" : "(code = '8302-2' and value < 300) or (code = '29463-7' and value < 300) or (code = '2708-6' and value < 100) or (code != '8302-2') or (code != '29463-7') or (code != '2708-6')"
+      "expression" : "(code = '8302-2' and value < 300) or (code = '29463-7' and value < 300) or (code = '2708-6' and value < 100) or (code != '8302-2' and code != '29463-7' and code != '2708-6')"
     },
     "expression" : {
       "name" : "result",
