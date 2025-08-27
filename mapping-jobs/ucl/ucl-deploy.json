@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "ucl-data",
       "sourceUri" : "http://datatools4heart.eu/data-ingestion-suite/ucl-data",
-      "dataFolderPath" : "test-data/ucl",
+      "dataFolderPath" : "test-data/ucl-prod",
       "asStream" : false
     }
   },
