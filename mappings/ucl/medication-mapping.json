@@ -9,88 +9,60 @@
     "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-DrugExposure",
     "joinOn" : [ ]
   } ],
-  "context" : { },
+  "context" : {
+    "medicationTypeConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/ucl/medication-type.csv"
+    },
+    "omopToAtcConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/ucl/omop-to-atc.csv"
+    }
+  },
   "variable" : [ {
-    "name" : "rxNormCodes",
+    "name" : "atcCodes",
     "language" : "text/fhirpath",
-    "expression" : "trms:translateToCoding(drug_concept_id.toString(),'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-rxnorm').code"
-  }, {
-    "name" : "atcIngredientCodes",
-    "language" : "text/fhirpath",
-    "expression" : "rxn:getMedicationDetails(%rxNormCodes).ingredientAndStrength.select(rxn:getATC(activeIngredientRxcui)).where($this.exists())"
+    "expression" : "mpp:getConcept(%omopToAtcConceptMap, drug_concept_id.toString())"
   } ],
   "mapping" : [ {
-    "description" : "Current dataset only has these 4 drug_type_concept_id s and nearly all of them are 32818:\n32818\tEHR administration record\n32833\tEHR order\n32838\tEHR prescription\n32865\tPatient self-report",
     "precondition" : {
       "name" : "isMedicationAdministration",
       "language" : "text/fhirpath",
-      "expression" : "drug_type_concept_id = 32818"
+      "expression" : " mpp:getConcept(%medicationTypeConceptMap,drug_type_concept_id.toString(), 'source_display').exists() and %atcCodes.empty().not()"
     },
     "expression" : {
-      "name" : "med-admin",
+      "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#ingredient}}" : "{{%atcIngredientCodes}}",
-        "{{*}}" : {
-          "id" : "{{mpp:getHashedId('MedicationAdministration', drug_exposure_id.toString() & '_' & %ingredient)}}",
-          "meta" : {
-            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
-          },
-          "resourceType" : "MedicationAdministration",
-          "medication" : {
-            "concept" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %ingredient, {})}}"
-          },
-          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-          "occurencePeriod" : {
-            "start" : "{{iif(drug_exposure_start_datetime.exists(),drug_exposure_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'),drug_exposure_start_date)}}",
-            "end" : "{{? iif(drug_exposure_end_datetime.exists(), drug_exposure_end_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), drug_exposure_end_date)}}"
-          },
-          "dosage" : {
-            "dose" : {
-              "value" : "{{quantity.toDecimal()}}"
+        "id" : "{{mpp:getHashedId('MedicationAdministration', drug_exposure_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+        },
+        "resourceType" : "MedicationAdministration",
+        "medication" : {
+          "concept" : {
+            "coding" : {
+              "{{#codingVar}}" : "{{%atcCodes}}",
+              "{{*}}" : {
+                "system" : "{{%codingVar.target_system}}",
+                "code" : "{{%codingVar.target_code}}",
+                "display" : "{{%codingVar.target_display}}"
+              }
             }
-          },
-          "identifier" : [ {
-            "value" : "{{drug_exposure_id.toString() & '_' & %ingredient}}"
-          } ],
-          "status" : "completed"
-        }
-      }
-    }
-  }, {
-    "description" : "Current dataset only has these 4 drug_type_concept_id and nearly all of them are 32818:\n32818\tEHR administration record\n32833\tEHR order\n32838\tEHR prescription\n32865\tPatient self-report",
-    "precondition" : {
-      "name" : "isMedRequest",
-      "language" : "text/fhirpath",
-      "expression" : "drug_type_concept_id = 32838 or drug_type_concept_id = 32833"
-    },
-    "expression" : {
-      "name" : "med-pres",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "{{#ingredient}}" : "{{%atcIngredientCodes}}",
-        "{{*}}" : {
-          "id" : "{{mpp:getHashedId('MedicationRequest', drug_exposure_id.toString() & '_' & %ingredient)}}",
-          "meta" : {
-            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
-          },
-          "resourceType" : "MedicationRequest",
-          "medication" : {
-            "concept" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc', %ingredient, {})}}"
-          },
-          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-          "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
-          "identifier" : [ {
-            "value" : "{{drug_exposure_id.toString() & '_' & %ingredient}}"
-          } ],
-          "status" : "unknown",
-          "intent" : "order",
-          "effectiveDosePeriod" : {
-            "start" : "{{iif(drug_exposure_start_datetime.exists(),drug_exposure_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'),drug_exposure_start_date)}}",
-            "end" : "{{? iif(drug_exposure_end_datetime.exists(), drug_exposure_end_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), drug_exposure_end_date)}}"
           }
-        }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "occurencePeriod" : {
+          "start" : "{{iif(drug_exposure_start_datetime.exists(),drug_exposure_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'),drug_exposure_start_date)}}",
+          "end" : "{{? iif(drug_exposure_end_datetime.exists(), drug_exposure_end_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), drug_exposure_end_date)}}"
+        },
+        "dosage" : {
+          "dose" : {
+            "value" : "{{quantity.toDecimal()}}"
+          }
+        },
+        "status" : "completed"
       }
     }
   } ]
