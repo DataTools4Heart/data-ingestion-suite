@@ -14,34 +14,26 @@
     "joinOn" : [ "PERSON_ID" ]
   } ],
   "context" : {
-    "vitalSignUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/vhir/vital-signs-unit-conversion.csv"
+    "labCodeConversion" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/vhir/lab-omop-to-loinc-concept-map.csv"
     },
-    "unitConversionMap" : {
+    "labUnitConversion" : {
       "category" : "unit-conversion",
       "url" : "$CONTEXT_REPO/vhir/lab-results-unit-conversion.csv"
     },
-    "labResults" : {
+    "vitalSignCodeConversion" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/vhir/lab-results-unit-conversion.csv"
-    },
-    "vitalSigns" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/vhir/vital-signs-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/vhir/vitalsigns-omop-to-loinc-concept-map.csv"
     }
   },
-  "variable" : [ {
-    "name" : "measurementCodings",
-    "language" : "text/fhirpath",
-    "expression" : "trms:translateToCoding(MEASUREMENT_CONCEPT_ID.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc')"
-  } ],
+  "variable" : [ ],
   "mapping" : [ {
     "description" : "Mapping from OMOP Measurement to the DT4H LabResult profile",
     "precondition" : {
       "name" : "isLabResult",
       "language" : "text/fhirpath",
-      "expression" : "mpp:getConcept(%labResults, MEASUREMENT_CONCEPT_ID.toString()).exists()"
+      "expression" : "mpp:getConcept(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString()).exists()"
     },
     "expression" : {
       "name" : "labResults",
@@ -63,19 +55,24 @@
         } ],
         "code" : {
           "coding" : [ {
-            "{{#loincCoding}}" : "{{%measurementCodings}}",
+            "{{#loincCoding}}" : "{{mpp:getConcept(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString()}}",
             "{{*}}" : {
               "system" : "http://loinc.org",
-              "code" : "{{%loincCoding.code}}",
-              "display" : "{{%loincCoding.display}}"
+              "code" : "{{%loincCoding.target_code}}",
+              "display" : "{{%loincCoding.target_display}}"
             },
             "@sliceName" : "loincCode"
           } ]
         },
         "effectiveDateTime" : "{{iif(MEASUREMENT_DATETIME.empty(), MEASUREMENT_DATE, MEASUREMENT_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%unitConversionMap, MEASUREMENT_CONCEPT_ID.toString(), VALUE_AS_NUMBER, UNIT_CONCEPT_ID.toString())}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{UNIT_CONCEPT_ID}}",
+          "unit" : "{{UNIT_CONCEPT_ID}}",
+          "value" : "{{VALUE_AS_NUMBER}}"
+        },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
-        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists(), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.MEASUREMENT_DATE and $this.VISIT_END_DATE >= %context.MEASUREMENT_DATE,mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first())}}"
+        "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.MEASUREMENT_DATE and $this.VISIT_END_DATE >= %context.MEASUREMENT_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first()}}"
       }
     }
   }, {
@@ -83,7 +80,7 @@
     "precondition" : {
       "name" : "isVitalSign",
       "language" : "text/fhirpath",
-      "expression" : "mpp:getConcept(%vitalSigns, MEASUREMENT_CONCEPT_ID.toString()).exists() and %measurementCodings.exists()"
+      "expression" : "mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString()).exists()"
     },
     "expression" : {
       "name" : "vitalSigns",
@@ -103,21 +100,26 @@
         } ],
         "code" : {
           "coding" : [ {
-            "{{#loincCoding}}" : "{{%measurementCodings}}",
+            "{{#loincCoding}}" : "{{mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString())}}",
             "{{*}}" : {
               "system" : "http://loinc.org",
-              "code" : "{{%loincCoding.code}}",
-              "display" : "{{? %loincCoding.display}}"
+              "code" : "{{%loincCoding.target_code}}",
+              "display" : "{{%loincCoding.target_display}}"
             },
             "@sliceName" : "loincCode"
           } ]
         },
         "effectiveDateTime" : "{{iif(MEASUREMENT_DATETIME.empty(),MEASUREMENT_DATE,MEASUREMENT_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%vitalSignUnitConversion, MEASUREMENT_CONCEPT_ID.toString() , VALUE_AS_NUMBER, UNIT_CONCEPT_ID.toString())}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), 'target_unit')}}",
+          "value" : "{{VALUE_AS_NUMBER}}",
+          "unit" : "{{mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), 'target_unit')}}"
+        },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
-        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists(), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.MEASUREMENT_DATE and $this.VISIT_END_DATE >= %context.MEASUREMENT_DATE,mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first())}}",
+        "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.MEASUREMENT_DATE and $this.VISIT_END_DATE >= %context.MEASUREMENT_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first()}}",
         "status" : "final"
       }
     }
-  }]
+  } ]
 }

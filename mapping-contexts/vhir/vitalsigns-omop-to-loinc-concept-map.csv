@@ -1,0 +1,13 @@
+source_code,source_unit,target_code,target_unit,target_display,conversion_function
+3004249,,8480-6,mmHg,Systolic blood pressure,$this
+3012888,,8462-4,mmHg,Diastolic blood pressure,$this
+3025315,,29463-7,kg,Body weight,$this
+3036277,,8302-2,cm,Body height,$this
+4020553,,2708-6,%,Oxygen saturation in Arterial blood,$this
+4239408,,8867-4,bpm,Heart rate,$this
+4296538,,35088-4,,Glasgow coma scale,$this
+4152194,,8480-6,mmHg,Systolic blood pressure,$this
+4154790,,8462-4,mmHg,Diastolic blood pressure,$this
+4245997,,39156-5,kg/m2,Body mass index (BMI) [Ratio],$this
+4313591,,9279-1,/min,Respiratory rate,$this
+4323687,,60985-9,mmHg,Central venous pressure (CVP),$this
