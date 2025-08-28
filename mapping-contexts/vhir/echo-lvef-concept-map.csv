@@ -1,0 +1,8 @@
+source_code,target_code,target_display
+21494027,79990-8,Left ventricular Ejection fraction by US.3D.segmentation
+21494028,79991-6,Left ventricular Ejection fraction by US.2D+Calculated by biplane method of disks
+3004651,8807-0,Left ventricular Ejection fraction by 2D echo.visual estimate
+21494029,79992-4,Left ventricular Ejection fraction by US.2D.A2C+Calculated by single plane method of disks
+21494030,79993-2,Left ventricular Ejection fraction by US.2D.A4C+Calculated by single plane method of disks
+1001535,93644-3,Left ventricular Ejection fraction by US.2D.A2C+Calc by single plane area-length method
+1002404,93645-0,Left ventricular Ejection fraction by US.2D.A4C+Calc by single plane area-length method

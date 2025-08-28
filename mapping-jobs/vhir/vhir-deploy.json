@@ -9,7 +9,7 @@
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/vhir-data",
       "databaseUrl" : "jdbc:db2://localhost:50000/testdb",
       "username" : "db2inst1",
-      "password" : "password"
+      "password" : "vhir-pass"
     }
   },
   "sinkSettings" : {
@@ -201,7 +201,7 @@
         "sourceRef" : "vhir-source"
       }
     }
-  } ,{
+  }, {
     "name" : "measurement-mapping-2014",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
     "sourceBinding" : {
@@ -401,6 +401,29 @@
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/echo-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from \"0000000004_DT4H\".\"MEASUREMENT_ECHOCARDIO\"\r\nwhere MEASUREMENT_CONCEPT_ID != 4177340 and MEASUREMENT_CONCEPT_ID != 4099154",
+        "options" : { },
+        "preprocessSql" : "select count(*) as count, PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE,\r\narray_agg(MEASUREMENT_CONCEPT_ID) as MEASUREMENT_CONCEPT_ID,\r\narray_agg(VALUE_AS_NUMBER) as VALUE_AS_NUMBER,\r\narray_agg(UNIT_CONCEPT_ID) as UNIT_CONCEPT_ID,\r\narray_agg(UNIT_SOURCE_VALUE) as UNIT_SOURCE_VALUE\r\nfrom source \r\ngroup by PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE",
+        "sourceRef" : "vhir-source"
+      }
+    }
+  }, {
+    "name" : "echo-weight-height-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/echo-weight-height-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select * from \"0000000004_DT4H\".\"MEASUREMENT_ECHOCARDIO\"\r\nwhere MEASUREMENT_CONCEPT_ID = 4177340 or MEASUREMENT_CONCEPT_ID = 4099154",
         "options" : { },
         "sourceRef" : "vhir-source"
       }

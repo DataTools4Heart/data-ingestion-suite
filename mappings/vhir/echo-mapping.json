@@ -1,0 +1,71 @@
+{
+  "id" : "echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/vhir/echo-mapping",
+  "name" : "echo-mapping",
+  "title" : "Mapping of OMOP measurement_echocardio to DT4H Echo profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Measurement",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "echoMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/vhir/echo-lvef-concept-map.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', MEASUREMENT_ID.toString() & 'echo')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "imaging",
+            "display" : "Imaging"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34552-0",
+            "display" : "Cardiac 2D echo panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{MEASUREMENT_DATE.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "component" : {
+          "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "{{mpp:getConcept(%echoMap, MEASUREMENT_CONCEPT_ID[%ind].toString(), 'target_code')}}"
+              } ]
+            },
+            "valueQuantity" : {
+              "system" : "http://unitsofmeasure.org",
+              "code" : "%",
+              "value" : "{{VALUE_AS_NUMBER[%ind]}}",
+              "unit" : "%"
+            }
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString())}}",
+        "identifier" : [ {
+          "value" : "{{MEASUREMENT_ID.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}
