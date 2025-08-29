@@ -7,7 +7,11 @@
   "source" : [ {
     "alias" : "omopDrugExposure",
     "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-DrugExposure",
-    "joinOn" : [ ]
+    "joinOn" : [ "PERSON_ID" ]
+  }, {
+    "alias" : "omopVisit",
+    "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
+    "joinOn" : [ "PERSON_ID" ]
   } ],
   "context" : {
     "medicationTypeConceptMap" : {
@@ -52,7 +56,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString())}}",
+        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists($this != ''), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() ) }}",
         "occurencePeriod" : {
           "start" : "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
           "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"

@@ -95,6 +95,12 @@
         "tableName" : "\"0000000004_DT4H\".DRUG_EXPOSURE",
         "options" : { },
         "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
       }
     }
   }, {
