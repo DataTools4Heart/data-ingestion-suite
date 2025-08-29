@@ -27,6 +27,10 @@
     "name" : "symptomCoding",
     "language" : "text/fhirpath",
     "expression" : "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed')"
+  }, {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.condition_start_date and $this.visit_end_date >= %context.condition_start_date, mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())"
   } ],
   "mapping" : [ {
     "description" : "Generates a FHIR Condition resource if a condition code is present and does not represent a symptom.",
@@ -55,7 +59,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "encounter" : "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.condition_start_date and $this.visit_end_date >= %context.condition_start_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
+        "encounter" : "{{? %relatedEncounter}}",
         "onsetDateTime" : "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
         "clinicalStatus" : {
           "coding" : [ {
@@ -64,7 +68,7 @@
           } ]
         },
         "category" : {
-          "{{#isPrimaryReason}}" : "{{iif(condition_status_concept_id.exists() and (condition_status_concept_id = 32901 or condition_status_concept_id = 32902 or condition_status_concept_id = 32903 or condition_status_concept_id = 32904),true,{})}}",
+          "{{#isPrimaryReason}}" : "{{iif(%relatedEncounter.exists() and condition_status_concept_id.exists() and (condition_status_concept_id = 32901 or condition_status_concept_id = 32902 or condition_status_concept_id = 32903 or condition_status_concept_id = 32904),true,{})}}",
           "{{*}}" : "{{utl:createFhirCodeableConcept('http://terminology.hl7.org/CodeSystem/condition-category','encounter-diagnosis','Encounter Diagnosis')}}"
         }
       }
@@ -103,7 +107,7 @@
         "effectiveDateTime" : "{{iif(condition_start_datetime.empty(), condition_start_date, condition_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
         "valueBoolean" : true,
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "encounter" : "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.condition_start_date and $this.visit_end_date >= %context.condition_start_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
+        "encounter" : "{{? %relatedEncounter}}",
         "status" : "final"
       }
     }

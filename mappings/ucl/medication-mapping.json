@@ -59,7 +59,7 @@
         },
         "dosage" : {
           "dose" : {
-            "value" : "{{quantity.toDecimal()}}"
+            "value" : "{{(quantity.toDecimal() | 0).first()}}"
           }
         },
         "status" : "completed"
