@@ -1,8 +1,8 @@
 {
-  "id": "observation-mapping",
-  "url": "https://datatools4heart.eu/fhir/mappings/vhir/observation-mapping",
-  "name": "observation-mapping",
-  "title": "Mapping of OMOP observation to several DT4H profiles",
+  "id": "smoking-status-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/vhir/smoking-status-mapping",
+  "name": "smoking-status-mapping",
+  "title": "Mapping of OMOP observations having concept_id = 43054909 to DT4H-SmokingStatus profile",
   "isDraft": false,
   "source": [
     {
@@ -24,10 +24,6 @@
     "smokingStatusConceptMap": {
       "category": "concept-map",
       "url": "$CONTEXT_REPO/vhir/smoking-status.csv"
-    },
-    "nyhaConceptMap": {
-      "category": "concept-map",
-      "url": "$CONTEXT_REPO/vhir/nyha-concept-map.csv"
     }
   },
   "variable": [],
@@ -80,56 +76,6 @@
             "{{#concept}}": "{{mpp:getConcept(%smokingStatusConceptMap, OBSERVATION_SOURCE_VALUE)}}",
             "{{?}}": "{{utl:createFhirCodeableConcept(%concept.target_system, %concept.target_code, %concept.target_display)}}"
           },
-          "status": "final"
-        }
-      }
-    },
-    {
-      "description": "Mapping of OMOP observation to the DT4H NYHA profile",
-      "precondition": {
-        "name": "isNYHA",
-        "language": "text/fhirpath",
-        "expression": "OBSERVATION_CONCEPT_ID = 36305765"
-      },
-      "expression": {
-        "name": "nyha",
-        "language": "application/fhir-template+json",
-        "value": {
-          "id": "{{mpp:getHashedId('Observation', OBSERVATION_ID.toString())}}",
-          "meta": {
-            "profile": [
-              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment"
-            ]
-          },
-          "resourceType": "Observation",
-          "category": [
-            {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                  "code": "exam",
-                  "display": "Exam"
-                }
-              ]
-            }
-          ],
-          "code": {
-            "coding": [
-              {
-                "system": "http://loinc.org",
-                "code": "88020-3",
-                "display": "Functional capacity NYHA",
-                "@sliceName": "loincCode"
-              }
-            ]
-          },
-          "effectiveDateTime": "{{iif(OBSERVATION_DATETIME.exists(),OBSERVATION_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'),OBSERVATION_DATE)}}",
-          "valueCodeableConcept": {
-            "{{#concept}}": "{{mpp:getConcept(%nyhaConceptMap,OBSERVATION_SOURCE_VALUE)}}",
-            "{{?}}": "{{utl:createFhirCodeableConcept(%concept.target_system, %concept.target_code, %concept.target_display)}}"
-          },
-          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
-          "encounter": "{{? iif(VISIT_OCCURRENCE_ID.exists(), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.OBSERVATION_DATE and $this.VISIT_END_DATE >= %context.OBSERVATION_DATE,mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first())}}",
           "status": "final"
         }
       }
