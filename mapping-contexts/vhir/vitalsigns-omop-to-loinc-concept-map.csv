@@ -11,3 +11,4 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 4245997,,39156-5,kg/m2,Body mass index (BMI) [Ratio],$this
 4313591,,9279-1,/min,Respiratory rate,$this
 4323687,,60985-9,mmHg,Central venous pressure (CVP),$this
+4172830,,8280-0,cm,Waist Circumference at umbilicus by Tape measure,$this

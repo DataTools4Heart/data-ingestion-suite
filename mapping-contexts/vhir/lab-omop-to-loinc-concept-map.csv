@@ -1,0 +1,69 @@
+source_code,source_unit,target_code,target_unit,target_display,conversion_function
+3004907,44777582,21526-9,10*-3.eq/(24.h),Sodium [Mass/volume] in 24 hour Urine,$this
+3008152,8753,1960-4,mmol/L,Bicarbonate [Moles/volume] in Arterial blood,$this
+3008598,8817,3024-7,ng/dL,Thyroxine (T4) free [Mass/volume] in Serum or Plasma,$this
+3009609,8753,2026-3,mmol/L,"Carbon dioxide, total [Moles/volume] in Arterial blood",$this
+3010140,8753,2027-1,mmol/L,"Carbon dioxide, total [Moles/volume] in Venous blood",$this
+3011004,8840,14422-0,mg/dL,Bilirubin.total [Mass/volume] in Peritoneal fluid,$this
+3014218,8753,19230-2,mmol/L,Bicarbonate [Moles/volume] standard in Arterial blood,$this
+3015322,8554,2865-4,%,Alpha 1 globulin [Mass/volume] in Serum or Plasma by Electrophoresis,$this
+3015586,8554,30451-9,%,Segmented neutrophils [#/volume] in Blood,$this
+3017732,,26499-4,10*3/uL,Neutrophils [#/volume] in Blood,$this
+3019977,,2744-1,pH,pH of Arterial blood,$this
+3021447,8876,2021-4,mmHg,Carbon dioxide [Partial pressure] in Venous blood,$this
+3023386,8840,14447-7,mg/dL,Triglyceride [Mass/volume] in Peritoneal fluid,$this
+3024354,8876,2705-2,mmHg,Oxygen [Partial pressure] in Venous blood,$this
+3029577,8554,51105-5,%,CD19 blasts [Units/volume] in Specimen,$this
+3031266,8840,41651-1,mg/dL,Glucose [Mass/volume] in Arterial blood,$this
+3032080,,34714-6,{INR},INR in Blood by Coagulation assay,$this
+3034207,8840,9619-8,mg/dL,Triglyceride [Mass/volume] in Pleural fluid,$this
+3035285,8753,41649-5,mmol/L,Chloride [Moles/volume] in Venous blood,$this
+3035561,8753,30242-2,mmol/L,Lactate [Mass/volume] in Arterial blood,$this
+3041473,8753,39791-9,mmol/L,Sodium [Moles/volume] in Venous blood,$this
+3043706,8753,32717-1,mmol/L,Sodium [Moles/volume] in Arterial blood,$this
+3043723,8554,32730-4,%,Beta 1 globulin [Mass/volume] in Serum or Plasma by Electrophoresis,$this
+3043723,8713,32730-4,g/dL,Beta 1 globulin [Mass/volume] in Serum or Plasma by Electrophoresis,$this
+3047005,0,43223-7,mmol/g,Sodium/Creatinine [Ratio] in Urine,$this
+4012479,8840,22748-8,mmol/L,Cholesterol in LDL [Moles/volume] in Serum or Plasma,$this * 0.0259
+4041556,8840,22748-8,mmol/L,Cholesterol in LDL [Moles/volume] in Serum or Plasma,$this * 0.0259
+4042059,8840,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this * 0.0259
+4097430,,2951-2,mmol/L,Sodium [Moles/volume] in Serum or Plasma,$this
+4307029,8845,30934-4,pg/mL,Natriuretic peptide B [Mass/volume] in Serum or Plasma,$this
+21490721,,75928-2,mmol/L,Hemoglobin [Moles/volume] in Arterial blood,$this
+37067831,8554,LP384750-8,%,Gamma globulin | Serum or Plasma | Chemistry - non-challenge,$this
+40762532,8840,59470-5,mg/dL,Calcium.ionized [Mass/volume] in Arterial blood,$this
+43055372,8554,71679-5,%,Eosinophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
+43055428,8713,72594-5,g/dL,Alpha 1 globulin/Protein.total [Pure mass fraction] in Serum or Plasma by Electrophoresis,$this
+1175183,8840,89872-6,mg/dL,Bilirubin.total [Moles/volume] in Arterial blood,$this
+3000963,,718-7,g/L,Hemoglobin [Mass/volume] in Blood,$this
+3003396,8753,1925-7,mmol/L,Base excess in Arterial blood by calculation,$this
+3005491,8753,32133-1,mmol/L,Lactate [Moles/volume] in Plasma venous,$this
+3006407,8842,9811-1,ng/mL,Chromogranin A [Mass/volume] in Serum or Plasma,$this
+3007034,8909,21305-8,mg/(24.h),Glucose [Mass/volume] in 24 hour Urine,$this
+3007628,8753,19232-8,mmol/L,Bicarbonate [Moles/volume] standard in Venous blood,$this
+3010813,,26464-8,10*3/uL,Leukocytes [#/volume] in Blood,$this
+3011505,,19926-5,%,FEV1/FVC,$this
+3011544,8713,1748-3,g/dL,Albumin [Mass/volume] in Pleural fluid,$this
+3012544,,2746-6,pH,pH of Venous blood,$this
+3023520,9444,14196-0,10*9/L,Reticulocytes [#/volume] in Blood,$this
+3027801,8876,2703-7,mmHg,Oxygen [Partial pressure] in Arterial blood,$this
+3027946,8876,2019-8,mmHg,Carbon dioxide [Partial pressure] in Arterial blood,$this
+3028167,,24467-3,/uL,CD3+CD4+ (T4 helper) cells [#/volume] in Blood,$this
+3028954,8645,49927-7,U/L,Amylase in fluid/Amylase in serum,$this
+3031248,8753,41650-3,mmol/L,Chloride [Moles/volume] in Arterial blood,$this
+3033408,8840,41652-9,mg/dL,Glucose [Mass/volume] in Venous blood,$this
+3038383,8842,38898-3,ng/mL,Fibrin D-dimer [Titer] in Platelet poor plasma,$this
+3040170,44777582,51720-1,10*-3.eq/(24.h),Potassium [Mass/time] in 24 hour Urine,$this
+3041354,8753,39789-3,mmol/L,Potassium [Moles/volume] in Venous blood,$this
+3041706,8840,53138-4,mg/dL,Calcium.ionized [Moles/volume] adjusted to pH 7.4 in Arterial blood,$this
+3043409,8753,32713-0,mmol/L,Potassium [Moles/volume] in Arterial blood,$this
+3043518,0,43222-9,mmol/g,Potassium/Creatinine [Ratio] in Urine,$this
+4101713,,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this
+4150621,8840,2161-8,mg/L,Creatinine [Mass/volume] in Urine,$this * 10
+4172830,,8280-0,cm,Waist Circumference at umbilicus by Tape measure,$this
+21490592,8753,60840-6,mmol/L,Base excess in Extracellular fluid by calculation,$this
+37397915,8842,2276-4,mcg/L,Ferritin [Mass/volume] in Serum or Plasma,$this
+40763574,8554,60520-4,%,Eosinophils [Presence] in Body fluid by Light microscopy,$this
+42868740,8840,70268-8,mg/dL,Cholesterol in pleural fluid/Cholesterol in serum,$this
+43055369,8554,71676-1,%,Neutrophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
+43055373,8554,71680-3,%,Basophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
