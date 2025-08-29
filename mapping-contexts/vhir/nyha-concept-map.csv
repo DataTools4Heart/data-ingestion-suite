@@ -1,2 +1,5 @@
-source_code,target_code,target_system,target_display
-"Class III","LA28406-9","http://loinc.org","Class-III"
+"source_code","target_code","target_display"
+"I","LA28404-4","Class I"
+"II","LA28405-1","Class II"
+"III","LA28406-9","Class III"
+"IV","LA28407-7","Class IV"

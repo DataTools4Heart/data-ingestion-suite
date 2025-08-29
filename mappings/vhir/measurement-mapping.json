@@ -25,6 +25,10 @@
     "vitalSignCodeConversion" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/vhir/vitalsigns-omop-to-loinc-concept-map.csv"
+    },
+    "nyhaConversion" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/vhir/nyha-concept-map.csv"
     }
   },
   "variable" : [ ],
@@ -115,6 +119,46 @@
           "code" : "{{mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), 'target_unit')}}",
           "value" : "{{VALUE_AS_NUMBER}}",
           "unit" : "{{mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), 'target_unit')}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
+        "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.MEASUREMENT_DATE and $this.VISIT_END_DATE >= %context.MEASUREMENT_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first()}}",
+        "status" : "final"
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "nyhaCondition",
+      "language" : "text/fhirpath",
+      "expression" : "MEASUREMENT_CONCEPT_ID = 1002237 and VALUE_SOURCE_VALUE.exists()"
+    },
+    "expression" : {
+      "name" : "nyha",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', MEASUREMENT_ID.toString() & 'nyha')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "88020-3",
+            "display" : "Functional capacity NYHA",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{iif(MEASUREMENT_DATETIME.empty(), MEASUREMENT_DATE ,MEASUREMENT_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+        "valueCodeableConcept" : {
+          "{{#nyhaCategory}}" : "{{mpp:getConcept(%nyhaConversion, VALUE_SOURCE_VALUE.utl:split('.').first().utl:trim())}}",
+          "{{?}}" : "{{utl:createFhirCodeableConcept('http://loinc.org', %nyhaCategory.target_code, %nyhaCategory.target_display)}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
         "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.MEASUREMENT_DATE and $this.VISIT_END_DATE >= %context.MEASUREMENT_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first()}}",
