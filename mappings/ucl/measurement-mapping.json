@@ -15,7 +15,7 @@
   } ],
   "context" : {
     "measurementOmopToLoinc" : {
-      "category" : "unit-conversion",
+      "category" : "concept-map",
       "url" : "$CONTEXT_REPO/ucl/measurements-omop-to-loinc.csv"
     },
     "vitalSignUnitConversion" : {
