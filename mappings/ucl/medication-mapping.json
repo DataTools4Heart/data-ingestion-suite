@@ -52,7 +52,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
         "occurencePeriod" : {
           "start" : "{{iif(drug_exposure_start_datetime.exists(),drug_exposure_start_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'),drug_exposure_start_date)}}",
           "end" : "{{? iif(drug_exposure_end_datetime.exists(), drug_exposure_end_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), drug_exposure_end_date)}}"
