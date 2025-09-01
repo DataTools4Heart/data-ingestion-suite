@@ -32,12 +32,6 @@
       "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
       "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
     }, {
-      "id" : "omopToLoinc.csv",
-      "name" : "omopToLoinc.csv",
-      "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/omop-to-loinc",
-      "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
-      "targetValueSetUrl" : "http://loinc.org"
-    }, {
       "id" : "noteNlpSnomedToIcd10.csv",
       "name" : "noteNlpSnomedToIcd10.csv",
       "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/note-nlp-snomed-to-icd10",
