@@ -1,6 +1,0 @@
-identifier;subject;date;status;intent;medication;dosage;dosageStrength;dosageUnit
-medicationordination_result_107062;P_07333;2018-02-13 08:00:00;recorded;order;C03DA01;0;10;mg
-medicationordination_result_682172;P_00179;2014-03-12 14:00:00;recorded;order;C03CA01;4;100;mg
-medicationordination_result_267183;P_05376;2018-03-20 16:00:00;recorded;order;C03DA01;;100;mg
-medicationordination_result_371138;P_16430;2014-03-21 20:00:00;recorded;order;H02AB02;0;1.25;mg
-medicationordination_result_473758;P_01557;2018-07-29 08:00:00;recorded;order;H02AB09;1;100;mg/ml

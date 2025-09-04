@@ -1,0 +1,101 @@
+identifier	subject	DateTime	type	data
+document_reference_result_1	168	2011-04-12 16:54:00	EKG	Kammarpacad rytm, frekvens 63.
+document_reference_result_2	2609	2012-10-19 11:36:00	Ekokardiografi	<b>TRANSTHORAKAL EKOKARDIOGRAFI <nl><nl></b>SR/PM 60/min.  <nl>Optison 0,4 ml.<nl>Transmissionsförhållanden: Medelgoda.<nl><nl><b>Dimension och Funktion</b><nl><nl>Lätt dilaterad vänsterkammare (*namn* 60 mm) med lindrig excentrisk hypertrofi och lätt nedsatt systolisk funktion, EF 49% enligt *namn* biplan, EF visuellt 45-50%. Akinesi anterolateralt basalt-mid, inferolateralt basalt-mid, inferiort basalt, inferoseptalt basalt. Hypokinesi anteriort basalt-mid och inferiort mid. <nl>Dilaterad högerkammare basalt med normal systolisk funktion. TAPSE 24 mm , RVs' 12 cm/s. <nl>Måttligt dilaterat vänster förmak. Dilaterat höger förmak.<nl>Normalvid aortarot och aorta ascendens.<nl><nl><b>Klaffar</b><nl><nl>Tricuspid aortaklaff med normal öppningsamplitud. Ingen stenos eller insufficiens. <nl>Morfologiskt intakt mitralisklaff med obetydlig insufficiens. <nl>Morfologiskt intakt tricuspidalisklaff med lindrig insufficiens. <nl><nl><b>Hemodynamik<nl></b><nl>Inga säkra hållpunkter på förhöjda fyllnadstryck. <nl>Normalvid vena cava inferior med normal andningsvariation, CVP 5 mmHg.<nl>Systoliskt PA-tryck 38 mmHg.<nl>Ingen ökad mängd perikardvätska.<nl><nl><b>Sammanfattning:</b><nl><nl>- Lätt dilaterad vänsterkammare med lindrig excentrisk hypertrofi och lätt nedsatt systolisk funktion. Regionalitet enligt ovan. Inga säkra hållpunkter på förhöjda fyllnadstryck. <nl>- Dilaterad högerkammare basalt med normal systolisk funktion.<nl>- Lätt förhöjt SPAP.<nl>- Måttligt dilaterat vänster förmak. Dilaterat höger förmak.<nl>- Lindrig TI.<nl> <nl><nl><b>Eko data</b><nl>Längd 189 cm. Vikt 92 kg. BMI 25,76 kg/m². BSA 2,19 m².<nl><nl>Mått<nl>====<nl><nl>*namn*<nl>IVSd<tab>1,3 cm<nl>LVIDd<tab>6,0 cm<nl>LVIDd Index<tab>2,71 cm/m²<nl>LVPWd<tab>0,9 cm<nl>LVEDV (Teich)<tab>177,0 ml<nl>LVd massa (ASE)<tab>272 g<nl>LVEDV (MOD BIP)<tab>209,2 ml<nl>LVEDVI (MOD BIP)<tab>95 ml/m²<nl>LVESV (MOD BIP)<tab>106,5 ml<nl>LVEF (MOD BIP)<tab>49 %<nl>RV<nl>TAPSE<tab>2,4 cm<nl>VF/VFB<nl>LAAd (A4C)<tab>27,8 cm²<nl>LAEDVI (A-L)<tab>48 ml/m²<nl>LAEDV (A-L BIP)<tab>104,0 ml<nl>MV<nl>MV E hastighet<tab>0,71 m/s<nl>MV A hastighet<tab>0,44 m/s<nl>MV E/A<tab>1,60<nl>MV Dec tid<tab>162 ms<nl>AV<nl>LVOT Diam<tab>2,4 cm<nl>LVOT Vmax<tab>0,97 m/s<nl>LVOT VTI<tab>22,0 cm<nl>LVOT SV<tab>95,8 ml<nl>LVOT SVI<tab>43,7 ml/m²<nl>TV<nl>TR Vmax<tab>2,88 m/s<nl>*namn*<tab>5,00 mmHg<nl>RVSP<tab>38,17 mmHg<nl>TV S an<tab>12 cm/s<nl>Lungven<nl>Lungven S Vmax<tab>0,83 m/s<nl>Lungven D Vmax<tab>0,67 m/s<nl>Lungven S/D<tab>1,24
+document_reference_result_3	3521	2012-08-07 11:27:00	Hjärtfrekvens	Normala toner, inga säkra biljud. Enstaka extraslag.
+document_reference_result_4	4189	2016-07-15 09:08:00	Saturation	med syrgas.
+document_reference_result_5	5094	2015-02-13 09:36:00	EKG-rytm	Omväxlande förmakspacing, kammarpacad rytm.
+document_reference_result_6	5885	2021-11-29 17:55:00	Rökvanor - tobak	Rökare, men inte dagligen, enstaka cigaretter då och då.
+document_reference_result_7	6263	2017-01-23 22:55:00	EKG	Framförallt  pacemakerslag med enstaka VES.
+document_reference_result_8	8072	2016-12-08 15:41:00	Saturation	På 4 liter syrgas på reservoarmask.
+document_reference_result_9	8392	2020-12-13 19:46:00	EKG-tolkning	Kammarpacad rytm.
+document_reference_result_10	10015	2010-11-16 11:51:00	Pulsfrekvens	Under kontroll regelbunden på 120 men EKG cirka 60.
+document_reference_result_11	10147	2013-06-21 09:45:00	ViloEKG -tolkning	Går i en sinusrytm med 78 slag per minut. PQ-tid på 138 ms.
+document_reference_result_12	10649	2014-07-01 08:16:00	Saturation	på luft.
+document_reference_result_13	11146	2015-02-06 16:20:00	Hjärtfrekvens	Normofrekvent. Ordinära toner, inga biljud.
+document_reference_result_14	11865	2010-10-17 11:33:00	Blodtryck	Vid ankomst 206/96 mmHg och efter vila 138/86 mmHg i armarna bilateralt.
+document_reference_result_15	13070	2014-05-30 09:38:00	EKG	Högersidigt skänkelblock. Sinusrytm. Går ej att jämföra med tidigare EKG pga IT-problem för närvarande.
+document_reference_result_16	13726	2019-02-09 08:57:00	Rökvanor	Röker ej, slutade för cirka 30 år sedan.
+document_reference_result_17	13809	2010-05-06 13:30:00	Vikt	Pat har gått ner till 77 kg från 83 kg.
+document_reference_result_18	15191	2016-05-22 12:42:00	EKG	Oregelbunden breddökad takykardi 148 slag per min cirka. Enstaka VES. Vänsterställd elaxel. Avkapad R-våg V2-V3 samt djup S-våg i V5-V6 samt QRS formation V1-V3. ST-sträckor med T-vågsnegativisering AVL samt avledning 1 i övrigt u a.
+document_reference_result_19	18906	2019-04-03 22:06:00	24-timmars blodtryckskurva	Normalt systoliskt blodtryck med måttligt förhöjda diastoliska blodtryck. Den nattliga blodtrycksreduktionen är mindre än förväntat, så kallad non-dipper vilket indikerar förhöjd risk.
+document_reference_result_20	19201	2011-08-06 14:24:00	Saturation	99 % med 15 liter på reservoir.
+document_reference_result_21	19418	2019-01-29 15:41:00	Vikt	Tas imorgon.
+document_reference_result_22	19816	2012-07-12 14:33:00	Hjärtrytm	Oregelbunden rytm
+document_reference_result_23	19855	2010-02-14 10:55:00	Ekokardiografi	Nedsatta registreringsförhållanden, förmaksflimmer med kammarfrekvens runt 70 slag/min.
+document_reference_result_24	20532	2011-04-16 10:56:00	Blodtryck	Kapillär återfyllnad u a.
+document_reference_result_25	21677	2010-04-06 11:24:00	Ekokardiografi	17-12-11: <nl><b>Dimension och funktion</b><nl>- Normalstor, normotrof vänsterkammare med avplanat septum pga högerkammarbelastning. Normal systolisk funktion, EF &gt;55%. Ingen tydlig regional hypokinesi. Tecken till ökade fyllnadstryck.<nl><nl>- Dilaterad högerkammare  med normal systolisk funktion, TAPSE 18 mm.<nl><nl>- Uttalat kraftigt dilaterade förmak bilateralt.<nl><nl>- Normalvid aorta ascendens.<nl><nl><nl><b>Klaffar<nl></b>- Mekanisk aortaklaffprotes (op 2011-05-18, 21 mm:s St *namn* *namn*), AV vmax 2.99 m/s, DVI kvot 0.45. Lindrigt paravalvulärt läckage. <nl><nl>- Mitralisklaff med måttlig- uttalad insufficiens (*namn* 0.3 cm², RV 46 ml).<nl><nl>- Tricuspidalisklaff med koaptationsdefekt och uttalad central insufficiens (*namn* 0.5 cm², RV 56 ml).<nl><nl><nl><b>Hemodynamik <nl></b>- Dilaterad och stel vena cava inferior (diam 38 mm).<nl><nl>- Systoliskt PA-tryck är minst måttligt ökat, 67 mmHg.<nl><nl>- Ingen ökad mängd perikardvätska. Ascites ses.<nl><nl><nl><b>BEDÖMNING </b><nl>- Normalstor, normotrof vänsterkammare med avplanat septum pga högerkammarbelastning. Normal systolisk funktion. Ingen tydlig regional hypokinesi. Tecken till ökade fyllnadstryck.<nl><nl>- Dilaterad högerkammare  med normal systolisk funktion.<nl><nl>- Uttalat kraftigt dilaterade förmak bilateralt.<nl><nl>- Uttalad TI, måttlig-uttalad MI, lindrigt PVL i mekanisk aortaklaffprotes.<nl><nl>- Dilaterad och stel vena cava inferior (diam 38 mm).<nl><nl>- Systoliskt PA-tryck är minst måttligt ökat, 67 mmHg.<nl><nl>
+document_reference_result_26	1008	2020-05-06 12:04:00	EKG-rytm	Frekvens 59 slag per minut.
+document_reference_result_27	1356	2016-06-24 11:33:00	Saturation	rumsluft.
+document_reference_result_28	2015	2011-04-26 11:54:00	Blodtryck	Icke mätbart.
+document_reference_result_29	4092	2011-02-05 10:27:00	Hjärtrytm	RR/OR synlig P-våg
+document_reference_result_30	4105	2018-04-02 15:59:00	Röntgen hjärta/lungor, tecken på hjärtsvikt	Röntgen höft och bäcken 2021-05-14:<nl><nl>Utan skelettskada. <nl><nl>Röntgen lungor 2021-05-17:<nl><nl>Fortsatt mindre mängd pleuravätska utan tydlig progress jämfört med tidigare undersökningar. Sekundära svikttecken. Inga ombedömda infiltrat.
+document_reference_result_31	6066	2011-05-24 23:49:00	Blodtryck diastoliskt - nedre	Taget med egen blodtrycksmätare.
+document_reference_result_32	7382	2010-04-21 23:12:00	Blodtryck	Frekv cirka 70 slag/min
+document_reference_result_33	8217	2012-07-31 11:44:00	Saturation	(Habitus för patienten).
+document_reference_result_34	9429	2010-06-08 19:20:00	Blodtryck	82/51 mmHg tas senare då 92/60 (pat säger att det brukar ligga runt 100 systoliskt).
+document_reference_result_35	10097	2017-06-20 15:19:00	Ekokardiografi	Normalstor, lindrigt koncentrisk hypertroferad vänster kammare med normal global och regional systolisk vänster kammarfunktion. Inga tecken till ökat fyllnadstryck. <nl><nl>Normalstor höger kammare med normal global och regional funktion. <nl><nl>Båda förmaken är normalstora. <nl><nl>Gracila klaffar utan tecken till insufficiens eller stenos. Ingen ökad mängd perikardvätska. Vena cava är normalstor och rörlighet med andningen.
+document_reference_result_36	10562	2011-04-02 09:00:00	Ekokardiografiant.	Pat var på ett eko nyligen som visade måttlig hjärtsvikt och lätt till måttligt ökad maxsystoliskt pulmonalisartärtryck.
+document_reference_result_37	11373	2012-08-18 03:45:00	Hjärtfrekvens	Lindrigt systoliskt blåsljud och ett lite accentuerat annat hjärtljud.
+document_reference_result_38	11729	2011-03-04 09:07:00	Saturation	99 % på luft.
+document_reference_result_39	13036	2022-05-19 20:28:00	Hjärtrytm	SR 74-87 slag/minut. <nl>SVES i följd vg se sparad remsa.
+document_reference_result_40	14345	2015-09-13 15:30:00	EKG	Tidigare taget, bedömts som ett nyupptäckt förmaksflimmer i samråd med cardiolog Hans *namn*.
+document_reference_result_41	14493	2021-07-12 18:56:00	Blodtryck	108/85
+document_reference_result_42	16992	2020-01-21 11:45:00	Pulsfrekvens	105-80 slag/min
+document_reference_result_43	19976	2011-04-27 13:19:00	EKG-tolkning	SR utan tecken till ischemi eller belastning.
+document_reference_result_44	20176	2020-05-22 14:37:00	Hjärtrytm	SR<nl>67-91 s/m
+document_reference_result_45	22777	2020-11-29 13:58:00	Rökvanor	Icke rökare.
+document_reference_result_46	23597	2010-02-18 10:49:00	EKG	Förmaksflimmer. Utbredda T-negativiseringar extremitetsavledningar. Väsentligen oförändrat sedan tidigare. Inget nytillkommet.
+document_reference_result_47	24882	2022-12-04 19:58:00	EKG-rytm	Förmaksfladderaktivitet i bakgrunden.
+document_reference_result_48	25229	2011-12-24 01:11:00	Saturation	Erhåller comvibent 2,5 ml men ingen bra effekt. Efter 1 timme saturation är 66% på 5 L syrgas.
+document_reference_result_49	25301	2019-12-17 22:58:00	Saturation	Luft.
+document_reference_result_50	25645	2018-08-24 11:37:00	Ekokardiografi	EF 45-50% *namn* och tryckbelastad RV, uttalad nedsatt radiell sys funktion.  *namn* förmak bilateralt. V ge se EKO svar.
+document_reference_result_51	27375	2019-05-03 16:53:00	Saturation	på luft.
+document_reference_result_52	27977	2017-05-01 15:19:00	Saturation	På rumsluft.
+document_reference_result_53	28169	2013-06-25 15:09:00	EKG	Sinusrytm, AV-block I. PQ-tid 22 8 millisekunder. Högersidigt skänkelblock och T-negativisering inferiort, oförändrat jämfört med tidigare EKG från oktober.
+document_reference_result_54	29171	2010-10-09 10:40:00	EKG	EKG enligt ordination
+document_reference_result_55	30022	2012-04-21 15:30:00	Saturation	Ligger över 92% saturation mellan 0-1 liter syrgas på akuten.
+document_reference_result_56	30223	2015-03-01 18:59:00	Hjärtrytm	OR/RR
+document_reference_result_57	31104	2010-07-17 09:30:00	Pulsfrekvens	Extraslag?
+document_reference_result_58	34245	2018-02-20 13:15:00	EKG	Tas enligt prokoll, NCS enligt Per *namn*. Skickar till corelab.
+document_reference_result_59	34315	2011-02-21 14:08:00	Blodtryck	i båda armar
+document_reference_result_60	34765	2017-06-28 08:50:00	EKG	Förmaksflimmer med snabb kammarfrekvens, 140 slag per minut med nytillkomna ST-sänkningar V2-V5.
+document_reference_result_61	35638	2014-07-28 15:16:00	EKG-rytm	Normal sinusrytm, kammarfrekvens 78. Tecken på förstoring av höger förmak, vänsterställd elaxel, smal QRS duration 80 ms. Q-vågsutseende anteroseptalt. T-vågsnegativisering lateralt septalt.
+document_reference_result_62	38606	2017-07-15 10:58:00	EKG	Vilo-EKG visar sinustakycardi med supraventrikulära extraslag, inga tecken till tidigare infarkt.
+document_reference_result_63	465	2015-07-11 19:28:00	Rökvanor - tobak	röker ej
+document_reference_result_64	2152	2021-06-04 12:39:00	Ekokardiografi	Sinusrytm med vänster grenblock. Normal vänsterkammare med dyssynkroni EF ca 45%, normal högerkammare med normal funktion. Normalstora förmak. Aorta tricuspid sklerotisk med max lindrig stenos, övriga klaffar normalfungerande. Ingen ökad mängd pericardvätska
+document_reference_result_65	3290	2012-03-14 07:27:00	Ejektionsfraktion	Svårbedömt EKO feb 2022. Dåliga fönster utan kontrast.
+document_reference_result_66	4295	2011-03-08 13:13:00	Saturation	97 % på luft.
+document_reference_result_67	4471	2011-02-03 10:13:00	Tobak	Icke rökare.
+document_reference_result_68	6130	2021-12-20 16:04:00	EKG	Väsentligen oförändrat sedan föregående. Konsulteras med medicinläkare som friar EKG.
+document_reference_result_69	7712	2020-11-13 09:22:00	Ekokardiografi	Se särskild ant idag.
+document_reference_result_70	9032	2017-05-13 15:52:00	Saturation	Kring 88-90 med 1 l syrgas.
+document_reference_result_71	10544	2010-04-23 14:00:00	Tobak	Slutade 1975
+document_reference_result_72	13165	2012-06-08 22:16:00	EKG-rytm	Sinustakykardi. Oförändrat EKG jämfört med tidigare.
+document_reference_result_73	13549	2016-04-08 15:37:00	EKG	EKG från akuten visar förmaksstimulerad rytm med förlängd AV-överledning, 67 slag per minut. Ett par VES. Inga uppenbara ST-T-vågsförändringar talande för akut ishcemi. PQ-tid 340 ms. QRS-duration 116 ms.
+document_reference_result_74	17120	2015-04-28 03:51:00	Hjärtrytm	SR, 43-83 s/m
+document_reference_result_75	17371	2019-08-17 19:23:00	Blodtryck	vg. se narkosjournal
+document_reference_result_76	17473	2015-07-20 17:03:00	Hjärtfrekvens	Rena toner, systoliskt blåsljud som hörs både I:2 dexter och I:2 sinister.
+document_reference_result_77	19485	2014-01-04 11:16:00	Vikt	Uppskattad
+document_reference_result_78	21762	2015-01-14 13:11:00	Ödem	Pittingöden bilat.
+document_reference_result_79	22269	2013-02-23 12:01:00	Saturation	På 12 l syrgas på mask vid ankomst.
+document_reference_result_80	23523	2012-09-11 11:50:00	Saturation	på rumsluft
+document_reference_result_81	24898	2011-02-25 10:46:00	EKG-tolkning	Visar kammarpacad rytm.
+document_reference_result_82	25415	2013-02-03 13:45:00	Hjärtrytm	FF
+document_reference_result_83	25790	2011-03-22 08:55:00	Hjärtrytm	Pacemaker rytm. <nl>
+document_reference_result_84	25917	2011-12-06 22:51:00	QRS-komplex	Vänstersidigt skänkelblock
+document_reference_result_85	26472	2015-05-23 11:08:00	ViloEKG -tolkning	RBBB + LAH. Inga STT-höjningar.
+document_reference_result_86	29552	2017-04-16 11:10:00	Hjärtsvikt	Initialt EF 30%, senaste eko EF 50%.
+document_reference_result_87	29897	2022-01-14 16:22:00	Hjärtrytm	SR 64-79 s/m<nl>SVES
+document_reference_result_88	30162	2011-06-04 13:32:00	Blodtryck	127/77.
+document_reference_result_89	30224	2011-04-05 13:28:00	Vikt	med kläder.<nl>86 kg hemma igår morse (med nattlinne)
+document_reference_result_90	30938	2012-12-18 01:34:00	EKG-rytm	Kammarstimulerande pacemaker.
+document_reference_result_91	31460	2011-10-28 09:10:00	Rökvanor	Icke rökare.
+document_reference_result_92	31730	2018-01-09 15:58:00	Hjärtrytm	RR<nl>Synlig p-vågor/Ej tydlig p-våg.
+document_reference_result_93	31863	2020-11-17 09:38:00	Hjärtsvikt	2020 sökt vård p.g.a. en episod med närsynkope. Man gjorde EKO som visade misstänkt non compaction och pat remitterades vidare till oss. Han har gjort MR som inger stark misstanke om non compaction kardiomyopati med dilaterad kammare och EF på 38 %. Insatt på sviktmedicinering och senaste EKO med EF på 50-55 % (maj 2021). Holter har visat en arytmibenägenhet med frekventa VES.
+document_reference_result_94	35472	2013-01-03 14:11:00	Saturation	på rumsluft, AF 24.
+document_reference_result_95	37403	2013-07-02 03:58:00	EKG-rytm	Regelbunden rytm, pacemakerutlöst rytm.
+document_reference_result_96	37448	2014-02-07 13:12:00	Blodtryck diastoliskt - nedre	Höger arm liggande. Pat har mätt lägre värden tidigare, uppger 120-130 mmHg systoliskt. Detta senast vid besök på *plats* hälsocentral.
+document_reference_result_97	39503	2015-10-22 15:26:00	EKG	FF 94/min
+document_reference_result_98	21915	2012-10-14 09:28:00	EKG-tolkning	SR 64 med vänsterkammarbelastning
+document_reference_result_99	22095	2011-03-08 09:48:00	ViloEKG -tolkning	Sinusrytm med ventrikulära extraslag.
+document_reference_result_100	23093	2019-06-08 16:10:00	Ekokardiografi utförd	Globalt nära normal systolisk funktion med kvavarande mycket diskret hypokinesi i midlaterala segment (EF=51%)<nl><nl>Pat remitterades för Ulj hjärta men fick ingen kallelse hittils

@@ -1,0 +1,101 @@
+identifier	subject	DateTime	type	data
+document_reference_result_1	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Behövt stöd vid ADL initialt, självständig inför utskrivning, går utan hjälpmedel.
+document_reference_result_2	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Legat på HIA initialt pga lungödem, fortsatt syrgaskrävande tom 12/6, god saturation på rumsluft inför utskrivning.
+document_reference_result_3	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Urvätskad under vårdtiden.<nl>Stabil cirkulatoriskt under hela vårdtillfället, afebril. <nl>
+document_reference_result_4	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	PVK dragen inför utskrivning.
+document_reference_result_5	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Hög integritet, väl insatt i sin vård, vill ha fortlöpande information
+document_reference_result_6	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Blodtryck och puls närmaste dagarna pga läkemedelsbyte
+document_reference_result_7	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Maxdryck 1500 ml
+document_reference_result_8	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	210608-210615
+document_reference_result_9	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Dyspné
+document_reference_result_10	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	KAD in vid ankomst, ut 10/6, inga miktionssvårigheter efter det.
+document_reference_result_11	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Lös avföring sedan flera månader tillbaka, faecesodling tagen på avd, mycket god effekt av stoppande läkemedel.
+document_reference_result_12	P_00009	2021-07-16 11:03:00	SÖS KARD Omvårdnadsepikris	Ter sig orienterad
+document_reference_result_13	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Lite högt AF 18. Pat. flåsar vid andningen.
+document_reference_result_14	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Äter hela portion.
+document_reference_result_15	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Vid förflyttning
+document_reference_result_16	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Morgon och kvälls hygien.
+document_reference_result_17	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	150225-150304
+document_reference_result_18	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Dotter tror att pat. behöver vårdplaneing.
+document_reference_result_19	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Vid förflyttning
+document_reference_result_20	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Pat. brukar ha sänggrinderna uppe.
+document_reference_result_21	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Anna S sss
+document_reference_result_22	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Dyspne, Pleuravätska, Kardiogen chock (oklart varför), hjärtsvikt.
+document_reference_result_23	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Tarm. Har ofta diaree enl. pat. brukar ha de även hemma. Odlad ej norovirus. Uppmana pat. att ringa på larm när behöver torka sig efter toa besöket annars bli det avföring överalt. Kissar i flaskan. KAD dragen 3/3 och efter det funkar det bra med miktion.
+document_reference_result_24	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Pat. förflyttar sig själv med rullstol (sparkar sig fram med benen).
+document_reference_result_25	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Adekvat
+document_reference_result_26	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Pat. har svullen vä arm som vätskar ut. Lägger om vid behov med stora blå komperessar.
+document_reference_result_27	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Svag på vä sida efter stroke.
+document_reference_result_28	P_00030	2015-04-05 11:05:00	SÖS KARD Omvårdnadsepikris	Pat. behover tillsyn och ibland stöd vid förflyttning. Vi uppmanade pat att larma men pat. gör inte det.
+document_reference_result_29	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Sköter ADL självstädning.
+document_reference_result_30	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Stabil.
+document_reference_result_31	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Stabil.<nl>Behov av stödstrumpor.
+document_reference_result_32	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Äter normalkost med god aptit.
+document_reference_result_33	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Ingen smärta under vårdtiden.
+document_reference_result_34	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	211130-211201
+document_reference_result_35	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Teer sig må väl.
+document_reference_result_36	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Dyspné
+document_reference_result_37	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Upplevs något förvirrad.
+document_reference_result_38	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	F-Hb ska följas upp. 1/3 tagen.
+document_reference_result_39	P_00053	2022-01-02 10:33:00	SÖS KARD Omvårdnadsepikris	Sollentuna avd 62
+document_reference_result_40	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Är uppgående med rullator, behöver hjälp med stödstrumpor och handräckning vid hygien.
+document_reference_result_41	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Patienten har under hela vårdtiden haft syrgas, nu har patienten 1 liter syrgas och saturerar sig  90%.
+document_reference_result_42	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Skötte magen senast  25/11. Sköter magen reglbundet. <nl>Är inkontinent, har blöja.
+document_reference_result_43	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Nedsatt hörsel.
+document_reference_result_44	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Har under vårdtiden ätit allmän kost med god aptit. Har maxdryck på 1500ml /dygn
+document_reference_result_45	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Har sedan tidigare opererat knä och höft proteser, har även ryggproblematik.
+document_reference_result_46	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	121031-121127
+document_reference_result_47	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Dyspne, bensullnad.
+document_reference_result_48	P_00102	2012-12-28 09:37:00	SÖS KARD Omvårdnadsepikris	Behöver andningsträning.
+document_reference_result_49	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Hypertoni. <nl>Förmaksflimmer, bedömts diskvalificera sig för antikoagulantia pga etylmissbruk. <nl>Etylkardiomyopati med EF 25%.
+document_reference_result_50	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Överviktig. Trött och tagen. Blek. Somnar delvis till under samtalet. Ingen påtaglig dyspné i vila.
+document_reference_result_51	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Man med känd hjärtsvikt, hypertoni, förmaksflimmer, etylmissbruk. Kommer idag för återbesök och klinisk kontroll. Framkommer att patienten är mycket trött och tagen. Andningsbesvär, svårt att röra sig. Förkyld sedan en längre tid. Påtagligt kliniskt sviktande. Anmärkningsvärt systoliskt blodtryck på 65 mmHg. Samråder med dr Alveryd. Ordnar med direktinläggning på avd 52 för medicinjustering och vidare diagnostik. Kontaktar såväl avdelning som dr Ercegovac för överrapportering.
+document_reference_result_52	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Svårauskulterat. Systoliskt 65/min.
+document_reference_result_53	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	RR, normofrekvent. Inga uppenbara bi- eller blåsljud.
+document_reference_result_54	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Vesikulära andningsljud. Normal AF. Inga rassel eller ronki.
+document_reference_result_55	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	T. Oralovite 1 x 2<nl>T. Trombyl 75 mg 1 x 1<nl>T. Digoxin 0,25 mg 1 x 1<nl>T. Furix 40 mg 2+1+0<nl>T. Bisoprolol 10 mg 1 x 1<nl>T. Enalapril 10 mg 1 x 2<nl>T. Simvastatin 20 mg 1 till kvällen<nl>Kräm Pevaryl 1 x 2<nl>Depotplåster Nicotinell 1 x 1<nl>Movicol vid behov<nl>Imovane vid behov<nl>Propavan vid behov
+document_reference_result_56	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Underben: kompressionstrumpor. Synliga, måttliga pittingödem.
+document_reference_result_57	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Visar förmaksfladder. 64 slag/min. Vä ställd elaxel. Dålig R-vågsprogression över framväggen. Inga uppenbara ST-T-förändringar.
+document_reference_result_58	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Har inte mått bra den senaste tiden. Mycket besvärligt med god man, som patienten tycker ställer till med mer bekymmer än är till nytta. Somatiskt har patienten känt sig förkyld en längre tid. Ej feber. Betydligt svårare att gå. Kan nu knappt gå alls, kan röra sig till och från toaletten i hemmet genom att stödja sig på väggarna. Normalt sett gångare med rollator. Ont i ryggen. Rullar in på mottagningen i rullstol. Upplever sig mer flåsig. Hostar, så väl slem som torrhosta. Tagit sin medicinering som förskrivet. Pågående etylmissbruk.
+document_reference_result_59	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Rökare.
+document_reference_result_60	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Ingen känd enligt tidigare journal.
+document_reference_result_61	P_00107	2014-04-11 14:34:00	SÖS KARD Mottagningsanteckning läk	Hjärtsvikt.
+document_reference_result_62	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Uppegående med rollator
+document_reference_result_63	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Pat. har 1-2 liter syrgas på grimma v.b. Målsaturation 88%.
+document_reference_result_64	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Pat. hade mycket svullna ben vid ankomst till avd. Nu har svullnaden gått ner. Vi lindar fortfarande benen.
+document_reference_result_65	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Pat har uppspruckna vattenblåsor på underbenen. Omlagda med sterila kompresser.
+document_reference_result_66	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Ua
+document_reference_result_67	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	20190209-20190220
+document_reference_result_68	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Oro och ångest från och till. Har fått tillagt T Atarax. Har ej provat än.
+document_reference_result_69	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Glasögon
+document_reference_result_70	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Övertag från Handens geriatrik, avd 1 för behandling av höger svikt och snabbt FF.
+document_reference_result_71	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Sköter sig själv med tillsyn.
+document_reference_result_72	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Ua
+document_reference_result_73	P_00236	2019-03-20 13:59:00	SÖS KARD Omvårdnadsepikris	Handen geriatriken
+document_reference_result_74	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Går själv med krycka.
+document_reference_result_75	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Lätt anfådd vid ansträgning.
+document_reference_result_76	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Svullna ben
+document_reference_result_77	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Ua
+document_reference_result_78	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Sår h. underben.<nl>Klåda på hela kroppen.
+document_reference_result_79	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Ont i svullnad fötter.
+document_reference_result_80	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Har ej sömntabletter.
+document_reference_result_81	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	In 22/7 ut 24/7.
+document_reference_result_82	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Bor med sin man. Städhjälp varannan vecka. Ingen hemtjänst eller hemhjälp.
+document_reference_result_83	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Kommer in med svullna ben och dyspne.
+document_reference_result_84	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Då pt ramlat för ca 3 veckor sedan.
+document_reference_result_85	P_00332	2013-08-25 11:31:00	SÖS KARD Omvårdnadsepikris	Orienterad och adekvat.
+document_reference_result_86	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	.
+document_reference_result_87	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Erhållit inhalation Combivent r/t KOL /Svikt. med gott resultat.
+document_reference_result_88	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Behandlats med diuretika iv under vårdtiden. Vätske och urinmätning. Daglig vikt. Mycket svårstucken.
+document_reference_result_89	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Besvärats av kliande röda utslag över hela kroppen. Erhållit tablett antihistamin vid något tillfälle med god effekt. Även behandlats på sårcentrum 210427 Sös med kaliumpermanganat bad, med god effekt.<nl><nl>Svullna ben bilateralt. Kompressionslindas tillsvidare.
+document_reference_result_90	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Ätit och druckit med god aptit.
+document_reference_result_91	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Nekar smärta vid utskrivning.
+document_reference_result_92	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	KAD
+document_reference_result_93	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Sover med hjälp av sömntablett
+document_reference_result_94	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	210423-210428
+document_reference_result_95	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Dyspné. Svullna underben bilateralt.
+document_reference_result_96	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Erhållit KAD r/t diuretikabehandling.
+document_reference_result_97	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Senast skött magen 25/4 enligt anteckning.
+document_reference_result_98	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Rollator och en person vid förflyttning
+document_reference_result_99	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Adekvat
+document_reference_result_100	P_00351	2021-05-29 11:14:00	SÖS KARD Omvårdnadsepikris	Rollator samt stöd av en person.

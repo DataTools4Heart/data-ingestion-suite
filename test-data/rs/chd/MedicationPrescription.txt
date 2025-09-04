@@ -1,0 +1,101 @@
+subject	TimestampSaved	TimestampRead_pr	Dosage	Strength	StrengthUnit	DoseForm	PackageDescription	MaxNumberOfDispensations	NoOfPackages
+1	2021-10-17 10:03:42	2022-03-25 02:45:11	4 tabletter till kvällen för hjärtrytmen	0.13	mg	Tablett	Burk, 100 tabletter	TVÅ	1
+1	2023-03-22 13:51:49	2023-03-22 20:04:25	1 tablett på morgonen	10	mg	Filmdragerad tablett	Blister, 28 tabletter (kalenderförpackning)	TVÅ	1
+2	2012-11-06 14:32:58	2022-03-25 02:46:22	1 tablett på morgonen Vätskedrivande	40	mg	Tablett	Burk, 100 tabletter	EN	1
+2	2012-12-21 11:41:14	2022-03-25 02:46:22	1 tablett på morgonen	20	mg	Tablett	Plastburk, 100 tabl.	FYRA	1
+3	2016-10-08 13:51:21	2022-03-25 02:47:26	1 tablett på morgonen för blodtrycket	5	mg	Tablett	Blister, 98 tabletter	TVÅ	1
+4	2016-04-03 10:40:14	2022-03-25 02:48:47	1 spraydoser vid behov under tungan. Max 3 st per dygn	0.4	mg/dos	Sublingualspray	Sprayflaska, 11,2 gram (ca 200 doser)	EN	1
+4	2016-07-22 11:41:31	2022-03-25 02:48:47	1 tablett på morgonen	75	mg	Filmdragerad tablett	Blister, 100 tabletter	TRE	1
+4	2017-02-05 09:40:22	2022-03-25 02:48:47	1 tablett på morgonen för hjärtat	1.25	mg	Tablett	Blister, 20 tabletter	FYRA	3
+4	2017-05-06 09:17:33	2022-03-25 02:48:47	1 tablett på morgonen	40	mg	Filmdragerad tablett	Blister, 100 tabletter	FYRA	1
+5	2019-11-17 08:56:48	2022-03-25 02:49:02	2 tabletter på morgonen Mot högt blodtryck	5	mg	Tablett	Blister, 98 tabletter	FYRA	1
+5	2020-04-18 15:44:34	2022-03-25 02:49:02	1 tablett på morgonen Förebyggande mot hjärtsvikt	25	mg	Tablett	Burk, 100 tabletter	FYRA	1
+5	2020-04-18 15:44:34	2022-03-25 02:49:02	2 tabletter på morgonen Mot högt blodtryck	5	mg	Tablett	Blister, 98 tabletter	FYRA	2
+5	2021-06-18 14:01:31	2022-03-25 02:49:02	1 tablett på morgonen Förebyggande mot hjärtsvikt	25	mg	Tablett	Burk, 100 tabletter	FYRA	1
+5	2021-08-06 12:08:24	2022-03-25 02:49:02	0.5 tabletter på morgonen, 0.5 tabletter till kvällen	5	mg	Filmdragerad tablett	Blister, 100 tabletter (plast/Al)	FYRA	1
+9	2021-08-17 09:15:45	2022-03-25 02:53:41	1 tablett på morgonen	8	mg	Tablett	Blister, 98 tabletter (kalenderförpackning)	FYRA	1
+10	2013-07-18 10:28:44	2022-03-25 02:56:53	1 tablett på morgonen för blodtryck och hjärtat	50	mg	Depottablett	Plastburk, 100 depottabletter	FYRA	1
+10	2013-07-18 10:28:44	2022-03-25 02:56:53	1 tablett på morgonen, 1 tablett till kvällen För blodtrycket	5	mg	Tablett	Blister, 100 x1 (endos) tabletter	FYRA	2
+2	2013-05-01 16:41:13	2022-03-25 02:46:22	enligt separat behandlingsschema Mot blodpropp	2.5	mg	Tablett	Plastburk, 100 tabletter	FYRA	1
+2	2013-05-01 16:52:17	2022-03-25 02:46:22	1 tablett till kvällen Mot höga blodfetter	20	mg	Filmdragerad tablett	Plastburk, 100 tabletter	FYRA	1
+3	2012-12-16 09:54:53	2022-03-25 02:47:26	0.5 tabletter på morgonen, 0.5 tabletter till kvällen	5	mg	Tablett	Blister, 98 tabletter	FYRA	1
+4	2016-04-03 10:40:14	2022-03-25 02:48:47	1 tablett på morgonen, 1 tablett till kvällen	2.5	mg	Tablett	Tryckförpackning, 100 st	EN	1
+4	2016-07-22 11:41:31	2022-03-25 02:48:47	1 tablett på morgonen	2.5	mg	Tablett	Tryckförpackning, 100 st	FYRA	1
+4	2016-07-22 11:41:31	2022-03-25 02:48:47	1 tablett på morgonen	40	mg	Filmdragerad tablett	Blister, 100 tabletter	FYRA	1
+4	2017-08-22 14:01:49	2022-03-25 02:48:47	1 tablett på morgonen	2.5	mg	Tablett	Blister, 100 tabletter	FYRA	1
+4	2018-08-06 14:03:30	2022-03-25 02:48:47	1 tablett på morgonen För hjärtat	75	mg	Tablett	Burk, 100 tabletter	FYRA	1
+5	2019-05-05 15:13:24	2022-03-25 02:49:02	1 tablett på morgonen för hjärtsvikt och blodtryck	2.5	mg	Tablett	Blister, 100 tabletter	FYRA	1
+5	2019-07-12 16:17:36	2022-03-25 02:49:02	1 tablett på morgonen, 1 tablett till kvällen	5	mg	Filmdragerad tablett	Blister, 100 tabletter (plast/Al)	FYRA	1
+5	2019-11-17 08:58:51	2022-03-25 02:49:02	1 tablett på morgonen Förebyggande mot hjärtsvikt	25	mg	Tablett	Burk, 100 tabletter	FYRA	1
+5	2020-04-18 15:44:34	2022-03-25 02:49:02	1 tablett på morgonen vätskedrivande	40	mg	Tablett	Burk, 100 tabletter	FYRA	1
+5	2020-07-18 10:45:43	2022-03-25 02:49:02	1 tablett på morgonen för hjärtat och blodtryck : Ersätter Ramipril pga biverkan.	32	mg	Tablett	Blister, 100 tabletter	FYRA	1
+6		2022-03-25 02:49:41	1 depotkaps på morgonen	30	MG	DEPOTKAPS	PLASTBURK	EN	1
+6	2012-05-04 16:43:01	2022-03-25 02:49:41	1 injektionsvätska, lösning, förfylld spruta till kvällen mot blodpropp i armen enligt ordination.	18000	IE	Injektionsvätska, lösning, förfylld spruta	Förfylld spruta, 5 st	EN	2
+6	2012-05-04 16:44:02	2022-03-25 02:49:41	enligt separat behandlingsschema mot blodpropp i armen	2.5	mg	Tablett	Plastburk, 100 tabletter	EN	1
+6	2012-10-25 11:31:54	2022-03-25 02:49:41	1 injektionsvätska, lösning, förfylld spruta på eftermiddagen	18000	IE	Injektionsvätska, lösning, förfylld spruta	Förfylld spruta, 5 st	EN	1
+8	2018-10-20 14:43:46	2022-03-25 02:53:18	1 tablett på morgonen mot högt blodtryck	5	mg	Tablett	Blister, 28 tabletter	TRE	2
+8	2018-10-20 14:43:46	2022-03-25 02:53:18	1 tablett på morgonen, 1 tablett på eftermiddagen	20	mg	Tablett	Plastburk, 100 tabl.	TVÅ	1
+8	2019-04-08 11:28:31	2022-03-25 02:53:18	1 tablett på morgonen	20	mg	Tablett	Plastburk, 100 tabl.	TVÅ	1
+10	2012-07-30 13:53:30	2022-03-25 02:56:53	1 tablett på morgonen Proppförebyggande	75	mg	Filmdragerad tablett	Blister, 100 tabletter (plast/Al)	TRE	1
+10	2013-07-18 10:28:44	2022-03-25 02:56:53	1 tablett på morgonen mot kolesterol och andra blodfetter.	10	mg	Filmdragerad tablett	Blister, 100 tabletter	FYRA	1
+10	2014-07-28 12:52:04	2022-03-25 02:56:53	1 tablett på morgonen Proppförebyggande	75	mg	Tablett	Plastburk, 100 tabletter	FYRA	1
+10	2016-09-08 14:22:50	2022-03-25 02:56:53	3 tabletter till kvällen för hjärtat Upptrappningsdos.	25	mg	Depottablett	Blister (Al), 100 tabletter	TVÅ	1
+10	2016-09-30 14:14:32	2022-03-25 02:56:53	0.5 tabletter på morgonen	25	mg	Filmdragerad tablett	Tryckförpackning, 100 x 1 st	FYRA	1
+10	2020-09-08 09:46:39	2022-03-25 02:56:53	1 tablett på morgonen vätskedrivande för hjärtsvikt.	40	mg	Tablett	Burk, 100 tabletter	TVÅ	1
+10	2021-09-27 13:05:36	2022-03-25 02:56:53	1 tablett på morgonen För hjärtat	25	mg	Filmdragerad tablett	Blister, 100 tabletter	FYRA	1
+12	2014-05-30 12:56:24	2022-03-25 03:00:07	1 tablett på morgonen, 1 tablett till kvällen för hjärtat	10	mg	Tablett	Blister, 100 tabletter	FYRA	2
+12	2016-06-20 15:34:15	2022-03-25 03:00:07	1 tablett på morgonen, 1 tablett till kvällen för hjärtat	10	mg	Tablett	Blister, 100 tabletter	FYRA	2
+13	2020-09-13 09:06:32	2022-03-25 03:00:29	1 tablett på morgonen, 1 tablett till kvällen För hjärta	16	mg	Tablett	Blister, 98 tabletter (PVC/Al)	FYRA	2
+13	2020-12-12 14:34:54	2022-03-25 03:00:29	1.5 tabletter på morgonen, 2 tabletter till kvällen	8	mg	Tablett	Blister, 100 tabletter	TVÅ	2
+13	2022-05-09 10:46:33	2022-05-29 17:51:30	1 tablett på morgonen Blodfettssänkande	40	mg	Filmdragerad tablett	Blister, 100 tabletter	EN	1
+13	2022-09-13 10:13:52	2022-09-13 21:12:20	1 tablett på morgonen, 2 tabletter till kvällen	8	mg	Tablett	Blister, 100 tabletter	FYRA	2
+13	2022-09-13 10:13:52	2022-09-13 21:12:20	enligt separat behandlingsschema blodförtunnande	2.5	mg	Tablett	Burk, 100 tabletter	FYRA	2
+2	2012-11-06 14:32:58	2022-03-25 02:46:22	1 tablett på morgonen För hjärtat och blodtrycket	5	mg	Tablett	Tryckförpackning, 100 st	EN	1
+2	2012-12-22 16:44:01	2022-03-25 02:46:22	1 tablett på morgonen För hjärtat och blodtrycket	5	mg	Tablett	Tryckförpackning, 100 st	EN	1
+4	2016-03-24 09:22:35	2022-03-25 02:48:47	1 spraydoser vid behov under tungan. Max 3 st per dygn	0.4	mg/dos	Sublingualspray	Sprayflaska, 11,2 gram (ca 200 doser)	TVÅ	1
+4	2016-04-03 10:40:14	2022-03-25 02:48:47	1 tablett på morgonen	75	mg	Filmdragerad tablett	Blister, 100 tabletter	EN	1
+4	2017-05-06 09:17:33	2022-03-25 02:48:47	1 tablett på morgonen	2.5	mg	Tablett	Tryckförpackning, 100 st	FYRA	1
+4	2018-08-06 14:20:23	2022-03-25 02:48:47	1 tablett på morgonen För hjärtat	5	mg	Filmdragerad tablett	Blister, 112 tabletter	FYRA	1
+5	2019-05-05 15:13:54	2022-03-25 02:49:02	0.5 tabletter på förmiddagen, 0.5 tabletter till kvällen för hjärtsvikt och blodtryck Om en vecka - öka dosen till en tablett morgon och kväll	2.5	mg	Filmdragerad tablett	Blister, 100 tabletter (plast/Al)	FYRA	1
+5	2019-05-05 15:13:54	2022-03-25 02:49:02	1 tablett på morgonen vätskedrivande	40	mg	Tablett	Burk, 100 tabletter	TVÅ	1
+5	2019-07-12 16:18:37	2022-03-25 02:49:02	1 tablett på morgonen, 1 tablett till kvällen	5	mg	Tablett	Blister, 100 tabletter	FYRA	1
+5	2019-08-04 10:20:43	2022-03-25 02:49:02	1 tablett på morgonen Förebyggande mot hjärtsvikt	25	mg	Tablett	Burk, 100 tabletter	TVÅ	1
+5	2021-08-06 12:08:24	2022-03-25 02:49:02	1 tablett på morgonen för hjärtat och blodtryck : Ersätter Ramipril pga biverkan.	32	mg	Tablett	Blister, 100 tabletter	FYRA	1
+5	2021-10-22 08:30:35	2022-03-25 02:49:02	0.5 tabletter på morgonen	40	mg	Tablett	Burk, 100 tabletter	TVÅ	1
+6		2022-03-25 02:49:41	1 depotkaps på morgonen	30	MG	DEPOTKAPS	PLASTBURK	EN	1
+6	2010-10-22 15:18:21	2022-03-25 02:49:41	1 tablett på morgonen	20	MG/12,5 MG	TABL	BLISTER	EN	1
+8	2019-03-15 10:34:37	2022-03-25 02:53:18	1 tablett på morgonen	2.5	mg	Tablett	Blister, 100 tabletter	TVÅ	1
+10	2014-04-29 10:54:22	2022-03-25 02:56:53	1 tablett på morgonen mot extraslag (ersätter tidigare styrka på 50 mg).	100	mg	Depottablett	Blister, 100 tabletter	FYRA	1
+10	2020-09-14 15:19:42	2022-03-25 02:56:53	1 tablett på morgonen För hjärtat	25	mg	Filmdragerad tablett	Blister, 100 tabletter	EN	1
+3	2016-11-06 09:54:09	2022-03-25 02:47:26	1 tablett på morgonen	10	mg	Tablett	Blister, 100 tabletter	FYRA	1
+4	2016-04-03 10:40:14	2022-03-25 02:48:47	1 tablett på morgonen	40	mg	Filmdragerad tablett	Blister, 100 tabletter	EN	1
+4	2016-07-22 11:41:31	2022-03-25 02:48:47	1 tablett på morgonen	75	mg	Tablett	Plastburk, 100 tabletter	FYRA	1
+4	2019-12-30 13:08:50	2022-03-25 02:48:47	1 tablett på morgonen För hjärtat	75	mg	Tablett	Burk, 100 tabletter	FYRA	1
+5	2019-10-19 17:30:27	2022-03-25 02:49:02	1 tablett på morgonen Mot högt blodtryck	5	mg	Tablett	Blister, 98 tabletter	FYRA	1
+5	2019-11-17 08:58:51	2022-03-25 02:49:02	1 tablett på morgonen, 1 tablett till kvällen	5	mg	Filmdragerad tablett	Blister, 100 tabletter (plast/Al)	FYRA	1
+5	2019-11-17 08:58:51	2022-03-25 02:49:02	2 tabletter på morgonen Mot högt blodtryck	5	mg	Tablett	Blister, 98 tabletter	FYRA	1
+5	2019-11-17 08:58:51	2022-03-25 02:49:02	1 tablett på morgonen, 1 tablett till kvällen	5	mg	Tablett	Blister, 100 tabletter	FYRA	1
+5	2020-04-18 15:44:34	2022-03-25 02:49:02	1 tablett på morgonen, 1 tablett till kvällen	5	mg	Filmdragerad tablett	Blister, 100 tabletter (plast/Al)	FYRA	2
+5	2020-04-18 15:44:34	2022-03-25 02:49:02	1 tablett på morgonen, 1 tablett till kvällen	5	mg	Tablett	Blister, 100 tabletter	FYRA	2
+6	2012-10-25 11:32:57	2022-03-25 02:49:41	enligt separat behandlingsschema	2.5	mg	Tablett	Plastburk, 100 tabletter	TVÅ	1
+10	2012-11-02 10:25:31	2022-03-25 02:56:53	1 tablett på morgonen, 1 tablett till kvällen För blodtrycket	5	mg	Tablett	Blister, 100 x1 (endos) tabletter	FYRA	2
+10	2013-07-18 10:28:44	2022-03-25 02:56:53	1 tablett på morgonen Proppförebyggande	75	mg	Tablett	Plastburk, 100 tabletter	FYRA	1
+10	2014-07-28 12:52:04	2022-03-25 02:56:53	1 tablett på morgonen mot kolesterol och andra blodfetter.	10	mg	Filmdragerad tablett	Blister, 100 tabletter	FYRA	1
+10	2016-09-08 14:22:50	2022-03-25 02:56:53	1 tablett på morgonen blodfettsänkande	20	mg	Filmdragerad tablett	Blister, 100 tabletter	FYRA	1
+10	2021-04-06 14:38:36	2022-03-25 02:56:53	1 tablett på morgonen, 1 tablett till lunch vätskedrivande för hjärtsvikt.	40	mg	Tablett	Burk, 100 tabletter	FYRA	1
+10	2021-08-20 09:44:23	2022-03-25 02:56:53	1 tablett på morgonen mot hjärtsvikt.	10	mg	Filmdragerad tablett	Blister, 98 tabletter (kalenderförpackning) (PD: Finno Medical Limited)	FYRA	1
+10	2014-07-28 12:52:04	2022-03-25 02:56:53	1 tablett på morgonen, 1 tablett till kvällen För blodtrycket	5	mg	Tablett	Blister, 100 x1 (endos) tabletter	FYRA	2
+10	2014-07-28 12:54:38	2022-03-25 02:56:53	1 spraydoser vid behov under tungan kärlvidgandekan upprepas	0.4	mg/dos	Sublingualspray	Spraybehållare, 200 doser	TVÅ	2
+10	2019-01-15 13:40:54	2022-03-25 02:56:53	1 tablett på morgonen, 1 tablett till kvällen Blodpropsförebyggande	5	mg	Filmdragerad tablett	Blister, 168 tabletter	FYRA	1
+10	2021-03-16 14:22:24	2022-03-25 02:56:53	1 tablett på morgonen, 1 tablett till kvällen mot hjärtsvikt	0	Ospecificerad	Filmdragerad tablett	Blister, 28 tabletter	FYRA	3
+10	2021-08-20 09:44:23	2022-03-25 02:56:53	1 tablett på morgonen mot hjärtsvikt och förmaksflimmer.	0.13	mg	Tablett	Burk, 100 tabletter	FYRA	1
+10	2021-09-27 13:05:36	2022-03-25 02:56:53	1 tablett på morgonen	5	mg	Tablett	Blister, 100 tabletter	FYRA	1
+10	2022-02-11 13:45:31	2022-03-25 02:56:53	1 tablett på morgonen, 1 tablett till kvällen	5	mg	Tablett	Blister, 100 tabletter	TVÅ	1
+12	2013-12-10 13:30:41	2022-03-25 03:00:07	1 tablett på morgonen, 0.5 tabletter till kvällen för hjärtat	2.5	mg	Tablett	Blister, 98 tabletter (kalenderförpackning)	FYRA	1
+12	2013-12-10 13:30:41	2022-03-25 03:00:07	1 tabletter vid behov vätskedrivande för hjärtat. Max 2 st per dygn	40	mg	Tablett	Burk, 100 tabletter	EN	1
+12	2014-05-30 12:56:24	2022-03-25 03:00:07	1 tablett på morgonen för hjärtat	50	mg	Depottablett	Plastburk, 100 depottabletter	FYRA	1
+12	2016-06-20 15:34:15	2022-03-25 03:00:07	1 tablett på morgonen för hjärtat	50	mg	Depottablett	Plastburk, 100 depottabletter	FYRA	1
+13	2020-05-02 18:13:27	2022-03-25 03:00:29	1 tablett på morgonen förebyggande mot hjärtsvikt	8	mg	Tablett	Blister, 98 tabletter (PVC/Al)	TVÅ	1
+13	2021-08-16 09:06:39	2022-03-25 03:00:29	enligt separat behandlingsschema blodförtunnande	2.5	mg	Tablett	Burk, 100 tabletter	FYRA	2
+14	2016-01-10 10:26:33	2022-03-25 03:01:40	0,5-1 tabletter vid behov för hjärtrytmen. Max 2 st per dygn	50	mg	Tablett	Plastburk, 20 tabletter	FYRA	1
+15	2011-06-04 13:16:43	2022-03-25 03:03:47	1 tablett på morgonen	75	MG	TABL	PLASTBURK	EN	1

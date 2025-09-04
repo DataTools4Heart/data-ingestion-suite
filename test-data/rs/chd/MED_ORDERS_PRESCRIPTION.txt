@@ -1,0 +1,101 @@
+subject	DocumentID	Version	TimestampSaved	SavedAtCareUnitID	Name	CareUnitID	AdministrationRouteID	AdministrationTypeID	TreatmentReason	TreatmentGoal	Instruction	ReviewDate	DilutionLiquid	DilutionAmount	CessationReasonID	CessationReason_Description	CessationReason_Name	IsStdSolution	FirstDoseDate	LastDoseDate	SolutionStrength	SolutionStrengthUnitID
+1743	295	4	2014-08-07 10:56:01	1837	DS Hjärt avd HIA	1837	1	0	mot höga blodfetter						17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2014-07-04	2014-07-06		
+19132	332	3	2022-04-17 10:50:16	1838	DS Hjärt avd 90	1838	4	0			OBS tid, dos och antal doser kan behöva justeras				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2022-03-10	2022-03-16		
+28061	480	4	2022-08-02 09:23:29	3893	TH - IVA NtS	3893	1	0	Kaliumtillskott			2022-07-04			17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2022-06-30	2022-07-01		
+25195	654	6	2021-07-09 16:16:32	975	STSAB - Med avd 10	975	1	0	för lugnare puls						8	Byte till en annan läkemedelsform eller styrka av ordinerat läkemedel	Byte till annan läkemedelsform/styrka	FALSE	2021-06-08	2021-06-08		
+16127	2578	4	2014-03-13 22:30:43	1831	DS Akutmott Ortopedi	1831	4	1	profylax		Ges i 3 doser enligt PM för Ab-profylax. Första dosen ges 15-30 min innan op-start, 2:a dosen 2 timmar och 3:e dosen 8 timmar efter första dosen. 2 g löses i 40 ml sterilt vatten. Kan också ges som infusion med minst 100 ml 0,9%-ig NaCl. Se FASS.		NaCl eller sterilt vatten	40	2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2014-02-12	2014-02-14		
+28903	642	76	2015-10-19 11:40:15	973	STSAB - Medicinmott	973	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2014-01-14	2015-09-23		4
+44211	681	4	2019-09-17 08:34:48	1837	DS Hjärt avd HIA	1837	4	1							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2019-08-15	2019-08-16		4
+4230	2228	6	2020-11-29 09:52:05	982	STSAB - IVA	982	4	1	Smärta						17	Orsak anges i journalanteckning	Annan orsak, journalförs	TRUE	2020-10-26	2020-10-28	1	4
+14559	742	4	2015-12-20 15:57:14	484	Stängd S - N25 HIA	484	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2015-11-16	2015-11-19		
+19396	386	20	2019-06-17 11:51:55	3885	TH - Akut Med NtS	3885	1	0	KOL-exacerbation						7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2019-05-16	2019-05-22		
+28170	721	9	2019-07-06 16:27:03	975	STSAB - Med avd 10	975	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2019-05-29	2019-06-05		4
+40789	1323	5	2015-03-01 10:18:47	974	STSAB - Med avd 8	974	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2015-01-27	2015-02-01		4
+10049	302	2	2010-07-19 10:12:33	973	STSAB - Medicinmott	973	1	0							0		Annan orsak	FALSE	2010-06-18	2010-06-18		4
+42659	550	3	2018-08-04 02:22:04	3889	TH - Avd 1 NtS	3889	1	0	mot illamående						17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2018-07-03	2018-07-10		4
+10247	1334	3	2014-01-20 09:52:49	1841	DS Hjärtsviktscentrum DV	1841	4	2							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2013-12-19	2013-12-19		4
+42434	1156	5	2021-12-13 11:42:59	4736	DS Hjärt avd 91	4736	1		mot akuta besvär av KOL.		LÄK: Dosen kan höjas till 8 tabletter. SSK: Lös upp i vatten.				7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2021-11-12	2021-11-16		
+18394	3107	2	2017-03-24 17:12:54	35	Stängd H - Akut (Med 1)	35	4	1							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2017-02-23	2017-02-23		4
+26527	572	2	2017-09-24 21:58:10	35	Stängd H - Akut (Med 1)	35	4	1			Enl PM. Svår smärta efter trauma eller brännskada. Akut buksmärta. Spädes till 1 mg/ml. 2,5-10 ml/dos i.v. Kan upprepas var 5:e minut till VAS<5. Hänsyn ska tas till kontraindikationer, interaktioner och biverkningar.				2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	TRUE	2017-08-23	2017-08-25	1	4
+34861	2859	3	2022-08-09 12:50:47	5065	H Akut kir trauma Avd	5065	5	0	mot förstoppning		En tub appliceras rektalt. Tubspetsen förs in i hela sin längd. På generell ordination. Gäller t o m 24-09-02				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2022-07-06	2022-07-08		
+36704	4330	4	2022-10-14 05:16:00	4263	H Akutmottagning 1 Grå	4263	4	1							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2022-09-13	2022-09-16		4
+4870	335	3	2022-12-25 08:35:57	4226	H Kardiologi 2 Avd	4226	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2022-11-03	2022-11-24		4
+32174	3693	13	2019-06-12 09:32:47	1838	DS Hjärt avd 90	1838	4	0			OBS tid, dos och antal doser kan behöva justeras				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2019-05-09	2019-05-11		
+35544	497	6	2011-03-23 13:35:17	13	Stängd H-HjärtavdM82/84	13	4	2			100 ml per 3 L tappad ascitesvätska.				0		Annan orsak	FALSE	2011-02-17	2011-02-22		
+11963	1529	7	2019-01-07 13:31:03	1840	DS Hjärt avd 94	1840	1	0	Blodfettssänkande.						8	Byte till en annan läkemedelsform eller styrka av ordinerat läkemedel	Byte till annan läkemedelsform/styrka	FALSE	2018-12-05	2018-12-06		4
+41689	605	9	2012-08-24 09:40:07	13	Stängd H-HjärtavdM82/84	13	2	0	diabetes						0		Annan orsak	FALSE	2012-07-20	2012-07-23		4
+33422	463	20	2019-11-16 11:25:01	1842	DS Hjärtsviktscentrum SV	1842	1	0		Mot slemhosta		2019-10-15			17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2019-10-10	2019-10-15		4
+26344	2446	8	2020-12-03 13:55:36	4110	DS Hjärt avd 95	4110	2	0							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2020-10-29	2020-11-02		4
+22791	5027	28	2022-07-29 01:16:40	4636	S Intensivakuten	4636	4	1							17	Orsak anges i journalanteckning	Annan orsak, journalförs	TRUE	2022-06-28	2022-07-08	1	4
+19356	247	2	2012-02-15 23:51:12	1827	DS Akutmott Hjärt	1827	1	0							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2012-01-10	2012-02-03		4
+28610	476	3	2018-09-23 18:54:49	3891	TH - Avd 3 NtS	3891	1	0	vid diarréer						0		Annan orsak	FALSE	2018-08-22	2018-08-24		
+2900	1148	7	2019-07-27 11:44:35	1842	DS Hjärtsviktscentrum SV	1842	1	0							12	Ändring i sjukdomsprocess, annan sjukdom och/eller behandling samt graviditet	Förändrad medicinsk situation	FALSE	2019-06-20	2019-06-26		4
+29532	609	7	2011-11-16 11:45:43	982	STSAB - IVA	982	4	2					Glukos 5%	48	0		Annan orsak	TRUE	2011-10-13	2011-10-15	40	4
+5140	745	7	2017-02-27 11:54:56	1842	DS Hjärtsviktscentrum SV	1842	4	1				2017-01-26			17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2017-01-25	2017-01-26		4
+11010	1737	3	2022-11-15 14:25:19	3845	S Hjärta och Kärl Mott	3845	1	0	blodförtunnande						2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2020-03-06	2022-10-14		
+11740	354	2	2014-02-25 19:54:04	1831	DS Akutmott Ortopedi	1831	1	0	mot urinvägsinfektion						2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2014-01-24	2014-01-29		
+20142	569	5	2016-08-14 09:13:20	1847	DS Hjärt-kärlcentrum	1847	1	0	vätskedrivande						12	Ändring i sjukdomsprocess, annan sjukdom och/eller behandling samt graviditet	Förändrad medicinsk situation	FALSE	2016-03-23	2016-07-13		4
+21528	94	2	2013-09-09 10:25:37	35	Stängd H - Akut (Med 1)	35	1	0			Enligt generell ordination.				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2013-08-08	2013-08-08		
+5196	2368	13	2012-05-16 09:33:00	1842	DS Hjärtsviktscentrum SV	1842	4	2			80ml/t	2012-04-14			0		Annan orsak	FALSE	2012-04-11	2012-04-15		4
+7233	832	19	2014-05-22 13:26:38	1841	DS Hjärtsviktscentrum DV	1841	1	0				2014-04-22			17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2014-04-13	2014-04-21		4
+23847	901	2	2019-07-08 13:21:23	3845	S Hjärta och Kärl Mott	3845	1	0							15	Synonympreparat finns redan ordinerat	Dubblett	FALSE	2019-05-24	2019-06-07		4
+40547	10651	9	2022-01-21 09:39:42	4822	H GAVA Kardiologi Avd	4822	2	1			Om Glukos över 20 ge 10E. Om Glukos över 16 ge 8E. Om Glukos över 12 ge 6E. Om Glukos över 10 ge 4E.				7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2021-12-19	2021-12-24		4
+253	544	4	2017-04-09 12:10:24	3892	TH - Avd 4 NtS	3892	4	2							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2017-03-04	2017-03-08		4
+27733	1650	2	2018-02-15 20:55:56	3852	S Kardiologi Avd	3852	1	0	Slemlösande		Hänvisning till generella direktiv på hjärtkliniken. Max 3 tabl				2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2018-01-14	2018-01-15		
+33129	333	6	2015-06-06 12:57:52	484	Stängd S - N25 HIA	484	2	1			insulinschema A				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2015-05-02	2015-05-05		4
+8591	2908	13	2021-12-27 12:28:40	3892	TH - Avd 4 NtS	3892	4	1			Spädes enligt spädningsschema för antibiotika DSAB				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2021-11-25	2021-11-27		
+27970	979	6	2021-09-19 13:42:50	1837	DS Hjärt avd HIA	1837	4	2			Infusion alternativ i PVK. Ej bolus. Infusionstakt enligt viktklass enligt PM "Amiodarone infusion HIA"	2021-08-19			12	Ändring i sjukdomsprocess, annan sjukdom och/eller behandling samt graviditet	Förändrad medicinsk situation	FALSE	2021-08-18	2021-08-18		
+10643	507	6	2020-02-20 19:20:52	1827	DS Akutmott Hjärt	1827	1	0							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2020-01-20	2020-01-24		4
+2028	6319	15	2018-03-28 15:41:29	1841	DS Hjärtsviktscentrum DV	1841	4	2	Nutrition		Parenteral nutrition, perifer infart. OBS, Addaven och Tracel är utbytbara.				9	Byte till ett synonympreparat av ordinerat läkemedel	Byte till ett synonympreparat	FALSE	2018-02-23	2018-02-27		
+4902	332	9	2016-10-01 11:08:56	262	Stängd H - Hjärtintensivav	262	1	0							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2016-08-28	2016-08-31		4
+26506	2674	1	2015-04-14 15:17:42	59	Stängd H - Hjärtm C1-88	59	1	0							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2015-03-13	2015-03-22		4
+42848	2768	2	2011-03-21 17:16:31	35	Stängd H - Akut (Med 1)	35	4	1							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	TRUE	2011-02-20	2011-02-21	1	4
+41524	1134	18	2021-02-23 21:21:48	1831	DS Akutmott Ortopedi	1831	1	0	mot smärta						2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2021-01-22	2021-01-31		
+26612	360	3	2017-05-05 10:43:22	3892	TH - Avd 4 NtS	3892	1	0							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2017-04-04	2017-04-14		4
+42796	2256	5	2018-04-09 22:01:24	3852	S Kardiologi Avd	3852	4	2				2018-03-09			17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2018-03-08	2018-03-08		4
+32731	1517	10	2017-09-08 15:51:11	1840	DS Hjärt avd 94	1840	4	2							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2017-08-04	2017-08-06		4
+38597	1112	22	2021-05-04 14:08:33	3889	TH - Avd 1 NtS	3889	4	2	Antibiotika		Två gram Cefotaxim blandas med 100 ml Natriumklorid 9 mg/ml. Administreras via Intermate SV200 tre gånger dagligen i 14 dagar.				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2021-03-31	2021-04-03		
+3565	3268	8	2019-05-31 15:29:37	3852	S Kardiologi Avd	3852	1	0				2019-05-02			17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2019-04-27	2019-04-30		4
+11749	374	11	2010-05-01 15:11:28	484	Stängd S - N25 HIA	484	4	1			100 mg/ml. Ges på 3-5 minuter. Lösningen är ljuskänslig och kan förvaras 24 timmar i kylskåp.		Sterilt vatten	15	2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2010-03-27	2010-03-30		
+24887	1809	1	2022-04-25 07:50:16	3890	TH - Avd 2 NtS	3890	4	2	antibiotikaprofylax		Profylax, 2g x 3. Första dosen ges 15-45 min före opstart, andra dosen 2 timmar senare och tredje 6 timmar senare.				7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2022-03-24	2022-03-24		
+9238	652	9	2012-09-23 08:35:40	975	STSAB - Med avd 10	975	1	0				2012-08-15			0		Annan orsak	FALSE	2012-08-13	2012-08-22		4
+33262	6136	2	2022-10-13 11:29:40	1827	DS Akutmott Hjärt	1827	4	2	Mot hud/mjukdelsinfektion		Spädes enligt spädningsschema för antibiotika DSAB.				7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2022-09-12	2022-09-12		
+36345	3586	5	2021-01-15 12:01:29	3852	S Kardiologi Avd	3852	4	1			Hänvisning till generella direktiv på hjärtkliniken. Max 4 ml. Obs kontraindicerat vid överkänslighet mot jordnötter eller soja				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2020-12-11	2020-12-14		
+44191	1235	6	2017-03-13 10:43:20	974	STSAB - Med avd 8	974	4	1			Om systoliskt blodtryck >100	2017-02-12			2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2017-02-10	2017-02-12		4
+18082	1755	2	2022-08-14 11:06:41	1841	DS Hjärtsviktscentrum DV	1841	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2022-06-22	2022-07-13		4
+19841	140	3	2012-03-21 11:14:05	1842	DS Hjärtsviktscentrum SV	1842	1	0				2012-02-21			0		Annan orsak	FALSE	2012-02-20	2012-02-20		4
+22793	1177	4	2018-11-19 15:05:45	3892	TH - Avd 4 NtS	3892	1	0	mot urinvägsinfektion		Ska inte tas med mjölkprodukter.				7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2018-10-18	2018-10-31		
+911	233	10	2013-10-01 13:32:55	1842	DS Hjärtsviktscentrum SV	1842	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2013-08-26	2013-08-30		4
+21779	477	11	2016-09-20 13:34:40	1842	DS Hjärtsviktscentrum SV	1842	1	0	för hjärtat			2016-08-20			17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2016-08-16	2016-08-19		4
+27180	966	2	2019-04-07 11:27:10	1015	STSAB - Akutmott	1015	1	0							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2019-03-06	2019-03-09		4
+38212	720	16	2012-05-08 13:00:30	1841	DS Hjärtsviktscentrum DV	1841	4	1							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2012-04-05	2012-04-08		4
+44634	2230	8	2020-03-12 11:51:36	1842	DS Hjärtsviktscentrum SV	1842	7	0							7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2020-02-10	2020-02-12		4
+15656	1102	11	2012-10-04 09:43:40	982	STSAB - IVA	982	1	0	För sömnen						3		Ersätts med annat preparat	FALSE	2012-08-23	2012-09-03		
+24062	1734	8	2020-11-14 08:55:21	4192	S Kärlkirurgi Avd	4192	1	0							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2020-10-09	2020-10-13		4
+6618	853	3	2022-09-26 01:13:29	1828	DS Akutmott Kirurgi	1828	4	1	Mot infektion		Spädes enligt spädningsschema för antibiotika DSAB. Vid septisk chock eller hotande septisk chock ge 2g x 3 med en extra dos (2g) mellan första och andra dos, dvs efter 4 timmar.				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2022-08-25	2022-08-25		
+37645	954	5	2022-01-20 12:07:27	3892	TH - Avd 4 NtS	3892	4	1							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2021-12-18	2021-12-19		4
+34881	566	85	2021-06-28 12:29:08	4822	H GAVA Kardiologi Avd	4822	1	0	mot svampinfektion i munnen						7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2021-05-27	2021-06-24		4
+1031	593	3	2016-03-02 11:11:40	3709	STSAB - Med avd 23	3709	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2016-02-01	2016-02-01		4
+1342	101	5	2011-12-30 09:15:26	1837	DS Hjärt avd HIA	1837	7	11							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2011-11-26	2011-11-28		4
+7282	1224	30	2016-08-12 16:46:40	1837	DS Hjärt avd HIA	1837	4	2			Se PM Noradrenalininfusion HIVA. Total mängd administrerad dos skall dokumenteras av ssk vid byte av påse eller spruta samt vid avslut av infusion.	2016-07-11			17	Orsak anges i journalanteckning	Annan orsak, journalförs	TRUE	2016-07-06	2016-07-11	40	9
+20939	650	6	2014-03-09 20:06:00	982	STSAB - IVA	982	4	2	Blödning		räkna med 250 ml per påse. Se målstyrd ordination.				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2014-02-08	2014-02-08		
+21897	1287	3	2022-06-26 09:51:07	1837	DS Hjärt avd HIA	1837	4	1	vätskedrivande						12	Ändring i sjukdomsprocess, annan sjukdom och/eller behandling samt graviditet	Förändrad medicinsk situation	FALSE	2022-05-22	2022-05-25		
+12495	1485	2	2021-08-18 11:52:55	3884	TH - Akut Kir NtS	3884	1	0	mot urinvägsinfektion						2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2021-07-17	2021-07-24		
+22984	230	7	2011-12-18 13:49:13	975	STSAB - Med avd 10	975	2	0			4 enh om B-socker över 10, 6 enh om B-scoker över 12, 8 enh om B-scoker över 15 och 10 enh om B-socker över 20				2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2011-11-12	2011-11-17		4
+34958	1890	32	2010-06-11 20:50:31	524	Stängd S - Akutflöde	524	1	0							6	Behandling avslutad av annan ordinatör	Utsatt av annan ordinatör	FALSE	2010-02-11	2010-05-10		4
+29087	1287	3	2012-08-10 10:37:32	262	Stängd H - Hjärtintensivav	262	2	1							0		Annan orsak	FALSE	2012-07-08	2012-07-09		
+23594	2763	2	2015-04-04 14:09:45	484	Stängd S - N25 HIA	484	1	0	för hjärtrytmen						4	Avbruten behandling p.g.a. icke avsedd effekt	Biverkan	FALSE	2015-02-27	2015-03-03		4
+21958	903	2	2012-06-03 15:13:16	524	Stängd S - Akutflöde	524	5	0							0		Annan orsak	FALSE	2009-10-23	2012-05-01		4
+27842	925	11	2011-09-09 11:09:30	975	STSAB - Med avd 10	975	4	1							2	Målet och/eller effekten av en behandling är uppnådd	Uppnådd effekt	FALSE	2011-08-04	2011-08-08		4
+7932	1189	4	2020-07-17 08:12:07	3889	TH - Avd 1 NtS	3889	1	0							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2020-06-16	2020-06-30		
+35332	1721	6	2011-04-21 10:45:19	982	STSAB - IVA	982	4	1	postoperativ smärta		Morfin 10 mg / ml späds till 1 mg/ml				0		Annan orsak	FALSE	2011-03-16	2011-03-20		
+37470	189	2	2016-04-24 11:24:45	1837	DS Hjärt avd HIA	1837	4	1							17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2016-03-21	2016-03-23		4
+2508	1476	3	2021-01-24 15:13:28	4258	H KAVA Akutvårdsavd	4258	1	0	HP-eradikering vid magsår						7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2020-12-24	2020-12-30		4
+28211	3323	29	2022-12-15 13:11:28	3891	TH - Avd 3 NtS	3891	4	2	Antibiotika		Ett gram Cefotaxim blandas med 100 ml Natriumklorid 9mg/ml. Administreras via Intermate SV200 tre gånger dagligen i 14 dagar.				17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2022-11-10	2022-11-14		
+1484	1291	3	2019-11-05 11:50:26	975	STSAB - Med avd 10	975	4	1			Vid sviktsymtom i samband med vätsketerapi				12	Ändring i sjukdomsprocess, annan sjukdom och/eller behandling samt graviditet	Förändrad medicinsk situation	FALSE	2019-09-26	2019-10-04		
+17283	1045	4	2021-10-18 10:24:16	974	STSAB - Med avd 8	974	4	2							6	Behandling avslutad av annan ordinatör	Utsatt av annan ordinatör	FALSE	2021-09-16	2021-09-17		
+35249	219	1	2015-10-15 05:39:23	1828	DS Akutmott Kirurgi	1828	5	0	mot smärta						17	Orsak anges i journalanteckning	Annan orsak, journalförs	FALSE	2015-09-14	2015-11-14		
+38916	3595	6	2020-10-30 08:48:04	4736	DS Hjärt avd 91	4736	1	0				2020-09-29			7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2020-09-27	2020-09-28		4
+14893	1044	3	2018-10-08 09:30:45	59	Stängd H - Hjärtm C1-88	59	1	0	Kolesterolsänkande						8	Byte till en annan läkemedelsform eller styrka av ordinerat läkemedel	Byte till annan läkemedelsform/styrka	FALSE	2015-08-20	2018-09-07		4
+24195	1425	5	2020-11-03 13:02:21	1840	DS Hjärt avd 94	1840	1	0							8	Byte till en annan läkemedelsform eller styrka av ordinerat läkemedel	Byte till annan läkemedelsform/styrka	FALSE	2020-10-01	2020-10-02		4
+34338	2781	3	2018-01-14 11:59:09	1841	DS Hjärtsviktscentrum DV	1841	4	2	Hjärtsvikt		Se PM. Doseras i relation till vikt enligt kardiologklinikens doseringsschema. Ger koncentration 0,05 mg/ml. Ej bolus.				7	Tidsbegränsad behandling genomförd	Planerad utsättning	FALSE	2017-12-13	2017-12-14		
