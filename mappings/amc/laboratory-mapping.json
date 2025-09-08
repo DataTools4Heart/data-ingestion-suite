@@ -17,10 +17,6 @@
     "labCodeConversion" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/amc/lab-result-concept-map.csv"
-    },
-    "labUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/amc/lab-result-unit-conversion.csv"
     }
   },
   "variable" : [ {
@@ -60,7 +56,7 @@
         "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
           "{{#valueQuantityVar}}" : "{{UitslagNumeriek}}",
-          "{{?}}" : "{{mpp:convertAndReturnQuantity(%labUnitConversion, LOINCcode.toString(), UitslagNumeriek, UitslagEenheid.toString())}}"
+          "{{?}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINCcode.toString(), UitslagNumeriek, UitslagEenheid.toString())}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
