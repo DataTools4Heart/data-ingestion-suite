@@ -2,7 +2,7 @@
   "id" : "medication-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/vhir/medication-mapping",
   "name" : "medication-mapping",
-  "title" : "Mapping of OMOP drug exposure to the DT4H medication administration profile",
+  "title" : "Mapping of OMOP drug exposure to the DT4H medication request profile",
   "isDraft" : false,
   "source" : [ {
     "alias" : "omopDrugExposure",
@@ -14,10 +14,6 @@
     "joinOn" : [ "PERSON_ID" ]
   } ],
   "context" : {
-    "medicationTypeConceptMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/vhir/medication-type.csv"
-    },
     "omopToAtcConceptMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/vhir/omop-to-atc.csv"
@@ -29,20 +25,21 @@
     "expression" : "mpp:getConcept(%omopToAtcConceptMap, DRUG_CONCEPT_ID.toString())"
   } ],
   "mapping" : [ {
+    "description" : "VHIR informed that DRUG_EXPOSURE table only have prescription records so we map to MedicationRequest",
     "precondition" : {
-      "name" : "isMedicationAdministration",
+      "name" : "atcCodesExist",
       "language" : "text/fhirpath",
-      "expression" : "mpp:getConcept(%medicationTypeConceptMap, DRUG_TYPE_CONCEPT_ID.toString(), 'source_display').exists() and %atcCodes.empty().not()"
+      "expression" : "%atcCodes.exists()"
     },
     "expression" : {
-      "name" : "result",
+      "name" : "medication-request",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationAdministration', DRUG_EXPOSURE_ID.toString() & '_' & %ingredient)}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString())}}",
         "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
-        "resourceType" : "MedicationAdministration",
+        "resourceType" : "MedicationRequest",
         "medication" : {
           "concept" : {
             "coding" : {
@@ -57,16 +54,19 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
         "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists($this != ''), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() ) }}",
-        "occurencePeriod" : {
+        "status" : "completed",
+        "intent" : "order",
+        "effectiveDosePeriod" : {
           "start" : "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
           "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
         },
-        "dosage" : {
-          "dose" : {
-            "value" : "{{QUANTITY.toDecimal()}}"
-          }
-        },
-        "status" : "completed"
+        "dosageInstruction" : [ {
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{? QUANTITY.toDecimal()}}"
+            }
+          } ]
+        } ]
       }
     }
   } ]
