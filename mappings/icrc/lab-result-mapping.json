@@ -10,10 +10,6 @@
     "joinOn" : [ ]
   } ],
   "context" : {
-    "labResultUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/icrc/lab-results-unit-conversion.csv"
-    },
     "labResultCodes" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/icrc/lab-result-codes.csv"
@@ -53,7 +49,7 @@
           } ]
         },
         "effectiveDateTime" : "{{effective_date}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultUnitConversion, code_loinc, value_result, value_unit).nav:orElse(utl:createFhirQuantity(value_result, value_unit, 'http://unitsofmeasure.org', code_loinc))}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultCodes, code_loinc, value_result, value_unit).nav:orElse(utl:createFhirQuantity(value_result, value_unit, 'http://unitsofmeasure.org', code_loinc))}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
         "performer" : [ "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}" ],

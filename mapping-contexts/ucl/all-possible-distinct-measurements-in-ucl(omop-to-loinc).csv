@@ -1,0 +1,550 @@
+source_code,source_unit,target_code,target_unit,target_display,conversion_function,row_count_in_source
+586526,0,94759-8,,SARS-CoV-2 (COVID-19) RNA [Presence] in Nasopharynx by NAA with probe detection,$this,5067
+1001862,8587,93635-1,mL,Right atrial End-systolic volume by US.2D.A4C,$this,125
+1001973,8582,93643-5,cm,Right ventricular Major axis diastole [Length] by US.2D.A4C,$this,1091
+1002325,0,93633-6,ratio,Heart Left ventricular outflow tract/Maximum blood flow aortic valve by US.doppler,$this,1147
+1988202,0,99597-7,,SARS-CoV-2 (COVID-19) S protein IgG Ab [Presence] in Serum or Plasma by Immunoassay,$this,67
+3000034,8751,14957-5,,Microalbumin [Mass/volume] in Urine,$this,77
+3000081,8751,14656-3,,cloZAPine [Moles/volume] in Serum or Plasma,$this,7
+3000208,8749,14590-4,,Alpha tocopherol [Moles/volume] in Serum or Plasma,$this,3
+3000213,8907,15083-9,,Normetanephrine [Moles/time] in 24 hour Urine,$this,5
+3000285,0,2947-0,mmol/L,Sodium [Moles/volume] in Blood,$this,2
+3000285,8753,2947-0,mmol/L,Sodium [Moles/volume] in Blood,$this,15107
+3000330,0,5811-5,,Specific gravity of Urine by Test strip,$this,543
+3000351,8617,8277-6,m2,Body surface area Measured,$this,1084
+3000483,8753,2339-0,,Glucose [Mass/volume] in Blood,$this,1
+3000483,8840,2339-0,,Glucose [Mass/volume] in Blood,$this,11
+3000526,8582,18085-1,,Left ventricular Internal diameter minor axis systole by US 2D,$this,1263
+3000570,8720,25907-7,,Elastase.pancreatic [Mass/mass] in Stool,$this,11
+3000572,8582,18016-6,,Aortic valve annulus Diameter by US,$this,19
+3000620,8636,4485-9,,Complement C3 [Mass/volume] in Serum or Plasma,$this,129
+3000963,8636,718-7,g/L,Hemoglobin [Mass/volume] in Blood,$this,20547
+3001079,0,890-4,,Blood group antibody screen [Presence] in Serum or Plasma,$this,924
+3001122,8748,2276-4,mcg/L,Ferritin [Mass/volume] in Serum or Plasma,$this,609
+3001123,8583,28542-9,,Platelet mean volume [Entitic volume] in Blood,$this,19328
+3001149,0,6006-1,,Protein C [Units/volume] in Platelet poor plasma by Chromogenic method,$this,1
+3001405,8554,14135-8,,CD3+CD8+ (T8 suppressor) cells [#/volume] in Blood,$this,20
+3001405,9444,14135-8,,CD3+CD8+ (T8 suppressor) cells [#/volume] in Blood,$this,20
+3001490,9444,30392-5,,Nucleated erythrocytes [#/volume] in Blood,$this,19767
+3001604,9444,26484-6,,Monocytes [#/volume] in Blood,$this,20461
+3001788,0,14586-2,,Aldosterone [Moles/volume] in Serum or Plasma,$this,15
+3001802,44777612,32294-1,mg/mmol,Microalbumin/Creatinine [Mass Ratio] in Urine,$this,77
+3002079,8910,2956-1,,Sodium [Moles/time] in 24 hour Urine,$this,3
+3002385,8554,30385-9,%,Erythrocyte distribution width [Ratio],$this,20513
+3002529,0,883-9,,ABO group [Type] in Blood,$this,1040
+3002532,8749,22753-8,,Iron binding capacity.unsaturated [Moles/volume] in Serum or Plasma,$this,984
+3002617,8751,3298-7,,Acetaminophen [Mass/volume] in Serum or Plasma,$this,22
+3002907,0,3231-8,,Coagulation factor XII activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,7
+3003181,8753,2955-3,,Sodium [Moles/volume] in Urine,$this,281
+3003310,0,10331-7,,Rh [Type] in Blood,$this,1040
+3003338,8636,28540-3,,MCHC [Mass/volume],$this,20542
+3003458,8753,14879-1,,Phosphate [Moles/volume] in Serum or Plasma,$this,13882
+3003714,0,6462-6,,Bacteria identified in Wound by Culture,$this,412
+3003785,8748,2039-6,,Carcinoembryonic Ag [Mass/volume] in Serum or Plasma,$this,11
+3003994,0,32546-4,,Glucose-6-Phosphate dehydrogenase [Enzymatic activity/mass] in Red Blood Cells,$this,2
+3004421,8582,18170-1,cm,Left ventricular outflow tract Blood velocity-time integral by US.doppler,$this,1021
+3004775,8587,19153-6,,Volume in Urine collected for unspecified duration,$this,3
+3004905,0,3040-3,,Lipase [Enzymatic activity/volume] in Serum or Plasma,$this,16
+3005029,8636,2881-1,,Protein [Mass/volume] in Body fluid,$this,54
+3005105,9444,30376-8,,Blasts [#/volume] in Blood,$this,99
+3005133,8582,18012-5,,Ascending thoracic aorta Diameter by US,$this,726
+3005322,8923,19113-0,,IgE [Units/volume] in Serum or Plasma,$this,25
+3005445,0,3217-7,,Coagulation factor X activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,5
+3005456,0,6298-4,mmol/L,Potassium [Moles/volume] in Blood,$this,2
+3005456,8753,6298-4,mmol/L,Potassium [Moles/volume] in Blood,$this,15007
+3005673,8554,17856-6,,Hemoglobin A1c/Hemoglobin.total in Blood by HPLC,$this,192
+3005673,9579,17856-6,,Hemoglobin A1c/Hemoglobin.total in Blood by HPLC,$this,3
+3005719,8636,2465-3,,IgG [Mass/volume] in Serum or Plasma,$this,226
+3005755,8923,1743-4,,Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma by With P-5'-P,$this,15810
+3005785,8748,13969-1,,Creatine kinase.MB [Mass/volume] in Serum or Plasma,$this,1
+3005807,8555,24471-5,,Platelet function (closure time) collagen+EPINEPHrine induced [Time] in Blood,$this,1
+3005962,8736,15118-3,,Chromium [Moles/volume] in Blood,$this,1
+3006140,8749,14631-6,,Bilirubin.total [Moles/volume] in Serum or Plasma,$this,16085
+3006257,8736,20427-1,,Acetylcholine receptor Ab [Moles/volume] in Serum,$this,2
+3006315,9444,26444-0,,Basophils [#/volume] in Blood,$this,20264
+3006361,8923,20433-9,,Follitropin [Units/volume] in Serum or Plasma by 2nd IRP,$this,7
+3006588,8923,6875-9,,Cancer Ag 15-3 [Units/volume] in Serum or Plasma,$this,4
+3006653,8736,32554-8,,Thiamine [Moles/volume] in Blood,$this,2
+3006924,0,3192-2,,Coagulation factor V activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,2
+3007164,8636,2458-8,,IgA [Mass/volume] in Serum or Plasma,$this,232
+3007204,0,3186-4,,Coagulation factor IX activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,8
+3007220,8923,2157-6,,Creatine kinase [Enzymatic activity/volume] in Serum or Plasma,$this,260
+3007234,0,608-0,,Bacteria identified in Ear by Aerobe culture,$this,11
+3007368,8751,2464-6,,IgG [Mass/volume] in Cerebral spinal fluid,$this,2
+3007461,9444,26515-7,,Platelets [#/volume] in Blood,$this,20502
+3007527,8576,9804-6,,Weight of Stone,$this,1
+3007733,8753,2078-4,,Chloride [Moles/volume] in Urine,$this,2
+3007808,0,2915-7,,Renin [Enzymatic activity/volume] in Plasma,$this,14
+3007822,0,13438-7,,Protein Fractions [Interpretation] in Urine by Electrophoresis,$this,1
+3007930,0,2614-6,,Methemoglobin/Hemoglobin.total in Blood,$this,2
+3007930,8554,2614-6,,Methemoglobin/Hemoglobin.total in Blood,$this,14436
+3008009,0,3175-7,,Antithrombin Ag [Units/volume] in Platelet poor plasma by Immunoassay,$this,1
+3008295,8862,2692-2,,Osmolality of Serum or Plasma,$this,286
+3008486,8729,14920-3,,Thyroxine (T4) free [Moles/volume] in Serum or Plasma,$this,1244
+3008770,0,22705-8,,Glucose [Moles/volume] in Urine by Test strip,$this,1
+3009035,8845,14685-2,,Cobalamin (Vitamin B12) [Moles/volume] in Serum or Plasma,$this,988
+3009105,0,20409-9,,Erythrocytes [#/volume] in Urine by Test strip,$this,1
+3009214,8923,10501-5,,Lutropin [Units/volume] in Serum or Plasma,$this,7
+3009237,8729,30169-7,,Chromogranin A [Units/volume] in Serum or Plasma by Immunoassay,$this,1
+3009461,8907,14573-0,,5-Hydroxyindoleacetate [Moles/time] in 24 hour Urine,$this,1
+3009508,8749,14683-7,,Creatinine [Moles/volume] in Urine,$this,527
+3009542,0,20570-8,,Hematocrit [Volume Fraction] of Blood,$this,1
+3009542,8554,20570-8,,Hematocrit [Volume Fraction] of Blood,$this,13558
+3009542,44777604,20570-8,,Hematocrit [Volume Fraction] of Blood,$this,20542
+3009577,8749,14800-7,,Iron binding capacity [Moles/volume] in Serum or Plasma,$this,985
+3009762,0,18303-8,,IgM [Presence] in Serum by Immunofixation,$this,6
+3009814,8554,14801-5,,Iron saturation [Molar fraction] in Serum or Plasma,$this,985
+3009991,0,12480-0,,Angiotensin converting enzyme [Enzymatic activity/volume] in Cerebral spinal fluid,$this,1
+3010015,8749,25521-6,,Selenium [Moles/volume] in Serum or Plasma,$this,2
+3010375,8748,3520-4,,cycloSPORINE [Mass/volume] in Blood,$this,1
+3010421,0,11558-4,,pH of Blood,$this,15145
+3010503,9444,8116-6,,CD19 cells [#/volume] in Blood,$this,4
+3010528,0,15359-3,,dRVVT actual/normal (normalized LA screen),$this,19
+3010566,8729,14866-8,,Parathyrin.intact [Moles/volume] in Serum or Plasma,$this,133
+3010589,8555,5946-9,,aPTT.factor substitution in Platelet poor plasma by Coagulation assay --immediately after addition of normal plasma,$this,520
+3010813,9444,26464-8,,Leukocytes [#/volume] in Blood,$this,20548
+3011096,8582,18152-9,cm,Left ventricular posterior wall Thickness during diastole by US,$this,1330
+3011412,9444,8122-4,,CD3 cells [#/volume] in Blood,$this,20
+3011570,8753,29765-5,,Cholesterol [Moles/volume] in Body fluid,$this,4
+3011689,0,4536-9,,Deoxyhemoglobin/Hemoglobin.total in Blood,$this,15046
+3011933,8749,11139-3,,Metanephrine [Mass/volume] in Urine,$this,5
+3011958,8749,16362-6,,Ammonia [Moles/volume] in Plasma,$this,39
+3012071,0,5218-3,,Histoplasma capsulatum Ab [Presence] in Serum by Immune diffusion (ID),$this,1
+3012095,8753,2601-3,,Magnesium [Moles/volume] in Serum or Plasma,$this,5932
+3012133,8923,1795-4,,Amylase [Enzymatic activity/volume] in Body fluid,$this,8
+3012140,8876,18059-6,mmHg,Mitral valve Mean pressure gradient by US.doppler,$this,136
+3012310,8749,29767-1,,Bilirubin.total [Moles/volume] in Body fluid,$this,1
+3012336,8636,4542-7,,Haptoglobin [Mass/volume] in Serum or Plasma,$this,59
+3012343,8923,31159-7,,Heparin anti Xa [Units/volume] in Nonbiological fluid,$this,31
+3012501,0,11555-0,,Base excess in Blood by calculation,$this,2
+3012501,8753,11555-0,,Base excess in Blood by calculation,$this,15104
+3012565,8587,3167-4,,Volume of 24 hour Urine,$this,11
+3012602,8729,25474-8,,Metanephrines [Moles/volume] in Serum or Plasma,$this,13
+3012693,0,30554-0,,HIV reverse transcriptase gene mutations detected [Identifier],$this,2
+3012898,8753,22700-9,,Urea [Moles/volume] in Urine,$this,35
+3012984,8751,10992-6,,Norclozapine [Mass/volume] in Serum or Plasma,$this,7
+3013005,8749,14905-4,,Retinol [Moles/volume] in Serum or Plasma,$this,2
+3013115,9444,26449-9,,Eosinophils [#/volume] in Blood,$this,20324
+3013176,0,5899-0,,aPTT normal/actual in Platelet poor plasma by Coagulation assay,$this,4519
+3013180,0,10351-5,,HIV 1 RNA [Units/volume] (viral load) in Serum or Plasma by Probe with amplification,$this,8
+3013290,0,11557-6,,Carbon dioxide [Partial pressure] in Blood,$this,2
+3013290,44777602,11557-6,,Carbon dioxide [Partial pressure] in Blood,$this,15147
+3013395,8554,10231-9,,Right ventricular Ejection fraction,$this,1
+3013502,0,20564-1,,Oxygen saturation in Blood,$this,4
+3013502,8554,20564-1,,Oxygen saturation in Blood,$this,30044
+3013603,8748,2857-1,,Prostate specific Ag [Mass/volume] in Serum or Plasma,$this,96
+3013702,44777602,19254-2,,Oxygen [Partial pressure] adjusted to patient's actual temperature in Blood,$this,582
+3013707,8752,4537-7,,Erythrocyte sedimentation rate by Westergren method,$this,209
+3013731,8923,5193-8,,Hepatitis B virus surface Ab [Units/volume] in Serum or Plasma by Immunoassay,$this,163
+3013801,0,13955-0,,Hepatitis C virus Ab [Presence] in Serum or Plasma by Immunoassay,$this,1
+3013826,8753,14749-6,,Glucose [Moles/volume] in Serum or Plasma,$this,146
+3014037,8554,8123-2,,CD3+CD4+ (T4 helper) cells/100 cells in Blood,$this,20
+3014051,0,20454-5,,Protein [Presence] in Urine by Test strip,$this,1
+3014111,8753,2524-7,,Lactate [Moles/volume] in Serum or Plasma,$this,35
+3014326,8736,29775-4,,Insulin-like growth factor-I [Moles/volume] in Serum or Plasma,$this,2
+3014576,8753,2075-0,,Chloride [Moles/volume] in Serum or Plasma,$this,13
+3014594,8753,25549-7,,Urea [Moles/volume] in Body fluid,$this,2
+3014724,8910,14684-5,,Creatinine [Moles/time] in 24 hour Urine,$this,11
+3015377,8753,2000-8,,Calcium [Moles/volume] in Serum or Plasma,$this,14094
+3015468,0,20496-6,,Gliadin IgG Ab [Units/volume] in Serum by Immunoassay,$this,2
+3015509,44777606,18037-2,,Mitral valve Peak E wave by US.doppler,$this,960
+3015736,0,2756-5,,pH of Urine,$this,1
+3015916,8923,19176-7,,Alpha-1-Fetoprotein [Units/volume] in Serum or Plasma,$this,27
+3015968,0,19214-6,,Oxygen [Partial pressure] saturation adjusted to 0.5 in Arterial blood,$this,2
+3015968,44777602,19214-6,,Oxygen [Partial pressure] saturation adjusted to 0.5 in Arterial blood,$this,14259
+3016038,8753,2828-2,,Potassium [Moles/volume] in Urine,$this,281
+3016047,0,18038-0,,Mitral valve Peak E wave/Peak A wave by US.doppler,$this,663
+3016087,0,32309-7,,Cholesterol.total/Cholesterol in HDL [Molar ratio] in Serum or Plasma,$this,303
+3016228,8554,8117-4,,CD19 cells/100 cells in Blood,$this,4
+3016293,0,1963-8,,Bicarbonate [Moles/volume] in Serum or Plasma,$this,2
+3016293,8753,1963-8,,Bicarbonate [Moles/volume] in Serum or Plasma,$this,15064
+3016330,8910,2829-0,,Potassium [Moles/time] in 24 hour Urine,$this,2
+3016407,8636,3255-7,,Fibrinogen [Mass/volume] in Platelet poor plasma by Coagulation assay,$this,720
+3016426,8749,13964-2,,Methylmalonate [Moles/volume] in Serum or Plasma,$this,2
+3016523,8923,14796-7,,Insulin [Moles/volume] in Serum or Plasma,$this,2
+3016616,8749,14688-6,,Dehydroepiandrosterone sulfate (DHEA-S) [Moles/volume] in Serum or Plasma,$this,1
+3016727,0,611-4,,Bacteria identified in Body fluid by Culture,$this,129
+3016728,8749,20646-6,,Homocystine [Moles/volume] in Serum or Plasma,$this,1
+3016771,8923,1798-8,,Amylase [Enzymatic activity/volume] in Serum or Plasma,$this,404
+3017044,8923,5385-0,,Thyrotropin receptor Ab [Units/volume] in Serum,$this,14
+3017446,8736,14913-8,,Testosterone [Moles/volume] in Serum or Plasma,$this,15
+3017701,8582,29429-8,cm,Inferior vena cava Diameter by US --inspiration,$this,383
+3017732,9444,26499-4,,Neutrophils [#/volume] in Blood,$this,20461
+3017754,44777618,24518-3,,Calcium/Creatinine [Molar ratio] in Urine,$this,1
+3017765,8554,29434-8,,Left ventricular Fractional shortening minor axis by US 2D,$this,1262
+3017766,8636,4498-2,,Complement C4 [Mass/volume] in Serum or Plasma,$this,129
+3018133,8753,2004-0,,Calcium [Moles/volume] in Urine,$this,1
+3018447,0,11011-4,,Hepatitis C virus RNA [Units/volume] (viral load) in Serum or Plasma by NAA with probe detection,$this,1
+3018572,0,2069-3,,Chloride [Moles/volume] in Blood,$this,2
+3018572,8753,2069-3,,Chloride [Moles/volume] in Blood,$this,15037
+3018676,0,3174-0,,Antithrombin [Units/volume] in Platelet poor plasma by Chromogenic method,$this,5
+3018677,8555,14979-9,,aPTT in Platelet poor plasma by Coagulation assay,$this,4519
+3018694,44777656,27978-6,,Metanephrines/Creatinine [Molar ratio] in 24 hour Urine,$this,5
+3018760,0,5909-7,,Blood smear finding [Identifier] in Blood by Light microscopy,$this,2
+3018851,8751,14915-3,,Theophylline [Moles/volume] in Serum or Plasma,$this,13
+3018980,8751,14639-9,,carBAMazepine [Moles/volume] in Serum or Plasma,$this,1
+3018994,8923,14803-1,,Lactate dehydrogenase [Enzymatic activity/volume] in Body fluid by Lactate to pyruvate reaction,$this,55
+3019170,8923,11580-8,,Thyrotropin [Units/volume] in Serum or Plasma by Detection limit <= 0.005 mIU/L,$this,1310
+3019198,9444,26474-7,,Lymphocytes [#/volume] in Blood,$this,20461
+3019256,0,18161-0,,Tricuspid valve Maximum blood flow velocity by US.doppler,$this,37
+3019256,44777606,18161-0,,Tricuspid valve Maximum blood flow velocity by US.doppler,$this,1104
+3019284,0,5195-3,,Hepatitis B virus surface Ag [Presence] in Serum,$this,1
+3019420,8748,21582-2,,Tryptase [Mass/volume] in Serum or Plasma,$this,1
+3019473,8636,2880-3,,Protein [Mass/volume] in Cerebral spinal fluid,$this,4
+3019550,8753,2951-2,mmol/L,Sodium [Moles/volume] in Serum or Plasma,$this,22307
+3019779,8751,14877-5,,Phenytoin [Moles/volume] in Serum or Plasma,$this,8
+3019800,8725,6598-7,ng/L,Troponin T.cardiac [Mass/volume] in Serum or Plasma,$this,4081
+3019839,8749,15069-8,,Fructosamine [Moles/volume] in Serum or Plasma,$this,1
+3019900,8753,14647-2,mmol/L,Cholesterol [Moles/volume] in Serum or Plasma,$this,336
+3019902,0,13317-3,,Methicillin resistant Staphylococcus aureus [Presence] in Specimen by Organism specific culture,$this,448
+3020044,8753,14744-7,,Glucose [Moles/volume] in Cerebral spinal fluid,$this,2
+3020059,8753,29265-6,,Calcium [Moles/volume] corrected for albumin in Serum or Plasma,$this,14091
+3020149,8736,1989-3,,25-hydroxyvitamin D3 [Mass/volume] in Serum or Plasma,$this,359
+3020460,8751,1988-5,mg/L,C reactive protein [Mass/volume] in Serum or Plasma,$this,15835
+3020491,0,15074-8,,Glucose [Moles/volume] in Blood,$this,2
+3020491,8753,15074-8,,Glucose [Moles/volume] in Blood,$this,67265
+3020508,0,18299-8,,IgA [Presence] in Serum by Immunofixation,$this,5
+3020564,0,14682-9,,Creatinine [Moles/volume] in Serum or Plasma,$this,2761
+3020564,8749,14682-9,,Creatinine [Moles/volume] in Serum or Plasma,$this,22550
+3020630,8636,2885-2,,Protein [Mass/volume] in Serum or Plasma,$this,393
+3020717,8749,14955-9,,Zinc [Moles/volume] in Serum or Plasma,$this,3
+3020779,8753,22664-7,,Urea [Moles/volume] in Serum or Plasma,$this,7731
+3020876,8807,2889-4,,Protein [Mass/time] in 24 hour Urine,$this,6
+3021119,0,1994-3,,Calcium.ionized [Moles/volume] in Blood,$this,2
+3021119,8753,1994-3,,Calcium.ionized [Moles/volume] in Blood,$this,15228
+3021120,9444,30446-9,,Myelocytes [#/volume] in Blood,$this,152
+3021614,8923,11572-5,,Rheumatoid factor [Units/volume] in Serum or Plasma,$this,92
+3021960,8842,14732-2,,Folate [Moles/volume] in Serum or Plasma,$this,933
+3022229,8753,13539-2,,Phosphate [Moles/volume] in Urine,$this,1
+3022250,8923,14804-9,,Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma by Lactate to pyruvate reaction,$this,251
+3022411,8736,14603-5,,Androstenedione [Moles/volume] in Serum or Plasma,$this,1
+3022520,0,3208-6,,Coagulation factor VIII activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,10
+3022533,8554,8124-0,,CD3 cells/100 cells in Blood,$this,20
+3022621,0,5803-2,,pH of Urine by Test strip,$this,2
+3022709,9444,26523-1,,Promyelocytes [#/volume] in Blood,$this,7
+3022810,8753,2950-4,,Sodium [Moles/volume] in Body fluid,$this,2
+3022914,8923,24108-3,,Cancer Ag 19-9 [Units/volume] in Serum or Plasma,$this,13
+3022941,8582,18083-6,cm,Left ventricular Internal diameter minor axis diastole by US 2D,$this,1371
+3022948,8749,14798-3,,Iron [Moles/volume] in Serum or Plasma,$this,1053
+3023081,0,20563-3,,Carboxyhemoglobin/Hemoglobin.total in Blood,$this,2
+3023081,8554,20563-3,,Carboxyhemoglobin/Hemoglobin.total in Blood,$this,15041
+3023103,8753,2823-3,mmol/L,Potassium [Moles/volume] in Serum or Plasma,$this,21602
+3023368,0,600-7,,Bacteria identified in Blood by Culture,$this,1500
+3023520,9444,14196-0,,Reticulocytes [#/volume] in Blood,$this,111
+3023614,8582,29468-6,mm,Left atrial Diameter anterior-posterior systole by US 2D,$this * 10,766
+3023690,8554,32137-2,,Calcium phosphate/Total in Stone,$this,1
+3023764,0,32355-0,,Bacteria identified in Specimen by Respiratory culture,$this,15
+3024139,8636,2468-7,,IgG subclass 3 [Mass/volume] in Serum,$this,11
+3024172,8923,15061-5,,Erythropoietin (EPO) [Units/volume] in Serum or Plasma,$this,17
+3024507,9444,30433-7,,Metamyelocytes [#/volume] in Blood,$this,118
+3024561,8636,1751-7,g/L,Albumin [Mass/volume] in Serum or Plasma,$this,16744
+3024666,8753,14334-7,,"Lithium, Blood [Moles/volume] in Serum or Plasma",$this,1
+3024731,8583,30428-7,,MCV [Entitic volume],$this,20542
+3024929,9444,777-3,,Platelets [#/volume] in Blood by Automated count,$this,31
+3024965,0,18055-4,,Tricuspid valve Maximum pressure gradient during diastole by US.doppler,$this,28
+3024965,8876,18055-4,,Tricuspid valve Maximum pressure gradient during diastole by US.doppler,$this,1096
+3024980,8636,2469-5,,IgG subclass 4 [Mass/volume] in Serum,$this,11
+3025317,0,3197-1,,Coagulation factor VII activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,1
+3025431,0,11553-5,,Microscopic exam [Interpretation] of Sputum by Cytology,$this,481
+3025547,8923,8098-6,,Thyroglobulin Ab [Units/volume] in Serum or Plasma,$this,1
+3025839,8753,14927-8,mmol/L,Triglyceride [Moles/volume] in Serum or Plasma,$this,344
+3025848,8736,15119-1,,Cobalt [Moles/volume] in Blood,$this,1
+3025890,8751,14626-6,,Beta-2-Microglobulin [Moles/volume] in Serum,$this,13
+3026008,0,630-4,,Bacteria identified in Urine by Culture,$this,1841
+3026101,8753,29766-3,,Triglyceride [Moles/volume] in Body fluid,$this,8
+3026179,8729,25489-6,,Normetanephrine [Moles/volume] in Serum or Plasma,$this,13
+3026250,8748,11253-2,,Tacrolimus [Mass/volume] in Blood,$this,9
+3026285,8636,1825-9,,Alpha 1 antitrypsin [Mass/volume] in Serum or Plasma,$this,16
+3026361,8734,26453-1,,Erythrocytes [#/volume] in Blood,$this,20543
+3026493,8749,14933-6,,Urate [Moles/volume] in Serum or Plasma,$this,156
+3026591,0,4677-1,,Protein S Free Ag [Units/volume] in Platelet poor plasma by Immunoassay,$this,1
+3026687,0,18301-2,,IgG [Presence] in Serum by Immunofixation,$this,28
+3026782,8862,2695-5,,Osmolality of Urine,$this,237
+3026910,8923,2324-2,,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma,$this,95
+3026989,8729,14928-6,,Triiodothyronine (T3) Free [Moles/volume] in Serum or Plasma,$this,22
+3027135,8636,2466-1,,IgG subclass 1 [Mass/volume] in Serum,$this,11
+3027238,8923,8099-4,,Thyroperoxidase Ab [Units/volume] in Serum or Plasma,$this,18
+3027290,44777662,29449-6,,Mitral valve Regurgitant volume by US.doppler+Calculated by PISA method,$this,89
+3027315,0,11556-8,,Oxygen [Partial pressure] in Blood,$this,2
+3027315,44777602,11556-8,,Oxygen [Partial pressure] in Blood,$this,15092
+3027391,8555,24472-3,,Platelet function (closure time) collagen+ADP induced [Time] in Blood,$this,1
+3027424,0,616-3,,Bacteria identified in Line specimen by IV Line culture,$this,27
+3027456,8748,14698-5,,Digoxin [Moles/volume] in Serum or Plasma,$this,191
+3027544,0,539-7,,Mycobacterium sp identified in Sputum by Organism specific culture,$this,129
+3027923,8729,14633-2,,C peptide [Moles/volume] in Serum or Plasma,$this,4
+3027945,8554,4679-7,,Reticulocytes/100 erythrocytes in Blood,$this,111
+3028026,8636,2472-9,,IgM [Mass/volume] in Serum or Plasma,$this,226
+3028167,9444,24467-3,,CD3+CD4+ (T4 helper) cells [#/volume] in Blood,$this,20
+3028192,8636,2467-9,,IgG subclass 2 [Mass/volume] in Serum,$this,11
+3028570,44777606,11706-9,,Aortic valve Peak systolic flow by US.doppler,$this,1215
+3028638,8749,14629-0,,Bilirubin.direct [Moles/volume] in Serum or Plasma,$this,44
+3028850,0,42216-2,,Referral lab name [Identifier],$this,1
+3029071,8554,42246-9,,Hemoglobin F/Hemoglobin.total in Blood by HPLC,$this,9
+3029435,8725,33763-4,,Natriuretic peptide.B prohormone N-Terminal [Moles/volume] in Serum or Plasma,$this,1971
+3029483,0,32677-7,,DNA double strand Ab [Units/volume] in Serum by Immunoassay,$this,16
+3029713,8636,51435-6,,Protein.monoclonal band 1 [Mass/volume] in Serum or Plasma by Electrophoresis,$this,28
+3030057,8748,33782-4,,Retinol binding protein [Mass/volume] in Urine,$this,1
+3030091,0,49701-6,,pH of Blood adjusted to patient's actual temperature,$this,590
+3030207,0,50978-6,,Lambda light chains.free [Presence] in Serum by Immunofixation,$this,23
+3030408,8729,50140-3,,3-Methoxytyramine [Moles/volume] in Serum or Plasma,$this,13
+3031847,0,41867-3,,von Willebrand factor (vWf) Ag [Units/volume] in Platelet poor plasma,$this,3
+3031973,8554,42244-4,,Hemoglobin A/Hemoglobin.total in Blood by HPLC,$this,60
+3032080,0,34714-6,,INR in Blood by Coagulation assay,$this,5418
+3032567,0,42595-9,,Hepatitis B virus DNA [Units/volume] (viral load) in Serum or Plasma by NAA with probe detection,$this,1
+3032699,0,49672-9,,Streptococcus pneumoniae DNA [Presence] in Specimen by NAA with probe detection,$this,2
+3033203,44777602,34705-4,,Carbon dioxide [Partial pressure] adjusted to patient's actual temperature in Blood,$this,590
+3033386,0,41602-4,,Bacteria [Presence] in Cerebral spinal fluid by Light microscopy,$this,9
+3033923,8907,11140-1,,Metanephrine [Moles/time] in 24 hour Urine,$this,5
+3034200,8582,18018-2,,Left ventricular outflow tract Diameter by US,$this,562
+3034426,8555,5902-2,,Prothrombin time (PT),$this,5416
+3034708,0,19048-8,,Nucleated erythrocytes/100 leukocytes [Ratio] in Blood,$this,19767
+3034717,0,32218-0,,Cyclic citrullinated peptide Ab [Units/volume] in Serum by Immunoassay,$this,49
+3034780,0,2742-5,,Angiotensin converting enzyme [Enzymatic activity/volume] in Serum or Plasma,$this,28
+3034860,8751,36916-5,,Kappa light chains.free [Mass/volume] in Serum,$this,300
+3035350,0,2514-8,,Ketones [Presence] in Urine by Test strip,$this,1
+3035613,0,3237-5,,Coagulation factor XIII activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,1
+3035637,0,2141-0,,Corticotropin [Mass/volume] in Plasma,$this,4
+3035797,8636,35559-4,,Protein.monoclonal band 2 [Mass/volume] in Serum or Plasma by Electrophoresis,$this,28
+3035941,8564,28539-5,,MCH [Entitic mass],$this,20542
+3035995,8923,6768-6,,Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma,$this,16277
+3035999,8753,2520-5,,Lactate [Moles/volume] in Cerebral spinal fluid,$this,1
+3036243,8753,2821-7,,Potassium [Moles/volume] in Body fluid,$this,2
+3036309,8749,15009-4,,5-Hydroxyindoleacetate [Moles/volume] in Urine,$this,1
+3036481,0,14675-3,,Cortisol [Moles/volume] in Serum or Plasma,$this,268
+3036481,8736,14675-3,,Cortisol [Moles/volume] in Serum or Plasma,$this,4
+3036535,8748,3013-0,,Thyroglobulin [Mass/volume] in Serum or Plasma,$this,1
+3037081,8923,30239-8,,Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma by With P-5'-P,$this,78
+3037121,8636,2888-6,,Protein [Mass/volume] in Urine,$this,218
+3037208,9483,17977-0,cm2,Left atrial Area by US.2D.A4C,$this,326
+3037329,0,36923-1,,Epstein Barr virus DNA [#/volume] (viral load) in Blood by NAA with probe detection,$this,6
+3037426,0,5818-0,,Urobilinogen [Presence] in Urine by Test strip,$this,449
+3037459,8749,25386-4,,Creatinine [Moles/volume] in Body fluid,$this,3
+3037486,8582,18169-3,cm,Aortic valve Blood velocity-time integral by US.doppler,$this,662
+3037551,8923,10334-1,,Cancer Ag 125 [Units/volume] in Serum or Plasma,$this,12
+3037653,8554,42245-1,,Hemoglobin A2/Hemoglobin.total in Blood by HPLC,$this,19
+3037756,0,25700-6,,Immunofixation for Serum or Plasma,$this,63
+3038288,0,40982-1,,Influenza virus B RNA [Presence] in Specimen by NAA with probe detection,$this,5
+3038404,44777612,40486-3,,Protein/Creatinine [Ratio] in 24 hour Urine,$this,218
+3039578,8907,40409-5,,3-Methoxytyramine [Moles/time] in 24 hour Urine,$this,5
+3040168,0,51584-1,,Immature granulocytes [#/volume] in Blood,$this,1162
+3041934,0,53222-6,,Coagulation factor XI activated [Units/volume] in Platelet poor plasma by Coagulation assay,$this,7
+3042349,8554,40824-5,,von Willebrand factor (vWf) cleaving protease inhibitor [Units/volume] in Platelet poor plasma,$this,2
+3043151,0,32644-7,,Coxiella burnetii phase 1 IgG Ab [Presence] in Serum,$this,1
+3044254,0,40988-8,,Respiratory syncytial virus RNA [Presence] in Specimen by NAA with probe detection,$this,5
+3044495,0,43408-4,,Bacteria identified in Tissue by Culture,$this,34
+3044624,9332,34589-2,,von Willebrand factor (vWf) cleaving protease [Presence] in Platelet poor plasma,$this,5
+3044644,8736,34146-1,,Neopterin [Moles/volume] in Cerebral spinal fluid,$this,1
+3044904,0,34163-6,,Oxygen content in Blood,$this,2
+3044904,8753,34163-6,,Oxygen content in Blood,$this,14306
+3044938,0,34487-9,,Influenza virus A RNA [Presence] in Specimen by NAA with probe detection,$this,6
+3045191,8749,34347-5,,Normetanephrine [Moles/volume] in Urine,$this,5
+3045317,44777656,44924-9,,Normetanephrine/Creatinine [Molar ratio] in 24 hour Urine,$this,5
+3045958,8923,44910-8,,Alpha-1-Fetoprotein [Units/volume] in Body fluid,$this,1
+3046044,44777652,33354-2,,N-acetyl-beta-glucosaminidase [Enzymatic activity/volume] in Urine,$this,1
+3046071,8923,45194-8,,Choriogonadotropin.intact+Beta subunit [Units/volume] in Serum or Plasma,$this,4
+3046110,0,43928-1,,Coxiella burnetii phase 2 IgM Ab [Presence] in Serum by Immunofluorescence,$this,1
+3046299,8636,33358-3,,Protein.monoclonal [Mass/volume] in Serum or Plasma by Electrophoresis,$this,320
+3046538,0,46128-5,,Tissue transglutaminase IgA Ab [Units/volume] in Serum by Immunoassay,$this,23
+3046760,0,44099-0,,Galactomannan Ag [Presence] in Serum or Plasma by Immunoassay,$this,12
+3046904,8748,33858-2,,Somatotropin [Units/volume] in Serum or Plasma,$this,1
+3047169,8751,33944-0,,Lambda light chains.free [Mass/volume] in Serum or Plasma,$this,300
+3047181,0,32693-4,,Lactate [Moles/volume] in Blood,$this,2
+3047181,8753,32693-4,,Lactate [Moles/volume] in Blood,$this,14800
+3047350,0,44555-1,,Kappa light chains.free [Presence] in Serum by Immunofixation,$this,20
+3048689,8720,38445-3,,Calprotectin [Mass/mass] in Stool,$this,11
+3048878,0,48848-6,,Coxiella burnetii phase 1 IgA Ab [Titer] in Serum by Immunofluorescence,$this,1
+3049126,8751,48498-0,,Amyloid A [Mass/volume] in Serum or Plasma,$this,5
+3049398,0,46266-3,,Myeloperoxidase Ab [Units/volume] in Serum by Immunoassay,$this,34
+3049714,8748,47255-5,,Procollagen type I.N-terminal propeptide [Mass/volume] in Serum,$this,1
+3049863,0,48719-9,,Coxiella burnetii phase 2 IgG Ab [Presence] in Serum by Immunofluorescence,$this,1
+3050100,44777656,48381-8,,3-Methoxytyramine/Creatinine [Molar ratio] in 24 hour Urine,$this,5
+3050446,0,48720-7,,Coxiella burnetii phase 1 IgG Ab [Presence] in Serum by Immunofluorescence,$this,1
+3050479,8554,38518-7,,Immature granulocytes/100 leukocytes in Blood,$this,1162
+3051339,8749,47100-3,,Copper [Moles/volume] in Blood,$this,6
+3051384,8749,48380-0,,3-Methoxytyramine [Moles/volume] in 24 hour Urine,$this,5
+3051593,0,46418-0,,INR in Capillary blood by Coagulation assay,$this,17
+3051669,0,46267-1,,Proteinase 3 Ab [Units/volume] in Serum by Immunoassay,$this,34
+3051714,0,48065-7,,Fibrin D-dimer FEU [Mass/volume] in Platelet poor plasma,$this,825
+3052067,0,48508-6,,Measles virus RNA [Presence] in Specimen by NAA with probe detection,$this,1
+3052662,8636,47600-2,,Ceruloplasmin [Moles/volume] in Serum or Plasma,$this,23
+3053140,8751,47109-4,,Gentamicin [Moles/volume] in Serum or Plasma,$this,22
+3053209,0,48378-4,,Kappa light chains.free/Lambda light chains.free [Mass Ratio] in Serum,$this,297
+3053310,0,48995-5,,N-acetyl-beta-glucosaminidase/Creatinine [Ratio] in Urine,$this,1
+3661601,0,,,Minimum alveolar concentration,$this,11144
+4011919,8554,,,Hemoglobin saturation with oxygen,$this,213207
+4022240,0,38208-5,,Pain score,$this,156114
+4029625,8587,,,Tidal volume,$this,16036
+4030916,8753,,,Base excess,$this,40
+4062985,0,,,Ideal body weight,$this,4077
+4068414,8876,8462-4,mmHg,Non-invasive diastolic arterial pressure,$this,82418
+4083352,0,,,Glasgow Coma Scale motor response subscore,$this,33253
+4084277,0,,,Glasgow Coma Score eye opening subscore,$this,33342
+4084912,0,,,Glasgow Coma Scale verbal response subscore,$this,33278
+4087260,0,,,Peak expiratory flow rate,$this,9
+4087260,8698,,,Peak expiratory flow rate,$this,122
+4090199,8587,,,Oral fluid input,$this,85469
+4090322,710215,,,Static lung compliance,$this,69
+4090654,710215,,,Dynamic compliance,$this,71
+4093836,0,,,Glasgow coma score,$this,239
+4098070,0,,,Blood group antibody screening,$this,1220
+4099154,8504,29463-7,kg,Body weight,$this / 1000,12516
+4101694,44777590,,,Peak inspiratory pressure,$this,19735
+4108160,0,,,Right ventricular end-diastolic cavity size,$this,40
+4108289,0,,,Non-invasive mean arterial pressure,$this,2214
+4108289,8876,,,Non-invasive mean arterial pressure,$this,10479
+4108290,8876,,,Invasive mean arterial pressure,$this,51621
+4108446,0,,,Total breath rate,$this,7158
+4108449,8555,,,Ventilation cycle time,$this,4999
+4108450,8523,,,Inspiration/expiration time ratio,$this,13318
+4108582,0,8806-2,%,Left ventricular ejection fraction,$this,331
+4108585,0,,,Left ventricular end-diastolic cavity size,$this,57
+4113561,8587,,,Vomit volume,$this,437
+4124782,0,,,N - Regional lymph node stage,$this,5
+4126828,0,,,M - Distant metastasis stage,$this,4
+4137519,8554,,,Inspired sevoflurane concentration,$this,4312
+4140731,8554,,,Expired sevoflurane concentration,$this,4052
+4141684,8698,,,Delivered oxygen flow rate,$this,60647
+4150245,0,,,Expected FEV1/FVC ratio,$this,6
+4150403,0,,,Expected forced vital capacity,$this,3
+4152194,0,8480-6,mmHg,Systolic blood pressure,$this,127635
+4154790,0,8462-4,mmHg,Diastolic blood pressure,$this,127635
+4155154,0,,,Measurement of blood pressure using cuff method,$this,172795
+4161972,0,,,Date of report,$this,4
+4165590,0,,,Symptom checklist,$this,39
+4171261,0,,,Right atrial pressure,$this,1020
+4176265,8519,,,Forced vital capacity,$this,12
+4177340,8582,8302-2,cm,Body height measure,$this,4078
+4180306,0,,,Urodynamic study using catheter,$this,1
+4191836,8587,,,24 hour urine output,$this,35920
+4193645,8698,,,Gas flow rate (v),$this,33
+4196583,8554,,,FEV1/FVC percent,$this,3
+4201235,0,8277-6,m2,Body surface area,$this,1824
+4201235,8617,8277-6,m2,Body surface area,$this,3832
+4208254,32710,,,Cardiac index,$this,75
+4208972,0,,,Percent predicted FEV1,$this,3
+4208972,8519,,,Percent predicted FEV1,$this,3
+4215838,0,,,Inspiratory pressure setting,$this,2672
+4215838,44777590,,,Inspiratory pressure setting,$this,6568
+4216746,44777590,,,Positive end expiratory pressure setting,$this,7465
+4220163,8587,,,Tidal volume setting,$this,153
+4221102,8698,,,Cardiac output,$this,364
+4224504,0,8867-4,bpm,Pulse,$this,201764
+4236281,8876,,,Lying diastolic blood pressure,$this,109759
+4237865,0,,,Size of pupil,$this,20719
+4239021,0,8478-0,mmHg,Mean blood pressure,$this,14571
+4241837,8519,,,Forced expired volume in 1 second,$this,18
+4245997,0,39156-5,kg/m2,Body mass index,$this,10257
+4248525,8876,,,Lying systolic blood pressure,$this,109759
+4264378,8587,,,Measure of urine output,$this,55510
+4264765,0,,,Blood pressure taking,$this,173308
+4268883,8876,,,Standing diastolic blood pressure,$this,1861
+4292062,8876,,,Standing systolic blood pressure,$this,1861
+4296538,0,35088-4,,Glasgow coma scale,$this,35530
+4301868,0,8867-4,bpm,Pulse rate,$this,227324
+4302666,0,8310-5,Cel,Body temperature,$this,186619
+4313591,0,9279-1,/min,Respiratory rate,$this,216533
+4313591,8541,9279-1,/min,Respiratory rate,$this,16
+4323687,8876,60985-9,mmHg,Central venous pressure,$this,1272
+4353612,0,3150-0,%,Oxygen concentration,$this,109
+4353713,44777590,,,Positive end expiratory pressure,$this,21327
+4353717,8698,,,Ventilator delivered minute volume,$this,8540
+4353718,0,,,Mandatory breath rate,$this,3046
+4353825,0,,,Pulmonary valve function,$this,2
+4353843,8876,76215-3,mmHg,Invasive systolic arterial pressure,$this,28983
+4353936,8554,3150-0,%,Inspired oxygen concentration,$this,48798
+4353938,44777602,,,End tidal carbon dioxide concentration,$this,20093
+4353947,8555,,,Inspiratory time,$this,106
+4353953,8876,,,Intracranial pressure,$this,106
+4353969,0,,,Left ventricular segmental wall thickness,$this,652
+4353973,0,,,Left ventricular end-systolic cavity size,$this,48
+4354062,0,,,Right ventricular cavity size,$this,51
+4354252,8876,8480-6,mmHg,Non-invasive systolic arterial pressure,$this,82418
+4354253,8876,76213-8,mmHg,Invasive diastolic arterial pressure,$this,28983
+21490805,8876,76092-6,,Maximum gradient during systole [Pressure] Aortic valve,$this,1181
+21490991,32738,78185-6,cm/s,Mitral valve medial annulus Tissue velocity.E-wave.max by US.tissue doppler,$this,34
+21490991,44777606,78185-6,cm/s,Mitral valve medial annulus Tissue velocity.E-wave.max by US.tissue doppler,$this * 100,828
+21491101,32738,78186-4,cm/s,Mitral valve lateral annulus Tissue velocity.E-wave.max by US.tissue doppler,$this,23
+21491101,44777606,78186-4,cm/s,Mitral valve lateral annulus Tissue velocity.E-wave.max by US.tissue doppler,$this * 100,809
+21491102,0,78187-2,cm/s,Mitral valve medial annulus Tissue velocity.S-wave.max by US.tissue doppler,$this,47
+21491102,44777606,78187-2,cm/s,Mitral valve medial annulus Tissue velocity.S-wave.max by US.tissue doppler,$this * 100,904
+21492062,8554,78175-7,,Right ventricular Fractional area change by US 2D,$this,161
+21492066,9483,78179-9,,Mitral valve Orifice area by US.2D+Measured by planimetry,$this,3
+21492070,0,78188-0,cm/s,Mitral valve lateral annulus Tissue velocity.S-wave.max by US.tissue doppler,$this,47
+21492070,44777606,78188-0,cm/s,Mitral valve lateral annulus Tissue velocity.S-wave.max by US.tissue doppler,$this * 100,904
+21492073,9593,78191-4,,Mitral valve E-wave deceleration time by US.doppler,$this,762
+21492455,8736,79276-2,,"7,8-Dihydrobiopterin [Moles/volume] in Cerebral spinal fluid",$this,1
+21493291,0,81386-5,,Mitral valve Maximum E-wave velocity/Tissue velocity.E-wave.max by US.doppler+tissue doppler,$this,1298
+21493291,44777606,81386-5,,Mitral valve Maximum E-wave velocity/Tissue velocity.E-wave.max by US.doppler+tissue doppler,$this,6
+21493304,8554,81399-8,,Left ventricular Maximum longitudinal strain by US 2D,$this,130
+21494004,8582,79967-6,,Inferior vena cava Diameter at end expiration by US 2D,$this,543
+21494006,8582,79969-2,cm,Interventricular septum Thickness at end diastole by US 2D,$this,1337
+21494032,8587,79995-7,mL,Left ventricular End-diastolic volume by US.3D.segmentation,$this,7
+21494037,8587,80000-3,mL,Left ventricular End-systolic volume by US.3D.segmentation,$this,7
+21494172,44777606,80029-2,,Left ventricular outflow tract Maximum blood flow velocity during systole by US.doppler,$this,1201
+21494178,8587,80035-9,,Left ventricular Stroke volume by US.3D.segmentation,$this,7
+21494191,8554,80056-5,,Mitral valve Regurgitant fraction by US.doppler+Calculated by PISA method,$this,3
+21494194,8582,80059-9,cm,Mitral valve PISA radius during systole [Length] by US.2D+doppler,$this,131
+21494310,44777606,80066-4,,Mitral valve Maximum A-wave velocity by US.doppler,$this,669
+21494313,9483,80069-8,,Mitral valve Effective orifice area during diastole by US.doppler pressure half time,$this,34
+36713656,0,,,Wong-Baker FACES pain assessment scale,$this,132
+37020250,0,92491-0,,little c Ag inferred phenotype [Presence] in Blood or Tissue by Molecular genetics method,$this,11
+37020923,0,92513-1,,C Ag inferred phenotype [Presence] in Blood or Tissue by Molecular genetics method,$this,11
+37021365,0,92496-9,,K Ag inferred phenotype [Presence] in Blood or Tissue by Molecular genetics method,$this,11
+37021375,0,92490-2,,little e Ag inferred phenotype [Presence] in Blood or Tissue by Molecular genetics method,$this,11
+37021506,0,92506-5,,E Ag inferred phenotype [Presence] in Blood or Tissue by Molecular genetics method,$this,11
+37208354,0,,,Royal College of Physicians NEWS2 (National Early Warning Score 2),$this,31586
+37208375,0,,,Royal College of Physicians NEWS2 (National Early Warning Score 2) - oxygen saturation scale 1 score,$this,143212
+37208376,0,,,Royal College of Physicians NEWS2 (National Early Warning Score 2) - oxygen saturation scale 2 score,$this,28679
+37208388,0,,,Alert Confusion Voice Pain Unresponsive scale score,$this,187184
+37208881,0,,,SNAQ (Simplified Nutritional Appetite Questionnaire) score,$this,7500
+37311267,0,,,Weight loss,$this,7422
+37392682,8753,,,Base excess,$this,786
+37392971,8748,,,Serum procalcitonin level,$this,58
+37393102,8753,,,Blood potassium level,$this,39
+37393103,8753,,,Blood sodium level,$this,40
+37393104,8753,,,Blood chloride level,$this,39
+37393251,8753,,,Arterial blood lactate level,$this,38
+40480168,0,,,Bristol stool form score,$this,33186
+40483383,0,,,Canadian Study of Health and Aging clinical frailty scale,$this,920
+40483579,8554,2708-6,%,Arterial oxygen saturation,$this,12534
+40484595,0,,,Number of lymph nodes examined by microscopy in excised specimen,$this,1
+40757349,0,54218-3,,CD3+CD4+ (T4 helper) cells/CD3+CD8+ (T8 suppressor cells) cells [# Ratio] in Blood,$this,20
+40759659,0,56539-0,,Intrinsic factor Ab [Units/volume] in Serum by Immunoassay,$this,2
+40759747,8751,56628-1,,Amikacin [Moles/volume] in Serum or Plasma,$this,7
+40759807,0,56688-5,,IgD [Units/volume] in Serum,$this,3
+40762338,8736,59247-7,,Tetrahydrobiopterin [Moles/volume] in Cerebral spinal fluid,$this,1
+40762352,9579,59261-8,,Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol,$this,647
+40762485,0,59394-7,,Glomerular basement membrane Ab [Units/volume] in Serum by Immunoassay,$this,61
+40763313,0,60258-1,,Bacteria identified in Bone marrow by Culture,$this,3
+40764996,8636,62235-7,,Albumin [Moles/volume] in Serum or Plasma by Bromocresol green (BCG) dye binding method,$this,30
+42529424,8582,82339-3,,Aorta.sinotubular junction Diameter by US 2D,$this,702
+42539072,0,,,Confusion Assessment Method short version score,$this,1096
+42868678,8753,70204-3,,Cholesterol non HDL [Moles/volume] in Serum or Plasma,$this,303
+42869450,8554,71693-6,,Platelets reticulated/100 platelets in Blood by Automated count,$this,15
+42869613,8554,71858-5,,Hemoglobin S/Hemoglobin.total [Pure mass fraction] in Blood by HPLC,$this,43
+42869844,0,72089-6,,Total score [NIH Stroke Scale],$this,59
+43533853,0,73830-2,,Fall risk assessment,$this,185
+44782659,44777590,,,Expiratory positive airway pressure,$this,340
+44782824,44777590,,,Mean inspiratory airway pressure,$this,7240
+44782825,44777590,,,Airway plateau pressure,$this,3
+44789825,0,,,Transjugular intrahepatic pressure measurements of portal vein,$this,1
+44790183,0,,,Glomerular filtration rate testing,$this,2
+44802815,44777613,,,Dialysate flow rate,$this,52
+44802820,0,,,Haemodialysis ultrafiltration rate,$this,3860
+44806798,44777590,,,Inspiratory positive airway pressure,$this,1060
+44810247,0,,,"LACE (length of stay, acuity of admission, comorbidities and emergency department visits) index score",$this,355611
+44812281,0,,,Symptom Assessment Scale - nausea score,$this,15117
+44816708,0,74816-0,,Bacteria identified in Eye by Anaerobe+Aerobe culture,$this,5
+44817158,0,75269-1,,Bacteria identified in Genital specimen by Anaerobe+Aerobe culture,$this,11
+45757782,0,,,Hemodialysis blood flow,$this,4011
+45769787,44777613,,,Substitution flow rate,$this,52
+46236797,8582,77903-3,cm,Tricuspid valve annulus Excursion distance during systole by US.M-mode,$this,1129
+46236798,8587,77904-1,mL,Left atrial End-systolic volume by US.2D+Calculated by modified Simpson method,$this,832
+46236798,44777662,77904-1,mL,Left atrial End-systolic volume by US.2D+Calculated by modified Simpson method,$this,114
+46236802,8582,77908-2,,Aortic valve Vena contracta diameter by US.doppler,$this,14
+46236807,8582,77913-2,,Mitral valve Vena contracta diameter by US.doppler,$this,57
+46236811,8582,77917-3,,Tricuspid valve Vena contracta diameter by US.doppler,$this,51
+46236952,0,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",$this,10081
+46236952,8795,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",$this,12441
+46237003,0,77161-8,,Prothrombin activity [Units/volume] in Platelet poor plasma by Coagulation assay --immediately after addition of factor II depleted plasma,$this,2
+46272910,8753,,,Measurement of ionized calcium in blood specimen,$this,40

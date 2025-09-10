@@ -18,10 +18,6 @@
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/gem/lab-results-concept-map.csv"
     },
-    "labResultUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/gem/lab-results-unit-conversion.csv"
-    },
     "vitalSignsConceptMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/gem/vital-signs-concept-map.csv"
@@ -74,14 +70,14 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "effectiveDateTime" : "{{DATA_ORA_ESAME.toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
-        "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALUE, UNITA_MISURA).nav:orElse(utl:createFhirQuantity(VALUE, UNITA_MISURA, 'http://unitsofmeasure.org', CODICE_ESAME)), utl:createFhirQuantity(VALUE, %vitalSign.unit, 'http://unitsofmeasure.org', %vitalSign.target_code) )  }}",
+        "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultsConceptMap, CODICE_ESAME, VALUE, UNITA_MISURA).nav:orElse(utl:createFhirQuantity(VALUE, UNITA_MISURA, 'http://unitsofmeasure.org', CODICE_ESAME)), utl:createFhirQuantity(VALUE, %vitalSign.unit, 'http://unitsofmeasure.org', %vitalSign.target_code) )  }}",
         "referenceRange" : [ {
           "low" : {
-            "{{#lowVar}}" : "{{iif(VALORE_MINIMO.exists(), mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALORE_MINIMO, UNITA_MISURA)}}",
+            "{{#lowVar}}" : "{{iif(VALORE_MINIMO.exists(), mpp:convertAndReturnQuantity(%labResultsConceptMap, CODICE_ESAME, VALORE_MINIMO, UNITA_MISURA)}}",
             "{{?}}" : "{{%lowVar}}"
           },
           "high" : {
-            "{{#highVar}}" : "{{iif(VALORE_MASSIMO.exists(), mpp:convertAndReturnQuantity(%labResultUnitConversion, CODICE_ESAME, VALORE_MASSIMO, UNITA_MISURA)}}",
+            "{{#highVar}}" : "{{iif(VALORE_MASSIMO.exists(), mpp:convertAndReturnQuantity(%labResultsConceptMap, CODICE_ESAME, VALORE_MASSIMO, UNITA_MISURA)}}",
             "{{?}}" : "{{%highVar}}"
           }
         } ]

@@ -21,10 +21,6 @@
     "labCodeConversion" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/umcu/lab-results-concept-map.csv"
-    },
-    "labUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/umcu/lab-results-unit-conversion.csv"
     }
   },
   "variable" : [ {
@@ -65,7 +61,7 @@
         "valueString" : "{{? iif(valueString.exists() and valueString != '', valueString) }}",
         "valueQuantity" : {
           "{{#valueQuantityVar}}" : "{{valueQuantity_value}}",
-          "{{?}}" : "{{mpp:convertAndReturnQuantity(%labUnitConversion, LOINCcode.toString(), valueQuantity_value, valueQuantity_code_original.toString())}}"
+          "{{?}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINCcode.toString(), valueQuantity_value, valueQuantity_code_original.toString())}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",

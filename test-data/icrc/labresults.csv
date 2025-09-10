@@ -5,3 +5,4 @@ id_lab,id_patient,id_encounter,id_department,effective_date,code_his,lab_name_hi
 4,2,2,1,2018-09-29,2951-2,Sodium,2951-2,140,mmol/L
 5,2,2,1,2018-09-29,2823-3,Potassium [Moles/volume] in Serum or Plasma,2823-3,5.3,Moles/
 6,2,2,1,2018-09-29,69405-9,Glomerular filtration rate,69405-9,16,mL/min/1.73m²
+7,2,2,1,2018-09-29,2160-0,Creatinine [Mass/volume] in Serum or Plasma,2160-0,1600,µmol/l

@@ -1,0 +1,18 @@
+source_code,source_unit,target_code,target_unit,target_display,conversion_function,row_count_in_source
+3000285,0,2947-0,mmol/L,Sodium [Moles/volume] in Blood,$this,2
+3000285,8753,2947-0,mmol/L,Sodium [Moles/volume] in Blood,$this,15107
+3000963,8636,718-7,g/L,Hemoglobin [Mass/volume] in Blood,$this,20547
+3001122,8748,2276-4,mcg/L,Ferritin [Mass/volume] in Serum or Plasma,$this,609
+3001802,44777612,32294-1,mg/mmol,Microalbumin/Creatinine [Mass Ratio] in Urine,$this,77
+3002385,8554,30385-9,%,Erythrocyte distribution width [Ratio],$this,20513
+3005456,0,6298-4,mmol/L,Potassium [Moles/volume] in Blood,$this,2
+3005456,8753,6298-4,mmol/L,Potassium [Moles/volume] in Blood,$this,15007
+3019550,8753,2951-2,mmol/L,Sodium [Moles/volume] in Serum or Plasma,$this,22307
+3019800,8725,6598-7,ng/L,Troponin T.cardiac [Mass/volume] in Serum or Plasma,$this,4081
+3019900,8753,14647-2,mmol/L,Cholesterol [Moles/volume] in Serum or Plasma,$this,336
+3020460,8751,1988-5,mg/L,C reactive protein [Mass/volume] in Serum or Plasma,$this,15835
+3023103,8753,2823-3,mmol/L,Potassium [Moles/volume] in Serum or Plasma,$this,21602
+3024561,8636,1751-7,g/L,Albumin [Mass/volume] in Serum or Plasma,$this,16744
+3025839,8753,14927-8,mmol/L,Triglyceride [Moles/volume] in Serum or Plasma,$this,344
+46236952,0,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",$this,10081
+46236952,8795,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",$this,12441

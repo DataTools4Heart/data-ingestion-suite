@@ -14,42 +14,79 @@
     "joinOn" : [ "person_id" ]
   } ],
   "context" : {
-    "measurementOmopToLoinc" : {
+    "vitalSignMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/measurements-omop-to-loinc.csv"
+      "url" : "$CONTEXT_REPO/ucl/vital-sign-concept-map.csv"
     },
-    "vitalSignUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/ucl/vital-signs-unit-conversion.csv"
-    },
-    "echoUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/ucl/echo-unit-conversion.csv"
-    },
-    "labUnitConversionMap" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion.csv"
-    },
-    "labResults" : {
+    "labMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/lab-results-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/ucl/lab-concept-map.csv"
     },
-    "vitalSigns" : {
+    "echoMap" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/ucl/vital-signs-unit-conversion.csv"
+      "url" : "$CONTEXT_REPO/ucl/echo-concept-map.csv"
     }
   },
   "variable" : [ {
-    "name" : "measurementCodings",
+    "name" : "convertedVitalSign",
     "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%measurementOmopToLoinc, measurement_concept_id.toString())"
+    "expression" : "mpp:getConcept(%vitalSignMap, measurement_concept_id.toString())"
+  }, {
+    "name" : "convertedLab",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%labMap, measurement_concept_id.toString())"
+  }, {
+    "name" : "convertedEcho",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%echoMap, measurement_concept_id.toString())"
   } ],
   "mapping" : [ {
+    "description" : "Mapping of OMOP measurement to DT4H Vital Sign profile",
+    "precondition" : {
+      "name" : "isVitalSign",
+      "language" : "text/fhirpath",
+      "expression" : "value_as_number.exists() and measurement_concept_id.exists($this != 0) and %convertedVitalSign.exists() and %convertedVitalSign.target_unit.exists($this != '')"
+    },
+    "expression" : {
+      "name" : "vitalSigns",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "{{#loincCoding}}" : "{{%convertedVitalSign}}",
+            "{{*}}" : {
+              "system" : "http://loinc.org",
+              "code" : "{{%loincCoding.target_code}}",
+              "display" : "{{? %loincCoding.target_display}}"
+            },
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{iif(measurement_datetime.empty(),measurement_date,measurement_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%vitalSignMap, measurement_concept_id.toString() , value_as_number, unit_concept_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "encounter" : "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.measurement_date and $this.visit_end_date >= %context.measurement_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
+        "status" : "final"
+      }
+    }
+  }, {
     "description" : "Mapping from OMOP Measurement to the DT4H LabResult profile",
     "precondition" : {
       "name" : "isLabResult",
       "language" : "text/fhirpath",
-      "expression" : "measurement_concept_id.exists($this != 0) and value_as_number.exists() and mpp:getConcept(%labResults, measurement_concept_id.toString()).exists()"
+      "expression" : "value_as_number.exists() and measurement_concept_id.exists($this != 0) and %convertedLab.exists() and %convertedLab.target_unit.exists($this != '')"
     },
     "expression" : {
       "name" : "labResults",
@@ -71,7 +108,7 @@
         } ],
         "code" : {
           "coding" : [ {
-            "{{#loincCoding}}" : "{{%measurementCodings}}",
+            "{{#loincCoding}}" : "{{%convertedLab}}",
             "{{*}}" : {
               "system" : "http://loinc.org",
               "code" : "{{%loincCoding.target_code}}",
@@ -81,61 +118,20 @@
           } ]
         },
         "effectiveDateTime" : "{{iif(measurement_datetime.empty(), measurement_date, measurement_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labUnitConversionMap, measurement_concept_id.toString(), value_as_number, unit_concept_id.toString())}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labMap, measurement_concept_id.toString(), value_as_number, unit_concept_id.toString())}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
         "encounter" : "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.measurement_date and $this.visit_end_date >= %context.measurement_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}"
       }
     }
   }, {
-    "description" : "Mapping of OMOP measurement to DT4H Vital Sign profile",
+    "description" : "Mapping OMOP Measurement to the DT4H Echocardiograph profile, not grouping them by measurement event currently",
     "precondition" : {
-      "name" : "isVitalSign",
+      "name" : "isEcho",
       "language" : "text/fhirpath",
-      "expression" : "measurement_concept_id.exists($this != 0) and value_as_number.exists() and mpp:getConcept(%vitalSigns, measurement_concept_id.toString()).exists() and %measurementCodings.exists()"
+      "expression" : "value_as_number.exists() and measurement_concept_id.exists($this != 0) and %convertedEcho.exists() and %convertedEcho.target_unit.exists($this != '')"
     },
     "expression" : {
-      "name" : "vitalSigns",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
-        },
-        "resourceType" : "Observation",
-        "category" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "vital-signs",
-            "display" : "Vital Signs"
-          } ]
-        } ],
-        "code" : {
-          "coding" : [ {
-            "{{#loincCoding}}" : "{{%measurementCodings}}",
-            "{{*}}" : {
-              "system" : "http://loinc.org",
-              "code" : "{{%loincCoding.target_code}}",
-              "display" : "{{? %loincCoding.target_display}}"
-            },
-            "@sliceName" : "loincCode"
-          } ]
-        },
-        "effectiveDateTime" : "{{iif(measurement_datetime.empty(),measurement_date,measurement_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%vitalSignUnitConversion, measurement_concept_id.toString() , value_as_number, unit_concept_id.toString())}}",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
-        "encounter" : "{{? iif(visit_occurrence_id.exists(), mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString()), %omopVisit.select(iif($this.visit_start_date <= %context.measurement_date and $this.visit_end_date >= %context.measurement_date,mpp:createFhirReferenceWithHashedId('Encounter', $this.visit_occurrence_id.toString()),{})).first())}}",
-        "status" : "final"
-      }
-    }
-  }, {
-    "description" : "Mapping OMOP Measurement to the DT4H Echocardiograph profile, focusing exclusively on Left Ventricular Ejection Fraction (LVEF).",
-    "precondition" : {
-      "name" : "isLVEF",
-      "language" : "text/fhirpath",
-      "expression" : "measurement_concept_id.exists($this = 3019817) and value_as_number.exists()"
-    },
-    "expression" : {
-      "name" : "echoMapping",
+      "name" : "echo",
       "language" : "application/fhir-template+json",
       "value" : {
         "id" : "{{mpp:getHashedId('Observation', measurement_id.toString())}}",
@@ -160,8 +156,18 @@
         },
         "effectiveDateTime" : "{{iif(measurement_datetime.empty(),measurement_date,measurement_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
         "component" : [ {
-          "code" : "{{utl:createFhirCodeableConcept('http://loinc.org', '8806-2', 'Left ventricular Ejection fraction by 2D echo')}}",
-          "valueQuantity" : "{{mpp:convertAndReturnQuantity(%echoUnitConversion, measurement_concept_id.toString() , value_as_number, unit_concept_id.toString())}}",
+          "code" : {
+            "coding" : [ {
+              "{{#loincCoding}}" : "{{%convertedEcho}}",
+              "{{*}}" : {
+                "system" : "http://loinc.org",
+                "code" : "{{%loincCoding.target_code}}",
+                "display" : "{{? %loincCoding.target_display}}"
+              },
+              "@sliceName" : "loincCode"
+            } ]
+          },
+          "valueQuantity" : "{{mpp:convertAndReturnQuantity(%echoMap, measurement_concept_id.toString(), value_as_number, unit_concept_id.toString())}}",
           "@sliceName" : "echoParameter"
         } ],
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
