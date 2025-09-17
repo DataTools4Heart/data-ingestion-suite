@@ -29,7 +29,7 @@
     "precondition" : {
       "name" : "isSmokingStatus",
       "language" : "text/fhirpath",
-      "expression" : "observation_concept_id = 43054909"
+      "expression" : "observation_concept_id = 4275495"
     },
     "expression" : {
       "name" : "smoking",
