@@ -18,10 +18,6 @@
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/vhir/lab-omop-to-loinc-concept-map.csv"
     },
-    "labUnitConversion" : {
-      "category" : "unit-conversion",
-      "url" : "$CONTEXT_REPO/vhir/lab-omop-to-loinc-unit-conversion.csv"
-    },
     "vitalSignCodeConversion" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/vhir/vitalsigns-omop-to-loinc-concept-map.csv"
@@ -37,7 +33,7 @@
     "precondition" : {
       "name" : "isLabResult",
       "language" : "text/fhirpath",
-      "expression" : "mpp:getConcept(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString()).exists() and mpp:convertAndReturnQuantity(%labUnitConversion, MEASUREMENT_CONCEPT_ID.toString(), VALUE_AS_NUMBER, (UNIT_CONCEPT_ID | '').first().toString()).exists()"
+      "expression" : "mpp:getConcept(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString()).exists() and mpp:convertAndReturnQuantity(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), VALUE_AS_NUMBER, (UNIT_CONCEPT_ID | '').first().toString()).exists()"
     },
     "expression" : {
       "name" : "labResults",
@@ -69,7 +65,7 @@
           } ]
         },
         "effectiveDateTime" : "{{iif(MEASUREMENT_DATETIME.empty(), MEASUREMENT_DATE, MEASUREMENT_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labUnitConversion, MEASUREMENT_CONCEPT_ID.toString(), VALUE_AS_NUMBER, (UNIT_CONCEPT_ID | '').first().toString())}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), VALUE_AS_NUMBER, (UNIT_CONCEPT_ID | '').first().toString())}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
         "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.MEASUREMENT_DATE and $this.VISIT_END_DATE >= %context.MEASUREMENT_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first()}}"
       }

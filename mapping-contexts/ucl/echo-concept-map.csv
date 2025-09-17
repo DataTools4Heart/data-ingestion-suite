@@ -1,0 +1,34 @@
+source_code,source_unit,target_code,target_unit,target_display,conversion_function,row_count_in_source
+1001862,8587,93635-1,mL,Right atrial End-systolic volume by US.2D.A4C,$this,125
+1001973,8582,93643-5,cm,Right ventricular Major axis diastole [Length] by US.2D.A4C,$this,1091
+1002325,0,93633-6,ratio,Heart Left ventricular outflow tract/Maximum blood flow aortic valve by US.doppler,$this,1147
+3000526,8582,18085-1,,Left ventricular Internal diameter minor axis systole by US 2D,$this,1263
+3004421,8582,18170-1,cm,Left ventricular outflow tract Blood velocity-time integral by US.doppler,$this,1021
+3011096,8582,18152-9,cm,Left ventricular posterior wall Thickness during diastole by US,$this,1330
+3012140,8876,18059-6,mmHg,Mitral valve Mean pressure gradient by US.doppler,$this,136
+3013395,8554,10231-9,%,Right ventricular Ejection fraction,$this,1
+3016047,0,18038-0,,Mitral valve Peak E wave/Peak A wave by US.doppler,$this,663
+3017701,8582,29429-8,cm,Inferior vena cava Diameter by US --inspiration,$this,383
+3022941,8582,18083-6,cm,Left ventricular Internal diameter minor axis diastole by US 2D,$this,1371
+3023614,8582,29468-6,mm,Left atrial Diameter anterior-posterior systole by US 2D,$this * 10,766
+3037208,9483,17977-0,cm2,Left atrial Area by US.2D.A4C,$this,326
+3037486,8582,18169-3,cm,Aortic valve Blood velocity-time integral by US.doppler,$this,662
+4108582,0,8806-2,%,Left ventricular ejection fraction,$this,331
+21490991,32738,78185-6,cm/s,Mitral valve medial annulus Tissue velocity.E-wave.max by US.tissue doppler,$this,34
+21490991,44777606,78185-6,cm/s,Mitral valve medial annulus Tissue velocity.E-wave.max by US.tissue doppler,$this * 100,828
+21491101,32738,78186-4,cm/s,Mitral valve lateral annulus Tissue velocity.E-wave.max by US.tissue doppler,$this,23
+21491101,44777606,78186-4,cm/s,Mitral valve lateral annulus Tissue velocity.E-wave.max by US.tissue doppler,$this * 100,809
+21491102,0,78187-2,cm/s,Mitral valve medial annulus Tissue velocity.S-wave.max by US.tissue doppler,$this,47
+21491102,44777606,78187-2,cm/s,Mitral valve medial annulus Tissue velocity.S-wave.max by US.tissue doppler,$this * 100,904
+21492070,0,78188-0,cm/s,Mitral valve lateral annulus Tissue velocity.S-wave.max by US.tissue doppler,$this,47
+21492070,44777606,78188-0,cm/s,Mitral valve lateral annulus Tissue velocity.S-wave.max by US.tissue doppler,$this * 100,904
+21493291,0,81386-5,,Mitral valve Maximum E-wave velocity/Tissue velocity.E-wave.max by US.doppler+tissue doppler,$this,1298
+21493291,44777606,81386-5,,Mitral valve Maximum E-wave velocity/Tissue velocity.E-wave.max by US.doppler+tissue doppler,$this,6
+21494006,8582,79969-2,cm,Interventricular septum Thickness at end diastole by US 2D,$this,1337
+21494032,8587,79995-7,mL,Left ventricular End-diastolic volume by US.3D.segmentation,$this,7
+21494037,8587,80000-3,mL,Left ventricular End-systolic volume by US.3D.segmentation,$this,7
+21494194,8582,80059-9,cm,Mitral valve PISA radius during systole [Length] by US.2D+doppler,$this,131
+21494310,44777606,80066-4,cm/s,Mitral valve Maximum A-wave velocity by US.doppler,$this,669
+46236797,8582,77903-3,cm,Tricuspid valve annulus Excursion distance during systole by US.M-mode,$this,1129
+46236798,8587,77904-1,mL,Left atrial End-systolic volume by US.2D+Calculated by modified Simpson method,$this,832
+46236798,44777662,77904-1,mL,Left atrial End-systolic volume by US.2D+Calculated by modified Simpson method,$this,114
