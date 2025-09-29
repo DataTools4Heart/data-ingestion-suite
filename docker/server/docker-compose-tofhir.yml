@@ -79,7 +79,7 @@ services:
       test: curl --fail --request OPTIONS http://localhost:8085/tofhir || exit 1
       interval: 20s
       timeout: 10s
-      retries: 5
+      retries: 10
     depends_on:
       onfhir:
         condition: service_healthy
