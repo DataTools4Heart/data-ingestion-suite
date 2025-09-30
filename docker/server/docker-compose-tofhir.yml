@@ -14,14 +14,11 @@ services:
       - onfhir-network
     volumes:
       - onfhirdata:/data/db
-  #    deploy:
-  #      resources:
-  #        limits:
-  #          cpus: "2.0"
-  #          memory: "8G"
-  #        reservations:
-  #          cpus: "1.0"
-  #          memory: "2G"
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "2.0"
+#          memory: "4G"
   onfhir:
     image: srdc/onfhir:r5
     container_name: dt4h-onfhir
@@ -45,14 +42,11 @@ services:
       - onfhir-network
     volumes:
       - ./common-data-model:/usr/local/onfhir/conf
-  #    deploy:
-  #      resources:
-  #        limits:
-  #          cpus: "2.0"
-  #          memory: "8G"
-  #        reservations:
-  #          cpus: "1.0"
-  #          memory: "2G"
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "2.0"
+#          memory: "4G"
   tofhir-server:
     image: srdc/tofhir-server:latest
     container_name: dt4h-tofhir-server
@@ -86,8 +80,8 @@ services:
 #    deploy:
 #      resources:
 #        limits:
-#          cpus: "24.0"
-#          memory: "20G"
+#          cpus: "2.0"
+#          memory: "8G"
   tofhir-web:
     image: srdc/tofhir-web:dt4h
     container_name: dt4h-tofhir-web
@@ -98,7 +92,12 @@ services:
       - onfhir-network
     depends_on:
       tofhir-server:
-        condition: service_healthy      
+        condition: service_healthy
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
  # Elasticsearch, Fluentd and Kibana stack for mapping job log management
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.19
@@ -111,6 +110,11 @@ services:
       - onfhir-network
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
   fluentd:
     image: srdc/tofhir-fluentd:latest
     container_name: dt4h-fluentd
@@ -124,6 +128,11 @@ services:
       - PORT=9200
     networks:
       - onfhir-network
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
   kibana:
     image: srdc/tofhir-kibana:latest
     container_name: dt4h-kibana
@@ -137,6 +146,11 @@ services:
       - onfhir-network
     depends_on:
       - elasticsearch
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
 networks:
   onfhir-network:
     name: onfhir-network
