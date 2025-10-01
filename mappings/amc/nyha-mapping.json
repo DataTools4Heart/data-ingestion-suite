@@ -1,0 +1,73 @@
+{
+  "id" : "nyha-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/nyha-mapping",
+  "name" : "nyha-mapping",
+  "title" : "Mapping of NYHA table",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/NYHA",
+    "joinOn" : [ "pseudo_id" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
+    "joinOn" : [ "pseudo_id" ]
+  } ],
+  "context" : {
+    "nyhaMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/nyha-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))"
+  }, {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%relatedEncounters.exists(PrimaryICDcode.exists() and PrimaryICDcode != ''), %relatedEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').first(), %relatedEncounters.first())"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id & dateNote.toString() & NYHA)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "88020-3",
+            "display" : "Functional capacity NYHA",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{mpp:getConcept(%nyhaMap, NYHA, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%nyhaMap, NYHA, 'target_display')}}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
+        "identifier" : [ {
+          "value" : "{{pseudo_id.toString() & '-' & dateNote.toString() & '-' & NYHA.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}
