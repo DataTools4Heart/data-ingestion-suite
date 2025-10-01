@@ -205,6 +205,28 @@
         "sourceRef" : "amc-source"
       }
     }
+  }, {
+    "name" : "nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/nyha-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NYHA.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select *\r\nfrom source \r\nwhere NYHA IN ('1', '2', '3', '4')",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
