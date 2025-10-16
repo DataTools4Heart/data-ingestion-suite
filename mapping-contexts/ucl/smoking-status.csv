@@ -1,4 +1,5 @@
 source_code,target_code,target_system,target_display
-"Never smoked tobacco (finding)","266919005","http://snomed.info/sct","Never smoker"
-"Smokes tobacco daily (finding)","449868002","http://snomed.info/sct","Current every day smoker"
-"Ex-smoker (finding)","8517006","http://snomed.info/sct","Former smoker"
+"4144272","266919005","http://snomed.info/sct","Never smoker"
+"4310250","8517006","http://snomed.info/sct","Former smoker"
+"4141786","266927001","http://snomed.info/sct","Unknown if ever smoked"
+"4298794","449868002","http://snomed.info/sct","Current every day smoker"
