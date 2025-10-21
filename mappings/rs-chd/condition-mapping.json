@@ -30,11 +30,13 @@
         },
         "resourceType" : "Condition",
         "code" : {
-          "coding" : [ {
-            "code" : "{{code}}",
-            "system" : "http://hl7.org/fhir/sid/icd-10",
-            "@sliceName" : "icd10Code"
-          } ]
+          "coding" : {
+            "{{#codingVar}}" : "{{iif(code.contains('-'), code.utl:split('-'), code)}}",
+            "{{*}}" : {
+              "code" : "{{iif(%codingVar.length() > 3, %codingVar.substring(0,3) & '.' & %codingVar.substring(3), %codingVar)}}",
+              "system" : "http://hl7.org/fhir/sid/icd-10"
+            }
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",

@@ -1,6 +1,6 @@
 identifier	subject	code	onsetDateTime
 condition_1	P_00001	I071	2023-02-02 00:40:00
-condition_2	P_00001	I071	2023-02-04 16:08:00
+condition_2	P_00001	I07	2023-02-04 16:08:00
 condition_3	P_00001	I109	2023-02-01 14:39:27
 condition_4	P_00001	I109	2023-02-01 18:57:00
 condition_5	P_00001	I109	2023-02-02 00:40:00

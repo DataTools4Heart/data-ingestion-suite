@@ -31,7 +31,7 @@
         "resourceType" : "Condition",
         "code" : {
           "coding" : [ {
-            "code" : "{{code}}",
+            "code" : "{{iif(code.length() > 3, code.substring(0,3) & '.' & code.substring(3), code)}}",
             "system" : "http://hl7.org/fhir/sid/icd-10",
             "@sliceName" : "icd10Code"
           } ]

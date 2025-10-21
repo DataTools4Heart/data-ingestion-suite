@@ -1,6 +1,6 @@
 identifier	subject	code	IsMainDiagnosis	onsetDateTime
-condition_1	1	I482		2021-09-16
-condition_2	2	N189		2012-10-04
+condition_1	1	I48		2021-09-16
+condition_2	2	J40-J47		2012-10-04
 condition_3	3	Q230		2020-11-19
 condition_4	3	I509		2022-09-02
 condition_5	4	I509		2016-02-11
