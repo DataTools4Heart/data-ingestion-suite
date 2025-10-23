@@ -47,7 +47,7 @@
     "precondition" : {
       "name" : "deceased",
       "language" : "text/fhirpath",
-      "expression" : "%omopDeath.DEATH_DATETIME.exists()"
+      "expression" : "%omopDeath.DEATH_DATE.exists()"
     },
     "expression" : {
       "name" : "death",
@@ -74,7 +74,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{%omopDeath.DEATH_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd'))}}",
+        "effectiveDateTime" : "{{%omopDeath.DEATH_DATE.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",

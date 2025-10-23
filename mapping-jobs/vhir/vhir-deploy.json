@@ -48,17 +48,6 @@
     "codeSystemFiles" : [ ]
   },
   "mappings" : [ {
-    "name" : "cause-of-death-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/cause-of-death-mapping",
-    "sourceBinding" : {
-      "omopDeath" : {
-        "jsonClass" : "SqlSource",
-        "tableName" : "\"0000000004_DT4H\".DEATH",
-        "options" : { },
-        "sourceRef" : "vhir-source"
-      }
-    }
-  }, {
     "name" : "condition-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/condition-mapping",
     "sourceBinding" : {
