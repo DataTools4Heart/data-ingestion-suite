@@ -22,7 +22,7 @@
         },
         "resourceType" : "ServiceRequest",
         "intent" : "order",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
         "authoredOn" : "{{ReferralDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "requester" : {
           "display" : "{{ReferringCareUnitAddress}}"

@@ -51,8 +51,8 @@
             "code" : "{{value}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier)}}",
         "identifier" : [ {
           "value" : "{{subject.toString() & '-' & effectiveDateTime.toString() & '-' & value.toString()}}"
         } ],

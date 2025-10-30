@@ -44,8 +44,8 @@
         },
         "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueBoolean" : true,
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier)}}",
         "identifier" : [ {
           "value" : "{{subject.toString() & '-' & code.toString() & '-' & effectiveDateTime.toString()}}"
         } ],

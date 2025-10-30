@@ -38,8 +38,8 @@
             }
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier)}}",
         "onsetDateTime" : "{{onsetDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
         "identifier" : [ {
           "value" : "{{identifier}}"

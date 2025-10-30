@@ -28,7 +28,7 @@
             "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
           } ]
         } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
         "actualPeriod" : {
           "start" : "{{admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
           "end" : "{{dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
