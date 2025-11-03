@@ -3,34 +3,37 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
   "name" : "procedure-mapping",
   "title" : "Mapping of AMC's Procedures table to DT4H-Procedure FHIR profile",
-  "isDraft" : true,
+  "isDraft" : false,
   "source" : [ {
-    "alias" : "Procedure",
+    "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/procedure",
-    "joinOn" : [ ]
+    "joinOn" : [ "pseudo_id" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
+    "joinOn" : [ "pseudo_id" ]
   } ],
-  "context" : {
-    "procedureCodeMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/amc/procedure-codes-concept-map.csv"
-    }
-  },
+  "context" : { },
   "variable" : [ {
-    "name" : "procedureCode",
+    "name" : "relatedEncounters",
     "language" : "text/fhirpath",
-    "expression" : "mpp:getConcept(%procedureCodeMap, VerrichtingCode, 'target_code')"
+    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.Verrichtingdatum.utl:toFhirDateTime('yyyy-MM-dd') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.Verrichtingdatum.utl:toFhirDateTime('yyyy-MM-dd'))"
+  }, {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%relatedEncounters.exists(PrimaryICDcode.exists() and PrimaryICDcode != ''), %relatedEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').first(), %relatedEncounters.first())"
   } ],
   "mapping" : [ {
     "precondition" : {
       "name" : "isValidProcedure",
       "language" : "text/fhirpath",
-      "expression" : "ProcedureCode.exists()"
+      "expression" : "ICD10PCS.exists()"
     },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Procedure', Pseudo_id & Verrichtingdatum)}}",
+        "id" : "{{mpp:getHashedId('Procedure', VerrichtingId.toString() & pseudo_id.toString() & Verrichtingdatum.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
         },
@@ -38,19 +41,21 @@
         "category" : [ {
           "coding" : [ {
             "system" : "http://snomed.info/sct",
-            "code" : "387713003",
-            "display" : "Surgical procedure (procedure)"
+            "code" : "{{iif(ProcedureCategory = 'Surgical procedure', '387713003', '103693007')}}",
+            "display" : "{{iif(ProcedureCategory = 'Surgical procedure', 'Surgical procedure (procedure)', 'Diagnostic procedure')}}"
           } ]
         } ],
         "code" : {
-          "coding" : [ {
-            "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
-            "code" : "TODO code mappings are required: {{procedureCode.target_code}}",
-            "display" : "{{procedureCode.target_display}}",
-            "@sliceName" : "icdCode"
-          } ]
+          "coding" : {
+            "{{#icd10pcsCode}}" : "{{ICD10PCS.utl:split(';')}}",
+            "{{*}}" : {
+              "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+              "code" : "{{%icd10pcsCode.utl:trim()}}"
+            }
+          }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "encounter" : "{{? iif(PatientContactId.exists() and PatientContactId != '', mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId.toString()), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)) }}",
         "occurrenceDateTime" : "{{Verrichtingdatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "status" : "completed"
       }

@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
   "name" : "condition-mapping",
   "title" : "Mapping of AMC's Probleemlijst table to DT4H-Condition FHIR profile",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "Condition",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/condition",

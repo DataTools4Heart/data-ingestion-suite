@@ -21,16 +21,6 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Laboratory.pseudo_id",
-      "path" : "Laboratory.pseudo_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Patient ID"
-    }, {
       "id" : "Laboratory.MonsterId",
       "path" : "Laboratory.MonsterId",
       "min" : 0,
@@ -146,15 +136,14 @@
       } ],
       "short" : "Normal Value Upper Limit"
     }, {
-      "id" : "Laboratory.UitslagNumeriek",
-      "path" : "Laboratory.UitslagNumeriek",
+      "id" : "Laboratory.UitslagTekst",
+      "path" : "Laboratory.UitslagTekst",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Result Numerical"
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     }, {
       "id" : "Laboratory.UitslagOpmerking",
       "path" : "Laboratory.UitslagOpmerking",
@@ -183,6 +172,16 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
+    }, {
+      "id" : "Laboratory.pseudo_id",
+      "path" : "Laboratory.pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Patient ID"
     } ]
   }
 }

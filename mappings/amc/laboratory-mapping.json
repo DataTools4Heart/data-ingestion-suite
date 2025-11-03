@@ -49,14 +49,23 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_code')}}",
+            "code" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_code').first()}}",
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "effectiveDateTime" : "{{iif(UitslagDatumtijd.exists() and UitslagDatumtijd != '', UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), MateriaalAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')) }}",
         "valueQuantity" : {
-          "{{#valueQuantityVar}}" : "{{UitslagNumeriek}}",
-          "{{?}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINCcode.toString(), UitslagNumeriek, UitslagEenheid.toString())}}"
+          "{{#parsed}}" : "{{utl:parseFhirQuantityExpression(UitslagTekst)}}",
+          "{{?}}" : {
+            "{{#convertedMea}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINCcode.toString(), %parsed.first().toDecimal(), UitslagEenheid.toString())}}",
+            "{{?}}" : {
+              "system" : "{{%convertedMea.system}}",
+              "code" : "{{%convertedMea.code}}",
+              "unit" : "{{%convertedMea.unit}}",
+              "value" : "{{%convertedMea.value}}",
+              "comparator" : "{{? %parsed.last()}}"
+            }
+          }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
@@ -65,10 +74,10 @@
         } ],
         "referenceRange" : [ {
           "low" : {
-            "value" : "{{? iif(NormaalwaardeOndergrens.exists() and NormaalwaardeOndergrens != '', NormaalwaardeOndergrens.replace(',', '.').toDecimal()) }}"
+            "value" : "{{? iif(NormaalwaardeOndergrens.exists() and NormaalwaardeOndergrens != '', NormaalwaardeOndergrens.replace(',', '.').replaceMatches('[<>]', '').toDecimal()) }}"
           },
           "high" : {
-            "value" : "{{? iif(NormaalwaardeBovengrens.exists() and NormaalwaardeBovengrens != '', NormaalwaardeBovengrens.replace(',', '.').toDecimal()) }}"
+            "value" : "{{? iif(NormaalwaardeBovengrens.exists() and NormaalwaardeBovengrens != '', NormaalwaardeBovengrens.replace(',', '.').replaceMatches('[<>]', '').toDecimal()) }}"
           }
         } ]
       }

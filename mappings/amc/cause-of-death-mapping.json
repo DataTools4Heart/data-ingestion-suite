@@ -2,7 +2,7 @@
   "id" : "cause-of-death-mapping",
   "url" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
   "name" : "cause-of-death-mapping",
-  "title" : "Mapping of AMC's OverlijdensRegistratie table to DT4H-CauseOfDeath FHIR profile",
+  "title" : "Mapping of AMC's DeathRegistry table to DT4H-CauseOfDeath FHIR profile",
   "isDraft" : false,
   "source" : [ {
     "alias" : "CauseOfDeath",

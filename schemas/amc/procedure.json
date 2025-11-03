@@ -32,8 +32,8 @@
       "definition" : "The name or description of the procedure or medical intervention that was performed. It provides a human-readable description of the procedure (in Dutch).",
       "short" : "Operation"
     }, {
-      "id" : "Procedure.Pseudo_id",
-      "path" : "Procedure.Pseudo_id",
+      "id" : "Procedure.pseudo_id",
+      "path" : "Procedure.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -79,10 +79,19 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Encounter ID"
+    }, {
+      "id" : "Procedure.UitvoerendSpecialisme",
+      "path" : "Procedure.UitvoerendSpecialisme",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     }, {
       "id" : "Procedure.ProcedureStatus",
       "path" : "Procedure.ProcedureStatus",
@@ -102,24 +111,15 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Procedure.ProcedureCode",
-      "path" : "Procedure.ProcedureCode",
+      "id" : "Procedure.ICD10PCS",
+      "path" : "Procedure.ICD10PCS",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "definition" : "The code that identifies the specific type of procedure or medical intervention. It is often used for categorizing and classifying procedures."
-    }, {
-      "id" : "Procedure.SurgicalProcedure",
-      "path" : "Procedure.SurgicalProcedure",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "boolean",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
-      } ]
     } ]
   }
 }

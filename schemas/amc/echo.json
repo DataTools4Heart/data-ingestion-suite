@@ -26,8 +26,8 @@
       "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "positiveInt",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/positiveInt" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -41,36 +41,6 @@
       } ],
       "short" : "Date of research"
     }, {
-      "id" : "Echo.Onderzoeksstatus",
-      "path" : "Echo.Onderzoeksstatus",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Status of research"
-    }, {
-      "id" : "Echo.Accessionnummer",
-      "path" : "Echo.Accessionnummer",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Measurement ID"
-    }, {
-      "id" : "Echo.OriginalName",
-      "path" : "Echo.OriginalName",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "OriginalName"
-    }, {
       "id" : "Echo.ValueQuantity",
       "path" : "Echo.ValueQuantity",
       "min" : 0,
@@ -80,15 +50,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Measured value"
-    }, {
-      "id" : "Echo.ValueUnit",
-      "path" : "Echo.ValueUnit",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
     }, {
       "id" : "Echo.LOINCcode",
       "path" : "Echo.LOINCcode",
@@ -109,6 +70,24 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "LOINC display of echo parameter "
+    }, {
+      "id" : "Echo.year",
+      "path" : "Echo.year",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Echo.yearmonth",
+      "path" : "Echo.yearmonth",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     } ]
   }
 }

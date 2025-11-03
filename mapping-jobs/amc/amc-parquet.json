@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "amc-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
-      "dataFolderPath" : "test-data/datasource",
+      "dataFolderPath" : "test-data/amc-prod",
       "asStream" : false
     }
   },
@@ -147,7 +147,7 @@
     "sourceBinding" : {
       "CauseOfDeath" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Overlijdensregistratie.parquet",
+        "path" : "DeathRegistry.parquet",
         "contentType" : "parquet",
         "options" : { },
         "sourceRef" : "amc-source"
@@ -217,6 +217,44 @@
           "distinct" : "true"
         },
         "preprocessSql" : "select *\r\nfrom source \r\nwhere NYHA IN ('1', '2', '3', '4')",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "echo-new-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/echo-new-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Echocardiography.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Procedures.parquet",
+        "contentType" : "parquet",
+        "options" : { },
         "sourceRef" : "amc-source"
       },
       "encounters" : {
