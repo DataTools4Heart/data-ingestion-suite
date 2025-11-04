@@ -20,7 +20,7 @@ source_code,target_code,target_display,source_unit,target_unit,conversion_functi
 "5228","1754-1","Albumin [Mass/volume] in Urine","mg/dL","mcg/L","$this * 10000"
 "5245","2161-8","Creatinine [Mass/volume] in Urine","g/L","mg/L","$this * 1000"
 "5269F","32294-1","Albumin/Creatinine [Ratio] in Urine",,,
-"5505","1751-7","Albumin [Mass/volume] in Serum or Plasma","g/L","mcg/L","$this * 1000000"
+"5505","1751-7","Albumin [Mass/volume] in Serum or Plasma","g/L","g/L","$this"
 "5590","67151-1","Troponin T.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method",,,
 "5625","1988-5","C reactive protein [Mass/volume] in Serum or Plasma",,,
 "5689","2160-0","Creatinine [Mass/volume] in Serum or Plasma","mg/dL","mg/L","$this * 10"
