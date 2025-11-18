@@ -1,28 +1,28 @@
 {
-  "id" : "condition",
+  "id" : "patologie",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/gem/condition",
-  "name" : "Condition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/gem/patologie",
+  "name" : "Patologie",
   "description" : "Represents patologie table",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
   "abstract" : false,
-  "type" : "Condition",
+  "type" : "Patologie",
   "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation" : "specialization",
   "differential" : {
     "element" : [ {
-      "id" : "Condition",
-      "path" : "Condition",
+      "id" : "Patologie",
+      "path" : "Patologie",
       "min" : 0,
       "max" : "*",
       "type" : [ {
         "code" : "Element"
       } ]
     }, {
-      "id" : "Condition.CODICE_SANITARIO",
-      "path" : "Condition.CODICE_SANITARIO",
+      "id" : "Patologie.CODICE_SANITARIO",
+      "path" : "Patologie.CODICE_SANITARIO",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -31,8 +31,8 @@
       } ],
       "short" : "Patient id"
     }, {
-      "id" : "Condition.Patologia",
-      "path" : "Condition.Patologia",
+      "id" : "Patologie.Patologia",
+      "path" : "Patologie.Patologia",
       "min" : 1,
       "max" : "1",
       "type" : [ {
@@ -41,8 +41,8 @@
       } ],
       "short" : "Pathology"
     }, {
-      "id" : "Condition.STATUS",
-      "path" : "Condition.STATUS",
+      "id" : "Patologie.STATUS",
+      "path" : "Patologie.STATUS",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -51,8 +51,8 @@
       } ],
       "short" : "Status: 1 or 0"
     }, {
-      "id" : "Condition.data_in",
-      "path" : "Condition.data_in",
+      "id" : "Patologie.data_in",
+      "path" : "Patologie.data_in",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -61,8 +61,8 @@
       } ],
       "short" : "Date"
     }, {
-      "id" : "Condition.ICD9_CODES",
-      "path" : "Condition.ICD9_CODES",
+      "id" : "Patologie.ICD9_CODES",
+      "path" : "Patologie.ICD9_CODES",
       "min" : 0,
       "max" : "1",
       "type" : [ {

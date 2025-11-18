@@ -66,6 +66,14 @@
             } ]
           }
         },
+        "admission" : {
+          "admitSource" : {
+            "coding" : [ {
+              "{{#codingVar}}" : "{{NUM_PS.exists() and NOSOGRAFICO.exists()}}",
+              "{{?}}" : "{{ utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/admit-source', 'emb', 'From accident/emergency department') }}"
+            } ]
+          }
+        },
         "status" : "completed"
       }
     }

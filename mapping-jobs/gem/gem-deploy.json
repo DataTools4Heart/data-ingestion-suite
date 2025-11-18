@@ -125,10 +125,10 @@
       }
     }
   }, {
-    "name" : "smoking-status-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/smoking-status-mapping",
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
     "sourceBinding" : {
-      "patology" : {
+      "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "patologie.csv",
         "contentType" : "csv",

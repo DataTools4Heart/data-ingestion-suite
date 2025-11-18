@@ -1,0 +1,33 @@
+source_code,target_code,target_display,source_unit,target_unit,conversion_function
+"5016","14647-2","Cholesterol [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.0555"
+"5036E","1751-7","Albumin [Mass/volume] in Serum or Plasma","g/L","mcg/L","$this * 1000000"
+"5038","14927-8","Triglyceride [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.0555"
+"5055G","1751-7","Albumin [Mass/volume] in Serum or Plasma","g/L","mcg/L","$this * 1000000"
+"5060","2276-4","Ferritin [Mass/volume] in Serum or Plasma","ng/mL","mcg/L","$this"
+"5066","2951-2","Sodium [Moles/volume] in Serum or Plasma","mEq/L","mmol/L","$this"
+"5075","2502-3","Iron saturation [Mass Fraction] in Serum or Plasma",,,
+"5077","2823-3","Potassium [Moles/volume] in Serum or Plasma","mEq/L","mmol/L","$this"
+"5092E","1751-7","Albumin [Mass/volume] in Serum or Plasma","g/L","mcg/L","$this * 1000000"
+"5112","41995-2","Hemoglobin A1c [Mass/volume] in Blood","mmol/mol","d/dL","$this * 1.61134386078"
+"5112B","4548-4","Hemoglobin A1c/Hemoglobin.total in Blood",,,
+"5151","14646-4","Cholesterol in HDL [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.0555"
+"5152","22748-8","Cholesterol in LDL [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.0555"
+"5158","33762-6","Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Serum or Plasma",,,
+"5202","1754-1","Albumin [Mass/volume] in Urine","mg/dL","mcg/L","$this * 10000"
+"5209","2161-8","Creatinine [Mass/volume] in Urine","g/L","mg/L","$this * 1000"
+"5227A","1754-1","Albumin [Mass/volume] in Urine","mg/dL","mcg/L","$this * 10000"
+"5227B","32294-1","Albumin/Creatinine [Ratio] in Urine",,,
+"5228","1754-1","Albumin [Mass/volume] in Urine","mg/dL","mcg/L","$this * 10000"
+"5245","2161-8","Creatinine [Mass/volume] in Urine","g/L","mg/L","$this * 1000"
+"5269F","32294-1","Albumin/Creatinine [Ratio] in Urine",,,
+"5505","1751-7","Albumin [Mass/volume] in Serum or Plasma","g/L","g/L","$this"
+"5590","67151-1","Troponin T.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method",,,
+"5625","1988-5","C reactive protein [Mass/volume] in Serum or Plasma",,,
+"5689","2160-0","Creatinine [Mass/volume] in Serum or Plasma","mg/dL","mg/L","$this * 10"
+"5701","1988-5","C reactive protein [Mass/volume] in Serum or Plasma",,,
+"5749","14937-7","Urea nitrogen [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.0555"
+"5789","69405-9","Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood",,,
+"5864","89579-7","Troponin I.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method","ng/L","ng/mL","$this / 1000"
+"5886","10839-9","Troponin I.cardiac [Mass/volume] in Serum or Plasma",,,
+"8001a","718-7","Hemoglobin [Mass/volume] in Blood","g/dL","g/L","$this * 10"
+"8001r","30385-9","Red blood cell distribution width",,,

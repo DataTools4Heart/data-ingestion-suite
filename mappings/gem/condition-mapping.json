@@ -1,0 +1,109 @@
+{
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/gem/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Mapping from patologie.csv file to HFR-Condition & HFR-SmokingStatus profile ",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/patologie",
+    "joinOn" : [ "CODICE_SANITARIO" ]
+  }, {
+    "alias" : "encounter",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounter",
+    "joinOn" : [ "CODICE_SANITARIO" ]
+  } ],
+  "context" : {
+    "patologieMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/gem/patologie-concept-map.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "%encounter.where(DATA_IN.toDate() <= %context.data_in.toDate() and DATA_OUT.toDate() >= %context.data_in.toDate()).first()"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "conditionExistence",
+      "language" : "text/fhirpath",
+      "expression" : "Patologia != 'ABITUDINE_TABAGICA'"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Condition', CODICE_SANITARIO.toString() & data_in.toString() & Patologia.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
+        "code" : {
+          "coding" : [ {
+            "code" : "{{ mpp:getConcept(%patologieMap, Patologia, 'target_code') }}",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
+        "onsetDateTime" : "{{? iif(data_in.exists(), data_in.utl:toFhirDate('yyyy-MM-dd')) }}",
+        "clinicalStatus" : {
+          "coding" : [ {
+            "code" : "active",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
+          } ]
+        },
+        "category" : [ {
+          "coding" : [ "{{iif(%relatedEncounter.exists(), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'encounter-diagnosis', 'Encounter Diagnosis'), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'problem-list-item', 'Problem List Item'))}}" ]
+        } ]
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "smokingPatology",
+      "language" : "text/fhirpath",
+      "expression" : "Patologia = 'ABITUDINE_TABAGICA'"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & data_in.toString() & 'smoking')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "social-history",
+            "display" : "Social History"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "72166-2",
+            "display" : "Tobacco smoking status",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "77176002",
+            "display" : "Smoker (finding)"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
+        "effectivePeriod" : {
+          "start" : "{{? data_in.utl:toFhirDate('yyyy-MM-dd')}}"
+        },
+        "status" : "final"
+      }
+    }
+  } ]
+}

@@ -40,7 +40,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "definition" : "A record can have both ids (NOSOGRAFICO and NUM_PS) populated in the case of an admission proceeded by an emergency visit. So a same record can have both.",
+      "definition" : "A record can have both ids (NOSOGRAFICO and NUM_PS) populated in the case of an admission proceeded after an emergency visit. So a same record can have both.",
       "short" : "Unique id for the emergency visits"
     }, {
       "id" : "Encounter.DATA_IN",
