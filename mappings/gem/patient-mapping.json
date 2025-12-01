@@ -25,6 +25,9 @@
         "gender" : "{{ iif(SESSO='M', 'male', 'female') }}",
         "birthDate" : "{{DATA_NASCITA}}",
         "deceasedDateTime" : "{{? iif(Deceduto = 1, Data_Diagnosi) }}",
+        "identifier" : [ {
+          "value" : "{{CODICE_SANITARIO.toString()}}"
+        } ],
         "active" : true
       }
     }
