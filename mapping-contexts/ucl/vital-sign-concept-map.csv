@@ -3,8 +3,8 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 4022240,0,38208-5,,Pain score,$this,156114
 4068414,8876,8462-4,mmHg,Non-invasive diastolic arterial pressure,$this,82418
 4099154,8504,29463-7,kg,Body weight,$this / 1000,12516
-4152194,0,8480-6,mmHg,Systolic blood pressure,$this,127635
-4154790,0,8462-4,mmHg,Diastolic blood pressure,$this,127635
+4152194,8876,8480-6,mmHg,Systolic blood pressure,$this,127635
+4154790,8876,8462-4,mmHg,Diastolic blood pressure,$this,127635
 4177340,8582,8302-2,cm,Body height measure,$this,4078
 4201235,0,8277-6,m2,Body surface area,$this,1824
 4201235,8617,8277-6,m2,Body surface area,$this,3832
@@ -12,8 +12,9 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 4239021,0,8478-0,mmHg,Mean blood pressure,$this,14571
 4245997,0,39156-5,kg/m2,Body mass index,$this,10257
 4296538,0,35088-4,,Glasgow coma scale,$this,35530
-4301868,0,8867-4,bpm,Pulse rate,$this,227324
-4302666,0,8310-5,Cel,Body temperature,$this,186619
+4301868,0,8867-4,bpm,Pulse rate,$this,831
+4301868,8541,8867-4,bpm,Pulse rate,$this,223071
+4302666,586323,8310-5,Cel,Body temperature,$this,186619
 4313591,0,9279-1,/min,Respiratory rate,$this,216533
 4313591,8541,9279-1,/min,Respiratory rate,$this,16
 4323687,8876,60985-9,mmHg,Central venous pressure,$this,1272

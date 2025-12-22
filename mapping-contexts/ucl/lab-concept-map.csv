@@ -13,9 +13,12 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 3020460,8751,1988-5,mg/L,C reactive protein [Mass/volume] in Serum or Plasma,$this,15835
 3023103,8753,2823-3,mmol/L,Potassium [Moles/volume] in Serum or Plasma,$this,21602
 3024561,8636,1751-7,g/L,Albumin [Mass/volume] in Serum or Plasma,$this,16744
+3000034,8751,1754-1,mg/L,Albumin [Mass/volume] in Urine,$this,75
 3025839,8753,14927-8,mmol/L,Triglyceride [Moles/volume] in Serum or Plasma,$this,344
 46236952,0,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",$this,10081
 46236952,8795,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",$this,12441
 3009508,8749,2161-8,mg/L,Creatinine [Mass/volume] in Urine,$this * 0.1131,527
 3020564,8749,2160-0,mg/L,Creatinine [Mass/volume] in Serum or Plasma,$this * 0.1131,22550
-3020564,0,2160-0,mg/L,Creatinine [Moles/volume] in Serum or Plasma,$this * 0.1131,2761
+3020564,0,2160-0,mg/L,Creatinine [Mass/volume] in Serum or Plasma,$this * 0.1131,2761
+3020779,8753,22664-7,mmol/L,Urea [Moles/volume] in Serum or Plasma,$this,7668
+3026910,8923,2324-2,U/L,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma,$this,93
