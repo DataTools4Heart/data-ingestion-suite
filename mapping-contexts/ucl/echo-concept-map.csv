@@ -32,5 +32,4 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 46236797,8582,77903-3,cm,Tricuspid valve annulus Excursion distance during systole by US.M-mode,$this,1129
 46236798,8587,77904-1,mL,Left atrial End-systolic volume by US.2D+Calculated by modified Simpson method,$this,832
 46236798,44777662,77904-1,mL,Left atrial End-systolic volume by US.2D+Calculated by modified Simpson method,$this,114
-3000351,8617,3139-3,m2,Body surface area Measured,$this,1069
 21494027,8554,79990-8,%,Left ventricular Ejection fraction by US.3D.segmentation,$this,10
