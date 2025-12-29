@@ -118,7 +118,7 @@
     "precondition" : {
       "name" : "systolicBPExists",
       "language" : "text/fhirpath",
-      "expression" : "systolic_pressure.exists()"
+      "expression" : "systoclic.exists()"
     },
     "expression" : {
       "name" : "systolic-bp",
@@ -149,7 +149,7 @@
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",
-          "value" : "{{systolic_pressure}}",
+          "value" : "{{systoclic}}",
           "unit" : "mm[Hg]"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
@@ -167,7 +167,7 @@
     "precondition" : {
       "name" : "diastolicBPExists",
       "language" : "text/fhirpath",
-      "expression" : "systolic_pressure.exists()"
+      "expression" : "diastolic.exists()"
     },
     "expression" : {
       "name" : "diastolic-bp",
@@ -198,7 +198,7 @@
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",
-          "value" : "{{diastolic_pressure}}",
+          "value" : "{{diastolic}}",
           "unit" : "mm[Hg]"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
