@@ -62,8 +62,8 @@
       } ],
       "short" : "Identifier of the dictionary element"
     }, {
-      "id" : "EchoMeasurement.code",
-      "path" : "EchoMeasurement.code",
+      "id" : "EchoMeasurement.loinc_code",
+      "path" : "EchoMeasurement.loinc_code",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -72,8 +72,8 @@
       } ],
       "short" : "LOINC code of the measurement"
     }, {
-      "id" : "EchoMeasurement.shortcut",
-      "path" : "EchoMeasurement.shortcut",
+      "id" : "EchoMeasurement.his_shortcut",
+      "path" : "EchoMeasurement.his_shortcut",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -83,9 +83,9 @@
       "definition" : "Populated when the measurement does not have a corresponding LOINC code",
       "short" : "A short name for the measurement"
     }, {
-      "id" : "EchoMeasurement.descr",
-      "path" : "EchoMeasurement.descr",
-      "min" : 1,
+      "id" : "EchoMeasurement.loinc_common_name",
+      "path" : "EchoMeasurement.loinc_common_name",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
@@ -93,8 +93,8 @@
       } ],
       "short" : "Description of the measurement"
     }, {
-      "id" : "EchoMeasurement.unit",
-      "path" : "EchoMeasurement.unit",
+      "id" : "EchoMeasurement.loinc_unit",
+      "path" : "EchoMeasurement.loinc_unit",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -102,6 +102,15 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Unit of the measured value"
+    }, {
+      "id" : "EchoMeasurement.icrc_name",
+      "path" : "EchoMeasurement.icrc_name",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     } ]
   }
 }

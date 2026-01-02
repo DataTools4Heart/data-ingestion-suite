@@ -1,0 +1,16 @@
+source_code,target_code,target_system,target_display
+hr,8867-4,http://loinc.org,Heart rate
+rvidd,RVEDD,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Right-ventricle end-diastolic diameter
+rvidd_index,RVEDDi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed right-ventricle end-diastolic diameter
+rvesd,RVESD,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Right-ventricle end-systolic diameter
+rvesd_index,RVESDi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed right-ventricle end-systolic diameter
+ivsd_index,IVSdi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed intraventricular septal thickness end diastole
+ivss_index,IVSsi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed intraventricular septal thickness end systole
+lvpwtd_index,LVPWdi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed left ventricular posterior wall thickness at end diastole
+lvpwts_index,LVPWsi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed left ventricular posterior wall thickness at end systole
+lvpwi,LVPWi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed left ventricular posterior wall thickness
+lav,Avol,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Atrial volume
+lav_index,Avoli,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed atrial volume
+lald_a2c_index,LAVi,https://datatools4heart.eu/fhir/CodeSystem/echo-parameter,Indexed left atrial volume
+ra_area,80075-5,http://loinc.org,Right atrial Area at end systole by US.2D.A4C+Measured by planimetry
+ef_cube,77890-2,http://loinc.org,Left ventricular Ejection fraction by US.2D+Calculated by cube method
