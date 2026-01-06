@@ -51,7 +51,7 @@
       },
       "echoMeasurements" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT echodata.*,\n       dict.code,\n       dict.shortcut,\n       dict.descr,\n       dict.unit\nFROM heart_echo.tte_data echodata\n         JOIN heart_echo.echo_dict dict ON echodata.id_dict = dict.id",
+        "query" : "SELECT echodata.*,\n       dict.loinc_code,\n       dict.his_shortcut,\n       dict.loinc_common_name,\n       dict.loinc_unit,\n       dict.icrc_name\nFROM heart_echo.tte_data echodata\n         JOIN heart_echo.us_dict dict ON echodata.id_dict = dict.id",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
