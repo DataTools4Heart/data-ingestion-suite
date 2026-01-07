@@ -62,7 +62,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT e.id            AS id_encounter,\n       e.id_patient    AS id_patient,\n       e.id_department AS id_department,\n       es.code         AS status,\n       ec.code         AS class,\n       e.begin_date    AS begin_date,\n       e.end_date      AS end_date,\n       c.id            AS id_condition_main_diagnosis,\n       dr.code_cz      AS discharge_ref_code\nFROM patient.encounter e\n         JOIN patient_dict.encounter_status es ON e.id_encounter_status = es.id\n         JOIN patient_dict.encounter_class ec ON e.id_encounter_class = ec.id\n         JOIN patient.condition c ON e.id = c.id_encounter\n         JOIN patient_dict.discharge_ref dr ON e.id_discharge_ref = dr.id",
+        "query": "SELECT\n    e.id            AS id_encounter,\n    e.id_patient    AS id_patient,\n    e.id_department AS id_department,\n    es.code         AS status,\n    ec.code         AS class,\n    e.begin_date    AS begin_date,\n    e.end_date      AS end_date,\n    STRING_AGG(c.id::text, ',') AS id_condition_main_diagnosis,\n    dr.code_cz      AS discharge_ref_code\nFROM patient.encounter e\nJOIN patient_dict.encounter_status es\n    ON e.id_encounter_status = es.id\nJOIN patient_dict.encounter_class ec\n    ON e.id_encounter_class = ec.id\nJOIN patient.condition c\n    ON e.id = c.id_encounter\nJOIN patient_dict.discharge_ref dr\n    ON e.id_discharge_ref = dr.id\nGROUP BY\n    e.id,\n    e.id_patient,\n    e.id_department,\n    es.code,\n    ec.code,\n    e.begin_date,\n    e.end_date,\n    dr.code_cz",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -73,7 +73,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT l.id            AS id_lab,\n       e.id_patient    AS id_patient,\n       e.id            AS id_encounter,\n       l.id_department AS id_department,\n       l.exec_date     AS effective_date,\n       lc.code_his     AS code_his,\n       lc.lab_name_his AS lab_name_his,\n       lc.code_loinc   AS code_loinc,\n       ld.value        AS value_result,\n       ld.unit         AS value_unit\nFROM patient.lab l\n         JOIN lab.lab_data ld ON l.id = ld.id_lab\n         JOIN patient.observation o ON l.id_observation = o.id\n         JOIN lab.lab_code lc ON ld.id_lab_code = lc.id\n         JOIN patient.encounter e ON o.id_encounter = e.id\n         JOIN dt4h.lab_result lr ON lc.code_loinc::text = lr.lonic_code::text",
+        "query" : "SELECT l.id            AS id_lab,\n       e.id_patient    AS id_patient,\n       e.id            AS id_encounter,\n       l.id_department AS id_department,\n       l.exec_date     AS effective_date,\n       lc.code_his     AS code_his,\n       lc.lab_name_his AS lab_name_his,\n       lc.code_loinc   AS code_loinc,\n       ld.value        AS value_result,\n       ld.unit         AS value_unit\nFROM patient.lab l\n         JOIN lab.lab_data ld ON l.id = ld.id_lab\n         JOIN patient.observation o ON l.id_observation = o.id\n         JOIN lab.lab_code lc ON ld.id_lab_code = lc.id\n         JOIN patient.encounter e ON o.id_encounter = e.id where lc.code_loinc is not NULL",
         "options" : { },
         "sourceRef" : "icrc-data"
       }

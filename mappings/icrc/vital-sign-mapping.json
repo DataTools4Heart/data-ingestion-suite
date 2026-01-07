@@ -413,7 +413,7 @@
     "precondition" : {
       "name" : "nyhaExists",
       "language" : "text/fhirpath",
-      "expression" : "nyha.exists()"
+      "expression" : "nyha.exists() and nyha != 0"
     },
     "expression" : {
       "name" : "nyha",

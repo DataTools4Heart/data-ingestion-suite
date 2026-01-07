@@ -43,14 +43,17 @@
           "start" : "{{begin_date}}",
           "end" : "{{? end_date}}"
         },
-        "reason" : [ {
-          "use" : [ {
-            "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
-          } ],
-          "value" : [ {
-            "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', id_condition_main_diagnosis.toString())}}"
-          } ]
-        } ],
+        "reason" : {
+          "{{#icd10Code}}" : "{{id_condition_main_diagnosis.utl:split(',')}}",
+          "{{*}}" : {
+            "use" : [ {
+              "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
+            } ],
+            "value" : [ {
+              "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %icd10Code.toString())}}"
+            } ]
+          }
+        },
         "admission" : {
           "dischargeDisposition" : {
             "{{#dislc}}" : "{{mpp:getConcept(%dischargeLocationsConceptMap, discharge_ref_code)}}",
