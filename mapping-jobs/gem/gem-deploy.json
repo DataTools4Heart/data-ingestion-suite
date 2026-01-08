@@ -56,12 +56,88 @@
       }
     }
   }, {
-    "name" : "lab-result-and-vital-sign-mapping",
+    "name" : "lab-result-and-vital-sign-mapping-1",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
     "sourceBinding" : {
       "labResults" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "diario_misure.csv",
+        "path" : "observation1.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      }
+    }
+  }, {
+    "name" : "lab-result-and-vital-sign-mapping-2",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "sourceBinding" : {
+      "labResults" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "observation2.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      }
+    }
+  }, {
+    "name" : "lab-result-and-vital-sign-mapping-3",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "sourceBinding" : {
+      "labResults" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "observation3.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      }
+    }
+  }, {
+    "name" : "lab-result-and-vital-sign-mapping-4",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "sourceBinding" : {
+      "labResults" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "observation4.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      }
+    }
+  }, {
+    "name" : "lab-result-and-vital-sign-mapping-5",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "sourceBinding" : {
+      "labResults" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "observation5.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"

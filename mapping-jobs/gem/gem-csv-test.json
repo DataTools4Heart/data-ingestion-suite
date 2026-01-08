@@ -61,7 +61,7 @@
     "sourceBinding" : {
       "labResults" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "diario_misure.csv",
+        "path" : "observation1.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "file-system-csv"

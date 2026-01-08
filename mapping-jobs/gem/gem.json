@@ -56,12 +56,12 @@
       }
     }
   }, {
-    "name" : "lab-result-and-vital-sign-mapping",
+    "name" : "lab-result-and-vital-sign-mapping-1",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
     "sourceBinding" : {
       "labResults" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "diario_misure.csv",
+        "path" : "observation1.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
