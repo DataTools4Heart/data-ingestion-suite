@@ -171,8 +171,7 @@ Replace only the part before the colon (`:`) with your dataset path.
 ### 1. Stop all running containers
 
 ```bash
-sh ./data-ingestion-suite/docker/server/stop.sh
-sh ./data-ingestion-suite/docker/proxy/stop.sh  # Optional
+sh ./data-ingestion-suite/docker/server/stop.shh
 ```
 
 ### 2. Pull the latest updates
@@ -192,7 +191,46 @@ sh ./data-ingestion-suite/docker/server/pull.sh
 
 ```bash
 sh ./data-ingestion-suite/docker/server/run.sh
-sh ./data-ingestion-suite/docker/proxy/run.sh  # Optional
+sh ./data-ingestion-suite/docker/proxy/restart.sh  # Optional
+```
+
+---
+
+## Clean Installation from Scratch (Optional)
+
+> Use this section to completely remove all containers, volumes, and data, then perform a fresh installation.
+
+### 1. Stop containers and remove all data
+
+Run the clean-and-stop script to stop all containers and remove associated volumes:
+
+> **Warning:** This will permanently delete all persisted data including FHIR resources and mapping execution history.
+
+```bash
+sh ./data-ingestion-suite/docker/proxy/stop.sh  # Optional
+sh ./data-ingestion-suite/docker/server/clean-and-stop.sh
+```
+
+### 2. Pull the latest updates
+
+```bash
+cd common-data-model
+git pull
+cd ..
+
+cd data-ingestion-suite
+git pull
+cd ..
+sh ./data-ingestion-suite/docker/server/pull.sh
+```
+
+### 3. Start all containers
+
+After cleaning, follow the original deployment steps to reinstall:
+
+```bash
+sh ./data-ingestion-suite/docker/server/run.sh
+sh ./data-ingestion-suite/docker/proxy/restart.sh  # Optional
 ```
 
 ---
