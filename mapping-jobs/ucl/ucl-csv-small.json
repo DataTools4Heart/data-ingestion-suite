@@ -216,6 +216,25 @@
         "sourceRef" : "ucl-data"
       }
     }
+  }, {
+    "name" : "nlp-mapping-v2",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping-v2",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NOTE_NLP.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      },
+      "note" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NOTE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,

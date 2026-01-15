@@ -87,7 +87,7 @@
     }, {
       "id" : "OMOP-Note.note_text",
       "path" : "OMOP-Note.note_text",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
@@ -146,6 +146,24 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.note_event_id",
+      "path" : "OMOP-Note.note_event_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "OMOP-Note.note_event_field_concept_id",
+      "path" : "OMOP-Note.note_event_field_concept_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     } ]
   }

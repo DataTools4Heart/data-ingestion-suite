@@ -1,0 +1,61 @@
+{
+  "id" : "nlp-mapping-v2",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/nlp-mapping-v2",
+  "name" : "nlp-mapping-v2",
+  "title" : "Mapping of NOTE_NLP table, using NOTE table",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-NoteNlp",
+    "joinOn" : [ "note_id" ]
+  }, {
+    "alias" : "note",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-Note",
+    "joinOn" : [ "note_id" ]
+  } ],
+  "context" : {
+    "omopToSnomedSymptom" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/ucl/symptom-omop-to-snomed.csv"
+    }
+  },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', note_nlp_id.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "{{#snomedCode}}" : "{{mpp:getConcept(%omopToSnomedSymptom, note_nlp_concept_id.toString())}}",
+            "{{?}}" : {
+              "system" : "http://snomed.info/sct",
+              "code" : "{{%snomedCode.target_code}}",
+              "display" : "{{%snomedCode.target_display}}"
+            },
+            "@sliceName" : "snomedCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{nlp_datetime.utl:split('+').first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueBoolean" : true,
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %note.person_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %note.visit_occurrence_id.toString())}}",
+        "identifier" : [ {
+          "value" : "{{note_nlp_id.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}
