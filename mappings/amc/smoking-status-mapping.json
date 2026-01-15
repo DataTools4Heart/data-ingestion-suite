@@ -26,13 +26,13 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid & 'smoking')}}",
+        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & PatientContactId & 'smoking')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
         },
         "resourceType" : "Observation",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "effectivePeriod" : {
           "start" : "{{? iif(StartDatum.exists() and StartDatum != '1753-01-01', StartDatum) }}",
           "end" : "{{? iif(StopDatum.exists() and StopDatum != '9999-12-31', StopDatum) }}"

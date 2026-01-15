@@ -49,6 +49,7 @@
         "path" : "VitalSigns.parquet",
         "contentType" : "parquet",
         "options" : { },
+        "preprocessSql" : "select Pseudo_id,Patientcontactid,ZiekenhuisLocatie,MetingVitaleGegevensId,ValueQuantity,LOINCcode,LOINCdisplay,Unit from source;",
         "sourceRef" : "amc-source"
       }
     }
@@ -106,7 +107,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select count(*) as count, pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300)\r\ngroup by pseudo_id, EcgMetingId",
+        "preprocessSql" : "select count(*) as count, Pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300)\r\ngroup by Pseudo_id, EcgMetingId",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -203,6 +204,14 @@
         "options" : { },
         "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",
         "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "preprocessSql" : "select * \r\nfrom encounters\r\nwhere EncounterClassCode = 'IMP'",
+        "sourceRef" : "amc-source"
       }
     }
   }, {
@@ -216,7 +225,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select *\r\nfrom source \r\nwhere NYHA IN ('1', '2', '3', '4')",
+        "preprocessSql" : "select *\r\nfrom source \r\nwhere nyha IN (1, 2, 3, 4)",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -236,6 +245,7 @@
         "path" : "Echocardiography.parquet",
         "contentType" : "parquet",
         "options" : { },
+        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
         "sourceRef" : "amc-source"
       },
       "encounters" : {

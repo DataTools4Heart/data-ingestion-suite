@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "ECG.pseudo_id",
-      "path" : "ECG.pseudo_id",
+      "id" : "ECG.Pseudo_id",
+      "path" : "ECG.Pseudo_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {

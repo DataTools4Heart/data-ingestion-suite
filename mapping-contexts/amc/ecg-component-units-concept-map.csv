@@ -1,6 +1,6 @@
 source_code,display,unit_code,unit_display,target_code
 "8625-6","P-R Interval","ms","millisecond","8625-6"
-"76282-3","Heart rate.beat-to-beat by EKG","{beats}/min","heart beats per minute","76282-3"
+"76282-3","Heart rate.beat-to-beat by EKG","beats","beats","76282-3"
 "18505-8","R-R interval (Mean value during study) by EKG","ms","millisecond","8637-1"
 "8633-0","QRS duration","ms","millisecond","8633-0"
 "76635-2","Q-T interval corrected based on Bazett formula","ms","millisecond","bazett"

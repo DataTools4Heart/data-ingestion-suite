@@ -21,15 +21,14 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSign.pseudo_id",
-      "path" : "VitalSign.pseudo_id",
+      "id" : "VitalSign.Pseudo_id",
+      "path" : "VitalSign.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Patient ID"
+      } ]
     }, {
       "id" : "VitalSign.Patientcontactid",
       "path" : "VitalSign.Patientcontactid",
@@ -38,8 +37,7 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Encounter ID"
+      } ]
     }, {
       "id" : "VitalSign.ZiekenhuisLocatie",
       "path" : "VitalSign.ZiekenhuisLocatie",
@@ -48,21 +46,10 @@
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Hospital Location"
+      } ]
     }, {
-      "id" : "VitalSign.MeetDatum",
-      "path" : "VitalSign.MeetDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "short" : "Measurement Date"
-    }, {
-      "id" : "VitalSign.MeetTijd",
-      "path" : "VitalSign.MeetTijd",
+      "id" : "VitalSign.MetingVitaleGegevensId",
+      "path" : "VitalSign.MetingVitaleGegevensId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -70,18 +57,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "VitalSign.ValueQuantity",
-      "path" : "VitalSign.ValueQuantity",
+      "id" : "VitalSign.MeetMoment",
+      "path" : "VitalSign.MeetMoment",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Measured value"
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
     }, {
-      "id" : "VitalSign.Unit",
-      "path" : "VitalSign.Unit",
+      "id" : "VitalSign.ValueQuantity",
+      "path" : "VitalSign.ValueQuantity",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -100,6 +86,15 @@
     }, {
       "id" : "VitalSign.LOINCdisplay",
       "path" : "VitalSign.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "VitalSign.Unit",
+      "path" : "VitalSign.Unit",
       "min" : 0,
       "max" : "1",
       "type" : [ {

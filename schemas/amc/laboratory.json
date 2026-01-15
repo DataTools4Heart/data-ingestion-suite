@@ -155,8 +155,8 @@
       } ],
       "short" : "Result Note"
     }, {
-      "id" : "Laboratory.LOINCcode",
-      "path" : "Laboratory.LOINCcode",
+      "id" : "Laboratory.LOINC_code",
+      "path" : "Laboratory.LOINC_code",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -164,8 +164,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Laboratory.LOINCdisplay",
-      "path" : "Laboratory.LOINCdisplay",
+      "id" : "Laboratory.LOINC_display",
+      "path" : "Laboratory.LOINC_display",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -173,8 +173,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Laboratory.pseudo_id",
-      "path" : "Laboratory.pseudo_id",
+      "id" : "Laboratory.Pseudo_id",
+      "path" : "Laboratory.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -182,6 +182,16 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
+    }, {
+      "id" : "Laboratory.UitslagNumeriek",
+      "path" : "Laboratory.UitslagNumeriek",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Numeric Value"
     } ]
   }
 }

@@ -21,7 +21,7 @@
       "name" : "bp",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid.toString() & MeetDatum.toString() & MeetTijd.toString() & LOINCcode)}}",
+        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid.toString() & MeetMoment.toString() & MeetTijd.toString() & LOINCcode)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -41,17 +41,17 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "effectiveDateTime" : "{{MeetMoment.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",
           "value" : "{{ValueQuantity.toDecimal()}}",
           "unit" : "mm[Hg]"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "identifier" : [ {
-          "value" : "{{pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetDatum.toString()}}"
+          "value" : "{{Pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetMoment.toString()}}"
         } ],
         "status" : "final"
       }

@@ -51,8 +51,8 @@
       } ],
       "short" : "ICD10 code"
     }, {
-      "id" : "CauseOfDeath.pseudo_id",
-      "path" : "CauseOfDeath.pseudo_id",
+      "id" : "CauseOfDeath.Pseudo_id",
+      "path" : "CauseOfDeath.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {

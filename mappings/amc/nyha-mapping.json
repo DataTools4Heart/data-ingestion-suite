@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/NYHA",
-    "joinOn" : [ "Pseudo_id" ]
+    "joinOn" : [ "pseudo_id" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
-    "joinOn" : [ "pseudo_id" ]
+    "joinOn" : [ "Pseudo_id" ]
   } ],
   "context" : {
     "nyhaMap" : {
@@ -22,7 +22,7 @@
   "variable" : [ {
     "name" : "relatedEncounters",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.authored.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.authored.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))"
+    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))"
   }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
@@ -33,7 +33,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & authored.toString() & NYHA)}}",
+        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & dateNote.toString() & nyha.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
         },
@@ -53,18 +53,18 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{authored.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "effectiveDateTime" : "{{dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%nyhaMap, NYHA, 'target_code')}}",
-            "display" : "{{mpp:getConcept(%nyhaMap, NYHA, 'target_display')}}"
+            "code" : "{{mpp:getConcept(%nyhaMap, nyha.toString(), 'target_code')}}",
+            "display" : "{{mpp:getConcept(%nyhaMap, nyha.toString(), 'target_display')}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
         "identifier" : [ {
-          "value" : "{{Pseudo_id.toString() & '-' & authored.toString() & '-' & NYHA.toString()}}"
+          "value" : "{{pseudo_id.toString() & '-' & dateNote.toString() & '-' & nyha.toString()}}"
         } ],
         "status" : "final"
       }

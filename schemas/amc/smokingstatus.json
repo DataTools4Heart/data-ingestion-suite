@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "SmokingStatus.pseudo_id",
-      "path" : "SmokingStatus.pseudo_id",
+      "id" : "SmokingStatus.Pseudo_id",
+      "path" : "SmokingStatus.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -132,8 +132,8 @@
       } ],
       "short" : "Hospital Location"
     }, {
-      "id" : "SmokingStatus.Patientcontactid",
-      "path" : "SmokingStatus.Patientcontactid",
+      "id" : "SmokingStatus.PatientContactId",
+      "path" : "SmokingStatus.PatientContactId",
       "min" : 0,
       "max" : "1",
       "type" : [ {

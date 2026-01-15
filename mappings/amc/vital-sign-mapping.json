@@ -15,13 +15,17 @@
       "url" : "$CONTEXT_REPO/amc/vital-sign-concept-map.csv"
     }
   },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "date",
+    "language" : "text/fhirpath",
+    "expression" : "MetingVitaleGegevensId.utl:split('|').last().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS')"
+  } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & Patientcontactid.toString() & MeetDatum.toString() & MeetTijd.toString() & LOINCcode)}}",
+        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid.toString() & %date.toString() & MeetTijd.toString() & LOINCcode)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -41,17 +45,17 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "effectiveDateTime" : "{{%date}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "{{Unit.nav:orElse('%')}}",
-          "value" : "{{ValueQuantity}}",
+          "value" : "{{ValueQuantity.toDecimal()}}",
           "unit" : "{{Unit.nav:orElse('%')}}"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "identifier" : [ {
-          "value" : "{{pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetDatum.toString()}}"
+          "value" : "{{Pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & %date.toString()}}"
         } ],
         "status" : "final"
       }

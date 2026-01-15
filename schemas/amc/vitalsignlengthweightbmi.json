@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSignLengthWeightBMI.pseudo_id",
-      "path" : "VitalSignLengthWeightBMI.pseudo_id",
+      "id" : "VitalSignLengthWeightBMI.Pseudo_id",
+      "path" : "VitalSignLengthWeightBMI.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {

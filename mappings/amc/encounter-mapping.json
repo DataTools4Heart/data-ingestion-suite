@@ -33,13 +33,13 @@
     "precondition" : {
       "name" : "idExists",
       "language" : "text/fhirpath",
-      "expression" : "Patientcontactid.exists() and EncounterClassCode.exists() and EncounterClassCode != 'Other'"
+      "expression" : "PatientContactId.exists() and EncounterClassCode.exists() and EncounterClassCode != 'Other'"
     },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Encounter', Patientcontactid)}}",
+        "id" : "{{mpp:getHashedId('Encounter', PatientContactId)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },
@@ -51,7 +51,7 @@
             "display" : "{{mpp:getConcept(%encounterClassMap, EncounterClassCode, 'display')}}"
           } ]
         } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "actualPeriod" : {
           "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
           "end" : "{{? iif(EndDate != '9999-12-31' and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') > StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
@@ -68,7 +68,7 @@
             "value" : {
               "{{#primaryReasonCode}}" : "{{%mainDiagnosisCodes}}",
               "{{*}}" : {
-                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', Patientcontactid & %primaryReasonCode )}}"
+                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', PatientContactId & %primaryReasonCode )}}"
               }
             }
           },
@@ -82,10 +82,6 @@
             } ]
           }
         },
-        "identifier" : [ {
-          "value" : "{{Patientcontactid}}"
-        } ],
-        "status" : "{{EncounterStatus}}",
         "serviceType" : [ {
           "concept" : {
             "coding" : [ {
@@ -99,6 +95,10 @@
             "text" : "{{? DepartmentAdmission}}"
           }
         } ],
+        "identifier" : [ {
+          "value" : "{{PatientContactId}}"
+        } ],
+        "status" : "{{EncounterStatus}}",
         "serviceProvider" : "{{mpp:createFhirReferenceWithHashedId('Organization', ZiekenhuisLocatie)}}"
       }
     }
@@ -109,7 +109,7 @@
       "value" : {
         "{{#mainDiagnosisCode}}" : "{{%mainDiagnosisCodes}}",
         "{{*}}" : {
-          "id" : "{{mpp:getHashedId('Condition', Patientcontactid & %mainDiagnosisCode)}}",
+          "id" : "{{mpp:getHashedId('Condition', PatientContactId & %mainDiagnosisCode)}}",
           "meta" : {
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
           },
@@ -121,11 +121,11 @@
               "@sliceName" : "icd10Code"
             } ]
           },
-          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
           "onsetDateTime" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
           "identifier" : [ {
-            "value" : "{{Patientcontactid & '-' & %mainDiagnosisCode}}"
+            "value" : "{{PatientContactId & '-' & %mainDiagnosisCode}}"
           } ],
           "clinicalStatus" : {
             "coding" : [ {

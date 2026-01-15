@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "NYHA.Pseudo_id",
-      "path" : "NYHA.Pseudo_id",
+      "id" : "NYHA.pseudo_id",
+      "path" : "NYHA.pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -30,8 +30,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "NYHA.authored",
-      "path" : "NYHA.authored",
+      "id" : "NYHA.dateNote",
+      "path" : "NYHA.dateNote",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -39,13 +39,13 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
-      "id" : "NYHA.NYHA",
-      "path" : "NYHA.NYHA",
+      "id" : "NYHA.nyha",
+      "path" : "NYHA.nyha",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     } ]
   }

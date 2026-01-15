@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Patient.pseudo_id",
-      "path" : "Patient.pseudo_id",
+      "id" : "Patient.Pseudo_id",
+      "path" : "Patient.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -61,8 +61,8 @@
       } ],
       "short" : "Sex"
     }, {
-      "id" : "Patient.Overlijdensdatum",
-      "path" : "Patient.Overlijdensdatum",
+      "id" : "Patient.Overlijdensdatumjid",
+      "path" : "Patient.Overlijdensdatumjid",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -112,6 +112,16 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
       "short" : "Issuance DT"
+    }, {
+      "id" : "Patient.Geboortedatum",
+      "path" : "Patient.Geboortedatum",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "short" : "Birthdate"
     } ]
   }
 }

@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSignBp.pseudo_id",
-      "path" : "VitalSignBp.pseudo_id",
+      "id" : "VitalSignBp.Pseudo_id",
+      "path" : "VitalSignBp.Pseudo_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -61,13 +61,13 @@
       } ],
       "short" : "Measurement Time"
     }, {
-      "id" : "VitalSignBp.MeetDatum",
-      "path" : "VitalSignBp.MeetDatum",
+      "id" : "VitalSignBp.MeetMoment",
+      "path" : "VitalSignBp.MeetMoment",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+        "code" : "dateTime",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ],
       "short" : "Measurement Date"
     }, {

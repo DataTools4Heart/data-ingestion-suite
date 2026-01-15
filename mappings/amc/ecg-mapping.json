@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/ecg",
-    "joinOn" : [ "pseudo_id" ]
+    "joinOn" : [ "Pseudo_id" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
-    "joinOn" : [ "pseudo_id" ]
+    "joinOn" : [ "Pseudo_id" ]
   } ],
   "context" : {
     "ecgComponentUnitsMap" : {
@@ -33,7 +33,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & EcgMetingId)}}",
+        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & EcgMetingId)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
         },
@@ -64,11 +64,11 @@
             }
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "encounter" : "{{?  mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
         "effectiveDateTime" : "{{EcgAfnameDatumTijd.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "identifier" : [ {
-          "value" : "{{pseudo_id.toString() & '-' & EcgMetingId}}"
+          "value" : "{{Pseudo_id.toString() & '-' & EcgMetingId}}"
         } ],
         "status" : "final"
       }

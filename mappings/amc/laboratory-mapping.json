@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/Laboratory",
-    "joinOn" : [ "pseudo_id" ]
+    "joinOn" : [ "Pseudo_id" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
-    "joinOn" : [ "pseudo_id" ]
+    "joinOn" : [ "Pseudo_id" ]
   } ],
   "context" : {
     "labCodeConversion" : {
@@ -33,7 +33,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Patient', pseudo_id.toString() & MonsterId & LOINCcode)}}",
+        "id" : "{{mpp:getHashedId('Patient', Pseudo_id.toString() & MonsterId & LOINC_code)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
         },
@@ -49,28 +49,24 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_code').first()}}",
+            "code" : "{{mpp:getConcept(%labCodeConversion, LOINC_code, 'target_code').first()}}",
             "@sliceName" : "loincCode"
           } ]
         },
         "effectiveDateTime" : "{{iif(UitslagDatumtijd.exists() and UitslagDatumtijd != '', UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), MateriaalAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')) }}",
         "valueQuantity" : {
-          "{{#parsed}}" : "{{utl:parseFhirQuantityExpression(UitslagTekst)}}",
+          "{{#convertedMea}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINC_code.toString(), UitslagNumeriek, UitslagEenheid.toString())}}",
           "{{?}}" : {
-            "{{#convertedMea}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINCcode.toString(), %parsed.first().toDecimal(), UitslagEenheid.toString())}}",
-            "{{?}}" : {
-              "system" : "{{%convertedMea.system}}",
-              "code" : "{{%convertedMea.code}}",
-              "unit" : "{{%convertedMea.unit}}",
-              "value" : "{{%convertedMea.value}}",
-              "comparator" : "{{? %parsed.last()}}"
-            }
+            "system" : "{{%convertedMea.system}}",
+            "code" : "{{%convertedMea.code}}",
+            "unit" : "{{%convertedMea.unit}}",
+            "value" : "{{%convertedMea.value}}"
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
         "identifier" : [ {
-          "value" : "{{pseudo_id.toString() & '-' & MonsterId & '-' & LOINCcode}}"
+          "value" : "{{Pseudo_id.toString() & '-' & MonsterId & '-' & LOINC_code}}"
         } ],
         "referenceRange" : [ {
           "low" : {
