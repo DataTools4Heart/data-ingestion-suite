@@ -1,551 +1,644 @@
 {
-  "id" : "ECG-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/ECG-mapping",
-  "name" : "ECG-mapping",
-  "title" : "Mapping of the ecg_mortara table to the DT4H Electrocardiograph FHIR profile",
-  "isDraft" : false,
-  "source" : [ {
-    "alias" : "ecg",
-    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/ECG",
-    "joinOn" : [ ]
-  } ],
-  "context" : { },
-  "variable" : [ ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_ecg.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
-        },
-        "resourceType" : "Observation",
-        "code" : {
-          "coding" : [ {
-            "code" : "34534-8",
-            "system" : "http://loinc.org",
-            "display" : "12 lead EKG panel",
-            "@sliceName" : "loincCode"
-          } ]
-        },
-        "component" : [ {
-          "{{#componentAvailable}}" : "{{pr_duration}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8625-6",
-                "system" : "http://loinc.org",
-                "display" : "P-R Interval"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "ms",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{pr_duration}}",
-              "unit" : "millisecond"
-            }
+  "id": "ECG-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/ECG-mapping",
+  "name": "ECG-mapping",
+  "title": "Mapping of the ecg_mortara table to the DT4H Electrocardiograph FHIR profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "ecg",
+      "url": "https://datatools4heart.eu/fhir/schemas/icrc/ECG",
+      "joinOn": []
+    }
+  ],
+  "context": {},
+  "variable": [],
+  "mapping": [
+    {
+      "expression": {
+        "name": "result",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Observation', id_ecg.toString())}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}",
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph"
+            ]
           },
-          "@sliceName" : "prInterval"
-        }, {
-          "{{#componentAvailable}}" : "{{qrs_duration}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8633-0",
-                "system" : "http://loinc.org",
-                "display" : "QRS duration"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "ms",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{qrs_duration}}",
-              "unit" : "millisecond"
-            }
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "code": "34534-8",
+                "system": "http://loinc.org",
+                "display": "12 lead EKG panel",
+                "@sliceName": "loincCode"
+              }
+            ]
           },
-          "@sliceName" : "qrsDuration"
-        }, {
-          "{{#componentAvailable}}" : "{{qt}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8634-8",
-                "system" : "http://loinc.org",
-                "display" : "Q-T interval"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "ms",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{qt}}",
-              "unit" : "millisecond"
-            }
-          },
-          "@sliceName" : "qtInterval"
-        }, {
-          "{{#componentAvailable}}" : "{{qtb}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "bazett",
-                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "ms",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{qtb}}",
-              "unit" : "millisecond"
-            }
-          },
-          "@sliceName" : "qtIntervalCorrectedBazett"
-        }, {
-          "{{#componentAvailable}}" : "{{qtf}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "frederica",
-                "system" : "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "ms",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{qtf}}",
-              "unit" : "millisecond"
-            }
-          },
-          "@sliceName" : "qtIntervalCorrectedFrederica"
-        }, {
-          "{{#componentAvailable}}" : "{{num_qrs}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8897-1",
-                "system" : "http://loinc.org",
-                "display" : "QRS complex Ventricles by EKG"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "{Count}",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{num_qrs}}",
-              "unit" : "Count"
-            }
-          },
-          "@sliceName" : "qrsComplexCount"
-        }, {
-          "{{#componentAvailable}}" : "{{p_axis}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8626-4",
-                "system" : "http://loinc.org",
-                "display" : "P wave axis"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "deg",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{p_axis}}",
-              "unit" : "degree"
-            }
-          },
-          "@sliceName" : "pAxis"
-        }, {
-          "{{#componentAvailable}}" : "{{qrs_axis}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8632-2",
-                "system" : "http://loinc.org",
-                "display" : "QRS axis"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "deg",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{qrs_axis}}",
-              "unit" : "degree"
-            }
-          },
-          "@sliceName" : "rAxis"
-        }, {
-          "{{#componentAvailable}}" : "{{t_axis}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8638-9",
-                "system" : "http://loinc.org",
-                "display" : "T wave axis"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "deg",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{t_axis}}",
-              "unit" : "degree"
-            }
-          },
-          "@sliceName" : "tAxis"
-        }, {
-          "{{#interpretation}}" : "{{iif(inter_text != '', inter_text, {})}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "8601-7",
-                "system" : "http://loinc.org",
-                "display" : "EKG impression"
-              } ]
-            },
-            "valueString" : "{{%interpretation}}"
-          }
-        }, {
-          "{{#componentAvailable}}" : "{{lead_avf}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7383-5",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead aVF data"
-              } ]
-            },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+          "component": [
+            {
+              "{{#componentAvailable}}": "{{pr_duration}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8625-6",
+                      "system": "http://loinc.org",
+                      "display": "P-R Interval"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "ms",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{pr_duration}}",
+                  "unit": "millisecond"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_avf)}}"
-            }
-          },
-          "@sliceName" : "leadAVF"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_avl}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7384-3",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead aVL data"
-              } ]
+              "@sliceName": "prInterval"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{qrs_duration}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8633-0",
+                      "system": "http://loinc.org",
+                      "display": "QRS duration"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "ms",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{qrs_duration}}",
+                  "unit": "millisecond"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_avl)}}"
-            }
-          },
-          "@sliceName" : "leadAVL"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_avr}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7385-0",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead aVR data"
-              } ]
+              "@sliceName": "qrsDuration"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{qt}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8634-8",
+                      "system": "http://loinc.org",
+                      "display": "Q-T interval"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "ms",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{qt}}",
+                  "unit": "millisecond"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_avr)}}"
-            }
-          },
-          "@sliceName" : "leadAVR"
-        }, {
-          "{{#componentAvailable}}" : "{{vent_rate}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "VentricularRate",
-                "system" : "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter"
-              } ]
+              "@sliceName": "qtInterval"
             },
-            "valueQuantity" : {
-              "code" : "/min",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{vent_rate}}",
-              "unit" : "{Beats}/min"
-            }
-          },
-          "@sliceName" : "ventricularRate"
-        }, {
-          "{{#componentAvailable}}" : "{{sample_freq}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "SamplingFrequency",
-                "system" : "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "Hz",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{sample_freq}}",
-              "unit" : "Hz"
-            }
-          },
-          "@sliceName" : "samplingFrequency"
-        }, {
-          "{{#componentAvailable}}" : "{{st_elevation}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "164931005",
-                "system" : "http://snomed.info/sct",
-                "display" : "ST elevation"
-              } ]
-            },
-            "valueBoolean" : "{{st_elevation}}"
-          }
-        }, {
-          "{{#componentAvailable}}" : "{{ischema_sign}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "52674009",
-                "system" : "http://snomed.info/sct",
-                "display" : "Ischemia"
-              } ]
-            },
-            "valueBoolean" : "{{ischema_sign}}"
-          }
-        }, {
-          "{{#componentAvailable}}" : "{{lead_i}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7386-8",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead I data"
-              } ]
-            },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{qtb}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "bazett",
+                      "system": "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "ms",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{qtb}}",
+                  "unit": "millisecond"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_i)}}"
-            }
-          },
-          "@sliceName" : "leadI"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_ii}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7387-6",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead II data"
-              } ]
+              "@sliceName": "qtIntervalCorrectedBazett"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{qtf}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "frederica",
+                      "system": "https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "ms",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{qtf}}",
+                  "unit": "millisecond"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_ii)}}"
-            }
-          },
-          "@sliceName" : "leadII"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_iii}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7388-4",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead III data"
-              } ]
+              "@sliceName": "qtIntervalCorrectedFrederica"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{num_qrs}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8897-1",
+                      "system": "http://loinc.org",
+                      "display": "QRS complex Ventricles by EKG"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "{Count}",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{num_qrs}}",
+                  "unit": "Count"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_iii)}}"
-            }
-          },
-          "@sliceName" : "leadIII"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_v1}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7389-2",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead V1 data"
-              } ]
+              "@sliceName": "qrsComplexCount"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{p_axis}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8626-4",
+                      "system": "http://loinc.org",
+                      "display": "P wave axis"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "deg",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{p_axis}}",
+                  "unit": "degree"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_v1)}}"
-            }
-          },
-          "@sliceName" : "leadV1"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_v2}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7390-0",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead V2 data"
-              } ]
+              "@sliceName": "pAxis"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{qrs_axis}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8632-2",
+                      "system": "http://loinc.org",
+                      "display": "QRS axis"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "deg",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{qrs_axis}}",
+                  "unit": "degree"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_v2)}}"
-            }
-          },
-          "@sliceName" : "leadV2"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_v3}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7391-8",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead V3 data"
-              } ]
+              "@sliceName": "rAxis"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{t_axis}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8638-9",
+                      "system": "http://loinc.org",
+                      "display": "T wave axis"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "deg",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{t_axis}}",
+                  "unit": "degree"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_v3)}}"
-            }
-          },
-          "@sliceName" : "leadV3"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_v4}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7392-6",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead V4 data"
-              } ]
+              "@sliceName": "tAxis"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
-              },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_v4)}}"
-            }
-          },
-          "@sliceName" : "leadV4"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_v5}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7393-4",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead V5 data"
-              } ]
+            {
+              "{{#interpretation}}": "{{iif(inter_text != '', inter_text, {})}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "8601-7",
+                      "system": "http://loinc.org",
+                      "display": "EKG impression"
+                    }
+                  ]
+                },
+                "valueString": "{{%interpretation}}"
+              }
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{lead_avf}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7383-5",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead aVF data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_avf)}}"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_v5)}}"
-            }
-          },
-          "@sliceName" : "leadV5"
-        }, {
-          "{{#componentAvailable}}" : "{{lead_v6}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "LP7394-2",
-                "system" : "http://loinc.org",
-                "display" : "Raw lead V6 data"
-              } ]
+              "@sliceName": "leadAVF"
             },
-            "valueSampledData" : {
-              "origin" : {
-                "value" : 0
+            {
+              "{{#componentAvailable}}": "{{lead_avl}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7384-3",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead aVL data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_avl)}}"
+                }
               },
-              "interval" : "{{1 / sample_freq * 1000}}",
-              "intervalUnit" : "s",
-              "factor" : 0.0025,
-              "dimensions" : 1,
-              "data" : "{{cst:createTimeSeriesData(lead_v6)}}"
+              "@sliceName": "leadAVL"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_avr}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7385-0",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead aVR data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_avr)}}"
+                }
+              },
+              "@sliceName": "leadAVR"
+            },
+            {
+              "{{#componentAvailable}}": "{{vent_rate}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "VentricularRate",
+                      "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "/min",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{vent_rate}}",
+                  "unit": "{Beats}/min"
+                }
+              },
+              "@sliceName": "ventricularRate"
+            },
+            {
+              "{{#componentAvailable}}": "{{sample_freq}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "SamplingFrequency",
+                      "system": "https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter"
+                    }
+                  ]
+                },
+                "valueQuantity": {
+                  "code": "Hz",
+                  "system": "http://unitsofmeasure.org",
+                  "value": "{{sample_freq}}",
+                  "unit": "Hz"
+                }
+              },
+              "@sliceName": "samplingFrequency"
+            },
+            {
+              "{{#componentAvailable}}": "{{st_elevation}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "164931005",
+                      "system": "http://snomed.info/sct",
+                      "display": "ST elevation"
+                    }
+                  ]
+                },
+                "valueBoolean": "{{st_elevation}}"
+              }
+            },
+            {
+              "{{#componentAvailable}}": "{{ischema_sign}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "52674009",
+                      "system": "http://snomed.info/sct",
+                      "display": "Ischemia"
+                    }
+                  ]
+                },
+                "valueBoolean": "{{ischema_sign}}"
+              }
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_i}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7386-8",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead I data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_i)}}"
+                }
+              },
+              "@sliceName": "leadI"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_ii}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7387-6",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead II data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_ii)}}"
+                }
+              },
+              "@sliceName": "leadII"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_iii}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7388-4",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead III data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_iii)}}"
+                }
+              },
+              "@sliceName": "leadIII"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_v1}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7389-2",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead V1 data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_v1)}}"
+                }
+              },
+              "@sliceName": "leadV1"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_v2}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7390-0",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead V2 data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_v2)}}"
+                }
+              },
+              "@sliceName": "leadV2"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_v3}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7391-8",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead V3 data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_v3)}}"
+                }
+              },
+              "@sliceName": "leadV3"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_v4}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7392-6",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead V4 data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_v4)}}"
+                }
+              },
+              "@sliceName": "leadV4"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_v5}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7393-4",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead V5 data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_v5)}}"
+                }
+              },
+              "@sliceName": "leadV5"
+            },
+            {
+              "{{#componentAvailable}}": "{{lead_v6}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "LP7394-2",
+                      "system": "http://loinc.org",
+                      "display": "Raw lead V6 data"
+                    }
+                  ]
+                },
+                "valueSampledData": {
+                  "origin": {
+                    "value": 0
+                  },
+                  "interval": "{{1 / sample_freq * 1000}}",
+                  "intervalUnit": "s",
+                  "factor": 0.0025,
+                  "dimensions": 1,
+                  "data": "{{cst:createTimeSeriesData(lead_v6)}}"
+                }
+              },
+              "@sliceName": "leadV6"
             }
+          ],
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter',id_encounter.toString())}}",
+          "effectiveDateTime": "{{exec_date.toString().replace(' ','T') + 'Z'}}",
+          "performer": {
+            "{{#departmentId}}": "{{id_department}}",
+            "{{*}}": "{{mpp:createFhirReferenceWithHashedId('Location', %departmentId.toString())}}"
           },
-          "@sliceName" : "leadV6"
-        } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter',id_encounter.toString())}}",
-        "effectiveDateTime" : "{{exec_date.toString().replace(' ','T') + 'Z'}}",
-        "performer" : {
-          "{{#departmentId}}" : "{{id_department}}",
-          "{{*}}" : "{{mpp:createFhirReferenceWithHashedId('Location', %departmentId.toString())}}"
-        },
-        "identifier" : [ {
-          "system" : "{{%sourceSystem.sourceUri}}",
-          "value" : "{{id_ecg.toString()}}",
-          "use" : "official"
-        } ],
-        "status" : "final",
-        "category" : [ {
-          "coding" : [ {
-            "code" : "vital-signs",
-            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "display" : "Vital Signs"
-          } ]
-        } ]
+          "identifier": [
+            {
+              "system": "{{%sourceSystem.sourceUri}}",
+              "value": "{{id_ecg.toString()}}",
+              "use": "official"
+            }
+          ],
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "vital-signs",
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "display": "Vital Signs"
+                }
+              ]
+            }
+          ]
+        }
       }
     }
-  } ]
+  ]
 }
