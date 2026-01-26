@@ -21,6 +21,34 @@
         "code" : "Element"
       } ]
     }, {
+      "id" : "Laboratory.BepalingCode",
+      "path" : "Laboratory.BepalingCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Laboratory.Pseudo_id",
+      "path" : "Laboratory.Pseudo_id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "Laboratory.UitslagId",
+      "path" : "Laboratory.UitslagId",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "Laboratory.MonsterId",
       "path" : "Laboratory.MonsterId",
       "min" : 0,
@@ -32,6 +60,15 @@
       "definition" : "Linkage lab values from same specimen",
       "short" : "Specimen ID"
     }, {
+      "id" : "Laboratory.Afnamelocatie",
+      "path" : "Laboratory.Afnamelocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "Laboratory.MateriaalAfnameDatumTijd",
       "path" : "Laboratory.MateriaalAfnameDatumTijd",
       "min" : 0,
@@ -41,17 +78,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ],
       "short" : "Material Collection Datetime"
-    }, {
-      "id" : "Laboratory.Bepaling",
-      "path" : "Laboratory.Bepaling",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Name of the lab measurement in Dutch. ",
-      "short" : "Lab measurement name"
     }, {
       "id" : "Laboratory.MateriaalSoort",
       "path" : "Laboratory.MateriaalSoort",
@@ -64,38 +90,6 @@
       "definition" : "E.g. 'Bloed' for Blood, 'Urine' for Urine",
       "short" : "Material Type"
     }, {
-      "id" : "Laboratory.UitslagEenheid",
-      "path" : "Laboratory.UitslagEenheid",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Result Unit"
-    }, {
-      "id" : "Laboratory.AanvragendeWerkplekAfkorting",
-      "path" : "Laboratory.AanvragendeWerkplekAfkorting",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Department abbreviation making the request. Abbreviations are AMC based.",
-      "short" : "Department abbreviation"
-    }, {
-      "id" : "Laboratory.AanvragendeWerkplek",
-      "path" : "Laboratory.AanvragendeWerkplek",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Department name making the request. Names are in Dutch.",
-      "short" : "Department name"
-    }, {
       "id" : "Laboratory.AanvragendeZiekenhuisLocatie",
       "path" : "Laboratory.AanvragendeZiekenhuisLocatie",
       "min" : 0,
@@ -105,6 +99,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Hospital Location"
+    }, {
+      "id" : "Laboratory.Bepaling",
+      "path" : "Laboratory.Bepaling",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Name of the lab measurement in Dutch. ",
+      "short" : "Lab measurement name"
     }, {
       "id" : "Laboratory.UitslagDatumtijd",
       "path" : "Laboratory.UitslagDatumtijd",
@@ -136,24 +141,34 @@
       } ],
       "short" : "Normal Value Upper Limit"
     }, {
-      "id" : "Laboratory.UitslagTekst",
-      "path" : "Laboratory.UitslagTekst",
+      "id" : "Laboratory.UitslagNumeriek",
+      "path" : "Laboratory.UitslagNumeriek",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Numeric Value"
     }, {
-      "id" : "Laboratory.UitslagOpmerking",
-      "path" : "Laboratory.UitslagOpmerking",
+      "id" : "Laboratory.UitslagEenheid",
+      "path" : "Laboratory.UitslagEenheid",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Result Note"
+      "short" : "Result Unit"
+    }, {
+      "id" : "Laboratory.Bron",
+      "path" : "Laboratory.Bron",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     }, {
       "id" : "Laboratory.LOINC_code",
       "path" : "Laboratory.LOINC_code",
@@ -172,26 +187,6 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
-    }, {
-      "id" : "Laboratory.Pseudo_id",
-      "path" : "Laboratory.Pseudo_id",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "short" : "Patient ID"
-    }, {
-      "id" : "Laboratory.UitslagNumeriek",
-      "path" : "Laboratory.UitslagNumeriek",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Numeric Value"
     } ]
   }
 }

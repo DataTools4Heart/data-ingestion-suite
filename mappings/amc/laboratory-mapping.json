@@ -33,7 +33,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Patient', Pseudo_id.toString() & MonsterId & LOINC_code)}}",
+        "id" : "{{mpp:getHashedId('Patient', Pseudo_id.toString() & MonsterId & LOINC_code & BepalingCode)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
         },
@@ -66,7 +66,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
         "identifier" : [ {
-          "value" : "{{Pseudo_id.toString() & '-' & MonsterId & '-' & LOINC_code}}"
+          "value" : "{{Pseudo_id.toString() & '-' & MonsterId & '-' & LOINC_code & '-' & BepalingCode}}"
         } ],
         "referenceRange" : [ {
           "low" : {

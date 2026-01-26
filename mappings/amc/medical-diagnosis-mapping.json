@@ -1,0 +1,41 @@
+{
+  "id" : "medical-diagnosis-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/medical-diagnosis-mapping",
+  "name" : "medical-diagnosis-mapping",
+  "title" : "Mapping of Medischediagnose table",
+  "isDraft" : true,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/conditionmedicaldiagnosis",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Condition', Pseudo_id.toString() & PatientContactId.toString() & DiagnoseCode.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
+        "code" : {
+          "coding" : [ {
+            "code" : "",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId.toString())}}",
+        "onsetDateTime" : "{{DiagnoseContactDatum.utl:toFhirDate('yyyy-MM-dd')}}",
+        "identifier" : [ {
+          "value" : "{{Pseudo_id.toString() & '-' & PatientContactId.toString() & '-' & DiagnoseCode.toString()}}"
+        } ],
+        "clinicalStatus" : ""
+      }
+    }
+  } ]
+}

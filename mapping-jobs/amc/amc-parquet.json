@@ -64,28 +64,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "sourceRef" : "amc-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Encounters.parquet",
-        "contentType" : "parquet",
-        "options" : { },
-        "sourceRef" : "amc-source"
-      }
-    }
-  }, {
-    "name" : "echo-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Echocardiography.parquet",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
+        "preprocessSql" : "select * from source where extract(year from MateriaalAfnameDatumTijd) = 2015 and extract(month from MateriaalAfnameDatumTijd) > 6",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -272,6 +251,20 @@
         "path" : "Encounters.parquet",
         "contentType" : "parquet",
         "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "medical-diagnosis-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medical-diagnosis-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MedischeDiagnose.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "amc-source"
       }
     }

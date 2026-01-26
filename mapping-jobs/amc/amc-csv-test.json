@@ -74,29 +74,6 @@
       }
     }
   }, {
-    "name" : "echo-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Echo.csv",
-        "contentType" : "csv",
-        "options" : {
-          "distinct" : "true",
-          "timestampFormat" : "yyyy-MM-dd HH:mm:ss"
-        },
-        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
-        "sourceRef" : "file-system-csv"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Encounter.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "file-system-csv"
-      }
-    }
-  }, {
     "name" : "ecg-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg-mapping",
     "sourceBinding" : {
@@ -197,9 +174,16 @@
     "name" : "procedure-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
     "sourceBinding" : {
-      "Procedure" : {
+      "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Procedure.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounter.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "file-system-csv"
@@ -215,6 +199,13 @@
         "contentType" : "csv",
         "options" : { },
         "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",
+        "sourceRef" : "file-system-csv"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounter.csv",
+        "contentType" : "csv",
+        "options" : { },
         "sourceRef" : "file-system-csv"
       }
     }
