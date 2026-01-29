@@ -21,89 +21,15 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Condition.EPDGebruiker_pseudo",
-      "path" : "Condition.EPDGebruiker_pseudo",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "unsignedInt",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
-      } ],
-      "definition" : "Pseudo ID healthcareprofessional registration items",
-      "short" : "EPD User Pseudo"
-    }, {
       "id" : "Condition.Pseudo_id",
       "path" : "Condition.Pseudo_id",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
       "short" : "Patient ID"
-    }, {
-      "id" : "Condition.ProbleemlijstId",
-      "path" : "Condition.ProbleemlijstId",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Problem List ID"
-    }, {
-      "id" : "Condition.ProbleemOmschrijving",
-      "path" : "Condition.ProbleemOmschrijving",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Description of the Problem"
-    }, {
-      "id" : "Condition.ProbleemCode",
-      "path" : "Condition.ProbleemCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Problem Code"
-    }, {
-      "id" : "Condition.DiagnoseCode",
-      "path" : "Condition.DiagnoseCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Linked diagnosis code (ICD-10, other)",
-      "short" : "Diagnosis Code"
-    }, {
-      "id" : "Condition.DiagnoseCategorie",
-      "path" : "Condition.DiagnoseCategorie",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Linked diagnosis code category (complication, ICD-10, other)",
-      "short" : "Diagnosis Category"
-    }, {
-      "id" : "Condition.PatientProbleemstatus",
-      "path" : "Condition.PatientProbleemstatus",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Problem status (active, closed)",
-      "short" : "Patient Problem Status"
     }, {
       "id" : "Condition.PatientContactId",
       "path" : "Condition.PatientContactId",
@@ -114,61 +40,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Encounter ID"
-    }, {
-      "id" : "Condition.PatientContactTypeCode",
-      "path" : "Condition.PatientContactTypeCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Type CODE of the encounter",
-      "short" : "Patient Contact Type Code"
-    }, {
-      "id" : "Condition.PatientContactType",
-      "path" : "Condition.PatientContactType",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Type of the encounter (consultation, hospitalisation, others)",
-      "short" : "Patient Contact Type"
-    }, {
-      "id" : "Condition.PatientContactDatum",
-      "path" : "Condition.PatientContactDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "definition" : "Date of the encounter",
-      "short" : "Patient Contact Date"
-    }, {
-      "id" : "Condition.PatientContactDatumTijd",
-      "path" : "Condition.PatientContactDatumTijd",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "unsignedInt",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
-      } ],
-      "definition" : "Datetime of the encounter",
-      "short" : "Patient Contact Datetime"
-    }, {
-      "id" : "Condition.ConstateringsDatum",
-      "path" : "Condition.ConstateringsDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "definition" : "Date of first observation",
-      "short" : "Observation Date"
     }, {
       "id" : "Condition.RegistratieDatum",
       "path" : "Condition.RegistratieDatum",
@@ -181,46 +52,25 @@
       "definition" : "Date of registration",
       "short" : "Registration Date"
     }, {
-      "id" : "Condition.SluitDatum",
-      "path" : "Condition.SluitDatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
-      } ],
-      "definition" : "End date",
-      "short" : "Close Date"
-    }, {
-      "id" : "Condition.IsChronisch",
-      "path" : "Condition.IsChronisch",
+      "id" : "Condition.DiagnoseCode",
+      "path" : "Condition.DiagnoseCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Is Chronic?"
+      "definition" : "Linked diagnosis code (ICD-10, other)",
+      "short" : "Diagnosis Code"
     }, {
-      "id" : "Condition.IsHoofdprobleem",
-      "path" : "Condition.IsHoofdprobleem",
+      "id" : "Condition.Specialty",
+      "path" : "Condition.Specialty",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Is Main Problem?"
-    }, {
-      "id" : "Condition.IsZiekenhuisProbleem",
-      "path" : "Condition.IsZiekenhuisProbleem",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Is Hospital Problem?"
+      } ]
     }, {
       "id" : "Condition.ZiekenhuisLocatie",
       "path" : "Condition.ZiekenhuisLocatie",
@@ -232,57 +82,16 @@
       } ],
       "short" : "Hospital Location"
     }, {
-      "id" : "Condition.DiagnosethesaurusCode",
-      "path" : "Condition.DiagnosethesaurusCode",
+      "id" : "Condition.PatientProbleemstatus",
+      "path" : "Condition.PatientProbleemstatus",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "definition" : "DHD-Trex diagnosis codes",
-      "short" : "Diagnostics Thesaurus Code"
-    }, {
-      "id" : "Condition.SNOMEDCode",
-      "path" : "Condition.SNOMEDCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "SNOMED-CT codes (https://termbrowser.nhs.uk/?)",
-      "short" : "SNOMED Code"
-    }, {
-      "id" : "Condition.Bron",
-      "path" : "Condition.Bron",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Source"
-    }, {
-      "id" : "Condition.DCMVerverstDatumTijd",
-      "path" : "Condition.DCMVerverstDatumTijd",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "unsignedInt",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/unsignedInt" ]
-      } ],
-      "short" : "DCMV Refreshed Date Time"
-    }, {
-      "id" : "Condition.uitgifteDT",
-      "path" : "Condition.uitgifteDT",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ],
-      "short" : "Issuance DT"
+      "definition" : "Problem status (active, closed)",
+      "short" : "Patient Problem Status"
     } ]
   }
 }

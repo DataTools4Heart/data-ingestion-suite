@@ -13,19 +13,19 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
     "joinOn" : [ "PatientContactId" ]
   } ],
-  "context" : { },
+  "context" : {
+    "medPresFreqMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/amc/med-prescription-frequency-unit-map.csv"
+    }
+  },
   "variable" : [ ],
   "mapping" : [ {
-    "precondition" : {
-      "name" : "admFound",
-      "language" : "text/fhirpath",
-      "expression" : " %encounters.exists() "
-    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', prescriptionID)}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', prescriptionID.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
@@ -37,13 +37,13 @@
               "code" : "{{ATCCode}}",
               "@sliceName" : "atcCode"
             } ],
-            "text" : "{{? OrigialMedName}}"
+            "text" : "{{? MedicatieGeneriekeNaam}}"
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
+        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "identifier" : [ {
-          "value" : "{{prescriptionID}}"
+          "value" : "{{prescriptionID.toString()}}"
         } ],
         "status" : "unknown",
         "intent" : "order",
@@ -54,18 +54,22 @@
           } ]
         } ],
         "effectiveDosePeriod" : {
-          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
-          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd') > StartDate.utl:toFhirDateTime('yyyy-MM-dd'), StopDate.utl:toFhirDateTime('yyyy-MM-dd')) }}"
+          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:s')}}",
+          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd'| 'yyyy-MM-dd HH:mm:ss') > StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), StopDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
         },
         "dosageInstruction" : [ {
-          "text" : "{{? timing }}",
-          "route" : {
-            "text" : "{{? AdministrationRoute}}"
+          "timing" : {
+            "repeat" : {
+              "frequency" : "{{? dosInstr_frequency_value.toDecimal()}}",
+              "period" : "{{1}}",
+              "periodUnit" : "{{? mpp:getConcept(%medPresFreqMap, dosInstr_frequency_unit, 'target_code')}}"
+            }
           },
+          "asNeeded" : "{{iif(dosInstr_asNeeded_display = 1 , true, false)}}",
           "doseAndRate" : [ {
             "doseQuantity" : {
-              "value" : "{{? Dosage }}",
-              "unit" : "{{? iif(UnitDosage != '', UnitDosage) }}"
+              "value" : "{{? dosInstr_doseQuantity_value.toDecimal() }}",
+              "unit" : "{{? iif(dosInstr_doseQuantity_unit.exists() and dosInstr_doseQuantity_unit != '', dosInstr_doseQuantity_unit) }}"
             }
           } ]
         } ]

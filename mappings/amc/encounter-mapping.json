@@ -54,7 +54,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "actualPeriod" : {
           "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
-          "end" : "{{? iif(EndDate != '9999-12-31' and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') > StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
+          "end" : "{{? iif(EndDate != '9999-12-31' and EndDate != '1900-01-01' and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') > StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
         },
         "reason" : [ {
           "{{#reasonVar}}" : "{{ iif(%mainDiagnosisCodes.count() > 0, true) }}",
@@ -103,6 +103,11 @@
       }
     }
   }, {
+    "precondition" : {
+      "name" : "encounterExists",
+      "language" : "text/fhirpath",
+      "expression" : "PatientContactId.exists() and EncounterClassCode.exists() and EncounterClassCode != 'Other'"
+    },
     "expression" : {
       "name" : "condition",
       "language" : "application/fhir-template+json",

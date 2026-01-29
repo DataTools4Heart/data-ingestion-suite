@@ -21,6 +21,149 @@
         "code" : "Element"
       } ]
     }, {
+      "id" : "MedicationPrescription.MedicatieArtikelNaam",
+      "path" : "MedicationPrescription.MedicatieArtikelNaam",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.prescriptionID",
+      "path" : "MedicationPrescription.prescriptionID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "definition" : "Prescription ID linkage different meds prescribed at the same time.",
+      "short" : "Related prescription ID"
+    }, {
+      "id" : "MedicationPrescription.MedicatieGeneriekeNaam",
+      "path" : "MedicationPrescription.MedicatieGeneriekeNaam",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.Status",
+      "path" : "MedicationPrescription.Status",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.ATCCode",
+      "path" : "MedicationPrescription.ATCCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.StartDate",
+      "path" : "MedicationPrescription.StartDate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Prescription Start Date"
+    }, {
+      "id" : "MedicationPrescription.StopDate",
+      "path" : "MedicationPrescription.StopDate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Prescription End Date"
+    }, {
+      "id" : "MedicationPrescription.IsThuisMedicatie",
+      "path" : "MedicationPrescription.IsThuisMedicatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.dosInstr_frequency_value",
+      "path" : "MedicationPrescription.dosInstr_frequency_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.dosInstr_frequency_unit",
+      "path" : "MedicationPrescription.dosInstr_frequency_unit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.dosInstr_asNeeded_display",
+      "path" : "MedicationPrescription.dosInstr_asNeeded_display",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.dosInstr_doseQuantity_value",
+      "path" : "MedicationPrescription.dosInstr_doseQuantity_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.dosInstr_doseQuantity_unit",
+      "path" : "MedicationPrescription.dosInstr_doseQuantity_unit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.IsHomeMedication",
+      "path" : "MedicationPrescription.IsHomeMedication",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "boolean",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+      } ],
+      "definition" : "Indicates whether the medication is prescribed for home use. Values: 'Ja' ('yes') or 'Nee' ('no')",
+      "short" : "Is Home Medication?"
+    }, {
+      "id" : "MedicationPrescription.AdministrationRoute",
+      "path" : "MedicationPrescription.AdministrationRoute",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "boolean",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+      } ],
+      "definition" : "The route of administration of the medication. E.g. 'oraal' ('oral'), 'intraveneus' ('intravenous')",
+      "short" : "Administration Route"
+    }, {
       "id" : "MedicationPrescription.pseudo_id",
       "path" : "MedicationPrescription.pseudo_id",
       "min" : 0,
@@ -41,17 +184,6 @@
       } ],
       "short" : "Encounter ID"
     }, {
-      "id" : "MedicationPrescription.prescriptionID",
-      "path" : "MedicationPrescription.prescriptionID",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Prescription ID linkage different meds prescribed at the same time.",
-      "short" : "Related prescription ID"
-    }, {
       "id" : "MedicationPrescription.Ziekenhuislocatie",
       "path" : "MedicationPrescription.Ziekenhuislocatie",
       "min" : 0,
@@ -61,37 +193,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Hospital Location"
-    }, {
-      "id" : "MedicationPrescription.StartDate",
-      "path" : "MedicationPrescription.StartDate",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Prescription Start Date"
-    }, {
-      "id" : "MedicationPrescription.StopDate",
-      "path" : "MedicationPrescription.StopDate",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Prescription End Date"
-    }, {
-      "id" : "MedicationPrescription.IsHomeMedication",
-      "path" : "MedicationPrescription.IsHomeMedication",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Indicates whether the medication is prescribed for home use. Values: 'Ja' ('yes') or 'Nee' ('no')",
-      "short" : "Is Home Medication?"
     }, {
       "id" : "MedicationPrescription.OrigialMedName",
       "path" : "MedicationPrescription.OrigialMedName",
@@ -121,35 +222,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Prescribed Dosage "
-    }, {
-      "id" : "MedicationPrescription.AdministrationRoute",
-      "path" : "MedicationPrescription.AdministrationRoute",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "The route of administration of the medication. E.g. 'oraal' ('oral'), 'intraveneus' ('intravenous')",
-      "short" : "Administration Route"
-    }, {
-      "id" : "MedicationPrescription.Status",
-      "path" : "MedicationPrescription.Status",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "MedicationPrescription.ATCCode",
-      "path" : "MedicationPrescription.ATCCode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
     }, {
       "id" : "MedicationPrescription.timing",
       "path" : "MedicationPrescription.timing",
