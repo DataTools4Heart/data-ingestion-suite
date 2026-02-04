@@ -1,2 +1,2 @@
-id,value,id_header,id_dict,code,shortcut,descr,unit
-1,552,1,1,"8806-2","LVEF","Left Ventricular Ejection Fraction",%
+id,value,id_header,id_dict,loinc_code,his_shortcut,loinc_common_name,loinc_unit,icrc_name
+1,552,1,1,"8806-2","LVEF","Left Ventricular Ejection Fraction",%,test
