@@ -24,7 +24,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & ATC }}",
+        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & ATC)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
@@ -47,6 +47,9 @@
         "dosage" : {
           "text" : "No data"
         },
+        "identifier" : [ {
+          "value" : "{{CODICE_SANITARIO.toString() & '-' & DATA.toString() & '-' & TERMINE & '-' & ATC}}"
+        } ],
         "status" : "completed"
       }
     }

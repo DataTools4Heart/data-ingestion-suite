@@ -333,6 +333,9 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "effectiveDateTime" : "{{(DATA_ESECUZIONE & iif(ORA_ESECUZIONE.exists(), ORA_ESECUZIONE) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd') }}",
+        "identifier" : [ {
+          "value" : "{{CODICE_SANITARIO.toString() & '-' & DATA_ESECUZIONE.toString() & '-' & ORA_ESECUZIONE.toString()}}"
+        } ],
         "status" : "final",
         "category" : [ {
           "coding" : [ {

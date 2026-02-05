@@ -37,7 +37,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Encounter', NOSOGRAFICO.nav:orElse(NUM_PS))}}",
+        "id" : "{{mpp:getHashedId('Encounter', NOSOGRAFICO.nav:orElse(NUM_PS).toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
@@ -50,7 +50,7 @@
             "display" : "{{mpp:getConcept(%encounterClassConceptMap, D_EVENTO, 'target_display')}}"
           } ]
         } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "actualPeriod" : {
           "start" : "{{(DATA_IN & iif(ORA_IN.exists(), ORA_IN) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}",
           "end" : "{{? iif(%dischargeDate = '', {}, %dischargeDate.utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')) }}"
@@ -74,6 +74,9 @@
             } ]
           }
         },
+        "identifier" : [ {
+          "value" : "{{NOSOGRAFICO.nav:orElse(NUM_PS).toString()}}"
+        } ],
         "status" : "completed"
       }
     }
@@ -106,6 +109,9 @@
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
           "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', NOSOGRAFICO.nav:orElse(NUM_PS))}}",
           "onsetDateTime" : "{{(DATA_IN & iif(ORA_IN.exists(), ORA_IN) ).utl:toFhirDateTime('yyyy-MM-ddHH:mm:ss' | 'yyyy-MM-dd')}}",
+          "identifier" : [ {
+            "value" : "{{NOSOGRAFICO & '-' & %mainDiagnosisCode}}"
+          } ],
           "clinicalStatus" : {
             "coding" : [ {
               "code" : "active"

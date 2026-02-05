@@ -69,6 +69,9 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
+        "identifier" : [ {
+          "value" : "{{codice_sanitario.toString() & '-' & %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS) & '-' & DATAREFERTO}}"
+        } ],
         "status" : "final"
       }
     }

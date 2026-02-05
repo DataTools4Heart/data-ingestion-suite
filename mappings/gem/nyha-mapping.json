@@ -60,6 +60,9 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS) )}}",
+        "identifier" : [ {
+          "value" : "{{CODICE_SANITARIO & '-' & DATE.toString() & '-' & NYHA_MAX}}"
+        } ],
         "status" : "final"
       }
     }
