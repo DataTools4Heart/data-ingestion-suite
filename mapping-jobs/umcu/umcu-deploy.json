@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "umcu-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/umcu-data",
-      "dataFolderPath" : "test-data/datasource",
+      "dataFolderPath" : "test-data/umcu-prod",
       "asStream" : false
     }
   },
@@ -103,7 +103,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Labresults.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "umcu-source"
       },
       "encounters" : {
@@ -125,7 +127,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select studyId_0763, ECGTestID, AcquisitionDateTime, \narray_agg(ValueQuantity) as ValueQuantity, \narray_agg(LOINCcode) as LOINCcode, \narray_agg(LOINCdisplay) as LOINCdisplay, \narray_agg(Units) as Units,\ncount(*) as count\nfrom source \ngroup by studyId_0763, ECGTestID, AcquisitionDateTime",
+        "preprocessSql" : "select studyId_0919, ECGTestID, AcquisitionDateTime, \narray_agg(ValueQuantity) as ValueQuantity, \narray_agg(LOINCcode) as LOINCcode, \narray_agg(LOINCdisplay) as LOINCdisplay, \narray_agg(Units) as Units,\ncount(*) as count\nfrom source \ngroup by studyId_0919, ECGTestID, AcquisitionDateTime",
         "sourceRef" : "umcu-source"
       },
       "encounters" : {
@@ -147,7 +149,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select studyId_0763, identifier_value, effectiveDateTime, array_agg(Value) as Value, array_agg(UnitName) as UnitName, array_agg(LOINCcode) as LOINCcode, array_agg(LOINCdisplay) as LOINCdisplay, count(*) as count\nfrom source \ngroup by studyId_0763, identifier_value, effectiveDateTime",
+        "preprocessSql" : "select studyId_0919, identifier_value, effectiveDateTime, array_agg(Value) as Value, array_agg(UnitName) as UnitName, array_agg(LOINCcode) as LOINCcode, array_agg(LOINCdisplay) as LOINCdisplay, count(*) as count\nfrom source \ngroup by studyId_0919, identifier_value, effectiveDateTime",
         "sourceRef" : "umcu-source"
       },
       "encounters" : {

@@ -12,11 +12,16 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "patientExists",
+      "language" : "text/fhirpath",
+      "expression" : "studyId_0919.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', studyId_0763.toString() & identifier_value & periodOfUse_valuePeriod_start.toString())}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', studyId_0919.toString() & code5_ATC_code.toString() & periodOfUse_valuePeriod_start.toString() & periodOfUse_valuePeriod_end.toString() & dosInstr_doseQuantity_value.toString() & code_text.toString() & dosInstr_asNeeded_display.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
@@ -32,9 +37,9 @@
             } ]
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
         "identifier" : [ {
-          "value" : "{{studyId_0763.toString() & '-' & identifier_value & '-' & periodOfUse_valuePeriod_start.toString()}}"
+          "value" : "{{studyId_0919.toString() & code5_ATC_code.toString() & periodOfUse_valuePeriod_start.toString() & periodOfUse_valuePeriod_end.toString() & dosInstr_doseQuantity_value.toString() & code_text.toString() & dosInstr_asNeeded_display.toString()}}"
         } ],
         "status" : "unknown",
         "intent" : "order",
@@ -43,26 +48,20 @@
           "end" : "{{? periodOfUse_valuePeriod_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
         "dosageInstruction" : [ {
-          "text" : "{{? dosageInstruction_text}}",
+          "text" : "{{? code_text}}",
           "timing" : {
             "repeat" : {
-              "{{#repeatVar}}" : "{{CheckedFrequency}}",
-              "{{?}}" : {
-                "frequency" : "{{CheckedFrequency.utl:takeUntil('p').toDecimal()}}",
-                "period" : "{{iif(CheckedFrequency.utl:split('p').last() = 'd', 1, CheckedFrequency.utl:split('p').last().utl:takeUntil('d').toDecimal() ) }}",
-                "periodUnit" : "d"
-              }
+              "frequency" : "{{? iif(dosInstr_frequency_value.exists() and dosInstr_frequency_value != 99.0, dosInstr_frequency_value)}}",
+              "period" : "{{? iif(dosInstr_frequency_unit = 'day', 1)}}",
+              "periodUnit" : "{{? iif(dosInstr_frequency_unit = 'day', 'd')}}"
             }
           },
-          "asNeeded" : "{{? dosage_ifNeededStatement}}",
+          "asNeeded" : "{{? iif(dosInstr_asNeeded_display = 'Zo nodig', true)}}",
           "route" : {
-            "text" : "{{? dosageInstruction_route_display}}"
+            "text" : "{{? dosInstr_route_display}}"
           },
           "doseAndRate" : [ {
-            "doseQuantity" : {
-              "value" : "{{? DI_doseQuantity_value}}",
-              "unit" : "{{? iif(DI_doseQuantity_unit.exists() and DI_doseQuantity_unit != '', DI_doseQuantity_unit) }}"
-            }
+            "doseQuantity" : "{{? iif(dosInstr_doseQuantity_value.exists() and dosInstr_doseQuantity_value != '' and dosInstr_doseQuantity_value.contains('/'), utl:createFhirQuantity(1, 'tablet'), utl:createFhirQuantity(dosInstr_doseQuantity_value.toDecimal(), dosInstr_doseQuantity_unit) )}}"
           } ]
         } ]
       }

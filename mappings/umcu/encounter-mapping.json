@@ -22,14 +22,14 @@
   "variable" : [ {
     "name" : "mainDiagnosisCodes",
     "language" : "text/fhirpath",
-    "expression" : "iif(ICD10_DBC.exists(), ICD10_DBC.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim()).distinct() )"
+    "expression" : "iif(ICD10_code.exists(), ICD10_code.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim()).distinct() )"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Encounter', hospitalization_ID)}}",
+        "id" : "{{mpp:getHashedId('Encounter', identifier_value)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
@@ -42,7 +42,7 @@
             "display" : "{{mpp:getConcept(%encounterClass, class_code, 'target_display')}}"
           } ]
         } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
         "actualPeriod" : {
           "start" : "{{period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
           "end" : "{{period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
@@ -56,16 +56,12 @@
             "value" : {
               "{{#primaryReasonCode}}" : "{{%mainDiagnosisCodes}}",
               "{{*}}" : {
-                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', hospitalization_ID & %primaryReasonCode )}}"
+                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', identifier_value & %primaryReasonCode )}}"
               }
             }
           },
           "@sliceName" : "admittingDiagnosis"
         } ],
-        "identifier" : [ {
-          "value" : "{{hospitalization_ID}}"
-        } ],
-        "status" : "completed",
         "serviceType" : [ {
           "concept" : {
             "coding" : [ {
@@ -77,7 +73,11 @@
               }
             } ]
           }
-        } ]
+        } ],
+        "identifier" : [ {
+          "value" : "{{identifier_value}}"
+        } ],
+        "status" : "completed"
       }
     }
   }, {
@@ -87,7 +87,7 @@
       "value" : {
         "{{#mainDiagnosisCode}}" : "{{%mainDiagnosisCodes}}",
         "{{*}}" : {
-          "id" : "{{mpp:getHashedId('Condition', hospitalization_ID & %mainDiagnosisCode)}}",
+          "id" : "{{mpp:getHashedId('Condition', identifier_value & %mainDiagnosisCode)}}",
           "meta" : {
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
           },
@@ -99,11 +99,11 @@
               "@sliceName" : "icd10Code"
             } ]
           },
-          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', hospitalization_ID)}}",
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', identifier_value)}}",
           "onsetDateTime" : "{{period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
           "identifier" : [ {
-            "value" : "{{hospitalization_ID & '-' & %mainDiagnosisCode}}"
+            "value" : "{{identifier_value & '-' & %mainDiagnosisCode}}"
           } ],
           "clinicalStatus" : {
             "coding" : [ {

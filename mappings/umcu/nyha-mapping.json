@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/umcu/nyha-mapping",
   "name" : "nyha-mapping",
   "title" : "Mapping of UMCU's NYHA table to HFR-NYHAAssessment FHIR profile",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/NYHA",

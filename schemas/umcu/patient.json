@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Patient.studyId_0763",
-      "path" : "Patient.studyId_0763",
+      "id" : "Patient.studyId_0919",
+      "path" : "Patient.studyId_0919",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -51,13 +51,13 @@
       } ],
       "definition" : "Currently only years available \nPossible values: 1914 to 2003"
     }, {
-      "id" : "Patient.deceasedDate",
-      "path" : "Patient.deceasedDate",
+      "id" : "Patient.deceasedDateTime",
+      "path" : "Patient.deceasedDateTime",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
       "id" : "Patient.causeofDeath",

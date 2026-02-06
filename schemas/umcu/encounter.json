@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Encounter.studyId_0763",
-      "path" : "Encounter.studyId_0763",
+      "id" : "Encounter.studyId_0919",
+      "path" : "Encounter.studyId_0919",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -31,9 +31,9 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "Encounter.hospitalization_ID",
-      "path" : "Encounter.hospitalization_ID",
-      "min" : 1,
+      "id" : "Encounter.identifier_value",
+      "path" : "Encounter.identifier_value",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
@@ -49,41 +49,8 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "definition" : "Possible values:\nIMP; ACUTE; SS; NONAC; OTHER; AMB",
+      "definition" : "Possible values:\nIMP; ACUTE; SS; NONAC; OTHER; AMB\n\ninpatient encounter; inpatient acute; short stay; inpatient non-acute; other; Ambulatory",
       "short" : "Type of encounter"
-    }, {
-      "id" : "Encounter.class_display",
-      "path" : "Encounter.class_display",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Possible values:\ninpatient encounter; inpatient acute; short stay; inpatient non-acute; other; Ambulatory",
-      "short" : "Type of encounter full name"
-    }, {
-      "id" : "Encounter.hospitalization_admitSource_disp",
-      "path" : "Encounter.hospitalization_admitSource_disp",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Possible values:\nOther; ; Hospital; From accident/emergency department; Home; From outpatient department; Rehabilitation hospital; Nursing home",
-      "short" : "Admission source (display)"
-    }, {
-      "id" : "Encounter.hospitalization_discharge_disp",
-      "path" : "Encounter.hospitalization_discharge_disp",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Possible values:\nHome; ; Died in hospital; Other; Hospital; Rehabilitation hospital; Left against medical advice; Nursing home; Psychiatric hospital",
-      "short" : "Discharged to (display)"
     }, {
       "id" : "Encounter.period_start",
       "path" : "Encounter.period_start",
@@ -138,8 +105,8 @@
       "definition" : "Possible values:\nCAR; VCT; VCA; LON; CTC; MDL; INT; VIN; NCH; INF; NEU; PLA; GER; CTR; QHE; VQH; VAT; KNO; CGO; ORT; VLO; CHI; VAS; VCH; OBS; REU; NEF; VVA; QKN; DER; HAE; THU; VNR; ONC; GYN; VMD; OOG; KCH; END; ANE",
       "short" : "Department of discharge"
     }, {
-      "id" : "Encounter.ICD10_DBC",
-      "path" : "Encounter.ICD10_DBC",
+      "id" : "Encounter.ICD10_code",
+      "path" : "Encounter.ICD10_code",
       "min" : 0,
       "max" : "1",
       "type" : [ {

@@ -21,8 +21,17 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "LabResult.studyId_0763",
-      "path" : "LabResult.studyId_0763",
+      "id" : "LabResult.code2_display_original",
+      "path" : "LabResult.code2_display_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "LabResult.studyId_0919",
+      "path" : "LabResult.studyId_0919",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -30,47 +39,6 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
       "short" : "Patient ID"
-    }, {
-      "id" : "LabResult.identifier_value",
-      "path" : "LabResult.identifier_value",
-      "min" : 1,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Local identifier"
-    }, {
-      "id" : "LabResult.LOINCcode",
-      "path" : "LabResult.LOINCcode",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "definition" : "Possible values:\n30522-7; 14682-9; 62238-1; 41995-2; 14647-2; 14683-7; 22748-8; 14646-4; 32294-1; 61152-5; 30934-4; 20567-4; 59260-0; 6298-4; 100158-5; 2951-2; 83107-3; 14927-8; 89579-7; 6598-7; 22664-7",
-      "short" : "LOINC codes"
-    }, {
-      "id" : "LabResult.code_code_original",
-      "path" : "LabResult.code_code_original",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Original codes"
-    }, {
-      "id" : "LabResult.LOINCdisplay",
-      "path" : "LabResult.LOINCdisplay",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "LOINC displays"
     }, {
       "id" : "LabResult.code_display_original",
       "path" : "LabResult.code_display_original",
@@ -134,14 +102,26 @@
       } ],
       "short" : "High or low"
     }, {
-      "id" : "LabResult.valueString",
-      "path" : "LabResult.valueString",
+      "id" : "LabResult.LOINCcode",
+      "path" : "LabResult.LOINCcode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
+      } ],
+      "definition" : "Possible values:\n30522-7; 14682-9; 62238-1; 41995-2; 14647-2; 14683-7; 22748-8; 14646-4; 32294-1; 61152-5; 30934-4; 20567-4; 59260-0; 6298-4; 100158-5; 2951-2; 83107-3; 14927-8; 89579-7; 6598-7; 22664-7",
+      "short" : "LOINC codes"
+    }, {
+      "id" : "LabResult.LOINCdisplay",
+      "path" : "LabResult.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "LOINC displays"
     } ]
   }
 }

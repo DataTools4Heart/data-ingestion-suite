@@ -16,17 +16,17 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Patient', studyId_0763.toString())}}",
+        "id" : "{{mpp:getHashedId('Patient', studyId_0919.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
         },
         "resourceType" : "Patient",
         "gender" : "{{ gender }}",
-        "birthDate" : "{{ birthDate.toString().utl:toFhirDate('dd-M-yyyy') }}",
-        "deceasedDateTime" : "{{? deceasedDate.utl:toFhirDate('dd-M-yyyy').nav:orElse({}) }}",
+        "birthDate" : "{{ birthDate.toString().utl:toFhirDate('yyyy-MM-dd') }}",
+        "deceasedDateTime" : "{{? deceasedDateTime.utl:toFhirDate('yyyy-MM-dd HH:mm:ss').nav:orElse({}) }}",
         "identifier" : [ {
-          "value" : "{{studyId_0763.toString()}}"
+          "value" : "{{studyId_0919.toString()}}"
         } ]
       }
     }

@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Echo",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   } ],
   "context" : {
     "lvefMap" : {
@@ -67,8 +67,8 @@
             }
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
         "status" : "final"
       }
     }

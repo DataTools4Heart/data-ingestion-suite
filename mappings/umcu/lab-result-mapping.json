@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/LabResult",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   } ],
   "context" : {
     "interpretationMap" : {
@@ -29,11 +29,16 @@
     "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "quantityExists",
+      "language" : "text/fhirpath",
+      "expression" : "valueQuantity_value.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', identifier_value)}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString() & LOINCcode.toString() & effectivedatetime.toString() & valueQuantity_value.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
@@ -52,21 +57,17 @@
             "system" : "http://loinc.org",
             "code" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_code')}}",
             "@sliceName" : "loincCode"
-          }, {
-            "code" : "{{? code_code_original\t}}",
-            "display" : "{{? code_display_original}}"
           } ]
         },
         "effectiveDateTime" : "{{effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
-        "valueString" : "{{? iif(valueString.exists() and valueString != '', valueString) }}",
         "valueQuantity" : {
           "{{#valueQuantityVar}}" : "{{valueQuantity_value}}",
           "{{?}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINCcode.toString(), valueQuantity_value, valueQuantity_code_original.toString())}}"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
         "identifier" : [ {
-          "value" : "{{identifier_value}}"
+          "value" : "{{studyId_0919.toString() & '-' & LOINCcode.toString() & '-' & effectivedatetime.toString() & '-' & valueQuantity_value.toString()}}"
         } ],
         "interpretation" : [ {
           "{{#interpretationVar}}" : "{{iif(interpretation_display.exists() and interpretation_display != '', interpretation_display) }}",

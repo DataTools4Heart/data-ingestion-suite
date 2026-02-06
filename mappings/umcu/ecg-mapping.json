@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/ECG",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   } ],
   "context" : {
     "ecgUnitMap" : {
@@ -33,7 +33,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & ECGTestID)}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString() & ECGTestID)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
@@ -65,11 +65,11 @@
             }
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
         "effectiveDateTime" : "{{AcquisitionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "identifier" : [ {
-          "value" : "{{studyId_0763.toString() & '-' & ECGTestID}}"
+          "value" : "{{studyId_0919.toString() & '-' & ECGTestID}}"
         } ],
         "status" : "final"
       }

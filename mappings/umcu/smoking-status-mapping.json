@@ -7,11 +7,11 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/SmokingStatus",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   } ],
   "context" : {
     "smokingMap" : {
@@ -22,22 +22,27 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : " %encounters.where(period_start.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') <= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd') and period_end.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') >= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd')).first() "
+    "expression" : " %encounters.where(period_start.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') <= %context.effectivedate.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') >= %context.effectivedate.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
   } ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "smokeExists",
+      "language" : "text/fhirpath",
+      "expression" : "smok_label != 'undefined'"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & smok_label & effectivedate.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString() & smok_label & effectivedate.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-SmokingStatus" ]
         },
         "resourceType" : "Observation",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
         "effectivePeriod" : {
-          "start" : "{{effectivedate.utl:toFhirDateTime('yyyy-MM-dd')}}"
+          "start" : "{{effectivedate.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
         },
         "category" : [ {
           "coding" : [ {
@@ -62,7 +67,7 @@
           } ]
         },
         "identifier" : [ {
-          "value" : "{{studyId_0763.toString() & '-' & smok_label & '-' & effectivedate.toString()}}"
+          "value" : "{{studyId_0919.toString() & '-' & smok_label & '-' & effectivedate.toString()}}"
         } ],
         "status" : "final"
       }
