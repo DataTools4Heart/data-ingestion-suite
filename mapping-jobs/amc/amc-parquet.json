@@ -450,20 +450,6 @@
         "sourceRef" : "amc-source"
       }
     }
-  }, {
-    "name" : "medical-diagnosis-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medical-diagnosis-mapping",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "MedischeDiagnose.parquet",
-        "contentType" : "parquet",
-        "options" : {
-          "distinct" : "true"
-        },
-        "sourceRef" : "amc-source"
-      }
-    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
