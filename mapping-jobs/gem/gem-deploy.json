@@ -56,6 +56,51 @@
       }
     }
   }, {
+    "name" : "lab-result-and-vital-sign-mapping-all",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
+    "sourceBinding" : {
+      "labResults" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "observation.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "preprocessSql" : "select * from labResults where extract(year from DATA_ESAME) = $year",
+        "sourceRef" : "gem-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "elenco_contatti.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
+      }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "year" : "2015"
+      }, {
+        "year" : "2016"
+      }, {
+        "year" : "2017"
+      }, {
+        "year" : "2018"
+      }, {
+        "year" : "2019"
+      }, {
+        "year" : "2020"
+      }, {
+        "year" : "2021"
+      }, {
+        "year" : "2022"
+      }, {
+        "year" : "2023"
+      }, {
+        "year" : "2024"
+      }, {
+        "year" : "2025"
+      } ]
+    }
+  }, {
     "name" : "lab-result-and-vital-sign-mapping-1",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
     "sourceBinding" : {

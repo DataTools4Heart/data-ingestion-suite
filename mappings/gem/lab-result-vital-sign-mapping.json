@@ -35,6 +35,14 @@
     "name" : "vitalSign",
     "language" : "text/fhirpath",
     "expression" : " iif(category = 'VITAL_SIGNS', mpp:getConcept(%vitalSignsConceptMap, CODICE_ESAME)) "
+  }, {
+    "name" : "codiceLength",
+    "language" : "text/fhirpath",
+    "expression" : "CODICE_SANITARIO.toString().length()"
+  }, {
+    "name" : "patientIdString",
+    "language" : "text/fhirpath",
+    "expression" : " ('00000000' & CODICE_SANITARIO.toString()).substring(%codiceLength) "
   } ],
   "mapping" : [ {
     "precondition" : {
@@ -46,14 +54,14 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATA_ORA_ESAME & CODICE_ESAME & VALUE.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', %patientIdString.toString() & DATA_ORA_ESAME & CODICE_ESAME & VALUE.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "{{iif(category = 'LAB_RESULTS', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult', 'https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign')}}" ]
         },
         "resourceType" : "Observation",
         "identifier" : [ {
-          "value" : "{{CODICE_SANITARIO.toString() & '-' & DATA_ORA_ESAME & '-' & CODICE_ESAME & '-' & VALUE.toString()}}"
+          "value" : "{{%patientIdString & '-' & DATA_ORA_ESAME & '-' & CODICE_ESAME & '-' & VALUE.toString()}}"
         } ],
         "status" : "final",
         "category" : [ {
@@ -70,7 +78,7 @@
             "display" : "{{? iif(category = 'LAB_RESULTS', %labLoincCode.target_display, %vitalSign.target_display)}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %patientIdString)}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "effectiveDateTime" : "{{DATA_ORA_ESAME.toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : "{{iif(category = 'LAB_RESULTS', mpp:convertAndReturnQuantity(%labResultsConceptMap, CODICE_ESAME, VALUE, UNITA_MISURA).nav:orElse(utl:createFhirQuantity(VALUE, UNITA_MISURA, 'http://unitsofmeasure.org', CODICE_ESAME)), utl:createFhirQuantity(VALUE, %vitalSign.unit, 'http://unitsofmeasure.org', %vitalSign.target_code) )  }}",
