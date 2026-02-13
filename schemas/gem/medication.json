@@ -2,6 +2,7 @@
   "id" : "medication",
   "resourceType" : "StructureDefinition",
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/medication",
+  "version" : "latest",
   "name" : "Medication",
   "description" : "Represents farmaci table",
   "status" : "draft",

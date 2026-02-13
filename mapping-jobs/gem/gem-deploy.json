@@ -77,6 +77,150 @@
     },
     "batchingStrategy" : {
       "batchParameterSets" : [ {
+        "year" : "2015",
+        "month" : "1"
+      }, {
+        "year" : "2015",
+        "month" : "2"
+      }, {
+        "year" : "2015",
+        "month" : "3"
+      }, {
+        "year" : "2015",
+        "month" : "4"
+      }, {
+        "year" : "2015",
+        "month" : "5"
+      }, {
+        "year" : "2015",
+        "month" : "6"
+      }, {
+        "year" : "2015",
+        "month" : "7"
+      }, {
+        "year" : "2015",
+        "month" : "8"
+      }, {
+        "year" : "2015",
+        "month" : "9"
+      }, {
+        "year" : "2015",
+        "month" : "10"
+      }, {
+        "year" : "2015",
+        "month" : "11"
+      }, {
+        "year" : "2015",
+        "month" : "12"
+      }, {
+        "year" : "2016",
+        "month" : "1"
+      }, {
+        "year" : "2016",
+        "month" : "2"
+      }, {
+        "year" : "2016",
+        "month" : "3"
+      }, {
+        "year" : "2016",
+        "month" : "4"
+      }, {
+        "year" : "2016",
+        "month" : "5"
+      }, {
+        "year" : "2016",
+        "month" : "6"
+      }, {
+        "year" : "2016",
+        "month" : "7"
+      }, {
+        "year" : "2016",
+        "month" : "8"
+      }, {
+        "year" : "2016",
+        "month" : "9"
+      }, {
+        "year" : "2016",
+        "month" : "10"
+      }, {
+        "year" : "2016",
+        "month" : "11"
+      }, {
+        "year" : "2016",
+        "month" : "12"
+      }, {
+        "year" : "2017",
+        "month" : "1"
+      }, {
+        "year" : "2017",
+        "month" : "2"
+      }, {
+        "year" : "2017",
+        "month" : "3"
+      }, {
+        "year" : "2017",
+        "month" : "4"
+      }, {
+        "year" : "2017",
+        "month" : "5"
+      }, {
+        "year" : "2017",
+        "month" : "6"
+      }, {
+        "year" : "2017",
+        "month" : "7"
+      }, {
+        "year" : "2017",
+        "month" : "8"
+      }, {
+        "year" : "2017",
+        "month" : "9"
+      }, {
+        "year" : "2017",
+        "month" : "10"
+      }, {
+        "year" : "2017",
+        "month" : "11"
+      }, {
+        "year" : "2017",
+        "month" : "12"
+      }, {
+        "year" : "2018",
+        "month" : "1"
+      }, {
+        "year" : "2018",
+        "month" : "2"
+      }, {
+        "year" : "2018",
+        "month" : "3"
+      }, {
+        "year" : "2018",
+        "month" : "4"
+      }, {
+        "year" : "2018",
+        "month" : "5"
+      }, {
+        "year" : "2018",
+        "month" : "6"
+      }, {
+        "year" : "2018",
+        "month" : "7"
+      }, {
+        "year" : "2018",
+        "month" : "8"
+      }, {
+        "year" : "2018",
+        "month" : "9"
+      }, {
+        "year" : "2018",
+        "month" : "10"
+      }, {
+        "year" : "2018",
+        "month" : "11"
+      }, {
+        "year" : "2018",
+        "month" : "12"
+      }, {
         "year" : "2019",
         "month" : "1"
       }, {
@@ -329,101 +473,6 @@
         "year" : "2025",
         "month" : "12"
       } ]
-    }
-  }, {
-    "name" : "lab-result-and-vital-sign-mapping-1",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceBinding" : {
-      "labResults" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "observation1.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      }
-    }
-  }, {
-    "name" : "lab-result-and-vital-sign-mapping-2",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceBinding" : {
-      "labResults" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "observation2.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      }
-    }
-  }, {
-    "name" : "lab-result-and-vital-sign-mapping-3",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceBinding" : {
-      "labResults" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "observation3.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      }
-    }
-  }, {
-    "name" : "lab-result-and-vital-sign-mapping-4",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceBinding" : {
-      "labResults" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "observation4.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      }
-    }
-  }, {
-    "name" : "lab-result-and-vital-sign-mapping-5",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/gem/lab-result-and-vital-sign-mapping",
-    "sourceBinding" : {
-      "labResults" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "observation5.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "elenco_contatti.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "gem-source"
-      }
     }
   }, {
     "name" : "medication-mapping",

@@ -30,7 +30,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO & DATE.toString() & NYHA_MAX )}}",
+        "id" : "{{mpp:getHashedId('Observation', CODICE_SANITARIO.toString() & DATE.toString() & NYHA_MAX )}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
@@ -58,10 +58,10 @@
             "code" : "{{mpp:getConcept(%nyhaMappings, NYHA_MAX.split(' ').last().split('-').last(), 'target_code')}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS) )}}",
         "identifier" : [ {
-          "value" : "{{CODICE_SANITARIO & '-' & DATE.toString() & '-' & NYHA_MAX}}"
+          "value" : "{{CODICE_SANITARIO.toString() & '-' & DATE.toString() & '-' & NYHA_MAX}}"
         } ],
         "status" : "final"
       }
