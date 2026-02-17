@@ -40,8 +40,8 @@
             "text" : "{{? MedicatieGeneriekeNaam}}"
           }
         },
-        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId.toString())}}",
         "identifier" : [ {
           "value" : "{{prescriptionID.toString()}}"
         } ],
@@ -55,14 +55,17 @@
         } ],
         "effectiveDosePeriod" : {
           "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:s')}}",
-          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd'| 'yyyy-MM-dd HH:mm:ss') > StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), StopDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
+          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd'| 'yyyy-MM-dd HH:mm:ss') => StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), StopDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
         },
         "dosageInstruction" : [ {
           "timing" : {
-            "repeat" : {
-              "frequency" : "{{? dosInstr_frequency_value.toDecimal()}}",
-              "period" : "{{1}}",
-              "periodUnit" : "{{? mpp:getConcept(%medPresFreqMap, dosInstr_frequency_unit, 'target_code')}}"
+            "{{#timingVar}}" : "{{iif(dosInstr_frequency_unit.exists() and dosInstr_frequency_unit != 'once' and dosInstr_frequency_unit != 'continuous' and dosInstr_frequency_unit != 'undefinedSchema', true)}}",
+            "{{?}}" : {
+              "repeat" : {
+                "frequency" : "{{? dosInstr_frequency_value.toDecimal()}}",
+                "period" : "{{1}}",
+                "periodUnit" : "{{? mpp:getConcept(%medPresFreqMap, dosInstr_frequency_unit, 'target_code')}}"
+              }
             }
           },
           "asNeeded" : "{{iif(dosInstr_asNeeded_display = 1 , true, false)}}",

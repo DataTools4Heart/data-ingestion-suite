@@ -376,8 +376,10 @@
         "jsonClass" : "FileSystemSource",
         "path" : "MedicationPrescription.parquet",
         "contentType" : "parquet",
-        "options" : { },
-        "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL",
+        "options" : {
+          "datetimeRebaseMode" : "CORRECTED"
+        },
+        "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL and StartDate > '1900-01-01'",
         "sourceRef" : "amc-source"
       },
       "encounters" : {

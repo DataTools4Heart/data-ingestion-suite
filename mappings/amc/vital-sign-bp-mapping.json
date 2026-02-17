@@ -36,12 +36,12 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_code')}}",
+            "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode.utl:trim(), 'target_code')}}",
             "display" : "{{LOINCdisplay}}",
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{MeetMoment.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS')}}",
+        "effectiveDateTime" : "{{MeetMoment.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS' | 'yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",

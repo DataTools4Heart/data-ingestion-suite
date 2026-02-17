@@ -51,15 +51,14 @@
       } ],
       "short" : "Hospital Location"
     }, {
-      "id" : "VitalSignBp.MeetTijd",
-      "path" : "VitalSignBp.MeetTijd",
+      "id" : "VitalSignBp.MetingBloeddrukId",
+      "path" : "VitalSignBp.MetingBloeddrukId",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
-      } ],
-      "short" : "Measurement Time"
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     }, {
       "id" : "VitalSignBp.MeetMoment",
       "path" : "VitalSignBp.MeetMoment",
