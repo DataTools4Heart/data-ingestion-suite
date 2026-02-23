@@ -1,27 +1,39 @@
-source_code,source_display,source_unit,target_unit,conversion_function
-718-7,Hemoglobin [Mass/volume] in Blood,"g/l","g/L","$this"
-2276-4,Ferritin [Mass/volume] in Serum or Plasma,"µg/l","µg/L","$this"
-2502-3,Iron saturation [Mass Fraction] in Serum or Plasma,,,
-33762-6,Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Serum or Plasma,"ng/l","pg/mL","$this"
-30934-4,Natriuretic peptide B [Mass/volume] in Serum or Plasma,,,
-1988-5,C reactive protein [Mass/volume] in Serum or Plasma,,,
-30522-7,C reactive protein [Mass/volume] in Serum or Plasma by High sensitivity method,,,
-89579-7,Troponin I.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method,,,
-10839-9,Troponin I.cardiac [Mass/volume] in Serum or Plasma,,,
-67151-1,Troponin T.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method,"µg/l","µg/L","$this"
-6598-7,Troponin T.cardiac [Mass/volume] in Serum or Plasma,"ng/l","ng/L","$this"
-14927-8,Triglyceride [Moles/volume] in Serum or Plasma,"mmol/l","mmol/L","$this"
-14647-2,Cholesterol [Moles/volume] in Serum or Plasma,"mmol/l","mmol/L","$this"
-14646-4,Cholesterol in HDL [Moles/volume] in Serum or Plasma,"mmol/l","mmol/L","$this"
-22748-8,Cholesterol in LDL [Moles/volume] in Serum or Plasma,"mmol/l","mmol/L","$this"
-2823-3,Potassium [Moles/volume] in Serum or Plasma,"mmol/l","mmol/L","$this"
-2951-2,Sodium [Moles/volume] in Serum or Plasma,,,
-2160-0,Creatinine [Mass/volume] in Serum or Plasma,"µmol/l","mg/L","$this * 0.11312"
-2161-8,Creatinine [Mass/volume] in Urine,"mmol/l","mg/L","$this * 113.12"
-1751-7,Albumin [Mass/volume] in Serum or Plasma,"g/l","g/L","$this"
-1754-1,Albumin [Mass/volume] in Urine,"mg/l","mg/L","$this"
-69405-9,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood","ml/s/1.73m2","mL/min/1.73m2","$this * 60"
-14937-7,Urea nitrogen [Moles/volume] in Serum or Plasma,"mmol/l","mmol/L","$this"
-32294-1,Albumin/Creatinine [Ratio] in Urine,,,
-4548-4,Hemoglobin A1c/Hemoglobin.total in Blood,,,
-41995-2,Hemoglobin [Mass/volume] in Blood,,,
+source_code,source_unit,target_system,target_display,target_code,target_unit,conversion_function
+3030,g/l,http://loinc.org,Hemoglobin [Mass/volume] in Blood,718-7,g/L,$this
+3031,g/l,http://loinc.org,Hemoglobin [Mass/volume] in Blood,718-7,g/L,$this
+3032,g/l,http://loinc.org,Hemoglobin [Mass/volume] in Blood,718-7,g/L,$this
+2899,g/l,http://loinc.org,Hemoglobin [Mass/volume] in Blood,718-7,g/L,$this
+2949,g/l,http://loinc.org,Hemoglobin [Mass/volume] in Blood,718-7,g/L,$this
+1518,µg/l,http://loinc.org,Ferritin [Mass/volume] in Serum or Plasma,2276-4,mcg/L,$this
+2048,-,http://loinc.org,Iron saturation [Mass Fraction] in Serum or Plasma,2502-3,%,$this
+1576,ng/l,http://loinc.org,Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Serum or Plasma,33762-6,pg/mL,$this
+2306,ng/l,http://loinc.org,Natriuretic peptide B [Mass/volume] in Serum or Plasma,30934-4,pg/mL,$this
+1539,mg/l,http://loinc.org,C reactive protein [Mass/volume] in Serum or Plasma,1988-5,mg/L,$this
+2244,mg/l,http://loinc.org,C reactive protein [Mass/volume] in Serum or Plasma by High sensitivity method,30522-7,mg/L,$this
+2303,µg/l,http://loinc.org,Troponin I.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method,89579-7,ng/mL,$this
+2302,µg/l,http://loinc.org,Troponin I.cardiac [Mass/volume] in Serum or Plasma,10839-9,ng/mL,$this
+1535,mmol/l,http://loinc.org,Triglyceride [Moles/volume] in Serum or Plasma,14927-8,mmol/L,$this
+1531,mmol/l,http://loinc.org,Cholesterol [Moles/volume] in Serum or Plasma,14647-2,mmol/L,$this
+1532,mmol/l,http://loinc.org,Cholesterol in HDL [Moles/volume] in Serum or Plasma,14646-4,mmol/L,$this
+1537,mmol/l,http://loinc.org,Cholesterol in LDL [Moles/volume] in Serum or Plasma,22748-8,mmol/L,$this
+1508,mmol/l,http://loinc.org,Potassium [Moles/volume] in Serum or Plasma,2823-3,mmol/L,$this
+2224,mmol/l,http://loinc.org,Potassium [Moles/volume] in Blood,6298-4,mmol/L,$this
+1507,mmol/l,http://loinc.org,Sodium [Moles/volume] in Serum or Plasma,2951-2,mmol/L,$this
+2223,mmol/l,http://loinc.org,Sodium [Moles/volume] in Blood,2947-0,mmol/L,$this
+1500,µmol/l,http://loinc.org,Creatinine [Mass/volume] in Serum or Plasma,2160-0,mg/L,$this * 0.113
+1822,mmol/l,http://loinc.org,Creatinine [Mass/volume] in Urine,2161-8,mg/L,$this * 113.12
+1541,g/l,http://loinc.org,Albumin [Mass/volume] in Serum or Plasma,1751-7,g/L,$this
+1896,mg/l,http://loinc.org,Albumin [Mass/volume] in Urine,1754-1,mg/L,$this
+2040,mg/mmol,http://loinc.org,Albumin/Creatinine [Ratio] in Urine,32294-1,mg/mmol,$this
+4835,mg/mmol,http://loinc.org,Protein/Creatinine [Ratio] in Urine,34366-5,mg/mmol,$this
+1692,mmol/mol,http://loinc.org,Hemoglobin A1c [Mass/volume] in Blood,41995-2,mmol/mol,$this
+1522,µkat/l,http://loinc.org,Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma,1920-8,U/L,$this * 60
+1530,µkat/l,http://loinc.org,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma,2324-2,U/L,$this * 60
+1505,µmol/l,http://loinc.org,Bilirubin.total [Mass/volume] in Serum or Plasma,1975-2,mg/dL,$this * 0.0585
+4137,ml/s/1.73m2,http://loinc.org,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood",69405-9,ml/min/1.73m2,$this * 60
+4139,ml/s/1.73m2,http://loinc.org,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood",69405-9,ml/min/1.73m2,$this * 60
+2959,%,http://loinc.org,Red blood cell distribution width,30385-9,%,$this
+1779,%,http://loinc.org,Red blood cell distribution width,30385-9,%,$this
+2044,g/d,http://loinc.org,Urea nitrogen [Moles/volume] in Serum or Plasma,14937-7,mmol/L,
+2221,mmol/l,http://loinc.org,Urea [Mass/volume] in Blood,20977-5,mg/L,$this * 60.06
+4282,ng/l,http://loinc.org,Troponin T.cardiac [Mass/volume] in Serum or Plasma,6598-7,ng/L,$this

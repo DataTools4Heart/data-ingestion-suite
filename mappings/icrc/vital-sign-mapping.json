@@ -20,7 +20,7 @@
     "precondition" : {
       "name" : "weightExists",
       "language" : "text/fhirpath",
-      "expression" : "weight.exists()"
+      "expression" : "weight != 0"
     },
     "expression" : {
       "name" : "weight",
@@ -47,7 +47,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "kg",
@@ -69,7 +69,7 @@
     "precondition" : {
       "name" : "heightExists",
       "language" : "text/fhirpath",
-      "expression" : "height.exists()"
+      "expression" : "height != 0"
     },
     "expression" : {
       "name" : "height",
@@ -96,7 +96,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "cm",
@@ -118,7 +118,7 @@
     "precondition" : {
       "name" : "systolicBPExists",
       "language" : "text/fhirpath",
-      "expression" : "systoclic.exists()"
+      "expression" : "systolic != 0"
     },
     "expression" : {
       "name" : "systolic-bp",
@@ -145,11 +145,11 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",
-          "value" : "{{systoclic}}",
+          "value" : "{{systolic}}",
           "unit" : "mm[Hg]"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
@@ -167,7 +167,7 @@
     "precondition" : {
       "name" : "diastolicBPExists",
       "language" : "text/fhirpath",
-      "expression" : "diastolic.exists()"
+      "expression" : "diastolic != 0"
     },
     "expression" : {
       "name" : "diastolic-bp",
@@ -194,7 +194,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",
@@ -216,7 +216,7 @@
     "precondition" : {
       "name" : "heartRateExists",
       "language" : "text/fhirpath",
-      "expression" : "heart_rate.exists()"
+      "expression" : "heart_rate != 0"
     },
     "expression" : {
       "name" : "heart-rate",
@@ -243,7 +243,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "/min",
@@ -265,7 +265,7 @@
     "precondition" : {
       "name" : "respirationRateExists",
       "language" : "text/fhirpath",
-      "expression" : "respiration.exists()"
+      "expression" : "respiration.exists($this != 0)"
     },
     "expression" : {
       "name" : "respiration-rate",
@@ -292,7 +292,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "/min",
@@ -314,7 +314,7 @@
     "precondition" : {
       "name" : "spo2Exists",
       "language" : "text/fhirpath",
-      "expression" : "spo2.exists()"
+      "expression" : "spo2.exists($this != 0)"
     },
     "expression" : {
       "name" : "spo2",
@@ -341,7 +341,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "%",
@@ -363,7 +363,7 @@
     "precondition" : {
       "name" : "bodyTemperatureExists",
       "language" : "text/fhirpath",
-      "expression" : "body_temperature.exists()"
+      "expression" : "body_temperature.exists($this != 0)"
     },
     "expression" : {
       "name" : "body-temperature",
@@ -390,7 +390,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "Cel",
@@ -413,7 +413,7 @@
     "precondition" : {
       "name" : "nyhaExists",
       "language" : "text/fhirpath",
-      "expression" : "nyha.exists() and nyha != 0"
+      "expression" : "nyha != 0"
     },
     "expression" : {
       "name" : "nyha",
@@ -439,7 +439,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueCodeableConcept" : {
           "{{#nyhaconcept}}" : "{{mpp:getConcept(%nyhaConceptMap, nyha.toString())}}",
           "{{?}}" : "{{utl:createFhirCodeableConcept('http://loinc.org', %nyhaconcept.target_code, %nyhaconcept.target_display)}}"
@@ -460,7 +460,7 @@
     "precondition" : {
       "name" : "weightAndHeightExist",
       "language" : "text/fhirpath",
-      "expression" : "weight.exists() and weight != 0 and height.exists() and height != 0"
+      "expression" : "weight != 0 and height != 0"
     },
     "expression" : {
       "name" : "bmi",
@@ -486,7 +486,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.toString().replace(' ','T') + 'Z'}}",
+        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "kg/m2",

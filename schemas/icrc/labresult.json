@@ -30,7 +30,8 @@
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ],
-      "short" : "Lab result identifier"
+      "definition": "This ID groups together multiple individual laboratory test results that were produced as part of the same lab panel.",
+      "short" : "Identifier of the laboratory panel"
     }, {
       "id" : "LabResult.id_patient",
       "path" : "LabResult.id_patient",
@@ -72,16 +73,16 @@
       } ],
       "short" : "Execution date of the lab result"
     }, {
-      "id" : "LabResult.code_his",
-      "path" : "LabResult.code_his",
+      "id" : "LabResult.individual_lab_id",
+      "path" : "LabResult.individual_lab_id",
       "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "definition" : "Code of the lab test coming from the Hospital Information System",
-      "short" : "Local code of the lab test"
+      "definition" : "Each individual_lab_id corresponds to one specific measurement (e.g., serum creatinine, sodium, hemoglobin).",
+      "short" : "Unique identifier of a single laboratory test result."
     }, {
       "id" : "LabResult.lab_name_his",
       "path" : "LabResult.lab_name_his",

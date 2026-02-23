@@ -15,14 +15,23 @@
       "url" : "$CONTEXT_REPO/icrc/lab-result-codes.csv"
     }
   },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "labResultConcept",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%labResultCodes, individual_lab_id)"
+  } ],
   "mapping" : [ {
-    "description" : "Lab results mapping; exedcuted only if there is a LOINC code associated with the lab test.",
+    "description" : "Lab results mapping; executed only if there is a LOINC code associated with the lab test.",
+    "precondition" : {
+      "name" : "labResultConceptExists",
+      "language" : "text/fhirpath",
+      "expression" : "%labResultConcept.exists()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', id_lab.toString() & '-' & code_his)}}",
+        "id" : "{{mpp:getHashedId('Observation', id_lab.toString() & '-' & individual_lab_id)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
@@ -39,24 +48,24 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{code_loinc}}",
-            "display" : "{{mpp:getConcept(%labResultCodes, code_loinc, 'source_display')}}",
+            "code" : "{{%labResultConcept.target_code}}",
+            "display" : "{{%labResultConcept.target_display}}",
             "@sliceName" : "loincCode"
           }, {
             "system" : "{{%sourceSystem.sourceUri & '/lab-result'}}",
-            "code" : "{{code_his}}",
+            "code" : "{{individual_lab_id}}",
             "display" : "{{lab_name_his}}"
           } ]
         },
         "effectiveDateTime" : "{{effective_date}}",
-        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultCodes, code_loinc, value_result, value_unit).nav:orElse(utl:createFhirQuantity(value_result, value_unit, 'http://unitsofmeasure.org', code_loinc))}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultCodes, individual_lab_id, value_result, value_unit).nav:orElse(utl:createFhirQuantity(value_result, value_unit, 'http://unitsofmeasure.org', code_loinc))}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
         "performer" : [ "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}" ],
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
-          "value" : "{{id_lab.toString() & '-' & code_his}}"
+          "value" : "{{id_lab.toString() & '-' & individual_lab_id}}"
         } ]
       }
     }
