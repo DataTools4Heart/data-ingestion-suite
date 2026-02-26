@@ -44,7 +44,7 @@
           "end" : "{{? end_date}}"
         },
         "reason" : {
-          "{{#icd10Code}}" : "{{id_condition_main_diagnosis.utl:split(',')}}",
+          "{{#icd10Code}}" : "{{iif(id_condition_main_diagnosis.exists(),id_condition_main_diagnosis.utl:split(','),{})}}",
           "{{*}}" : {
             "use" : [ {
               "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]

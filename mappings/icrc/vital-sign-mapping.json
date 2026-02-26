@@ -47,7 +47,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "kg",
@@ -96,7 +96,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "cm",
@@ -145,7 +145,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",
@@ -194,7 +194,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "mm[Hg]",
@@ -243,7 +243,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "/min",
@@ -292,7 +292,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "/min",
@@ -341,7 +341,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "%",
@@ -390,7 +390,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "Cel",
@@ -439,7 +439,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueCodeableConcept" : {
           "{{#nyhaconcept}}" : "{{mpp:getConcept(%nyhaConceptMap, nyha.toString())}}",
           "{{?}}" : "{{utl:createFhirCodeableConcept('http://loinc.org', %nyhaconcept.target_code, %nyhaconcept.target_display)}}"
@@ -486,7 +486,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+        "effectiveDateTime" : "{{iif(efective_datetime.contains('+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03'),efective_datetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+02'))}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
           "code" : "kg/m2",
