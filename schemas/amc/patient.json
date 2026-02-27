@@ -61,13 +61,13 @@
       } ],
       "short" : "Sex"
     }, {
-      "id" : "Patient.Overlijdensdatumjid",
-      "path" : "Patient.Overlijdensdatumjid",
+      "id" : "Patient.Overlijdensdatumtijd",
+      "path" : "Patient.Overlijdensdatumtijd",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "date",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ],
       "definition" : "Only in-hospital reliable registration date of death",
       "short" : "Date of death"

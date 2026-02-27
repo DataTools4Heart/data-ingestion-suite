@@ -1,60 +1,190 @@
 {
-  "id" : "vital-sign-length-weight-bmi-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-weight-bmi-mapping",
-  "name" : "vital-sign-length-weight-bmi-mapping",
-  "title" : "Mapping of AMC's LengthWeightBMI table to DT4H-VitalSign FHIR profile",
-  "isDraft" : false,
-  "source" : [ {
-    "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/amc/VitalSignLengthWeightBMI",
-    "joinOn" : [ ]
-  } ],
-  "context" : {
-    "vitalSignMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/amc/vital-sign-concept-map.csv"
+  "id": "vital-sign-length-weight-bmi-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-weight-bmi-mapping",
+  "name": "vital-sign-length-weight-bmi-mapping",
+  "title": "Mapping of AMC's LengthWeightBMI table to DT4H-VitalSign FHIR profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "source",
+      "url": "https://datatools4heart.eu/fhir/schemas/amc/VitalSignLengthWeightBMI",
+      "joinOn": []
+    }
+  ],
+  "context": {
+    "vitalSignMap": {
+      "category": "concept-map",
+      "url": "$CONTEXT_REPO/amc/vital-sign-concept-map.csv"
     }
   },
-  "variable" : [ ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid & MeetDatum.toString() & LOINCcode)}}",
-        "meta" : {
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
-        },
-        "resourceType" : "Observation",
-        "category" : [ {
-          "coding" : [ {
-            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
-            "code" : "vital-signs",
-            "display" : "Vital Signs"
-          } ]
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_code')}}",
-            "display" : "{{LOINCdisplay}}",
-            "@sliceName" : "loincCode"
-          } ]
-        },
-        "effectiveDateTime" : "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
-        "valueQuantity" : {
-          "system" : "http://unitsofmeasure.org",
-          "code" : "{{Unit.nav:orElse('%')}}",
-          "value" : "{{ValueQuantity}}",
-          "unit" : "{{Unit.nav:orElse('%')}}"
-        },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
-        "identifier" : [ {
-          "value" : "{{Pseudo_id.toString() & '-' & Patientcontactid & '-' & MeetDatum.toString()}}"
-        } ],
-        "status" : "final"
+  "variable": [],
+  "mapping": [
+    {
+      "precondition": {
+        "name": "heightExists",
+        "language": "text/fhirpath",
+        "expression": "Height_cm.exists()"
+      },
+      "expression": {
+        "name": "height",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid.toString() & MeetDatum.toString() & 'Height')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign"
+            ]
+          },
+          "resourceType": "Observation",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "vital-signs",
+                  "display": "Vital Signs"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8302-2",
+                "display": "Body height",
+                "@sliceName": "loincCode"
+              }
+            ]
+          },
+          "effectiveDateTime": "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+          "valueQuantity": {
+            "system": "http://unitsofmeasure.org",
+            "code": "cm",
+            "value": "{{Height_cm}}",
+            "unit": "cm"
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid.toString())}}",
+          "identifier": [
+            {
+              "value": "{{Pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetDatum.toString()}}"
+            }
+          ],
+          "status": "final"
+        }
+      }
+    },
+    {
+      "precondition": {
+        "name": "weightExists",
+        "language": "text/fhirpath",
+        "expression": "Weight_kg.exists()"
+      },
+      "expression": {
+        "name": "weight",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid.toString() & MeetDatum.toString() & 'Weight')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign"
+            ]
+          },
+          "resourceType": "Observation",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "vital-signs",
+                  "display": "Vital Signs"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29463-7",
+                "display": "Body weight",
+                "@sliceName": "loincCode"
+              }
+            ]
+          },
+          "effectiveDateTime": "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+          "valueQuantity": {
+            "system": "http://unitsofmeasure.org",
+            "code": "kg",
+            "value": "{{Weight_kg}}",
+            "unit": "kg"
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid.toString())}}",
+          "identifier": [
+            {
+              "value": "{{Pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetDatum.toString()}}"
+            }
+          ],
+          "status": "final"
+        }
+      }
+    },
+    {
+      "precondition": {
+        "name": "bmiExists",
+        "language": "text/fhirpath",
+        "expression": "Weight_kg.exists() and Height_cm.exists()"
+      },
+      "expression": {
+        "name": "bmi",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid.toString() & MeetDatum.toString() & 'BMI')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign"
+            ]
+          },
+          "resourceType": "Observation",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "vital-signs",
+                  "display": "Vital Signs"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "39156-5",
+                "display": "Body mass index"
+              }
+            ]
+          },
+          "effectiveDateTime": "{{MeetDatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
+          "valueQuantity": {
+            "system": "http://unitsofmeasure.org",
+            "code": "kg/m2",
+            "value": "{{Weight_kg/(Height_cm*Height_cm)*10000}}",
+            "unit": "kg/m2"
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid.toString())}}",
+          "identifier": [
+            {
+              "value": "{{Pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & MeetDatum.toString()}}"
+            }
+          ],
+          "status": "final"
+        }
       }
     }
-  } ]
+  ]
 }

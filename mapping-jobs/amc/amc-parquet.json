@@ -37,6 +37,7 @@
         "path" : "LengthWeightBMI.parquet",
         "contentType" : "parquet",
         "options" : { },
+        "preprocessSql" : "select Pseudo_id,Patientcontactid,MeetDatum,MAX(CASE WHEN LOINCcode = '8302-2' THEN ValueQuantity END) AS Height_cm,MAX(CASE WHEN LOINCcode = '29463-7' THEN ValueQuantity END) AS Weight_kg FROM source GROUP BY Pseudo_id,Patientcontactid,MeetDatum",
         "sourceRef" : "amc-source"
       }
     }
