@@ -23,7 +23,7 @@
         "resourceType" : "Patient",
         "gender" : "{{iif(Geslacht = 'Vrouw','female','male')}}",
         "birthDate" : "{{Geboortedatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
-        "deceasedDateTime" : "{{? Overlijdensdatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}",
+        "deceasedDateTime" : "{{? Overlijdensdatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "identifier" : [ {
           "value" : "{{Pseudo_id.toString()}}"
         } ]

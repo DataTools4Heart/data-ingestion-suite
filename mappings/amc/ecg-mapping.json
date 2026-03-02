@@ -65,7 +65,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
-        "encounter" : "{{?  mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
+        "encounter" : "{{?  mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId)}}",
         "effectiveDateTime" : "{{EcgAfnameDatumTijd.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "identifier" : [ {
           "value" : "{{Pseudo_id.toString() & '-' & EcgMetingId}}"

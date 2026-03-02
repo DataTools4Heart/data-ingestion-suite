@@ -78,7 +78,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId)}}",
         "identifier" : [ {
           "value" : "{{pseudo_id.toString() & '-' & Accessionnummer}}"
         } ],

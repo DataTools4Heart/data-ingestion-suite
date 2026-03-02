@@ -64,7 +64,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.Patientcontactid)}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId)}}",
         "identifier" : [ {
           "value" : "{{Pseudo_id.toString() & '-' & MonsterId & '-' & LOINC_code & '-' & BepalingCode}}"
         } ],
