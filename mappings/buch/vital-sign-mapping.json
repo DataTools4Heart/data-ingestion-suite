@@ -1,0 +1,54 @@
+{
+  "id" : "vital-sign-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/buch/vital-sign-mapping",
+  "name" : "vital-sign-mapping",
+  "title" : "Vital Sign mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/buch/VitalSign",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', 'vitalsign' & admission_id & patient_id & admission_date.toString() & LOINC & value.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "vital-signs",
+            "display" : "Vital Signs"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{LOINC}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{admission_date}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{unit}}",
+          "value" : "{{value.toDecimal()}}",
+          "unit" : "{{unit}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', patient_id)}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', admission_id)}}",
+        "identifier" : [ {
+          "value" : "{{admission_id & '-' & patient_id & '-' & admission_date.toString() & '-' & LOINC & '-' &  value.toString()}}"
+        } ],
+        "status" : "final"
+      }
+    }
+  } ]
+}

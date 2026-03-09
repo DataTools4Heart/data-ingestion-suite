@@ -1,0 +1,121 @@
+{
+  "id" : "buch-deploy",
+  "name" : "buch-deploy",
+  "description" : "",
+  "sourceSettings" : {
+    "buch-source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "buch-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/buch-data",
+      "dataFolderPath" : "test-data/buch",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/patient-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "patients.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "buch-source"
+      }
+    }
+  }, {
+    "name" : "encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/encounter-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "encounters.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "buch-source"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/condition-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "conditions.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "buch-source"
+      }
+    }
+  }, {
+    "name" : "nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/nyha-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "nyha.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "buch-source"
+      }
+    }
+  }, {
+    "name" : "lvef-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/lvef-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "lvef.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "buch-source"
+      }
+    }
+  }, {
+    "name" : "vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/vital-sign-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "vitalsigns.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "buch-source"
+      }
+    }
+  }, {
+    "name" : "lab-result-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/buch/lab-result-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "labs.csv",
+        "contentType" : "csv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "buch-source"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

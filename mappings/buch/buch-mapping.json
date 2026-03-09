@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/buch/BUCH-Mapping",
   "name" : "BUCH-Mapping",
   "title" : "BUCH Mappings\n\nMedication mappings couldn't be created due to lack of clear data regarding Medication details. All Medication details are provided in unstructured, singular strings.",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "BS",
     "url" : "https://datatools4heart.eu/fhir/schemas/buch/Admission",

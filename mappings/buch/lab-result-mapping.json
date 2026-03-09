@@ -1,0 +1,54 @@
+{
+  "id" : "lab-result-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/buch/lab-result-mapping",
+  "name" : "lab-result-mapping",
+  "title" : "Lab result mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/buch/LabResult",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', 'labresult' & admission_id & patient_id & admission_date.toString() & loinc & value.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "laboratory",
+            "display" : "Laboratory"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "{{loinc}}",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{admission_date}}",
+        "valueQuantity" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "{{unit_of_measurement}}",
+          "unit" : "{{unit_of_measurement}}",
+          "value" : "{{value.toDecimal()}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', patient_id)}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', admission_id)}}",
+        "identifier" : [ {
+          "value" : "{{admission_id & '-' & patient_id & '-' & admission_date.toString() & '-' & loinc & '-' value.toString()}}"
+        } ]
+      }
+    }
+  } ]
+}
