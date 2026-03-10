@@ -30,7 +30,7 @@
   }, {
     "name" : "admitSourceCode",
     "language" : "text/fhirpath",
-    "expression" : "iif(ViaEmergencyDEP == 1,'emd',admitSource_code)"
+    "expression" : "iif(ViaEmergencyDEP = 1,'emd',admitSource_code)"
   } ],
   "mapping" : [ {
     "description" : "This mappings should be run after condition mapping. Because this mapping also creates Conditions and it makes Conditions primary diagnoses.",
