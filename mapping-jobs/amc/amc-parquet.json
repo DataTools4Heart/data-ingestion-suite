@@ -25,8 +25,62 @@
         "path" : "BloodPressure.parquet",
         "contentType" : "parquet",
         "options" : { },
+        "preprocessSql" : "select * from VitalSignBp where MeetMoment LIKE '$year%'",
         "sourceRef" : "amc-source"
       }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "year" : "2000"
+      }, {
+        "year" : "2001"
+      }, {
+        "year" : "2002"
+      }, {
+        "year" : "2003"
+      }, {
+        "year" : "2004"
+      }, {
+        "year" : "2005"
+      }, {
+        "year" : "2006"
+      }, {
+        "year" : "2007"
+      }, {
+        "year" : "2008"
+      }, {
+        "year" : "2009"
+      }, {
+        "year" : "2010"
+      }, {
+        "year" : "2011"
+      }, {
+        "year" : "2012"
+      }, {
+        "year" : "2013"
+      }, {
+        "year" : "2014"
+      }, {
+        "year" : "2015"
+      }, {
+        "year" : "2016"
+      }, {
+        "year" : "2017"
+      }, {
+        "year" : "2018"
+      }, {
+        "year" : "2019"
+      }, {
+        "year" : "2020"
+      }, {
+        "year" : "2021"
+      }, {
+        "year" : "2022"
+      }, {
+        "year" : "2023"
+      }, {
+        "year" : "2024"
+      } ]
     }
   }, {
     "name" : "vital-sign-length-weight-bmi-mapping",
@@ -77,201 +131,152 @@
       }
     },
     "batchingStrategy" : {
-      "batchParameterSets": [
-        {
-          "year": "2022",
-          "month": "1"
-        },
-        {
-          "year": "2022",
-          "month": "2"
-        },
-        {
-          "year": "2022",
-          "month": "3"
-        },
-        {
-          "year": "2022",
-          "month": "4"
-        },
-        {
-          "year": "2022",
-          "month": "5"
-        },
-        {
-          "year": "2022",
-          "month": "6"
-        },
-        {
-          "year": "2022",
-          "month": "7"
-        },
-        {
-          "year": "2022",
-          "month": "8"
-        },
-        {
-          "year": "2022",
-          "month": "9"
-        },
-        {
-          "year": "2022",
-          "month": "10"
-        },
-        {
-          "year": "2022",
-          "month": "11"
-        },
-        {
-          "year": "2022",
-          "month": "12"
-        },
-        {
-          "year": "2023",
-          "month": "1"
-        },
-        {
-          "year": "2023",
-          "month": "2"
-        },
-        {
-          "year": "2023",
-          "month": "3"
-        },
-        {
-          "year": "2023",
-          "month": "4"
-        },
-        {
-          "year": "2023",
-          "month": "5"
-        },
-        {
-          "year": "2023",
-          "month": "6"
-        },
-        {
-          "year": "2023",
-          "month": "7"
-        },
-        {
-          "year": "2023",
-          "month": "8"
-        },
-        {
-          "year": "2023",
-          "month": "9"
-        },
-        {
-          "year": "2023",
-          "month": "10"
-        },
-        {
-          "year": "2023",
-          "month": "11"
-        },
-        {
-          "year": "2023",
-          "month": "12"
-        },
-        {
-          "year": "2024",
-          "month": "1"
-        },
-        {
-          "year": "2024",
-          "month": "2"
-        },
-        {
-          "year": "2024",
-          "month": "3"
-        },
-        {
-          "year": "2024",
-          "month": "4"
-        },
-        {
-          "year": "2024",
-          "month": "5"
-        },
-        {
-          "year": "2024",
-          "month": "6"
-        },
-        {
-          "year": "2024",
-          "month": "7"
-        },
-        {
-          "year": "2024",
-          "month": "8"
-        },
-        {
-          "year": "2024",
-          "month": "9"
-        },
-        {
-          "year": "2024",
-          "month": "10"
-        },
-        {
-          "year": "2024",
-          "month": "11"
-        },
-        {
-          "year": "2024",
-          "month": "12"
-        },
-        {
-          "year": "2025",
-          "month": "1"
-        },
-        {
-          "year": "2025",
-          "month": "2"
-        },
-        {
-          "year": "2025",
-          "month": "3"
-        },
-        {
-          "year": "2025",
-          "month": "4"
-        },
-        {
-          "year": "2025",
-          "month": "5"
-        },
-        {
-          "year": "2025",
-          "month": "6"
-        },
-        {
-          "year": "2025",
-          "month": "7"
-        },
-        {
-          "year": "2025",
-          "month": "8"
-        },
-        {
-          "year": "2025",
-          "month": "9"
-        },
-        {
-          "year": "2025",
-          "month": "10"
-        },
-        {
-          "year": "2025",
-          "month": "11"
-        },
-        {
-          "year": "2025",
-          "month": "12"
-        }
-      ]
-    }    
+      "batchParameterSets" : [ {
+        "year" : "2022",
+        "month" : "1"
+      }, {
+        "year" : "2022",
+        "month" : "2"
+      }, {
+        "year" : "2022",
+        "month" : "3"
+      }, {
+        "year" : "2022",
+        "month" : "4"
+      }, {
+        "year" : "2022",
+        "month" : "5"
+      }, {
+        "year" : "2022",
+        "month" : "6"
+      }, {
+        "year" : "2022",
+        "month" : "7"
+      }, {
+        "year" : "2022",
+        "month" : "8"
+      }, {
+        "year" : "2022",
+        "month" : "9"
+      }, {
+        "year" : "2022",
+        "month" : "10"
+      }, {
+        "year" : "2022",
+        "month" : "11"
+      }, {
+        "year" : "2022",
+        "month" : "12"
+      }, {
+        "year" : "2023",
+        "month" : "1"
+      }, {
+        "year" : "2023",
+        "month" : "2"
+      }, {
+        "year" : "2023",
+        "month" : "3"
+      }, {
+        "year" : "2023",
+        "month" : "4"
+      }, {
+        "year" : "2023",
+        "month" : "5"
+      }, {
+        "year" : "2023",
+        "month" : "6"
+      }, {
+        "year" : "2023",
+        "month" : "7"
+      }, {
+        "year" : "2023",
+        "month" : "8"
+      }, {
+        "year" : "2023",
+        "month" : "9"
+      }, {
+        "year" : "2023",
+        "month" : "10"
+      }, {
+        "year" : "2023",
+        "month" : "11"
+      }, {
+        "year" : "2023",
+        "month" : "12"
+      }, {
+        "year" : "2024",
+        "month" : "1"
+      }, {
+        "year" : "2024",
+        "month" : "2"
+      }, {
+        "year" : "2024",
+        "month" : "3"
+      }, {
+        "year" : "2024",
+        "month" : "4"
+      }, {
+        "year" : "2024",
+        "month" : "5"
+      }, {
+        "year" : "2024",
+        "month" : "6"
+      }, {
+        "year" : "2024",
+        "month" : "7"
+      }, {
+        "year" : "2024",
+        "month" : "8"
+      }, {
+        "year" : "2024",
+        "month" : "9"
+      }, {
+        "year" : "2024",
+        "month" : "10"
+      }, {
+        "year" : "2024",
+        "month" : "11"
+      }, {
+        "year" : "2024",
+        "month" : "12"
+      }, {
+        "year" : "2025",
+        "month" : "1"
+      }, {
+        "year" : "2025",
+        "month" : "2"
+      }, {
+        "year" : "2025",
+        "month" : "3"
+      }, {
+        "year" : "2025",
+        "month" : "4"
+      }, {
+        "year" : "2025",
+        "month" : "5"
+      }, {
+        "year" : "2025",
+        "month" : "6"
+      }, {
+        "year" : "2025",
+        "month" : "7"
+      }, {
+        "year" : "2025",
+        "month" : "8"
+      }, {
+        "year" : "2025",
+        "month" : "9"
+      }, {
+        "year" : "2025",
+        "month" : "10"
+      }, {
+        "year" : "2025",
+        "month" : "11"
+      }, {
+        "year" : "2025",
+        "month" : "12"
+      } ]
+    }
   }, {
     "name" : "ecg-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg-mapping",
@@ -283,7 +288,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select count(*) as count, Pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300)\r\ngroup by Pseudo_id, EcgMetingId",
+        "preprocessSql" : "select count(*) as count, Pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300) AND Pseudo_id % 2 = 0\r\ngroup by Pseudo_id, EcgMetingId",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -291,6 +296,30 @@
         "path" : "Encounters.parquet",
         "contentType" : "parquet",
         "options" : { },
+        "preprocessSql" : "select Pseudo_id,PatientContactId,PrimaryICDcode,StartDate,EndDate from encounters;",
+        "sourceRef" : "amc-source"
+      }
+    }
+  }, {
+    "name" : "ecg-mapping-odd-patients",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "ECG.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select count(*) as count, Pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300) AND Pseudo_id % 2 = 1\r\ngroup by Pseudo_id, EcgMetingId",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "preprocessSql" : "select Pseudo_id,PatientContactId,PrimaryICDcode,StartDate,EndDate from encounters;",
         "sourceRef" : "amc-source"
       }
     }
