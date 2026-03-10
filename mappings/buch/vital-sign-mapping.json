@@ -12,6 +12,11 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "outlierFilter",
+      "language" : "text/fhirpath",
+      "expression" : "iif(LOINC = '2708-6' and value.toDecimal() > 100, false, true) and iif((LOINC = '8480-6' or LOINC = '8867-4' or LOINC = '8478-0' or LOINC = '8462-4') and value.toDecimal() > 300, false, true)"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
