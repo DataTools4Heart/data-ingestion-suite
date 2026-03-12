@@ -16,6 +16,12 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "description" : "For weight values, only entries less than or equal to 300 are retained.",
+    "precondition" : {
+      "name" : "isValid",
+      "language" : "text/fhirpath",
+      "expression" : "iif(MEASUREMENT_CONCEPT_ID = 4099154,iif(VALUE_AS_NUMBER <= 300,true,{}),true)"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",

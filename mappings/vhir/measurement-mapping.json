@@ -29,11 +29,11 @@
   },
   "variable" : [ ],
   "mapping" : [ {
-    "description" : "Mapping from OMOP Measurement to the DT4H LabResult profile",
+    "description" : "Mapping from OMOP Measurement to the DT4H LabResult profile.\n\nFor ferritin values, only entries less than or equal to 2000 are retained.",
     "precondition" : {
       "name" : "isLabResult",
       "language" : "text/fhirpath",
-      "expression" : "mpp:getConcept(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString()).exists() and mpp:convertAndReturnQuantity(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), VALUE_AS_NUMBER, (UNIT_CONCEPT_ID | '').first().toString()).exists()"
+      "expression" : "mpp:getConcept(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString()).exists() and mpp:convertAndReturnQuantity(%labCodeConversion, MEASUREMENT_CONCEPT_ID.toString(), VALUE_AS_NUMBER, (UNIT_CONCEPT_ID | '').first().toString()).exists() and iif(MEASUREMENT_CONCEPT_ID = 37397915,iif(VALUE_AS_NUMBER <= 2000,true,false),true)"
     },
     "expression" : {
       "name" : "labResults",
@@ -71,11 +71,11 @@
       }
     }
   }, {
-    "description" : "Mapping of OMOP measurement to DT4H Vital Sign profile",
+    "description" : "Mapping of OMOP measurement to DT4H Vital Sign profile.\n\nFor weight, systolic blood pressure and heart rate values, only entries less than or equal to 300 are retained.",
     "precondition" : {
       "name" : "isVitalSign",
       "language" : "text/fhirpath",
-      "expression" : "mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString()).exists()"
+      "expression" : "iif(MEASUREMENT_CONCEPT_ID = 3025315 or MEASUREMENT_CONCEPT_ID = 4239408 or MEASUREMENT_CONCEPT_ID = 3004249 or MEASUREMENT_CONCEPT_ID = 4152194,iif(VALUE_AS_NUMBER <= 300,mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString()),{}),mpp:getConcept(%vitalSignCodeConversion, MEASUREMENT_CONCEPT_ID.toString())).exists()"
     },
     "expression" : {
       "name" : "vitalSigns",

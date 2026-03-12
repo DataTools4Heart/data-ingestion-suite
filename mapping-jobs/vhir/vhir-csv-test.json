@@ -1,0 +1,83 @@
+{
+  "id" : "vhir-csv-test",
+  "name" : "vhir-csv-test",
+  "description" : "Test mappings against the CSV data.",
+  "sourceSettings" : {
+    "vhir-csv" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "vhir-csv",
+      "sourceUri" : "http://file-system-test-csv",
+      "dataFolderPath" : "test-data/vhir",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/echo-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "measurement.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "preprocessSql" : "select count(*) as count, PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE,\r\narray_agg(MEASUREMENT_CONCEPT_ID) as MEASUREMENT_CONCEPT_ID,\r\narray_agg(VALUE_AS_NUMBER) as VALUE_AS_NUMBER,\r\narray_agg(UNIT_CONCEPT_ID) as UNIT_CONCEPT_ID,\r\narray_agg(UNIT_SOURCE_VALUE) as UNIT_SOURCE_VALUE\r\nfrom omopMeasurement \r\nwhere VALUE_AS_NUMBER >=0 or (VALUE_AS_NUMBER <= -25 and VALUE_AS_NUMBER >= -70)\r\ngroup by PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE",
+        "sourceRef" : "vhir-csv"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visit.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      }
+    }
+  }, {
+    "name" : "measurement-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "measurement.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visit.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      }
+    }
+  }, {
+    "name" : "echo-weight-height-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/echo-weight-height-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "echo-weight-height.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visit.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

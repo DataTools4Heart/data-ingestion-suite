@@ -21,6 +21,7 @@
   },
   "variable" : [ ],
   "mapping" : [ {
+    "description" : "Maps the given inputs to LVEF values, assuming they fall within either the range [-70,-25] or [0,infinity ). Negative values are converted to positive using the absolute value function.\n",
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -58,7 +59,7 @@
             "valueQuantity" : {
               "system" : "http://unitsofmeasure.org",
               "code" : "%",
-              "value" : "{{VALUE_AS_NUMBER[%ind]}}",
+              "value" : "{{VALUE_AS_NUMBER[%ind].abs()}}",
               "unit" : "%"
             }
           }

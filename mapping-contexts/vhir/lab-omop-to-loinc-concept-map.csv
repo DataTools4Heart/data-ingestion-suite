@@ -35,7 +35,7 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 43055372,8554,71679-5,%,Eosinophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
 43055428,8713,72594-5,g/dL,Alpha 1 globulin/Protein.total [Pure mass fraction] in Serum or Plasma by Electrophoresis,$this
 1175183,8840,89872-6,mg/dL,Bilirubin.total [Moles/volume] in Arterial blood,$this
-3000963,,718-7,g/L,Hemoglobin [Mass/volume] in Blood,$this
+3000963,,718-7,g/L,Hemoglobin [Mass/volume] in Blood,"iif($this >= 750 and $this <= 2000,$this/10,$this)"
 3003396,8753,1925-7,mmol/L,Base excess in Arterial blood by calculation,$this
 3005491,8753,32133-1,mmol/L,Lactate [Moles/volume] in Plasma venous,$this
 3006407,8842,9811-1,ng/mL,Chromogranin A [Mass/volume] in Serum or Plasma,$this
@@ -67,3 +67,15 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 42868740,8840,70268-8,mg/dL,Cholesterol in pleural fluid/Cholesterol in serum,$this
 43055369,8554,71676-1,%,Neutrophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
 43055373,8554,71680-3,%,Basophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
+4013964,8840,2160-0,mg/dL,"Creatinine measurement, serum",$this
+4021154,8753,2951-2,mmol/L,"Sodium measurement, serum",$this
+4017497,8713,1751-7,g/L,"Albumin measurement, serum",$this * 10
+37208545,8725,89579-7,ng/mL,Cardiac troponin I mass concentration in serum by high sensitivity technique,$this/1000
+4189511,8845,33762-6,pg/mL,N terminal pro-brain natriuretic peptide level,$this
+37392563,8840,14927-8,mmol/L,Serum triglycerides level,$this * 0.01129
+37392561,8840,14647-2,mmol/L,Serum cholesterol level,$this * 0.02586
+4048092,8840,1988-5,mg/L,Serum C reactive protein level,$this * 10
+37392171,8753,2823-3,mmol/L,Serum potassium level,$this
+44808279,0,69405-9,ml/min/1.73m2,Estimated glomerular filtration rate using Chronic Kidney Disease Epidemiology Collaboration formula,$this
+40483736,8554,4548-4,%,Ordinal level of hemoglobin A1c,$this
+40480067,8713,718-7,g/L,Measurement of total hemoglobin concentration,"iif($this >= 75 and $this <= 200,$this,$this * 10)"
