@@ -33,6 +33,14 @@
           "start" : "{{admission_date}}",
           "end" : "{{discharge_date}}"
         },
+        "admission" : {
+          "admitSource" : {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/admit-source",
+              "code" : "emd"
+            } ]
+          }
+        },
         "identifier" : [ {
           "value" : "{{admission_id}}"
         } ],

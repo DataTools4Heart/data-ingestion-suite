@@ -30,6 +30,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', patient_id)}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', admission_id)}}",
+        "onsetDateTime" : "{{admission_date}}",
         "identifier" : [ {
           "value" : "{{patient_id & '-' & admission_id & '-' & icd_code & '-' & admission_date.toString()}}"
         } ],
