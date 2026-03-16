@@ -34,13 +34,13 @@
     "precondition" : {
       "name" : "deceased",
       "language" : "text/fhirpath",
-      "expression" : "deceasedDate.exists()"
+      "expression" : "deceasedDateTime.exists()"
     },
     "expression" : {
       "name" : "death",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
         },
@@ -61,16 +61,16 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{deceasedDate.utl:toFhirDate('dd-M-yyyy')}}",
+        "effectiveDateTime" : "{{deceasedDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
             "code" : "{{causeofDeath}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
         "identifier" : [ {
-          "value" : "{{studyId_0763.toString()}}"
+          "value" : "{{studyId_0919.toString()}}"
         } ]
       }
     }
