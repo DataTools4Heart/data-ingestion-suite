@@ -61,9 +61,118 @@
           "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
         },
         "dosageInstruction" : [ {
+          "timing" : {
+            "repeat" : {
+              "{{#repeatVar}}" : "{{iif(NRO_PER_DAY != 0, true, {})}}",
+              "{{?}}" : {
+                "frequency" : "{{NRO_PER_DAY}}",
+                "period" : "{{'1'.toDecimal()}}",
+                "periodUnit" : "d"
+              }
+            }
+          },
+          "asNeeded" : "{{? iif(IFNEEDED.exists(),IFNEEDED = 1 , {})}}",
           "doseAndRate" : [ {
             "doseQuantity" : {
               "value" : "{{? QUANTITY.toDecimal()}}"
+            }
+          } ]
+        } ]
+      }
+    }
+  }, {
+    "description" : "The first substance of the medication.",
+    "precondition" : {
+      "name" : "firstSubstanceExists",
+      "language" : "text/fhirpath",
+      "expression" : "iif(DRUG_ATC_1.exists() and DRUG_NAME_1.exists() and DOSAGE_1.exists() and DRUG_1_UOF.exists(),true)"
+    },
+    "expression" : {
+      "name" : "firstSubstance",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString() & 'first-substance')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc',DRUG_ATC_1 , DRUG_NAME_1)}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
+        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists($this != ''), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() ) }}",
+        "basedOn" : [ "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString())}}" ],
+        "status" : "completed",
+        "intent" : "order",
+        "effectiveDosePeriod" : {
+          "start" : "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
+          "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
+        },
+        "dosageInstruction" : [ {
+          "timing" : {
+            "repeat" : {
+              "{{#repeatVar}}" : "{{iif(NRO_PER_DAY != 0, true, {})}}",
+              "{{?}}" : {
+                "frequency" : "{{NRO_PER_DAY}}",
+                "period" : "{{'1'.toDecimal()}}",
+                "periodUnit" : "d"
+              }
+            }
+          },
+          "asNeeded" : "{{? iif(IFNEEDED.exists(),IFNEEDED = 1 , {})}}",
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{DOSAGE_1}}",
+              "unit" : "{{DRUG_1_UOF}}"
+            }
+          } ]
+        } ]
+      }
+    }
+  }, {
+    "description" : "The second substance of the medication.",
+    "precondition" : {
+      "name" : "secondSubstanceExists",
+      "language" : "text/fhirpath",
+      "expression" : "iif(DRUG_ATC_2.exists() and DRUG_NAME_2.exists() and DOSAGE_2.exists() and DRUG_2_UOF.exists(),true)"
+    },
+    "expression" : {
+      "name" : "secondSubstance",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString() & 'second-substance')}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc',DRUG_ATC_2, DRUG_NAME_2)}}"
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
+        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists($this != ''), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() ) }}",
+        "basedOn" : [ "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString())}}" ],
+        "status" : "completed",
+        "intent" : "order",
+        "effectiveDosePeriod" : {
+          "start" : "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
+          "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
+        },
+        "dosageInstruction" : [ {
+          "timing" : {
+            "repeat" : {
+              "{{#repeatVar}}" : "{{iif(NRO_PER_DAY != 0, true, {})}}",
+              "{{?}}" : {
+                "frequency" : "{{NRO_PER_DAY}}",
+                "period" : "{{'1'.toDecimal()}}",
+                "periodUnit" : "d"
+              }
+            }
+          },
+          "asNeeded" : "{{? iif(IFNEEDED.exists(),IFNEEDED = 1 , {})}}",
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{DOSAGE_2}}",
+              "unit" : "{{DRUG_2_UOF}}"
             }
           } ]
         } ]

@@ -228,6 +228,138 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
+    }, {
+      "id" : "OMOP-DrugExposure.FREQ_CLEAN",
+      "path" : "OMOP-DrugExposure.FREQ_CLEAN",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Human-readable frequency text",
+      "short" : "Frequency"
+    }, {
+      "id" : "OMOP-DrugExposure.NRO_PER_DAY",
+      "path" : "OMOP-DrugExposure.NRO_PER_DAY",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "Numeric frequency per day",
+      "short" : "Frequency per day"
+    }, {
+      "id" : "OMOP-DrugExposure.IFNEEDED",
+      "path" : "OMOP-DrugExposure.IFNEEDED",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ],
+      "definition" : "whether it’s taken regularly or only when required",
+      "short" : "If needed"
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_NAME",
+      "path" : "OMOP-DrugExposure.DRUG_NAME",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Drug name",
+      "short" : "Drug name"
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_NAME_1",
+      "path" : "OMOP-DrugExposure.DRUG_NAME_1",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Name of first substance",
+      "short" : "First Substance Name"
+    }, {
+      "id" : "OMOP-DrugExposure.DOSAGE_1",
+      "path" : "OMOP-DrugExposure.DOSAGE_1",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "Dosage of first substance",
+      "short" : "First Substance Dosage"
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_1_UOF",
+      "path" : "OMOP-DrugExposure.DRUG_1_UOF",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Unit of first substance",
+      "short" : "First Substance Unit"
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_ATC_1",
+      "path" : "OMOP-DrugExposure.DRUG_ATC_1",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "ATC code of first substance",
+      "short" : "First Substance ATC Code"
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_NAME_2",
+      "path" : "OMOP-DrugExposure.DRUG_NAME_2",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Name of second substance",
+      "short" : "Second Substance Name"
+    }, {
+      "id" : "OMOP-DrugExposure.DOSAGE_2",
+      "path" : "OMOP-DrugExposure.DOSAGE_2",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "definition" : "Dosage of second substance",
+      "short" : "Second Substance Dosage"
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_2_UOF",
+      "path" : "OMOP-DrugExposure.DRUG_2_UOF",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Unit of second substance",
+      "short" : "Second Substance Unit"
+    }, {
+      "id" : "OMOP-DrugExposure.DRUG_ATC_2",
+      "path" : "OMOP-DrugExposure.DRUG_ATC_2",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "ATC code of second substance",
+      "short" : "Second Substance ATC Code"
     } ]
   }
 }
