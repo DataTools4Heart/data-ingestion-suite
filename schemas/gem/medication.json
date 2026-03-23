@@ -24,26 +24,36 @@
     }, {
       "id" : "Medication.CODICE_SANITARIO",
       "path" : "Medication.CODICE_SANITARIO",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Patient id"
     }, {
-      "id" : "Medication.DATA",
-      "path" : "Medication.DATA",
-      "min" : 1,
+      "id" : "Medication.ATC",
+      "path" : "Medication.ATC",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "ATC code"
+    }, {
+      "id" : "Medication.date",
+      "path" : "Medication.date",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ],
-      "short" : "Administrated date"
+      "short" : "Prescription date"
     }, {
-      "id" : "Medication.TERMINE",
-      "path" : "Medication.TERMINE",
+      "id" : "Medication.medication_name",
+      "path" : "Medication.medication_name",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -52,95 +62,85 @@
       } ],
       "short" : "Medication term/name"
     }, {
-      "id" : "Medication.ATC",
-      "path" : "Medication.ATC",
-      "min" : 1,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "ATC code"
-    }, {
-      "id" : "Medication.DESC_ATC_2_LIVELLO",
-      "path" : "Medication.DESC_ATC_2_LIVELLO",
+      "id" : "Medication.medication_component",
+      "path" : "Medication.medication_component",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ATC description 2 LEVEL"
+      "short" : "Medication component"
     }, {
-      "id" : "Medication.DESC_ATC_3_LIVELLO",
-      "path" : "Medication.DESC_ATC_3_LIVELLO",
+      "id" : "Medication.periodUnit",
+      "path" : "Medication.periodUnit",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ATC description 3 LEVEL"
+      "short" : "d"
     }, {
-      "id" : "Medication.DESC_ATC_4_LIVELLO",
-      "path" : "Medication.DESC_ATC_4_LIVELLO",
+      "id" : "Medication.frequency",
+      "path" : "Medication.frequency",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "1.0, 2.0"
+    }, {
+      "id" : "Medication.dose",
+      "path" : "Medication.dose",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Dose quantity, e.g. 1.25 , 100.0"
+    }, {
+      "id" : "Medication.medication_combination",
+      "path" : "Medication.medication_combination",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "boolean",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+      } ],
+      "short" : "Whether it's combined drug or not"
+    }, {
+      "id" : "Medication.medication_id",
+      "path" : "Medication.medication_id",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ATC description 4 LEVEL"
+      "short" : "Medication group it belongs"
     }, {
-      "id" : "Medication.DESC_ATC_5_LIVELLO",
-      "path" : "Medication.DESC_ATC_5_LIVELLO",
+      "id" : "Medication.period",
+      "path" : "Medication.period",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Period quantity"
+    }, {
+      "id" : "Medication.doseUnit",
+      "path" : "Medication.doseUnit",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "ATC description 5 LEVEL"
-    }, {
-      "id" : "Medication.ASSOCIAZIONE_NEW",
-      "path" : "Medication.ASSOCIAZIONE_NEW",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "New association"
-    }, {
-      "id" : "Medication.CLASSE_RACCOMANDAZIONE",
-      "path" : "Medication.CLASSE_RACCOMANDAZIONE",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Class recommendation"
-    }, {
-      "id" : "Medication.FOUR_PILLARS_NEW",
-      "path" : "Medication.FOUR_PILLARS_NEW",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Four pillars new"
-    }, {
-      "id" : "Medication.DIURETICO_TIAZIDICO",
-      "path" : "Medication.DIURETICO_TIAZIDICO",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Thiadium diuretic"
+      "short" : "Dosage unit e.g. mg"
     } ]
   }
 }

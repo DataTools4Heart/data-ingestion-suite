@@ -17,40 +17,53 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.DATA.toDate() and DATA_OUT.toDate() >= %context.DATA.toDate()).first()"
+    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.date.toDate() and DATA_OUT.toDate() >= %context.date.toDate()).first()"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & DATA.toString() & TERMINE & ATC)}}",
+        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & date.toString() & medication_name & ATC)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
-        "resourceType" : "MedicationAdministration",
+        "resourceType" : "MedicationRequest",
         "medication" : {
           "concept" : {
             "coding" : [ {
               "system" : "http://www.whocc.no/atc",
               "code" : "{{ATC}}",
-              "display" : "{{? TERMINE}}",
+              "display" : "{{? medication_name}}",
               "@sliceName" : "atcCode"
             } ],
-            "text" : "{{ DESC_ATC_2_LIVELLO & ' - ' & DESC_ATC_3_LIVELLO & ' - ' & DESC_ATC_4_LIVELLO & ' - ' & DESC_ATC_5_LIVELLO}}"
+            "text" : "{{ medication_name & ' - ' & medication_component}}"
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
-        "occurenceDateTime" : "{{DATA}}",
-        "dosage" : {
-          "text" : "No data"
-        },
         "identifier" : [ {
-          "value" : "{{CODICE_SANITARIO.toString() & '-' & DATA.toString() & '-' & TERMINE & '-' & ATC}}"
+          "value" : "{{CODICE_SANITARIO.toString() & '-' & date.toString() & '-' & medication_name & '-' & ATC}}"
         } ],
-        "status" : "completed"
+        "status" : "completed",
+        "intent" : "order",
+        "authoredOn" : "{{date}}",
+        "dosageInstruction" : [ {
+          "timing" : {
+            "repeat" : {
+              "frequency" : "{{? frequency}}",
+              "period" : "{{? period}}",
+              "periodUnit" : "{{? periodUnit}}"
+            }
+          },
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{? dose}}",
+              "unit" : "{{? doseUnit}}"
+            }
+          } ]
+        } ]
       }
     }
   } ]
