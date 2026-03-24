@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "rs-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/rs-data",
-      "dataFolderPath" : "test-data/rs/sample-100/nbhw",
+      "dataFolderPath" : "test-data/rs/nbhw",
       "asStream" : false
     }
   },
@@ -18,8 +18,16 @@
   },
   "mappings" : [ {
     "name" : "cause-of-death-mapping",
-    "mappingRef" : "https://some-url/cause-of-death-mapping",
-    "sourceBinding" : { }
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/cause-of-death-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "death.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
   }, {
     "name" : "encounter-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/encounter-mapping",
@@ -39,6 +47,20 @@
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "dispenseddrugs.txt",
+        "contentType" : "tsv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/procedure-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Procedure.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
