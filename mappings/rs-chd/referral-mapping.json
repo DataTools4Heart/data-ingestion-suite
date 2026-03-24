@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/rs-chd/referral-mapping",
   "name" : "referral-mapping",
   "title" : "Referral table mapping",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/Referral",
@@ -22,7 +22,7 @@
         },
         "resourceType" : "ServiceRequest",
         "intent" : "order",
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "authoredOn" : "{{ReferralDate.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "requester" : {
           "display" : "{{ReferringCareUnitAddress}}"

@@ -1,7 +1,7 @@
 {
   "id" : "procedure",
   "resourceType" : "StructureDefinition",
-  "url" : "https://datatools4heart.eu/fhir/schemas/rs-chd/Procedure",
+  "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Procedure",
   "version" : "latest",
   "name" : "Procedure",
   "status" : "draft",
@@ -23,7 +23,7 @@
     }, {
       "id" : "Procedure.identifier",
       "path" : "Procedure.identifier",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
@@ -32,7 +32,7 @@
     }, {
       "id" : "Procedure.subject",
       "path" : "Procedure.subject",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",

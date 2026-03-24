@@ -23,7 +23,6 @@
         "resourceType" : "Patient",
         "gender" : "{{gender}}",
         "birthDate" : "{{birthDate.utl:toFhirDate('yyyy-MM')}}",
-        "deceasedDateTime" : "{{? deceasedDateTime.utl:toFhirDate('yyyy-MM')}}",
         "identifier" : [ {
           "value" : "{{identifier}}"
         } ]

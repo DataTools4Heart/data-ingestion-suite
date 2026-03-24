@@ -1,0 +1,59 @@
+{
+  "id" : "cause-of-death-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/cause-of-death-mapping",
+  "name" : "cause-of-death-mapping",
+  "title" : "Cause of Death mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-nbhw/Death",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "dateExists",
+      "language" : "text/fhirpath",
+      "expression" : "effectiveDate.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', subject.toString() & value)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "79378-6",
+            "display" : "Cause of death",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{effectiveDate}}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "{{iif(value.length() > 3, value.substring(0,3) & '.' & value.substring(3), value)}}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "identifier" : [ {
+          "value" : "{{subject.toString() &  '-' & value}}"
+        } ]
+      }
+    }
+  } ]
+}

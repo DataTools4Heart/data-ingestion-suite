@@ -1,0 +1,43 @@
+{
+  "id" : "medication-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/medication-mapping",
+  "name" : "medication-mapping",
+  "title" : "Medication mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-nbhw/MedicationRequest",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', subject.toString() & code & Date.toString() & dosage)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{code}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "identifier" : [ {
+          "value" : "{{subject.toString() & '-' & code & '-' & Date.toString() & '-' & dosage}}"
+        } ],
+        "status" : "completed",
+        "intent" : "order",
+        "authoredOn" : "{{Date}}"
+      }
+    }
+  } ]
+}

@@ -54,19 +54,10 @@
           "start" : "{{date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}"
         },
         "dosageInstruction" : [ {
-          "timing" : {
-            "repeat" : {
-              "frequency" : "{{? iif(dosage > 0, dosage)}}",
-              "period" : "{{1}}",
-              "periodUnit" : "d"
-            }
-          },
+          "text" : "{{(iif(dosage.exists(), 'Dosage: ' & dosage.toString()) | iif(dosageStrength.exists(), 'Strength: ' & dosageStrength.toString()) | iif(dosageUnit.exists(), 'Unit: ' & dosageUnit)).utl:mkString(' | ')}}",
           "doseAndRate" : [ {
             "doseQuantity" : {
-              "system" : "http://unitsofmeasure.org",
-              "code" : "{{dosageUnit}}",
-              "value" : "{{? dosageStrength}}",
-              "unit" : "{{dosageUnit}}"
+              "value" : "{{? dosage}}"
             }
           } ]
         } ]

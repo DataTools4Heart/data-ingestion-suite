@@ -1,0 +1,55 @@
+{
+  "id" : "rs-nbhw",
+  "name" : "rs-nbhw",
+  "description" : "",
+  "sourceSettings" : {
+    "rs-source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "rs-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/rs-data",
+      "dataFolderPath" : "test-data/rs/sample-100/nbhw",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://onfhir:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [ {
+    "name" : "cause-of-death-mapping",
+    "mappingRef" : "https://some-url/cause-of-death-mapping",
+    "sourceBinding" : { }
+  }, {
+    "name" : "encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/encounter-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VisitHospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "medication-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/medication-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "dispenseddrugs.txt",
+        "contentType" : "tsv",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "rs-source"
+      }
+    }
+  } ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}

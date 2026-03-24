@@ -1,0 +1,63 @@
+{
+  "id" : "procedure-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/procedure-mapping",
+  "name" : "procedure-mapping",
+  "title" : "Procedure mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Procedure",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "procedureCodes" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/rs-sodersjukhuset/procedure-codes.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "icd10PcsCodes",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%procedureCodes, code)"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "icd10PcsExist",
+      "language" : "text/fhirpath",
+      "expression" : "%icd10PcsCodes.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Procedure', identifier)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+        },
+        "resourceType" : "Procedure",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "{{category}}"
+          } ]
+        } ],
+        "code" : {
+          "coding" : {
+            "{{#codingVar}}" : "{{%icd10PcsCodes}}",
+            "{{*}}" : {
+              "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+              "code" : "{{%codingVar.code}}",
+              "display" : "{{%codingVar.display}}"
+            }
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
+        "occurrenceDateTime" : "{{occurenceDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
+        "identifier" : [ {
+          "value" : "{{identifier}}"
+        } ],
+        "status" : "completed"
+      }
+    }
+  } ]
+}

@@ -14,7 +14,7 @@
     "joinOn" : [ "subject" ]
   } ],
   "context" : {
-    "vitalSignUnits" : {
+    "labUnits" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/rs-chd/lab-units.csv"
     }
@@ -57,12 +57,12 @@
         "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
-          "code" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
-          "unit" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}",
+          "code" : "{{mpp:getConcept(%labUnits, code, 'unit')}}",
+          "unit" : "{{mpp:getConcept(%labUnits, code, 'unit')}}",
           "value" : "{{value}}"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? iif(%relatedEncounter.identifier.exists(), mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier) )}}",
         "identifier" : [ {
           "value" : "{{identifier}}"
         } ]

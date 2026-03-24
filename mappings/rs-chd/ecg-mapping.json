@@ -63,11 +63,12 @@
                   "system" : "http://loinc.org"
                 } ]
               }
-            }
+            },
+            "valueBoolean" : "{{? iif(component[%ind] = '164931005', true) }}"
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', 'chd' & subject.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? iif(%relatedEncounter.identifier.exists(), mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier) )}}",
         "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "identifier" : [ {
           "value" : "{{subject.toString() & effectiveDateTime.toString()}}"

@@ -1,0 +1,75 @@
+{
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/rs-nbhw/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Encounter mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/rs-nbhw/Encounter",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Encounter', subject.toString() & admissionDate.toString() & code & position)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter",
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "{{iif(inpatient = 1, 'IMP', 'AMB')}}"
+          } ]
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "actualPeriod" : {
+          "start" : "{{admissionDate}}",
+          "end" : "{{dischargeDate}}"
+        },
+        "identifier" : [ {
+          "value" : "{{subject.toString() & '-' & admissionDate.toString() & '-' & code & '-' & position}}"
+        } ],
+        "status" : "completed"
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "condition",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Condition', 'nbhw' & subject.toString() & admissionDate.toString() & code.toString() & position)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
+        "code" : {
+          "coding" : [ {
+            "code" : "{{iif(code.length() > 3, code.substring(0,3) & '.' & code.substring(3), code)}}",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', subject.toString() & admissionDate.toString() & code & position)}}",
+        "identifier" : [ {
+          "value" : "{{subject.toString() & '-' & admissionDate.toString() & '-' & code.toString() & '-' & position}}"
+        } ],
+        "clinicalStatus" : {
+          "coding" : [ {
+            "code" : "active",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical"
+          } ]
+        },
+        "category" : [ {
+          "coding" : [ "{{iif(position.startsWith('primary'), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'encounter-diagnosis', 'Encounter Diagnosis'), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'problem-list-item', 'Problem List Item'))}}" ]
+        } ]
+      }
+    }
+  } ]
+}

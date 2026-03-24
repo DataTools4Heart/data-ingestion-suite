@@ -192,6 +192,30 @@
         "sourceRef" : "rs-source"
       }
     }
+  }, {
+    "name" : "medication-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/medication-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MED_ORDERS_DRUGS.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/procedure-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Procedure.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,

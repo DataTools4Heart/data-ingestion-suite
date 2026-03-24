@@ -175,7 +175,7 @@
         "path" : "ECG.txt",
         "contentType" : "tsv",
         "options" : { },
-        "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(identifier) as identifier,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\ngroup by subject, effectiveDateTime",
+        "preprocessSql" : "select count(*) as count, subject, effectiveDateTime,\r\narray_agg(identifier) as identifier,\r\narray_agg(category) as category,\r\narray_agg(code) as code,\r\narray_agg(component) as component,\r\narray_agg(value) as value\r\nfrom source \r\nwhere value IS NOT NULL\r\ngroup by subject, effectiveDateTime",
         "sourceRef" : "rs-source"
       },
       "encounters" : {
@@ -200,6 +200,18 @@
       "encounters" : {
         "jsonClass" : "FileSystemSource",
         "path" : "visits.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/procedure-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Procedure.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"

@@ -23,15 +23,24 @@
     }, {
       "id" : "MedicationRequest.subject",
       "path" : "MedicationRequest.subject",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "MedicationRequest.TimestampSaved",
-      "path" : "MedicationRequest.TimestampSaved",
+      "id" : "MedicationRequest.DocumentID",
+      "path" : "MedicationRequest.DocumentID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.SignedDatetime",
+      "path" : "MedicationRequest.SignedDatetime",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -39,8 +48,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "MedicationRequest.TimestampRead_pr",
-      "path" : "MedicationRequest.TimestampRead_pr",
+      "id" : "MedicationRequest.TimestampCreated",
+      "path" : "MedicationRequest.TimestampCreated",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -48,8 +57,71 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
       } ]
     }, {
-      "id" : "MedicationRequest.Dosage",
-      "path" : "MedicationRequest.Dosage",
+      "id" : "MedicationRequest.Version",
+      "path" : "MedicationRequest.Version",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.Row",
+      "path" : "MedicationRequest.Row",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.CareUnitID",
+      "path" : "MedicationRequest.CareUnitID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.CareUnitName",
+      "path" : "MedicationRequest.CareUnitName",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.PreparationText",
+      "path" : "MedicationRequest.PreparationText",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.DrugCode",
+      "path" : "MedicationRequest.DrugCode",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.SpecialityID",
+      "path" : "MedicationRequest.SpecialityID",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.DoseForm",
+      "path" : "MedicationRequest.DoseForm",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -75,8 +147,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "MedicationRequest.DoseForm",
-      "path" : "MedicationRequest.DoseForm",
+      "id" : "MedicationRequest.UnitCode",
+      "path" : "MedicationRequest.UnitCode",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -84,31 +156,58 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "MedicationRequest.PackageDescription",
-      "path" : "MedicationRequest.PackageDescription",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "MedicationRequest.MaxNumberOfDispensations",
-      "path" : "MedicationRequest.MaxNumberOfDispensations",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "MedicationRequest.NoOfPackages",
-      "path" : "MedicationRequest.NoOfPackages",
+      "id" : "MedicationRequest.DosageUnitID",
+      "path" : "MedicationRequest.DosageUnitID",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.StdSolutionAmount",
+      "path" : "MedicationRequest.StdSolutionAmount",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.ProductType",
+      "path" : "MedicationRequest.ProductType",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.InternalArticleStrength",
+      "path" : "MedicationRequest.InternalArticleStrength",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.ATC",
+      "path" : "MedicationRequest.ATC",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.IsApproved",
+      "path" : "MedicationRequest.IsApproved",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "boolean",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
       } ]
     } ]
   }
