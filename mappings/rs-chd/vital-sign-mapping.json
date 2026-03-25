@@ -29,7 +29,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', 'chd' & subject.toString() & code.toString() & effectiveDateTime.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', 'chd' & subject.toString() & code.toString() & effectiveDateTime.toString() & value.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -58,7 +58,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "encounter" : "{{? iif(%relatedEncounter.identifier.exists(), mpp:createFhirReferenceWithHashedId('Encounter', 'chd' & %relatedEncounter.identifier) )}}",
         "identifier" : [ {
-          "value" : "{{subject.toString() & '-' & code.toString() & '-' & effectiveDateTime.toString()}}"
+          "value" : "{{subject.toString() & '-' & code.toString() & '-' & effectiveDateTime.toString() & '-' & value.toString()}}"
         } ],
         "status" : "final"
       }

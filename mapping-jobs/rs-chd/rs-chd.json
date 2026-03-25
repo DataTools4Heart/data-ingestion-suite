@@ -76,7 +76,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Echo.txt",
         "contentType" : "tsv",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "rs-source"
       },
       "encounters" : {
@@ -200,7 +202,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "MED_ORDERS_DRUGS.txt",
         "contentType" : "tsv",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "rs-source"
       }
     }
