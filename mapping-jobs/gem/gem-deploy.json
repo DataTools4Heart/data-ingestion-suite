@@ -482,7 +482,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "farmaci.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "gem-source"
       },
       "encounters" : {

@@ -24,7 +24,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & date.toString() & medication_name & ATC)}}",
+        "id" : "{{mpp:getHashedId('Medication', CODICE_SANITARIO.toString() & date.toString() & medication_name & medication_component & ATC)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
@@ -44,7 +44,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', CODICE_SANITARIO.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "identifier" : [ {
-          "value" : "{{CODICE_SANITARIO.toString() & '-' & date.toString() & '-' & medication_name & '-' & ATC}}"
+          "value" : "{{CODICE_SANITARIO.toString() & '-' & date.toString() & '-' & medication_name & '-' & medication_component & '-' & ATC}}"
         } ],
         "status" : "completed",
         "intent" : "order",
