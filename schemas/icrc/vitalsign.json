@@ -73,7 +73,7 @@
     }, {
       "id" : "VitalSign.weight",
       "path" : "VitalSign.weight",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
@@ -93,7 +93,7 @@
     }, {
       "id" : "VitalSign.systolic",
       "path" : "VitalSign.systolic",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
@@ -103,7 +103,7 @@
     }, {
       "id" : "VitalSign.diastolic",
       "path" : "VitalSign.diastolic",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
@@ -113,7 +113,7 @@
     }, {
       "id" : "VitalSign.heart_rate",
       "path" : "VitalSign.heart_rate",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
@@ -153,7 +153,7 @@
     }, {
       "id" : "VitalSign.nyha",
       "path" : "VitalSign.nyha",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",

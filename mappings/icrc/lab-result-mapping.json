@@ -57,7 +57,7 @@
             "display" : "{{lab_name_his}}"
           } ]
         },
-        "effectiveDateTime" : "{{effective_date}}",
+        "effectiveDateTime" : "{{effective_date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03' | 'yyyy-MM-dd HH:mm:ss+02')}}",
         "valueQuantity" : "{{mpp:convertAndReturnQuantity(%labResultCodes, individual_lab_id, value_result, value_unit).nav:orElse(utl:createFhirQuantity(value_result, value_unit, 'http://unitsofmeasure.org', code_loinc))}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",

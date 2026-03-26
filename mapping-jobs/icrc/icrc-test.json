@@ -176,6 +176,28 @@
         "sourceRef" : "icrc-data"
       }
     }
+  }, {
+    "name" : "right-heart-catheterization-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/right-heart-catheterization-mapping",
+    "sourceBinding" : {
+      "rhc" : {
+        "jsonClass" : "SqlSource",
+        "query" : "select rhc.*,e.id_patient, e.id as encounterId\r\nfrom catheterization.right_heart_catheterization rhc\r\njoin patient.observation o on rhc.id_observation = o.id \r\njoin patient.encounter e on e.id = o.id_encounter",
+        "options" : { },
+        "sourceRef" : "icrc-data"
+      }
+    }
+  }, {
+    "name" : "medication-request-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-request-mapping",
+    "sourceBinding" : {
+      "medReq" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT \r\n    e.id_patient,\r\n    e.end_date AS date,\r\n    mr.id_encounter,\r\n    mr.atc_complex,\r\n    COUNT(*) AS count,\r\n    ARRAY_AGG(mr.id) AS ids,\r\n    ARRAY_AGG(mr.atc) AS atcs,\r\n    ARRAY_AGG(mr.period_unit) AS period_units,\r\n    ARRAY_AGG(mr.period) AS periods,\r\n    ARRAY_AGG(mr.frequency) AS frequencies,\r\n    ARRAY_AGG(mr.status) AS statuses,\r\n    ARRAY_AGG(mr.code) AS codes,\r\n    ARRAY_AGG(mr.drug_name) AS drug_names,\r\n    ARRAY_AGG(mr.dose_unit) AS dose_units,\r\n    ARRAY_AGG(mr.dose_value) AS dose_values\r\nFROM patient.medication_request mr\r\nJOIN patient.encounter e \r\n    ON e.id = mr.id_encounter\r\nGROUP BY e.id_patient, e.end_date, mr.id_encounter, mr.atc_complex",
+        "options" : { },
+        "sourceRef" : "icrc-data"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,

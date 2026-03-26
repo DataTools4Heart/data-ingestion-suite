@@ -1,0 +1,163 @@
+{
+  "id" : "medicationrequest",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/icrc/MedicationRequest",
+  "version" : "latest",
+  "name" : "MedicationRequest",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "MedicationRequest",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "MedicationRequest",
+      "path" : "MedicationRequest",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "MedicationRequest.id_patient",
+      "path" : "MedicationRequest.id_patient",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.date",
+      "path" : "MedicationRequest.date",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
+      } ],
+      "definition" : "This is the end date of the related encounter."
+    }, {
+      "id" : "MedicationRequest.id_encounter",
+      "path" : "MedicationRequest.id_encounter",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.atc_complex",
+      "path" : "MedicationRequest.atc_complex",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.count",
+      "path" : "MedicationRequest.count",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer64",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer64" ]
+      } ],
+      "definition" : "Number of substances. If the drug is not a complex drug, it should be 1."
+    }, {
+      "id" : "MedicationRequest.ids",
+      "path" : "MedicationRequest.ids",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Identifier of the individual drugs."
+    }, {
+      "id" : "MedicationRequest.atcs",
+      "path" : "MedicationRequest.atcs",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.period_units",
+      "path" : "MedicationRequest.period_units",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.periods",
+      "path" : "MedicationRequest.periods",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.frequencies",
+      "path" : "MedicationRequest.frequencies",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.statuses",
+      "path" : "MedicationRequest.statuses",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.codes",
+      "path" : "MedicationRequest.codes",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.drug_names",
+      "path" : "MedicationRequest.drug_names",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.dose_units",
+      "path" : "MedicationRequest.dose_units",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.dose_values",
+      "path" : "MedicationRequest.dose_values",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

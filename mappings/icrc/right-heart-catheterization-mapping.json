@@ -1,0 +1,256 @@
+{
+  "id": "right-heart-catheterization-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/right-heart-catheterization-mapping",
+  "name": "right-heart-catheterization-mapping",
+  "title": "Right heart catheterization mapping",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "rhc",
+      "url": "https://datatools4heart.eu/fhir/schemas/icrc/RightHeartCatheterization",
+      "joinOn": []
+    }
+  ],
+  "context": {},
+  "variable": [],
+  "mapping": [
+    {
+      "expression": {
+        "name": "rhc",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Observation', id & 'Right heart catheterization')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-RightHeartCatheterization"
+            ]
+          },
+          "resourceType": "Observation",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "procedure",
+                  "display": "Procedure"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "78930-5",
+                "display": "Right heart catheterization performed",
+                "@sliceName": "loincCode"
+              }
+            ]
+          },
+          "effectiveDateTime": "{{date_exec.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03' | 'yyyy-MM-dd HH:mm:ss+02')}}",
+          "component": [
+            {
+              "{{#componentVar}}": "{{iif(pcwp.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '75994-4', 'Pulmonary artery wedge pressure (PCWP)')}}",
+                "valueQuantity": {
+                  "value": "{{pcwp}}",
+                  "unit": "mmHg"
+                },
+                "@sliceName": "rhcParameter"
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(mpap.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8414-5', 'Pulmonary artery Mean blood pressure (mPAP)')}}",
+                "valueQuantity": {
+                  "value": "{{mpap}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(pasp.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8440-0', 'Pulmonary artery Systolic blood pressure (PASP)')}}",
+                "valueQuantity": {
+                  "value": "{{pasp}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(padp.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8385-7', 'Pulmonary artery Diastolic blood pressure (PADP)')}}",
+                "valueQuantity": {
+                  "value": "{{padp}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(rap.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '60996-6', 'Right atrial pressure (RAP)')}}",
+                "valueQuantity": {
+                  "value": "{{rap}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(cvp.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '60985-9', 'Central venous pressure (CVP)')}}",
+                "valueQuantity": {
+                  "value": "{{cvp}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(pvr.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8828-6', 'Pulmonary vascular resistance (PVR)')}}",
+                "valueQuantity": {
+                  "value": "{{pvr}}",
+                  "unit": "dyn·sec/cm5"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(svr.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8831-0', 'Systemic vascular resistance (SVR)')}}",
+                "valueQuantity": {
+                  "value": "{{svr}}",
+                  "unit": "dyn·sec/cm5"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(tpg.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '95933-8', 'Transpulmonary pressure gradient (TPG)')}}",
+                "valueQuantity": {
+                  "value": "{{tpg}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(co.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8741-1', 'Cardiac output (CO)')}}",
+                "valueQuantity": {
+                  "value": "{{co}}",
+                  "unit": "L/min"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(sv.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '20562-5', 'Left ventricular Stroke volume (SV)')}}",
+                "valueQuantity": {
+                  "value": "{{sv}}",
+                  "unit": "mL"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(rvsp.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8432-7', 'Right ventricular Intrachamber systolic pressure (RVSP)')}}",
+                "valueQuantity": {
+                  "value": "{{rvsp}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(rvdp.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('http://loinc.org', '8377-4', 'Right ventricular Intrachamber diastolic pressure (RVDP)')}}",
+                "valueQuantity": {
+                  "value": "{{rvdp}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(dpg.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('https://datatools4heart.eu/fhir/CodeSystem/rhc-parameter', 'DPG', 'Diastolic pulmonary gradient')}}",
+                "valueQuantity": {
+                  "value": "{{dpg}}",
+                  "unit": "mmHg"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(papi.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('https://datatools4heart.eu/fhir/CodeSystem/rhc-parameter', 'PAPi', 'Pulmonary artery pulsatility index (PAPi)')}}",
+                "valueQuantity": {
+                  "value": "{{papi}}",
+                  "unit": "%"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(coi.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('https://datatools4heart.eu/fhir/CodeSystem/rhc-parameter', 'COi', 'Cardiac output index (COi)')}}",
+                "valueQuantity": {
+                  "value": "{{coi}}",
+                  "unit": "L/min/m²"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(svi.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('https://datatools4heart.eu/fhir/CodeSystem/rhc-parameter', 'SVi', 'Left ventricular Stroke volume index (SVi)')}}",
+                "valueQuantity": {
+                  "value": "{{svi}}",
+                  "unit": "mL/m²"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(pvri.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('https://datatools4heart.eu/fhir/CodeSystem/rhc-parameter', 'PVRi', 'Pulmonary vascular resistance index (PVRi)')}}",
+                "valueQuantity": {
+                  "value": "{{pvri}}",
+                  "unit": "mmHg·min·m²/L"
+                }
+              }
+            },
+            {
+              "{{#componentVar}}": "{{iif(svri.exists(),true)}}",
+              "{{?}}": {
+                "code": "{{utl:createFhirCodeableConcept('https://datatools4heart.eu/fhir/CodeSystem/rhc-parameter', 'SVRi', 'Systemic vascular resistance index (SVRi)')}}",
+                "valueQuantity": {
+                  "value": "{{svri}}",
+                  "unit": "mmHg·min·m²/L"
+                }
+              }
+            }
+          ],
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', encounterid.toString())}}",
+          "status": "final",
+          "note": [
+            {
+              "text": "{{res}}"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

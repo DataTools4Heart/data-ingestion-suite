@@ -1,0 +1,108 @@
+{
+  "id" : "medication-request-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-request-mapping",
+  "name" : "medication-request-mapping",
+  "title" : "Medication Request mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "medReq",
+    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/MedicationRequest",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "complexDrugId",
+    "language" : "text/fhirpath",
+    "expression" : "iif(count.toInteger() > 1,mpp:getHashedId('MedicationRequest', id_patient.toString() & id_encounter.toString() & atc_complex))"
+  } ],
+  "mapping" : [ {
+    "description" : "The input has \"status\" but I could not find its original values in the database. I'll ask and update the mapping accordingly.",
+    "expression" : {
+      "name" : "medReq",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#index}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+        "{{*}}" : {
+          "{{#rootVar1}}" : "{{iif(atcs[%index] != '',true,{})}}",
+          "{{?}}" : {
+            "id" : "{{mpp:getHashedId('MedicationRequest', ids[%index])}}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+            },
+            "resourceType" : "MedicationRequest",
+            "medication" : {
+              "concept" : {
+                "coding" : [ {
+                  "system" : "http://www.whocc.no/atc",
+                  "code" : "{{atcs[%index]}}",
+                  "@sliceName" : "atcCode"
+                } ],
+                "text" : "{{drug_names[%index]}}"
+              }
+            },
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient)}}",
+            "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter)}}",
+            "basedOn" : {
+              "{{#basedOnVar}}" : "{{%complexDrugId}}",
+              "{{*}}" : "{{utl:createFhirReference('MedicationRequest', %complexDrugId)}}"
+            },
+            "status" : "active",
+            "intent" : "order",
+            "effectiveDosePeriod" : {
+              "start" : "{{date}}"
+            },
+            "dosageInstruction" : [ {
+              "timing" : {
+                "repeat" : {
+                  "frequency" : "{{? iif(frequencies[%index].matches('.*\\\\.0') and frequencies[%index] != '0.0',frequencies[%index].toDecimal(),{})}}",
+                  "period" : "{{periods[%index].toDecimal()}}",
+                  "periodUnit" : "{{period_units[%index]}}"
+                }
+              },
+              "doseAndRate" : [ {
+                "doseQuantity" : {
+                  "value" : "{{dose_values[%index].toDecimal()}}",
+                  "unit" : "{{dose_units[%index]}}"
+                }
+              } ]
+            } ]
+          }
+        }
+      }
+    }
+  }, {
+    "description" : "Mapping of the complex ATC drug. A drug is complex if the substance 'count' is higher than 1.",
+    "precondition" : {
+      "name" : "isComplex",
+      "language" : "text/fhirpath",
+      "expression" : "%complexDrugId.exists()"
+    },
+    "expression" : {
+      "name" : "complexDrug",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{%complexDrugId}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{atc_complex}}",
+              "@sliceName" : "atcCode"
+            } ]
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient)}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter)}}",
+        "status" : "active",
+        "intent" : "order",
+        "effectiveDosePeriod" : {
+          "start" : "{{date}}"
+        }
+      }
+    }
+  } ]
+}

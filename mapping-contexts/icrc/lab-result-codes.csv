@@ -37,3 +37,4 @@ source_code,source_unit,target_system,target_display,target_code,target_unit,con
 2044,g/d,http://loinc.org,Urea nitrogen [Moles/volume] in Serum or Plasma,14937-7,mmol/L,
 2221,mmol/l,http://loinc.org,Urea [Mass/volume] in Blood,20977-5,mg/L,$this * 60.06
 4282,ng/l,http://loinc.org,Troponin T.cardiac [Mass/volume] in Serum or Plasma,6598-7,ng/L,$this
+1499,mmol/l,http://loinc.org,Urea [Mass/volume] in Serum or Plasma,22664-7,mmol/L,$this
