@@ -148,7 +148,8 @@
                   ]
                 },
                 "valueBoolean": "{{st_elevation}}"
-              }
+              },
+              "@sliceName": "stElevation"
             },
             {
               "{{#componentAvailable}}": "{{ischema_sign}}",
@@ -163,7 +164,33 @@
                   ]
                 },
                 "valueBoolean": "{{ischema_sign}}"
-              }
+              },
+              "@sliceName": "ischemiaWithoutStElevation"
+            },
+            {
+              "{{#componentVar}}": "{{rhythm_types}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "code": "76281-5",
+                      "system": "http://loinc.org",
+                      "display": "Type of rhythm",
+                      "@sliceName": "loincCode"
+                    }
+                  ]
+                },
+                "valueCodeableConcept": {
+                  "coding": {
+                    "{{#rhythm}}": "{{rhythm_types}}",
+                    "{{*}}": {
+                      "code": "{{%rhythm}}",
+                      "system": "http://loinc.org"
+                    }
+                  }
+                }
+              },
+              "@sliceName": "typeOfRhythm"
             }
           ],
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",

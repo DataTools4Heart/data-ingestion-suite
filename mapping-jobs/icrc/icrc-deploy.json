@@ -34,7 +34,7 @@
     "sourceBinding" : {
       "ecg" : {
         "jsonClass" : "SqlSource",
-        "query": "SELECT ecg.id AS id_ecg,\n       e.id_patient,\n       e.id AS id_encounter,\n       o.id_department,\n       exec_date,\n       vent_rate,\n       average_rr,\n       sample_freq,\n       num_qrs,\n       pr_duration,\n       qrs_duration,\n       qt,\n       qtc,\n       qtb,\n       qtf,\n       p_axis,\n       qrs_axis,\n       t_axis,\n       st_elevation,\n       ischema_sign,\n       inter_text,\n       rhytm_type \nFROM ecg.ecg ecg\n         INNER JOIN patient.observation o ON ecg.id_observation = o.id\n         INNER JOIN patient.encounter e ON e.id = o.id_encounter\n         INNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text\n                     FROM ecg.mortara_interpret\n                     GROUP BY id_ecg) AS mi ON ecg.id = mi.id_ecg",
+        "query": "SELECT ecg.id AS id_ecg,\n        e.id_patient,\n        e.id AS id_encounter,\n        o.id_department,\n        exec_date,\n        vent_rate,\n        average_rr,\n        sample_freq,\n        num_qrs,\n        pr_duration,\n        qrs_duration,\n        qt,\n        qtc,\n        qtb,\n        qtf,\n        p_axis,\n        qrs_axis,\n        t_axis,\n        st_elevation,\n        ischema_sign,\n        inter_text,\n        er.rhythms AS rhythm_types\n    FROM ecg.ecg ecg\n    INNER JOIN patient.observation o ON ecg.id_observation = o.id\n    INNER JOIN patient.encounter e ON e.id = o.id_encounter\n    INNER JOIN (SELECT id_ecg, string_agg(nullif(inter_text, ''), ' || ') AS inter_text\n        FROM ecg.mortara_interpret\n        GROUP BY id_ecg) AS mi ON ecg.id = mi.id_ecg\n    LEFT JOIN (\n        SELECT id_ecg, array_agg(loinc) AS rhythms\n        FROM ecg.ecg_rhythm\n        GROUP BY id_ecg\n    ) AS er ON ecg.id = er.id_ecg",
         "sourceRef" : "icrc-data"
       }
     }
@@ -127,7 +127,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT * FROM patient.addiction a WHERE a.id_type = 1",
+        "query" : "SELECT * FROM patient.addiction a",
         "options" : { },
         "sourceRef" : "icrc-data"
       }

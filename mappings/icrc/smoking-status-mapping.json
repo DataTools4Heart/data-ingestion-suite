@@ -9,12 +9,7 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/icrc/smokingstatus",
     "joinOn" : [ ]
   } ],
-  "context" : {
-    "smokingStatusConceptMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/icrc/smoking-status-loinc-to-snomed-map.csv"
-    }
-  },
+  "context" : { },
   "variable" : [ ],
   "mapping" : [ {
     "expression" : {
@@ -43,15 +38,14 @@
           } ]
         },
         "valueCodeableConcept" : {
-          "{{#ssc}}" : "{{mpp:getConcept(%smokingStatusConceptMap, code_loinc)}}",
-          "{{?}}" : {
-            "coding" : [ "{{utl:createFhirCoding(%ssc.target_system, %ssc.target_code, %ssc.target_display)}}", "{{utl:createFhirCoding(%ssc.source_system, %ssc.source_code, %ssc.source_display)}}" ]
-          }
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "{{snomed_ct}}"
+          } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
         "effectivePeriod" : {
-          "start" : "{{date_from}}",
-          "end" : "{{? date_to}}"
+          "start" : "{{date_to}}"
         },
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",

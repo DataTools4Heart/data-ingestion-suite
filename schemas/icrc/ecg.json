@@ -351,6 +351,16 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Raw data for the V6 lead"
+    }, {
+      "id" : "ECG.rhythm_types",
+      "path" : "ECG.rhythm_types",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Rhythm types"
     } ]
   }
 }

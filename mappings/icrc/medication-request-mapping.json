@@ -16,7 +16,6 @@
     "expression" : "iif(count.toInteger() > 1,mpp:getHashedId('MedicationRequest', id_patient.toString() & id_encounter.toString() & atc_complex))"
   } ],
   "mapping" : [ {
-    "description" : "The input has \"status\" but I could not find its original values in the database. I'll ask and update the mapping accordingly.",
     "expression" : {
       "name" : "medReq",
       "language" : "application/fhir-template+json",
@@ -46,7 +45,7 @@
               "{{#basedOnVar}}" : "{{%complexDrugId}}",
               "{{*}}" : "{{utl:createFhirReference('MedicationRequest', %complexDrugId)}}"
             },
-            "status" : "active",
+            "status" : "{{iif(statuses[%index] = '1', 'active', 'ended')}}",
             "intent" : "order",
             "effectiveDosePeriod" : {
               "start" : "{{date}}"
@@ -97,7 +96,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient)}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter)}}",
-        "status" : "active",
+        "status" : "{{iif(statuses[0] = '1', 'active', 'ended')}}",
         "intent" : "order",
         "effectiveDosePeriod" : {
           "start" : "{{date}}"

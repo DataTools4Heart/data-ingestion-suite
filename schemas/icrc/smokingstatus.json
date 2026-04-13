@@ -45,7 +45,7 @@
     }, {
       "id" : "SmokingStatus.date_from",
       "path" : "SmokingStatus.date_from",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "date",
@@ -55,7 +55,7 @@
     }, {
       "id" : "SmokingStatus.date_to",
       "path" : "SmokingStatus.date_to",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "date",
@@ -63,15 +63,24 @@
       } ],
       "short" : "End date of the addiction"
     }, {
-      "id" : "SmokingStatus.code_loinc",
-      "path" : "SmokingStatus.code_loinc",
+      "id" : "SmokingStatus.snomed_ct",
+      "path" : "SmokingStatus.snomed_ct",
       "min" : 1,
       "max" : "1",
       "type" : [ {
         "code" : "code",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/code" ]
       } ],
-      "short" : "LOINC code of the addiction observation"
+      "short" : "Snomed-Ct code of the addiction observation"
+    }, {
+      "id" : "SmokingStatus.dosage",
+      "path" : "SmokingStatus.dosage",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
     } ]
   }
 }
