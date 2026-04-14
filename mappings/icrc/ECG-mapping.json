@@ -195,7 +195,7 @@
           ],
           "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
           "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter',id_encounter.toString())}}",
-          "effectiveDateTime": "{{exec_date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03')}}",
+          "effectiveDateTime": "{{exec_date.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03' | 'yyyy-MM-dd HH:mm:ss+00')}}",
           "performer": {
             "{{#departmentId}}": "{{id_department}}",
             "{{*}}": "{{mpp:createFhirReferenceWithHashedId('Location', %departmentId.toString())}}"

@@ -47,7 +47,7 @@
               }
             ]
           },
-          "effectiveDateTime": "{{date_exec.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03' | 'yyyy-MM-dd HH:mm:ss+02')}}",
+          "effectiveDateTime": "{{date_exec.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03' | 'yyyy-MM-dd HH:mm:ss+02' | 'yyyy-MM-dd HH:mm:ss+00')}}",
           "component": [
             {
               "{{#componentVar}}": "{{iif(pcwp.exists(),true)}}",

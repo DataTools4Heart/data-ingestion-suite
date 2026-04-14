@@ -41,7 +41,7 @@
         "code" : {
           "coding" : [ "{{utl:createFhirCoding(%snomedConcept.source_system, %snomedConcept.source_code, %snomedConcept.source_display)}}" ]
         },
-        "effectiveDateTime" : "{{observation_date_time.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03' | 'yyyy-MM-dd HH:mm:ss+02')}}",
+        "effectiveDateTime" : "{{observation_date_time.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss+03' | 'yyyy-MM-dd HH:mm:ss+02' | 'yyyy-MM-dd HH:mm:ss+00')}}",
         "valueBoolean" : "{{value}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
