@@ -1,56 +1,106 @@
 {
-  "id" : "medication-administration-mapping",
-  "url" : "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
-  "name" : "medication-administration- mapping",
-  "title" : "Mapping of icrc medication administration data to DT4H MedicationAdministration FHIR profile",
-  "isDraft" : false,
-  "source" : [ {
-    "alias" : "source",
-    "url" : "https://datatools4heart.eu/fhir/schemas/icrc/medicationadministration",
-    "joinOn" : [ ]
-  } ],
-  "context" : { },
-  "variable" : [ ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "result",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "id" : "{{mpp:getHashedId('MedicationAdministration', id_medication.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
-        },
-        "resourceType" : "MedicationAdministration",
-        "medication" : {
-          "concept" : {
-            "coding" : [ {
-              "system" : "http://www.whocc.no/atc",
-              "code" : "{{code_atc}}",
-              "display" : "{{? name_en}}",
-              "@sliceName" : "atcCode"
-            } ]
+  "id": "medication-administration-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/medication-administration-mapping",
+  "name": "medication-administration- mapping",
+  "title": "Mapping of icrc medication administration data to DT4H MedicationAdministration FHIR profile",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "source",
+      "url": "https://datatools4heart.eu/fhir/schemas/icrc/medicationadministration",
+      "joinOn": []
+    }
+  ],
+  "context": {},
+  "variable": [
+    {
+      "name": "complexDrugId",
+      "language": "text/fhirpath",
+      "expression": "iif(count.toInteger() > 1,mpp:getHashedId('MedicationAdministration', id_patient.toString() & id_encounter.toString() & atc_complex))"
+    }
+  ],
+  "mapping": [
+    {
+      "expression": {
+        "name": "medAdmin",
+        "language": "application/fhir-template+json",
+        "value": {
+          "{{#index}}": "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}": {
+            "{{#rootVar1}}": "{{iif(atcs[%index] != '',true,{})}}",
+            "{{?}}": {
+              "id": "{{mpp:getHashedId('MedicationAdministration', ids[%index])}}",
+              "meta": {
+                "source": "{{%sourceSystem.sourceUri}}",
+                "profile": [
+                  "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration"
+                ]
+              },
+              "resourceType": "MedicationAdministration",
+              "medication": {
+                "concept": {
+                  "coding": [
+                    {
+                      "system": "http://www.whocc.no/atc",
+                      "code": "{{atcs[%index]}}",
+                      "@sliceName": "atcCode"
+                    }
+                  ]
+                }
+              },
+              "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient)}}",
+              "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter)}}",
+              "occurenceDateTime": "{{date}}",
+              "dosage": {
+                "dose": {
+                  "value": "{{dose_values[%index].toDecimal()}}",
+                  "unit": "{{dose_units[%index]}}"
+                }
+              },
+              "partOf": {
+                "{{#partOfVar}}": "{{%complexDrugId}}",
+                "{{*}}": "{{utl:createFhirReference('MedicationAdministration', %complexDrugId)}}"
+              },
+              "status": "{{iif(statuses[%index] = '1', 'in-progress', 'completed')}}"
+            }
           }
-        },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', id_encounter.toString())}}",
-        "occurencePeriod" : {
-          "start" : "{{date_from}}",
-          "end" : "{{? date_to}}"
-        },
-        "dosage" : {
-          "dose" : {
-            "value" : "{{dosage}}",
-            "unit" : "{{? iif(unit.exists($this != ''), unit, {})}}"
-          }
-        },
-        "identifier" : [ {
-          "system" : "{{%sourceSystem.sourceUri}}",
-          "value" : "{{id_medication.toString()}}",
-          "use" : "official"
-        } ],
-        "status" : "{{iif(date_to.exists(), 'completed', 'in-progress')}}"
+        }
+      }
+    },
+    {
+      "description": "Mapping of the complex ATC drug. A drug is complex if the substance 'count' is higher than 1.",
+      "precondition": {
+        "name": "isComplex",
+        "language": "text/fhirpath",
+        "expression": "%complexDrugId.exists()"
+      },
+      "expression": {
+        "name": "complexDrug",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{%complexDrugId}}",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/MedicationAdministration"
+            ]
+          },
+          "resourceType": "MedicationAdministration",
+          "status": "{{iif(statuses[0] = '1', 'in-progress', 'completed')}}",
+          "medication": {
+            "concept": {
+              "coding": [
+                {
+                  "system": "http://www.whocc.no/atc",
+                  "code": "atc_complex"
+                }
+              ]
+            }
+          },
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient)}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter)}}",
+          "occurenceDateTime": "{{date}}"
+        }
       }
     }
-  } ]
+  ]
 }

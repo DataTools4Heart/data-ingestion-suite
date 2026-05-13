@@ -1,22 +1,22 @@
 {
-  "id": "medicationadministration",
+  "id": "mri",
   "resourceType": "StructureDefinition",
-  "url": "https://datatools4heart.eu/fhir/schemas/icrc/medicationadministration",
+  "url": "https://datatools4heart.eu/fhir/schemas/icrc/MRI",
   "version": "latest",
-  "name": "MedicationAdministration",
-  "description": "Represents the medication administration records within ICRC",
+  "name": "MRI",
+  "description": "Represents the MRI date of ICRC.",
   "status": "draft",
   "fhirVersion": "5.0.0",
   "kind": "logical",
   "abstract": false,
-  "type": "MedicationAdministration",
+  "type": "MRI",
   "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
   "derivation": "specialization",
   "differential": {
     "element": [
       {
-        "id": "MedicationAdministration",
-        "path": "MedicationAdministration",
+        "id": "MRI",
+        "path": "MRI",
         "min": 0,
         "max": "*",
         "type": [
@@ -26,9 +26,9 @@
         ]
       },
       {
-        "id": "MedicationAdministration.id_patient",
-        "path": "MedicationAdministration.id_patient",
-        "min": 1,
+        "id": "MRI.id",
+        "path": "MRI.id",
+        "min": 0,
         "max": "1",
         "type": [
           {
@@ -37,11 +37,13 @@
               "http://hl7.org/fhir/StructureDefinition/integer64"
             ]
           }
-        ]
+        ],
+        "definition": "Unique identifier of MRI",
+        "short": "ID"
       },
       {
-        "id": "MedicationAdministration.date",
-        "path": "MedicationAdministration.date",
+        "id": "MRI.date_exec",
+        "path": "MRI.date_exec",
         "min": 0,
         "max": "1",
         "type": [
@@ -52,39 +54,11 @@
             ]
           }
         ],
-        "definition": "This is the end date of the related encounter."
+        "short": "Date"
       },
       {
-        "id": "MedicationAdministration.id_encounter",
-        "path": "MedicationAdministration.id_encounter",
-        "min": 1,
-        "max": "1",
-        "type": [
-          {
-            "code": "integer64",
-            "profile": [
-              "http://hl7.org/fhir/StructureDefinition/integer64"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "MedicationAdministration.atc_complex",
-        "path": "MedicationAdministration.atc_complex",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "string",
-            "profile": [
-              "http://hl7.org/fhir/StructureDefinition/string"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "MedicationAdministration.count",
-        "path": "MedicationAdministration.count",
+        "id": "MRI.id_encounter",
+        "path": "MRI.id_encounter",
         "min": 0,
         "max": "1",
         "type": [
@@ -95,11 +69,58 @@
             ]
           }
         ],
-        "definition": "Number of substances. If the drug is not a complex drug, it should be 1."
+        "short": "Encounter ID"
       },
       {
-        "id": "MedicationAdministration.ids",
-        "path": "MedicationAdministration.ids",
+        "id": "MRI.res",
+        "path": "MRI.res",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ],
+        "definition": "Interpretation of the MRI",
+        "short": "Interpretation"
+      },
+      {
+        "id": "MRI.id_patient",
+        "path": "MRI.id_patient",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "integer64",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/integer64"
+            ]
+          }
+        ],
+        "short": "Patient ID"
+      },
+      {
+        "id": "MRI.item_count",
+        "path": "MRI.item_count",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "integer64",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/integer64"
+            ]
+          }
+        ],
+        "definition": "Number of total items i.e. components in MRI",
+        "short": "Item Count"
+      },
+      {
+        "id": "MRI.values",
+        "path": "MRI.values",
         "min": 0,
         "max": "*",
         "type": [
@@ -110,11 +131,28 @@
             ]
           }
         ],
-        "definition": "Identifier of the individual drugs."
+        "definition": "Numeric values of the components",
+        "short": "Value List"
       },
       {
-        "id": "MedicationAdministration.atcs",
-        "path": "MedicationAdministration.atcs",
+        "id": "MRI.qualifiers",
+        "path": "MRI.qualifiers",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "string",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ],
+        "definition": "Absent, present etc.",
+        "short": "Qualifier List"
+      },
+      {
+        "id": "MRI.codes",
+        "path": "MRI.codes",
         "min": 0,
         "max": "*",
         "type": [
@@ -127,8 +165,8 @@
         ]
       },
       {
-        "id": "MedicationAdministration.period_units",
-        "path": "MedicationAdministration.period_units",
+        "id": "MRI.abbrs",
+        "path": "MRI.abbrs",
         "min": 0,
         "max": "*",
         "type": [
@@ -141,8 +179,8 @@
         ]
       },
       {
-        "id": "MedicationAdministration.periods",
-        "path": "MedicationAdministration.periods",
+        "id": "MRI.units",
+        "path": "MRI.units",
         "min": 0,
         "max": "*",
         "type": [
@@ -155,8 +193,23 @@
         ]
       },
       {
-        "id": "MedicationAdministration.frequencies",
-        "path": "MedicationAdministration.frequencies",
+        "id": "MRI.valueTypes",
+        "path": "MRI.valueTypes",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "string",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ],
+        "short": "Data Types"
+      },
+      {
+        "id": "MRI.cdmcodes",
+        "path": "MRI.cdmcodes",
         "min": 0,
         "max": "*",
         "type": [
@@ -169,64 +222,8 @@
         ]
       },
       {
-        "id": "MedicationAdministration.statuses",
-        "path": "MedicationAdministration.statuses",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "string",
-            "profile": [
-              "http://hl7.org/fhir/StructureDefinition/string"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "MedicationAdministration.codes",
-        "path": "MedicationAdministration.codes",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "string",
-            "profile": [
-              "http://hl7.org/fhir/StructureDefinition/string"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "MedicationAdministration.drug_names",
-        "path": "MedicationAdministration.drug_names",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "string",
-            "profile": [
-              "http://hl7.org/fhir/StructureDefinition/string"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "MedicationAdministration.dose_units",
-        "path": "MedicationAdministration.dose_units",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "string",
-            "profile": [
-              "http://hl7.org/fhir/StructureDefinition/string"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "MedicationAdministration.dose_values",
-        "path": "MedicationAdministration.dose_values",
+        "id": "MRI.loinccodes",
+        "path": "MRI.loinccodes",
         "min": 0,
         "max": "*",
         "type": [

@@ -1,0 +1,94 @@
+{
+  "id": "mri-mapping",
+  "url": "https://datatools4heart.eu/fhir/mappings/icrc/mri-mapping",
+  "name": "mri-mapping",
+  "title": "MRI Mapping",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "mri",
+      "url": "https://datatools4heart.eu/fhir/schemas/icrc/MRI",
+      "joinOn": []
+    }
+  ],
+  "context": {},
+  "variable": [],
+  "mapping": [
+    {
+      "expression": {
+        "name": "mri",
+        "language": "application/fhir-template+json",
+        "value": {
+          "id": "{{mpp:getHashedId('Observation', id & 'MRI')}}",
+          "meta": {
+            "profile": [
+              "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CardiacMRI"
+            ]
+          },
+          "resourceType": "Observation",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "imaging",
+                  "display": "Imaging"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "24748-6",
+                "display": "MR Heart",
+                "@sliceName": "loincCode"
+              }
+            ]
+          },
+          "effectiveDateTime": "{{date_exec.utl:toFhirDateTime('yyyy-MM-dd')}}",
+          "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', id_patient)}}",
+          "encounter": "{{mpp:createFhirReferenceWithHashedId('Encounter', id_encounter)}}",
+          "status": "final",
+          "note": [
+            {
+              "{{#noteVar}}": "{{iif(res.hasValue(),true)}}",
+              "{{?}}": {
+                "text": "{{res}}"
+              }
+            }
+          ],
+          "component": {
+            "{{#index}}": "{{utl:indices(0, item_count.toInteger()-1)}}",
+            "{{*}}": {
+              "{{#exists}}": "{{iif(cdmcodes[%index] != '',true,{})}}",
+              "{{?}}": {
+                "code": {
+                  "coding": [
+                    {
+                      "system": "{{iif(loinccodes[%index] != '','http://loinc.org', 'https://datatools4heart.eu/fhir/CodeSystem/cardiacmri-parameter')}}",
+                      "code": "{{iif(loinccodes[%index] = '',cdmcodes[%index],loinccodes[%index])}}"
+                    }
+                  ]
+                },
+                "valueBoolean": {
+                  "{{#valueBooleanVar}}": "{{iif(valuetypes[%index] != 'numeric',true,{})}}",
+                  "{{?}}": "{{iif(qualifiers[%index] = 'present',true,iif(qualifiers[%index] = 'absent' or qualifiers[%index] = 'absent_elsewhere',false,utl:throwException('Could not handle the given qualifier for index: ' + %index.toString())))}}"
+                },
+                "valueQuantity": {
+                  "{{#valueQuantityVar}}": "{{iif(valuetypes[%index] = 'numeric',true,{})}}",
+                  "{{?}}": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": "{{values[%index].toDecimal()}}",
+                    "unit": "{{units[%index]}}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

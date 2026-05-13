@@ -83,7 +83,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "SqlSource",
-        "query" : "SELECT m.id AS id_medication,\n       m.id_patient,\n       m.id_encounter,\n       m.code_atc,\n       atc.name_en,\n       m.dosage,\n       m.unit,\n       m.date_from,\n       m.date_to\nFROM patient.medication m\n         JOIN standard_dict.atc atc on m.code_atc = atc.code",
+        "query" : "SELECT \r\n    e.id_patient,\r\n    e.end_date AS date,\r\n    med.id_encounter,\r\n    med.atc_complex,\r\n    COUNT(*) AS count,\r\n    ARRAY_AGG(med.id) AS ids,\r\n    ARRAY_AGG(med.atc) AS atcs,\r\n    ARRAY_AGG(med.period_unit) AS period_units,\r\n    ARRAY_AGG(med.period) AS periods,\r\n    ARRAY_AGG(med.frequency) AS frequencies,\r\n    ARRAY_AGG(med.status) AS statuses,\r\n    ARRAY_AGG(med.code) AS codes,\r\n    ARRAY_AGG(med.drug_name) AS drug_names,\r\n    ARRAY_AGG(med.dose_unit) AS dose_units,\r\n    ARRAY_AGG(med.dose_value) AS dose_values\r\nFROM patient.medication_administration med\r\nJOIN patient.encounter e \r\n    ON e.id = med.id_encounter\r\nGROUP BY e.id_patient, e.end_date, med.id_encounter, med.atc_complex",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
@@ -194,6 +194,17 @@
       "medReq" : {
         "jsonClass" : "SqlSource",
         "query" : "SELECT \r\n    e.id_patient,\r\n    e.end_date AS date,\r\n    mr.id_encounter,\r\n    mr.atc_complex,\r\n    COUNT(*) AS count,\r\n    ARRAY_AGG(mr.id) AS ids,\r\n    ARRAY_AGG(mr.atc) AS atcs,\r\n    ARRAY_AGG(mr.period_unit) AS period_units,\r\n    ARRAY_AGG(mr.period) AS periods,\r\n    ARRAY_AGG(mr.frequency) AS frequencies,\r\n    ARRAY_AGG(mr.status) AS statuses,\r\n    ARRAY_AGG(mr.code) AS codes,\r\n    ARRAY_AGG(mr.drug_name) AS drug_names,\r\n    ARRAY_AGG(mr.dose_unit) AS dose_units,\r\n    ARRAY_AGG(mr.dose_value) AS dose_values\r\nFROM patient.medication_request mr\r\nJOIN patient.encounter e \r\n    ON e.id = mr.id_encounter\r\nGROUP BY e.id_patient, e.end_date, mr.id_encounter, mr.atc_complex",
+        "options" : { },
+        "sourceRef" : "icrc-data"
+      }
+    }
+  }, {
+    "name" : "mri-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/icrc/mri-mapping",
+    "sourceBinding" : {
+      "mri" : {
+        "jsonClass" : "SqlSource",
+        "query" : "with combined as (\r\n    select header.id,\r\n           header.date_exec,\r\n           header.res,\r\n           observation.id_encounter,\r\n           e.id_patient,\r\n           data.id as itemId,\r\n           data.value,\r\n           data.qualifier,\r\n           dict.code,\r\n           dict.abbr,\r\n           dict.default_unit,\r\n           dict.value_type,\r\n           map.code as ai4hfCode,\r\n           map.loinc as loincCode\r\n    from heart_mri.header header \r\n    left join patient.observation observation on header.id_observation = observation.id\r\n    left join patient.encounter e on e.id = observation.id_encounter\r\n    left join heart_mri.data data on header.id = data.id_header \r\n    left join heart_mri.fnusa_dict dict on data.id_dict = dict.id\r\n    left join heart_mri.ai4hf_map map on map.id_fnusa_dict = dict.id\r\n\r\n    union all\r\n\r\n    select header.id,\r\n           header.date_exec,\r\n           header.res,\r\n           observation.id_encounter,\r\n           e.id_patient,\r\n           finding.id as itemId,\r\n           null::numeric as value,\r\n           finding.qualifier,\r\n           dict.code,\r\n           dict.abbr,\r\n           dict.default_unit,\r\n           dict.value_type,\r\n           map.code as ai4hfCode,\r\n           map.loinc as loincCode\r\n    from heart_mri.header header \r\n    left join patient.observation observation on header.id_observation = observation.id\r\n    left join patient.encounter e on e.id = observation.id_encounter\r\n    left join heart_mri.finding finding on header.id = finding.id_header\r\n    left join heart_mri.fnusa_dict dict on finding.id_dict = dict.id\r\n    left join heart_mri.ai4hf_map map on map.id_fnusa_dict = dict.id\r\n)\r\nselect id,\r\n       date_exec,\r\n       id_encounter,\r\n       res,\r\n       id_patient,\r\n       count(itemId) as item_count,\r\n       array_agg(coalesce(value::text, '')) as values,\r\n       array_agg(coalesce(qualifier, '')) as qualifiers,\r\n       array_agg(coalesce(code, '')) as codes,\r\n       array_agg(coalesce(abbr, '')) as abbrs,\r\n       array_agg(coalesce(default_unit, '')) as units,\r\n       array_agg(coalesce(value_type, '')) as valueTypes,\r\n       array_agg(coalesce(ai4hfCode, '')) as cdmcodes,\r\n       array_agg(coalesce(loincCode, '')) as loincCodes\r\nfrom combined\r\ngroup by id,date_exec,id_encounter,res,id_patient",
         "options" : { },
         "sourceRef" : "icrc-data"
       }
