@@ -53,7 +53,7 @@
               "occurenceDateTime": "{{date}}",
               "dosage": {
                 "dose": {
-                  "value": "{{dose_values[%index].toDecimal()}}",
+                  "value": "{{? dose_values[%index].toDecimal()}}",
                   "unit": "{{dose_units[%index]}}"
                 }
               },
