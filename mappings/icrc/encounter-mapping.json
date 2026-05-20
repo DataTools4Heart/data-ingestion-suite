@@ -63,6 +63,14 @@
             }
           }
         },
+        "serviceType" : {
+          "{{#serviceTypeVar}}" : "{{iif(clinic_name = 'I.Interní - kardioangiol. klinika', true)}}",
+          "{{*}}" : {
+            "concept" : {
+              "coding" : [ "{{utl:createFhirCoding('http://snomed.info/sct', '394579002', 'Cardiology')}}" ]
+            }
+          }
+        },
         "identifier" : [ {
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
