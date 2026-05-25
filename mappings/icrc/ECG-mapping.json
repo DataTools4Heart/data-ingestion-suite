@@ -19,7 +19,7 @@
         "name": "result",
         "language": "application/fhir-template+json",
         "value": {
-          "id": "{{mpp:getHashedId('Observation', id_ecg.toString())}}",
+          "id": "{{mpp:getHashedId('Observation', id_ecg.toString() & 'ECG')}}",
           "meta": {
             "source": "{{%sourceSystem.sourceUri}}",
             "profile": [
