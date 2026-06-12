@@ -21,16 +21,6 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "VitalSign.CODE_DISPLAY_ORIGINAL",
-      "path" : "VitalSign.CODE_DISPLAY_ORIGINAL",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Local UMCU code displays"
-    }, {
       "id" : "VitalSign.studyId_0919",
       "path" : "VitalSign.studyId_0919",
       "min" : 0,
@@ -51,6 +41,16 @@
       } ],
       "short" : "Local identifier with specified measurement"
     }, {
+      "id" : "VitalSign.code_display_original",
+      "path" : "VitalSign.code_display_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Local UMCU code displays"
+    }, {
       "id" : "VitalSign.effectiveDateTime",
       "path" : "VitalSign.effectiveDateTime",
       "min" : 0,
@@ -61,18 +61,8 @@
       } ],
       "short" : "Measurement date"
     }, {
-      "id" : "VitalSign.VALUEQUANTITY_CODE",
-      "path" : "VitalSign.VALUEQUANTITY_CODE",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Measurement unit"
-    }, {
-      "id" : "VitalSign.valueQuantity_value",
-      "path" : "VitalSign.valueQuantity_value",
+      "id" : "VitalSign.ValueQuantity",
+      "path" : "VitalSign.ValueQuantity",
       "min" : 0,
       "max" : "1",
       "type" : [ {

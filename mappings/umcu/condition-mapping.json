@@ -1,0 +1,56 @@
+{
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Condition table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Condition",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "icd10CodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "ICD10code.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Condition', identifier_value)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
+        "code" : {
+          "coding" : [ {
+            "code" : "{{ICD10code}}",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "onsetDateTime" : "{{startDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+        "identifier" : [ {
+          "value" : "{{identifier_value}}"
+        } ],
+        "clinicalStatus" : {
+          "coding" : [ {
+            "code" : "active"
+          } ]
+        },
+        "category" : [ {
+          "coding" : [ {
+            "code" : "problem-list-item",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+            "display" : "Problem List Item"
+          } ]
+        } ]
+      }
+    }
+  } ]
+}

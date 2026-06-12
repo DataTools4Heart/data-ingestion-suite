@@ -31,8 +31,8 @@
       } ],
       "short" : "Patient ID"
     }, {
-      "id" : "MedicationPrescription.code5_ATC_code",
-      "path" : "MedicationPrescription.code5_ATC_code",
+      "id" : "MedicationPrescription.code5_ATC_code_original",
+      "path" : "MedicationPrescription.code5_ATC_code_original",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -41,8 +41,8 @@
       } ],
       "short" : "ATC code"
     }, {
-      "id" : "MedicationPrescription.code5_ATC_display",
-      "path" : "MedicationPrescription.code5_ATC_display",
+      "id" : "MedicationPrescription.code5_ATC_display_original",
+      "path" : "MedicationPrescription.code5_ATC_display_original",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -50,6 +50,24 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "ATC display"
+    }, {
+      "id" : "MedicationPrescription.code5_ATC_code_sub",
+      "path" : "MedicationPrescription.code5_ATC_code_sub",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.code5_ATC_display_sub",
+      "path" : "MedicationPrescription.code5_ATC_display_sub",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     }, {
       "id" : "MedicationPrescription.code_text",
       "path" : "MedicationPrescription.code_text",
@@ -98,6 +116,24 @@
     }, {
       "id" : "MedicationPrescription.dosInstr_asNeeded_display",
       "path" : "MedicationPrescription.dosInstr_asNeeded_display",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.status",
+      "path" : "MedicationPrescription.status",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.category_display",
+      "path" : "MedicationPrescription.category_display",
       "min" : 0,
       "max" : "1",
       "type" : [ {

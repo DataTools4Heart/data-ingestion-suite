@@ -52,6 +52,15 @@
       "definition" : "Possible values:\nIMP; ACUTE; SS; NONAC; OTHER; AMB\n\ninpatient encounter; inpatient acute; short stay; inpatient non-acute; other; Ambulatory",
       "short" : "Type of encounter"
     }, {
+      "id" : "Encounter.reason_text",
+      "path" : "Encounter.reason_text",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "Encounter.period_start",
       "path" : "Encounter.period_start",
       "min" : 0,

@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "umcu-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/umcu-data",
-      "dataFolderPath" : "test-data/umcu-prod",
+      "dataFolderPath" : "test-data/umcudata-v3",
       "asStream" : false
     }
   },
@@ -91,7 +91,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "Medications.parquet",
         "contentType" : "parquet",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "umcu-source"
       }
     }
@@ -178,6 +180,20 @@
         "path" : "Encounters.parquet",
         "contentType" : "parquet",
         "options" : { },
+        "sourceRef" : "umcu-source"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/condition-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Conditions.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "umcu-source"
       }
     }

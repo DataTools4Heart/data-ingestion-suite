@@ -30,17 +30,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
-      "id" : "SmokingStatus.effectivedate",
-      "path" : "SmokingStatus.effectivedate",
+      "id" : "SmokingStatus.Created",
+      "path" : "SmokingStatus.Created",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
       } ]
     }, {
-      "id" : "SmokingStatus.smok_label",
-      "path" : "SmokingStatus.smok_label",
+      "id" : "SmokingStatus.SMOKING_STATUS",
+      "path" : "SmokingStatus.SMOKING_STATUS",
       "min" : 0,
       "max" : "1",
       "type" : [ {

@@ -29,3 +29,4 @@ source_code,source_unit,target_code,target_unit,conversion_function
 "14801-5","fractie","14801-5","%","$this"
 "1920-8","U/L","1920-8","U/L","$this"
 "47092-2","pmol/L","47092-2","pmol/L","$this"
+"4548-4","mmol/mol","4548-4","%","$this"

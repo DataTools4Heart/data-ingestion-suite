@@ -3,15 +3,15 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/umcu/nyha-mapping",
   "name" : "nyha-mapping",
   "title" : "Mapping of UMCU's NYHA table to HFR-NYHAAssessment FHIR profile",
-  "isDraft" : true,
+  "isDraft" : false,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/NYHA",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   }, {
     "alias" : "encounters",
     "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
-    "joinOn" : [ "studyId_0763" ]
+    "joinOn" : [ "studyId_0919" ]
   } ],
   "context" : {
     "nyhaConceptMap" : {
@@ -22,14 +22,14 @@
   "variable" : [ {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : " %encounters.where(period_start.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') <= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd') and period_end.substring(0, 10).utl:toFhirDate('yyyy-MM-dd') >= %context.effectivedate.utl:toFhirDate('yyyy-MM-dd')).first() "
+    "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectivedate.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectivedate.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')).first() "
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', studyId_0763.toString() & NYHA_class & effectivedate.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString() & NYHA_class & effectivedate.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
@@ -50,7 +50,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{effectivedate.utl:toFhirDateTime('yyyy-MM-dd')}}",
+        "effectiveDateTime" : "{{effectivedate.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://loinc.org",
@@ -58,10 +58,10 @@
             "display" : "{{mpp:getConcept(%nyhaConceptMap, NYHA_class, 'target_display')}}"
           } ]
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0763.toString())}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.hospitalization_ID)}}",
         "identifier" : [ {
-          "value" : "{{studyId_0763.toString() & '-' & NYHA_class & '-' & effectivedate.toString()}}"
+          "value" : "{{studyId_0919.toString() & '-' & NYHA_class & '-' & effectivedate.toString()}}"
         } ],
         "status" : "final"
       }

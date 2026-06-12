@@ -21,8 +21,8 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "NYHA.studyId_0763",
-      "path" : "NYHA.studyId_0763",
+      "id" : "NYHA.studyId_0919",
+      "path" : "NYHA.studyId_0919",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -41,6 +41,15 @@
       } ],
       "definition" : "I, II, III, IV",
       "short" : "NYHA value"
+    }, {
+      "id" : "NYHA.created",
+      "path" : "NYHA.created",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ]
     }, {
       "id" : "NYHA.effectivedate",
       "path" : "NYHA.effectivedate",

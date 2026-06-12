@@ -21,16 +21,6 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Echo.MeasName",
-      "path" : "Echo.MeasName",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Original UMCU measurement names"
-    }, {
       "id" : "Echo.studyId_0919",
       "path" : "Echo.studyId_0919",
       "min" : 0,
@@ -50,6 +40,16 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Echo measurement ID"
+    }, {
+      "id" : "Echo.MeasName",
+      "path" : "Echo.MeasName",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Original UMCU measurement names"
     }, {
       "id" : "Echo.effectiveDateTime",
       "path" : "Echo.effectiveDateTime",

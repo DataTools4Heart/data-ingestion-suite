@@ -29,7 +29,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', identifier_value)}}",
+        "id" : "{{mpp:getHashedId('Observation', 'echo' & identifier_value)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
         },

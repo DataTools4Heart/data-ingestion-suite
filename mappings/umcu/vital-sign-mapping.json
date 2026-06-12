@@ -28,13 +28,13 @@
     "precondition" : {
       "name" : "valueExists",
       "language" : "text/fhirpath",
-      "expression" : "valueQuantity_value.exists() or component_valueQuantity_value.exists()"
+      "expression" : "ValueQuantity.exists()"
     },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', identifier_value & effectiveDateTime.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString() & identifier_value.toString() & LOINCcode & effectiveDateTime.toString() & ValueQuantity.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
@@ -58,14 +58,14 @@
         "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
           "system" : "http://unitsofmeasure.org",
-          "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_unit')}}",
-          "value" : "{{? iif(valueQuantity_value.exists() and valueQuantity_value != '', valueQuantity_value)}}",
+          "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_code')}}",
+          "value" : "{{? iif(ValueQuantity.exists() and ValueQuantity != '', ValueQuantity)}}",
           "unit" : "{{mpp:getConcept(%vitalSignMap, LOINCcode, 'target_unit')}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter)}}",
         "identifier" : [ {
-          "value" : "{{ identifier_value & '-' & effectiveDateTime.toString() }}"
+          "value" : "{{ studyId_0919.toString() & '-' & identifier_value.toString() & '-' & LOINCcode & '-' & effectiveDateTime.toString() & '-' & ValueQuantity.toString() }}"
         } ],
         "status" : "final"
       }

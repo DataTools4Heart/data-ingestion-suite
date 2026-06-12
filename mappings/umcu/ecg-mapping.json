@@ -33,7 +33,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString() & ECGTestID)}}",
+        "id" : "{{mpp:getHashedId('Observation', 'ecg' & studyId_0919.toString() & ECGTestID)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Electrocardiograph" ]
