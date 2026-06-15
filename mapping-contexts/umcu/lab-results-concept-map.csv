@@ -14,7 +14,7 @@ source_code,source_unit,target_code,target_unit,conversion_function
 "59260-0","mmol/L","718-7","g/L","$this * 16.114"
 "100158-5","mg/L","1754-1","mg/L","$this"
 "14927-8","mmol/L","14927-8","mmol/L","$this"
-"30522-7","mg/L","1988-5","mg/L","$this"
+"30522-7","mg/L","30522-7","mg/L","$this"
 "41995-2","mmol/mol","41995-2","mmol/mol","$this"
 "14647-2","mmol/L","14647-2","mmol/L","$this"
 "14683-7","mmol/L","2161-8","mg/L","$this * 113.12"
