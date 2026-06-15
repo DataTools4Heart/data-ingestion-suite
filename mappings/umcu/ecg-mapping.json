@@ -53,7 +53,7 @@
             "code" : {
               "coding" : [ {
                 "code" : "{{mpp:getConcept(%ecgCodeMap, LOINCcode[%ind], 'target_code').nav:orElse(LOINCcode[%ind])}}",
-                "system" : "http://loinc.org",
+                "system" : "{{mpp:getConcept(%ecgCodeMap, LOINCcode[%ind], 'target_system').nav:orElse('http://loinc.org')}}",
                 "display" : "{{LOINCdisplay[%ind]}}"
               } ]
             },

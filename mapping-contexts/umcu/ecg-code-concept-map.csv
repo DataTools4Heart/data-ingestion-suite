@@ -1,3 +1,3 @@
-source_code,target_code
-18505-8,8637-1
-76635-2,bazett
+source_code,target_code,target_system
+18505-8,8637-1,http://loinc.org
+76635-2,bazett,https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula
