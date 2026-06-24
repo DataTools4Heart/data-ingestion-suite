@@ -65,7 +65,7 @@
         } ],
         "code" : {
           "coding" : [ {
-            "{{#loincCoding}}" : "{{%convertedVitalSign.where((%convertedLab.target_code.take($index) contains target_code).not())}}",
+            "{{#loincCoding}}" : "{{%convertedVitalSign.where((%convertedVitalSign.target_code.take($index) contains target_code).not())}}",
             "{{*}}" : {
               "system" : "http://loinc.org",
               "code" : "{{%loincCoding.target_code}}",
@@ -158,7 +158,7 @@
         "component" : [ {
           "code" : {
             "coding" : [ {
-              "{{#loincCoding}}" : "{{%convertedEcho.where((%convertedLab.target_code.take($index) contains target_code).not())}}",
+              "{{#loincCoding}}" : "{{%convertedEcho.where((%convertedEcho.target_code.take($index) contains target_code).not())}}",
               "{{*}}" : {
                 "system" : "http://loinc.org",
                 "code" : "{{%loincCoding.target_code}}",
