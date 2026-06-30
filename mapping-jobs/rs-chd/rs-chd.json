@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "rs-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/rs-data",
-      "dataFolderPath" : "test-data/rs/chd",
+      "dataFolderPath" : "test-data/rs",
       "asStream" : false
     }
   },
@@ -22,7 +22,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Patient.txt",
+        "path" : "chd/Patient.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -34,7 +34,59 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "VitalSign.txt",
+        "path" : "chd/VitalSign.txt",
+        "contentType" : "tsv",
+        "options" : {
+          "distinct" : "true",
+          "inferSchema" : "false"
+        },
+        "preprocessSql" : "SELECT *\r\nFROM source\r\nWHERE YEAR(effectiveDateTime) = $year",
+        "sourceRef" : "rs-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "nbhw/VisitHospitalization.txt",
+        "contentType" : "tsv",
+        "options" : { },
+        "sourceRef" : "rs-source"
+      }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "year" : "2010"
+      }, {
+        "year" : "2011"
+      }, {
+        "year" : "2012"
+      }, {
+        "year" : "2013"
+      }, {
+        "year" : "2014"
+      }, {
+        "year" : "2015"
+      }, {
+        "year" : "2016"
+      }, {
+        "year" : "2017"
+      }, {
+        "year" : "2018"
+      }, {
+        "year" : "2019"
+      }, {
+        "year" : "2020"
+      }, {
+        "year" : "2021"
+      }, {
+        "year" : "2022"
+      } ]
+    }
+  }, {
+    "name" : "nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/nyha-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "chd/NYHAAssessment.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -43,26 +95,7 @@
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
-        "contentType" : "tsv",
-        "options" : { },
-        "sourceRef" : "rs-source"
-      }
-    }
-  }, {
-    "name" : "nyha-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/rs-chd/nyha-mapping",
-    "sourceBinding" : {
-      "source" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "NYHAAssessment.txt",
-        "contentType" : "tsv",
-        "options" : { },
-        "sourceRef" : "rs-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -74,7 +107,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Echo.txt",
+        "path" : "chd/Echo.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -83,7 +116,7 @@
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -95,18 +128,50 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "LabResult.txt",
+        "path" : "chd/LabResult.txt",
         "contentType" : "tsv",
-        "options" : { },
+        "options" : {
+          "inferSchema" : "false"
+        },
+        "preprocessSql" : "SELECT *\r\nFROM source\r\nWHERE YEAR(effectiveDateTime) = $year",
         "sourceRef" : "rs-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
       }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "year" : "2010"
+      }, {
+        "year" : "2011"
+      }, {
+        "year" : "2012"
+      }, {
+        "year" : "2013"
+      }, {
+        "year" : "2014"
+      }, {
+        "year" : "2015"
+      }, {
+        "year" : "2016"
+      }, {
+        "year" : "2017"
+      }, {
+        "year" : "2018"
+      }, {
+        "year" : "2019"
+      }, {
+        "year" : "2020"
+      }, {
+        "year" : "2021"
+      }, {
+        "year" : "2022"
+      } ]
     }
   }, {
     "name" : "symptom-mapping",
@@ -114,7 +179,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Symptom.txt",
+        "path" : "chd/Symptom.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -123,7 +188,7 @@
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -135,7 +200,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Referral.txt",
+        "path" : "chd/Referral.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -147,7 +212,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -159,7 +224,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "ECG.txt",
+        "path" : "chd/ECG.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -169,7 +234,7 @@
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -181,18 +246,30 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Condition.txt",
+        "path" : "chd/Condition.txt",
         "contentType" : "tsv",
-        "options" : { },
+        "options" : {
+          "inferSchema" : "false"
+        },
+        "preprocessSql" : "select * from source where year(onsetDateTime) > $yearMin and year(onsetDateTime) < $yearMax",
         "sourceRef" : "rs-source"
       },
       "encounters" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "hospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
       }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "yearMin" : "2000",
+        "yearMax" : "2018"
+      }, {
+        "yearMin" : "2017",
+        "yearMax" : "2030"
+      } ]
     }
   }, {
     "name" : "medication-mapping",
@@ -200,7 +277,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "MED_ORDERS_DRUGS.txt",
+        "path" : "chd/MED_ORDERS_DRUGS.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -214,7 +291,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Procedure.txt",
+        "path" : "chd/Procedure.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"

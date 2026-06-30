@@ -16,7 +16,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', subject.toString() & code & Date.toString() & dosage)}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', 'nbhw' & subject.toString() & code & Date.toString() & dosage)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },

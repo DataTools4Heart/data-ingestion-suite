@@ -21,7 +21,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', subject.toString() & value)}}",
+        "id" : "{{mpp:getHashedId('Observation', 'nbhw' & subject.toString() & effectiveDate.toString() & value)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
         },
@@ -51,7 +51,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "identifier" : [ {
-          "value" : "{{subject.toString() &  '-' & value}}"
+          "value" : "{{subject.toString() &  '-' & effectiveDate.toString() & '-' & value}}"
         } ]
       }
     }

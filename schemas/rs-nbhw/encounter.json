@@ -21,6 +21,15 @@
         "code" : "Element"
       } ]
     }, {
+      "id" : "Encounter.id",
+      "path" : "Encounter.id",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "Encounter.subject",
       "path" : "Encounter.subject",
       "min" : 0,
@@ -68,6 +77,15 @@
     }, {
       "id" : "Encounter.position",
       "path" : "Encounter.position",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.ward",
+      "path" : "Encounter.ward",
       "min" : 0,
       "max" : "1",
       "type" : [ {

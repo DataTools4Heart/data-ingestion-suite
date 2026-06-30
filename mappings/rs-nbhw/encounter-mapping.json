@@ -12,11 +12,12 @@
   "context" : { },
   "variable" : [ ],
   "mapping" : [ {
+    "description" : "Some records have missing dischargeDate values, and not all visits include a primary position (diagnosis) — some have only secondary positions. For this reason, we prioritized visits into four categories in the following order, ensuring the most informative encounter (relatedEncounter) is selected when joining with other tables (e.g., condition, vital sign):\n\n1. Primary diagnosis with a known discharge date\n2. Primary diagnosis with no discharge date\n3. Secondary diagnosis only, with a known discharge date\n4. Secondary diagnosis only, with no discharge date",
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Encounter', subject.toString() & admissionDate.toString() & code & position)}}",
+        "id" : "{{mpp:getHashedId('Encounter', id)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
         },
@@ -33,7 +34,7 @@
           "end" : "{{dischargeDate}}"
         },
         "identifier" : [ {
-          "value" : "{{subject.toString() & '-' & admissionDate.toString() & '-' & code & '-' & position}}"
+          "value" : "{{id}}"
         } ],
         "status" : "completed"
       }

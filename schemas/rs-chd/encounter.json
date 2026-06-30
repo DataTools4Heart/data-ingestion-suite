@@ -21,9 +21,9 @@
         "code" : "Element"
       } ]
     }, {
-      "id" : "Encounter.identifier",
-      "path" : "Encounter.identifier",
-      "min" : 1,
+      "id" : "Encounter.id",
+      "path" : "Encounter.id",
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
@@ -32,33 +32,60 @@
     }, {
       "id" : "Encounter.subject",
       "path" : "Encounter.subject",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "integer",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Encounter.admissionDateTime",
-      "path" : "Encounter.admissionDateTime",
+      "id" : "Encounter.admissionDate",
+      "path" : "Encounter.admissionDate",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter.dischargeDateTime",
-      "path" : "Encounter.dischargeDateTime",
+      "id" : "Encounter.dischargeDate",
+      "path" : "Encounter.dischargeDate",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "dateTime",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/dateTime" ]
+        "code" : "date",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "Encounter.emergency",
-      "path" : "Encounter.emergency",
+      "id" : "Encounter.inpatient",
+      "path" : "Encounter.inpatient",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "Encounter.code",
+      "path" : "Encounter.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.position",
+      "path" : "Encounter.position",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.ward",
+      "path" : "Encounter.ward",
       "min" : 0,
       "max" : "1",
       "type" : [ {

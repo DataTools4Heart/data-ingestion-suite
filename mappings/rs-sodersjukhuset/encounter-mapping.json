@@ -3,7 +3,7 @@
   "url" : "https://datatools4heart.eu/fhir/mappings/rs-sodersjukhuset/encounter-mapping",
   "name" : "encounter-mapping",
   "title" : "Visit table mapping",
-  "isDraft" : false,
+  "isDraft" : true,
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/rs-sodersjukhuset/Encounter",
