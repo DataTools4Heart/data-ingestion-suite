@@ -31,7 +31,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "actualPeriod" : {
           "start" : "{{admissionDate}}",
-          "end" : "{{dischargeDate}}"
+          "end" : "{{? dischargeDate}}"
         },
         "identifier" : [ {
           "value" : "{{id}}"
@@ -58,6 +58,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', subject.toString() & admissionDate.toString() & code & position)}}",
+        "onsetDateTime" : "{{admissionDate}}",
         "identifier" : [ {
           "value" : "{{subject.toString() & '-' & admissionDate.toString() & '-' & code.toString() & '-' & position}}"
         } ],
