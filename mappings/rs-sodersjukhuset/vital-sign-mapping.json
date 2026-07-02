@@ -20,9 +20,17 @@
     }
   },
   "variable" : [ {
+    "name" : "effectiveDate",
+    "language" : "text/fhirpath",
+    "expression" : "effectiveDateTime.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd')"
+  }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')).first() "
+    "expression" : " %encounters.where(position = 'primary').where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and dischargeDate.utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(position = 'primary').where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate)).first() "
+  }, {
+    "name" : "relatedEncounterSecondary",
+    "language" : "text/fhirpath",
+    "expression" : " iif(%relatedEncounter.empty(), %encounters.where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and dischargeDate.utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate))).first()  "
   } ],
   "mapping" : [ {
     "description" : "Filtering out extreme values:\nWeight > 300\nHeight > 300\nSPO2 > 100",
@@ -61,8 +69,8 @@
           "value" : "{{value}}",
           "unit" : "{{mpp:getConcept(%vitalSignUnits, code, 'unit')}}"
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.id) )}}",
         "identifier" : [ {
           "value" : "{{identifier}}"
         } ],

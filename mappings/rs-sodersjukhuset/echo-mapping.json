@@ -15,16 +15,24 @@
   } ],
   "context" : { },
   "variable" : [ {
+    "name" : "effectiveDate",
+    "language" : "text/fhirpath",
+    "expression" : "effectiveDateTime.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd')"
+  }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : " %encounters.where(admissionDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and dischargeDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+    "expression" : " %encounters.where(position = 'primary').where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and dischargeDate.utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(position = 'primary').where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate)).first() "
+  }, {
+    "name" : "relatedEncounterSecondary",
+    "language" : "text/fhirpath",
+    "expression" : " iif(%relatedEncounter.empty(), %encounters.where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and dischargeDate.utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(admissionDate.utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate))).first() "
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Patient', identifier)}}",
+        "id" : "{{mpp:getHashedId('Observation', identifier)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
         },
@@ -61,8 +69,8 @@
           },
           "@sliceName" : "echoParameter"
         } ],
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
+        "encounter" : "{{? iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.id), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.id) )}}",
         "identifier" : [ {
           "value" : "{{identifier}}"
         } ],

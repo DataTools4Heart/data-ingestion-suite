@@ -51,7 +51,7 @@
             }
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "occurrenceDateTime" : "{{occurenceDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')}}",
         "identifier" : [ {
           "value" : "{{identifier}}"
