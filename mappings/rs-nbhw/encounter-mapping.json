@@ -9,7 +9,12 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/rs-nbhw/Encounter",
     "joinOn" : [ ]
   } ],
-  "context" : { },
+  "context" : {
+    "serviceTypeMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/rs-nbhw/encounter-service-type-map.csv"
+    }
+  },
   "variable" : [ ],
   "mapping" : [ {
     "description" : "Some records have missing dischargeDate values, and not all visits include a primary position (diagnosis) — some have only secondary positions. For this reason, we prioritized visits into four categories in the following order, ensuring the most informative encounter (relatedEncounter) is selected when joining with other tables (e.g., condition, vital sign):\n\n1. Primary diagnosis with a known discharge date\n2. Primary diagnosis with no discharge date\n3. Secondary diagnosis only, with a known discharge date\n4. Secondary diagnosis only, with no discharge date",
@@ -33,6 +38,18 @@
           "start" : "{{admissionDate}}",
           "end" : "{{? dischargeDate}}"
         },
+        "serviceType" : [ {
+          "concept" : {
+            "coding" : {
+              "{{#codingVar}}" : "{{ iif(ward.exists(), mpp:getConcept(%serviceTypeMap, ward)) }}",
+              "{{*}}" : {
+                "system" : "http://snomed.info/sct",
+                "code" : "{{%codingVar.SnomedId}}",
+                "display" : "{{%codingVar.SnomedConcept}}"
+              }
+            }
+          }
+        } ],
         "identifier" : [ {
           "value" : "{{id}}"
         } ],

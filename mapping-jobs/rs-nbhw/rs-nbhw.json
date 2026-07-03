@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "rs-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/rs-data",
-      "dataFolderPath" : "test-data/rs/nbhw",
+      "dataFolderPath" : "test-data/rs",
       "asStream" : false
     }
   },
@@ -22,7 +22,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "death.txt",
+        "path" : "nbhw/death.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -34,7 +34,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "VisitHospitalization.txt",
+        "path" : "nbhw/VisitHospitalization.txt",
         "contentType" : "tsv",
         "options" : { },
         "sourceRef" : "rs-source"
@@ -46,7 +46,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "dispenseddrugs.txt",
+        "path" : "nbhw/dispenseddrugs.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"
@@ -60,7 +60,7 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Procedure.txt",
+        "path" : "nbhw/Procedure.txt",
         "contentType" : "tsv",
         "options" : {
           "distinct" : "true"

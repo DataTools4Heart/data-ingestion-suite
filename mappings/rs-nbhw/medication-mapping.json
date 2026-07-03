@@ -16,7 +16,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', 'nbhw' & subject.toString() & code & Date.toString() & dosage)}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', 'nbhw' & subject.toString() & code & Date.toString() & noPacks.toString() & dosage)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
@@ -32,11 +32,13 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
         "identifier" : [ {
-          "value" : "{{subject.toString() & '-' & code & '-' & Date.toString() & '-' & dosage}}"
+          "value" : "{{subject.toString() & '-' & code & '-' & Date.toString() & '-' & noPacks.toString() & '-' & dosage}}"
         } ],
         "status" : "completed",
         "intent" : "order",
-        "authoredOn" : "{{Date}}"
+        "effectiveDosePeriod" : {
+          "start" : "{{Date}}"
+        }
       }
     }
   } ]
