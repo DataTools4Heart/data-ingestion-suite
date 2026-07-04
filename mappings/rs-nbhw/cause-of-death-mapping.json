@@ -46,7 +46,7 @@
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",
-            "code" : "{{iif(value.length() > 3, value.substring(0,3) & '.' & value.substring(3), value)}}"
+            "code" : "{{iif(value.exists(), iif(value.length() > 3, value.substring(0,3) & '.' & value.substring(3), value), 'R99')}}"
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}",
