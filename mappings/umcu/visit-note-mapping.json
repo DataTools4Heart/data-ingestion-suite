@@ -1,0 +1,68 @@
+{
+  "id" : "visit-note-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu/visit-note-mapping",
+  "name" : "visit-note-mapping",
+  "title" : "VisitNote table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/VisitNote",
+    "joinOn" : [ "subject" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu/Encounter",
+    "joinOn" : [ "studyId_0919" ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "onlyDate",
+    "language" : "text/fhirpath",
+    "expression" : "date.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd')"
+  }, {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(period_start.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %onlyDate and period_end.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %onlyDate).first() "
+  } ],
+  "mapping" : [ {
+    "description" : "In the job definition, there is a long preprocesSQL to keep the note orders based on the orderBy column",
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Composition', identifier & subject.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VisitNote" ]
+        },
+        "resourceType" : "Composition",
+        "status" : "{{iif( status.where($this = 'appended').exists(), 'appended',  iif( status.where($this = 'final').exists(), 'final', iif( status.where($this = 'preliminary').exists(), 'preliminary', 'final' )  ))}}",
+        "type" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "107903-7"
+          } ]
+        },
+        "subject" : [ "{{mpp:createFhirReferenceWithHashedId('Patient', subject.toString())}}" ],
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
+        "date" : "{{date.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+        "author" : [ {
+          "display" : "UMCU"
+        } ],
+        "title" : "{{title}}",
+        "section" : {
+          "{{#index}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}" : {
+            "title" : "{{section[%index].nav:orElse('unknown')}}",
+            "text" : {
+              "status" : "additional",
+              "div" : "{{note[%index].nav:orElse('unknown')}}"
+            },
+            "extension" : [ {
+              "url" : "https://datatools4heart.eu/fhir/StructureDefinition/VisitNoteStatus",
+              "valueString" : "{{status[%index].nav:orElse('unknown')}}"
+            } ]
+          }
+        }
+      }
+    }
+  } ]
+}

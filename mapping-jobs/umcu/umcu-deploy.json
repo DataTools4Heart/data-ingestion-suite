@@ -197,6 +197,28 @@
         "sourceRef" : "umcu-source"
       }
     }
+  }, {
+    "name" : "visit-note-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu/visit-note-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VisitNote.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "WITH agg AS (\r\n    SELECT\r\n        count(*)                 AS cnt,\r\n        identifier,\r\n        date,\r\n        subject,\r\n        array_agg(title)[0]      AS title,\r\n        array_agg(status)        AS status_arr,\r\n        array_agg(section)       AS section_arr,\r\n        array_agg(note)          AS note_arr,\r\n        array_agg(orderedBy)     AS orderedBy_arr\r\n    FROM source\r\n    WHERE lower(trim(status)) != 'cancelled'    \r\n    GROUP BY subject, identifier, date\r\n),\r\nkeyed AS (\r\n    SELECT\r\n        cnt, identifier, date, subject, title,\r\n        status_arr, section_arr, note_arr, orderedBy_arr,\r\n        transform(\r\n            orderedBy_arr,\r\n            x -> array_min(transform(split(x, ','), y -> CAST(trim(y) AS INT)))\r\n        ) AS sort_key_arr\r\n    FROM agg\r\n),\r\nsorted AS (\r\n    SELECT\r\n        cnt, identifier, date, subject, title,\r\n        array_sort(\r\n            arrays_zip(status_arr, section_arr, note_arr, orderedBy_arr, sort_key_arr),\r\n            (l, r) -> CASE\r\n                WHEN l.sort_key_arr < r.sort_key_arr THEN -1\r\n                WHEN l.sort_key_arr > r.sort_key_arr THEN 1\r\n                ELSE 0\r\n            END\r\n        ) AS sorted_arr\r\n    FROM keyed\r\n)\r\nSELECT\r\n    cnt AS count,\r\n    identifier,\r\n    date,\r\n    subject,\r\n    title,\r\n    transform(sorted_arr, x -> x.status_arr)    AS status,\r\n    transform(sorted_arr, x -> x.section_arr)   AS section,\r\n    transform(sorted_arr, x -> x.note_arr)      AS note,\r\n    transform(sorted_arr, x -> x.orderedBy_arr) AS orderedBy\r\nFROM sorted",
+        "sourceRef" : "umcu-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "umcu-source"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
