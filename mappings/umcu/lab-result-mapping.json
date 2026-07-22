@@ -56,6 +56,7 @@
           "coding" : [ {
             "system" : "http://loinc.org",
             "code" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%labCodeConversion, LOINCcode, 'target_display')}}",
             "@sliceName" : "loincCode"
           } ]
         },
