@@ -37,7 +37,7 @@
           "coding" : [ {
             "system" : "http://loinc.org",
             "code" : "{{mpp:getConcept(%vitalSignMap, LOINCcode.utl:trim(), 'target_code')}}",
-            "display" : "{{LOINCdisplay}}",
+            "display" : "{{mpp:getConcept(%vitalSignMap, LOINCcode.utl:trim(), 'target_display')}}",
             "@sliceName" : "loincCode"
           } ]
         },
