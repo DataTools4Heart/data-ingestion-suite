@@ -109,17 +109,17 @@
       }
     }
   }, {
-    "name" : "laboratory-mapping",
+    "name" : "laboratory-mapping1",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Laboratory.parquet",
+        "path" : "Laboratory1.parquet",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select * from source where extract(year from MateriaalAfnameDatumTijd) = $year and extract(month from MateriaalAfnameDatumTijd) = $month",
+        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -132,149 +132,345 @@
     },
     "batchingStrategy" : {
       "batchParameterSets" : [ {
-        "year" : "2022",
-        "month" : "1"
+        "yearMin" : "1900",
+        "yearMax" : "2011"
       }, {
-        "year" : "2022",
-        "month" : "2"
+        "yearMin" : "2010",
+        "yearMax" : "2012"
       }, {
-        "year" : "2022",
-        "month" : "3"
+        "yearMin" : "2011",
+        "yearMax" : "2013"
       }, {
-        "year" : "2022",
-        "month" : "4"
+        "yearMin" : "2012",
+        "yearMax" : "2014"
       }, {
-        "year" : "2022",
-        "month" : "5"
+        "yearMin" : "2013",
+        "yearMax" : "2015"
       }, {
-        "year" : "2022",
-        "month" : "6"
+        "yearMin" : "2014",
+        "yearMax" : "2016"
       }, {
-        "year" : "2022",
-        "month" : "7"
+        "yearMin" : "2015",
+        "yearMax" : "2017"
       }, {
-        "year" : "2022",
-        "month" : "8"
+        "yearMin" : "2016",
+        "yearMax" : "2018"
       }, {
-        "year" : "2022",
-        "month" : "9"
+        "yearMin" : "2017",
+        "yearMax" : "2019"
       }, {
-        "year" : "2022",
-        "month" : "10"
+        "yearMin" : "2018",
+        "yearMax" : "2020"
       }, {
-        "year" : "2022",
-        "month" : "11"
+        "yearMin" : "2019",
+        "yearMax" : "2021"
       }, {
-        "year" : "2022",
-        "month" : "12"
+        "yearMin" : "2020",
+        "yearMax" : "2022"
       }, {
-        "year" : "2023",
-        "month" : "1"
+        "yearMin" : "2021",
+        "yearMax" : "2023"
       }, {
-        "year" : "2023",
-        "month" : "2"
+        "yearMin" : "2022",
+        "yearMax" : "2024"
       }, {
-        "year" : "2023",
-        "month" : "3"
+        "yearMin" : "2023",
+        "yearMax" : "2025"
       }, {
-        "year" : "2023",
-        "month" : "4"
+        "yearMin" : "2024",
+        "yearMax" : "2026"
+      } ]
+    }
+  }, {
+    "name" : "laboratory-mapping2",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Laboratory2.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "yearMin" : "1900",
+        "yearMax" : "2011"
       }, {
-        "year" : "2023",
-        "month" : "5"
+        "yearMin" : "2010",
+        "yearMax" : "2012"
       }, {
-        "year" : "2023",
-        "month" : "6"
+        "yearMin" : "2011",
+        "yearMax" : "2013"
       }, {
-        "year" : "2023",
-        "month" : "7"
+        "yearMin" : "2012",
+        "yearMax" : "2014"
       }, {
-        "year" : "2023",
-        "month" : "8"
+        "yearMin" : "2013",
+        "yearMax" : "2015"
       }, {
-        "year" : "2023",
-        "month" : "9"
+        "yearMin" : "2014",
+        "yearMax" : "2016"
       }, {
-        "year" : "2023",
-        "month" : "10"
+        "yearMin" : "2015",
+        "yearMax" : "2017"
       }, {
-        "year" : "2023",
-        "month" : "11"
+        "yearMin" : "2016",
+        "yearMax" : "2018"
       }, {
-        "year" : "2023",
-        "month" : "12"
+        "yearMin" : "2017",
+        "yearMax" : "2019"
       }, {
-        "year" : "2024",
-        "month" : "1"
+        "yearMin" : "2018",
+        "yearMax" : "2020"
       }, {
-        "year" : "2024",
-        "month" : "2"
+        "yearMin" : "2019",
+        "yearMax" : "2021"
       }, {
-        "year" : "2024",
-        "month" : "3"
+        "yearMin" : "2020",
+        "yearMax" : "2022"
       }, {
-        "year" : "2024",
-        "month" : "4"
+        "yearMin" : "2021",
+        "yearMax" : "2023"
       }, {
-        "year" : "2024",
-        "month" : "5"
+        "yearMin" : "2022",
+        "yearMax" : "2024"
       }, {
-        "year" : "2024",
-        "month" : "6"
+        "yearMin" : "2023",
+        "yearMax" : "2025"
       }, {
-        "year" : "2024",
-        "month" : "7"
+        "yearMin" : "2024",
+        "yearMax" : "2026"
+      } ]
+    }
+  }, {
+    "name" : "laboratory-mapping3",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Laboratory3.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "yearMin" : "1900",
+        "yearMax" : "2011"
       }, {
-        "year" : "2024",
-        "month" : "8"
+        "yearMin" : "2010",
+        "yearMax" : "2012"
       }, {
-        "year" : "2024",
-        "month" : "9"
+        "yearMin" : "2011",
+        "yearMax" : "2013"
       }, {
-        "year" : "2024",
-        "month" : "10"
+        "yearMin" : "2012",
+        "yearMax" : "2014"
       }, {
-        "year" : "2024",
-        "month" : "11"
+        "yearMin" : "2013",
+        "yearMax" : "2015"
       }, {
-        "year" : "2024",
-        "month" : "12"
+        "yearMin" : "2014",
+        "yearMax" : "2016"
       }, {
-        "year" : "2025",
-        "month" : "1"
+        "yearMin" : "2015",
+        "yearMax" : "2017"
       }, {
-        "year" : "2025",
-        "month" : "2"
+        "yearMin" : "2016",
+        "yearMax" : "2018"
       }, {
-        "year" : "2025",
-        "month" : "3"
+        "yearMin" : "2017",
+        "yearMax" : "2019"
       }, {
-        "year" : "2025",
-        "month" : "4"
+        "yearMin" : "2018",
+        "yearMax" : "2020"
       }, {
-        "year" : "2025",
-        "month" : "5"
+        "yearMin" : "2019",
+        "yearMax" : "2021"
       }, {
-        "year" : "2025",
-        "month" : "6"
+        "yearMin" : "2020",
+        "yearMax" : "2022"
       }, {
-        "year" : "2025",
-        "month" : "7"
+        "yearMin" : "2021",
+        "yearMax" : "2023"
       }, {
-        "year" : "2025",
-        "month" : "8"
+        "yearMin" : "2022",
+        "yearMax" : "2024"
       }, {
-        "year" : "2025",
-        "month" : "9"
+        "yearMin" : "2023",
+        "yearMax" : "2025"
       }, {
-        "year" : "2025",
-        "month" : "10"
+        "yearMin" : "2024",
+        "yearMax" : "2026"
+      } ]
+    }
+  }, {
+    "name" : "laboratory-mapping4",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Laboratory4.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "yearMin" : "1900",
+        "yearMax" : "2011"
       }, {
-        "year" : "2025",
-        "month" : "11"
+        "yearMin" : "2010",
+        "yearMax" : "2012"
       }, {
-        "year" : "2025",
-        "month" : "12"
+        "yearMin" : "2011",
+        "yearMax" : "2013"
+      }, {
+        "yearMin" : "2012",
+        "yearMax" : "2014"
+      }, {
+        "yearMin" : "2013",
+        "yearMax" : "2015"
+      }, {
+        "yearMin" : "2014",
+        "yearMax" : "2016"
+      }, {
+        "yearMin" : "2015",
+        "yearMax" : "2017"
+      }, {
+        "yearMin" : "2016",
+        "yearMax" : "2018"
+      }, {
+        "yearMin" : "2017",
+        "yearMax" : "2019"
+      }, {
+        "yearMin" : "2018",
+        "yearMax" : "2020"
+      }, {
+        "yearMin" : "2019",
+        "yearMax" : "2021"
+      }, {
+        "yearMin" : "2020",
+        "yearMax" : "2022"
+      }, {
+        "yearMin" : "2021",
+        "yearMax" : "2023"
+      }, {
+        "yearMin" : "2022",
+        "yearMax" : "2024"
+      }, {
+        "yearMin" : "2023",
+        "yearMax" : "2025"
+      }, {
+        "yearMin" : "2024",
+        "yearMax" : "2026"
+      } ]
+    }
+  }, {
+    "name" : "laboratory-mapping5",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Laboratory5.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "sourceRef" : "amc-source"
+      },
+      "encounters" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Encounters.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "yearMin" : "1900",
+        "yearMax" : "2011"
+      }, {
+        "yearMin" : "2010",
+        "yearMax" : "2012"
+      }, {
+        "yearMin" : "2011",
+        "yearMax" : "2013"
+      }, {
+        "yearMin" : "2012",
+        "yearMax" : "2014"
+      }, {
+        "yearMin" : "2013",
+        "yearMax" : "2015"
+      }, {
+        "yearMin" : "2014",
+        "yearMax" : "2016"
+      }, {
+        "yearMin" : "2015",
+        "yearMax" : "2017"
+      }, {
+        "yearMin" : "2016",
+        "yearMax" : "2018"
+      }, {
+        "yearMin" : "2017",
+        "yearMax" : "2019"
+      }, {
+        "yearMin" : "2018",
+        "yearMax" : "2020"
+      }, {
+        "yearMin" : "2019",
+        "yearMax" : "2021"
+      }, {
+        "yearMin" : "2020",
+        "yearMax" : "2022"
+      }, {
+        "yearMin" : "2021",
+        "yearMax" : "2023"
+      }, {
+        "yearMin" : "2022",
+        "yearMax" : "2024"
+      }, {
+        "yearMin" : "2023",
+        "yearMax" : "2025"
+      }, {
+        "yearMin" : "2024",
+        "yearMax" : "2026"
       } ]
     }
   }, {
