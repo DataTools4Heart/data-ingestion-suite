@@ -58,7 +58,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{iif(MateriaalAfnameDatumTijd.exists() and MateriaalAfnameDatumTijd != '', MateriaalAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), UitslagDatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')) }}",
+        "effectiveDateTime" : "{{MateriaalAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "valueQuantity" : {
           "{{#convertedMea}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINC_code.toString(), UitslagNumeriek, UitslagEenheid.toString())}}",
           "{{?}}" : {

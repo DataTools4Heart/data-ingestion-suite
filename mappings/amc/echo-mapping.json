@@ -1,7 +1,7 @@
 {
-  "id" : "echo-mapping-new",
-  "url" : "https://datatools4heart.eu/fhir/mappings/amc/echo-new-mapping",
-  "name" : "echo-mapping-new",
+  "id" : "echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
+  "name" : "echo-mapping",
   "title" : "Mapping of AMC's Echocardiography table to DT4H-ECG FHIR profile",
   "isDraft" : false,
   "source" : [ {
@@ -20,13 +20,17 @@
     }
   },
   "variable" : [ {
-    "name" : "relatedEncounters",
+    "name" : "effectiveDate",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.Onderzoeksdatum.first().utl:toFhirDateTime('yyyy-MM-dd') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.Onderzoeksdatum.first().utl:toFhirDateTime('yyyy-MM-dd'))"
+    "expression" : "Onderzoeksdatum.first().substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd')"
   }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "iif(%relatedEncounters.exists(PrimaryICDcode.exists() and PrimaryICDcode != ''), %relatedEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').first(), %relatedEncounters.first())"
+    "expression" : " %encounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '' and EndDate.substring(0, 10) != '1900-01-01').where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and EndDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate)).first() "
+  }, {
+    "name" : "relatedEncounterSecondary",
+    "language" : "text/fhirpath",
+    "expression" : " iif(%relatedEncounter.empty(), %encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and EndDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate))).first() "
   } ],
   "mapping" : [ {
     "description" : "Here are the steps to find related encounter: 1. Join encounter data by patient ID. 2. Do date window calculation (see relatedEncounters variable) 3. Prioritise the encounter having a value in PrimaryICDcode column and select first one.",
@@ -78,7 +82,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId)}}",
+        "encounter" : "{{? iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.PatientContactId) )}}",
         "identifier" : [ {
           "value" : "{{pseudo_id.toString() & '-' & Accessionnummer}}"
         } ],

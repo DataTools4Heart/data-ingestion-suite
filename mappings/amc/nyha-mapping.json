@@ -20,13 +20,17 @@
     }
   },
   "variable" : [ {
-    "name" : "relatedEncounters",
+    "name" : "effectiveDate",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') <= %context.dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and EndDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss') >= %context.dateNote.first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))"
+    "expression" : "dateNote.first().substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd')"
   }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "iif(%relatedEncounters.exists(PrimaryICDcode.exists() and PrimaryICDcode != ''), %relatedEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').first(), %relatedEncounters.first())"
+    "expression" : " %encounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '' and EndDate.substring(0, 10) != '1900-01-01').where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and EndDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate)).first() "
+  }, {
+    "name" : "relatedEncounterSecondary",
+    "language" : "text/fhirpath",
+    "expression" : " iif(%relatedEncounter.empty(), %encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and EndDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate))).first() "
   } ],
   "mapping" : [ {
     "expression" : {
@@ -62,7 +66,7 @@
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId)}}",
+        "encounter" : "{{? iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.PatientContactId) )}}",
         "identifier" : [ {
           "value" : "{{pseudo_id.toString() & '-' & dateNote.toString() & '-' & nyha.toString()}}"
         } ],
