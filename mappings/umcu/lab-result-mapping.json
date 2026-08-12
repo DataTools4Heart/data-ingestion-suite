@@ -27,6 +27,14 @@
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
     "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+  }, {
+    "name" : "troponinULN",
+    "language" : "text/fhirpath",
+    "expression" : "iif(LOINCcode = '89579-7',iif(effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') > @2019-09-28T00:00:00,40,iif(effectivedatetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') > @2018-05-17T00:00:00,18,60)),{})"
+  }, {
+    "name" : "troponinInterpretation",
+    "language" : "text/fhirpath",
+    "expression" : "iif(LOINCcode = '89579-7', iif(valueQuantity_value > %troponinULN,'High', 'Low'),{})"
   } ],
   "mapping" : [ {
     "precondition" : {
@@ -71,17 +79,17 @@
           "value" : "{{studyId_0919.toString() & '-' & LOINCcode.toString() & '-' & effectivedatetime.toString() & '-' & valueQuantity_value.toString()}}"
         } ],
         "interpretation" : [ {
-          "{{#interpretationVar}}" : "{{iif(interpretation_display.exists() and interpretation_display != '', interpretation_display) }}",
+          "{{#interpretationVar}}" : "{{iif(interpretation_display.exists() and interpretation_display != '', interpretation_display, %troponinInterpretation) }}",
           "{{?}}" : {
             "coding" : [ {
-              "{{#codingVar}}" : "{{mpp:getConcept(%interpretationMap, interpretation_display)}}",
+              "{{#codingVar}}" : "{{mpp:getConcept(%interpretationMap, %interpretationVar)}}",
               "{{?}}" : {
                 "system" : "http://hl7.org/fhir/ValueSet/observation-interpretation",
                 "code" : "{{%codingVar.target_code}}",
                 "display" : "{{%codingVar.target_display}}"
               }
             } ],
-            "text" : "{{interpretation_display}}"
+            "text" : "{{%interpretationVar}}"
           }
         } ]
       }
