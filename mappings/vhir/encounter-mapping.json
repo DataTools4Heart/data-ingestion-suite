@@ -8,7 +8,18 @@
     {
       "alias": "omopVisitOccurrence",
       "url": "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-VisitOccurrence",
-      "joinOn": []
+      "joinOn": [
+        "VISIT_OCCURRENCE_ID",
+        "PERSON_ID"
+      ]
+    },
+    {
+      "alias": "cardiologyVisitOccurrence",
+      "url": "https://www.vallhebron.com/fhir/StructureDefinition/CardiologyVisitOccurrence",
+      "joinOn": [
+        "visit_occurrence_id",
+        "person_id"
+      ]
     }
   ],
   "context": {
@@ -49,6 +60,16 @@
             }
           ],
           "subject": "{{? mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
+          "serviceType": {
+            "{{#serviceTypeVar}}": "{{iif(%cardiologyVisitOccurrence.exists(), true)}}",
+            "{{*}}": {
+              "concept": {
+                "coding": [
+                  "{{utl:createFhirCoding('http://snomed.info/sct', '394579002', 'Cardiology')}}"
+                ]
+              }
+            }
+          },
           "actualPeriod": {
             "start": "{{? iif(VISIT_START_DATETIME.empty(), VISIT_START_DATE, VISIT_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
             "end": "{{? iif(VISIT_END_DATETIME.empty(), VISIT_END_DATE, VISIT_END_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}"

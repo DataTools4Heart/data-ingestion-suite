@@ -1,0 +1,46 @@
+{
+  "id" : "cardiologyvisitoccurrence",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.vallhebron.com/fhir/StructureDefinition/CardiologyVisitOccurrence",
+  "version" : "latest",
+  "name" : "CardiologyVisitOccurrence",
+  "description" : "It includes only patients who have had visits in the cardiology department.",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "CardiologyVisitOccurrence",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "CardiologyVisitOccurrence",
+      "path" : "CardiologyVisitOccurrence",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "CardiologyVisitOccurrence.visit_occurrence_id",
+      "path" : "CardiologyVisitOccurrence.visit_occurrence_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Visit occurrence id"
+    }, {
+      "id" : "CardiologyVisitOccurrence.person_id",
+      "path" : "CardiologyVisitOccurrence.person_id",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Person id"
+    } ]
+  }
+}

@@ -188,6 +188,13 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "vhir-csv"
+      },
+      "cardiologyVisitOccurrence" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "cardiology-visit.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
       }
     }
   } ],
