@@ -159,6 +159,12 @@
         "options" : { },
         "sourceRef" : "vhir-source"
       },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
@@ -173,6 +179,12 @@
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2014",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
         "options" : { },
         "sourceRef" : "vhir-source"
       },
@@ -193,6 +205,12 @@
         "options" : { },
         "sourceRef" : "vhir-source"
       },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
@@ -207,6 +225,12 @@
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2016",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
         "options" : { },
         "sourceRef" : "vhir-source"
       },
@@ -227,6 +251,12 @@
         "options" : { },
         "sourceRef" : "vhir-source"
       },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
@@ -241,6 +271,12 @@
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2018",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
         "options" : { },
         "sourceRef" : "vhir-source"
       },
@@ -261,6 +297,12 @@
         "options" : { },
         "sourceRef" : "vhir-source"
       },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
@@ -275,6 +317,12 @@
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2020",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
         "options" : { },
         "sourceRef" : "vhir-source"
       },
@@ -295,6 +343,12 @@
         "options" : { },
         "sourceRef" : "vhir-source"
       },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
@@ -309,6 +363,12 @@
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2022",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
         "options" : { },
         "sourceRef" : "vhir-source"
       },
@@ -329,6 +389,12 @@
         "options" : { },
         "sourceRef" : "vhir-source"
       },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
@@ -346,6 +412,12 @@
         "options" : { },
         "sourceRef" : "vhir-source"
       },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
       "omopVisit" : {
         "jsonClass" : "SqlSource",
         "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
@@ -360,6 +432,12 @@
       "omopMeasurement" : {
         "jsonClass" : "SqlSource",
         "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT \r\nWHERE EXTRACT(YEAR FROM MEASUREMENT_DATE) = 2025",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      },
+      "omopPatient" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".PERSON",
         "options" : { },
         "sourceRef" : "vhir-source"
       },

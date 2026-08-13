@@ -71,6 +71,7 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 4021154,8753,2951-2,mmol/L,"Sodium measurement, serum",$this
 4017497,8713,1751-7,g/L,"Albumin measurement, serum",$this * 10
 37208545,8725,89579-7,ng/mL,Cardiac troponin I mass concentration in serum by high sensitivity technique,$this/1000
+37208543,8842,10839-9,ng/mL,Cardiac troponin I mass concentration in plasma,$this
 4189511,8845,33762-6,pg/mL,N terminal pro-brain natriuretic peptide level,$this
 37392563,8840,14927-8,mmol/L,Serum triglycerides level,$this * 0.01129
 37392561,8840,14647-2,mmol/L,Serum cholesterol level,$this * 0.02586
