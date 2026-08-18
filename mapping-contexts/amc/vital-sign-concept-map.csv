@@ -13,3 +13,4 @@ source_code,source_unit,target_code,target_unit,conversion_function,target_displ
 "60982-6","mmHg","60982-6","mm[Hg]","$this","Aorta Diastolic blood pressure"
 "76536-2","mmHg","76536-2","mm[Hg]","$this","Mean blood pressure by Noninvasive"
 "76214-6","mmHg","76214-6","mm[Hg]","$this","Invasive Mean blood pressure"
+"8310-5","Cel","8310-5","Cel","$this","Body temperature"
