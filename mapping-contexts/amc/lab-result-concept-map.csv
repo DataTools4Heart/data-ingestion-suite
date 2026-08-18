@@ -18,6 +18,7 @@
 "32309-7","","32309-7","{ratio}","Cholesterol.total/Cholesterol in HDL [Molar ratio] in Serum or Plasma","$this"
 "32309-7"," ","32309-7","{ratio}","Cholesterol.total/Cholesterol in HDL [Molar ratio] in Serum or Plasma","$this"
 "83092-7","µg/L","83092-7","mcg/L","Creatine kinase.MB [Mass/volume] in Serum or Plasma by Immunoassay","$this"
+"83092-7","ug/L","83092-7","mcg/L","Creatine kinase.MB [Mass/volume] in Serum or Plasma by Immunoassay","$this"
 "14682-9","umol/L","2160-0","mg/L","Creatinine [Mass/volume] in Serum or Plasma","$this * 0.1131"
 "14682-9","µmol/L","2160-0","mg/L","Creatinine [Mass/volume] in Serum or Plasma","$this * 0.1131"
 "14683-7","mmol/L","2161-8","mg/L","Creatinine [Mass/volume] in Urine","$this * 113.12"
