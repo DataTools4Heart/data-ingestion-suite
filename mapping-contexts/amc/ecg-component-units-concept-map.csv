@@ -1,25 +1,25 @@
-source_code,display,unit_code,target_code,target_system,target_display
-8625-6,P-R Interval,ms,8625-6,http://loinc.org,P-R Interval
-76282-3,Heart rate.beat-to-beat by EKG,beats,76282-3,http://loinc.org,Heart rate.beat-to-beat by EKG
-18505-8,R-R interval (Mean value during study) by EKG,ms,8637-1,http://loinc.org,R-R interval by EKG
-8633-0,QRS duration,ms,8633-0,http://loinc.org,QRS duration
-76635-2,Q-T interval corrected based on Bazett formula,ms,bazett,https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula,Bazett
-8634-8,Q-T interval,ms,8634-8,http://loinc.org,Q-T interval
-8626-4,P wave axis,deg,8626-4,http://loinc.org,P wave axis
-9997-8,R wave axis,deg,9997-8,http://loinc.org,R wave axis
-8638-9,T wave axis,deg,8638-9,http://loinc.org,T wave axis
-8636-3,Q-T interval corrected,ms,8636-3,http://loinc.org,Q-T interval corrected
-76634-5,Q-T interval corrected based on Fridericia formula,ms,frederica,https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula,Frederica
-avb,AV-block,,233917008,http://snomed.info/sct,Atrioventricular block
-BIV,Biatrial enlargement,,ECG-BIV,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Biatrial enlargement
-infarction,Infarction,,164865005,http://snomed.info/sct,Electrocardiographic myocardial infarction
-LBBB,Left Bundle Branch Block,,ECG-LBBB,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Left Bundle Branch Block
-LVA,Left atrial enlargement,,446813000,http://snomed.info/sct,Left atrial hypertrophy
-LVH,Left ventricular hypertrophy,,164873001,http://snomed.info/sct,Electrocardiographic left ventricle hypertrophy
-pvc,Premature Ventricular Complexes,,427172004,http://snomed.info/sct,Electrocardiogram: premature ventricular contractions
-rawRhythm,Rhythm at ECG,,RawRhythm,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Raw Rhythm
-RBBB,Right Bundle Branch Block,,ECG-RBBB,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Right Bundle Branch Block
-stDepression,ST depression,,429622005,http://snomed.info/sct,ST Depression
-stDeviation,ST deviation,,stDeviation,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,ST Deviation
-stElevation,ST elevation,,164931005,http://snomed.info/sct,ST elevation
-tWaveAlterations,T-wave changes,,164934002,http://snomed.info/sct,Electrocardiographic T wave abnormal
+source_code,display,unit_code,unit_display,target_code,target_system,target_display
+8625-6,P-R Interval,ms,millisecond,8625-6,http://loinc.org,P-R Interval
+76282-3,Heart rate.beat-to-beat by EKG,beats,beats,76282-3,http://loinc.org,Heart rate.beat-to-beat by EKG
+18505-8,R-R interval (Mean value during study) by EKG,ms,millisecond,8637-1,http://loinc.org,R-R interval by EKG
+8633-0,QRS duration,ms,millisecond,8633-0,http://loinc.org,QRS duration
+76635-2,Q-T interval corrected based on Bazett formula,ms,millisecond,bazett,https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula,Bazett
+8634-8,Q-T interval,ms,millisecond,8634-8,http://loinc.org,Q-T interval
+8626-4,P wave axis,deg,degree,8626-4,http://loinc.org,P wave axis
+9997-8,R wave axis,deg,degree,9997-8,http://loinc.org,R wave axis
+8638-9,T wave axis,deg,degree,8638-9,http://loinc.org,T wave axis
+8636-3,Q-T interval corrected,ms,millisecond,8636-3,http://loinc.org,Q-T interval corrected
+76634-5,Q-T interval corrected based on Fridericia formula,ms,millisecond,frederica,https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula,Frederica
+avb,AV-block,,,233917008,http://snomed.info/sct,Atrioventricular block
+BIV,Biatrial enlargement,,,ECG-BIV,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Biatrial enlargement
+infarction,Infarction,,,164865005,http://snomed.info/sct,Electrocardiographic myocardial infarction
+LBBB,Left Bundle Branch Block,,,ECG-LBBB,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Left Bundle Branch Block
+LVA,Left atrial enlargement,,,446813000,http://snomed.info/sct,Left atrial hypertrophy
+LVH,Left ventricular hypertrophy,,,164873001,http://snomed.info/sct,Electrocardiographic left ventricle hypertrophy
+pvc,Premature Ventricular Complexes,,,427172004,http://snomed.info/sct,Electrocardiogram: premature ventricular contractions
+rawRhythm,Rhythm at ECG,,,RawRhythm,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Raw Rhythm
+RBBB,Right Bundle Branch Block,,,ECG-RBBB,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Right Bundle Branch Block
+stDepression,ST depression,,,429622005,http://snomed.info/sct,ST Depression
+stDeviation,ST deviation,,,stDeviation,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,ST Deviation
+stElevation,ST elevation,,,164931005,http://snomed.info/sct,ST elevation
+tWaveAlterations,T-wave changes,,,164934002,http://snomed.info/sct,Electrocardiographic T wave abnormal
