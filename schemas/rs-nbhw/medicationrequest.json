@@ -48,6 +48,15 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
+      "id" : "MedicationRequest.substance",
+      "path" : "MedicationRequest.substance",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "MedicationRequest.Date",
       "path" : "MedicationRequest.Date",
       "min" : 0,
@@ -57,8 +66,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/date" ]
       } ]
     }, {
-      "id" : "MedicationRequest.noPacks",
-      "path" : "MedicationRequest.noPacks",
+      "id" : "MedicationRequest.noPacksdispensed",
+      "path" : "MedicationRequest.noPacksdispensed",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -66,8 +75,62 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "MedicationRequest.dosage",
-      "path" : "MedicationRequest.dosage",
+      "id" : "MedicationRequest.noPillsperPackdispensed",
+      "path" : "MedicationRequest.noPillsperPackdispensed",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.period",
+      "path" : "MedicationRequest.period",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.periodUnit",
+      "path" : "MedicationRequest.periodUnit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.frequency",
+      "path" : "MedicationRequest.frequency",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.asNeeded",
+      "path" : "MedicationRequest.asNeeded",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "integer",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.dose",
+      "path" : "MedicationRequest.dose",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationRequest.doseUnit",
+      "path" : "MedicationRequest.doseUnit",
       "min" : 0,
       "max" : "1",
       "type" : [ {

@@ -1,101 +1,101 @@
-identifier	subject	code	Date	noPacks	dosage
-medication_dispensation	18937	B01AC07	2005-07-01	1	1  KAPSEL  1  GÅNG  DAGLIGEN
-medication_dispensation	17347	C03AB01	2005-07-01	1	1 TABLETT DAGLIGEN   MÅSTE SVÄLJAS HELA
-medication_dispensation	17347	C08CA02	2005-07-01	1	1 TABLETT DAGLIGEN   MÅSTE SVÄLJAS HELA
-medication_dispensation	8368	M01AB55	2005-07-01	1	1 TABLETT 2 GÅNGER DAGLIGEN   MÅSTE SVÄLJAS HELA
-medication_dispensation	24089	C01DA02	2005-07-04	1	1 TABLETT VID SMÄRTA I BRÖSTET
-medication_dispensation	24089	C09CA06	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	9045	C07AB02	2005-07-04	2	1 TABLETT 2 GÅNGER DAGLIGEN
-medication_dispensation	9045	C09AA05	2005-07-04	2	1 TABLETT 2 GÅNGER DAGLIGEN
-medication_dispensation	35416	C02AC01	2005-07-01	1	1 TABLETT 2-3 GÅNGER DAGLIGEN VID ORO
-medication_dispensation	438878016	C01CA24	2005-07-01	2	FÖR INJEKTION VID KRAFTIG ALLERGISK REAKTION
-medication_dispensation	14559	C07AB02	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	2464	A10AC01	2005-07-01	2	22 ENHETER TILL KVÄLLEN
-medication_dispensation	69368718	B01AC06	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	22561	A10BG03	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	310605200	C08CA02	2005-07-01	1	1 TABLETT DAGLIGEN   MÅSTE SVÄLJAS HELA, FÅR INTE DELAS, KROSSAS ELLER TUGGAS
-medication_dispensation	157930293	A10BA02	2005-07-01	5	1 TABLETT TILL FRUKOST OCH MIDDAG ELLER ENLIGT ORDINATION
-medication_dispensation	28609	C07AB03	2005-07-01	1	1 TABLETT VARJE MORGON
-medication_dispensation	28609	A10BA02	2005-07-01	5	ENLIGT ORDINATION
-medication_dispensation	28609	C10AX09	2005-07-01	1	1 TABLETT DAGLIGEN
-medication_dispensation	28609	A10AC01	2005-07-01	2	INJICERAS KVÄLLSTID I LÅRET
-medication_dispensation	28609	B01AC06	2005-07-01	1	1 TABLETT DAGLIGEN
-medication_dispensation	28609	A10BB12	2005-07-01	2	2 TABLETTER 30 MINUTER FÖRE FRUKOST ELLER ENLIGT ORDINATION
-medication_dispensation	28609	C10AA05	2005-07-01	1	1 TABLETT DAGLIGEN GÄRNA PÅ KVÄLLEN
-medication_dispensation	12273	B01AA03	2005-07-04	1	ENLIGT SÄRSKILD ORDINATION MOT VENTROMBOS.
-medication_dispensation	73371434	C09CA01	2005-07-02	1	1 TABLETT PÅ MORGONEN FÖR BLODTRYCKET
-medication_dispensation	44949	C10AA01	2005-07-05	1	1 TABLETT TILL NATTEN. KOLESTEROLSÄNKANDE
-medication_dispensation	31758	B01AC06	2005-07-04	1	1 TABLETT EN GÅNG DAGLIGEN
-medication_dispensation	31758	C09AA05	2005-07-04	2	1 TABLETT 2 GÅNGER DAGLIGEN
-medication_dispensation	31758	C10AA01	2005-07-04	1	1 TABLETT TILL NATTEN
-medication_dispensation	37840	C03CA01	2005-07-01	1	1  KAPSEL DAGLIGEN
-medication_dispensation	37840	B01AC06	2005-07-01	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	18857	C09AA02	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	23221	C07AB02	2005-07-05	1	1 TABLETT DAGLIGEN
-medication_dispensation	23221	C09DA06	2005-07-05	1	1 TABLETT DAGLIGEN
-medication_dispensation	39012	C07AB02	2005-07-05	1	1 TABLETT PÅ MORGONEN   MOT HÖGT BLODTRYCK   RYTMREGLERANDE
-medication_dispensation	39012	C08CA02	2005-07-05	1	1 TABLETT PÅ MORGONEN  MOT HÖGT BLODTRYCK   MÅSTE SVÄLJAS HELA
-medication_dispensation	222610646	M01AX05	2005-07-04	1	1 TABLETT 2 GÅNGER DAGLIGEN
-medication_dispensation	37122	C10AA05	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN FÖR BLODFETTERNA TILL NATTEN
-medication_dispensation	37122	C09AA02	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	37122	C01DA02	2005-07-04	1	1 RESORIBLETT UNDER TUNGAN MOT KÄRLKRAMP   SMÄLTES UNDER TUNGAN
-medication_dispensation	37122	C03EA01	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	408573123	C09AA01	2005-07-05	1	1 TABLETT 2 GÅNGER DAGLIGEN MOT BLODTRYCKET.
-medication_dispensation	408573123	R03AC13	2005-07-05	1	1 INHALATION 2 GÅNGER DAGLIGEN FÖR ANDNINGEN
-medication_dispensation	408573123	C03CA01	2005-07-05	1	1 TABLETT 1 GÅNGER DAGLIGEN MOT BLODTRYCK
-medication_dispensation	408573123	C08CA01	2005-07-05	1	1 TABLETT 1 GÅNGER DAGLIGEN MOT BLODTRYCK
-medication_dispensation	408573123	R03AC03	2005-07-05	1	1-2 INHALATIONER 2 GÅNGER DAGLIGEN ENLIGT ORDINATION
-medication_dispensation	408573123	C09AA01	2005-07-05	1	1 TABLETT 2 GÅNGER DAGLIGEN  MOT BLODTRYCK
-medication_dispensation	42	C07AA07	2005-07-04	3	1½ TABLETT 2 GÅNGER DAGLIGEN FÖR HJÄRTAT
-medication_dispensation	42	B01AC06	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN MOT BLODPROPP
-medication_dispensation	42	C09AA08	2005-07-04	1	1 TABLETT DAGLIGEN MOT BLODTRYCKET
-medication_dispensation	20891	B01AC06	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN MOT BLODPROPP
-medication_dispensation	20891	C07AA07	2005-07-04	2	1 TABLETT 2 GÅNGER DAGLIGEN FÖR HJÄRTAT
-medication_dispensation	20891	C03DB01	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN FÖR HJÄRTAT
-medication_dispensation	20891	C10AA01	2005-07-04	1	1 TABLETT PÅ KVÄLLEN MOT BLODFETT
-medication_dispensation	20891	C03CA01	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN FÖR HJÄRTAT
-medication_dispensation	20891	C09AA03	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN FÖR HJÄRTAT
-medication_dispensation	42827	C08DA01	2005-07-01	2	1 TABLETT 2 GÅNGER DAGLIGEN FÖR HJÄRTAT
-medication_dispensation	13527	C03CA01	2005-07-01	1	1 KAPSEL PÅ MORGONEN VATTENDRIVANDE
-medication_dispensation	13527	C10AA01	2005-07-01	1	1 TABLETT TILL NATTEN MOT HÖGA BLODFETTER
-medication_dispensation	13527	C01DA14	2005-07-01	1	1 TABLETT PÅ MORGONEN MOT KÄRLKRAMP
-medication_dispensation	13527	C08CA02	2005-07-01	1	1 TABLETT EN GÅNG DAGLIGEN   MÅSTE SVÄLJAS HELA
-medication_dispensation	13527	C07AB02	2005-07-01	1	1 TABLETT EN GÅNG DAGLIGEN
-medication_dispensation	13527	C09CA07	2005-07-01	1	1 TABLETT EN GÅNG DAGLIGEN FÖR BLODTRYCKET
-medication_dispensation	322145306	A10BA02	2005-07-01	4	2 TABLETTER 2 GÅNGER DAGLIGEN   BLODSOCKERSÄNKANDE
-medication_dispensation	29242	C01DA14	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	29242	C10AA01	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	29242	B01AC06	2005-07-04	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	41168	R03BB01	2005-07-01	2	ENLIGT TIDIGARE ORDINATION
-medication_dispensation	17201	A10AC01	2005-07-01	2	ENLIGT ORDINATION.
-medication_dispensation	17201	A10BA02	2005-07-01	5	2 TABLETTER PÅ MORGONEN, 2 TABLETTER  TILL LUNCH OCH 1 TABLETT TILL MIDDAGEN.
-medication_dispensation	17201	C07AB03	2005-07-01	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	40888	C08CA03	2005-07-04	1	1 TABLETT 2   GÅNGER DAGLIGEN
-medication_dispensation	7650	M01AB55	2005-07-05	1	1 TABLETT 1 GÅNG DAGLIGEN  MOT LEDVÄRK.  MÅSTE SVÄLJAS HELA
-medication_dispensation	157722735	B01AC06	2005-07-05	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	157722735	C10AA01	2005-07-05	1	1 TABLETT 1 GÅNG DAGLIGEN TAGES PÅ KVÄLLEN
-medication_dispensation	259310276	A10AD05	2005-07-01	1	FÖR INJEKTION  18 ENHETER FÖRMIDDAG OCH 14 ENHETER KVÄLL
-medication_dispensation	19238	C07AA05	2005-07-05	1	1 TABLETT TILL NATTEN
-medication_dispensation	35329	C01AA05	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	35329	C09CA04	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	35329	C10AA01	2005-07-04	1	1 TABLETT DAGLIGEN
-medication_dispensation	35329	C08CA02	2005-07-04	1	1 TABLETT DAGLIGEN    MÅSTE SVÄLJAS HELA, FÅR INTE DELAS, KROSSAS ELLER TUGGAS
-medication_dispensation	236086435	C10AA01	2005-07-02	1	1 TABLETT DAGLIGEN
-medication_dispensation	4985	C07AB02	2005-07-05	1	1 TABLETT 1 GÅNG DAGLIGEN FÖR BLODTRYCKET
-medication_dispensation	4985	C09DA01	2005-07-05	1	1 TABLETT 1 GÅNG DAGLIGEN FÖR BLODTRYCKET
-medication_dispensation	312913044	C08CA01	2005-07-01	1	1-2 TABLETTER 1 GÅNG DAGLIGEN
-medication_dispensation	164885367	B01AC06	2005-07-01	1	1 TABLETT 1 GÅNG DAGLIGEN
-medication_dispensation	367348291	M01AB05	2005-07-01	2	1 STOLPILLER TILL NATTEN  INFÖRES I ÄNDTARMEN
-medication_dispensation	19290	M01AB05	2005-07-04	1	1 TABLETT 2 GÅNGER DAGLIGEN   MÅSTE SVÄLJAS HELA
-medication_dispensation	25678	R03AK06	2005-07-04	1	1 INHALATION 2 GÅNGER DAGLIGEN
-medication_dispensation	38117	M01AB05	2005-07-01	1	1 TABLETT 2 GÅNGER DAGLIGEN   MÅSTE SVÄLJAS HELA
-medication_dispensation	10333	C03CA01	2005-07-01	1	1 KAPSEL  DAGLIGEN
-medication_dispensation	10333	C08CA01	2005-07-01	1	1 TABLETT DAGLIGEN
-medication_dispensation	22069	C09AA05	2005-07-01	2	1 TABLETT 2 GÅNGER DAGLIGEN
-medication_dispensation	39611	C09AA02	2005-07-01	1	1 TABLETT PÅ MORGONEN FÖR BLODTRYCKET
-medication_dispensation	4804	R03AC13	2005-07-05	2	1 INHALATION MORGON OCH KVÄLL MOT ASTMA
-medication_dispensation	4804	R03BA02	2005-07-05	2	1 INHALATION MORGON OCH KVÄLL  MOT ASMA
-medication_dispensation	4804	C10AA01	2005-07-05	2	1 TABL TILL NATTEN MOT HÖGT KOLESTEROL
-medication_dispensation	4804	C08CA01	2005-07-05	2	1 TABL DAGL FÖR BLODTRYCKET
-medication_dispensation	4804	A10BA02	2005-07-05	4	1 TABL  2 GGR DAGL FÖRE MÅLTID  MOT SOCKERSJUKA
-medication_dispensation	1322	C03EA01	2005-07-05	1	1 TABLETT DAGLIGEN FÖR BLODTRYCKET
+identifier	subject	code	substance	Date	noPacksdispensed	noPillsperPackdispensed	period	periodUnit	frequency	asNeeded	dose	doseUnit
+medication_dispensation_1	18937	B01AC07	Dipyridamol	2005-07-01	1	100	1	d	1	0	200	mg
+medication_dispensation_2	17347	C03AB01	Bendroflumetiazid och kalium	2005-07-01	1	100	1	d	1	0		
+medication_dispensation_3	17347	C08CA02	Felodipin	2005-07-01	1	98	1	d	1	0	10	mg
+medication_dispensation_4	8368	M01AB55	Diklofenak, kombinationer	2005-07-01	1	100	1	d	2	0		
+medication_dispensation_5	24089	C01DA02	Glyceryltrinitrat	2005-07-04	1	30	1	d	1	0	0.5	mg
+medication_dispensation_6	24089	C09CA06	Kandesartan	2005-07-04	1	100	1	d	1	0	4	mg
+medication_dispensation_7	9045	C07AB02	Metoprolol	2005-07-04	2	100	1	d	2	0	25	mg
+medication_dispensation_8	9045	C09AA05	Ramipril	2005-07-04	2	98	1	d	2	0	5	mg
+medication_dispensation_9	35416	C02AC01	Klonidin	2005-07-01	1	100	1	d	1	0	75	mikrog
+medication_dispensation_10	438878016	C01CA24	Adrenalin	2005-07-01	2	1	1	d		0	0.3	mg/dos
+medication_dispensation_11	14559	C07AB02	Metoprolol	2005-07-04	1	98	1	d	1	0	100	mg
+medication_dispensation_12	2464	A10AC01	Insulin (humant)	2005-07-01	2	15	1	d		0	100	IE/ml
+medication_dispensation_13	69368718	B01AC06	Acetylsalicylsyra	2005-07-04	1	100	1	d	1	0	75	mg
+medication_dispensation_14	22561	A10BG03	Pioglitazon	2005-07-04	1	98	1	d	1	0	30	mg
+medication_dispensation_15	310605200	C08CA02	Felodipin	2005-07-01	1	98	1	d	1	0	5	mg
+medication_dispensation_16	157930293	A10BA02	Metformin	2005-07-01	5	100	1	d	1	0	500	mg
+medication_dispensation_17	28609	C07AB03	Atenolol	2005-07-01	1	100	1	d	1	0	50	mg
+medication_dispensation_18	28609	A10BA02	Metformin	2005-07-01	5	100	1	d		0	500	mg
+medication_dispensation_19	28609	C10AX09	Ezetimib	2005-07-01	1	98	1	d	1	0	10	mg
+medication_dispensation_20	28609	A10AC01	Insulin (humant)	2005-07-01	2	15	1	d		0	100	IE/ml
+medication_dispensation_21	28609	B01AC06	Acetylsalicylsyra	2005-07-01	1	100	1	d	1	0	160	mg
+medication_dispensation_22	28609	A10BB12	Glimepirid	2005-07-01	2	90	1	d	2	0	2	mg
+medication_dispensation_23	28609	C10AA05	Atorvastatin	2005-07-01	1	100	1	d	1	0	10	mg
+medication_dispensation_24	12273	B01AA03	Warfarin	2005-07-04	1	100	1	d		0	2.5	mg
+medication_dispensation_25	73371434	C09CA01	Losartan	2005-07-02	1	98	1	d	1	0	50	mg
+medication_dispensation_26	44949	C10AA01	Simvastatin	2005-07-05	1	100	1	d	1	0	10	mg
+medication_dispensation_27	31758	B01AC06	Acetylsalicylsyra	2005-07-04	1	100	1	d	1	0	160	mg
+medication_dispensation_28	31758	C09AA05	Ramipril	2005-07-04	2	100	1	d	2	0	2.5	mg
+medication_dispensation_29	31758	C10AA01	Simvastatin	2005-07-04	1	100	1	d	1	0	20	mg
+medication_dispensation_30	37840	C03CA01	Furosemid	2005-07-01	1	100	1	d	1	0	30	mg
+medication_dispensation_31	37840	B01AC06	Acetylsalicylsyra	2005-07-01	1	100	1	d	1	0	160	mg
+medication_dispensation_32	18857	C09AA02	Enalapril	2005-07-04	1	100	1	d	1	0	20	mg
+medication_dispensation_33	23221	C07AB02	Metoprolol	2005-07-05	1	98	1	d	1	0	50	mg
+medication_dispensation_34	23221	C09DA06	Kandesartan och diuretika	2005-07-05	1	98	1	d	1	0		
+medication_dispensation_35	39012	C07AB02	Metoprolol	2005-07-05	1	98	1	d	1	0	50	mg
+medication_dispensation_36	39012	C08CA02	Felodipin	2005-07-05	1	98	1	d	1	0	10	mg
+medication_dispensation_37	222610646	M01AX05	Glukosamin	2005-07-04	1	180	1	d	2	0	625	mg
+medication_dispensation_38	37122	C10AA05	Atorvastatin	2005-07-04	1	100	1	d	1	0	10	mg
+medication_dispensation_39	37122	C09AA02	Enalapril	2005-07-04	1	100	1	d	1	0	5	mg
+medication_dispensation_40	37122	C01DA02	Glyceryltrinitrat	2005-07-04	1	30	1	d		0	0.25	mg
+medication_dispensation_41	37122	C03EA01	Hydroklortiazid och kaliumsparande medel	2005-07-04	1	100	1	d	1	0		
+medication_dispensation_42	408573123	C09AA01	Kaptopril	2005-07-05	1	200	1	d	2	0	50	mg
+medication_dispensation_43	408573123	R03AC13	Formoterol	2005-07-05	1	180	1	d	2	0	9	mikrog/dos
+medication_dispensation_44	408573123	C03CA01	Furosemid	2005-07-05	1	100	1	d	1	0	30	mg
+medication_dispensation_45	408573123	C08CA01	Amlodipin	2005-07-05	1	98	1	d	1	0	5	mg
+medication_dispensation_46	408573123	R03AC03	Terbutalin	2005-07-05	1	200	1	d	2	0	0.5	mg/dos
+medication_dispensation_47	408573123	C09AA01	Kaptopril	2005-07-05	1	200	1	d	2	0	50	mg
+medication_dispensation_48	42	C07AA07	Sotalol	2005-07-04	3	100	1	d	3	0	40	mg
+medication_dispensation_49	42	B01AC06	Acetylsalicylsyra	2005-07-04	1	100	1	d	1	0	75	mg
+medication_dispensation_50	42	C09AA08	Cilazapril	2005-07-04	1	98	1	d	1	0	5	mg
+medication_dispensation_51	20891	B01AC06	Acetylsalicylsyra	2005-07-04	1	100	1	d	1	0	160	mg
+medication_dispensation_52	20891	C07AA07	Sotalol	2005-07-04	2	100	1	d	2	0	80	mg
+medication_dispensation_53	20891	C03DB01	Amilorid	2005-07-04	1	100	1	d	1	0	5	mg
+medication_dispensation_54	20891	C10AA01	Simvastatin	2005-07-04	1	100	1	d	1	0	20	mg
+medication_dispensation_55	20891	C03CA01	Furosemid	2005-07-04	1	100	1	d	1	0	40	mg
+medication_dispensation_56	20891	C09AA03	Lisinopril	2005-07-04	1	100	1	d	1	0	10	mg
+medication_dispensation_57	42827	C08DA01	Verapamil	2005-07-01	2	100	1	d	2	0	240	mg
+medication_dispensation_58	13527	C03CA01	Furosemid	2005-07-01	1	100	1	d	1	0	60	mg
+medication_dispensation_59	13527	C10AA01	Simvastatin	2005-07-01	1	100	1	d	1	0	10	mg
+medication_dispensation_60	13527	C01DA14	Isosorbidmononitrat	2005-07-01	1	98	1	d	1	0	30	mg
+medication_dispensation_61	13527	C08CA02	Felodipin	2005-07-01	1	100	1	d	1	0	5	mg
+medication_dispensation_62	13527	C07AB02	Metoprolol	2005-07-01	1	98	1	d	1	0	100	mg
+medication_dispensation_63	13527	C09CA07	Telmisartan	2005-07-01	1	98	1	d	1	0	40	mg
+medication_dispensation_64	322145306	A10BA02	Metformin	2005-07-01	4	100	1	d	4	0	500	mg
+medication_dispensation_65	29242	C01DA14	Isosorbidmononitrat	2005-07-04	1	98	1	d	1	0	30	mg
+medication_dispensation_66	29242	C10AA01	Simvastatin	2005-07-04	1	98	1	d	1	0	80	mg
+medication_dispensation_67	29242	B01AC06	Acetylsalicylsyra	2005-07-04	1	100	1	d	1	0	75	mg
+medication_dispensation_68	41168	R03BB01	Ipratropiumbromid	2005-07-01	2	200	1	d		0	20	mikrog/dos
+medication_dispensation_69	17201	A10AC01	Insulin (humant)	2005-07-01	2	15	1	d		0	100	IE/ml
+medication_dispensation_70	17201	A10BA02	Metformin	2005-07-01	5	100	1	d	4	0	500	mg
+medication_dispensation_71	17201	C07AB03	Atenolol	2005-07-01	1	100	1	d	1	0	50	mg
+medication_dispensation_72	40888	C08CA03	Isradipin	2005-07-04	1	100	1	d	2	0	2.5	mg
+medication_dispensation_73	7650	M01AB55	Diklofenak, kombinationer	2005-07-05	1	100	1	d	1	0		
+medication_dispensation_74	157722735	B01AC06	Acetylsalicylsyra	2005-07-05	1	100	1	d	1	0	75	mg
+medication_dispensation_75	157722735	C10AA01	Simvastatin	2005-07-05	1	100	1	d	1	0	20	mg
+medication_dispensation_76	259310276	A10AD05	Insulin, aspart	2005-07-01	1	15	1	d		0	100	E/ml
+medication_dispensation_77	19238	C07AA05	Propranolol	2005-07-05	1	100	1	d	1	0	40	mg
+medication_dispensation_78	35329	C01AA05	Digoxin	2005-07-04	1	100	1	d	1	0	0.13	mg
+medication_dispensation_79	35329	C09CA04	Irbesartan	2005-07-04	1	98	1	d	1	0	150	mg
+medication_dispensation_80	35329	C10AA01	Simvastatin	2005-07-04	1	98	1	d	1	0	10	mg
+medication_dispensation_81	35329	C08CA02	Felodipin	2005-07-04	1	98	1	d	1	0	5	mg
+medication_dispensation_82	236086435	C10AA01	Simvastatin	2005-07-02	1	98	1	d	1	0	20	mg
+medication_dispensation_83	4985	C07AB02	Metoprolol	2005-07-05	1	100	1	d	1	0	100	mg
+medication_dispensation_84	4985	C09DA01	Losartan och diuretika	2005-07-05	1	98	1	d	1	0		
+medication_dispensation_85	312913044	C08CA01	Amlodipin	2005-07-01	1	28	1	d	1.5	0	5	mg
+medication_dispensation_86	164885367	B01AC06	Acetylsalicylsyra	2005-07-01	1	100	1	d	1	0	75	mg
+medication_dispensation_87	367348291	M01AB05	Diklofenak	2005-07-01	2	10	1	d		0	50	mg
+medication_dispensation_88	19290	M01AB05	Diklofenak	2005-07-04	1	50	1	d	2	0	50	mg
+medication_dispensation_89	25678	R03AK06	Salmeterol och flutikason	2005-07-04	1	180	1	d	2	0		
+medication_dispensation_90	38117	M01AB05	Diklofenak	2005-07-01	1	20	1	d	2	0	50	mg
+medication_dispensation_91	10333	C03CA01	Furosemid	2005-07-01	1	100	1	d	1	0	30	mg
+medication_dispensation_92	10333	C08CA01	Amlodipin	2005-07-01	1	100	1	d	1	0	5	mg
+medication_dispensation_93	22069	C09AA05	Ramipril	2005-07-01	2	100	1	d	2	0	1.25	mg
+medication_dispensation_94	39611	C09AA02	Enalapril	2005-07-01	1	100	1	d	1	0	10	mg
+medication_dispensation_95	4804	R03AC13	Formoterol	2005-07-05	2	180	1	d	2	0	4.5	mikrog/dos
+medication_dispensation_96	4804	R03BA02	Budesonid	2005-07-05	2	200	1	d	2	0	200	mikrog/dos
+medication_dispensation_97	4804	C10AA01	Simvastatin	2005-07-05	2	100	1	d	1	0	20	mg
+medication_dispensation_98	4804	C08CA01	Amlodipin	2005-07-05	2	98	1	d	1	0	5	mg
+medication_dispensation_99	4804	A10BA02	Metformin	2005-07-05	4	100	1	d	2	0	500	mg
+medication_dispensation_100	1322	C03EA01	Hydroklortiazid och kaliumsparande medel	2005-07-05	1	100	1	d	1	0		

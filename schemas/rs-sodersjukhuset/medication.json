@@ -39,8 +39,26 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Medication.date",
-      "path" : "Medication.date",
+      "id" : "Medication.code",
+      "path" : "Medication.code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.substance",
+      "path" : "Medication.substance",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.Date",
+      "path" : "Medication.Date",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -66,17 +84,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Medication.medication",
-      "path" : "Medication.medication",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Medication.dosage",
-      "path" : "Medication.dosage",
+      "id" : "Medication.period",
+      "path" : "Medication.period",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -84,8 +93,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
       } ]
     }, {
-      "id" : "Medication.dosageStrength",
-      "path" : "Medication.dosageStrength",
+      "id" : "Medication.periodUnit",
+      "path" : "Medication.periodUnit",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Medication.frequency",
+      "path" : "Medication.frequency",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -93,13 +111,13 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
-      "id" : "Medication.dosageUnit",
-      "path" : "Medication.dosageUnit",
+      "id" : "Medication.dose",
+      "path" : "Medication.dose",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     } ]
   }

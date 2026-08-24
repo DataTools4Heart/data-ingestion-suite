@@ -51,6 +51,7 @@
         "options" : {
           "distinct" : "true"
         },
+        "preprocessSql" : "SELECT *,\r\n  CASE\r\n    WHEN frequency IS NULL OR frequency <= 0 THEN NULL\r\n    WHEN frequency = round(frequency)        THEN CAST(frequency AS BIGINT)\r\n    ELSE CAST(round(frequency * 4) AS BIGINT)\r\n  END AS freq_int,\r\n  CASE\r\n    WHEN frequency IS NULL OR frequency <= 0 THEN NULL\r\n    WHEN frequency = round(frequency)        THEN period\r\n    ELSE period * 4\r\n  END AS period_scaled\r\nFROM source",
         "sourceRef" : "rs-source"
       }
     }
