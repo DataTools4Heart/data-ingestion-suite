@@ -1,0 +1,18 @@
+services:
+  nginx:
+    image: nginx:1.25.4
+    container_name: dt4h-nginx
+    restart: always
+    volumes:
+      - type: bind
+        source: ./data-ingestion-suite/docker/proxy/nginx-ignifyr.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+    ports:
+      - "80:80"
+    networks:
+      - repofyr-network
+networks:
+  repofyr-network:
+    name: repofyr-network
+    external: true

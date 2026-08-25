@@ -1,0 +1,162 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: dt4h-repofyr-mongo
+    restart: always
+    ports:
+      - "6017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - repofyr-network
+    volumes:
+      - repofyrdata:/data/db
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "2.0"
+#          memory: "4G"
+  repofyr:
+    image: srdc/repofyr:r5
+    container_name: dt4h-repofyr
+    restart: always
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:8080/fhir/metadata || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    environment:
+      - APP_CONF_FILE=/usr/local/onfhir/conf/docker/repofyr-docker.conf
+      - FHIR_ROOT_URL=http://repofyr:8080/fhir
+      - DB_EMBEDDED=false
+      - DB_HOST=mongo:27017
+    ports:
+      - "6080:8080"
+    networks:
+      - repofyr-network
+    volumes:
+      - ./common-data-model:/usr/local/onfhir/conf
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "2.0"
+#          memory: "4G"
+  ignifyr-server:
+    image: docker.srdc.com.tr/srdc/ignifyr-server:latest
+    container_name: dt4h-ignifyr-server
+    restart: always
+    hostname: ignifyr
+    environment:
+      - APP_CONF_FILE=/usr/local/ignifyr/conf/docker/ignifyr-server.conf
+      - FHIR_DEFINITIONS_ENDPOINT=http://repofyr:8080/fhir
+      - FHIR_REPO_URL=http://repofyr:8080/fhir
+      - DATA_FOLDER_PATH=/usr/local/ignifyr/data/mimic-iv-3.1
+      - FLUENT_HOST=fluentd
+      - CONTEXT_PATH=conf
+      - JAVA_OPTIONS=-Xms5g -Xmx15g -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35
+    ports:
+      - "6085:8085"
+      # - "4040:4040"
+    networks:
+      - repofyr-network
+    volumes:
+      - './data-ingestion-suite:/usr/local/ignifyr/conf'
+      - './ignifyr-docker-logs:/usr/local/ignifyr/logs'
+     # - 'C:/development/data/mimic-iv-3.1:/usr/local/ignifyr/data/mimic-iv-3.1'
+    healthcheck:
+      test: curl --fail --request OPTIONS http://localhost:8085/ignifyr || exit 1
+      interval: 20s
+      timeout: 10s
+      retries: 10
+    depends_on:
+      repofyr:
+        condition: service_healthy
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "2.0"
+#          memory: "8G"
+  ignifyr-web:
+#    image: srdc/ignifyr-web:dt4h
+    image: docker.srdc.com.tr/srdc/ignifyr-web:dt4h
+    container_name: dt4h-ignifyr-web
+    restart: always
+    ports:
+      - "6082:80"
+    networks:
+      - repofyr-network
+    depends_on:
+      ignifyr-server:
+        condition: service_healthy
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
+ # Elasticsearch, Fluentd and Kibana stack for mapping job log management
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.19
+    container_name: dt4h-ignifyr-elasticsearch
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms256m -Xmx2g"
+    networks:
+      - repofyr-network
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
+  fluentd:
+    image: srdc/tofhir-fluentd:latest
+    container_name: dt4h-ignifyr-fluentd
+    restart: always
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    environment:
+      - FORWARD_PORT=24224
+      - HOST=elasticsearch
+      - PORT=9200
+    networks:
+      - repofyr-network
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
+  kibana:
+    image: srdc/tofhir-kibana:latest
+    container_name: dt4h-kibana-ignifyr
+    restart: always
+    environment:
+      - SERVER_BASEPATH=/dt4h/ignifyr/kibana
+      - SERVER_REWRITEBASEPATH=false
+    ports:
+      - "6601:5601"
+    networks:
+      - repofyr-network
+    depends_on:
+      - elasticsearch
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "1.0"
+#          memory: "2G"
+networks:
+  repofyr-network:
+    name: repofyr-network
+volumes:
+  elasticsearch_data:
+    driver: local
+  repofyrdata:
+    driver: local
