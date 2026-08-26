@@ -38,22 +38,6 @@
           } ]
         },
         "component" : [ {
-          "{{#componentVar}}" : "{{R_PEAK}}",
-          "{{?}}" : {
-            "code" : {
-              "coding" : [ {
-                "code" : "unknown",
-                "display" : "R-wave peak amplitude"
-              } ]
-            },
-            "valueQuantity" : {
-              "code" : "mV",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{R_PEAK}}",
-              "unit" : "millivolt"
-            }
-          }
-        }, {
           "{{#componentVar}}" : "{{P_ONSET}}",
           "{{?}}" : {
             "code" : {
@@ -92,8 +76,9 @@
           "{{?}}" : {
             "code" : {
               "coding" : [ {
-                "code" : "unknown",
-                "display" : "Q-wave onset time"
+                "code" : "18513-2",
+                "system" : "http://loinc.org",
+                "display" : "QRS onset [Time] Reference beat"
               } ]
             },
             "valueQuantity" : {
@@ -108,8 +93,9 @@
           "{{?}}" : {
             "code" : {
               "coding" : [ {
-                "code" : "unknown",
-                "display" : "Q-wave offset time"
+                "code" : "18514-0",
+                "system" : "http://loinc.org",
+                "display" : "QRS offset [Time] Reference beat"
               } ]
             },
             "valueQuantity" : {
