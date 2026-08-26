@@ -19,6 +19,10 @@
     "name" : "labResultConcept",
     "language" : "text/fhirpath",
     "expression" : "mpp:getConcept(%labResultCodes, individual_lab_id)"
+  },  {
+    "name" : "troponinInterpretation",
+    "language" : "text/fhirpath",
+    "expression" : "iif(individual_lab_id = '4282', iif(value_result > 14,'H', 'N'),{})"
   } ],
   "mapping" : [ {
     "description" : "Lab results mapping; executed only if there is a LOINC code associated with the lab test.",
@@ -66,6 +70,16 @@
           "system" : "{{%sourceSystem.sourceUri}}",
           "use" : "official",
           "value" : "{{id_lab.toString() & '-' & individual_lab_id}}"
+        } ],
+        "interpretation" : [ {
+          "{{#interpretationVar}}" : "{{iif(%troponinInterpretation.exists(),%troponinInterpretation)}}",
+          "{{?}}" : {
+            "coding" : [ {
+                "system" : "http://hl7.org/fhir/ValueSet/observation-interpretation",
+                "code" : "{{%interpretationVar}}"
+            } ],
+            "text" : "{{%interpretationVar}}"
+          }
         } ]
       }
     }
