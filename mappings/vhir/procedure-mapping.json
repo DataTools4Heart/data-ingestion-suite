@@ -67,7 +67,7 @@
             },
             "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
             "encounter": "{{? iif(VISIT_OCCURRENCE_ID.exists(), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.PROCEDURE_DATE and $this.VISIT_END_DATE >= %context.PROCEDURE_DATE,mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first())}}",
-            "occurrenceDateTime": "{{iif(PROCEDURE_DATEtime.empty(), PROCEDURE_DATE, PROCEDURE_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+            "occurrenceDateTime": "{{iif(PROCEDURE_DATETIME.empty(), PROCEDURE_DATE, PROCEDURE_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
             "status": "completed"
           }
         }

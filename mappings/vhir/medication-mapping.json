@@ -58,7 +58,7 @@
         "intent" : "order",
         "effectiveDosePeriod" : {
           "start" : "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
-          "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
+          "end" : "{{? iif(DRUG_EXPOSURE_END_DATETIME.exists(), DRUG_EXPOSURE_END_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
         },
         "dosageInstruction" : [ {
           "timing" : {
@@ -106,7 +106,7 @@
         "intent" : "order",
         "effectiveDosePeriod" : {
           "start" : "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
-          "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
+          "end" : "{{? iif(DRUG_EXPOSURE_END_DATETIME.exists(), DRUG_EXPOSURE_END_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
         },
         "dosageInstruction" : [ {
           "timing" : {
@@ -155,7 +155,7 @@
         "intent" : "order",
         "effectiveDosePeriod" : {
           "start" : "{{iif(DRUG_EXPOSURE_START_DATETIME.exists(), DRUG_EXPOSURE_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_START_DATE)}}",
-          "end" : "{{? iif(DRUG_EXPOSURE_END_DATEtime.exists(), DRUG_EXPOSURE_END_DATEtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
+          "end" : "{{? iif(DRUG_EXPOSURE_END_DATETIME.exists(), DRUG_EXPOSURE_END_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'), DRUG_EXPOSURE_END_DATE)}}"
         },
         "dosageInstruction" : [ {
           "timing" : {
