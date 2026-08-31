@@ -76,7 +76,7 @@
       },
       "cardiologyVisitOccurrence" : {
         "jsonClass" : "SqlSource",
-        "tableName" : "\"0000000004_DT4H\".cardiology_visit_occurrence_person",
+        "tableName" : "\"0000000004_DT4H\".DT4H_CARDIOLOGY_VISIT_OCCURRENCE_PERSON",
         "options" : { },
         "sourceRef" : "vhir-source"
       }
