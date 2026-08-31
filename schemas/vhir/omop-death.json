@@ -4,7 +4,7 @@
   "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Death",
   "version" : "latest",
   "name" : "OMOP-Death",
-  "description" : "OMOP death table v5.3",
+  "description" : "OMOP death table v5.4",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

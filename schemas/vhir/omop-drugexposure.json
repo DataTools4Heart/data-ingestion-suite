@@ -4,7 +4,7 @@
   "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-DrugExposure",
   "version" : "latest",
   "name" : "OMOP-DrugExposure",
-  "description" : "OMOP drug_exposure table v5.3",
+  "description" : "OMOP drug_exposure table v5.4",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

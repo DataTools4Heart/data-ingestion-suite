@@ -4,7 +4,7 @@
   "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Person",
   "version" : "latest",
   "name" : "OMOP-Person",
-  "description" : "OMOP person table v5.3",
+  "description" : "OMOP person table v5.4",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
