@@ -17,8 +17,8 @@
       "alias": "cardiologyVisitOccurrence",
       "url": "https://www.vallhebron.com/fhir/StructureDefinition/CardiologyVisitOccurrence",
       "joinOn": [
-        "visit_occurrence_id",
-        "person_id"
+        "VISIT_OCCURRENCE_ID",
+        "PERSON_ID"
       ]
     }
   ],
