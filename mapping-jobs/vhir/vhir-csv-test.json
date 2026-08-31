@@ -88,10 +88,10 @@
     "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "measurement.csv",
+        "path" : "measurement-echocardio.csv",
         "contentType" : "csv",
         "options" : { },
-        "preprocessSql" : "select count(*) as count, PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE,\r\narray_agg(MEASUREMENT_CONCEPT_ID) as MEASUREMENT_CONCEPT_ID,\r\narray_agg(VALUE_AS_NUMBER) as VALUE_AS_NUMBER,\r\narray_agg(UNIT_CONCEPT_ID) as UNIT_CONCEPT_ID,\r\narray_agg(UNIT_SOURCE_VALUE) as UNIT_SOURCE_VALUE\r\nfrom omopMeasurement \r\nwhere VALUE_AS_NUMBER >=0 or (VALUE_AS_NUMBER <= -25 and VALUE_AS_NUMBER >= -70)\r\ngroup by PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE",
+        "preprocessSql" : "select count(*) as count, PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE,\r\narray_agg(MEASUREMENT_CONCEPT_ID) as MEASUREMENT_CONCEPT_ID,\r\narray_agg(VALUE_AS_NUMBER) as VALUE_AS_NUMBER,\r\narray_agg(UNIT_CONCEPT_ID) as UNIT_CONCEPT_ID,\r\narray_agg(UNIT_SOURCE_VALUE) as UNIT_SOURCE_VALUE\r\nfrom omopMeasurement \r\nwhere (VALUE_AS_NUMBER >=0 or (VALUE_AS_NUMBER <= -25 and VALUE_AS_NUMBER >= -70)) and MEASUREMENT_CONCEPT_ID != 4177340 and MEASUREMENT_CONCEPT_ID != 4099154 and MEASUREMENT_CONCEPT_ID != 21490871\r\ngroup by PERSON_ID, MEASUREMENT_ID, MEASUREMENT_DATE",
         "sourceRef" : "vhir-csv"
       },
       "omopVisit" : {
@@ -134,9 +134,10 @@
     "sourceBinding" : {
       "omopMeasurement" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "echo-weight-height.csv",
+        "path" : "measurement-echocardio.csv",
         "contentType" : "csv",
         "options" : { },
+        "preprocessSql" : "select * from omopMeasurement where MEASUREMENT_CONCEPT_ID = 4177340 or MEASUREMENT_CONCEPT_ID = 4099154",
         "sourceRef" : "vhir-csv"
       },
       "omopVisit" : {
@@ -199,6 +200,44 @@
       "cardiologyVisitOccurrence" : {
         "jsonClass" : "FileSystemSource",
         "path" : "cardiology-visit.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      }
+    }
+  }, {
+    "name" : "condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/condition-mapping",
+    "sourceBinding" : {
+      "omopCondition" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "condition.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visit.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      }
+    }
+  }, {
+    "name" : "procedure-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/procedure-mapping",
+    "sourceBinding" : {
+      "omopProcedure" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "procedure.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "vhir-csv"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "visit.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "vhir-csv"
