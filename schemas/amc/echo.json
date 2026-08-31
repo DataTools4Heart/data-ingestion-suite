@@ -26,26 +26,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ]
-    }, {
-      "id" : "Echo.Onderzoeksdatum",
-      "path" : "Echo.Onderzoeksdatum",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ]
-    }, {
-      "id" : "Echo.Onderzoeksstatus",
-      "path" : "Echo.Onderzoeksstatus",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "string",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
       "id" : "Echo.Accessionnummer",
@@ -57,8 +39,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Echo.OriginalName",
-      "path" : "Echo.OriginalName",
+      "id" : "Echo.Onderzoeksdatum",
+      "path" : "Echo.Onderzoeksdatum",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -75,8 +57,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "Echo.ValueUnit",
-      "path" : "Echo.ValueUnit",
+      "id" : "Echo.UNIT",
+      "path" : "Echo.UNIT",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -95,6 +77,15 @@
     }, {
       "id" : "Echo.LOINCdisplay",
       "path" : "Echo.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Echo.Status",
+      "path" : "Echo.Status",
       "min" : 0,
       "max" : "1",
       "type" : [ {

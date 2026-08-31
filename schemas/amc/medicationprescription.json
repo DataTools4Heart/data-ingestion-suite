@@ -36,8 +36,8 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Encounter ID"
     }, {
@@ -49,6 +49,7 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
+      "definition" : "SACUBITRIL/VALSARTAN TABLET 49/51MG",
       "short" : "Commercial name"
     }, {
       "id" : "MedicationPrescription.prescriptionID",
@@ -56,22 +57,11 @@
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
-      } ],
-      "definition" : "Prescription ID linkage different meds prescribed at the same time.",
-      "short" : "Related prescription ID"
-    }, {
-      "id" : "MedicationPrescription.MedicatieGeneriekeNaam",
-      "path" : "MedicationPrescription.MedicatieGeneriekeNaam",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "definition" : "AMLODIPINE/VALSARTAN/HCT TABLET 10/320/25MG",
-      "short" : "Medication ingredient strengths"
+      "definition" : "Prescription ID linkage different meds prescribed at the same time.",
+      "short" : "Related prescription ID"
     }, {
       "id" : "MedicationPrescription.Status",
       "path" : "MedicationPrescription.Status",
@@ -82,8 +72,8 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
-      "id" : "MedicationPrescription.ATCCode",
-      "path" : "MedicationPrescription.ATCCode",
+      "id" : "MedicationPrescription.ATC_drug",
+      "path" : "MedicationPrescription.ATC_drug",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -131,8 +121,17 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ]
     }, {
-      "id" : "MedicationPrescription.dosInstr_frequency_unit",
-      "path" : "MedicationPrescription.dosInstr_frequency_unit",
+      "id" : "MedicationPrescription.period",
+      "path" : "MedicationPrescription.period",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.dosInstr_period_unit",
+      "path" : "MedicationPrescription.dosInstr_period_unit",
       "min" : 0,
       "max" : "1",
       "type" : [ {
@@ -167,6 +166,15 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     }, {
+      "id" : "MedicationPrescription.Medname",
+      "path" : "MedicationPrescription.Medname",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "MedicationPrescription.AdministrationRoute",
       "path" : "MedicationPrescription.AdministrationRoute",
       "min" : 0,
@@ -174,6 +182,15 @@
       "type" : [ {
         "code" : "boolean",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/boolean" ]
+      } ]
+    }, {
+      "id" : "MedicationPrescription.ATC_ingredient",
+      "path" : "MedicationPrescription.ATC_ingredient",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
     } ]
   }

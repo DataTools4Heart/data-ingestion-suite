@@ -91,7 +91,7 @@
         "path" : "LengthWeightBMI.parquet",
         "contentType" : "parquet",
         "options" : { },
-        "preprocessSql" : "select Pseudo_id,Patientcontactid,MeetDatum,MAX(CASE WHEN LOINCcode = '8302-2' THEN ValueQuantity END) AS Height_cm,MAX(CASE WHEN LOINCcode = '29463-7' THEN ValueQuantity END) AS Weight_kg FROM source GROUP BY Pseudo_id,Patientcontactid,MeetDatum",
+        "preprocessSql" : "select Pseudo_id,Patientcontactid,MeetDatum,MAX(CASE WHEN LOINCcode = '8302-2' THEN ValueQuantity END) AS Height_cm,MAX(CASE WHEN LOINCcode = '29463-7' THEN ValueQuantity END) AS Weight_kg,MAX(CASE WHEN LOINCcode = '89270-3' THEN ValueQuantity END) AS BMI FROM source GROUP BY Pseudo_id,Patientcontactid,MeetDatum",
         "sourceRef" : "amc-source"
       }
     }
@@ -104,7 +104,6 @@
         "path" : "VitalSigns.parquet",
         "contentType" : "parquet",
         "options" : { },
-        "preprocessSql" : "select Pseudo_id,Patientcontactid,ZiekenhuisLocatie,MetingVitaleGegevensId,ValueQuantity,LOINCcode,LOINCdisplay,Unit from source;",
         "sourceRef" : "amc-source"
       }
     }
@@ -114,12 +113,12 @@
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "Laboratory1.parquet",
+        "path" : "Laboratory*.parquet",
         "contentType" : "parquet",
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9' and LOINC_code != '67151-1' and LOINC_code != '6598-7' and year(MateriaalAfnameDatumTijd) = $year and month(MateriaalAfnameDatumTijd) = $month",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -132,53 +131,671 @@
     },
     "batchingStrategy" : {
       "batchParameterSets" : [ {
-        "yearMin" : "1900",
-        "yearMax" : "2011"
+        "year" : "1981",
+        "month" : "7"
       }, {
-        "yearMin" : "2010",
-        "yearMax" : "2012"
+        "year" : "1981",
+        "month" : "8"
       }, {
-        "yearMin" : "2011",
-        "yearMax" : "2013"
+        "year" : "1981",
+        "month" : "9"
       }, {
-        "yearMin" : "2012",
-        "yearMax" : "2014"
+        "year" : "1981",
+        "month" : "10"
       }, {
-        "yearMin" : "2013",
-        "yearMax" : "2015"
+        "year" : "1981",
+        "month" : "11"
       }, {
-        "yearMin" : "2014",
-        "yearMax" : "2016"
+        "year" : "1981",
+        "month" : "12"
       }, {
-        "yearMin" : "2015",
-        "yearMax" : "2017"
+        "year" : "1982",
+        "month" : "1"
       }, {
-        "yearMin" : "2016",
-        "yearMax" : "2018"
+        "year" : "1982",
+        "month" : "2"
       }, {
-        "yearMin" : "2017",
-        "yearMax" : "2019"
+        "year" : "1982",
+        "month" : "3"
       }, {
-        "yearMin" : "2018",
-        "yearMax" : "2020"
+        "year" : "1982",
+        "month" : "4"
       }, {
-        "yearMin" : "2019",
-        "yearMax" : "2021"
+        "year" : "1982",
+        "month" : "5"
       }, {
-        "yearMin" : "2020",
-        "yearMax" : "2022"
+        "year" : "1982",
+        "month" : "6"
       }, {
-        "yearMin" : "2021",
-        "yearMax" : "2023"
+        "year" : "1982",
+        "month" : "7"
       }, {
-        "yearMin" : "2022",
-        "yearMax" : "2024"
+        "year" : "1982",
+        "month" : "8"
       }, {
-        "yearMin" : "2023",
-        "yearMax" : "2025"
+        "year" : "1982",
+        "month" : "9"
       }, {
-        "yearMin" : "2024",
-        "yearMax" : "2026"
+        "year" : "1982",
+        "month" : "10"
+      }, {
+        "year" : "1982",
+        "month" : "11"
+      }, {
+        "year" : "1982",
+        "month" : "12"
+      }, {
+        "year" : "1983",
+        "month" : "1"
+      }, {
+        "year" : "1983",
+        "month" : "2"
+      }, {
+        "year" : "1983",
+        "month" : "3"
+      }, {
+        "year" : "1983",
+        "month" : "4"
+      }, {
+        "year" : "1983",
+        "month" : "5"
+      }, {
+        "year" : "1983",
+        "month" : "6"
+      }, {
+        "year" : "1983",
+        "month" : "7"
+      }, {
+        "year" : "1983",
+        "month" : "8"
+      }, {
+        "year" : "1983",
+        "month" : "9"
+      }, {
+        "year" : "1983",
+        "month" : "10"
+      }, {
+        "year" : "1983",
+        "month" : "11"
+      }, {
+        "year" : "1983",
+        "month" : "12"
+      }, {
+        "year" : "1984",
+        "month" : "1"
+      }, {
+        "year" : "1984",
+        "month" : "2"
+      }, {
+        "year" : "1984",
+        "month" : "3"
+      }, {
+        "year" : "1984",
+        "month" : "4"
+      }, {
+        "year" : "1984",
+        "month" : "5"
+      }, {
+        "year" : "1984",
+        "month" : "6"
+      }, {
+        "year" : "1984",
+        "month" : "7"
+      }, {
+        "year" : "1984",
+        "month" : "8"
+      }, {
+        "year" : "1984",
+        "month" : "9"
+      }, {
+        "year" : "1984",
+        "month" : "10"
+      }, {
+        "year" : "1984",
+        "month" : "11"
+      }, {
+        "year" : "1984",
+        "month" : "12"
+      }, {
+        "year" : "1985",
+        "month" : "1"
+      }, {
+        "year" : "1985",
+        "month" : "2"
+      }, {
+        "year" : "1985",
+        "month" : "3"
+      }, {
+        "year" : "1985",
+        "month" : "4"
+      }, {
+        "year" : "1985",
+        "month" : "5"
+      }, {
+        "year" : "1985",
+        "month" : "6"
+      }, {
+        "year" : "1985",
+        "month" : "7"
+      }, {
+        "year" : "1985",
+        "month" : "8"
+      }, {
+        "year" : "1985",
+        "month" : "9"
+      }, {
+        "year" : "1985",
+        "month" : "10"
+      }, {
+        "year" : "1985",
+        "month" : "11"
+      }, {
+        "year" : "1985",
+        "month" : "12"
+      }, {
+        "year" : "1986",
+        "month" : "1"
+      }, {
+        "year" : "1986",
+        "month" : "2"
+      }, {
+        "year" : "1986",
+        "month" : "3"
+      }, {
+        "year" : "1986",
+        "month" : "4"
+      }, {
+        "year" : "1986",
+        "month" : "5"
+      }, {
+        "year" : "1986",
+        "month" : "6"
+      }, {
+        "year" : "1986",
+        "month" : "7"
+      }, {
+        "year" : "1986",
+        "month" : "8"
+      }, {
+        "year" : "1986",
+        "month" : "9"
+      }, {
+        "year" : "1986",
+        "month" : "10"
+      }, {
+        "year" : "1986",
+        "month" : "11"
+      }, {
+        "year" : "1986",
+        "month" : "12"
+      }, {
+        "year" : "1987",
+        "month" : "1"
+      }, {
+        "year" : "1987",
+        "month" : "2"
+      }, {
+        "year" : "1987",
+        "month" : "3"
+      }, {
+        "year" : "1987",
+        "month" : "4"
+      }, {
+        "year" : "1987",
+        "month" : "5"
+      }, {
+        "year" : "1987",
+        "month" : "6"
+      }, {
+        "year" : "1987",
+        "month" : "7"
+      }, {
+        "year" : "1987",
+        "month" : "8"
+      }, {
+        "year" : "1987",
+        "month" : "9"
+      }, {
+        "year" : "1987",
+        "month" : "10"
+      }, {
+        "year" : "1987",
+        "month" : "11"
+      }, {
+        "year" : "1987",
+        "month" : "12"
+      }, {
+        "year" : "1988",
+        "month" : "1"
+      }, {
+        "year" : "1988",
+        "month" : "2"
+      }, {
+        "year" : "1988",
+        "month" : "3"
+      }, {
+        "year" : "1988",
+        "month" : "4"
+      }, {
+        "year" : "1988",
+        "month" : "5"
+      }, {
+        "year" : "1988",
+        "month" : "6"
+      }, {
+        "year" : "1988",
+        "month" : "7"
+      }, {
+        "year" : "1988",
+        "month" : "8"
+      }, {
+        "year" : "1988",
+        "month" : "9"
+      }, {
+        "year" : "1988",
+        "month" : "10"
+      }, {
+        "year" : "1988",
+        "month" : "11"
+      }, {
+        "year" : "1988",
+        "month" : "12"
+      }, {
+        "year" : "1989",
+        "month" : "1"
+      }, {
+        "year" : "1989",
+        "month" : "2"
+      }, {
+        "year" : "1989",
+        "month" : "3"
+      }, {
+        "year" : "1989",
+        "month" : "4"
+      }, {
+        "year" : "1989",
+        "month" : "5"
+      }, {
+        "year" : "1989",
+        "month" : "6"
+      }, {
+        "year" : "1989",
+        "month" : "7"
+      }, {
+        "year" : "1989",
+        "month" : "8"
+      }, {
+        "year" : "1989",
+        "month" : "9"
+      }, {
+        "year" : "1989",
+        "month" : "10"
+      }, {
+        "year" : "1989",
+        "month" : "11"
+      }, {
+        "year" : "1989",
+        "month" : "12"
+      }, {
+        "year" : "1990",
+        "month" : "1"
+      }, {
+        "year" : "1990",
+        "month" : "2"
+      }, {
+        "year" : "1990",
+        "month" : "3"
+      }, {
+        "year" : "1990",
+        "month" : "4"
+      }, {
+        "year" : "1990",
+        "month" : "5"
+      }, {
+        "year" : "1990",
+        "month" : "6"
+      }, {
+        "year" : "1990",
+        "month" : "7"
+      }, {
+        "year" : "1990",
+        "month" : "8"
+      }, {
+        "year" : "1990",
+        "month" : "9"
+      }, {
+        "year" : "1990",
+        "month" : "10"
+      }, {
+        "year" : "1990",
+        "month" : "11"
+      }, {
+        "year" : "1990",
+        "month" : "12"
+      }, {
+        "year" : "1991",
+        "month" : "1"
+      }, {
+        "year" : "1991",
+        "month" : "2"
+      }, {
+        "year" : "1991",
+        "month" : "3"
+      }, {
+        "year" : "1991",
+        "month" : "4"
+      }, {
+        "year" : "1991",
+        "month" : "5"
+      }, {
+        "year" : "1991",
+        "month" : "6"
+      }, {
+        "year" : "1991",
+        "month" : "7"
+      }, {
+        "year" : "1991",
+        "month" : "8"
+      }, {
+        "year" : "1991",
+        "month" : "9"
+      }, {
+        "year" : "1991",
+        "month" : "10"
+      }, {
+        "year" : "1991",
+        "month" : "11"
+      }, {
+        "year" : "1991",
+        "month" : "12"
+      }, {
+        "year" : "1992",
+        "month" : "1"
+      }, {
+        "year" : "1992",
+        "month" : "2"
+      }, {
+        "year" : "1992",
+        "month" : "3"
+      }, {
+        "year" : "1992",
+        "month" : "4"
+      }, {
+        "year" : "1992",
+        "month" : "5"
+      }, {
+        "year" : "1992",
+        "month" : "6"
+      }, {
+        "year" : "1992",
+        "month" : "7"
+      }, {
+        "year" : "1992",
+        "month" : "8"
+      }, {
+        "year" : "1992",
+        "month" : "9"
+      }, {
+        "year" : "1992",
+        "month" : "10"
+      }, {
+        "year" : "1992",
+        "month" : "11"
+      }, {
+        "year" : "1992",
+        "month" : "12"
+      }, {
+        "year" : "1993",
+        "month" : "1"
+      }, {
+        "year" : "1993",
+        "month" : "2"
+      }, {
+        "year" : "1993",
+        "month" : "3"
+      }, {
+        "year" : "1993",
+        "month" : "4"
+      }, {
+        "year" : "1993",
+        "month" : "5"
+      }, {
+        "year" : "1993",
+        "month" : "6"
+      }, {
+        "year" : "1993",
+        "month" : "7"
+      }, {
+        "year" : "1993",
+        "month" : "8"
+      }, {
+        "year" : "1993",
+        "month" : "9"
+      }, {
+        "year" : "1993",
+        "month" : "10"
+      }, {
+        "year" : "1993",
+        "month" : "11"
+      }, {
+        "year" : "1993",
+        "month" : "12"
+      }, {
+        "year" : "1994",
+        "month" : "1"
+      }, {
+        "year" : "1994",
+        "month" : "2"
+      }, {
+        "year" : "1994",
+        "month" : "3"
+      }, {
+        "year" : "1994",
+        "month" : "4"
+      }, {
+        "year" : "1994",
+        "month" : "5"
+      }, {
+        "year" : "1994",
+        "month" : "6"
+      }, {
+        "year" : "1994",
+        "month" : "7"
+      }, {
+        "year" : "1994",
+        "month" : "8"
+      }, {
+        "year" : "1994",
+        "month" : "9"
+      }, {
+        "year" : "1994",
+        "month" : "10"
+      }, {
+        "year" : "1994",
+        "month" : "11"
+      }, {
+        "year" : "1994",
+        "month" : "12"
+      }, {
+        "year" : "1995",
+        "month" : "1"
+      }, {
+        "year" : "1995",
+        "month" : "2"
+      }, {
+        "year" : "1995",
+        "month" : "3"
+      }, {
+        "year" : "1995",
+        "month" : "4"
+      }, {
+        "year" : "1995",
+        "month" : "5"
+      }, {
+        "year" : "1995",
+        "month" : "6"
+      }, {
+        "year" : "1995",
+        "month" : "7"
+      }, {
+        "year" : "1995",
+        "month" : "8"
+      }, {
+        "year" : "1995",
+        "month" : "9"
+      }, {
+        "year" : "1995",
+        "month" : "10"
+      }, {
+        "year" : "1995",
+        "month" : "11"
+      }, {
+        "year" : "1995",
+        "month" : "12"
+      }, {
+        "year" : "1996",
+        "month" : "1"
+      }, {
+        "year" : "1996",
+        "month" : "2"
+      }, {
+        "year" : "1996",
+        "month" : "3"
+      }, {
+        "year" : "1996",
+        "month" : "4"
+      }, {
+        "year" : "1996",
+        "month" : "5"
+      }, {
+        "year" : "1996",
+        "month" : "6"
+      }, {
+        "year" : "1996",
+        "month" : "7"
+      }, {
+        "year" : "1996",
+        "month" : "8"
+      }, {
+        "year" : "1996",
+        "month" : "9"
+      }, {
+        "year" : "1996",
+        "month" : "10"
+      }, {
+        "year" : "1996",
+        "month" : "11"
+      }, {
+        "year" : "1996",
+        "month" : "12"
+      }, {
+        "year" : "1997",
+        "month" : "1"
+      }, {
+        "year" : "1997",
+        "month" : "2"
+      }, {
+        "year" : "1997",
+        "month" : "3"
+      }, {
+        "year" : "1997",
+        "month" : "4"
+      }, {
+        "year" : "1997",
+        "month" : "5"
+      }, {
+        "year" : "1997",
+        "month" : "6"
+      }, {
+        "year" : "1997",
+        "month" : "7"
+      }, {
+        "year" : "1997",
+        "month" : "8"
+      }, {
+        "year" : "1997",
+        "month" : "9"
+      }, {
+        "year" : "1997",
+        "month" : "10"
+      }, {
+        "year" : "1997",
+        "month" : "11"
+      }, {
+        "year" : "1997",
+        "month" : "12"
+      }, {
+        "year" : "1998",
+        "month" : "1"
+      }, {
+        "year" : "1998",
+        "month" : "2"
+      }, {
+        "year" : "1998",
+        "month" : "3"
+      }, {
+        "year" : "1998",
+        "month" : "4"
+      }, {
+        "year" : "1998",
+        "month" : "5"
+      }, {
+        "year" : "1998",
+        "month" : "6"
+      }, {
+        "year" : "1998",
+        "month" : "7"
+      }, {
+        "year" : "1998",
+        "month" : "8"
+      }, {
+        "year" : "1998",
+        "month" : "9"
+      }, {
+        "year" : "1998",
+        "month" : "10"
+      }, {
+        "year" : "1998",
+        "month" : "11"
+      }, {
+        "year" : "1998",
+        "month" : "12"
+      }, {
+        "year" : "1999",
+        "month" : "1"
+      }, {
+        "year" : "1999",
+        "month" : "2"
+      }, {
+        "year" : "1999",
+        "month" : "3"
+      }, {
+        "year" : "1999",
+        "month" : "4"
+      }, {
+        "year" : "1999",
+        "month" : "5"
+      }, {
+        "year" : "1999",
+        "month" : "6"
+      }, {
+        "year" : "1999",
+        "month" : "7"
+      }, {
+        "year" : "1999",
+        "month" : "8"
+      }, {
+        "year" : "1999",
+        "month" : "9"
+      }, {
+        "year" : "1999",
+        "month" : "10"
+      }, {
+        "year" : "1999",
+        "month" : "11"
+      }, {
+        "year" : "1999",
+        "month" : "12"
       } ]
     }
   }, {
@@ -192,7 +809,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9' and LOINC_code != '67151-1' and LOINC_code != '6598-7' and year(MateriaalAfnameDatumTijd) = $year and month(MateriaalAfnameDatumTijd) = $month",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -205,53 +822,29 @@
     },
     "batchingStrategy" : {
       "batchParameterSets" : [ {
-        "yearMin" : "1900",
-        "yearMax" : "2011"
+        "year" : "2025",
+        "month" : "5"
       }, {
-        "yearMin" : "2010",
-        "yearMax" : "2012"
+        "year" : "2025",
+        "month" : "6"
       }, {
-        "yearMin" : "2011",
-        "yearMax" : "2013"
+        "year" : "2025",
+        "month" : "7"
       }, {
-        "yearMin" : "2012",
-        "yearMax" : "2014"
+        "year" : "2025",
+        "month" : "8"
       }, {
-        "yearMin" : "2013",
-        "yearMax" : "2015"
+        "year" : "2025",
+        "month" : "9"
       }, {
-        "yearMin" : "2014",
-        "yearMax" : "2016"
+        "year" : "2025",
+        "month" : "10"
       }, {
-        "yearMin" : "2015",
-        "yearMax" : "2017"
+        "year" : "2025",
+        "month" : "11"
       }, {
-        "yearMin" : "2016",
-        "yearMax" : "2018"
-      }, {
-        "yearMin" : "2017",
-        "yearMax" : "2019"
-      }, {
-        "yearMin" : "2018",
-        "yearMax" : "2020"
-      }, {
-        "yearMin" : "2019",
-        "yearMax" : "2021"
-      }, {
-        "yearMin" : "2020",
-        "yearMax" : "2022"
-      }, {
-        "yearMin" : "2021",
-        "yearMax" : "2023"
-      }, {
-        "yearMin" : "2022",
-        "yearMax" : "2024"
-      }, {
-        "yearMin" : "2023",
-        "yearMax" : "2025"
-      }, {
-        "yearMin" : "2024",
-        "yearMax" : "2026"
+        "year" : "2025",
+        "month" : "12"
       } ]
     }
   }, {
@@ -265,7 +858,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9' and LOINC_code != '67151-1' and LOINC_code != '6598-7' and year(MateriaalAfnameDatumTijd) = $year and month(MateriaalAfnameDatumTijd) = $month",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -278,53 +871,389 @@
     },
     "batchingStrategy" : {
       "batchParameterSets" : [ {
-        "yearMin" : "1900",
-        "yearMax" : "2011"
+        "year" : "2015",
+        "month" : "5"
       }, {
-        "yearMin" : "2010",
-        "yearMax" : "2012"
+        "year" : "2015",
+        "month" : "6"
       }, {
-        "yearMin" : "2011",
-        "yearMax" : "2013"
+        "year" : "2015",
+        "month" : "7"
       }, {
-        "yearMin" : "2012",
-        "yearMax" : "2014"
+        "year" : "2015",
+        "month" : "8"
       }, {
-        "yearMin" : "2013",
-        "yearMax" : "2015"
+        "year" : "2015",
+        "month" : "9"
       }, {
-        "yearMin" : "2014",
-        "yearMax" : "2016"
+        "year" : "2015",
+        "month" : "10"
       }, {
-        "yearMin" : "2015",
-        "yearMax" : "2017"
+        "year" : "2015",
+        "month" : "11"
       }, {
-        "yearMin" : "2016",
-        "yearMax" : "2018"
+        "year" : "2015",
+        "month" : "12"
       }, {
-        "yearMin" : "2017",
-        "yearMax" : "2019"
+        "year" : "2016",
+        "month" : "1"
       }, {
-        "yearMin" : "2018",
-        "yearMax" : "2020"
+        "year" : "2016",
+        "month" : "2"
       }, {
-        "yearMin" : "2019",
-        "yearMax" : "2021"
+        "year" : "2016",
+        "month" : "3"
       }, {
-        "yearMin" : "2020",
-        "yearMax" : "2022"
+        "year" : "2016",
+        "month" : "4"
       }, {
-        "yearMin" : "2021",
-        "yearMax" : "2023"
+        "year" : "2016",
+        "month" : "5"
       }, {
-        "yearMin" : "2022",
-        "yearMax" : "2024"
+        "year" : "2016",
+        "month" : "6"
       }, {
-        "yearMin" : "2023",
-        "yearMax" : "2025"
+        "year" : "2016",
+        "month" : "7"
       }, {
-        "yearMin" : "2024",
-        "yearMax" : "2026"
+        "year" : "2016",
+        "month" : "8"
+      }, {
+        "year" : "2016",
+        "month" : "9"
+      }, {
+        "year" : "2016",
+        "month" : "10"
+      }, {
+        "year" : "2016",
+        "month" : "11"
+      }, {
+        "year" : "2016",
+        "month" : "12"
+      }, {
+        "year" : "2017",
+        "month" : "1"
+      }, {
+        "year" : "2017",
+        "month" : "2"
+      }, {
+        "year" : "2017",
+        "month" : "3"
+      }, {
+        "year" : "2017",
+        "month" : "4"
+      }, {
+        "year" : "2017",
+        "month" : "5"
+      }, {
+        "year" : "2017",
+        "month" : "6"
+      }, {
+        "year" : "2017",
+        "month" : "7"
+      }, {
+        "year" : "2017",
+        "month" : "8"
+      }, {
+        "year" : "2017",
+        "month" : "9"
+      }, {
+        "year" : "2017",
+        "month" : "10"
+      }, {
+        "year" : "2017",
+        "month" : "11"
+      }, {
+        "year" : "2017",
+        "month" : "12"
+      }, {
+        "year" : "2018",
+        "month" : "1"
+      }, {
+        "year" : "2018",
+        "month" : "2"
+      }, {
+        "year" : "2018",
+        "month" : "3"
+      }, {
+        "year" : "2018",
+        "month" : "4"
+      }, {
+        "year" : "2018",
+        "month" : "5"
+      }, {
+        "year" : "2018",
+        "month" : "6"
+      }, {
+        "year" : "2018",
+        "month" : "7"
+      }, {
+        "year" : "2018",
+        "month" : "8"
+      }, {
+        "year" : "2018",
+        "month" : "9"
+      }, {
+        "year" : "2018",
+        "month" : "10"
+      }, {
+        "year" : "2018",
+        "month" : "11"
+      }, {
+        "year" : "2018",
+        "month" : "12"
+      }, {
+        "year" : "2019",
+        "month" : "1"
+      }, {
+        "year" : "2019",
+        "month" : "2"
+      }, {
+        "year" : "2019",
+        "month" : "3"
+      }, {
+        "year" : "2019",
+        "month" : "4"
+      }, {
+        "year" : "2019",
+        "month" : "5"
+      }, {
+        "year" : "2019",
+        "month" : "6"
+      }, {
+        "year" : "2019",
+        "month" : "7"
+      }, {
+        "year" : "2019",
+        "month" : "8"
+      }, {
+        "year" : "2019",
+        "month" : "9"
+      }, {
+        "year" : "2019",
+        "month" : "10"
+      }, {
+        "year" : "2019",
+        "month" : "11"
+      }, {
+        "year" : "2019",
+        "month" : "12"
+      }, {
+        "year" : "2020",
+        "month" : "1"
+      }, {
+        "year" : "2020",
+        "month" : "2"
+      }, {
+        "year" : "2020",
+        "month" : "3"
+      }, {
+        "year" : "2020",
+        "month" : "4"
+      }, {
+        "year" : "2020",
+        "month" : "5"
+      }, {
+        "year" : "2020",
+        "month" : "6"
+      }, {
+        "year" : "2020",
+        "month" : "7"
+      }, {
+        "year" : "2020",
+        "month" : "8"
+      }, {
+        "year" : "2020",
+        "month" : "9"
+      }, {
+        "year" : "2020",
+        "month" : "10"
+      }, {
+        "year" : "2020",
+        "month" : "11"
+      }, {
+        "year" : "2020",
+        "month" : "12"
+      }, {
+        "year" : "2021",
+        "month" : "1"
+      }, {
+        "year" : "2021",
+        "month" : "2"
+      }, {
+        "year" : "2021",
+        "month" : "3"
+      }, {
+        "year" : "2021",
+        "month" : "4"
+      }, {
+        "year" : "2021",
+        "month" : "5"
+      }, {
+        "year" : "2021",
+        "month" : "6"
+      }, {
+        "year" : "2021",
+        "month" : "7"
+      }, {
+        "year" : "2021",
+        "month" : "8"
+      }, {
+        "year" : "2021",
+        "month" : "9"
+      }, {
+        "year" : "2021",
+        "month" : "10"
+      }, {
+        "year" : "2021",
+        "month" : "11"
+      }, {
+        "year" : "2021",
+        "month" : "12"
+      }, {
+        "year" : "2022",
+        "month" : "1"
+      }, {
+        "year" : "2022",
+        "month" : "2"
+      }, {
+        "year" : "2022",
+        "month" : "3"
+      }, {
+        "year" : "2022",
+        "month" : "4"
+      }, {
+        "year" : "2022",
+        "month" : "5"
+      }, {
+        "year" : "2022",
+        "month" : "6"
+      }, {
+        "year" : "2022",
+        "month" : "7"
+      }, {
+        "year" : "2022",
+        "month" : "8"
+      }, {
+        "year" : "2022",
+        "month" : "9"
+      }, {
+        "year" : "2022",
+        "month" : "10"
+      }, {
+        "year" : "2022",
+        "month" : "11"
+      }, {
+        "year" : "2022",
+        "month" : "12"
+      }, {
+        "year" : "2023",
+        "month" : "1"
+      }, {
+        "year" : "2023",
+        "month" : "2"
+      }, {
+        "year" : "2023",
+        "month" : "3"
+      }, {
+        "year" : "2023",
+        "month" : "4"
+      }, {
+        "year" : "2023",
+        "month" : "5"
+      }, {
+        "year" : "2023",
+        "month" : "6"
+      }, {
+        "year" : "2023",
+        "month" : "7"
+      }, {
+        "year" : "2023",
+        "month" : "8"
+      }, {
+        "year" : "2023",
+        "month" : "9"
+      }, {
+        "year" : "2023",
+        "month" : "10"
+      }, {
+        "year" : "2023",
+        "month" : "11"
+      }, {
+        "year" : "2023",
+        "month" : "12"
+      }, {
+        "year" : "2024",
+        "month" : "1"
+      }, {
+        "year" : "2024",
+        "month" : "2"
+      }, {
+        "year" : "2024",
+        "month" : "3"
+      }, {
+        "year" : "2024",
+        "month" : "4"
+      }, {
+        "year" : "2024",
+        "month" : "5"
+      }, {
+        "year" : "2024",
+        "month" : "6"
+      }, {
+        "year" : "2024",
+        "month" : "7"
+      }, {
+        "year" : "2024",
+        "month" : "8"
+      }, {
+        "year" : "2024",
+        "month" : "9"
+      }, {
+        "year" : "2024",
+        "month" : "10"
+      }, {
+        "year" : "2024",
+        "month" : "11"
+      }, {
+        "year" : "2024",
+        "month" : "12"
+      }, {
+        "year" : "2025",
+        "month" : "1"
+      }, {
+        "year" : "2025",
+        "month" : "2"
+      }, {
+        "year" : "2025",
+        "month" : "3"
+      }, {
+        "year" : "2025",
+        "month" : "4"
+      }, {
+        "year" : "2025",
+        "month" : "5"
+      }, {
+        "year" : "2025",
+        "month" : "6"
+      }, {
+        "year" : "2025",
+        "month" : "7"
+      }, {
+        "year" : "2025",
+        "month" : "8"
+      }, {
+        "year" : "2025",
+        "month" : "9"
+      }, {
+        "year" : "2025",
+        "month" : "10"
+      }, {
+        "year" : "2025",
+        "month" : "11"
+      }, {
+        "year" : "2025",
+        "month" : "12"
       } ]
     }
   }, {
@@ -338,7 +1267,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9' and LOINC_code != '67151-1' and LOINC_code != '6598-7' and year(MateriaalAfnameDatumTijd) = $year and month(MateriaalAfnameDatumTijd) = $month",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -351,53 +1280,941 @@
     },
     "batchingStrategy" : {
       "batchParameterSets" : [ {
-        "yearMin" : "1900",
-        "yearMax" : "2011"
+        "year" : "2000",
+        "month" : "1"
       }, {
-        "yearMin" : "2010",
-        "yearMax" : "2012"
+        "year" : "2000",
+        "month" : "2"
       }, {
-        "yearMin" : "2011",
-        "yearMax" : "2013"
+        "year" : "2000",
+        "month" : "3"
       }, {
-        "yearMin" : "2012",
-        "yearMax" : "2014"
+        "year" : "2000",
+        "month" : "4"
       }, {
-        "yearMin" : "2013",
-        "yearMax" : "2015"
+        "year" : "2000",
+        "month" : "5"
       }, {
-        "yearMin" : "2014",
-        "yearMax" : "2016"
+        "year" : "2000",
+        "month" : "6"
       }, {
-        "yearMin" : "2015",
-        "yearMax" : "2017"
+        "year" : "2000",
+        "month" : "7"
       }, {
-        "yearMin" : "2016",
-        "yearMax" : "2018"
+        "year" : "2000",
+        "month" : "8"
       }, {
-        "yearMin" : "2017",
-        "yearMax" : "2019"
+        "year" : "2000",
+        "month" : "9"
       }, {
-        "yearMin" : "2018",
-        "yearMax" : "2020"
+        "year" : "2000",
+        "month" : "10"
       }, {
-        "yearMin" : "2019",
-        "yearMax" : "2021"
+        "year" : "2000",
+        "month" : "11"
       }, {
-        "yearMin" : "2020",
-        "yearMax" : "2022"
+        "year" : "2000",
+        "month" : "12"
       }, {
-        "yearMin" : "2021",
-        "yearMax" : "2023"
+        "year" : "2001",
+        "month" : "1"
       }, {
-        "yearMin" : "2022",
-        "yearMax" : "2024"
+        "year" : "2001",
+        "month" : "2"
       }, {
-        "yearMin" : "2023",
-        "yearMax" : "2025"
+        "year" : "2001",
+        "month" : "3"
       }, {
-        "yearMin" : "2024",
-        "yearMax" : "2026"
+        "year" : "2001",
+        "month" : "4"
+      }, {
+        "year" : "2001",
+        "month" : "5"
+      }, {
+        "year" : "2001",
+        "month" : "6"
+      }, {
+        "year" : "2001",
+        "month" : "7"
+      }, {
+        "year" : "2001",
+        "month" : "8"
+      }, {
+        "year" : "2001",
+        "month" : "9"
+      }, {
+        "year" : "2001",
+        "month" : "10"
+      }, {
+        "year" : "2001",
+        "month" : "11"
+      }, {
+        "year" : "2001",
+        "month" : "12"
+      }, {
+        "year" : "2002",
+        "month" : "1"
+      }, {
+        "year" : "2002",
+        "month" : "2"
+      }, {
+        "year" : "2002",
+        "month" : "3"
+      }, {
+        "year" : "2002",
+        "month" : "4"
+      }, {
+        "year" : "2002",
+        "month" : "5"
+      }, {
+        "year" : "2002",
+        "month" : "6"
+      }, {
+        "year" : "2002",
+        "month" : "7"
+      }, {
+        "year" : "2002",
+        "month" : "8"
+      }, {
+        "year" : "2002",
+        "month" : "9"
+      }, {
+        "year" : "2002",
+        "month" : "10"
+      }, {
+        "year" : "2002",
+        "month" : "11"
+      }, {
+        "year" : "2002",
+        "month" : "12"
+      }, {
+        "year" : "2003",
+        "month" : "1"
+      }, {
+        "year" : "2003",
+        "month" : "2"
+      }, {
+        "year" : "2003",
+        "month" : "3"
+      }, {
+        "year" : "2003",
+        "month" : "4"
+      }, {
+        "year" : "2003",
+        "month" : "5"
+      }, {
+        "year" : "2003",
+        "month" : "6"
+      }, {
+        "year" : "2003",
+        "month" : "7"
+      }, {
+        "year" : "2003",
+        "month" : "8"
+      }, {
+        "year" : "2003",
+        "month" : "9"
+      }, {
+        "year" : "2003",
+        "month" : "10"
+      }, {
+        "year" : "2003",
+        "month" : "11"
+      }, {
+        "year" : "2003",
+        "month" : "12"
+      }, {
+        "year" : "2004",
+        "month" : "1"
+      }, {
+        "year" : "2004",
+        "month" : "2"
+      }, {
+        "year" : "2004",
+        "month" : "3"
+      }, {
+        "year" : "2004",
+        "month" : "4"
+      }, {
+        "year" : "2004",
+        "month" : "5"
+      }, {
+        "year" : "2004",
+        "month" : "6"
+      }, {
+        "year" : "2004",
+        "month" : "7"
+      }, {
+        "year" : "2004",
+        "month" : "8"
+      }, {
+        "year" : "2004",
+        "month" : "9"
+      }, {
+        "year" : "2004",
+        "month" : "10"
+      }, {
+        "year" : "2004",
+        "month" : "11"
+      }, {
+        "year" : "2004",
+        "month" : "12"
+      }, {
+        "year" : "2005",
+        "month" : "1"
+      }, {
+        "year" : "2005",
+        "month" : "2"
+      }, {
+        "year" : "2005",
+        "month" : "3"
+      }, {
+        "year" : "2005",
+        "month" : "4"
+      }, {
+        "year" : "2005",
+        "month" : "5"
+      }, {
+        "year" : "2005",
+        "month" : "6"
+      }, {
+        "year" : "2005",
+        "month" : "7"
+      }, {
+        "year" : "2005",
+        "month" : "8"
+      }, {
+        "year" : "2005",
+        "month" : "9"
+      }, {
+        "year" : "2005",
+        "month" : "10"
+      }, {
+        "year" : "2005",
+        "month" : "11"
+      }, {
+        "year" : "2005",
+        "month" : "12"
+      }, {
+        "year" : "2006",
+        "month" : "1"
+      }, {
+        "year" : "2006",
+        "month" : "2"
+      }, {
+        "year" : "2006",
+        "month" : "3"
+      }, {
+        "year" : "2006",
+        "month" : "4"
+      }, {
+        "year" : "2006",
+        "month" : "5"
+      }, {
+        "year" : "2006",
+        "month" : "6"
+      }, {
+        "year" : "2006",
+        "month" : "7"
+      }, {
+        "year" : "2006",
+        "month" : "8"
+      }, {
+        "year" : "2006",
+        "month" : "9"
+      }, {
+        "year" : "2006",
+        "month" : "10"
+      }, {
+        "year" : "2006",
+        "month" : "11"
+      }, {
+        "year" : "2006",
+        "month" : "12"
+      }, {
+        "year" : "2007",
+        "month" : "1"
+      }, {
+        "year" : "2007",
+        "month" : "2"
+      }, {
+        "year" : "2007",
+        "month" : "3"
+      }, {
+        "year" : "2007",
+        "month" : "4"
+      }, {
+        "year" : "2007",
+        "month" : "5"
+      }, {
+        "year" : "2007",
+        "month" : "6"
+      }, {
+        "year" : "2007",
+        "month" : "7"
+      }, {
+        "year" : "2007",
+        "month" : "8"
+      }, {
+        "year" : "2007",
+        "month" : "9"
+      }, {
+        "year" : "2007",
+        "month" : "10"
+      }, {
+        "year" : "2007",
+        "month" : "11"
+      }, {
+        "year" : "2007",
+        "month" : "12"
+      }, {
+        "year" : "2008",
+        "month" : "1"
+      }, {
+        "year" : "2008",
+        "month" : "2"
+      }, {
+        "year" : "2008",
+        "month" : "3"
+      }, {
+        "year" : "2008",
+        "month" : "4"
+      }, {
+        "year" : "2008",
+        "month" : "5"
+      }, {
+        "year" : "2008",
+        "month" : "6"
+      }, {
+        "year" : "2008",
+        "month" : "7"
+      }, {
+        "year" : "2008",
+        "month" : "8"
+      }, {
+        "year" : "2008",
+        "month" : "9"
+      }, {
+        "year" : "2008",
+        "month" : "10"
+      }, {
+        "year" : "2008",
+        "month" : "11"
+      }, {
+        "year" : "2008",
+        "month" : "12"
+      }, {
+        "year" : "2009",
+        "month" : "1"
+      }, {
+        "year" : "2009",
+        "month" : "2"
+      }, {
+        "year" : "2009",
+        "month" : "3"
+      }, {
+        "year" : "2009",
+        "month" : "4"
+      }, {
+        "year" : "2009",
+        "month" : "5"
+      }, {
+        "year" : "2009",
+        "month" : "6"
+      }, {
+        "year" : "2009",
+        "month" : "7"
+      }, {
+        "year" : "2009",
+        "month" : "8"
+      }, {
+        "year" : "2009",
+        "month" : "9"
+      }, {
+        "year" : "2009",
+        "month" : "10"
+      }, {
+        "year" : "2009",
+        "month" : "11"
+      }, {
+        "year" : "2009",
+        "month" : "12"
+      }, {
+        "year" : "2010",
+        "month" : "1"
+      }, {
+        "year" : "2010",
+        "month" : "2"
+      }, {
+        "year" : "2010",
+        "month" : "3"
+      }, {
+        "year" : "2010",
+        "month" : "4"
+      }, {
+        "year" : "2010",
+        "month" : "5"
+      }, {
+        "year" : "2010",
+        "month" : "6"
+      }, {
+        "year" : "2010",
+        "month" : "7"
+      }, {
+        "year" : "2010",
+        "month" : "8"
+      }, {
+        "year" : "2010",
+        "month" : "9"
+      }, {
+        "year" : "2010",
+        "month" : "10"
+      }, {
+        "year" : "2010",
+        "month" : "11"
+      }, {
+        "year" : "2010",
+        "month" : "12"
+      }, {
+        "year" : "2011",
+        "month" : "1"
+      }, {
+        "year" : "2011",
+        "month" : "2"
+      }, {
+        "year" : "2011",
+        "month" : "3"
+      }, {
+        "year" : "2011",
+        "month" : "4"
+      }, {
+        "year" : "2011",
+        "month" : "5"
+      }, {
+        "year" : "2011",
+        "month" : "6"
+      }, {
+        "year" : "2011",
+        "month" : "7"
+      }, {
+        "year" : "2011",
+        "month" : "8"
+      }, {
+        "year" : "2011",
+        "month" : "9"
+      }, {
+        "year" : "2011",
+        "month" : "10"
+      }, {
+        "year" : "2011",
+        "month" : "11"
+      }, {
+        "year" : "2011",
+        "month" : "12"
+      }, {
+        "year" : "2012",
+        "month" : "1"
+      }, {
+        "year" : "2012",
+        "month" : "2"
+      }, {
+        "year" : "2012",
+        "month" : "3"
+      }, {
+        "year" : "2012",
+        "month" : "4"
+      }, {
+        "year" : "2012",
+        "month" : "5"
+      }, {
+        "year" : "2012",
+        "month" : "6"
+      }, {
+        "year" : "2012",
+        "month" : "7"
+      }, {
+        "year" : "2012",
+        "month" : "8"
+      }, {
+        "year" : "2012",
+        "month" : "9"
+      }, {
+        "year" : "2012",
+        "month" : "10"
+      }, {
+        "year" : "2012",
+        "month" : "11"
+      }, {
+        "year" : "2012",
+        "month" : "12"
+      }, {
+        "year" : "2013",
+        "month" : "1"
+      }, {
+        "year" : "2013",
+        "month" : "2"
+      }, {
+        "year" : "2013",
+        "month" : "3"
+      }, {
+        "year" : "2013",
+        "month" : "4"
+      }, {
+        "year" : "2013",
+        "month" : "5"
+      }, {
+        "year" : "2013",
+        "month" : "6"
+      }, {
+        "year" : "2013",
+        "month" : "7"
+      }, {
+        "year" : "2013",
+        "month" : "8"
+      }, {
+        "year" : "2013",
+        "month" : "9"
+      }, {
+        "year" : "2013",
+        "month" : "10"
+      }, {
+        "year" : "2013",
+        "month" : "11"
+      }, {
+        "year" : "2013",
+        "month" : "12"
+      }, {
+        "year" : "2014",
+        "month" : "1"
+      }, {
+        "year" : "2014",
+        "month" : "2"
+      }, {
+        "year" : "2014",
+        "month" : "3"
+      }, {
+        "year" : "2014",
+        "month" : "4"
+      }, {
+        "year" : "2014",
+        "month" : "5"
+      }, {
+        "year" : "2014",
+        "month" : "6"
+      }, {
+        "year" : "2014",
+        "month" : "7"
+      }, {
+        "year" : "2014",
+        "month" : "8"
+      }, {
+        "year" : "2014",
+        "month" : "9"
+      }, {
+        "year" : "2014",
+        "month" : "10"
+      }, {
+        "year" : "2014",
+        "month" : "11"
+      }, {
+        "year" : "2014",
+        "month" : "12"
+      }, {
+        "year" : "2015",
+        "month" : "1"
+      }, {
+        "year" : "2015",
+        "month" : "2"
+      }, {
+        "year" : "2015",
+        "month" : "3"
+      }, {
+        "year" : "2015",
+        "month" : "4"
+      }, {
+        "year" : "2015",
+        "month" : "5"
+      }, {
+        "year" : "2015",
+        "month" : "6"
+      }, {
+        "year" : "2015",
+        "month" : "7"
+      }, {
+        "year" : "2015",
+        "month" : "8"
+      }, {
+        "year" : "2015",
+        "month" : "9"
+      }, {
+        "year" : "2015",
+        "month" : "10"
+      }, {
+        "year" : "2015",
+        "month" : "11"
+      }, {
+        "year" : "2015",
+        "month" : "12"
+      }, {
+        "year" : "2016",
+        "month" : "1"
+      }, {
+        "year" : "2016",
+        "month" : "2"
+      }, {
+        "year" : "2016",
+        "month" : "3"
+      }, {
+        "year" : "2016",
+        "month" : "4"
+      }, {
+        "year" : "2016",
+        "month" : "5"
+      }, {
+        "year" : "2016",
+        "month" : "6"
+      }, {
+        "year" : "2016",
+        "month" : "7"
+      }, {
+        "year" : "2016",
+        "month" : "8"
+      }, {
+        "year" : "2016",
+        "month" : "9"
+      }, {
+        "year" : "2016",
+        "month" : "10"
+      }, {
+        "year" : "2016",
+        "month" : "11"
+      }, {
+        "year" : "2016",
+        "month" : "12"
+      }, {
+        "year" : "2017",
+        "month" : "1"
+      }, {
+        "year" : "2017",
+        "month" : "2"
+      }, {
+        "year" : "2017",
+        "month" : "3"
+      }, {
+        "year" : "2017",
+        "month" : "4"
+      }, {
+        "year" : "2017",
+        "month" : "5"
+      }, {
+        "year" : "2017",
+        "month" : "6"
+      }, {
+        "year" : "2017",
+        "month" : "7"
+      }, {
+        "year" : "2017",
+        "month" : "8"
+      }, {
+        "year" : "2017",
+        "month" : "9"
+      }, {
+        "year" : "2017",
+        "month" : "10"
+      }, {
+        "year" : "2017",
+        "month" : "11"
+      }, {
+        "year" : "2017",
+        "month" : "12"
+      }, {
+        "year" : "2018",
+        "month" : "1"
+      }, {
+        "year" : "2018",
+        "month" : "2"
+      }, {
+        "year" : "2018",
+        "month" : "3"
+      }, {
+        "year" : "2018",
+        "month" : "4"
+      }, {
+        "year" : "2018",
+        "month" : "5"
+      }, {
+        "year" : "2018",
+        "month" : "6"
+      }, {
+        "year" : "2018",
+        "month" : "7"
+      }, {
+        "year" : "2018",
+        "month" : "8"
+      }, {
+        "year" : "2018",
+        "month" : "9"
+      }, {
+        "year" : "2018",
+        "month" : "10"
+      }, {
+        "year" : "2018",
+        "month" : "11"
+      }, {
+        "year" : "2018",
+        "month" : "12"
+      }, {
+        "year" : "2019",
+        "month" : "1"
+      }, {
+        "year" : "2019",
+        "month" : "2"
+      }, {
+        "year" : "2019",
+        "month" : "3"
+      }, {
+        "year" : "2019",
+        "month" : "4"
+      }, {
+        "year" : "2019",
+        "month" : "5"
+      }, {
+        "year" : "2019",
+        "month" : "6"
+      }, {
+        "year" : "2019",
+        "month" : "7"
+      }, {
+        "year" : "2019",
+        "month" : "8"
+      }, {
+        "year" : "2019",
+        "month" : "9"
+      }, {
+        "year" : "2019",
+        "month" : "10"
+      }, {
+        "year" : "2019",
+        "month" : "11"
+      }, {
+        "year" : "2019",
+        "month" : "12"
+      }, {
+        "year" : "2020",
+        "month" : "1"
+      }, {
+        "year" : "2020",
+        "month" : "2"
+      }, {
+        "year" : "2020",
+        "month" : "3"
+      }, {
+        "year" : "2020",
+        "month" : "4"
+      }, {
+        "year" : "2020",
+        "month" : "5"
+      }, {
+        "year" : "2020",
+        "month" : "6"
+      }, {
+        "year" : "2020",
+        "month" : "7"
+      }, {
+        "year" : "2020",
+        "month" : "8"
+      }, {
+        "year" : "2020",
+        "month" : "9"
+      }, {
+        "year" : "2020",
+        "month" : "10"
+      }, {
+        "year" : "2020",
+        "month" : "11"
+      }, {
+        "year" : "2020",
+        "month" : "12"
+      }, {
+        "year" : "2021",
+        "month" : "1"
+      }, {
+        "year" : "2021",
+        "month" : "2"
+      }, {
+        "year" : "2021",
+        "month" : "3"
+      }, {
+        "year" : "2021",
+        "month" : "4"
+      }, {
+        "year" : "2021",
+        "month" : "5"
+      }, {
+        "year" : "2021",
+        "month" : "6"
+      }, {
+        "year" : "2021",
+        "month" : "7"
+      }, {
+        "year" : "2021",
+        "month" : "8"
+      }, {
+        "year" : "2021",
+        "month" : "9"
+      }, {
+        "year" : "2021",
+        "month" : "10"
+      }, {
+        "year" : "2021",
+        "month" : "11"
+      }, {
+        "year" : "2021",
+        "month" : "12"
+      }, {
+        "year" : "2022",
+        "month" : "1"
+      }, {
+        "year" : "2022",
+        "month" : "2"
+      }, {
+        "year" : "2022",
+        "month" : "3"
+      }, {
+        "year" : "2022",
+        "month" : "4"
+      }, {
+        "year" : "2022",
+        "month" : "5"
+      }, {
+        "year" : "2022",
+        "month" : "6"
+      }, {
+        "year" : "2022",
+        "month" : "7"
+      }, {
+        "year" : "2022",
+        "month" : "8"
+      }, {
+        "year" : "2022",
+        "month" : "9"
+      }, {
+        "year" : "2022",
+        "month" : "10"
+      }, {
+        "year" : "2022",
+        "month" : "11"
+      }, {
+        "year" : "2022",
+        "month" : "12"
+      }, {
+        "year" : "2023",
+        "month" : "1"
+      }, {
+        "year" : "2023",
+        "month" : "2"
+      }, {
+        "year" : "2023",
+        "month" : "3"
+      }, {
+        "year" : "2023",
+        "month" : "4"
+      }, {
+        "year" : "2023",
+        "month" : "5"
+      }, {
+        "year" : "2023",
+        "month" : "6"
+      }, {
+        "year" : "2023",
+        "month" : "7"
+      }, {
+        "year" : "2023",
+        "month" : "8"
+      }, {
+        "year" : "2023",
+        "month" : "9"
+      }, {
+        "year" : "2023",
+        "month" : "10"
+      }, {
+        "year" : "2023",
+        "month" : "11"
+      }, {
+        "year" : "2023",
+        "month" : "12"
+      }, {
+        "year" : "2024",
+        "month" : "1"
+      }, {
+        "year" : "2024",
+        "month" : "2"
+      }, {
+        "year" : "2024",
+        "month" : "3"
+      }, {
+        "year" : "2024",
+        "month" : "4"
+      }, {
+        "year" : "2024",
+        "month" : "5"
+      }, {
+        "year" : "2024",
+        "month" : "6"
+      }, {
+        "year" : "2024",
+        "month" : "7"
+      }, {
+        "year" : "2024",
+        "month" : "8"
+      }, {
+        "year" : "2024",
+        "month" : "9"
+      }, {
+        "year" : "2024",
+        "month" : "10"
+      }, {
+        "year" : "2024",
+        "month" : "11"
+      }, {
+        "year" : "2024",
+        "month" : "12"
+      }, {
+        "year" : "2025",
+        "month" : "1"
+      }, {
+        "year" : "2025",
+        "month" : "2"
+      }, {
+        "year" : "2025",
+        "month" : "3"
+      }, {
+        "year" : "2025",
+        "month" : "4"
+      }, {
+        "year" : "2025",
+        "month" : "5"
+      }, {
+        "year" : "2025",
+        "month" : "6"
+      }, {
+        "year" : "2025",
+        "month" : "7"
+      }, {
+        "year" : "2025",
+        "month" : "8"
+      }, {
+        "year" : "2025",
+        "month" : "9"
+      }, {
+        "year" : "2025",
+        "month" : "10"
+      }, {
+        "year" : "2025",
+        "month" : "11"
+      }, {
+        "year" : "2025",
+        "month" : "12"
       } ]
     }
   }, {
@@ -411,7 +2228,7 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select * from source where year(MateriaalAfnameDatumTijd) > $yearMin and year(MateriaalAfnameDatumTijd) < $yearMax",
+        "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9' and LOINC_code != '67151-1' and LOINC_code != '6598-7' and year(MateriaalAfnameDatumTijd) = $year and month(MateriaalAfnameDatumTijd) = $month",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -424,53 +2241,941 @@
     },
     "batchingStrategy" : {
       "batchParameterSets" : [ {
-        "yearMin" : "1900",
-        "yearMax" : "2011"
+        "year" : "2000",
+        "month" : "1"
       }, {
-        "yearMin" : "2010",
-        "yearMax" : "2012"
+        "year" : "2000",
+        "month" : "2"
       }, {
-        "yearMin" : "2011",
-        "yearMax" : "2013"
+        "year" : "2000",
+        "month" : "3"
       }, {
-        "yearMin" : "2012",
-        "yearMax" : "2014"
+        "year" : "2000",
+        "month" : "4"
       }, {
-        "yearMin" : "2013",
-        "yearMax" : "2015"
+        "year" : "2000",
+        "month" : "5"
       }, {
-        "yearMin" : "2014",
-        "yearMax" : "2016"
+        "year" : "2000",
+        "month" : "6"
       }, {
-        "yearMin" : "2015",
-        "yearMax" : "2017"
+        "year" : "2000",
+        "month" : "7"
       }, {
-        "yearMin" : "2016",
-        "yearMax" : "2018"
+        "year" : "2000",
+        "month" : "8"
       }, {
-        "yearMin" : "2017",
-        "yearMax" : "2019"
+        "year" : "2000",
+        "month" : "9"
       }, {
-        "yearMin" : "2018",
-        "yearMax" : "2020"
+        "year" : "2000",
+        "month" : "10"
       }, {
-        "yearMin" : "2019",
-        "yearMax" : "2021"
+        "year" : "2000",
+        "month" : "11"
       }, {
-        "yearMin" : "2020",
-        "yearMax" : "2022"
+        "year" : "2000",
+        "month" : "12"
       }, {
-        "yearMin" : "2021",
-        "yearMax" : "2023"
+        "year" : "2001",
+        "month" : "1"
       }, {
-        "yearMin" : "2022",
-        "yearMax" : "2024"
+        "year" : "2001",
+        "month" : "2"
       }, {
-        "yearMin" : "2023",
-        "yearMax" : "2025"
+        "year" : "2001",
+        "month" : "3"
       }, {
-        "yearMin" : "2024",
-        "yearMax" : "2026"
+        "year" : "2001",
+        "month" : "4"
+      }, {
+        "year" : "2001",
+        "month" : "5"
+      }, {
+        "year" : "2001",
+        "month" : "6"
+      }, {
+        "year" : "2001",
+        "month" : "7"
+      }, {
+        "year" : "2001",
+        "month" : "8"
+      }, {
+        "year" : "2001",
+        "month" : "9"
+      }, {
+        "year" : "2001",
+        "month" : "10"
+      }, {
+        "year" : "2001",
+        "month" : "11"
+      }, {
+        "year" : "2001",
+        "month" : "12"
+      }, {
+        "year" : "2002",
+        "month" : "1"
+      }, {
+        "year" : "2002",
+        "month" : "2"
+      }, {
+        "year" : "2002",
+        "month" : "3"
+      }, {
+        "year" : "2002",
+        "month" : "4"
+      }, {
+        "year" : "2002",
+        "month" : "5"
+      }, {
+        "year" : "2002",
+        "month" : "6"
+      }, {
+        "year" : "2002",
+        "month" : "7"
+      }, {
+        "year" : "2002",
+        "month" : "8"
+      }, {
+        "year" : "2002",
+        "month" : "9"
+      }, {
+        "year" : "2002",
+        "month" : "10"
+      }, {
+        "year" : "2002",
+        "month" : "11"
+      }, {
+        "year" : "2002",
+        "month" : "12"
+      }, {
+        "year" : "2003",
+        "month" : "1"
+      }, {
+        "year" : "2003",
+        "month" : "2"
+      }, {
+        "year" : "2003",
+        "month" : "3"
+      }, {
+        "year" : "2003",
+        "month" : "4"
+      }, {
+        "year" : "2003",
+        "month" : "5"
+      }, {
+        "year" : "2003",
+        "month" : "6"
+      }, {
+        "year" : "2003",
+        "month" : "7"
+      }, {
+        "year" : "2003",
+        "month" : "8"
+      }, {
+        "year" : "2003",
+        "month" : "9"
+      }, {
+        "year" : "2003",
+        "month" : "10"
+      }, {
+        "year" : "2003",
+        "month" : "11"
+      }, {
+        "year" : "2003",
+        "month" : "12"
+      }, {
+        "year" : "2004",
+        "month" : "1"
+      }, {
+        "year" : "2004",
+        "month" : "2"
+      }, {
+        "year" : "2004",
+        "month" : "3"
+      }, {
+        "year" : "2004",
+        "month" : "4"
+      }, {
+        "year" : "2004",
+        "month" : "5"
+      }, {
+        "year" : "2004",
+        "month" : "6"
+      }, {
+        "year" : "2004",
+        "month" : "7"
+      }, {
+        "year" : "2004",
+        "month" : "8"
+      }, {
+        "year" : "2004",
+        "month" : "9"
+      }, {
+        "year" : "2004",
+        "month" : "10"
+      }, {
+        "year" : "2004",
+        "month" : "11"
+      }, {
+        "year" : "2004",
+        "month" : "12"
+      }, {
+        "year" : "2005",
+        "month" : "1"
+      }, {
+        "year" : "2005",
+        "month" : "2"
+      }, {
+        "year" : "2005",
+        "month" : "3"
+      }, {
+        "year" : "2005",
+        "month" : "4"
+      }, {
+        "year" : "2005",
+        "month" : "5"
+      }, {
+        "year" : "2005",
+        "month" : "6"
+      }, {
+        "year" : "2005",
+        "month" : "7"
+      }, {
+        "year" : "2005",
+        "month" : "8"
+      }, {
+        "year" : "2005",
+        "month" : "9"
+      }, {
+        "year" : "2005",
+        "month" : "10"
+      }, {
+        "year" : "2005",
+        "month" : "11"
+      }, {
+        "year" : "2005",
+        "month" : "12"
+      }, {
+        "year" : "2006",
+        "month" : "1"
+      }, {
+        "year" : "2006",
+        "month" : "2"
+      }, {
+        "year" : "2006",
+        "month" : "3"
+      }, {
+        "year" : "2006",
+        "month" : "4"
+      }, {
+        "year" : "2006",
+        "month" : "5"
+      }, {
+        "year" : "2006",
+        "month" : "6"
+      }, {
+        "year" : "2006",
+        "month" : "7"
+      }, {
+        "year" : "2006",
+        "month" : "8"
+      }, {
+        "year" : "2006",
+        "month" : "9"
+      }, {
+        "year" : "2006",
+        "month" : "10"
+      }, {
+        "year" : "2006",
+        "month" : "11"
+      }, {
+        "year" : "2006",
+        "month" : "12"
+      }, {
+        "year" : "2007",
+        "month" : "1"
+      }, {
+        "year" : "2007",
+        "month" : "2"
+      }, {
+        "year" : "2007",
+        "month" : "3"
+      }, {
+        "year" : "2007",
+        "month" : "4"
+      }, {
+        "year" : "2007",
+        "month" : "5"
+      }, {
+        "year" : "2007",
+        "month" : "6"
+      }, {
+        "year" : "2007",
+        "month" : "7"
+      }, {
+        "year" : "2007",
+        "month" : "8"
+      }, {
+        "year" : "2007",
+        "month" : "9"
+      }, {
+        "year" : "2007",
+        "month" : "10"
+      }, {
+        "year" : "2007",
+        "month" : "11"
+      }, {
+        "year" : "2007",
+        "month" : "12"
+      }, {
+        "year" : "2008",
+        "month" : "1"
+      }, {
+        "year" : "2008",
+        "month" : "2"
+      }, {
+        "year" : "2008",
+        "month" : "3"
+      }, {
+        "year" : "2008",
+        "month" : "4"
+      }, {
+        "year" : "2008",
+        "month" : "5"
+      }, {
+        "year" : "2008",
+        "month" : "6"
+      }, {
+        "year" : "2008",
+        "month" : "7"
+      }, {
+        "year" : "2008",
+        "month" : "8"
+      }, {
+        "year" : "2008",
+        "month" : "9"
+      }, {
+        "year" : "2008",
+        "month" : "10"
+      }, {
+        "year" : "2008",
+        "month" : "11"
+      }, {
+        "year" : "2008",
+        "month" : "12"
+      }, {
+        "year" : "2009",
+        "month" : "1"
+      }, {
+        "year" : "2009",
+        "month" : "2"
+      }, {
+        "year" : "2009",
+        "month" : "3"
+      }, {
+        "year" : "2009",
+        "month" : "4"
+      }, {
+        "year" : "2009",
+        "month" : "5"
+      }, {
+        "year" : "2009",
+        "month" : "6"
+      }, {
+        "year" : "2009",
+        "month" : "7"
+      }, {
+        "year" : "2009",
+        "month" : "8"
+      }, {
+        "year" : "2009",
+        "month" : "9"
+      }, {
+        "year" : "2009",
+        "month" : "10"
+      }, {
+        "year" : "2009",
+        "month" : "11"
+      }, {
+        "year" : "2009",
+        "month" : "12"
+      }, {
+        "year" : "2010",
+        "month" : "1"
+      }, {
+        "year" : "2010",
+        "month" : "2"
+      }, {
+        "year" : "2010",
+        "month" : "3"
+      }, {
+        "year" : "2010",
+        "month" : "4"
+      }, {
+        "year" : "2010",
+        "month" : "5"
+      }, {
+        "year" : "2010",
+        "month" : "6"
+      }, {
+        "year" : "2010",
+        "month" : "7"
+      }, {
+        "year" : "2010",
+        "month" : "8"
+      }, {
+        "year" : "2010",
+        "month" : "9"
+      }, {
+        "year" : "2010",
+        "month" : "10"
+      }, {
+        "year" : "2010",
+        "month" : "11"
+      }, {
+        "year" : "2010",
+        "month" : "12"
+      }, {
+        "year" : "2011",
+        "month" : "1"
+      }, {
+        "year" : "2011",
+        "month" : "2"
+      }, {
+        "year" : "2011",
+        "month" : "3"
+      }, {
+        "year" : "2011",
+        "month" : "4"
+      }, {
+        "year" : "2011",
+        "month" : "5"
+      }, {
+        "year" : "2011",
+        "month" : "6"
+      }, {
+        "year" : "2011",
+        "month" : "7"
+      }, {
+        "year" : "2011",
+        "month" : "8"
+      }, {
+        "year" : "2011",
+        "month" : "9"
+      }, {
+        "year" : "2011",
+        "month" : "10"
+      }, {
+        "year" : "2011",
+        "month" : "11"
+      }, {
+        "year" : "2011",
+        "month" : "12"
+      }, {
+        "year" : "2012",
+        "month" : "1"
+      }, {
+        "year" : "2012",
+        "month" : "2"
+      }, {
+        "year" : "2012",
+        "month" : "3"
+      }, {
+        "year" : "2012",
+        "month" : "4"
+      }, {
+        "year" : "2012",
+        "month" : "5"
+      }, {
+        "year" : "2012",
+        "month" : "6"
+      }, {
+        "year" : "2012",
+        "month" : "7"
+      }, {
+        "year" : "2012",
+        "month" : "8"
+      }, {
+        "year" : "2012",
+        "month" : "9"
+      }, {
+        "year" : "2012",
+        "month" : "10"
+      }, {
+        "year" : "2012",
+        "month" : "11"
+      }, {
+        "year" : "2012",
+        "month" : "12"
+      }, {
+        "year" : "2013",
+        "month" : "1"
+      }, {
+        "year" : "2013",
+        "month" : "2"
+      }, {
+        "year" : "2013",
+        "month" : "3"
+      }, {
+        "year" : "2013",
+        "month" : "4"
+      }, {
+        "year" : "2013",
+        "month" : "5"
+      }, {
+        "year" : "2013",
+        "month" : "6"
+      }, {
+        "year" : "2013",
+        "month" : "7"
+      }, {
+        "year" : "2013",
+        "month" : "8"
+      }, {
+        "year" : "2013",
+        "month" : "9"
+      }, {
+        "year" : "2013",
+        "month" : "10"
+      }, {
+        "year" : "2013",
+        "month" : "11"
+      }, {
+        "year" : "2013",
+        "month" : "12"
+      }, {
+        "year" : "2014",
+        "month" : "1"
+      }, {
+        "year" : "2014",
+        "month" : "2"
+      }, {
+        "year" : "2014",
+        "month" : "3"
+      }, {
+        "year" : "2014",
+        "month" : "4"
+      }, {
+        "year" : "2014",
+        "month" : "5"
+      }, {
+        "year" : "2014",
+        "month" : "6"
+      }, {
+        "year" : "2014",
+        "month" : "7"
+      }, {
+        "year" : "2014",
+        "month" : "8"
+      }, {
+        "year" : "2014",
+        "month" : "9"
+      }, {
+        "year" : "2014",
+        "month" : "10"
+      }, {
+        "year" : "2014",
+        "month" : "11"
+      }, {
+        "year" : "2014",
+        "month" : "12"
+      }, {
+        "year" : "2015",
+        "month" : "1"
+      }, {
+        "year" : "2015",
+        "month" : "2"
+      }, {
+        "year" : "2015",
+        "month" : "3"
+      }, {
+        "year" : "2015",
+        "month" : "4"
+      }, {
+        "year" : "2015",
+        "month" : "5"
+      }, {
+        "year" : "2015",
+        "month" : "6"
+      }, {
+        "year" : "2015",
+        "month" : "7"
+      }, {
+        "year" : "2015",
+        "month" : "8"
+      }, {
+        "year" : "2015",
+        "month" : "9"
+      }, {
+        "year" : "2015",
+        "month" : "10"
+      }, {
+        "year" : "2015",
+        "month" : "11"
+      }, {
+        "year" : "2015",
+        "month" : "12"
+      }, {
+        "year" : "2016",
+        "month" : "1"
+      }, {
+        "year" : "2016",
+        "month" : "2"
+      }, {
+        "year" : "2016",
+        "month" : "3"
+      }, {
+        "year" : "2016",
+        "month" : "4"
+      }, {
+        "year" : "2016",
+        "month" : "5"
+      }, {
+        "year" : "2016",
+        "month" : "6"
+      }, {
+        "year" : "2016",
+        "month" : "7"
+      }, {
+        "year" : "2016",
+        "month" : "8"
+      }, {
+        "year" : "2016",
+        "month" : "9"
+      }, {
+        "year" : "2016",
+        "month" : "10"
+      }, {
+        "year" : "2016",
+        "month" : "11"
+      }, {
+        "year" : "2016",
+        "month" : "12"
+      }, {
+        "year" : "2017",
+        "month" : "1"
+      }, {
+        "year" : "2017",
+        "month" : "2"
+      }, {
+        "year" : "2017",
+        "month" : "3"
+      }, {
+        "year" : "2017",
+        "month" : "4"
+      }, {
+        "year" : "2017",
+        "month" : "5"
+      }, {
+        "year" : "2017",
+        "month" : "6"
+      }, {
+        "year" : "2017",
+        "month" : "7"
+      }, {
+        "year" : "2017",
+        "month" : "8"
+      }, {
+        "year" : "2017",
+        "month" : "9"
+      }, {
+        "year" : "2017",
+        "month" : "10"
+      }, {
+        "year" : "2017",
+        "month" : "11"
+      }, {
+        "year" : "2017",
+        "month" : "12"
+      }, {
+        "year" : "2018",
+        "month" : "1"
+      }, {
+        "year" : "2018",
+        "month" : "2"
+      }, {
+        "year" : "2018",
+        "month" : "3"
+      }, {
+        "year" : "2018",
+        "month" : "4"
+      }, {
+        "year" : "2018",
+        "month" : "5"
+      }, {
+        "year" : "2018",
+        "month" : "6"
+      }, {
+        "year" : "2018",
+        "month" : "7"
+      }, {
+        "year" : "2018",
+        "month" : "8"
+      }, {
+        "year" : "2018",
+        "month" : "9"
+      }, {
+        "year" : "2018",
+        "month" : "10"
+      }, {
+        "year" : "2018",
+        "month" : "11"
+      }, {
+        "year" : "2018",
+        "month" : "12"
+      }, {
+        "year" : "2019",
+        "month" : "1"
+      }, {
+        "year" : "2019",
+        "month" : "2"
+      }, {
+        "year" : "2019",
+        "month" : "3"
+      }, {
+        "year" : "2019",
+        "month" : "4"
+      }, {
+        "year" : "2019",
+        "month" : "5"
+      }, {
+        "year" : "2019",
+        "month" : "6"
+      }, {
+        "year" : "2019",
+        "month" : "7"
+      }, {
+        "year" : "2019",
+        "month" : "8"
+      }, {
+        "year" : "2019",
+        "month" : "9"
+      }, {
+        "year" : "2019",
+        "month" : "10"
+      }, {
+        "year" : "2019",
+        "month" : "11"
+      }, {
+        "year" : "2019",
+        "month" : "12"
+      }, {
+        "year" : "2020",
+        "month" : "1"
+      }, {
+        "year" : "2020",
+        "month" : "2"
+      }, {
+        "year" : "2020",
+        "month" : "3"
+      }, {
+        "year" : "2020",
+        "month" : "4"
+      }, {
+        "year" : "2020",
+        "month" : "5"
+      }, {
+        "year" : "2020",
+        "month" : "6"
+      }, {
+        "year" : "2020",
+        "month" : "7"
+      }, {
+        "year" : "2020",
+        "month" : "8"
+      }, {
+        "year" : "2020",
+        "month" : "9"
+      }, {
+        "year" : "2020",
+        "month" : "10"
+      }, {
+        "year" : "2020",
+        "month" : "11"
+      }, {
+        "year" : "2020",
+        "month" : "12"
+      }, {
+        "year" : "2021",
+        "month" : "1"
+      }, {
+        "year" : "2021",
+        "month" : "2"
+      }, {
+        "year" : "2021",
+        "month" : "3"
+      }, {
+        "year" : "2021",
+        "month" : "4"
+      }, {
+        "year" : "2021",
+        "month" : "5"
+      }, {
+        "year" : "2021",
+        "month" : "6"
+      }, {
+        "year" : "2021",
+        "month" : "7"
+      }, {
+        "year" : "2021",
+        "month" : "8"
+      }, {
+        "year" : "2021",
+        "month" : "9"
+      }, {
+        "year" : "2021",
+        "month" : "10"
+      }, {
+        "year" : "2021",
+        "month" : "11"
+      }, {
+        "year" : "2021",
+        "month" : "12"
+      }, {
+        "year" : "2022",
+        "month" : "1"
+      }, {
+        "year" : "2022",
+        "month" : "2"
+      }, {
+        "year" : "2022",
+        "month" : "3"
+      }, {
+        "year" : "2022",
+        "month" : "4"
+      }, {
+        "year" : "2022",
+        "month" : "5"
+      }, {
+        "year" : "2022",
+        "month" : "6"
+      }, {
+        "year" : "2022",
+        "month" : "7"
+      }, {
+        "year" : "2022",
+        "month" : "8"
+      }, {
+        "year" : "2022",
+        "month" : "9"
+      }, {
+        "year" : "2022",
+        "month" : "10"
+      }, {
+        "year" : "2022",
+        "month" : "11"
+      }, {
+        "year" : "2022",
+        "month" : "12"
+      }, {
+        "year" : "2023",
+        "month" : "1"
+      }, {
+        "year" : "2023",
+        "month" : "2"
+      }, {
+        "year" : "2023",
+        "month" : "3"
+      }, {
+        "year" : "2023",
+        "month" : "4"
+      }, {
+        "year" : "2023",
+        "month" : "5"
+      }, {
+        "year" : "2023",
+        "month" : "6"
+      }, {
+        "year" : "2023",
+        "month" : "7"
+      }, {
+        "year" : "2023",
+        "month" : "8"
+      }, {
+        "year" : "2023",
+        "month" : "9"
+      }, {
+        "year" : "2023",
+        "month" : "10"
+      }, {
+        "year" : "2023",
+        "month" : "11"
+      }, {
+        "year" : "2023",
+        "month" : "12"
+      }, {
+        "year" : "2024",
+        "month" : "1"
+      }, {
+        "year" : "2024",
+        "month" : "2"
+      }, {
+        "year" : "2024",
+        "month" : "3"
+      }, {
+        "year" : "2024",
+        "month" : "4"
+      }, {
+        "year" : "2024",
+        "month" : "5"
+      }, {
+        "year" : "2024",
+        "month" : "6"
+      }, {
+        "year" : "2024",
+        "month" : "7"
+      }, {
+        "year" : "2024",
+        "month" : "8"
+      }, {
+        "year" : "2024",
+        "month" : "9"
+      }, {
+        "year" : "2024",
+        "month" : "10"
+      }, {
+        "year" : "2024",
+        "month" : "11"
+      }, {
+        "year" : "2024",
+        "month" : "12"
+      }, {
+        "year" : "2025",
+        "month" : "1"
+      }, {
+        "year" : "2025",
+        "month" : "2"
+      }, {
+        "year" : "2025",
+        "month" : "3"
+      }, {
+        "year" : "2025",
+        "month" : "4"
+      }, {
+        "year" : "2025",
+        "month" : "5"
+      }, {
+        "year" : "2025",
+        "month" : "6"
+      }, {
+        "year" : "2025",
+        "month" : "7"
+      }, {
+        "year" : "2025",
+        "month" : "8"
+      }, {
+        "year" : "2025",
+        "month" : "9"
+      }, {
+        "year" : "2025",
+        "month" : "10"
+      }, {
+        "year" : "2025",
+        "month" : "11"
+      }, {
+        "year" : "2025",
+        "month" : "12"
       } ]
     }
   }, {
@@ -512,6 +3217,13 @@
       "patient" : {
         "jsonClass" : "FileSystemSource",
         "path" : "Patient.parquet",
+        "contentType" : "parquet",
+        "options" : { },
+        "sourceRef" : "amc-source"
+      },
+      "death" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "DeathRegistry.parquet",
         "contentType" : "parquet",
         "options" : { },
         "sourceRef" : "amc-source"
@@ -591,15 +3303,7 @@
         "options" : {
           "datetimeRebaseMode" : "CORRECTED"
         },
-        "preprocessSql" : "select * \nfrom source\nwhere ATCCode IS NOT NULL and StartDate IS NOT NULL and StartDate > '1900-01-01'",
-        "sourceRef" : "amc-source"
-      },
-      "encounters" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "Encounters.parquet",
-        "contentType" : "parquet",
-        "options" : { },
-        "preprocessSql" : "select * \r\nfrom encounters\r\nwhere EncounterClassCode = 'IMP'",
+        "preprocessSql" : "select DISTINCT * \nfrom source\nwhere StartDate > '1900-01-01'",
         "sourceRef" : "amc-source"
       }
     }
@@ -634,7 +3338,7 @@
         "path" : "Echocardiography.parquet",
         "contentType" : "parquet",
         "options" : { },
-        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(Onderzoeksstatus) as Onderzoeksstatus,\r\narray_agg(OriginalName) as OriginalName,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(ValueUnit) as ValueUnit,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
+        "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(UNIT) as UNIT,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
         "sourceRef" : "amc-source"
       },
       "encounters" : {
@@ -654,7 +3358,7 @@
         "path" : "Procedures.parquet",
         "contentType" : "parquet",
         "options" : { },
-        "preprocessSql" : "select * from source where ICD10PCS IS NOT NULL",
+        "preprocessSql" : "select DISTINCT VerrichtingId, pseudo_id, Verrichtingdatum, ICD10PCS, ProcedureCategory from source where ICD10PCS IS NOT NULL",
         "sourceRef" : "amc-source"
       },
       "encounters" : {

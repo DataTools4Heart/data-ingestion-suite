@@ -32,7 +32,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Procedure', VerrichtingId.toString() & pseudo_id.toString() & Verrichtingdatum.toString())}}",
+        "id" : "{{mpp:getHashedId('Procedure', VerrichtingId.toString() & pseudo_id.toString() & Verrichtingdatum.toString() & ICD10PCS & ProcedureCategory)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
         },
@@ -54,7 +54,7 @@
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{? iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.PatientContactId) )}}",
+        "encounter" : "{{? iif(PatientContactId.exists(), mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId.toString())).nav:orElse(iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.PatientContactId) ) )}}",
         "occurrenceDateTime" : "{{Verrichtingdatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
         "status" : "completed"
       }

@@ -7,11 +7,7 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/MedicationPrescription",
-    "joinOn" : [ "PatientContactId" ]
-  }, {
-    "alias" : "encounters",
-    "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
-    "joinOn" : [ "PatientContactId" ]
+    "joinOn" : [ ]
   } ],
   "context" : {
     "medPresFreqMap" : {
@@ -21,11 +17,16 @@
   },
   "variable" : [ ],
   "mapping" : [ {
+    "precondition" : {
+      "name" : "singleSubstance",
+      "language" : "text/fhirpath",
+      "expression" : "ATC_ingredient.exists().not()"
+    },
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', prescriptionID.toString())}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', PatientContactId & prescriptionID & ATC_drug)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
@@ -34,18 +35,18 @@
           "concept" : {
             "coding" : [ {
               "system" : "http://www.whocc.no/atc",
-              "code" : "{{ATCCode}}",
+              "code" : "{{ATC_drug}}",
               "@sliceName" : "atcCode"
             } ],
-            "text" : "{{? MedicatieGeneriekeNaam}}"
+            "text" : "{{? MedicatieArtikelNaam}}"
           }
         },
         "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
-        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
         "identifier" : [ {
-          "value" : "{{prescriptionID.toString()}}"
+          "value" : "{{prescriptionID & '-' & ATC_drug}}"
         } ],
-        "status" : "unknown",
+        "status" : "{{iif(Status = 'Stopped', 'stopped', 'unknown')}}",
         "intent" : "order",
         "category" : [ {
           "coding" : [ {
@@ -53,29 +54,153 @@
             "code" : "{{ iif(IsHomeMedication = 'Ja', 'community', 'outpatient') }}"
           } ]
         } ],
+        "courseOfTherapyType" : {
+          "coding" : [ {
+            "code" : "{{? iif(dosInstr_period_unit = 'continuous', 'continuous')}}"
+          } ]
+        },
         "effectiveDosePeriod" : {
-          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:s')}}",
-          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd'| 'yyyy-MM-dd HH:mm:ss') => StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), StopDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
+          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd'| 'yyyy-MM-dd HH:mm:ss') >= StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), StopDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
         },
         "dosageInstruction" : [ {
           "timing" : {
-            "{{#timingVar}}" : "{{iif(dosInstr_frequency_unit.exists() and dosInstr_frequency_unit != 'once' and dosInstr_frequency_unit != 'continuous' and dosInstr_frequency_unit != 'undefinedSchema', true)}}",
+            "{{#timingVar}}" : "{{iif(dosInstr_period_unit.exists() and dosInstr_period_unit != 'stop' and dosInstr_period_unit != 'continuous' and dosInstr_period_unit != 'undefinedSchema', true)}}",
             "{{?}}" : {
               "repeat" : {
+                "count" : "{{? iif(dosInstr_period_unit = 'once', 1)}}",
                 "frequency" : "{{? dosInstr_frequency_value.toDecimal()}}",
-                "period" : "{{1}}",
-                "periodUnit" : "{{? mpp:getConcept(%medPresFreqMap, dosInstr_frequency_unit, 'target_code')}}"
+                "period" : "{{? iif(dosInstr_period_unit != 'once', period)}}",
+                "periodUnit" : "{{? mpp:getConcept(%medPresFreqMap, dosInstr_period_unit, 'target_code')}}"
               }
             }
           },
           "asNeeded" : "{{iif(dosInstr_asNeeded_display = 1 , true, false)}}",
           "doseAndRate" : [ {
             "doseQuantity" : {
-              "value" : "{{? dosInstr_doseQuantity_value.toDecimal() }}",
-              "unit" : "{{? iif(dosInstr_doseQuantity_unit.exists() and dosInstr_doseQuantity_unit != '', dosInstr_doseQuantity_unit) }}"
+              "value" : "{{? dosInstr_doseQuantity_value.replace(',', '.').toDecimal() }}",
+              "unit" : "{{? iif(dosInstr_doseQuantity_unit.exists() and dosInstr_doseQuantity_unit != '',   dosInstr_doseQuantity_unit) }}"
             }
           } ]
         } ]
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "multipleSubstance",
+      "language" : "text/fhirpath",
+      "expression" : "ATC_ingredient.exists()"
+    },
+    "expression" : {
+      "name" : "result2",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', PatientContactId & prescriptionID & ATC_ingredient)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ATC_ingredient}}",
+              "@sliceName" : "atcCode"
+            } ],
+            "text" : "{{? MedicatieArtikelNaam}}"
+          }
+        },
+        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "identifier" : [ {
+          "value" : "{{prescriptionID & '-' & ATC_ingredient}}"
+        } ],
+        "status" : "{{iif(Status = 'Stopped', 'stopped', 'unknown')}}",
+        "intent" : "order",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/medicationrequest-admin-location",
+            "code" : "{{ iif(IsHomeMedication = 'Ja', 'community', 'outpatient') }}"
+          } ]
+        } ],
+        "courseOfTherapyType" : {
+          "coding" : [ {
+            "code" : "{{? iif(dosInstr_period_unit = 'continuous', 'continuous')}}"
+          } ]
+        },
+        "effectiveDosePeriod" : {
+          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd'| 'yyyy-MM-dd HH:mm:ss') >= StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), StopDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
+        },
+        "dosageInstruction" : [ {
+          "timing" : {
+            "{{#timingVar}}" : "{{iif(dosInstr_period_unit.exists() and dosInstr_period_unit != 'stop' and dosInstr_period_unit != 'continuous' and dosInstr_period_unit != 'undefinedSchema', true)}}",
+            "{{?}}" : {
+              "repeat" : {
+                "count" : "{{? iif(dosInstr_period_unit = 'once', 1)}}",
+                "frequency" : "{{? dosInstr_frequency_value.toDecimal()}}",
+                "period" : "{{? iif(dosInstr_period_unit != 'once', period)}}",
+                "periodUnit" : "{{? mpp:getConcept(%medPresFreqMap, dosInstr_period_unit, 'target_code')}}"
+              }
+            }
+          },
+          "asNeeded" : "{{iif(dosInstr_asNeeded_display = 1 , true, false)}}",
+          "doseAndRate" : [ {
+            "doseQuantity" : {
+              "value" : "{{? dosInstr_doseQuantity_value.replace(',', '.').toDecimal() }}",
+              "unit" : "{{? iif(dosInstr_doseQuantity_unit.exists() and dosInstr_doseQuantity_unit != '',   dosInstr_doseQuantity_unit) }}"
+            }
+          } ]
+        } ]
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "multipleSubstanceMainATC",
+      "language" : "text/fhirpath",
+      "expression" : "ATC_ingredient.exists() and ATC_drug != ATC_ingredient"
+    },
+    "expression" : {
+      "name" : "result3",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', 'multiplesubstance-mainatc' & PatientContactId & prescriptionID & ATC_drug)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "system" : "http://www.whocc.no/atc",
+              "code" : "{{ATC_drug}}",
+              "@sliceName" : "atcCode"
+            } ],
+            "text" : "{{? MedicatieArtikelNaam}}"
+          }
+        },
+        "subject" : "{{? mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "identifier" : [ {
+          "value" : "{{prescriptionID & '-' & ATC_drug}}"
+        } ],
+        "status" : "{{iif(Status = 'Stopped', 'stopped', 'unknown')}}",
+        "intent" : "order",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/medicationrequest-admin-location",
+            "code" : "{{ iif(IsHomeMedication = 'Ja', 'community', 'outpatient') }}"
+          } ]
+        } ],
+        "courseOfTherapyType" : {
+          "coding" : [ {
+            "code" : "{{? iif(dosInstr_period_unit = 'continuous', 'continuous')}}"
+          } ]
+        },
+        "effectiveDosePeriod" : {
+          "start" : "{{StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{? iif(StopDate.utl:toFhirDateTime('yyyy-MM-dd'| 'yyyy-MM-dd HH:mm:ss') >= StartDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss'), StopDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')) }}"
+        }
       }
     }
   } ]

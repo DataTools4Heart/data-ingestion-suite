@@ -90,15 +90,14 @@
       "definition" : "E.g. 'Bloed' for Blood, 'Urine' for Urine",
       "short" : "Material Type"
     }, {
-      "id" : "Laboratory.AanvragendeZiekenhuisLocatie",
-      "path" : "Laboratory.AanvragendeZiekenhuisLocatie",
+      "id" : "Laboratory.AanvragendeWerkplekAfkorting",
+      "path" : "Laboratory.AanvragendeWerkplekAfkorting",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Hospital Location"
+      } ]
     }, {
       "id" : "Laboratory.Bepaling",
       "path" : "Laboratory.Bepaling",
@@ -187,6 +186,16 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
+    }, {
+      "id" : "Laboratory.AanvragendeZiekenhuisLocatie",
+      "path" : "Laboratory.AanvragendeZiekenhuisLocatie",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Hospital Location"
     } ]
   }
 }

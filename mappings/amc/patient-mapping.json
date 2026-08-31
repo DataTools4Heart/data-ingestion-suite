@@ -7,7 +7,11 @@
   "source" : [ {
     "alias" : "patient",
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/patient",
-    "joinOn" : [ ]
+    "joinOn" : [ "Pseudo_id" ]
+  }, {
+    "alias" : "death",
+    "url" : "https://datatools4heart.eu/fhir/schemas/amc/causeofdeath",
+    "joinOn" : [ "Pseudo_id" ]
   } ],
   "context" : { },
   "variable" : [ ],
@@ -16,14 +20,14 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Patient', Pseudo_id.toString()))}}",
+        "id" : "{{mpp:getHashedId('Patient', Pseudo_id.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
         },
         "resourceType" : "Patient",
         "gender" : "{{iif(Geslacht = 'Vrouw','female','male')}}",
         "birthDate" : "{{Geboortedatum.utl:toFhirDateTime('yyyy-MM-dd')}}",
-        "deceasedDateTime" : "{{? Overlijdensdatumtijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "deceasedDateTime" : "{{? iif(%death.first().MeetDatum.exists(), %death.first().MeetDatum.utl:toFhirDateTime('yyyy-MM-dd'))}}",
         "identifier" : [ {
           "value" : "{{Pseudo_id.toString()}}"
         } ]

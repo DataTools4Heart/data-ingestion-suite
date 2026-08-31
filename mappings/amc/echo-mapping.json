@@ -13,12 +13,7 @@
     "url" : "https://datatools4heart.eu/fhir/schemas/amc/encounter",
     "joinOn" : [ "pseudo_id" ]
   } ],
-  "context" : {
-    "lvefMap" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/amc/echo-lvef.csv"
-    }
-  },
+  "context" : { },
   "variable" : [ {
     "name" : "effectiveDate",
     "language" : "text/fhirpath",
@@ -67,16 +62,16 @@
               "code" : {
                 "coding" : [ {
                   "system" : "http://loinc.org",
-                  "code" : "{{mpp:getConcept(%lvefMap, LOINCcode[%ind], 'target_code').nav:orElse(LOINCcode[%ind])}}",
+                  "code" : "{{LOINCcode[%ind]}}",
                   "display" : "{{LOINCdisplay[%ind]}}"
                 } ],
                 "@sliceName" : "echoParameter"
               },
               "valueQuantity" : {
                 "system" : "http://unitsofmeasure.org",
-                "code" : "{{ValueUnit[%ind]}}",
+                "code" : "{{UNIT[%ind]}}",
                 "value" : "{{ValueQuantity[%ind].replace(',', '.').toDecimal()}}",
-                "unit" : "{{ValueUnit[%ind]}}"
+                "unit" : "{{UNIT[%ind]}}"
               }
             }
           }

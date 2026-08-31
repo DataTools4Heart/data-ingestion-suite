@@ -18,14 +18,14 @@
   "variable" : [ {
     "name" : "date",
     "language" : "text/fhirpath",
-    "expression" : "MetingVitaleGegevensId.utl:split('|').last().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS')"
+    "expression" : "MeetMoment.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss.SSS' | 'yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd')"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid.toString() & %date.toString() & MeetTijd.toString() & LOINCcode)}}",
+        "id" : "{{mpp:getHashedId('Observation', Pseudo_id.toString() & Patientcontactid.toString() & %date.toString() & LOINCcode & ValueQuantity)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -55,7 +55,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
         "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', Patientcontactid)}}",
         "identifier" : [ {
-          "value" : "{{Pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & %date.toString()}}"
+          "value" : "{{Pseudo_id.toString() & '-' & Patientcontactid.toString() & '-' & %date.toString() & '-' & LOINCcode & '-' & ValueQuantity}}"
         } ],
         "status" : "final"
       }

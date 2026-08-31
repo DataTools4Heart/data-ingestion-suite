@@ -37,7 +37,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', pseudo_id.toString() & dateNote.toString() & nyha.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', id)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
         },
@@ -68,7 +68,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
         "encounter" : "{{? iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.PatientContactId) )}}",
         "identifier" : [ {
-          "value" : "{{pseudo_id.toString() & '-' & dateNote.toString() & '-' & nyha.toString()}}"
+          "value" : "{{id}}"
         } ],
         "status" : "final"
       }

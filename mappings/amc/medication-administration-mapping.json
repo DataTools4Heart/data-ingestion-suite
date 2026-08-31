@@ -16,7 +16,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationAdministration', PatientContactId & prescriptionID & ATCCode & AdministrationDateTime.toString())}}",
+        "id" : "{{mpp:getHashedId('MedicationAdministration', Pseudo_id.toString() & PatientContactId.toString() & prescriptionID.toString() & AdministrationDateTime.toString() & AdministrationRate.toString() & AdministrationRateUnit & AdministeredAmount.toString() & AdministeredAmountUnit & OrigialMedName & ATCCode & Ziekenhuislocatie & AdministrationStatus & AdministrationRoute)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
         },
@@ -31,8 +31,8 @@
             } ]
           }
         },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', pseudo_id.toString())}}",
-        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId)}}",
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
+        "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', PatientContactId.toString())}}",
         "occurenceDateTime" : "{{AdministrationDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
         "dosage" : {
           "route" : {
@@ -41,10 +41,16 @@
           "dose" : {
             "value" : "{{AdministeredAmount}}",
             "unit" : "{{AdministeredAmountUnit}}"
+          },
+          "rateQuantity" : {
+            "system" : "{{? iif(AdministrationRateUnit.exists() and AdministrationRateUnit != '', 'http://unitsofmeasure.org') }}",
+            "code" : "{{? iif(AdministrationRateUnit.exists() and AdministrationRateUnit != '', AdministrationRateUnit) }}",
+            "value" : "{{? iif(AdministrationRate.exists() and AdministrationRate != '', AdministrationRate) }}",
+            "unit" : "{{? iif(AdministrationRateUnit.exists() and AdministrationRateUnit != '', AdministrationRateUnit) }}"
           }
         },
         "identifier" : [ {
-          "value" : "{{PatientContactId & '-' & prescriptionID & '-' & ATCCode & '-' & AdministrationDateTime.toString()}}"
+          "value" : "{{Pseudo_id.toString() & '-' & PatientContactId.toString() & '-' & prescriptionID.toString() & '-' & AdministrationDateTime.toString() & '-' & AdministrationRate.toString() & '-' & AdministrationRateUnit & '-' & AdministeredAmount.toString() & '-' & AdministeredAmountUnit & '-' & OrigialMedName & '-' & ATCCode & '-' & Ziekenhuislocatie & '-' & AdministrationStatus & '-' & AdministrationRoute}}"
         } ],
         "status" : "completed"
       }

@@ -49,7 +49,7 @@
             } ]
           },
           "category" : [ {
-            "coding" : [ "{{iif(codeType = 'Primary', utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'encounter-diagnosis', 'Encounter Diagnosis'), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'problem-list-item', 'Problem List Item'))}}" ]
+            "coding" : [ "{{iif(codeType = 'Primary' and PatientContactId != '', utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'encounter-diagnosis', 'Encounter Diagnosis'), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/condition-category', 'problem-list-item', 'Problem List Item'))}}" ]
           } ]
         }
       }

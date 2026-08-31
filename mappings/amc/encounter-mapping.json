@@ -103,7 +103,19 @@
           "value" : "{{PatientContactId}}"
         } ],
         "status" : "{{EncounterStatus}}",
-        "serviceProvider" : "{{mpp:createFhirReferenceWithHashedId('Organization', ZiekenhuisLocatie)}}"
+        "serviceProvider" : "{{mpp:createFhirReferenceWithHashedId('Organization', ZiekenhuisLocatie)}}",
+        "extension" : [ {
+          "{{#extensionVar}}" : "{{iif(transport.exists(), true)}}",
+          "{{?}}" : {
+            "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-EncounterTransportationType",
+            "valueCodeableConcept" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/encounter-transportation-type",
+                "code" : "{{transport}}"
+              } ]
+            }
+          }
+        } ]
       }
     }
   }, {

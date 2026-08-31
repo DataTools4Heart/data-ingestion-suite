@@ -56,15 +56,19 @@
             "code" : {
               "coding" : [ {
                 "code" : "{{mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'target_code').nav:orElse(LOINCcode[%ind])}}",
-                "system" : "http://loinc.org",
-                "display" : "{{LOINCdisplay[%ind]}}"
+                "system" : "{{mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'target_system')}}",
+                "display" : "{{mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'target_display')}}"
               } ]
             },
+            "valueBoolean" : "{{? iif(mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_code').exists().not(), true)}}",
             "valueQuantity" : {
-              "code" : "{{ mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_code') }}",
-              "system" : "http://unitsofmeasure.org",
-              "value" : "{{ValueQuantity[%ind].toDecimal()}}",
-              "unit" : "{{ mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_display') }}"
+              "{{#valueQuantityVar}}" : "{{mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_code')}}",
+              "{{?}}" : {
+                "code" : "{{mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_code')}}",
+                "system" : "http://unitsofmeasure.org",
+                "value" : "{{ValueQuantity[%ind].toDecimal()}}",
+                "unit" : "{{mpp:getConcept(%ecgComponentUnitsMap, LOINCcode[%ind], 'unit_display')}}"
+              }
             }
           }
         },

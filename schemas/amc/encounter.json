@@ -70,15 +70,14 @@
       } ],
       "short" : "Dishcarge date"
     }, {
-      "id" : "Encounter.DepartmentAdmission",
-      "path" : "Encounter.DepartmentAdmission",
+      "id" : "Encounter.destination",
+      "path" : "Encounter.destination",
       "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
-      } ],
-      "short" : "Admission Specialism"
+      } ]
     }, {
       "id" : "Encounter.DepartmentDischarge",
       "path" : "Encounter.DepartmentDischarge",
@@ -90,6 +89,16 @@
       } ],
       "short" : "Discharge Specialism"
     }, {
+      "id" : "Encounter.DepartmentAdmission",
+      "path" : "Encounter.DepartmentAdmission",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Admission Specialism"
+    }, {
       "id" : "Encounter.admitSource_code",
       "path" : "Encounter.admitSource_code",
       "min" : 0,
@@ -98,6 +107,16 @@
         "code" : "string",
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ]
+    }, {
+      "id" : "Encounter.transport",
+      "path" : "Encounter.transport",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "ems-transport; air-transport; self-transport; null"
     }, {
       "id" : "Encounter.EncounterStatus",
       "path" : "Encounter.EncounterStatus",
@@ -127,6 +146,24 @@
         "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
       } ],
       "short" : "1 or 0"
+    }, {
+      "id" : "Encounter.PrimaryEDcompl",
+      "path" : "Encounter.PrimaryEDcompl",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.PrimaryEDInCompl",
+      "path" : "Encounter.PrimaryEDInCompl",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
     }, {
       "id" : "Encounter.PrimaryICDcode",
       "path" : "Encounter.PrimaryICDcode",
