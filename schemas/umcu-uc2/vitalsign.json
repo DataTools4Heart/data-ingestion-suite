@@ -1,0 +1,96 @@
+{
+  "id" : "vitalsign",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/VitalSign",
+  "version" : "latest",
+  "name" : "VitalSign",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "VitalSign",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "VitalSign",
+      "path" : "VitalSign",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "VitalSign.studyId_0919",
+      "path" : "VitalSign.studyId_0919",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "VitalSign.identifier_value",
+      "path" : "VitalSign.identifier_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Local identifier with specified measurement"
+    }, {
+      "id" : "VitalSign.code_display_original",
+      "path" : "VitalSign.code_display_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Local UMCU code displays"
+    }, {
+      "id" : "VitalSign.effectiveDateTime",
+      "path" : "VitalSign.effectiveDateTime",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Measurement date"
+    }, {
+      "id" : "VitalSign.ValueQuantity",
+      "path" : "VitalSign.ValueQuantity",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Measured value"
+    }, {
+      "id" : "VitalSign.LOINCcode",
+      "path" : "VitalSign.LOINCcode",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\n76535-4; 76536-2; 76534-7; 59408-5; 8302-2; 29463-7; 89270-3",
+      "short" : "Assigned LOINC codes"
+    }, {
+      "id" : "VitalSign.LOINCdisplay",
+      "path" : "VitalSign.LOINCdisplay",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "LOINC displays"
+    } ]
+  }
+}

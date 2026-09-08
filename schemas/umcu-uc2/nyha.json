@@ -1,0 +1,64 @@
+{
+  "id" : "nyha",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/NYHA",
+  "version" : "latest",
+  "name" : "NYHA",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "NYHA",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "NYHA",
+      "path" : "NYHA",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "NYHA.studyId_0919",
+      "path" : "NYHA.studyId_0919",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "NYHA.NYHA_class",
+      "path" : "NYHA.NYHA_class",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "I, II, III, IV",
+      "short" : "NYHA value"
+    }, {
+      "id" : "NYHA.created",
+      "path" : "NYHA.created",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ]
+    }, {
+      "id" : "NYHA.effectivedate",
+      "path" : "NYHA.effectivedate",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    } ]
+  }
+}

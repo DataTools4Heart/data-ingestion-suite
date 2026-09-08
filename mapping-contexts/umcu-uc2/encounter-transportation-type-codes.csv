@@ -1,0 +1,4 @@
+source_code,target_code
+"Ambulance","ems-transport"
+"Helicopter","air-transport"
+"Own transport","self-transport"

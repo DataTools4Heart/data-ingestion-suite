@@ -1,0 +1,106 @@
+{
+  "id" : "condition-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/condition-mapping",
+  "name" : "condition-mapping",
+  "title" : "Condition table mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/Condition",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "encounterIds",
+    "language" : "text/fhirpath",
+    "expression" : "encounter_identifier_value.utl:split(';').select($this.utl:trim())"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "relatedEncounterExists",
+      "language" : "text/fhirpath",
+      "expression" : "%encounterIds.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#encounterId}}" : "{{%encounterIds}}",
+        "{{*}}" : {
+          "id" : "{{mpp:getHashedId('Condition', identifier_value & studyId_0919.toString() & %encounterId & ICD10code & clinicalStatus)}}",
+          "meta" : {
+            "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+          },
+          "resourceType" : "Condition",
+          "code" : {
+            "coding" : [ {
+              "code" : "{{ICD10code}}",
+              "system" : "http://hl7.org/fhir/sid/icd-10",
+              "@sliceName" : "icd10Code"
+            } ]
+          },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+          "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %encounterId)}}",
+          "onsetDateTime" : "{{startDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+          "identifier" : [ {
+            "value" : "{{identifier_value & '-' & studyId_0919.toString() & '-' & %encounterId & '-' & ICD10code & '-' & clinicalStatus}}"
+          } ],
+          "clinicalStatus" : {
+            "coding" : [ {
+              "code" : "active"
+            } ]
+          },
+          "category" : [ {
+            "coding" : [ {
+              "code" : "encounter-diagnosis",
+              "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+              "display" : "Encounter Diagnosis"
+            } ]
+          } ]
+        }
+      }
+    }
+  }, {
+    "description" : "Conditions having no related encounter (categorized as problem-list-item)",
+    "precondition" : {
+      "name" : "relatedEncounterNotExists",
+      "language" : "text/fhirpath",
+      "expression" : "%encounterIds.exists().not()"
+    },
+    "expression" : {
+      "name" : "result2",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Condition', 'noEncounter' & identifier_value & studyId_0919.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+        },
+        "resourceType" : "Condition",
+        "code" : {
+          "coding" : [ {
+            "code" : "{{ICD10code}}",
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "@sliceName" : "icd10Code"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "onsetDateTime" : "{{startDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
+        "identifier" : [ {
+          "value" : "{{identifier_value & '-' & studyId_0919.toString()}}"
+        } ],
+        "clinicalStatus" : {
+          "coding" : [ {
+            "code" : "active"
+          } ]
+        },
+        "category" : [ {
+          "coding" : [ {
+            "code" : "problem-list-item",
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+            "display" : "Problem List Item"
+          } ]
+        } ]
+      }
+    }
+  } ]
+}

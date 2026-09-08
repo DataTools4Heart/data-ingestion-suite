@@ -1,0 +1,154 @@
+{
+  "id" : "encounter",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/Encounter",
+  "version" : "latest",
+  "name" : "Encounter",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "Encounter",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "Encounter",
+      "path" : "Encounter",
+      "min" : 0,
+      "max" : "*",
+      "type" : [ {
+        "code" : "Element"
+      } ]
+    }, {
+      "id" : "Encounter.studyId_0919",
+      "path" : "Encounter.studyId_0919",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "decimal",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+      } ],
+      "short" : "Patient ID"
+    }, {
+      "id" : "Encounter.identifier_value",
+      "path" : "Encounter.identifier_value",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "short" : "Encounter ID"
+    }, {
+      "id" : "Encounter.AdmitSource",
+      "path" : "Encounter.AdmitSource",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.DischargeSource",
+      "path" : "Encounter.DischargeSource",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.period_start",
+      "path" : "Encounter.period_start",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "Start of admission"
+    }, {
+      "id" : "Encounter.period_end",
+      "path" : "Encounter.period_end",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "instant",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/instant" ]
+      } ],
+      "short" : "End of admission"
+    }, {
+      "id" : "Encounter.status",
+      "path" : "Encounter.status",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nfinished",
+      "short" : "Status of admission"
+    }, {
+      "id" : "Encounter.transport_type_display_original",
+      "path" : "Encounter.transport_type_display_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.class_code",
+      "path" : "Encounter.class_code",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nIMP; ACUTE; SS; NONAC; OTHER; AMB\n\ninpatient encounter; inpatient acute; short stay; inpatient non-acute; other; Ambulatory",
+      "short" : "Type of encounter"
+    }, {
+      "id" : "Encounter.ICD10_codes",
+      "path" : "Encounter.ICD10_codes",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.category_display_original",
+      "path" : "Encounter.category_display_original",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.AdmissionDepartment",
+      "path" : "Encounter.AdmissionDepartment",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nCAR; VCT; VCA; LON; CTC; MDL; INT; VIN; NCH; INF; NEU; PLA; GER; CTR; QHE; VQH; VAT; KNO; CGO; ORT; VLO; CHI; VAS; VCH; OBS; REU; NEF; VVA; QKN; DER; HAE; THU; VNR; ONC; GYN; VMD; OOG; KCH; END; ANE",
+      "short" : "Department of admission"
+    }, {
+      "id" : "Encounter.DischargeDepartment",
+      "path" : "Encounter.DischargeDepartment",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ],
+      "definition" : "Possible values:\nCAR; VCT; VCA; LON; CTC; MDL; INT; VIN; NCH; INF; NEU; PLA; GER; CTR; QHE; VQH; VAT; KNO; CGO; ORT; VLO; CHI; VAS; VCH; OBS; REU; NEF; VVA; QKN; DER; HAE; THU; VNR; ONC; GYN; VMD; OOG; KCH; END; ANE",
+      "short" : "Department of discharge"
+    } ]
+  }
+}

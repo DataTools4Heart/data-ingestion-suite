@@ -1,0 +1,29 @@
+source_code,display,unit_code,unit_display,target_code,target_system,target_display
+18505-8,R-R interval (Mean value during study) by EKG,ms,millisecond,8637-1,http://loinc.org,R-R interval by EKG
+76635-2,Q-T interval corrected based on Bazett formula,ms,millisecond,bazett,https://datatools4heart.eu/fhir/CodeSystem/qt-correction-formula,Bazett
+8632-2,QRS axis,deg,degree,8632-2,http://loinc.org,QRS axis
+8634-8,Q-T interval,ms,millisecond,8634-8,http://loinc.org,Q-T interval
+8897-1,Count of QRS complexes in 10 second measurement interval. QRS complex Ventricles by EKG,{Count},Count,8897-1,http://loinc.org,QRS complex Ventricles by EKG
+76282-3,Heart rate.beat-to-beat by EKG,beats,beats,76282-3,http://loinc.org,Heart rate.beat-to-beat by EKG
+8633-0,QRS duration,ms,millisecond,8633-0,http://loinc.org,QRS duration
+8625-6,P-R Interval,ms,millisecond,8625-6,http://loinc.org,P-R Interval
+2ndDegreeAV,Second degree AV block,,,233917008,http://snomed.info/sct,Atrioventricular block
+JunctionalRhythm,Junctional rhythm,,,ECG-JunctionalRhythm,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Junctional rhythm
+JuctionalRhythm,Junctional rhythm,,,ECG-JunctionalRhythm,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Junctional rhythm
+AFIB,Atrial fibrillation,,,ECG-AF,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Has Atrial Fibrillation
+Infarct,Infarction,,,164865005,http://snomed.info/sct,Electrocardiographic myocardial infarction
+IVCD,Intraventricular conduction delay,,,ECG-IVCD,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Intraventricular conduction delay
+PVC,Premature Ventricular Complexes,,,427172004,http://snomed.info/sct,Electrocardiogram: premature ventricular contractions
+Paced,Paced rhythm,,,ECG-Paced,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Paced rhythm
+Ischemia,Ischemia,,,52674009,http://snomed.info/sct,Ischemia
+PotentialIschemia,Potential ischemia,,,ECG-PotentialIschemia,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Potential ischemia
+iLBBB,Incomplete Left Bundle Branch Block,,,ECG-iLBBB,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Incomplete Left Bundle Branch Block
+Sinus,Sinus rhythm,,,ECG-SinusRhythm,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Sinus rhythm
+AtrialEnlargement,Atrial enlargement,,,ECG-AtrialEnlargement,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Atrial enlargement
+SupraventricularRhythm,Supraventricular rhythm,,,ECG-SupraventricularRhythm,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Supraventricular rhythm
+AtrialFlutter,Atrial flutter,,,ECG-AtrialFlutter,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Atrial flutter
+VentricularRhythm,Ventricular rhythm,,,ECG-VentricularRhythm,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Ventricular rhythm
+STT-segmentDeviations,ST-T segment deviations,,,stDeviation,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,ST Deviation
+STT-segmentDeviationsAnterolateral,ST-T segment deviations anterolateral,,,ECG-STTDeviationAnterolateral,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,ST-T segment deviation anterolateral
+VT,Ventricular tachycardia,,,ECG-VT,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Ventricular tachycardia
+Normal,Normal ECG,,,ECG-Normal,https://datatools4heart.eu/fhir/CodeSystem/ecg-parameter,Normal ECG

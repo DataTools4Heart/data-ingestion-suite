@@ -1,0 +1,76 @@
+{
+  "id" : "echo-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/echo-mapping",
+  "name" : "echo-mapping",
+  "title" : "Mapping of UMCU's Echo table to HFR-Echocardiograph FHIR profile ",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/Echo",
+    "joinOn" : [ "studyId_0919" ]
+  }, {
+    "alias" : "encounters",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/Encounter",
+    "joinOn" : [ "studyId_0919" ]
+  } ],
+  "context" : {
+    "lvefMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu-uc2/echo-lvef.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "relatedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : " %encounters.where(period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') <= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') and period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss') >= %context.effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')).first() "
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', 'echo' & identifier_value)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
+        },
+        "resourceType" : "Observation",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "imaging",
+            "display" : "Imaging"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "34552-0",
+            "display" : "Cardiac 2D echo panel",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{effectiveDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "component" : {
+          "{{#index}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+          "{{*}}" : {
+            "code" : {
+              "coding" : [ {
+                "system" : "http://loinc.org",
+                "code" : "{{mpp:getConcept(%lvefMap, LOINCcode[%index], 'target_code').nav:orElse(LOINCcode[%index])}}",
+                "display" : "{{LOINCdisplay[%index]}}"
+              } ],
+              "@sliceName" : "echoParameter"
+            },
+            "valueQuantity" : {
+              "value" : "{{Value[%index]}}",
+              "unit" : "{{UnitName[%index]}}"
+            }
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.identifier_value)}}",
+        "status" : "final"
+      }
+    }
+  } ]
+}

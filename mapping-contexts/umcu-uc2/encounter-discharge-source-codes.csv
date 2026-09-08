@@ -1,0 +1,10 @@
+source_code,target_code
+"Nursing home","snf"
+"Home","home"
+"Other","other"
+"Died in hospital","exp"
+"Left against medical advice","aadvice"
+"Hospice","hosp"
+"Hospital","other-hcf"
+"Rehabilitation hospital","rehab"
+"Psychiatric hospital","psy"

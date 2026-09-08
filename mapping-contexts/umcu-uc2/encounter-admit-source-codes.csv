@@ -1,0 +1,9 @@
+source_code,target_code
+"Hospital","hosp-trans"
+"Rehabilitation hospital","rehab"
+"Home","home"
+"Other","other"
+"From accident/emergency department","emd"
+"From outpatient department","outp"
+"Nursing home","nursing"
+"Psychiatric hospital","psych"

@@ -1,0 +1,7 @@
+source_code,target_code,target_display
+"High","H","High"
+"Low","L","Low"
+"Critically low","LL","Critical low"
+"Critically high","HH","Critical high"
+"Normal","N","Normal"
+"Abnormal","A","Abnormal"

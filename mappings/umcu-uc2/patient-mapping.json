@@ -1,0 +1,78 @@
+{
+  "id" : "patient-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/patient-mapping",
+  "name" : "patient-mapping",
+  "title" : "Mapping of UMCU's Patient table to HFR-Patient FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/Patient",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Patient', studyId_0919.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
+        "resourceType" : "Patient",
+        "gender" : "{{ gender }}",
+        "birthDate" : "{{ birthDate.toString().utl:toFhirDate('yyyy-MM-dd') }}",
+        "deceasedDateTime" : "{{? deceasedDateTime.utl:toFhirDate('yyyy-MM-dd HH:mm:ss').nav:orElse({}) }}",
+        "identifier" : [ {
+          "value" : "{{studyId_0919.toString()}}"
+        } ]
+      }
+    }
+  }, {
+    "precondition" : {
+      "name" : "deceased",
+      "language" : "text/fhirpath",
+      "expression" : "deceasedDateTime.exists()"
+    },
+    "expression" : {
+      "name" : "death",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Observation', studyId_0919.toString())}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-CauseOfDeath" ]
+        },
+        "resourceType" : "Observation",
+        "status" : "final",
+        "category" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code" : "exam",
+            "display" : "Exam"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://loinc.org",
+            "code" : "79378-6",
+            "display" : "Cause of death",
+            "@sliceName" : "loincCode"
+          } ]
+        },
+        "effectiveDateTime" : "{{deceasedDateTime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://hl7.org/fhir/sid/icd-10",
+            "code" : "{{causeofDeath}}"
+          } ]
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "identifier" : [ {
+          "value" : "{{studyId_0919.toString()}}"
+        } ]
+      }
+    }
+  } ]
+}

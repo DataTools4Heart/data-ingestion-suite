@@ -1,0 +1,128 @@
+{
+  "id" : "encounter-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/encounter-mapping",
+  "name" : "encounter-mapping",
+  "title" : "Mapping of UMCU's Encounter table to EHR-Encounter FHIR profile",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/umcu-uc2/Encounter",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "dischargeSourceMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu-uc2/encounter-discharge-source-codes.csv"
+    },
+    "admitSourceMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu-uc2/encounter-admit-source-codes.csv"
+    },
+    "encounterClass" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu-uc2/encounter-class-codes.csv"
+    },
+    "serviceTypeMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu-uc2/encounter-service-type-map.csv"
+    },
+    "transportationTypeMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/umcu-uc2/encounter-transportation-type-codes.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "mainDiagnosisCodes",
+    "language" : "text/fhirpath",
+    "expression" : "iif(ICD10_codes.exists(), ICD10_codes.replace('+','').replace('*','').utl:split(';').where($this.length() < 9).select($this.utl:trim()).distinct() )"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('Encounter', identifier_value)}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Encounter" ]
+        },
+        "resourceType" : "Encounter",
+        "class" : [ {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "{{mpp:getConcept(%encounterClass, class_code, 'target_code')}}",
+            "display" : "{{mpp:getConcept(%encounterClass, class_code, 'target_display')}}"
+          } ]
+        } ],
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
+        "actualPeriod" : {
+          "start" : "{{period_start.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
+          "end" : "{{period_end.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+        },
+        "reason" : [ {
+          "{{#reasonVar}}" : "{{ iif(%mainDiagnosisCodes.count() > 0, true) }}",
+          "{{?}}" : {
+            "use" : [ {
+              "coding" : [ "{{utl:createFhirCoding('http://hl7.org/fhir/encounter-reason-use', 'AD', 'Admitting Diagnosis')}}" ]
+            } ],
+            "value" : {
+              "{{#primaryReasonCode}}" : "{{%mainDiagnosisCodes}}",
+              "{{*}}" : {
+                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', identifier_value & %primaryReasonCode )}}"
+              }
+            }
+          },
+          "@sliceName" : "admittingDiagnosis"
+        } ],
+        "admission" : {
+          "admitSource" : {
+            "coding" : {
+              "{{#admitSourceVar}}" : "{{mpp:getConcept(%admitSourceMap, AdmitSource, 'target_code')}}",
+              "{{?}}" : [ {
+                "system" : "http://terminology.hl7.org/CodeSystem/admit-source",
+                "code" : "{{%admitSourceVar}}"
+              } ]
+            }
+          },
+          "dischargeDisposition" : {
+            "coding" : [ {
+              "{{#dischargeSourceVar}}" : "{{mpp:getConcept(%dischargeSourceMap, DischargeSource, 'target_code')}}",
+              "{{?}}" : {
+                "system" : "http://terminology.hl7.org/CodeSystem/discharge-disposition",
+                "code" : "{{%dischargeSourceVar}}"
+              }
+            } ]
+          }
+        },
+        "serviceType" : [ {
+          "concept" : {
+            "coding" : [ {
+              "{{#serviceCoding}}" : "{{ iif(AdmissionDepartment.exists(), mpp:getConcept(%serviceTypeMap, AdmissionDepartment) ) }}",
+              "{{?}}" : {
+                "system" : "http://snomed.info/sct",
+                "code" : "{{%serviceCoding.snomed}}",
+                "display" : "{{%serviceCoding.display}}"
+              }
+            } ]
+          }
+        } ],
+        "identifier" : [ {
+          "value" : "{{identifier_value}}"
+        } ],
+        "status" : "completed",
+        "extension" : [ {
+          "{{#tpTypeVar}}" : "{{mpp:getConcept(%transportationTypeMap, transport_type_display_original, 'target_code')}}",
+          "{{?}}" : {
+            "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-EncounterTransportationType",
+            "valueCodeableConcept" : {
+              "coding" : [ {
+                "system" : "https://datatools4heart.eu/fhir/CodeSystem/encounter-transportation-type",
+                "code" : "{{%tpTypeVar}}"
+              } ]
+            }
+          }
+        } ]
+      }
+    }
+  } ]
+}
