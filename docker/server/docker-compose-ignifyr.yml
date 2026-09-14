@@ -81,7 +81,7 @@ services:
 #      resources:
 #        limits:
 #          cpus: "2.0"
-#          memory: "8G"
+#          memory: "16G"
   ignifyr-web:
 #    image: srdc/ignifyr-web:dt4h
     image: docker.srdc.com.tr/srdc/ignifyr-web:dt4h
