@@ -1,6 +1,6 @@
 "id_encounter","id_patient","id_department","status","class","begin_date","end_date","id_condition_main_diagnosis","discharge_ref_code","clinic_name",admission,"discharge_code"
-1,1,1,completed,AMB,2023-06-15,2023-06-18,1,0,Clinic A,Self-referred,Z450
-2,2,2,completed,AMB,2018-09-26,2018-10-05,2,0,Clinic A,Healthcare Social Worker,K30
-3,3,3,completed,AMB,2020-12-15,2020-12-23,3,0,Clinic A,Emergency Medical Services (EMS) Response Team,S0650
-4,3,3,completed,AMB,2021-07-11,2021-07-12,5,0,Clinic A,"Physician providing out-of-hours medical care (Medical First Aid Service Physician)",S0650
-5,2,2,completed,AMB,2022-02-11,2022-02-15,6,0,Clinic A,,S0650
+1,1,1,completed,AMB,2023-06-15,2023-06-18,1,,,Self-referred,Z450
+2,2,2,completed,AMB,2018-09-26,2018-10-05,2,,,Healthcare Social Worker,K30
+3,3,3,completed,AMB,2020-12-15,2020-12-23,3,,,Emergency Medical Services (EMS) Response Team,S0650
+4,3,3,completed,AMB,2021-07-11,2021-07-12,5,,,"Physician providing out-of-hours medical care (Medical First Aid Service Physician)",S0650
+5,2,2,completed,AMB,2022-02-11,2022-02-15,6,,,,S0650

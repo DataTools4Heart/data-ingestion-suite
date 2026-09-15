@@ -107,7 +107,7 @@
     }, {
       "id" : "Encounter.discharge_ref_code",
       "path" : "Encounter.discharge_ref_code",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
@@ -116,7 +116,7 @@
     }, {
       "id" : "Encounter.clinic_name",
       "path" : "Encounter.clinic_name",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "type" : [ {
         "code" : "string",
