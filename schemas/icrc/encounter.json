@@ -105,6 +105,33 @@
       "definition" : "Reference to the unique Condition record",
       "short" : "Identifier of the main diagnosis"
     }, {
+      "id" : "Encounter.discharge_ref_code",
+      "path" : "Encounter.discharge_ref_code",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.clinic_name",
+      "path" : "Encounter.clinic_name",
+      "min" : 1,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
+      "id" : "Encounter.admission",
+      "path" : "Encounter.admission",
+      "min" : 0,
+      "max" : "1",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
+      } ]
+    }, {
       "id" : "Encounter.discharge_code",
       "path" : "Encounter.discharge_code",
       "min" : 0,

@@ -17,6 +17,14 @@
     "dischargeLocationsConceptMap" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/icrc/encounter-discharge-locations.csv"
+    },
+    "admissionConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/icrc/admission-concept-map.csv"
+    },
+    "transportationConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/icrc/transportation-concept-map.csv"
     }
   },
   "variable" : [ ],
@@ -55,6 +63,16 @@
           }
         },
         "admission" : {
+          "admitSource" : {
+            "{{#admitSourceVar}}" : "{{iif(admission.exists() and mpp:getConcept(%admissionConceptMap, admission).exists(),true)}}",
+            "{{?}}" : {
+              "coding" : [ {
+                "system" : "{{mpp:getConcept(%admissionConceptMap, admission, 'target_system')}}",
+                "code" : "{{mpp:getConcept(%admissionConceptMap, admission, 'target_code')}}",
+                "display" : "{{mpp:getConcept(%admissionConceptMap, admission, 'target_display')}}"
+              } ]
+            }
+          },
           "dischargeDisposition" : {
             "{{#dislc}}" : "{{mpp:getConcept(%dischargeLocationsConceptMap, discharge_ref_code)}}",
             "{{?}}" : {
@@ -81,6 +99,19 @@
           "{{#locationRef}}" : "{{mpp:createFhirReferenceWithHashedId('Location', id_department.toString())}}",
           "{{*}}" : {
             "location" : "{{%locationRef}}"
+          }
+        },
+        "extension" : {
+          "{{#extensionVar}}" : "{{iif(admission.exists() and mpp:getConcept(%transportationConceptMap, admission).exists(),true)}}",
+          "{{*}}" : {
+            "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-EncounterTransportationType",
+            "valueCodeableConcept" : {
+              "coding" : [ {
+                "system" : "{{mpp:getConcept(%transportationConceptMap, admission, 'target_system')}}",
+                "code" : "{{mpp:getConcept(%transportationConceptMap, admission, 'target_code')}}",
+                "display" : "{{mpp:getConcept(%transportationConceptMap, admission, 'target_display')}}"
+              } ]
+            }
           }
         }
       }

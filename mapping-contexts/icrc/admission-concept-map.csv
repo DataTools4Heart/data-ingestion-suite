@@ -1,0 +1,3 @@
+source_code,target_code,target_display,target_system
+"Physician providing out-of-hours medical care (Medical First Aid Service Physician)","emd","From accident/emergency department","http://terminology.hl7.org/CodeSystem/admit-source"
+"Emergency Medical Services (EMS) Response Team","emd","From accident/emergency department","http://terminology.hl7.org/CodeSystem/admit-source"
