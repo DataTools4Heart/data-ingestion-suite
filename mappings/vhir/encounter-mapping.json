@@ -74,6 +74,18 @@
             "start": "{{? iif(VISIT_START_DATETIME.empty(), VISIT_START_DATE, VISIT_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
             "end": "{{? iif(VISIT_END_DATETIME.empty(), VISIT_END_DATE, VISIT_END_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}"
           },
+          "admission" : {
+            "admitSource" : {
+              "coding" : [ {
+                "{{#codingVar}}" : "{{iif(visit_concept_id = 262, true)}}",
+                "{{?}}" : {
+                  "system" : "http://terminology.hl7.org/CodeSystem/admit-source",
+                  "code" : "emb",
+                  "display" : "From accident/emergency department"
+                }
+              } ]
+            }
+          },
           "status": "completed"
         }
       }
