@@ -48,7 +48,7 @@
               "{{#codingVar}}" : "{{iif(visit_concept_id = 262, true)}}",
               "{{?}}" : {
                 "system" : "http://terminology.hl7.org/CodeSystem/admit-source",
-                "code" : "emb",
+                "code" : "emd",
                 "display" : "From accident/emergency department"
               }
             } ]
