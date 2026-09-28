@@ -48,7 +48,9 @@
         } ],
         "status" : "completed",
         "intent" : "order",
-        "authoredOn" : "{{date}}",
+        "effectiveDosePeriod" : {
+          "start" : "{{date}}"
+        },
         "dosageInstruction" : [ {
           "timing" : {
             "repeat" : {

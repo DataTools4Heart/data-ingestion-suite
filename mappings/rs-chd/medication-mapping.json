@@ -35,7 +35,10 @@
           "value" : "{{subject.toString() & '-' & TimestampCreated.toString() & '-' &  ATC}}"
         } ],
         "status" : "completed",
-        "intent" : "order"
+        "intent" : "order",
+        "effectiveDosePeriod" : {
+          "start" : "{{TimestampCreated.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}"
+        }
       }
     }
   } ]
