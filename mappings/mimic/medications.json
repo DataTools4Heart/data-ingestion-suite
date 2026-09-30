@@ -2,7 +2,8 @@
   "id": "medications",
   "url": "https://mimic.mit.edu/fhir/mappings/medications",
   "name": "medications",
-  "title": "Mapping of mentioned medications in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR Medication resources",
+  "title": "Mapping of mentioned medications in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR Medication resources. This mapping relies on RxNorm API. Use 'medications-without-rxn' mapping if you do not want to use this API.",
+  "isDraft" : true,
   "source": [
     {
       "alias": "prescribed_meds",
