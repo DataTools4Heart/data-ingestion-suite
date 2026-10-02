@@ -1,7 +1,7 @@
 source_system,source_code,source_display,target_system,target_code,target_display
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEG,Negative,http://loinc.org,LA6577-6,Negative
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE,Negative,http://loinc.org,LA6577-6,Negative
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,"NEGATIVE FOR THICK SMEAR",Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THICK SMEAR,Negative,http://loinc.org,LA6577-6,Negative
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POS,Positive,http://loinc.org,LA6576-8,Positive
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSITIVE,Positive,http://loinc.org,LA6576-8,Positive
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,TRACE,Trace,http://loinc.org,LA11832-5,Trace
@@ -48,3 +48,14 @@ https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,LOW,Low,http://snomed
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,VERY LOW,Very low,http://snomed.info/sct,260362008,Very low
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,HIGH,High,http://snomed.info/sct,75540009,High
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,VERY HIGH,Very High,http://snomed.info/sct,260360000,Very High
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,SM,Small,http://loinc.org,LA8983-4,Small
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,LG,Large,http://loinc.org,LA8981-8,Large
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,LGE,Large,http://loinc.org,LA8981-8,Large
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NONE,None,http://loinc.org,LA137-2,None
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,YELLOW,Yellow,http://snomed.info/sct,46800005,Normal urine color (yellow)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,AMBER,Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DkAmb,Dark Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,ORANGE,Orange,http://snomed.info/sct,371242008,Orange color
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Red,Red,http://snomed.info/sct,720003003,Reddish color urine
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,INTUBATED,Intubated,http://snomed.info/sct,112798008,Insertion of endotracheal tube
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THIN SMEAR,Negative,http://loinc.org,LA6577-6,Negative

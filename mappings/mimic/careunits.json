@@ -16,17 +16,33 @@
       "name" : "careunits-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
+        "resourceType" : "Location",
+        "id" : "{{mpp:getHashedId('Location', careunit.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Location" ]
+        },
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}/fhir/careunits",
+          "value" : "{{careunit}}"
+        } ],
         "status" : "active",
         "name" : "{{careunit}}",
         "mode" : "kind",
         "type" : {
           "{{#utype}}" : "{{trms:translateToCoding(careunit, 'https://mimic.mit.edu/fhir/CodeSystem/care-units', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/careunits-to-hl7')}}",
           "{{*}}" : {
-            "coding" : "{{* %utype}}"
+            "coding" : "{{* %utype}}",
+            "text" : "{{careunit}}"
           }
         },
-        "id" : "{{mpp:getHashedId('Location', careunit.toString())}}",
-        "resourceType" : "Location"
+        "form" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/location-physical-type",
+            "code" : "wa",
+            "display" : "Ward"
+          } ]
+        }
       }
     }
   } ]

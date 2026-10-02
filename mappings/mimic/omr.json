@@ -2,7 +2,7 @@
   "id" : "omr",
   "url" : "https://mimic.mit.edu/fhir/mappings/omr",
   "name" : "omr",
-  "title" : "Mapping of entries in 'omr' table in MIMIC-IV v3.1 dataset into FHIR Observation (Vital Sign profile) resources",
+  "title" : "Mapping of entries in 'omr' table in MIMIC-IV v3.1 dataset into FHIR Observation (HFR-VitalSign / HFR-LabResult) resources. Body weight and height are converted from pounds/inches to kg/cm; blood pressure strings are split into systolic and diastolic observations.",
   "isDraft" : false,
   "source" : [ {
     "alias" : "source",
@@ -13,25 +13,42 @@
     "resultProfileMapping" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/mimic/omr-result-name-map.csv"
+    },
+    "omrUnitConversion" : {
+      "category" : "unit-conversion",
+      "url" : "$CONTEXT_REPO/mimic/omr-unit-conversion.csv"
     }
   },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "resultConcept",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%resultProfileMapping, result_name).first()"
+  }, {
+    "name" : "numericValue",
+    "language" : "text/fhirpath",
+    "expression" : "result_value.utl:trim().toDecimal()"
+  } ],
   "mapping" : [ {
     "precondition" : {
-      "name" : "isNotBloodPressure",
+      "name" : "isBodyMeasurement",
       "language" : "text/fhirpath",
-      "expression" : "(result_name.startsWith('Blood Pressure') or result_name = 'eGFR').not() "
+      "expression" : "(result_name.startsWith('Blood Pressure') or result_name = 'eGFR').not() and %numericValue.exists() and %resultConcept.exists()"
     },
     "expression" : {
       "name" : "omr-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
+        "resourceType" : "Observation",
         "id" : "{{mpp:getHashedId('Observation', subject_id.toString() & chartdate.toString() & seq_num.toString() & result_name)}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
-        "resourceType" : "Observation",
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}/fhir/omr_ids",
+          "value" : "{{subject_id.toString() & '-' & chartdate.toString() & '-' & seq_num.toString() & '-' & result_name}}"
+        } ],
+        "status" : "final",
         "category" : [ {
           "coding" : [ {
             "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -42,15 +59,15 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%resultProfileMapping, result_name, 'target_code')}}",
+            "code" : "{{%resultConcept.target_code}}",
+            "display" : "{{%resultConcept.target_display}}",
             "@sliceName" : "loincCode"
           } ],
           "text" : "{{result_name}}"
         },
-        "effectiveDateTime" : "{{chartdate}}",
-        "valueQuantity" : "{{utl:createFhirQuantity(result_value, 'http://unitsofmeasure.org', mpp:getConcept(%resultProfileMapping, result_name, 'target_unit'))}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
-        "status" : "final",
+        "effectiveDateTime" : "{{chartdate}}",
+        "valueQuantity" : "{{mpp:convertAndReturnQuantity(%omrUnitConversion, result_name, %numericValue, %resultConcept.source_unit).nav:orElse(utl:createFhirQuantity(%numericValue, 'http://unitsofmeasure.org', %resultConcept.source_unit))}}",
         "extension" : [ {
           "url" : "http://hl7.org/fhir/StructureDefinition/observation-timeOffset",
           "valueInteger" : "{{seq_num}}"
@@ -61,7 +78,7 @@
     "precondition" : {
       "name" : "isBloodPressure",
       "language" : "text/fhirpath",
-      "expression" : "result_name.startsWith('Blood Pressure')"
+      "expression" : "result_name.startsWith('Blood Pressure') and result_value.contains('/') and result_value.utl:split('/').first().utl:trim().toDecimal().exists() and result_value.utl:split('/').last().utl:trim().toDecimal().exists()"
     },
     "expression" : {
       "name" : "bp-mapping",
@@ -69,12 +86,17 @@
       "value" : {
         "{{#bloodPresIndex}}" : "{{utl:indices(0, 1)}}",
         "{{*}}" : {
+          "resourceType" : "Observation",
           "id" : "{{mpp:getHashedId('Observation', subject_id.toString() & chartdate.toString() & seq_num.toString() & result_name & %bloodPresIndex.toString())}}",
           "meta" : {
             "source" : "{{%sourceSystem.sourceUri}}",
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
           },
-          "resourceType" : "Observation",
+          "identifier" : [ {
+            "system" : "{{%sourceSystem.sourceUri}}/fhir/omr_ids",
+            "value" : "{{subject_id.toString() & '-' & chartdate.toString() & '-' & seq_num.toString() & '-' & result_name & '-' & %bloodPresIndex.toString()}}"
+          } ],
+          "status" : "final",
           "category" : [ {
             "coding" : [ {
               "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
@@ -86,10 +108,10 @@
             "coding" : [ {
               "system" : "http://loinc.org",
               "code" : "{{iif(%bloodPresIndex = 0 , '8480-6', '8462-4')}}",
-              "display" : "{{iif(%bloodPresIndex = 0 , 'Systolic blood pressure', 'Diastolic blood pressure')}} ",
+              "display" : "{{iif(%bloodPresIndex = 0 , 'Systolic blood pressure', 'Diastolic blood pressure')}}",
               "@sliceName" : "loincCode"
             }, {
-              "{{#sc}}" : "{{mpp:getConcept(%resultProfileMapping, result_name, 'secondary_code')}}",
+              "{{#sc}}" : "{{%resultConcept.secondary_code.where($this != '')}}",
               "{{?}}" : {
                 "system" : "http://snomed.info/sct",
                 "code" : "{{%sc}}"
@@ -97,18 +119,14 @@
             } ],
             "text" : "{{result_name}}"
           },
+          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
           "effectiveDateTime" : "{{chartdate}}",
           "valueQuantity" : {
             "system" : "http://unitsofmeasure.org",
             "code" : "mm[Hg]",
-            "value" : "{{ iif(%bloodPresIndex=0, result_value.utl:split('/').first().toDecimal(), result_value.utl:split('/').last().toDecimal())}}",
-            "unit" : "mmHg"
+            "value" : "{{iif(%bloodPresIndex = 0, result_value.utl:split('/').first().utl:trim().toDecimal(), result_value.utl:split('/').last().utl:trim().toDecimal())}}",
+            "unit" : "mm[Hg]"
           },
-          "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
-          "identifier" : [ {
-            "value" : "{{subject_id.toString() & chartdate.toString() & seq_num.toString() & result_name & %bloodPresIndex.toString()}}"
-          } ],
-          "status" : "final",
           "extension" : [ {
             "url" : "http://hl7.org/fhir/StructureDefinition/observation-timeOffset",
             "valueInteger" : "{{seq_num}}"
@@ -120,17 +138,22 @@
     "precondition" : {
       "name" : "eGFRMeasurement",
       "language" : "text/fhirpath",
-      "expression" : "result_name = 'eGFR'"
+      "expression" : "result_name = 'eGFR' and utl:parseFhirQuantityExpression(result_value.utl:trim()).exists()"
     },
     "expression" : {
       "name" : "eGFR-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
+        "resourceType" : "Observation",
         "id" : "{{mpp:getHashedId('Observation', subject_id.toString() & chartdate.toString() & seq_num.toString() & result_name)}}",
         "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
         },
-        "resourceType" : "Observation",
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}/fhir/omr_ids",
+          "value" : "{{subject_id.toString() & '-' & chartdate.toString() & '-' & seq_num.toString() & '-' & result_name}}"
+        } ],
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -145,8 +168,10 @@
             "code" : "50384-7",
             "display" : "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood",
             "@sliceName" : "loincCode"
-          } ]
+          } ],
+          "text" : "{{result_name}}"
         },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
         "effectiveDateTime" : "{{chartdate}}",
         "valueQuantity" : {
           "{{#valueQuantityVar}}" : "{{utl:parseFhirQuantityExpression(result_value.utl:trim())}}",
@@ -157,8 +182,7 @@
             "comparator" : "{{? iif(%valueQuantityVar[1].exists(), %valueQuantityVar.last())}}",
             "unit" : "mL/min/{1.73_m2}"
           }
-        },
-        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}"
+        }
       }
     }
   } ]

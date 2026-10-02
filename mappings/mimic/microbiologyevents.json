@@ -2,7 +2,7 @@
   "id" : "microbiologyevents",
   "url" : "https://mimic.mit.edu/fhir/mappings/microbiologyevents",
   "name" : "microbiologyevents",
-  "title" : "Mapping of entries in 'microbiologyevents' table in MIMIC-IV v3.1 dataset into FHIR DiagnosticReport and FHIR Observation resources",
+  "title" : "Mapping of entries in 'microbiologyevents' table in MIMIC-IV v3.1 dataset into FHIR DiagnosticReport, Specimen and Observation resources",
   "isDraft" : false,
   "source" : [ {
     "alias" : "microbiologyevents",
@@ -17,6 +17,15 @@
       "name" : "diagnostic-report-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
+        "resourceType" : "DiagnosticReport",
+        "id" : "{{mpp:getHashedId('DiagnosticReport', subject_id.toString() & micro_specimen_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}"
+        },
+        "identifier" : [ {
+          "system" : "{{%sourceSystem.sourceUri}}/fhir/micro_specimen_ids",
+          "value" : "{{micro_specimen_id.toString()}}"
+        } ],
         "status" : "final",
         "category" : [ {
           "coding" : [ {
@@ -35,16 +44,12 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
         "effectiveDateTime" : "{{charttime.nav:orElse(chartdate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+        "issued" : "{{? storetime.nav:orElse(storedate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
         "specimen" : "{{* mpp:createFhirReferenceWithHashedId('Specimen', micro_specimen_id.toString())}}",
         "result" : {
           "{{#oid}}" : "{{microevent_id}}",
           "{{*}}" : "{{mpp:createFhirReferenceWithHashedId('Observation', %oid.toString())}}"
-        },
-        "id" : "{{mpp:getHashedId('DiagnosticReport', subject_id.toString() & micro_specimen_id.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
-        "resourceType" : "DiagnosticReport"
+        }
       }
     }
   }, {
@@ -52,6 +57,11 @@
       "name" : "specimen-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
+        "resourceType" : "Specimen",
+        "id" : "{{mpp:getHashedId('Specimen', micro_specimen_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}"
+        },
         "accessionIdentifier" : {
           "system" : "{{%sourceSystem.sourceUri}}/fhir/micro_specimen_ids",
           "value" : "{{micro_specimen_id.toString()}}"
@@ -62,15 +72,13 @@
             "system" : "https://mimic.mit.edu/fhir/CodeSystem/specimen_types",
             "code" : "{{spec_itemid.toString()}}",
             "display" : "{{? spec_type_desc}}"
-          }, "{{* trms:translateToCoding(spec_itemid.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/specimen_types','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/specimen-types-to-hl7')}}" ]
+          }, "{{* trms:translateToCoding(spec_itemid.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/specimen_types','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/specimen-types-to-hl7')}}" ],
+          "text" : "{{? spec_type_desc}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
-        "receivedTime" : "{{charttime.nav:orElse(chartdate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
-        "id" : "{{mpp:getHashedId('Specimen', micro_specimen_id.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
-        "resourceType" : "Specimen"
+        "collection" : {
+          "collectedDateTime" : "{{charttime.nav:orElse(chartdate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}"
+        }
       }
     }
   }, {
@@ -80,6 +88,11 @@
       "value" : {
         "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
         "{{*}}" : {
+          "resourceType" : "Observation",
+          "id" : "{{mpp:getHashedId('Observation', microevent_id[%ind].toString())}}",
+          "meta" : {
+            "source" : "{{%sourceSystem.sourceUri}}"
+          },
           "identifier" : [ {
             "use" : "official",
             "system" : "{{%sourceSystem.sourceUri}}/fhir/microbiologyevents_ids",
@@ -95,10 +108,11 @@
           } ],
           "code" : {
             "coding" : [ "{{* trms:translateToCoding(test_itemid[%ind].toString(), 'https://mimic.mit.edu/fhir/CodeSystem/testitems','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/test-itemids-to-loinc')}}", {
-              "system" : "https://mimic.mit.edu/fhir/ValueSet/testitems",
+              "system" : "https://mimic.mit.edu/fhir/CodeSystem/testitems",
               "code" : "{{test_itemid[%ind].toString()}}",
               "display" : "{{test_name[%ind].toString()}}"
-            } ]
+            } ],
+            "text" : "{{test_name[%ind].toString()}}"
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
           "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
@@ -108,13 +122,25 @@
             "{{#d_value}}" : "{{dilution_value[%ind]}}",
             "{{?}}" : {
               "value" : "{{%d_value.toDecimal()}}",
-              "comparator" : "{{iif(dilution_comparison[%ind].utl:trim() = '=>', '>=', iif(dilution_comparison[%ind].utl:trim() = '<=', '<=', 'ad')) }}"
+              "comparator" : "{{? iif(dilution_comparison[%ind].utl:trim() = '=>', '>=', iif(dilution_comparison[%ind].utl:trim() = '<=', '<=', iif(dilution_comparison[%ind].utl:trim() = '<', '<', iif(dilution_comparison[%ind].utl:trim() = '>', '>', {}))))}}"
+            }
+          },
+          "valueCodeableConcept" : {
+            "{{#orgOnly}}" : "{{iif(ab_itemid[%ind].exists().not() and org_itemid[%ind].exists() and dilution_value[%ind].exists().not(), trms:translateToCoding(org_itemid[%ind].toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed'), {})}}",
+            "{{?}}" : {
+              "coding" : [ "{{* %orgOnly}}", {
+                "system" : "https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems",
+                "code" : "{{org_itemid[%ind].toString()}}",
+                "display" : "{{? org_name[%ind]}}"
+              } ],
+              "text" : "{{? org_name[%ind]}}"
             }
           },
           "interpretation" : {
             "{{#int}}" : "{{interpretation[%ind]}}",
             "{{*}}" : {
-              "coding" : "{{* trms:translateToCoding(%int.toString(), 'https://mimic.mit.edu/fhir/ValueSet/interpretation-codes', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/test-itemids-interpretation-to-hl7')}}"
+              "coding" : "{{* trms:translateToCoding(%int.toString(), 'https://mimic.mit.edu/fhir/ValueSet/interpretation-codes', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/test-itemids-interpretation-to-hl7')}}",
+              "text" : "{{%int}}"
             }
           },
           "note" : {
@@ -125,27 +151,44 @@
           },
           "specimen" : "{{mpp:createFhirReferenceWithHashedId('Specimen', micro_specimen_id.toString())}}",
           "component" : [ {
-            "{{#oItemCoding}}" : "{{iif(org_itemid[%ind].exists(), trms:translateToCoding(org_itemid[%ind].toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed'))}}",
+            "{{#orgWithAb}}" : "{{iif(org_itemid[%ind].exists() and (ab_itemid[%ind].exists() or dilution_value[%ind].exists()), org_itemid[%ind], {})}}",
             "{{?}}" : {
               "code" : {
-                "coding" : "{{* %oItemCoding}}"
+                "coding" : [ {
+                  "system" : "http://loinc.org",
+                  "code" : "41852-5",
+                  "display" : "Microorganism or agent identified in Specimen"
+                } ]
               },
-              "valueString" : "Organism Grown"
+              "valueCodeableConcept" : {
+                "coding" : [ "{{* trms:translateToCoding(%orgWithAb.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed')}}", {
+                  "system" : "https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems",
+                  "code" : "{{%orgWithAb.toString()}}",
+                  "display" : "{{? org_name[%ind]}}"
+                } ],
+                "text" : "{{? org_name[%ind]}}"
+              }
             }
           }, {
-            "{{#abItemCoding}}" : "{{iif(ab_itemid[%ind].exists(), trms:translateToCoding(ab_itemid[%ind].toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-abitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/ab-itemids-to-atc'))}}",
+            "{{#abItem}}" : "{{ab_itemid[%ind]}}",
             "{{?}}" : {
               "code" : {
-                "coding" : "{{* %abItemCoding}}"
+                "coding" : [ {
+                  "system" : "http://loinc.org",
+                  "code" : "18769-0",
+                  "display" : "Microbial susceptibility tests Set"
+                } ]
               },
-              "valueString" : "Anti-biotic Used"
+              "valueCodeableConcept" : {
+                "coding" : [ "{{* trms:translateToCoding(%abItem.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-abitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/ab-itemids-to-atc')}}", {
+                  "system" : "https://mimic.mit.edu/fhir/CodeSystem/microb-abitems",
+                  "code" : "{{%abItem.toString()}}",
+                  "display" : "{{? ab_name[%ind]}}"
+                } ],
+                "text" : "{{? ab_name[%ind]}}"
+              }
             }
-          } ],
-          "id" : "{{mpp:getHashedId('Observation', microevent_id[%ind].toString())}}",
-          "meta" : {
-            "source" : "{{%sourceSystem.sourceUri}}"
-          },
-          "resourceType" : "Observation"
+          } ]
         }
       }
     }
