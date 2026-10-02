@@ -7,7 +7,7 @@
       "jsonClass" : "FileSystemSourceSettings",
       "name" : "umcu-source",
       "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/umcu-data",
-      "dataFolderPath" : "test-data/umcu-uc2",
+      "dataFolderPath" : "test-data/umcu-uc1",
       "asStream" : false
     }
   },
@@ -18,7 +18,7 @@
   },
   "mappings" : [ {
     "name" : "patient-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/patient-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/patient-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -30,7 +30,7 @@
     }
   }, {
     "name" : "vital-sign-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/vital-sign-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/vital-sign-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -81,7 +81,7 @@
     }
   }, {
     "name" : "nyha-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/nyha-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/nyha-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -103,7 +103,7 @@
     }
   }, {
     "name" : "encounter-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/encounter-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/encounter-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -114,8 +114,22 @@
       }
     }
   }, {
+    "name" : "med-prescription-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/med-prescription-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "Medications.parquet",
+        "contentType" : "parquet",
+        "options" : {
+          "distinct" : "true"
+        },
+        "sourceRef" : "umcu-source"
+      }
+    }
+  }, {
     "name" : "lab-result-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/lab-result-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/lab-result-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -136,7 +150,7 @@
     }
   }, {
     "name" : "ecg-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/ecg-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -158,7 +172,7 @@
     }
   }, {
     "name" : "echo-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/echo-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/echo-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -180,7 +194,7 @@
     }
   }, {
     "name" : "smoking-status-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/smoking-status-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/smoking-status-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -201,7 +215,7 @@
     }
   }, {
     "name" : "condition-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/condition-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/condition-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
@@ -210,13 +224,12 @@
         "options" : {
           "distinct" : "true"
         },
-        "preprocessSql" : "select distinct studyId_0919, identifier_value, ICD10code, startDate, clinicalStatus, category_display_original, encounter_identifier_value\r\nfrom source",
         "sourceRef" : "umcu-source"
       }
     }
   }, {
     "name" : "visit-note-mapping",
-    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc2/visit-note-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/umcu-uc1/visit-note-mapping",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",

@@ -27,7 +27,7 @@
       "value" : {
         "{{#encounterId}}" : "{{%encounterIds}}",
         "{{*}}" : {
-          "id" : "{{mpp:getHashedId('Condition', identifier_value & studyId_0919.toString() & %encounterId & ICD10code & clinicalStatus)}}",
+          "id" : "{{mpp:getHashedId('Condition', identifier_value & identifier_system & studyId_0919.toString() & %encounterId & ICD10code & clinicalStatus)}}",
           "meta" : {
             "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
           },
@@ -43,7 +43,7 @@
           "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %encounterId)}}",
           "onsetDateTime" : "{{startDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
           "identifier" : [ {
-            "value" : "{{identifier_value & '-' & studyId_0919.toString() & '-' & %encounterId & '-' & ICD10code & '-' & clinicalStatus}}"
+            "value" : "{{identifier_value & '-' & identifier_system & '-' & studyId_0919.toString() & '-' & %encounterId & '-' & ICD10code & '-' & clinicalStatus}}"
           } ],
           "clinicalStatus" : {
             "coding" : [ {
@@ -71,7 +71,7 @@
       "name" : "result2",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Condition', 'noEncounter' & identifier_value & studyId_0919.toString())}}",
+        "id" : "{{mpp:getHashedId('Condition', 'noEncounter' & identifier_value & identifier_system & studyId_0919.toString() & ICD10code)}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },
@@ -86,7 +86,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', studyId_0919.toString())}}",
         "onsetDateTime" : "{{startDate.utl:toFhirDateTime('yyyy-MM-dd' | 'yyyy-MM-dd HH:mm:ss')}}",
         "identifier" : [ {
-          "value" : "{{identifier_value & '-' & studyId_0919.toString()}}"
+          "value" : "{{identifier_value & '-' identifier_system & '-' & studyId_0919.toString() & '-' & ICD10code}}"
         } ],
         "clinicalStatus" : {
           "coding" : [ {
