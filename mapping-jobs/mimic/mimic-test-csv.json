@@ -182,6 +182,19 @@
       }
     }
   }, {
+    "name" : "careunit-mapping",
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/careunits",
+    "sourceBinding" : {
+      "careunits" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "transfers.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "preprocessSql" : "SELECT DISTINCT CU.careunit FROM careunits CU WHERE CU.careunit IS NOT NULL",
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
     "name" : "admissions-mapping",
     "mappingRef" : "https://mimic.mit.edu/fhir/mappings/admissions",
     "sourceBinding" : {
@@ -241,12 +254,67 @@
       }
     }
   }, {
+    "name" : "procedures-mapping",
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/procedures-icd",
+    "sourceBinding" : {
+      "procedures" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "procedures_icd.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      },
+      "icdConceptMap" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "d_icd_procedures.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
     "name" : "labevents-mapping",
     "mappingRef" : "https://mimic.mit.edu/fhir/mappings/labevents",
     "sourceBinding" : {
       "source" : {
         "jsonClass" : "FileSystemSource",
         "path" : "labevents.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "medications-without-rxn",
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
+    "sourceBinding" : {
+      "prescribed_meds" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "medications.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "prescriptions-mapping",
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/prescriptions",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "prescriptions.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "poe-mapping",
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/poe",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "poe.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "file-system-csv"
@@ -261,6 +329,19 @@
         "path" : "omr.csv",
         "contentType" : "csv",
         "options" : { },
+        "sourceRef" : "file-system-csv"
+      }
+    }
+  }, {
+    "name" : "microbiologyevents",
+    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/microbiologyevents",
+    "sourceBinding" : {
+      "microbiologyevents" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "microbiologyevents.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "preprocessSql" : "select subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc,\nmin(microevent_id) as microevent_id, min(chartdate) as chartdate, min(test_seq) as test_seq,\narray_sort(array_agg(struct(microevent_id, chartdate, charttime, test_seq, storedate, storetime,\ntest_itemid, test_name, org_itemid, org_name, isolate_num, quantity, ab_itemid, ab_name,\ndilution_text, dilution_comparison, dilution_value, interpretation, comments))) as events\nfrom microbiologyevents group by subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc",
         "sourceRef" : "file-system-csv"
       }
     }
@@ -285,18 +366,6 @@
       "prescription" : {
         "jsonClass" : "FileSystemSource",
         "path" : "prescriptions.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "file-system-csv"
-      }
-    }
-  }, {
-    "name" : "medications-without-rxn",
-    "mappingRef" : "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
-    "sourceBinding" : {
-      "prescribed_meds" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "medications.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "file-system-csv"

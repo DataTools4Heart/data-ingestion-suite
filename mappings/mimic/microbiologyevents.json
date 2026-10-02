@@ -43,11 +43,11 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
-        "effectiveDateTime" : "{{charttime.nav:orElse(chartdate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
-        "issued" : "{{? storetime.nav:orElse(storedate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+        "effectiveDateTime" : "{{events.charttime.nav:orElse(events.chartdate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+        "issued" : "{{? events.storetime.nav:orElse(events.storedate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
         "specimen" : "{{* mpp:createFhirReferenceWithHashedId('Specimen', micro_specimen_id.toString())}}",
         "result" : {
-          "{{#oid}}" : "{{microevent_id}}",
+          "{{#oid}}" : "{{events.microevent_id}}",
           "{{*}}" : "{{mpp:createFhirReferenceWithHashedId('Observation', %oid.toString() & 'microbiology')}}"
         }
       }
@@ -77,7 +77,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
         "collection" : {
-          "collectedDateTime" : "{{charttime.nav:orElse(chartdate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}"
+          "collectedDateTime" : "{{events.charttime.nav:orElse(events.chartdate).first().utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}"
         }
       }
     }
@@ -86,17 +86,17 @@
       "name" : "test-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
+        "{{#ev}}" : "{{events}}",
         "{{*}}" : {
           "resourceType" : "Observation",
-          "id" : "{{mpp:getHashedId('Observation', microevent_id[%ind].toString() & 'microbiology')}}",
+          "id" : "{{mpp:getHashedId('Observation', %ev.microevent_id.toString() & 'microbiology')}}",
           "meta" : {
             "source" : "{{%sourceSystem.sourceUri}}"
           },
           "identifier" : [ {
             "use" : "official",
             "system" : "{{%sourceSystem.sourceUri}}/fhir/microbiologyevents_ids",
-            "value" : "{{microevent_id[%ind].toString()}}"
+            "value" : "{{%ev.microevent_id.toString()}}"
           } ],
           "status" : "final",
           "category" : [ {
@@ -107,51 +107,51 @@
             } ]
           } ],
           "code" : {
-            "coding" : [ "{{* trms:translateToCoding(test_itemid[%ind].toString(), 'https://mimic.mit.edu/fhir/CodeSystem/testitems','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/test-itemids-to-loinc')}}", {
+            "coding" : [ "{{* trms:translateToCoding(%ev.test_itemid.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/testitems','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/test-itemids-to-loinc').where(code.exists() and code != '')}}", {
               "system" : "https://mimic.mit.edu/fhir/CodeSystem/testitems",
-              "code" : "{{test_itemid[%ind].toString()}}",
-              "display" : "{{test_name[%ind].toString()}}"
+              "code" : "{{%ev.test_itemid.toString()}}",
+              "display" : "{{%ev.test_name.toString()}}"
             } ],
-            "text" : "{{test_name[%ind].toString()}}"
+            "text" : "{{%ev.test_name.toString()}}"
           },
           "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
           "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
-          "effectiveDateTime" : "{{charttime[%ind].nav:orElse(chartdate[%ind]).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
-          "issued" : "{{? storetime[%ind].nav:orElse(storedate[%ind]).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+          "effectiveDateTime" : "{{%ev.charttime.nav:orElse(%ev.chartdate).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+          "issued" : "{{? %ev.storetime.nav:orElse(%ev.storedate).utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
           "valueQuantity" : {
-            "{{#d_value}}" : "{{dilution_value[%ind]}}",
+            "{{#d_value}}" : "{{%ev.dilution_value}}",
             "{{?}}" : {
               "value" : "{{%d_value.toDecimal()}}",
-              "comparator" : "{{? iif(dilution_comparison[%ind].utl:trim() = '=>', '>=', iif(dilution_comparison[%ind].utl:trim() = '<=', '<=', iif(dilution_comparison[%ind].utl:trim() = '<', '<', iif(dilution_comparison[%ind].utl:trim() = '>', '>', {}))))}}"
+              "comparator" : "{{? iif(%ev.dilution_comparison.utl:trim() = '=>', '>=', iif(%ev.dilution_comparison.utl:trim() = '<=', '<=', iif(%ev.dilution_comparison.utl:trim() = '<', '<', iif(%ev.dilution_comparison.utl:trim() = '>', '>', {}))))}}"
             }
           },
           "valueCodeableConcept" : {
-            "{{#orgOnly}}" : "{{iif(ab_itemid[%ind].exists().not() and org_itemid[%ind].exists() and dilution_value[%ind].exists().not(), trms:translateToCoding(org_itemid[%ind].toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed'), {})}}",
+            "{{#orgOnly}}" : "{{iif(%ev.ab_itemid.exists().not() and %ev.org_itemid.exists() and %ev.dilution_value.exists().not(), trms:translateToCoding(%ev.org_itemid.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed'), {})}}",
             "{{?}}" : {
               "coding" : [ "{{* %orgOnly}}", {
                 "system" : "https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems",
-                "code" : "{{org_itemid[%ind].toString()}}",
-                "display" : "{{? org_name[%ind]}}"
+                "code" : "{{%ev.org_itemid.toString()}}",
+                "display" : "{{? %ev.org_name}}"
               } ],
-              "text" : "{{? org_name[%ind]}}"
+              "text" : "{{? %ev.org_name}}"
             }
           },
           "interpretation" : {
-            "{{#int}}" : "{{interpretation[%ind]}}",
+            "{{#int}}" : "{{%ev.interpretation}}",
             "{{*}}" : {
               "coding" : "{{* trms:translateToCoding(%int.toString(), 'https://mimic.mit.edu/fhir/ValueSet/interpretation-codes', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/test-itemids-interpretation-to-hl7')}}",
               "text" : "{{%int}}"
             }
           },
           "note" : {
-            "{{#note}}" : "{{comments[%ind]}}",
+            "{{#note}}" : "{{%ev.comments}}",
             "{{*}}" : {
               "text" : "{{%note}}"
             }
           },
           "specimen" : "{{mpp:createFhirReferenceWithHashedId('Specimen', micro_specimen_id.toString())}}",
           "component" : [ {
-            "{{#orgWithAb}}" : "{{iif(org_itemid[%ind].exists() and (ab_itemid[%ind].exists() or dilution_value[%ind].exists()), org_itemid[%ind], {})}}",
+            "{{#orgWithAb}}" : "{{iif(%ev.org_itemid.exists() and (%ev.ab_itemid.exists() or %ev.dilution_value.exists()), %ev.org_itemid, {})}}",
             "{{?}}" : {
               "code" : {
                 "coding" : [ {
@@ -164,13 +164,13 @@
                 "coding" : [ "{{* trms:translateToCoding(%orgWithAb.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed')}}", {
                   "system" : "https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems",
                   "code" : "{{%orgWithAb.toString()}}",
-                  "display" : "{{? org_name[%ind]}}"
+                  "display" : "{{? %ev.org_name}}"
                 } ],
-                "text" : "{{? org_name[%ind]}}"
+                "text" : "{{? %ev.org_name}}"
               }
             }
           }, {
-            "{{#abItem}}" : "{{ab_itemid[%ind]}}",
+            "{{#abItem}}" : "{{%ev.ab_itemid}}",
             "{{?}}" : {
               "code" : {
                 "coding" : [ {
@@ -183,9 +183,9 @@
                 "coding" : [ "{{* trms:translateToCoding(%abItem.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-abitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/ab-itemids-to-atc')}}", {
                   "system" : "https://mimic.mit.edu/fhir/CodeSystem/microb-abitems",
                   "code" : "{{%abItem.toString()}}",
-                  "display" : "{{? ab_name[%ind]}}"
+                  "display" : "{{? %ev.ab_name}}"
                 } ],
-                "text" : "{{? ab_name[%ind]}}"
+                "text" : "{{? %ev.ab_name}}"
               }
             }
           } ]

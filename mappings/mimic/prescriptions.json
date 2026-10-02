@@ -60,6 +60,11 @@
   ],
   "mapping": [
     {
+      "precondition": {
+        "name": "ndcCodeExists",
+        "language": "text/fhirpath",
+        "expression": "%ndcCode.exists()"
+      },
       "expression": {
         "name": "prescriptions-mapping",
         "language": "application/fhir-template+json",
