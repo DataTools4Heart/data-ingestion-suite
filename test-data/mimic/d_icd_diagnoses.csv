@@ -1,2 +1,12 @@
 icd_code,icd_version,long_title
-I50,10,Heart failure
+41401,9,Coronary atherosclerosis of native coronary artery
+4280,9,"Congestive heart failure, unspecified"
+4019,9,Unspecified essential hypertension
+2724,9,Other and unspecified hyperlipidemia
+I2510,10,Atherosclerotic heart disease of native coronary artery without angina pectoris
+I5022,10,Chronic systolic (congestive) heart failure
+E785,10,"Hyperlipidemia, unspecified"
+Z87891,10,Personal history of nicotine dependence
+I214,10,Non-ST elevation (NSTEMI) myocardial infarction
+I5021,10,Acute systolic (congestive) heart failure
+N179,10,"Acute kidney failure, unspecified"

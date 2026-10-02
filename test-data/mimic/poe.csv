@@ -1,0 +1,8 @@
+poe_id,poe_seq,subject_id,hadm_id,ordertime,order_type,order_subtype,transaction_type,discontinue_of_poe_id,discontinued_by_poe_id,order_provider_id,order_status
+10000001-41,41,10000001,21000001,2163-05-14 18:02:33,ADT orders,Admit,New,,,P41KQZ,Inactive
+10000001-48,48,10000001,21000001,2163-05-14 19:47:10,Medications,,New,,,P41KQZ,Inactive
+10000001-52,52,10000001,21000001,2163-05-14 19:51:42,General Care,Vitals/Monitoring,New,,10000001-77,P41KQZ,Inactive
+10000001-77,77,10000001,21000001,2163-05-17 09:05:18,General Care,Vitals/Monitoring,D/C,10000001-52,,P41KQZ,Inactive
+10000001-60,60,10000001,21000001,2163-05-15 04:58:06,Lab,,New,,,P41KQZ,Inactive
+10000002-20,20,10000002,21000003,2182-06-22 00:10:51,Radiology,General Xray,New,,,P9X2AB,Inactive
+10000002-21,21,10000002,21000003,2182-06-22 00:12:29,General Care,Other,New,,,P9X2AB,Inactive
