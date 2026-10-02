@@ -48,7 +48,7 @@
         "specimen" : "{{* mpp:createFhirReferenceWithHashedId('Specimen', micro_specimen_id.toString())}}",
         "result" : {
           "{{#oid}}" : "{{microevent_id}}",
-          "{{*}}" : "{{mpp:createFhirReferenceWithHashedId('Observation', %oid.toString())}}"
+          "{{*}}" : "{{mpp:createFhirReferenceWithHashedId('Observation', %oid.toString() & 'microbiology')}}"
         }
       }
     }
@@ -89,7 +89,7 @@
         "{{#ind}}" : "{{utl:indices(0, count.toInteger() - 1)}}",
         "{{*}}" : {
           "resourceType" : "Observation",
-          "id" : "{{mpp:getHashedId('Observation', microevent_id[%ind].toString())}}",
+          "id" : "{{mpp:getHashedId('Observation', microevent_id[%ind].toString() & 'microbiology')}}",
           "meta" : {
             "source" : "{{%sourceSystem.sourceUri}}"
           },
