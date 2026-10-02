@@ -250,6 +250,10 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 
 ## 7. Troubleshooting
 
+* **`Problem while calling terminology service! Future timed out after [1 minute]` and the REST API (and `run-job.sh`)
+  hang while a task runs**: the Akka dispatcher of the server has one thread per CPU visible to the container and the
+  Spark worker threads exhaust it. `ignifyr-server.conf` raises `akka.actor.default-dispatcher` to 32–64 threads;
+  keep it above `local[N]` if you change the CPU limit.
 * **No coverage events / empty Mapping Coverage dashboard**: server jar built without `ignifyr-observability`
   (step 1.3), or Fluentd not reachable (`docker logs mimic-fluentd`). Coverage events are also in
   `ignifyr-docker-logs/ignifyr-mappings.log` thanks to `logback.xml`.
