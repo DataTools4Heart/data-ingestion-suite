@@ -15,6 +15,8 @@ Target machine used for the sizing below: Intel i7-11800H (8 cores / 16 threads)
 | `nginx.conf` | Reverse proxy: `http://localhost:6000/dt4h/ignifyr/` (UI), `/dt4h/ignifyr/kibana/` (Kibana) |
 | `run-job.sh` | Starts the job (optionally `--skip-write`, optionally a subset of mapping tasks) through the REST API |
 | `extract_metrics.py` | Turns the `MAPPING_JOB_RESULT` / `MAPPING_COVERAGE` / `MAPPING_RESULT` events into CSV/XLSX tables |
+| `analyze_output.py` | Output quality metrics from the written NDJSON (duplicates, referential integrity, code-system and UCUM shares) |
+| `MIMIC-mapping-analysis.md` | Analysis of the mappings on a 1-in-20 real-data subset: ratios, coverage, output quality, residual gaps |
 
 ## 0. What is different from the Feb-2026 cluster run
 
@@ -182,9 +184,11 @@ $R --skip-write labevents-mapping
 $R --skip-write emar-mapping
 ```
 
-Rough expectations on this machine (8 cores, 48 GB heap, local NVMe) extrapolated from the cluster figures and
-the sample throughput: admissions/patients/procedures/omr/microbiology 1–3 h in total, prescriptions ≈ 1 h,
-poe ≈ 1 h, labevents 8–14 h, emar 4–8 h. Start labevents and emar in the evening. While they run, the
+Measured on a 1-in-20 patient subset of the real data (8 threads, 28 GB heap, writing gzip NDJSON, see
+`MIMIC-mapping-analysis.md`): labevents ≈ 3 800 rows/s, emar ≈ 2 100 rows/s, prescriptions ≈ 1 800 rows/s,
+poe ≈ 16 600 rows/s. Extrapolated to the full hosp module: labevents ≈ 12 h, emar ≈ 6 h, prescriptions ≈ 3 h,
+poe ≈ 1 h, all other tasks together ≈ 1.5 h, i.e. ≈ 23 h with writing enabled and less with `--skip-write`.
+Start labevents and emar in the evening. While they run, the
 container stays within its 8 CPUs / 56 GB; the Windows side remains usable.
 
 Monitoring during the run:

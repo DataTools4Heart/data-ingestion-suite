@@ -37,7 +37,7 @@ https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70022,BRONCHIAL WASHINGS,ht
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70021,BRONCHOALVEOLAR LAVAGE,http://terminology.hl7.org/CodeSystem/v2-0487,LAVPG,"Lavage, Pre-Bronch"
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70021,BRONCHOALVEOLAR LAVAGE,http://snomed.info/sct,440674008, Specimen obtained by lavage
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70023,CATHETER TIP-IV,http://terminology.hl7.org/CodeSystem/v2-0487,ARTC,"Catheter Tip, Arterial"
-https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70023,CATHETER TIP-IV,http://snomed.info/sct,119312009,"Catheter tip submitted as specimen"
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70023,CATHETER TIP-IV,http://snomed.info/sct,119312009,Catheter tip submitted as specimen
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90909,CHORIONIC VILLUS SAMPLE,http://terminology.hl7.org/CodeSystem/v2-0487,PLC,Placenta
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90909,CHORIONIC VILLUS SAMPLE,http://snomed.info/sct,258565009,Chorionic villi specimen
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90908,Cipro Resistant Screen,http://snomed.info/sct,258528007,Rectal swab
@@ -137,3 +137,14 @@ https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70083,VARICELLA-ZOSTER CULT
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70024,VIRAL CULTURE: R/O CYTOMEGALOVIRUS,http://snomed.info/sct,258529004,Throat swab
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70085,WORM,http://terminology.hl7.org/CodeSystem/v2-0487,WORM,Worm
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70085,WORM,http://snomed.info/sct,258618008,Helminth specimen
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70040,SWAB,http://terminology.hl7.org/CodeSystem/v2-0487,SWAB,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70068,SWAB,http://terminology.hl7.org/CodeSystem/v2-0487,SWAB,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70069,SWAB,http://terminology.hl7.org/CodeSystem/v2-0487,SWAB,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70067,SWAB,http://terminology.hl7.org/CodeSystem/v2-0487,SWAB,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90928,Swab,http://terminology.hl7.org/CodeSystem/v2-0487,SWAB,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70077,URINE,http://terminology.hl7.org/CodeSystem/v2-0487,UR,Urine
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70081,URINE,http://terminology.hl7.org/CodeSystem/v2-0487,UR,Urine
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70073,TISSUE,http://terminology.hl7.org/CodeSystem/v2-0487,TISS,Tissue
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70035,"FLUID,OTHER",http://terminology.hl7.org/CodeSystem/v2-0487,FLU,"Body fluid, unsp"
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70055,POSTMORTEM CULTURE,http://terminology.hl7.org/CodeSystem/v2-0487,AUTP,Autopsy
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70032,Blood (EBV),http://terminology.hl7.org/CodeSystem/v2-0487,BLD,Whole blood

@@ -40,7 +40,7 @@
     {
       "name": "ndcCode",
       "language": "text/fhirpath",
-      "expression": "iif(ndc.exists() and ndc.toString().trim() != '' and ndc.toString() != '0' and ndc.toString() != '00000000000', ndc.toString(), {})"
+      "expression": "iif(ndc.exists() and ndc.toString().trim() != '' and ndc.toString() != '0' and ndc.toString() != '00000000000', iif(ndc.toString().length() = 11, ndc.toString(), iif(ndc.toString().length() = 10, '0' & ndc.toString(), iif(ndc.toString().length() = 9, '00' & ndc.toString(), iif(ndc.toString().length() = 8, '000' & ndc.toString(), iif(ndc.toString().length() = 7, '0000' & ndc.toString(), iif(ndc.toString().length() = 6, '00000' & ndc.toString(), iif(ndc.toString().length() = 5, '000000' & ndc.toString(), ndc.toString()))))))), {})"
     },
     {
       "name": "ndcDetails",
@@ -60,11 +60,6 @@
   ],
   "mapping": [
     {
-      "precondition": {
-        "name": "ndcCodeExists",
-        "language": "text/fhirpath",
-        "expression": "%ndcCode.exists()"
-      },
       "expression": {
         "name": "prescriptions-mapping",
         "language": "application/fhir-template+json",
@@ -106,43 +101,46 @@
           ],
           "medication": {
             "concept": {
-              "coding": [
-                {
-                  "{{#ndcVar}}": "{{%ndcCode}}",
-                  "{{?}}": {
-                    "system": "http://hl7.org/fhir/sid/ndc",
-                    "code": "{{%ndcVar}}",
-                    "display": "{{drug}}"
+              "{{#ndcForConcept}}": "{{%ndcCode}}",
+              "{{?}}": {
+                "coding": [
+                  {
+                    "{{#ndcVar}}": "{{%ndcCode}}",
+                    "{{?}}": {
+                      "system": "http://hl7.org/fhir/sid/ndc",
+                      "code": "{{%ndcVar}}",
+                      "display": "{{drug}}"
+                    }
+                  },
+                  {
+                    "{{#rxn}}": "{{%ndcDetails.where(activeIngredientRxcui.exists() and activeIngredientRxcui != '')}}",
+                    "{{?}}": {
+                      "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                      "code": "{{%rxn.activeIngredientRxcui}}",
+                      "display": "{{? %rxn.activeIngredientName}}"
+                    }
+                  },
+                  {
+                    "{{#atc}}": "{{%atcCodings}}",
+                    "{{*}}": {
+                      "system": "http://www.whocc.no/atc",
+                      "code": "{{%atc.code}}",
+                      "display": "{{? %atc.display}}",
+                      "@sliceName": "atcCode"
+                    }
+                  },
+                  {
+                    "{{#grp}}": "{{%atcGroups}}",
+                    "{{*}}": {
+                      "system": "https://datatools4heart.eu/fhir/CodeSystem/medication-group",
+                      "code": "{{%grp}}",
+                      "display": "{{mpp:getConcept(%atcGroupMap, %grp, 'target_display')}}",
+                      "@sliceName": "atcCodeGroup"
+                    }
                   }
-                },
-                {
-                  "{{#rxn}}": "{{%ndcDetails.where(activeIngredientRxcui.exists() and activeIngredientRxcui != '')}}",
-                  "{{?}}": {
-                    "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                    "code": "{{%rxn.activeIngredientRxcui}}",
-                    "display": "{{? %rxn.activeIngredientName}}"
-                  }
-                },
-                {
-                  "{{#atc}}": "{{%atcCodings}}",
-                  "{{*}}": {
-                    "system": "http://www.whocc.no/atc",
-                    "code": "{{%atc.code}}",
-                    "display": "{{? %atc.display}}",
-                    "@sliceName": "atcCode"
-                  }
-                },
-                {
-                  "{{#grp}}": "{{%atcGroups}}",
-                  "{{*}}": {
-                    "system": "https://datatools4heart.eu/fhir/CodeSystem/medication-group",
-                    "code": "{{%grp}}",
-                    "display": "{{mpp:getConcept(%atcGroupMap, %grp, 'target_display')}}",
-                    "@sliceName": "atcCodeGroup"
-                  }
-                }
-              ],
-              "text": "{{drug}}"
+                ],
+                "text": "{{drug}}"
+              }
             },
             "reference": {
               "reference": "{{mpp:createFhirReferenceWithHashedId('Medication', drug & gsn.toString() & ndc.toString() & formulary_drug_cd).reference}}",

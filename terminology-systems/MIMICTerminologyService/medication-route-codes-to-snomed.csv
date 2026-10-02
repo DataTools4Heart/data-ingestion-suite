@@ -84,3 +84,9 @@ https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,INTRATRACHEAL,http:
 https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,INTRAPERICARDIAL,http://snomed.info/sct,372461009,Intrapericardial route
 https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,SCPUMP,http://snomed.info/sct,34206005,Subcutaneous route
 https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,SCPCA,http://snomed.info/sct,34206005,Subcutaneous route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,po,http://snomed.info/sct,26643006,Oral route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,Po,http://snomed.info/sct,26643006,Oral route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,P.O.,http://snomed.info/sct,26643006,Oral route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,ng,http://snomed.info/sct,127492001,Nasogastric route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,NGT,http://snomed.info/sct,127492001,Nasogastric route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,OGT,http://snomed.info/sct,418441008,Orogastric route
