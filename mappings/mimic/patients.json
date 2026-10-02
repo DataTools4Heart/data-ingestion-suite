@@ -2,7 +2,7 @@
   "id" : "patients",
   "url" : "https://mimic.mit.edu/fhir/mappings/patients",
   "name" : "patients",
-  "title" : "Mapping of entries in 'patients' table in MIMIC-IV v3.1 dataset into FHIR Patient resources",
+  "title" : "Mapping of entries in 'patients' table in MIMIC-IV v3.1 dataset into FHIR Patient resources. Marital status, race (HFR-Ethnicity extension) and language are taken from the patient's most recent admission.",
   "isDraft" : false,
   "source" : [ {
     "alias" : "patients",
@@ -13,7 +13,16 @@
     "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-admissions",
     "joinOn" : [ "subject_id" ]
   } ],
-  "context" : { },
+  "context" : {
+    "raceToEthnicityMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/mimic/race-to-ethnicity-concept-map.csv"
+    },
+    "languageMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/mimic/language-to-bcp47-concept-map.csv"
+    }
+  },
   "variable" : [ {
     "name" : "lastAdmission",
     "language" : "text/fhirpath",
@@ -24,6 +33,12 @@
       "name" : "patients-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
+        "resourceType" : "Patient",
+        "id" : "{{mpp:getHashedId('Patient', subject_id.toString())}}",
+        "meta" : {
+          "source" : "{{%sourceSystem.sourceUri}}",
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
+        },
         "identifier" : [ {
           "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}/fhir/subject_ids",
@@ -34,15 +49,40 @@
         "birthDate" : "{{(anchor_year - anchor_age)}}",
         "deceasedDateTime" : "{{? dod}}",
         "maritalStatus" : {
-          "coding" : [ "{{? trms:translateToCoding(%lastAdmission.marital_status, 'https://mimic.mit.edu/fhir/CodeSystem/marital-status','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/marital-status-to-hl7')}}" ],
-          "text" : "{{? %lastAdmission.marital_status}}"
+          "{{#ms}}" : "{{%lastAdmission.marital_status}}",
+          "{{?}}" : {
+            "coding" : [ "{{? trms:translateToCoding(%ms, 'https://mimic.mit.edu/fhir/CodeSystem/marital-status','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/marital-status-to-hl7')}}" ],
+            "text" : "{{%ms}}"
+          }
         },
-        "id" : "{{mpp:getHashedId('Patient', subject_id.toString())}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}",
-          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Patient" ]
-        },
-        "resourceType" : "Patient"
+        "communication" : [ {
+          "{{#lng}}" : "{{iif(%lastAdmission.language.exists(), mpp:getConcept(%languageMap, %lastAdmission.language).first(), {})}}",
+          "{{?}}" : {
+            "language" : {
+              "coding" : [ {
+                "system" : "urn:ietf:bcp:47",
+                "code" : "{{%lng.target_code}}",
+                "display" : "{{%lng.target_display}}"
+              } ],
+              "text" : "{{%lastAdmission.language}}"
+            },
+            "preferred" : true
+          }
+        } ],
+        "extension" : [ {
+          "{{#eth}}" : "{{iif(%lastAdmission.race.exists(), mpp:getConcept(%raceToEthnicityMap, %lastAdmission.race).first(), {})}}",
+          "{{?}}" : {
+            "url" : "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Ethnicity",
+            "valueCodeableConcept" : {
+              "coding" : [ {
+                "system" : "http://snomed.info/sct",
+                "code" : "{{%eth.target_code}}",
+                "display" : "{{%eth.target_display}}"
+              } ],
+              "text" : "{{%lastAdmission.race}}"
+            }
+          }
+        } ]
       }
     }
   } ]

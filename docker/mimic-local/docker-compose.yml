@@ -1,0 +1,198 @@
+# Single-machine stack for re-executing the MIMIC-IV v3.1 -> DT4H CDM mappings with full Ignifyr observability
+# (execution results + terminology/concept/unit coverage in Elasticsearch/Kibana).
+#
+# Run from a <workspaceDir> that contains the two git checkouts `./data-ingestion-suite` and `./common-data-model`
+# (same layout as docker/server/run.sh). The MIMIC CSV folder (containing `hosp/`) is passed with MIMIC_DATA_DIR.
+# Keep that folder on the WSL2 ext4 file system (e.g. /home/<user>/mimic-iv-3.1), NOT under /mnt/c, otherwise Spark
+# reads the 18 GB labevents.csv through the slow Windows 9p bridge.
+#
+#   export MIMIC_DATA_DIR=/home/<user>/mimic-iv-3.1
+#   docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml --project-directory . -p mimic-local up -d --wait
+#
+# Resource limits are sized for a 16-thread / 128 GB laptop whose .wslconfig gives the WSL2 VM 10 processors and 80 GB:
+# the stack uses at most ~72 GB and 8 cores for Spark so that the Windows side keeps 6 threads and ~48 GB.
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: mimic-mongo
+    restart: unless-stopped
+    command: ["mongod", "--wiredTigerCacheSizeGB", "2"]
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks: [mimic-local-network]
+    volumes:
+      - mimic_mongo_data:/data/db
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+
+  onfhir:
+    # Serves the DT4H CDM profiles/value sets to Ignifyr (fhir.definitions-fhir-endpoint). It is NOT the sink:
+    # the MIMIC job writes gzip NDJSON files (or skips writing) so no FHIR repository load is involved.
+    image: srdc/onfhir:r5
+    container_name: mimic-onfhir
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:8080/fhir/metadata || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    environment:
+      - APP_CONF_FILE=/usr/local/onfhir/conf/docker/onfhir-docker.conf
+      - FHIR_ROOT_URL=http://onfhir:8080/fhir
+      - DB_EMBEDDED=false
+      - DB_HOST=mongo:27017
+      - JAVA_OPTIONS=-Xms512m -Xmx3g
+    ports:
+      - "6080:8080"
+    networks: [mimic-local-network]
+    volumes:
+      - ./common-data-model:/usr/local/onfhir/conf
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+
+  ignifyr-server:
+    # Build from ignifyr-enterprise: `bash docker/server/build.sh` (needs ignifyr-server/target/ignifyr-server-standalone.jar
+    # built with the observability module, i.e. commit a225aa7 or later).
+    image: srdc/ignifyr-server:latest
+    container_name: mimic-ignifyr-server
+    restart: unless-stopped
+    hostname: ignifyr-server
+    environment:
+      - APP_CONF_FILE=/usr/local/ignifyr/conf/docker/mimic-local/ignifyr-server.conf
+      - LOGBACK_CONF_FILE=/usr/local/ignifyr/conf/docker/mimic-local/logback.xml
+      - FHIR_DEFINITIONS_ENDPOINT=http://onfhir:8080/fhir
+      - FHIR_REPO_URL=http://onfhir:8080/fhir
+      - DATA_FOLDER_PATH=/usr/local/ignifyr/data/mimic-iv-3.1
+      - FLUENT_HOST=fluentd
+      - CONTEXT_PATH=conf
+      # Spark runs in local mode inside this JVM, so -Xmx is the Spark memory budget.
+      - JAVA_OPTIONS=-Xms8g -Xmx48g -XX:+UseG1GC -XX:MaxGCPauseMillis=400 -XX:+ExitOnOutOfMemoryError -Djava.io.tmpdir=/tmp/spark
+    ports:
+      - "6085:8085"
+      - "4040:4040"   # Spark UI of the running application
+    networks: [mimic-local-network]
+    volumes:
+      - ./data-ingestion-suite:/usr/local/ignifyr/conf
+      - ./ignifyr-docker-logs:/usr/local/ignifyr/logs
+      - ${MIMIC_DATA_DIR}:/usr/local/ignifyr/data/mimic-iv-3.1
+      - mimic_spark_tmp:/tmp/spark
+    healthcheck:
+      test: curl --fail --request OPTIONS http://localhost:8085/ignifyr || exit 1
+      interval: 20s
+      timeout: 10s
+      retries: 15
+    depends_on:
+      onfhir:
+        condition: service_healthy
+      fluentd:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: "8.0"
+          memory: 56G
+
+  ignifyr-web:
+    image: docker.srdc.com.tr/srdc/ignifyr-web:dt4h
+    container_name: mimic-ignifyr-web
+    restart: unless-stopped
+    networks: [mimic-local-network]
+    depends_on:
+      ignifyr-server:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+
+  nginx:
+    image: nginx:1.25.4
+    container_name: mimic-nginx
+    restart: unless-stopped
+    volumes:
+      - ./data-ingestion-suite/docker/mimic-local/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "6000:80"
+    networks: [mimic-local-network]
+    depends_on:
+      - ignifyr-web
+      - kibana
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.19
+    container_name: mimic-elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"   # used by extract_metrics.py
+    networks: [mimic-local-network]
+    volumes:
+      - mimic_elasticsearch_data:/usr/share/elasticsearch/data
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+
+  fluentd:
+    # Build from ignifyr-enterprise: `bash docker/fluentd/build.sh`
+    image: docker.srdc.com.tr/srdc/ignifyr-fluentd:latest
+    container_name: mimic-fluentd
+    restart: unless-stopped
+    environment:
+      - FORWARD_PORT=24224
+      - HOST=elasticsearch
+      - PORT=9200
+    networks: [mimic-local-network]
+    depends_on:
+      - elasticsearch
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+
+  kibana:
+    # Build from ignifyr-enterprise: `bash docker/kibana/build.sh` (imports the Executions / Execution Details /
+    # Mapping Coverage dashboards and the index templates on start-up).
+    image: docker.srdc.com.tr/srdc/ignifyr-kibana:latest
+    container_name: mimic-kibana
+    restart: unless-stopped
+    environment:
+      - SERVER_BASEPATH=/dt4h/ignifyr/kibana
+      - SERVER_REWRITEBASEPATH=false
+    ports:
+      - "6601:5601"
+    networks: [mimic-local-network]
+    depends_on:
+      - elasticsearch
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 2G
+
+networks:
+  mimic-local-network:
+    name: mimic-local-network
+
+volumes:
+  mimic_mongo_data:
+  mimic_elasticsearch_data:
+  mimic_spark_tmp:

@@ -1,0 +1,7 @@
+source_code,source_unit,target_unit,conversion_function
+Weight (Lbs),[lb_av],kg,$this * 0.45359237
+Weight,[lb_av],kg,$this * 0.45359237
+Height (Inches),[in_i],cm,$this * 2.54
+Height,[in_i],cm,$this * 2.54
+BMI (kg/m2),kg/m2,kg/m2,$this
+BMI,kg/m2,kg/m2,$this

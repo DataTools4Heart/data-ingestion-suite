@@ -1,7 +1,7 @@
 {
   "id" : "mimic-hosp-csv-to-fhir-server",
   "name" : "mimic-hosp-csv-to-fhir-server",
-  "description" : "",
+  "description" : "Executes the MIMIC-IV v3.1 hosp mappings on the full CSV dataset and writes gzip-compressed NDJSON per resource type. Large sources are processed in subject_id batches (batchingStrategy) so that the whole table is never cached at once.",
   "sourceSettings" : {
     "MIMIC-IV v3.1" : {
       "jsonClass" : "FileSystemSourceSettings",
@@ -13,11 +13,13 @@
   },
   "sinkSettings" : {
     "jsonClass" : "FileSystemSinkSettings",
-    "path" : "/usr/local/tofhir/data/mimic-iv-3.1/output",
+    "path" : "/usr/local/ignifyr/data/mimic-iv-3.1/output",
     "contentType" : "ndjson",
-    "numOfPartitions" : 1,
-    "options" : { },
-    "partitionByResourceType" : false,
+    "numOfPartitions" : 4,
+    "options" : {
+      "compression" : "gzip"
+    },
+    "partitionByResourceType" : true,
     "partitioningColumns" : { }
   },
   "terminologyServiceSettings" : {
@@ -216,13 +218,6 @@
         "options" : { },
         "sourceRef" : "MIMIC-IV v3.1"
       },
-      "procedures" : {
-        "jsonClass" : "FileSystemSource",
-        "path" : "hosp/procedures_icd.csv",
-        "contentType" : "csv",
-        "options" : { },
-        "sourceRef" : "MIMIC-IV v3.1"
-      },
       "transfers" : {
         "jsonClass" : "FileSystemSource",
         "path" : "hosp/transfers.csv",
@@ -292,8 +287,42 @@
         "path" : "hosp/labevents.csv",
         "contentType" : "csv",
         "options" : { },
+        "preprocessSql" : "SELECT * FROM source WHERE subject_id >= $sid_start AND subject_id < $sid_end",
         "sourceRef" : "MIMIC-IV v3.1"
       }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "sid_start" : "10000000",
+        "sid_end" : "11000000"
+      }, {
+        "sid_start" : "11000000",
+        "sid_end" : "12000000"
+      }, {
+        "sid_start" : "12000000",
+        "sid_end" : "13000000"
+      }, {
+        "sid_start" : "13000000",
+        "sid_end" : "14000000"
+      }, {
+        "sid_start" : "14000000",
+        "sid_end" : "15000000"
+      }, {
+        "sid_start" : "15000000",
+        "sid_end" : "16000000"
+      }, {
+        "sid_start" : "16000000",
+        "sid_end" : "17000000"
+      }, {
+        "sid_start" : "17000000",
+        "sid_end" : "18000000"
+      }, {
+        "sid_start" : "18000000",
+        "sid_end" : "19000000"
+      }, {
+        "sid_start" : "19000000",
+        "sid_end" : "20000000"
+      } ]
     }
   }, {
     "name" : "medications-mapping",
@@ -317,8 +346,24 @@
         "path" : "hosp/prescriptions.csv",
         "contentType" : "csv",
         "options" : { },
+        "preprocessSql" : "SELECT * FROM source WHERE subject_id >= $sid_start AND subject_id < $sid_end",
         "sourceRef" : "MIMIC-IV v3.1"
       }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "sid_start" : "10000000",
+        "sid_end" : "12500000"
+      }, {
+        "sid_start" : "12500000",
+        "sid_end" : "15000000"
+      }, {
+        "sid_start" : "15000000",
+        "sid_end" : "17500000"
+      }, {
+        "sid_start" : "17500000",
+        "sid_end" : "20000000"
+      } ]
     }
   }, {
     "name" : "poe-mapping",
@@ -329,8 +374,24 @@
         "path" : "hosp/poe.csv",
         "contentType" : "csv",
         "options" : { },
+        "preprocessSql" : "SELECT * FROM source WHERE subject_id >= $sid_start AND subject_id < $sid_end",
         "sourceRef" : "MIMIC-IV v3.1"
       }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "sid_start" : "10000000",
+        "sid_end" : "12500000"
+      }, {
+        "sid_start" : "12500000",
+        "sid_end" : "15000000"
+      }, {
+        "sid_start" : "15000000",
+        "sid_end" : "17500000"
+      }, {
+        "sid_start" : "17500000",
+        "sid_end" : "20000000"
+      } ]
     }
   }, {
     "name" : "omr-mapping",
@@ -353,7 +414,7 @@
         "path" : "hosp/microbiologyevents.csv",
         "contentType" : "csv",
         "options" : { },
-        "preprocessSql" : "select subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc, count(*) as count, \narray_agg(microevent_id) as microevent_id, array_agg(chartdate) as chartdate, array_agg(charttime) as charttime, \narray_agg(test_seq) as test_seq, array_agg(storedate) as storedate, array_agg(storetime) as storetime,\narray_agg(test_itemid) as test_itemid, array_agg(test_name) as test_name,\narray_agg(org_itemid) as org_itemid, array_agg(org_name) as org_name,\narray_agg(isolate_num) as isolate_num, array_agg(quantity) as quantity, \narray_agg(ab_itemid) as ab_itemid, array_agg(ab_name) as ab_name,\narray_agg(dilution_text) as dilution_text, array_agg(dilution_comparison) as dilution_comparison, array_agg(dilution_value) as dilution_value,\narray_agg(interpretation) as interpretation, array_agg(comments) as comments\nfrom microbiologyevents group by subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc",
+        "preprocessSql" : "select subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc,\nmin(microevent_id) as microevent_id, min(chartdate) as chartdate, min(test_seq) as test_seq,\narray_sort(array_agg(struct(microevent_id, chartdate, charttime, test_seq, storedate, storetime,\ntest_itemid, test_name, org_itemid, org_name, isolate_num, quantity, ab_itemid, ab_name,\ndilution_text, dilution_comparison, dilution_value, interpretation, comments))) as events\nfrom microbiologyevents group by subject_id, hadm_id, micro_specimen_id, spec_itemid, spec_type_desc",
         "sourceRef" : "MIMIC-IV v3.1"
       }
     }
@@ -366,6 +427,7 @@
         "path" : "hosp/emar.csv",
         "contentType" : "csv",
         "options" : { },
+        "preprocessSql" : "SELECT * FROM emar WHERE subject_id >= $sid_start AND subject_id < $sid_end",
         "sourceRef" : "MIMIC-IV v3.1"
       },
       "emarDetail" : {
@@ -373,6 +435,7 @@
         "path" : "hosp/emar_detail.csv",
         "contentType" : "csv",
         "options" : { },
+        "preprocessSql" : "SELECT * FROM emarDetail WHERE subject_id >= $sid_start AND subject_id < $sid_end",
         "sourceRef" : "MIMIC-IV v3.1"
       },
       "prescription" : {
@@ -380,8 +443,42 @@
         "path" : "hosp/prescriptions.csv",
         "contentType" : "csv",
         "options" : { },
+        "preprocessSql" : "SELECT * FROM prescription WHERE subject_id >= $sid_start AND subject_id < $sid_end",
         "sourceRef" : "MIMIC-IV v3.1"
       }
+    },
+    "batchingStrategy" : {
+      "batchParameterSets" : [ {
+        "sid_start" : "10000000",
+        "sid_end" : "11000000"
+      }, {
+        "sid_start" : "11000000",
+        "sid_end" : "12000000"
+      }, {
+        "sid_start" : "12000000",
+        "sid_end" : "13000000"
+      }, {
+        "sid_start" : "13000000",
+        "sid_end" : "14000000"
+      }, {
+        "sid_start" : "14000000",
+        "sid_end" : "15000000"
+      }, {
+        "sid_start" : "15000000",
+        "sid_end" : "16000000"
+      }, {
+        "sid_start" : "16000000",
+        "sid_end" : "17000000"
+      }, {
+        "sid_start" : "17000000",
+        "sid_end" : "18000000"
+      }, {
+        "sid_start" : "18000000",
+        "sid_end" : "19000000"
+      }, {
+        "sid_start" : "19000000",
+        "sid_end" : "20000000"
+      } ]
     }
   } ],
   "dataProcessingSettings" : {

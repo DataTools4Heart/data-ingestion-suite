@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Logback configuration for the local MIMIC-IV re-execution: identical to the ignifyr-server default except that
+     (1) the MAPPING_COVERAGE events are also written to the audit file (logs/ignifyr-mappings.log) as a backup of
+     Elasticsearch, and (2) the audit file rolls over 100 MB x 50 instead of 10 MB x 10 so that the ~1.5 M coverage
+     events of the labevents mapping are not lost. -->
+<configuration>
+
+    <property name="FLUENT_HOST" value="${efk.fluent-host:-localhost}"/>
+    <property name="LOG_FOLDER" value="logs"/>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FOLDER}/ignifyr-server.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>${LOG_FOLDER}/ignifyr-server.%i.log.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>20</MaxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>50MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE" />
+    </appender>
+
+    <!-- Structured (Logstash JSON) audit file: MAPPING_JOB_RESULT, MAPPING_RESULT (errors) and MAPPING_COVERAGE events -->
+    <appender name="FILE-AUDIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FOLDER}/ignifyr-mappings.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeMdc>false</includeMdc>
+            <fieldNames>
+                <thread>[ignore]</thread>
+                <version>[ignore]</version>
+                <loggerName>[ignore]</loggerName>
+                <levelValue>[ignore]</levelValue>
+            </fieldNames>
+        </encoder>
+        <encoder class="io.ignifyr.observability.logback.MapMarkerToLogstashMarkerEncoder" />
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>${LOG_FOLDER}/ignifyr-mappings.%i.log.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>50</MaxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="FLUENT" class="ch.qos.logback.more.appenders.DataFluentAppender">
+        <remoteHost>${FLUENT_HOST}</remoteHost>
+        <port>24224</port>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <flattenMapMarker>true</flattenMapMarker>
+    </appender>
+
+    <appender name="ASYNC-AUDIT" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE-AUDIT" />
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>16384</queueSize>
+    </appender>
+
+    <appender name="ASYNC-AUDIT-FLUENT" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FLUENT" />
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>16384</queueSize>
+    </appender>
+
+    <root level="ERROR">
+        <appender-ref ref="ASYNC" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <logger name="io.ignifyr.engine.data.write.SinkHandler">
+        <appender-ref ref="ASYNC-AUDIT" />
+        <appender-ref ref="ASYNC-AUDIT-FLUENT" />
+    </logger>
+
+    <logger name="io.ignifyr.engine.mapping.job.FhirMappingJobManager">
+        <appender-ref ref="ASYNC-AUDIT" />
+        <appender-ref ref="ASYNC-AUDIT-FLUENT" />
+    </logger>
+
+    <logger name="io.ignifyr.engine.execution.log.ExecutionLogger">
+        <appender-ref ref="ASYNC-AUDIT" />
+        <appender-ref ref="ASYNC-AUDIT-FLUENT" />
+    </logger>
+
+    <!-- Coverage events go to Fluentd (Kibana "Mapping Coverage" dashboard) AND to the audit file -->
+    <logger name="io.ignifyr.observability.coverage.MappingCoverageLogger" additivity="false">
+        <appender-ref ref="ASYNC-AUDIT-FLUENT" />
+        <appender-ref ref="ASYNC-AUDIT" />
+    </logger>
+
+    <logger name="io.ignifyr" level="INFO" />
+    <logger name="org.apache.spark" level="WARN" />
+
+</configuration>

@@ -1,106 +1,132 @@
 {
-  "id" : "medications-without-rxn",
-  "url" : "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
-  "name" : "medications-without-rxn",
-  "title" : "Mapping of mentioned medications in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR Medication resources",
-  "isDraft" : false,
-  "source" : [ {
-    "alias" : "prescribed_meds",
-    "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-medications",
-    "joinOn" : [ ]
-  } ],
-  "context" : {
-    "ndcToMedDetails" : {
-      "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
+  "id": "medications-without-rxn",
+  "url": "https://mimic.mit.edu/fhir/mappings/medications-without-rxn",
+  "name": "medications-without-rxn",
+  "title": "Mapping of distinct medications (also those without an NDC code) in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR Medication resources (NDC -> RxNorm ingredient/dose form details resolved offline through the ndcToMedDetails concept map, RxNorm ingredient -> ATC through the rx-norm-to-atc ConceptMap)",
+  "isDraft": false,
+  "source": [
+    {
+      "alias": "prescribed_meds",
+      "url": "https://mimic.mit.edu/fhir/StructureDefinition/Ext-medications",
+      "joinOn": []
+    }
+  ],
+  "context": {
+    "ndcToMedDetails": {
+      "category": "concept-map",
+      "url": "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
     }
   },
-  "variable" : [ ],
-  "mapping" : [ {
-    "expression" : {
-      "name" : "medications-without-rxn-mapping",
-      "language" : "application/fhir-template+json",
-      "value" : {
-        "identifier" : [ {
-          "{{#gsn}}" : "{{gsn}}",
-          "{{?}}" : {
-            "use" : "official",
-            "system" : "http://www.fdbhealth.com/gsn",
-            "value" : "{{%gsn.toString()}}"
-          }
-        } ],
-        "code" : {
-          "coding" : [ {
-            "{{#ndc}}" : "{{ndc.toString()}}",
-            "{{?}}" : {
-              "system" : "http://hl7.org/fhir/sid/ndc",
-              "code" : "{{%ndc}}",
-              "display" : "{{drug}}"
-            }
-          }, {
-            "{{#fdc}}" : "{{formulary_drug_cd}}",
-            "{{?}}" : {
-              "system" : "http://fhir.mimic.mit.edu/CodeSystem/mimic-medication-formulary-drug-cd",
-              "code" : "{{%fdc}}"
-            }
-          } ],
-          "text" : "{{drug}}"
-        },
-        "doseForm" : {
-          "coding" : {
-            "{{#rxInfo}}" : "{{mpp:getConcept(%ndcToMedDetails, ndc.toString()}}",
-            "{{*}}" : {
-              "system" : "http://www.nlm.nih.gov/research/umls/rxnorm",
-              "code" : "{{%rxInfo.doseFormRxcui}}",
-              "display" : "{{%rxInfo.doseFormName}}"
-            }
-          },
-          "text" : "{{? prod_strength}}"
-        },
-        "ingredient" : [ {
-          "item" : {
-            "concept": {
-              "coding" : {
-                "{{#rxCode}}" : "{{mpp:getConcept(%ndcToMedDetails, ndc.toString())}}",
-                "{{?}}" : [ {
-                  "system" : "http://www.nlm.nih.gov/research/umls/rxnorm",
-                  "code" : "{{%rxCode.activeIngredientRxcui}}",
-                  "display" : "{{%rxCode.activeIngredientName}}"
-                }, "{{* trms:translateToCoding(%rxCode.activeIngredientRxcui, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc')}}" ]
-              },
-              "text" : "{{? mpp:getConcept(%ndcToMedDetails, ndc.toString(), 'activeIngredientName')}}"
-            }
-          },
-          "strengthRatio" : {
-            "numerator" : {
-              "{{#nmrUnit}}" : "{{trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, ndc.toString(), 'numeratorUnit'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-units-to-ucum-or-drugform')}}",
-              "{{?}}" : {
-                "value" : "{{mpp:getConcept(%ndcToMedDetails, ndc.toString(), 'numeratorValue').toDecimal()}}",
-                "system" : "{{%nmrUnit.system}}",
-                "code" : "{{%nmrUnit.code}}"
-              }
-            },
-            "denominator" : {
-              "{{#dnmrUnit}}" : "{{trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, ndc.toString(), 'denominatorUnit'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-units-to-ucum-or-drugform')}}",
-              "{{?}}" : {
-                "value" : "{{mpp:getConcept(%ndcToMedDetails, ndc.toString(), 'denominatorValue').toDecimal()}}",
-                "system" : "{{%dnmrUnit.system}}",
-                "code" : "{{%dnmrUnit.code}}"
-              }
-            }
-          }
-        } ],
-        "id" : "{{mpp:getHashedId('Medication', drug & gsn.toString() & ndc.toString() & formulary_drug_cd)}}",
-        "meta" : {
-          "source" : "{{%sourceSystem.sourceUri}}"
-        },
-        "resourceType" : "Medication"
-      }
+  "variable": [
+    {
+      "name": "ndcCode",
+      "language": "text/fhirpath",
+      "expression": "iif(ndc.exists() and ndc.toString().trim() != '' and ndc.toString() != '0' and ndc.toString() != '00000000000', iif(ndc.toString().length() = 11, ndc.toString(), iif(ndc.toString().length() = 10, '0' & ndc.toString(), iif(ndc.toString().length() = 9, '00' & ndc.toString(), iif(ndc.toString().length() = 8, '000' & ndc.toString(), iif(ndc.toString().length() = 7, '0000' & ndc.toString(), iif(ndc.toString().length() = 6, '00000' & ndc.toString(), iif(ndc.toString().length() = 5, '000000' & ndc.toString(), ndc.toString()))))))), {})"
     },
-    "precondition" : {
-      "name" : "ndcCodeExists",
-      "language" : "text/fhirpath",
-      "expression" : "ndc.exists() and ndc != 0"
+    {
+      "name": "ndcDetails",
+      "language": "text/fhirpath",
+      "expression": "iif(%ndcCode.exists(), mpp:getConcept(%ndcToMedDetails, %ndcCode).first(), {})"
     }
-  } ]
+  ],
+  "mapping": [
+    {
+      "precondition": {
+        "name": "drugExists",
+        "language": "text/fhirpath",
+        "expression": "drug.exists() and drug.trim() != ''"
+      },
+      "expression": {
+        "name": "medications-without-rxn-mapping",
+        "language": "application/fhir-template+json",
+        "value": {
+          "resourceType": "Medication",
+          "id": "{{mpp:getHashedId('Medication', drug & gsn.toString() & ndc.toString() & formulary_drug_cd)}}",
+          "meta": {
+            "source": "{{%sourceSystem.sourceUri}}"
+          },
+          "identifier": [
+            {
+              "{{#gsn}}": "{{gsn}}",
+              "{{?}}": {
+                "use": "official",
+                "system": "http://www.fdbhealth.com/gsn",
+                "value": "{{%gsn.toString()}}"
+              }
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "{{#ndcVar}}": "{{%ndcCode}}",
+                "{{?}}": {
+                  "system": "http://hl7.org/fhir/sid/ndc",
+                  "code": "{{%ndcVar}}",
+                  "display": "{{drug}}"
+                }
+              },
+              {
+                "{{#fdc}}": "{{formulary_drug_cd}}",
+                "{{?}}": {
+                  "system": "http://fhir.mimic.mit.edu/CodeSystem/mimic-medication-formulary-drug-cd",
+                  "code": "{{%fdc}}"
+                }
+              }
+            ],
+            "text": "{{drug}}"
+          },
+          "doseForm": {
+            "{{#rxInfo}}": "{{%ndcDetails.where(doseFormRxcui.exists() and doseFormRxcui != '')}}",
+            "{{?}}": {
+              "coding": [
+                {
+                  "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                  "code": "{{%rxInfo.doseFormRxcui}}",
+                  "display": "{{? %rxInfo.doseFormName}}"
+                }
+              ],
+              "text": "{{? prod_strength}}"
+            }
+          },
+          "ingredient": [
+            {
+              "{{#rxCode}}": "{{%ndcDetails.where(activeIngredientRxcui.exists() and activeIngredientRxcui != '')}}",
+              "{{?}}": {
+                "item": {
+                  "concept": {
+                    "coding": [
+                      {
+                        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                        "code": "{{%rxCode.activeIngredientRxcui}}",
+                        "display": "{{? %rxCode.activeIngredientName}}"
+                      },
+                      "{{* trms:translateToCoding(%rxCode.activeIngredientRxcui, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc')}}"
+                    ],
+                    "text": "{{? %rxCode.activeIngredientName}}"
+                  }
+                },
+                "strengthRatio": {
+                  "{{#strength}}": "{{iif(%rxCode.numeratorValue.exists() and %rxCode.numeratorValue != '' and %rxCode.denominatorValue.exists() and %rxCode.denominatorValue != '', true, {})}}",
+                  "{{?}}": {
+                    "numerator": {
+                      "value": "{{%rxCode.numeratorValue.toDecimal()}}",
+                      "unit": "{{%rxCode.numeratorUnit}}",
+                      "system": "{{? trms:translateToCoding(%rxCode.numeratorUnit, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-units-to-ucum-or-drugform').system}}",
+                      "code": "{{? trms:translateToCoding(%rxCode.numeratorUnit, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-units-to-ucum-or-drugform').code}}"
+                    },
+                    "denominator": {
+                      "value": "{{%rxCode.denominatorValue.toDecimal()}}",
+                      "unit": "{{%rxCode.denominatorUnit}}",
+                      "system": "{{? trms:translateToCoding(%rxCode.denominatorUnit, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-units-to-ucum-or-drugform').system}}",
+                      "code": "{{? trms:translateToCoding(%rxCode.denominatorUnit, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-units-to-ucum-or-drugform').code}}"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

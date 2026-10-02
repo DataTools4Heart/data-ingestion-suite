@@ -1,10 +1,10 @@
-source_code,target_class,target_class_display
-AMBULATORY OBSERVATION,AMB,Ambulatory
-DIRECT EMER.,EMER,Emergency
-DIRECT OBSERVATION,OBSENC,Observation encounter
-ELECTIVE,IMP,Inpatient encounter
-EU OBSERVATION,EMER,Emergency
-EW EMER.,EMER,Emergency
-OBSERVATION ADMIT,IMP,Inpatient encounter
-SURGICAL SAME DAY ADMISSION,SS,Short stay
-URGENT,EMER,Emergency
+source_code,target_system,target_class,target_class_display,target_priority,target_priority_display
+AMBULATORY OBSERVATION,http://terminology.hl7.org/CodeSystem/v3-ActCode,OBSENC,observation encounter,,
+DIRECT EMER.,http://terminology.hl7.org/CodeSystem/v3-ActCode,IMP,inpatient encounter,EM,emergency
+DIRECT OBSERVATION,http://terminology.hl7.org/CodeSystem/v3-ActCode,OBSENC,observation encounter,,
+ELECTIVE,http://terminology.hl7.org/CodeSystem/v3-ActCode,IMP,inpatient encounter,EL,elective
+EU OBSERVATION,http://terminology.hl7.org/CodeSystem/v3-ActCode,OBSENC,observation encounter,EM,emergency
+EW EMER.,http://terminology.hl7.org/CodeSystem/v3-ActCode,IMP,inpatient encounter,EM,emergency
+OBSERVATION ADMIT,http://terminology.hl7.org/CodeSystem/v3-ActCode,IMP,inpatient encounter,EM,emergency
+SURGICAL SAME DAY ADMISSION,http://terminology.hl7.org/CodeSystem/v3-ActCode,IMP,inpatient encounter,EL,elective
+URGENT,http://terminology.hl7.org/CodeSystem/v3-ActCode,IMP,inpatient encounter,UR,urgent

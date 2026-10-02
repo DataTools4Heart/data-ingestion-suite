@@ -1,0 +1,44 @@
+source_code,target_code,target_display
+C09,RASi,RASi (RAS-inhibitors)
+C09A,ACEI,ACEI (ACE-inhibitors)
+C09B,ACEI,ACEI (ACE-inhibitors)
+C09C,ARB,ARB (Angiotensin receptor blocker)
+C09DA,ARB,ARB (Angiotensin receptor blocker)
+C09DB,ARB,ARB (Angiotensin receptor blocker)
+C09DX04,ARNI,"ARNI (Angiotensin receptor/neprilysin inhibitor, sacubitril/valsartan)"
+C03DA,MRA,MRA (Mineralcorticoid Receptor Antagonis)
+C03,Diuretics,Diuretics
+C03C,LD,LD (Loop Diuretics)
+C08,CCB,CCB (Calcium Channel Blockers)
+C01D,VasoD,VasoD (Vasodilators used in cardiac diseases)
+B01AC,PI,PI (Platelet inhibitor)
+B01AA,OAC,OAC (Oral anticoagulants)
+B01AE07,OAC,OAC (Oral anticoagulants)
+B01AF,OAC,OAC (Oral anticoagulants)
+C10AA,Statins,Statins
+C10BA,Statins,Statins
+C10BX,Statins,Statins
+C01AA,Digoxin,Digoxin (Digitalis glycosides)
+C07,BB,BB (Betablockers)
+C01B,AAD,AAD (Class 1 and 3 antiarrhytmic drugs)
+C01EB17,Ivabradine,Ivabradine
+A10BK,SGLT2I,SGLT2I (SGLT-2 Inhibitor)
+A10,AntiDiabetics,Anti diabetics
+RASi,RASi,RASi (RAS-inhibitors)
+ACEI,ACEI,ACEI (ACE-inhibitors)
+ARB,ARB,ARB (Angiotensin receptor blocker)
+ARNI,ARNI,"ARNI (Angiotensin receptor/neprilysin inhibitor, sacubitril/valsartan)"
+MRA,MRA,MRA (Mineralcorticoid Receptor Antagonis)
+Diuretics,Diuretics,Diuretics
+LD,LD,LD (Loop Diuretics)
+CCB,CCB,CCB (Calcium Channel Blockers)
+VasoD,VasoD,VasoD (Vasodilators used in cardiac diseases)
+PI,PI,PI (Platelet inhibitor)
+OAC,OAC,OAC (Oral anticoagulants)
+Statins,Statins,Statins
+Digoxin,Digoxin,Digoxin (Digitalis glycosides)
+BB,BB,BB (Betablockers)
+AAD,AAD,AAD (Class 1 and 3 antiarrhytmic drugs)
+Ivabradine,Ivabradine,Ivabradine
+SGLT2I,SGLT2I,SGLT2I (SGLT-2 Inhibitor)
+AntiDiabetics,AntiDiabetics,Anti diabetics

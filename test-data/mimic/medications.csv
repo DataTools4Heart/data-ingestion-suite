@@ -1,2 +1,8 @@
 drug,formulary_drug_cd,gsn,ndc,prod_strength,form_unit_disp
-timolol,,,17478028810,,
+Metoprolol Tartrate,METO25,050631,51079025520,25mg Tablet,TAB
+Heparin,HEPA5I,006549,63323026201,5000 Units / mL- 1mL Vial,mL
+Sodium Chloride 0.9%  Flush,NACLFLUSH,,0,10 mL Syringe,SYR
+Atorvastatin,ATOR80,045772,00071015892,80mg Tablet,TAB
+Insulin,HUMU100I,027413 027414 ,00002751001,100 Units / mL - 10 mL Vial,VIAL
+Furosemide,FURO40I,008205,00409610204,40mg/4mL Vial,VIAL
+Acetaminophen,ACET325,004489,51079000220,325mg Tablet,TAB

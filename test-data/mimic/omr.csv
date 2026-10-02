@@ -1,2 +1,7 @@
 subject_id,chartdate,seq_num,result_name,result_value
-1,2021-04-07,1,Blood Pressure,45
+10000001,2163-04-02,1,Blood Pressure,128/76
+10000001,2163-04-02,1,Weight (Lbs),187.4
+10000001,2163-04-02,1,Height (Inches),69
+10000001,2163-04-02,1,BMI (kg/m2),27.7
+10000003,2131-07-02,1,Blood Pressure,110/70
+10000003,2131-07-02,1,eGFR,> 60
