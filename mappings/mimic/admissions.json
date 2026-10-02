@@ -104,10 +104,10 @@
         "length" : "{{utl:getDurationAsQuantityObject(admittime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00'), dischtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00'))}}",
         "admission" : {
           "admitSource" : {
-            "{{#admloc}}" : "{{admission_location}}",
+            "{{#hasAdmitSource}}" : "{{iif(edregtime.exists() or admission_location.exists(), true)}}",
             "{{?}}" : {
-              "coding" : "{{* trms:translateToCoding(%admloc, 'https://mimic.mit.edu/fhir/CodeSystem/admission-locations','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/admission-location-to-hl7')}}",
-              "text" : "{{%admloc}}"
+              "coding" : "{{* iif(edregtime.exists(), utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/admit-source', 'emd', 'From accident/emergency department'), trms:translateToCoding(admission_location, 'https://mimic.mit.edu/fhir/CodeSystem/admission-locations','https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/admission-location-to-hl7'))}}",
+              "text" : "{{? admission_location}}"
             }
           },
           "dischargeDisposition" : {

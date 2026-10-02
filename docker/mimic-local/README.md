@@ -44,10 +44,12 @@ Mapping/concept-map changes made together with this plan (see the git diff of `m
   became SNOMED 71388002 "Procedure".
 * **diagnoses-icd**: the `icd10Code` slice name is no longer attached to the ICD-9-CM coding; `recordedDate`,
   identifier and `seq_num` extension added.
-* **admissions**: encounter class uses the CDM value set (`EMAMB` for ED admissions, `OBSENC` for observation
-  stays, `IMP` otherwise) plus `priority`; services go to `serviceType` (SNOMED, as the CDM fixes) and `type`;
-  the principal (seq_num 1) diagnosis is the `admittingDiagnosis` reason slice; procedures are no longer
-  listed as encounter reasons (that join is removed).
+* **admissions**:
+  * Encounter class: `OBSENC` for observation stays, `IMP` otherwise (now also `OBSERVATION ADMIT`), plus `priority`.
+  * `admitSource`: if `edregtime` exists, it is `emd`; otherwise `admission_location` is converted with
+    `admission-location-to-hl7.csv` (`CLINIC REFERRAL` and `AMBULATORY SURGERY TRANSFER` are now `outp`).
+  * Services go to `serviceType` (SNOMED) and `type`.
+  * The principal (seq_num 1) diagnosis is the admitting diagnosis; procedures are no longer encounter reasons.
 * **patients**: HFR-Ethnicity extension (race → CDM SNOMED value set) and `communication.language` (BCP-47).
 * **poe / microbiologyevents / careunits / omr**: SNOMED fixes and additions in `order-types` / `order-subtypes`,
   wrong `ad` comparator removed, organism / antibiotic components restructured, missing care units added,
