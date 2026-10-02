@@ -120,7 +120,7 @@ mkdir -p ~/ignifyr-mimic && cd ~/ignifyr-mimic
 git clone /mnt/c/development/dt4h/data-ingestion-suite     # the checkout with the changes above (commit them first)
 git clone /mnt/c/development/dt4h/common-data-model
 chmod +x data-ingestion-suite/docker/mimic-local/run-job.sh
-mkdir -p ignifyr-docker-logs
+mkdir -p ignifyr-docker-logs/spark-events     # Spark refuses to start when the event-log directory does not exist
 ```
 
 (`projects.json` in the suite root already contains project `mimic` with the two MIMIC jobs.)
