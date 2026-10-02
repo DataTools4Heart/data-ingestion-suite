@@ -103,7 +103,7 @@ Rebuild, then build the three enterprise images (from the `ignifyr-enterprise` r
 ```bash
 mvn -B -DskipTests install
 unzip -l ignifyr-server/target/ignifyr-server-standalone.jar | grep ObservabilityExtension   # must list the class
-bash docker/server/build.sh      # -> srdc/ignifyr-server:latest
+bash docker/server/build.sh      # -> docker.srdc.com.tr/srdc/ignifyr-server:latest
 bash docker/fluentd/build.sh     # -> docker.srdc.com.tr/srdc/ignifyr-fluentd:latest
 bash docker/kibana/build.sh      # -> docker.srdc.com.tr/srdc/ignifyr-kibana:latest (imports the Mapping Coverage dashboard)
 docker pull docker.srdc.com.tr/srdc/ignifyr-web:dt4h   # or build: docker build -f docker/Dockerfile --build-arg BUILD_ENV=dt4h --build-arg BASE_HREF=/dt4h/ignifyr/ -t docker.srdc.com.tr/srdc/ignifyr-web:dt4h . (in ignifyr-web)
