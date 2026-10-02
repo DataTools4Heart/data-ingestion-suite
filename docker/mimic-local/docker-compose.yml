@@ -125,7 +125,7 @@ services:
     volumes:
       - ./data-ingestion-suite/docker/mimic-local/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - "6000:80"
+      - "6090:80"
     networks: [mimic-local-network]
     depends_on:
       - ignifyr-web

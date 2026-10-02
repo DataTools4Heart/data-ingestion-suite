@@ -12,7 +12,7 @@ Target machine used for the sizing below: Intel i7-11800H (8 cores / 16 threads)
 | `docker-compose.yml` | onFHIR (CDM definitions) + Ignifyr server/web + nginx + Elasticsearch/Fluentd/Kibana, with CPU/memory limits |
 | `ignifyr-server.conf` | Spark local mode, partition/chunk sizes, coverage plugin enabled |
 | `logback.xml` | Same as the enterprise default, plus coverage events in the audit file and bigger rolling files |
-| `nginx.conf` | Reverse proxy: `http://localhost:6000/dt4h/ignifyr/` (UI), `/dt4h/ignifyr/kibana/` (Kibana) |
+| `nginx.conf` | Reverse proxy: `http://localhost:6090/dt4h/ignifyr/` (UI), `/dt4h/ignifyr/kibana/` (Kibana) |
 | `run-job.sh` | Starts the job (optionally `--skip-write`, optionally a subset of mapping tasks) through the REST API |
 | `extract_metrics.py` | Turns the `MAPPING_JOB_RESULT` / `MAPPING_COVERAGE` / `MAPPING_RESULT` events into CSV/XLSX tables |
 | `analyze_output.py` | Output quality metrics from the written NDJSON (duplicates, referential integrity, code-system and UCUM shares) |
@@ -138,8 +138,8 @@ Checks:
 * `curl -s localhost:6080/fhir/metadata | head -c 300` – onFHIR with the CDM profiles is up.
 * `curl -s -X OPTIONS localhost:6085/ignifyr -o /dev/null -w '%{http_code}\n'` → 200.
 * `docker logs mimic-ignifyr-server | grep "Loaded .* extension"` must list `observability`.
-* Web UI: <http://localhost:6000/dt4h/ignifyr/> → project **mimic** → Executions. Kibana:
-  <http://localhost:6000/dt4h/ignifyr/kibana/> (dashboards *Executions*, *Execution Details*, *Mapping Coverage*).
+* Web UI: <http://localhost:6090/dt4h/ignifyr/> → project **mimic** → Executions. Kibana:
+  <http://localhost:6090/dt4h/ignifyr/kibana/> (dashboards *Executions*, *Execution Details*, *Mapping Coverage*).
 * Spark UI of the running application: <http://localhost:4040> (only while a job runs).
 
 ## 3. Smoke test on the sample (≈5 minutes)
