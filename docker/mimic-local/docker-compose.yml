@@ -65,7 +65,7 @@ services:
   ignifyr-server:
     # Build from ignifyr-enterprise: `bash docker/server/build.sh` (needs ignifyr-server/target/ignifyr-server-standalone.jar
     # built with the observability module, i.e. commit a225aa7 or later).
-    image: srdc/ignifyr-server:latest
+    image: docker.srdc.com.tr/srdc/ignifyr-server:latest
     container_name: mimic-ignifyr-server
     restart: unless-stopped
     hostname: ignifyr-server
