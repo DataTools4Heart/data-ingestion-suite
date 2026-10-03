@@ -90,9 +90,10 @@ Measures, from most to least important:
    autoMemoryReclaim=gradual
    ```
 
-   then `wsl --shutdown` and restart Docker Desktop. The compose file limits the Spark JVM to 6 of these 10 vCPUs
-   (`cpus: "6.0"`, `local[6]`, 18 partitions): with Elasticsearch and the other containers the VM keeps about 7–8
-   threads busy, so Windows always has ≥ 8 threads and ≥ 48 GB.
+   then `wsl --shutdown` and restart Docker Desktop. The compose file gives the Spark JVM 8 of these 10 vCPUs
+   (`cpus: "8.0"`, `local[8]`, 24 partitions). If the display freeze described above recurs, lower this to
+   `cpus: "6.0"`, `local[6]` and `numOfPartitions = 18`: two physical cores then stay free for Windows (≈ 25 %
+   slower).
 2. Power settings for the duration of the runs (PowerShell, no admin needed), applied to the active plan:
 
    ```powershell
@@ -120,8 +121,9 @@ In Docker Desktop → Settings → Resources turn **Resource Saver off** while a
 the UI is idle) and keep the WSL2 backend. `autoMemoryReclaim` hands the Linux page cache (the CSVs are re-read
 for every chunk) back to Windows instead of keeping the VM inflated.
 
-With 6 Spark threads expect ≈ 25 % longer run times than the estimates in section 4 (labevents ≈ 15 h instead of
-12 h). Start labevents/emar in the evening; the first chunk result in the Ignifyr UI appears after 2–3 minutes.
+With 6 instead of 8 Spark threads expect ≈ 25 % longer run times than the estimates in section 4 (labevents
+≈ 15 h instead of 12 h). Start labevents/emar in the evening; the first chunk result in the Ignifyr UI appears
+after 2–3 minutes.
 
 ### 1.2 Put the MIMIC CSVs on the WSL2 ext4 file system
 
@@ -230,7 +232,7 @@ Measured on a 1-in-20 patient subset of the real data (8 threads, 28 GB heap, wr
 poe ≈ 16 600 rows/s. Extrapolated to the full hosp module: labevents ≈ 12 h, emar ≈ 6 h, prescriptions ≈ 3 h,
 poe ≈ 1 h, all other tasks together ≈ 1.5 h, i.e. ≈ 23 h with writing enabled and less with `--skip-write`.
 Start labevents and emar in the evening. While they run, the
-container stays within its 6 CPUs / 56 GB.
+container stays within its 8 CPUs / 56 GB.
 
 Monitoring during the run:
 
@@ -316,7 +318,7 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 * **Docker Desktop paused the VM**: Resource Saver (step 1.1).
 * **Windows freezes (unresponsive, garbled display) while a heavy task runs, containers keep running**: the
   Windows display stack dies under the sustained all-core load of the VM (seen twice on 3 Oct 2026, once with
-  80 GB of free RAM, so it is not memory). Apply all of step 1.1 (6 Spark cores, no Turbo Boost,
+  80 GB of free RAM, so it is not memory). Apply all of step 1.1 (no Turbo Boost, 6 Spark cores,
   display never off, host trace). After a hard reset the execution is gone (no checkpoint for batch CSV sources):
   start the remaining tasks again; nothing was written with `--skip-write`, and the tasks that had finished keep
   their events in Elasticsearch (check the Executions dashboard before re-running them).
