@@ -64,36 +64,63 @@ without mapping errors except for sample artefacts (rows whose admission is miss
 
 ## 1. One-time preparation
 
-### 1.1 Size the WSL2 VM so that Windows keeps breathing
+### 1.1 Keep the Windows host alive: VM size, CPU share, power settings
 
-**Do this before the first full run; it is not optional.** With the default `.wslconfig` of this machine
-(104 GB / 12 processors) Windows froze completely (black/garbled display, no input) a few minutes after the heavy
-task group was started on 3 Oct 2026, while the containers kept mapping normally until the hard reset – the Spark
-heap was at 15 GB at that moment, so it was the host, not the JVM, that ran out of room. Put this into
-`C:\Users\<you>\.wslconfig`:
+**Do this before the first full run; it is not optional.** On 3 Oct 2026 Windows "froze" twice while a heavy task
+group was running (garbled display, no mouse/keyboard, hard reset needed): once a minute after the start with the
+old `.wslconfig` (104 GB / 12 processors) and once 40 minutes into the run with 80 GB / 10 processors and 80 GB of
+free host RAM. Both times the operating system itself kept running – the containers finished a chunk every two
+minutes until the reset and the Docker backend kept writing its log – only the display/input path died, and
+neither a kernel dump, a display-driver timeout (event 4101) nor a hardware error was recorded. Memory, Modern
+Standby and the Linux side are therefore ruled out; what remains is the Windows graphics stack (Intel UHD for the
+panel, RTX 3070 for the external 4K monitor on this ThinkPad T15g) losing out while 8–10 vCPUs run flat out with
+Turbo Boost on the Balanced power plan. The 80-minute group-1 run at night, display off, had no problem.
+Measures, from most to least important:
 
-```ini
-[wsl2]
-memory=80GB
-processors=10
-swap=8GB
-localhostForwarding=true
+1. `C:\Users\<you>\.wslconfig` – give the VM at most half of the logical CPUs and 80 GB:
 
-[experimental]
-autoMemoryReclaim=gradual
-```
+   ```ini
+   [wsl2]
+   memory=80GB
+   processors=8
+   swap=8GB
+   localhostForwarding=true
 
-then `wsl --shutdown` and restart Docker Desktop. The stack below is limited to ≈72 GB and 8 CPUs for the Spark
-JVM, so Windows always keeps ≥ 48 GB and 6 threads; `autoMemoryReclaim` hands the Linux page cache (the CSVs are
-re-read for every chunk) back to Windows instead of keeping the VM inflated. In Docker Desktop → Settings →
-Resources turn **Resource Saver off** while a run is active (it pauses the VM when the UI is idle) and keep the
-WSL2 backend.
+   [experimental]
+   autoMemoryReclaim=gradual
+   ```
 
-If you need to keep working on the PC during a run, lower the Spark share instead of the VM: `cpus: "6.0"` for
-`ignifyr-server` in `docker-compose.yml` and `master = "local[6]"` in `ignifyr-server.conf` (≈ 25 % slower).
-Start labevents/emar in the evening; the first chunk result in the Ignifyr UI appears after 2–3 minutes.
+   then `wsl --shutdown` and restart Docker Desktop. The compose file limits the Spark JVM to 6 of these 8 vCPUs
+   (`cpus: "6.0"`, `local[6]`, 18 partitions) so that Windows always keeps 8 threads and ≥ 48 GB.
+2. Power settings for the duration of the runs (PowerShell, no admin needed), applied to the active plan:
 
-Disable sleep/hibernate for the duration of the run (`powercfg /change standby-timeout-ac 0`).
+   ```powershell
+   powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR PROCTHROTTLEMAX 99   # no Turbo Boost: ~half the package power/heat
+   powercfg /change monitor-timeout-ac 0                                        # display never switches off during a run
+   powercfg /change standby-timeout-ac 0
+   powercfg /change hibernate-timeout-ac 0                                      # was 180 min: hibernation kills the run
+   powercfg /setactive SCHEME_CURRENT
+   ```
+
+   Undo with `PROCTHROTTLEMAX 100` and your usual timeouts afterwards. Keep the laptop on its own 230 W adapter
+   (not powered through the dock) and the lid open.
+3. Leave a host trace running so that a further freeze can be diagnosed (the file keeps growing as long as the OS
+   is alive; the last rows show CPU, temperature, DPC share and the compositor at the moment the display died):
+
+   ```powershell
+   typeperf "\Processor Information(_Total)\% Processor Time" "\Processor Information(_Total)\% Processor Performance" "\Processor Information(_Total)\% DPC Time" "\Processor Information(_Total)\% Interrupt Time" "\Thermal Zone Information(*)\Temperature" "\Memory\Available MBytes" "\PhysicalDisk(_Total)\Current Disk Queue Length" "\Process(vmmemWSL)\% Processor Time" "\Process(dwm)\% Processor Time" -si 15 -f CSV -y -o "$env:USERPROFILE\mimic-hostperf.csv"
+   ```
+
+4. If it still happens: disconnect the external monitor (or run with the lid closed and the external monitor only)
+   for the heavy tasks – this separates "GPU driver under load" from everything else – and update the Intel/NVIDIA
+   drivers from Lenovo Vantage. As a last resort, lower `cpus` to 4 / `local[4]`.
+
+In Docker Desktop → Settings → Resources turn **Resource Saver off** while a run is active (it pauses the VM when
+the UI is idle) and keep the WSL2 backend. `autoMemoryReclaim` hands the Linux page cache (the CSVs are re-read
+for every chunk) back to Windows instead of keeping the VM inflated.
+
+With 6 Spark threads expect ≈ 25 % longer run times than the estimates in section 4 (labevents ≈ 15 h instead of
+12 h). Start labevents/emar in the evening; the first chunk result in the Ignifyr UI appears after 2–3 minutes.
 
 ### 1.2 Put the MIMIC CSVs on the WSL2 ext4 file system
 
@@ -202,7 +229,7 @@ Measured on a 1-in-20 patient subset of the real data (8 threads, 28 GB heap, wr
 poe ≈ 16 600 rows/s. Extrapolated to the full hosp module: labevents ≈ 12 h, emar ≈ 6 h, prescriptions ≈ 3 h,
 poe ≈ 1 h, all other tasks together ≈ 1.5 h, i.e. ≈ 23 h with writing enabled and less with `--skip-write`.
 Start labevents and emar in the evening. While they run, the
-container stays within its 8 CPUs / 56 GB; the Windows side remains usable.
+container stays within its 6 CPUs / 56 GB.
 
 Monitoring during the run:
 
@@ -286,7 +313,9 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 * **Container killed (exit 137)**: heap + Spark off-heap exceeded 56 GB → lower `-Xmx` to 40g and
   `maxChunkSize` to 150000.
 * **Docker Desktop paused the VM**: Resource Saver (step 1.1).
-* **Windows freezes (unresponsive, garbled display) minutes after a heavy task starts, containers keep running**:
-  the WSL2 VM is allowed to take almost all host memory/CPUs. Apply step 1.1 (`memory=80GB`, `processors=10`,
-  `autoMemoryReclaim=gradual`), then restart WSL and the stack. After a hard reset the execution is gone (no
-  checkpoint for batch CSV sources): simply start the task group again; nothing was written with `--skip-write`.
+* **Windows freezes (unresponsive, garbled display) while a heavy task runs, containers keep running**: the
+  Windows display stack dies under the sustained all-core load of the VM (seen twice on 3 Oct 2026, once with
+  80 GB of free RAM, so it is not memory). Apply all of step 1.1 (`processors=8`, 6 Spark cores, no Turbo Boost,
+  display never off, host trace). After a hard reset the execution is gone (no checkpoint for batch CSV sources):
+  start the remaining tasks again; nothing was written with `--skip-write`, and the tasks that had finished keep
+  their events in Elasticsearch (check the Executions dashboard before re-running them).

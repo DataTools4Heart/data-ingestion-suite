@@ -10,7 +10,8 @@
 #   docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml --project-directory . -p mimic-local up -d --wait
 #
 # Resource limits are sized for a 16-thread / 128 GB laptop whose .wslconfig gives the WSL2 VM 10 processors and 80 GB:
-# the stack uses at most ~72 GB and 8 cores for Spark so that the Windows side keeps 6 threads and ~48 GB.
+# the stack uses at most ~72 GB and 6 cores for Spark so that the Windows side keeps 8 threads and ~48 GB
+# (8 cores froze the Windows display stack twice on 3 Oct 2026, see README 1.1).
 services:
   mongo:
     image: mongo:7.0
@@ -101,7 +102,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "8.0"
+          cpus: "6.0"
           memory: 56G
 
   ignifyr-web:
