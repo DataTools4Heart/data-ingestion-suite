@@ -181,3 +181,4 @@ https://mimic.mit.edu/fhir/CodeSystem/testitems,90091,VARICELLA-ZOSTER IgG SEROL
 https://mimic.mit.edu/fhir/CodeSystem/testitems,90254,RUBELLA IgG SEROLOGY,http://loinc.org,5334-8,Rubella virus IgG Ab [Units/volume] in Serum or Plasma
 https://mimic.mit.edu/fhir/CodeSystem/testitems,90130,R/O Beta Strep Group A,http://loinc.org,626-2,Bacteria identified in Throat by Culture
 https://mimic.mit.edu/fhir/CodeSystem/testitems,90214,Respiratory Viral Culture,http://loinc.org,6584-7,Virus identified in Unspecified specimen by Culture
+https://mimic.mit.edu/fhir/CodeSystem/testitems,90959,SHIGA TOXIN (EHEC),http://loinc.org,21262-1,Escherichia coli shiga-like toxin [Presence] in Stool by Immunoassay

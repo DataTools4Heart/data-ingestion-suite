@@ -66,19 +66,32 @@ without mapping errors except for sample artefacts (rows whose admission is miss
 
 ### 1.1 Size the WSL2 VM so that Windows keeps breathing
 
-`C:\Users\<you>\.wslconfig` currently gives WSL2 104 GB / 12 processors. Use:
+**Do this before the first full run; it is not optional.** With the default `.wslconfig` of this machine
+(104 GB / 12 processors) Windows froze completely (black/garbled display, no input) a few minutes after the heavy
+task group was started on 3 Oct 2026, while the containers kept mapping normally until the hard reset – the Spark
+heap was at 15 GB at that moment, so it was the host, not the JVM, that ran out of room. Put this into
+`C:\Users\<you>\.wslconfig`:
 
 ```ini
 [wsl2]
 memory=80GB
 processors=10
-swap=16GB
+swap=8GB
 localhostForwarding=true
+
+[experimental]
+autoMemoryReclaim=gradual
 ```
 
 then `wsl --shutdown` and restart Docker Desktop. The stack below is limited to ≈72 GB and 8 CPUs for the Spark
-JVM, so Windows keeps 48 GB and 6 threads. In Docker Desktop → Settings → Resources turn **Resource Saver off**
-while a run is active (it pauses the VM when the UI is idle) and keep the WSL2 backend.
+JVM, so Windows always keeps ≥ 48 GB and 6 threads; `autoMemoryReclaim` hands the Linux page cache (the CSVs are
+re-read for every chunk) back to Windows instead of keeping the VM inflated. In Docker Desktop → Settings →
+Resources turn **Resource Saver off** while a run is active (it pauses the VM when the UI is idle) and keep the
+WSL2 backend.
+
+If you need to keep working on the PC during a run, lower the Spark share instead of the VM: `cpus: "6.0"` for
+`ignifyr-server` in `docker-compose.yml` and `master = "local[6]"` in `ignifyr-server.conf` (≈ 25 % slower).
+Start labevents/emar in the evening; the first chunk result in the Ignifyr UI appears after 2–3 minutes.
 
 Disable sleep/hibernate for the duration of the run (`powercfg /change standby-timeout-ac 0`).
 
@@ -232,6 +245,12 @@ of the CSV files (e.g. `wc -l` or the profiling numbers in the paper folder's `c
 
 Interpretation notes for `coverage_summary.csv`:
 
+* `icd9toicd10cmgem.csv` / `icd9toicd10pcsgem.csv`: when the full ICD-9 code has no usable GEM entry, the mapping
+  retries with the 4- and 3-character prefixes and every attempt is counted. The lookup coverage (95.9 % for
+  diagnoses on the full data) therefore understates the row coverage: the number of ICD-9 rows that end without
+  an ICD-10 code equals the number of failed 3-character probes in `coverage_unmapped.csv` (62 618 of ≈ 2.8 M
+  ICD-9 diagnosis rows ⇒ 97.8 % row coverage). The residual rows are GEM "NoDx" codes (E930–E949 adverse
+  effects, 707.2x pressure-ulcer stages, V64.41) and category-level codes used by MIMIC (0414, 2841, 9974).
 * `atc-to-medication-group-concept-map.csv` is probed with every ATC prefix (3, 4, 5 and 7 characters) of every
   ATC code, so its "coverage" is the share of prefix probes that hit one of the 18 DT4H medication groups
   (≈ 8 % is expected: most drugs are not heart-failure drugs). Report it as "prescriptions tagged with a CDM
@@ -267,3 +286,7 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 * **Container killed (exit 137)**: heap + Spark off-heap exceeded 56 GB → lower `-Xmx` to 40g and
   `maxChunkSize` to 150000.
 * **Docker Desktop paused the VM**: Resource Saver (step 1.1).
+* **Windows freezes (unresponsive, garbled display) minutes after a heavy task starts, containers keep running**:
+  the WSL2 VM is allowed to take almost all host memory/CPUs. Apply step 1.1 (`memory=80GB`, `processors=10`,
+  `autoMemoryReclaim=gradual`), then restart WSL and the stack. After a hard reset the execution is gone (no
+  checkpoint for batch CSV sources): simply start the task group again; nothing was written with `--skip-write`.

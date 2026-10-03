@@ -148,3 +148,10 @@ https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70073,TISSUE,http://termino
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70035,"FLUID,OTHER",http://terminology.hl7.org/CodeSystem/v2-0487,FLU,"Body fluid, unsp"
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70055,POSTMORTEM CULTURE,http://terminology.hl7.org/CodeSystem/v2-0487,AUTP,Autopsy
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70032,Blood (EBV),http://terminology.hl7.org/CodeSystem/v2-0487,BLD,Whole blood
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70041,VIRAL CULTURE:R/O HERPES SIMPLEX VIRUS,http://snomed.info/sct,257261003,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70025,CRE Screen,http://snomed.info/sct,258528007,Rectal swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90935,VIRAL CULTURE,http://snomed.info/sct,257261003,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70084,SWAB,http://snomed.info/sct,257261003,Swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70078,"URINE,PROSTATIC MASSAGE",http://terminology.hl7.org/CodeSystem/v2-0487,UR,Urine
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70078,"URINE,PROSTATIC MASSAGE",http://snomed.info/sct,122575003,Urine specimen
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70007,BLOOD BAG FLUID,http://snomed.info/sct,119304001,Specimen from blood bag

@@ -98,7 +98,7 @@
             "system" : "{{%sourceSystem.sourceUri}}/fhir/microbiologyevents_ids",
             "value" : "{{%ev.microevent_id.toString()}}"
           } ],
-          "status" : "final",
+          "status" : "{{iif(%ev.org_itemid.exists() and %ev.org_itemid.toString() = '90760', 'cancelled', 'final')}}",
           "category" : [ {
             "coding" : [ {
               "system" : "http://terminology.hl7.org/CodeSystem/v2-0074",
@@ -126,9 +126,9 @@
             }
           },
           "valueCodeableConcept" : {
-            "{{#orgOnly}}" : "{{iif(%ev.ab_itemid.exists().not() and %ev.org_itemid.exists() and %ev.dilution_value.exists().not(), trms:translateToCoding(%ev.org_itemid.toString(), 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed'), {})}}",
+            "{{#orgOnly}}" : "{{iif(%ev.ab_itemid.exists().not() and %ev.org_itemid.exists() and %ev.dilution_value.exists().not() and %ev.org_itemid.toString() != '90760', %ev.org_itemid.toString(), {})}}",
             "{{?}}" : {
-              "coding" : [ "{{* %orgOnly}}", {
+              "coding" : [ "{{* iif(%orgOnly = '80265' or %orgOnly = '90785', {}, trms:translateToCoding(%orgOnly, 'https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/org-itemids-to-snomed'))}}", {
                 "system" : "https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems",
                 "code" : "{{%ev.org_itemid.toString()}}",
                 "display" : "{{? %ev.org_name}}"

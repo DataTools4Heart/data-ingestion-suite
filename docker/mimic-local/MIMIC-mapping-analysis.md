@@ -154,3 +154,63 @@ drugs (also those without NDC).
 | output size | sink folder size | only with writing; gzip ≈ 1.4 GB per 1/20 ⇒ ≈ 28 GB full |
 | terminology / concept / unit coverage | `MAPPING_COVERAGE` sums | per task × map; use the "mapped rows only" definition (3.6) |
 | output quality | `analyze_output.py` on the NDJSON | duplicates, referential integrity, code-system shares, UCUM share |
+
+## 6. Full-data run, group 1 (2 Oct 2026, `skipWrite`, execution 1ebca051)
+
+Eight tasks in one execution, 8 Spark threads, 48 GB heap (42 GB peak), 80 minutes wall clock, no spills.
+
+| task | duration | resources | invalid | not mapped |
+|---|---|---|---|---|
+| patient-mapping | 1:00 | 364 627 | 0 | 0 |
+| careunit-mapping | 0:03 | 46 | 0 | 0 |
+| admissions-mapping | 4:14 | 546 028 | 0 | 0 |
+| diagnoses-mapping | 27:44 | 6 301 870 | 0 | 0 |
+| procedures-mapping | 3:08 | 828 404 | 0 | 0 |
+| omr-mapping | 25:06 | 10 597 462 | 0 | 0 |
+| microbiologyevents | 19:01 | 7 836 802 | 0 | 0 |
+| medications-mapping | 0:36 | 25 812 | 1 | 0 |
+
+The single invalid row is a `prescriptions` entry without a drug name (gsn 016579, `formulary_drug_cd` SIMVIND);
+`drug` is required by the schema, so it is counted as invalid input – a data finding, not a mapping error.
+
+Lookup coverage (full data) – only the maps below 100 %:
+
+| task | type | map | lookups | coverage | distinct unmapped |
+|---|---|---|---|---|---|
+| diagnoses | CONCEPT | icd9toicd10cmgem | 3 019 790 | 95.9 % (row level 97.8 %, see README §6) | 332 (all 3/4-char probes) |
+| procedures | CONCEPT | icd9toicd10pcsgem | 521 431 | 99.8 % | 7 (probes) |
+| medications | CONCEPT | ndcToMedDetails | 16 541 | 95.9 % | 290 |
+| medications | TERMINOLOGY | rx-norm-to-atc | 15 855 | 91.6 % | 137 |
+| microbiology | TERMINOLOGY | org-itemids-to-snomed | 1 635 365 | 96.5 % | 253 |
+| microbiology | TERMINOLOGY | specimen-types-to-hl7 | 1 924 289 | 99.95 % | 11 |
+| microbiology | TERMINOLOGY | ab-itemids-to-atc | 1 410 258 | 99.93 % | 23 |
+| microbiology | TERMINOLOGY | test-itemids-to-loinc | 3 988 224 | 99.98 % | 1 |
+| patients | CONCEPT | race-to-ethnicity | 223 452 | 95.4 % | 4 |
+| patients | CONCEPT | language-to-bcp47 | 222 818 | 99.7 % | 1 |
+
+Fixes applied after this run (3 Oct 2026):
+
+* **Microbiology organisms**: 93 % of the organism misses were two non-organism "results": `CANCELLED`
+  (item 90760, 41 504 rows) and `MIXED BACTERIAL FLORA` (90785, 11 757). Observations whose organism is
+  `CANCELLED` now get `status = cancelled` and no value; `MIXED BACTERIAL FLORA` and `2ND ISOLATE` (80265) keep
+  the MIMIC coding with the text but are no longer probed against the SNOMED map (there is no SNOMED organism
+  for them); `POSITIVE` / `NEGATIVE` (90855 / 90856, C. difficile assays) map to the SNOMED qualifiers
+  10828004 / 260385009. The organism value now keeps the local MIMIC coding even when no SNOMED equivalent
+  exists (before, the whole `valueCodeableConcept` was dropped). 40 further organisms were added to
+  `org-itemids-to-snomed.csv` (Raoultella, Hafnia, Achromobacter, Pantoea, Shewanella, Rothia, …), covering
+  all items with ≥ 15 lookups; expected organism coverage ≈ 99.8 %.
+* **Antibiotics**: all 23 unmapped antimicrobials (minocycline, fluconazole, ertapenem, ceftazidime/avibactam,
+  fosfomycin, ceftolozane/tazobactam, …) now have ATC codes ⇒ 100 %.
+* **Interpretation**: `D` → SDD (susceptible-dose dependent; cefepime, fluconazole, daptomycin rows) and
+  `N` → NS (non-susceptible). `Z` (omadacycline / tigecycline, 56 rows) has no HL7 equivalent and stays unmapped.
+* **Tests / specimens**: `SHIGA TOXIN (EHEC)` → LOINC 21262-1; `CRE Screen` → rectal swab, the viral-culture and
+  `SWAB` specimen items → SNOMED Swab, `URINE,PROSTATIC MASSAGE` → urine, `BLOOD BAG FLUID` → specimen from
+  blood bag. Remaining specimen misses (`XXX`, `MICRO PROBLEM PATIENT`, `C, E, & A Screening`, empty) are not
+  specimens.
+* **Units / language**: medication unit `CELLS` → UCUM `{cells}`; language `Other` → BCP-47 `mis`
+  (uncoded languages).
+* **Not changed**: race `OTHER`, `AMERICAN INDIAN/ALASKA NATIVE`, `NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER`,
+  `MULTIPLE RACE/ETHNICITY` (10 349 patients, 4.6 %) have no target because the CDM ethnicity value set only
+  contains the African, Asian, Caucasian, Hispanic and Unknown racial groups – report as a CDM limitation.
+
+`microbiologyevents` and `patient-mapping` have to be re-run (≈ 20 minutes) to refresh these numbers.

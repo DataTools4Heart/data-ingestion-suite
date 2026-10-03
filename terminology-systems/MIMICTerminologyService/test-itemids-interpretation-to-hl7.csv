@@ -3,3 +3,5 @@ https://mimic.mit.edu/fhir/ValueSet/interpretation-codes,S,http://terminology.hl
 https://mimic.mit.edu/fhir/ValueSet/interpretation-codes,R,http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation,R,"Resistant"
 https://mimic.mit.edu/fhir/ValueSet/interpretation-codes,I,http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation,I,"Intermediate"
 https://mimic.mit.edu/fhir/ValueSet/interpretation-codes,P,http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation,IE,"Insufficient evidence"
+https://mimic.mit.edu/fhir/ValueSet/interpretation-codes,D,http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation,SDD,"Susceptible-dose dependent"
+https://mimic.mit.edu/fhir/ValueSet/interpretation-codes,N,http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation,NS,"Non-susceptible"
