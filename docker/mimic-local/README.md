@@ -77,12 +77,12 @@ panel, RTX 3070 for the external 4K monitor on this ThinkPad T15g) losing out wh
 Turbo Boost on the Balanced power plan. The 80-minute group-1 run at night, display off, had no problem.
 Measures, from most to least important:
 
-1. `C:\Users\<you>\.wslconfig` – give the VM at most half of the logical CPUs and 80 GB:
+1. `C:\Users\<you>\.wslconfig` – cap the VM at 80 GB and 10 of the 16 logical CPUs:
 
    ```ini
    [wsl2]
    memory=80GB
-   processors=8
+   processors=10
    swap=8GB
    localhostForwarding=true
 
@@ -90,8 +90,9 @@ Measures, from most to least important:
    autoMemoryReclaim=gradual
    ```
 
-   then `wsl --shutdown` and restart Docker Desktop. The compose file limits the Spark JVM to 6 of these 8 vCPUs
-   (`cpus: "6.0"`, `local[6]`, 18 partitions) so that Windows always keeps 8 threads and ≥ 48 GB.
+   then `wsl --shutdown` and restart Docker Desktop. The compose file limits the Spark JVM to 6 of these 10 vCPUs
+   (`cpus: "6.0"`, `local[6]`, 18 partitions): with Elasticsearch and the other containers the VM keeps about 7–8
+   threads busy, so Windows always has ≥ 8 threads and ≥ 48 GB.
 2. Power settings for the duration of the runs (PowerShell, no admin needed), applied to the active plan:
 
    ```powershell
@@ -315,7 +316,7 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 * **Docker Desktop paused the VM**: Resource Saver (step 1.1).
 * **Windows freezes (unresponsive, garbled display) while a heavy task runs, containers keep running**: the
   Windows display stack dies under the sustained all-core load of the VM (seen twice on 3 Oct 2026, once with
-  80 GB of free RAM, so it is not memory). Apply all of step 1.1 (`processors=8`, 6 Spark cores, no Turbo Boost,
+  80 GB of free RAM, so it is not memory). Apply all of step 1.1 (6 Spark cores, no Turbo Boost,
   display never off, host trace). After a hard reset the execution is gone (no checkpoint for batch CSV sources):
   start the remaining tasks again; nothing was written with `--skip-write`, and the tasks that had finished keep
   their events in Elasticsearch (check the Executions dashboard before re-running them).
