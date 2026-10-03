@@ -91,7 +91,21 @@ from most to least important:
    Get-Counter '\Thermal Zone Information(*)\Temperature','\Processor Information(_Total)\% Processor Performance'
    ```
 
-   (temperature in kelvin; 363 K = 90 °C). Re-enable with value 2 (Aggressive) afterwards. If you prefer to keep
+   (temperature in kelvin; 363 K = 90 °C). Re-enable with value 2 (Aggressive) afterwards.
+
+   **Better: keep Turbo on but cap the clock.** Measured on 3 Oct with 8 Spark threads: uncapped Turbo
+   (≈ 4.0 GHz, 170 % of nominal) → 99 °C within 30 s; cap at 3.2 GHz → steady 80 °C and ≈ 1.4× the throughput
+   of the nominal 2.3 GHz. The cap is the hidden "maximum processor frequency" setting (MHz; 0 = no cap):
+
+   ```powershell
+   powercfg -attributes SUB_PROCESSOR 75b0ae3f-bce0-45a7-8c89-c9611c25e100 -ATTRIB_HIDE
+   powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR 75b0ae3f-bce0-45a7-8c89-c9611c25e100 3200
+   powercfg /setactive SCHEME_CURRENT
+   ```
+
+   Tune it to the cooling at hand: raise in 300 MHz steps while the package stays below 90 °C, lower it if the
+   thermal guard (below) starts pausing. A package that swings 65 → 99 °C in 30 s and back in 45 s is not moving
+   its heat out: dried thermal paste or blocked fins, which only a fan/heatsink service fixes. If you prefer to keep
    Turbo on for speed (≈ 1.4× faster), the laptop needs external cooling (cooling pad, rear lifted, fans on
    "Performance") **and** the thermal guard running: `thermal-guard.ps1` polls the thermal zone every 10 s and
    duty-cycles the server container with `docker pause` / `docker unpause` – frozen at ≥ 95 °C for 40 s, thawed
