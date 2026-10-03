@@ -93,10 +93,14 @@ from most to least important:
 
    (temperature in kelvin; 363 K = 90 °C). Re-enable with value 2 (Aggressive) afterwards. If you prefer to keep
    Turbo on for speed (≈ 1.4× faster), the laptop needs external cooling (cooling pad, rear lifted, fans on
-   "Performance") **and** the thermal guard running: `thermal-guard.ps1` polls the thermal zone every 10 s and stops
-   the running execution when the package stays ≥ 95 °C for 40 s, so the job dies instead of the machine
-   (`powershell -NoProfile -ExecutionPolicy Bypass -File data-ingestion-suite/docker/mimic-local/thermal-guard.ps1`,
-   log in `%USERPROFILE%\\mimic-thermal-guard.log`). Also check in Lenovo
+   "Performance") **and** the thermal guard running: `thermal-guard.ps1` polls the thermal zone every 10 s and
+   duty-cycles the server container with `docker pause` / `docker unpause` – frozen at ≥ 95 °C for 40 s, thawed
+   again at ≤ 80 °C – so the mapping continues where it was once the laptop has cooled down (Spark's heartbeat
+   timeout is raised in `ignifyr-server.conf` for this). If Docker cannot be reached it stops the execution
+   instead, so the job dies rather than the machine. Start it before the job
+   (`powershell -NoProfile -ExecutionPolicy Bypass -File data-ingestion-suite/docker/mimic-local/thermal-guard.ps1`);
+   the log in `%USERPROFILE%\\mimic-thermal-guard.log` lists every pause with its length – subtract the paused time
+   from the execution durations before reporting them. Also check in Lenovo
    Vantage that the thermal mode is "Performance" or "Balanced", not "Quiet", lift the rear of the laptop for
    airflow, and have the fans/heatsink cleaned if the idle temperature is already above 60 °C.
 2. **Spark threads**: the shipped setting is 8 threads (`cpus: "8.0"`, `master = "local[8]"`,
