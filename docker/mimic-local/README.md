@@ -64,20 +64,40 @@ without mapping errors except for sample artefacts (rows whose admission is miss
 
 ## 1. One-time preparation
 
-### 1.1 Keep the Windows host alive: VM size, CPU share, power settings
+### 1.1 Keep the laptop alive: temperature first, then VM size and CPU share
 
-**Do this before the first full run; it is not optional.** On 3 Oct 2026 Windows "froze" twice while a heavy task
-group was running (garbled display, no mouse/keyboard, hard reset needed): once a minute after the start with the
-old `.wslconfig` (104 GB / 12 processors) and once 40 minutes into the run with 80 GB / 10 processors and 80 GB of
-free host RAM. Both times the operating system itself kept running – the containers finished a chunk every two
-minutes until the reset and the Docker backend kept writing its log – only the display/input path died, and
-neither a kernel dump, a display-driver timeout (event 4101) nor a hardware error was recorded. Memory, Modern
-Standby and the Linux side are therefore ruled out; what remains is the Windows graphics stack (Intel UHD for the
-panel, RTX 3070 for the external 4K monitor on this ThinkPad T15g) losing out while 8–10 vCPUs run flat out with
-Turbo Boost on the Balanced power plan. The 80-minute group-1 run at night, display off, had no problem.
-Measures, from most to least important:
+**Do this before the first full run; it is not optional.** On 3 Oct 2026 the machine (ThinkPad T15g Gen 2i,
+i7-11800H + RTX 3070) froze three times while a heavy task group was running: display garbled, no input, hard
+reset needed. The third run was instrumented and showed the cause: the CPU package reached **99 °C within one
+minute** of the Spark load (8 worker threads, Turbo Boost on, all cores at 160 % of nominal clock) and stayed
+there for the 88 minutes until the machine hung – this time the Linux side stopped at the same second as
+Windows, i.e. the whole system halted. Memory (80 GB free), standby and the Linux side are ruled out. Measures,
+from most to least important:
 
-1. `C:\Users\<you>\.wslconfig` – cap the VM at 80 GB and 10 of the 16 logical CPUs:
+1. **Disable Turbo Boost** for the duration of the runs. `PROCTHROTTLEMAX 99` (maximum processor state) does
+   *not* stop boosting on this firmware; use the hidden "processor performance boost mode" setting (PowerShell,
+   no admin needed):
+
+   ```powershell
+   powercfg -attributes SUB_PROCESSOR be337238-0d82-4146-a960-4f3749d470c7 -ATTRIB_HIDE   # make the setting visible
+   powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR be337238-0d82-4146-a960-4f3749d470c7 0   # 0 = Disabled
+   powercfg /setactive SCHEME_CURRENT
+   ```
+
+   Verify under load that `% Processor Performance` stays ≤ 100 and the thermal zone well below 90 °C:
+
+   ```powershell
+   Get-Counter '\Thermal Zone Information(*)\Temperature','\Processor Information(_Total)\% Processor Performance'
+   ```
+
+   (temperature in kelvin; 363 K = 90 °C). Re-enable with value 2 (Aggressive) afterwards. Also check in Lenovo
+   Vantage that the thermal mode is "Performance" or "Balanced", not "Quiet", lift the rear of the laptop for
+   airflow, and have the fans/heatsink cleaned if the idle temperature is already above 60 °C.
+2. **Fewer Spark threads if the temperature is still above 90 °C**: `cpus: "6.0"` in `docker-compose.yml`,
+   `master = "local[6]"` and `numOfPartitions = 18` in `ignifyr-server.conf` (≈ 25 % slower), then `cpus: "4.0"` /
+   `local[4]` / 12 partitions.
+3. `C:\Users\<you>\.wslconfig` – cap the VM at 80 GB and 10 of the 16 logical CPUs, and let the page cache go
+   back to Windows:
 
    ```ini
    [wsl2]
@@ -91,39 +111,28 @@ Measures, from most to least important:
    ```
 
    then `wsl --shutdown` and restart Docker Desktop. The compose file gives the Spark JVM 8 of these 10 vCPUs
-   (`cpus: "8.0"`, `local[8]`, 24 partitions). If the display freeze described above recurs, lower this to
-   `cpus: "6.0"`, `local[6]` and `numOfPartitions = 18`: two physical cores then stay free for Windows (≈ 25 %
-   slower).
-2. Power settings for the duration of the runs (PowerShell, no admin needed), applied to the active plan:
+   (`cpus: "8.0"`, `local[8]`, 24 partitions); Windows keeps ≥ 48 GB.
+4. Power timeouts for the duration of the runs: `powercfg /change monitor-timeout-ac 0`,
+   `powercfg /change standby-timeout-ac 0`, `powercfg /change hibernate-timeout-ac 0` (hibernation was set to
+   180 min and would kill a long run). Keep the laptop on its own 230 W adapter, not powered through the dock.
+5. Leave a host trace running during every long run so that a further incident can be diagnosed (the file keeps
+   growing while the OS is alive; the last minute is lost in a hard reset because the writes are buffered):
 
    ```powershell
-   powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR PROCTHROTTLEMAX 99   # no Turbo Boost: ~half the package power/heat
-   powercfg /change monitor-timeout-ac 0                                        # display never switches off during a run
-   powercfg /change standby-timeout-ac 0
-   powercfg /change hibernate-timeout-ac 0                                      # was 180 min: hibernation kills the run
-   powercfg /setactive SCHEME_CURRENT
+   typeperf "\Processor Information(_Total)\% Processor Time" "\Processor Information(_Total)\% Processor Performance" "\Processor Information(_Total)\% DPC Time" "\Thermal Zone Information(*)\Temperature" "\Memory\Available MBytes" "\Process(vmmemWSL)\% Processor Time" "\Process(dwm)\% Processor Time" -si 15 -f CSV -y -o "$env:USERPROFILE\mimic-hostperf.csv"
    ```
 
-   Undo with `PROCTHROTTLEMAX 100` and your usual timeouts afterwards. Keep the laptop on its own 230 W adapter
-   (not powered through the dock) and the lid open.
-3. Leave a host trace running so that a further freeze can be diagnosed (the file keeps growing as long as the OS
-   is alive; the last rows show CPU, temperature, DPC share and the compositor at the moment the display died):
+   On the Linux side a loop with `docker stats --no-stream` and `free -m` every 15 s into
+   `~/ignifyr-mimic/hostperf-linux.log` shows whether the containers outlived the Windows side (they did in the
+   first two incidents, not in the third).
 
-   ```powershell
-   typeperf "\Processor Information(_Total)\% Processor Time" "\Processor Information(_Total)\% Processor Performance" "\Processor Information(_Total)\% DPC Time" "\Processor Information(_Total)\% Interrupt Time" "\Thermal Zone Information(*)\Temperature" "\Memory\Available MBytes" "\PhysicalDisk(_Total)\Current Disk Queue Length" "\Process(vmmemWSL)\% Processor Time" "\Process(dwm)\% Processor Time" -si 15 -f CSV -y -o "$env:USERPROFILE\mimic-hostperf.csv"
-   ```
+Before the first long run after these changes, start the job for ten minutes and watch the temperature; only
+continue if it settles below 90 °C. In Docker Desktop → Settings → Resources turn **Resource Saver off** while a
+run is active (it pauses the VM when the UI is idle) and keep the WSL2 backend.
 
-4. If it still happens: disconnect the external monitor (or run with the lid closed and the external monitor only)
-   for the heavy tasks – this separates "GPU driver under load" from everything else – and update the Intel/NVIDIA
-   drivers from Lenovo Vantage. As a last resort, lower `cpus` to 4 / `local[4]`.
-
-In Docker Desktop → Settings → Resources turn **Resource Saver off** while a run is active (it pauses the VM when
-the UI is idle) and keep the WSL2 backend. `autoMemoryReclaim` hands the Linux page cache (the CSVs are re-read
-for every chunk) back to Windows instead of keeping the VM inflated.
-
-With 6 instead of 8 Spark threads expect ≈ 25 % longer run times than the estimates in section 4 (labevents
-≈ 15 h instead of 12 h). Start labevents/emar in the evening; the first chunk result in the Ignifyr UI appears
-after 2–3 minutes.
+Expect ≈ 30 % longer run times without Turbo Boost than the estimates in section 4 (labevents ≈ 16 h instead of
+12 h); every reduction of the Spark threads adds ≈ 25 %. Start labevents/emar in the evening; the first chunk
+result in the Ignifyr UI appears after 2–3 minutes.
 
 ### 1.2 Put the MIMIC CSVs on the WSL2 ext4 file system
 
@@ -316,9 +325,9 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 * **Container killed (exit 137)**: heap + Spark off-heap exceeded 56 GB → lower `-Xmx` to 40g and
   `maxChunkSize` to 150000.
 * **Docker Desktop paused the VM**: Resource Saver (step 1.1).
-* **Windows freezes (unresponsive, garbled display) while a heavy task runs, containers keep running**: the
-  Windows display stack dies under the sustained all-core load of the VM (seen twice on 3 Oct 2026, once with
-  80 GB of free RAM, so it is not memory). Apply all of step 1.1 (no Turbo Boost, 6 Spark cores,
-  display never off, host trace). After a hard reset the execution is gone (no checkpoint for batch CSV sources):
-  start the remaining tasks again; nothing was written with `--skip-write`, and the tasks that had finished keep
-  their events in Elasticsearch (check the Executions dashboard before re-running them).
+* **Windows freezes (unresponsive, garbled display) while a heavy task runs**: the CPU package runs at its
+  thermal limit (99 °C) under the Spark load with Turbo Boost on; the machine hangs after minutes to hours (three
+  times on 3 Oct 2026). Apply step 1.1: disable Turbo Boost (boost mode 0), check the temperature under load,
+  reduce the Spark threads if needed. After a hard reset the execution is gone (no checkpoint for batch CSV
+  sources): start the remaining tasks again; nothing was written with `--skip-write`, and the tasks that had
+  finished keep their events in Elasticsearch (check the Executions dashboard before re-running them).
