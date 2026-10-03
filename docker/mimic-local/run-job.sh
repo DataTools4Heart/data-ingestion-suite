@@ -28,8 +28,11 @@ else
 fi
 
 echo "POST ${IGNIFYR_URL}/projects/${PROJECT_ID}/jobs/${JOB_ID}/run  body=${BODY}"
-curl -sS -f -X POST "${IGNIFYR_URL}/projects/${PROJECT_ID}/jobs/${JOB_ID}/run" \
-  -H 'Content-Type: application/json' -d "${BODY}"
+# The server answers only after the Spark job of the first task is initialised; on large sources this takes longer
+# than the HTTP request timeout and curl prints "408 Request Timeout" although the execution has started.
+curl -sS -m 120 -X POST "${IGNIFYR_URL}/projects/${PROJECT_ID}/jobs/${JOB_ID}/run" \
+  -H 'Content-Type: application/json' -d "${BODY}" \
+  || echo "(no answer from the POST: a 408 or a timeout here is normal on big sources, check the executions below)"
 echo
 echo "Running executions:"
 curl -sS "${IGNIFYR_URL}/projects/${PROJECT_ID}/jobs/${JOB_ID}/executions"
