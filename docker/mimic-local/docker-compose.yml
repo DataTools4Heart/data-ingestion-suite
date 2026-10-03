@@ -10,9 +10,9 @@
 #   docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml --project-directory . -p mimic-local up -d --wait
 #
 # Resource limits are sized for a 16-thread / 128 GB laptop whose .wslconfig gives the WSL2 VM 10 processors and 80 GB:
-# the stack uses at most ~72 GB and 6 cores for Spark: two physical cores of the i7-11800H stay idle so that the
-# package stays below its thermal limit (8 cores ran at 99 C and froze the laptop, README 1.1) and Windows stays responsive.
-# Keep cpus in sync with master = local[N] and numOfPartitions = 3N in ignifyr-server.conf.
+# the stack uses at most ~72 GB and 8 cores for Spark. This is only safe with Turbo Boost disabled on the host
+# (README 1.1: with Turbo on the package ran at 99 C and the laptop froze three times; without Turbo it stays ~70 C).
+# Keep cpus in sync with master = local[N] and numOfPartitions = 3N in ignifyr-server.conf; 6/local[6]/18 is the fallback.
 services:
   mongo:
     image: mongo:7.0
@@ -103,7 +103,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "6.0"
+          cpus: "8.0"
           memory: 56G
 
   ignifyr-web:

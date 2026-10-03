@@ -93,11 +93,11 @@ from most to least important:
    (temperature in kelvin; 363 K = 90 °C). Re-enable with value 2 (Aggressive) afterwards. Also check in Lenovo
    Vantage that the thermal mode is "Performance" or "Balanced", not "Quiet", lift the rear of the laptop for
    airflow, and have the fans/heatsink cleaned if the idle temperature is already above 60 °C.
-2. **Six Spark threads, not eight** (the shipped setting since 3 Oct): `cpus: "6.0"` in `docker-compose.yml`,
-   `master = "local[6]"` and `numOfPartitions = 18` in `ignifyr-server.conf`. Two of the eight physical cores stay
-   idle, which lowers the package power and keeps Windows responsive (≈ 25 % slower than 8 threads). If the
-   temperature is still above 90 °C: `cpus: "4.0"` / `local[4]` / 12 partitions. Keep the three values in sync
-   (partitions = 3 × threads).
+2. **Spark threads**: the shipped setting is 8 threads (`cpus: "8.0"`, `master = "local[8]"`,
+   `numOfPartitions = 24`), which is safe only with Turbo Boost disabled. Measured on 3 Oct: 8 threads with Turbo
+   on → 99 °C and a hang; 6 threads without Turbo → 62 °C but 1.8× slower chunks (most of the loss is the clock,
+   not the two cores). If the package exceeds 90 °C with 8 threads and Turbo off, go to `cpus: "6.0"` /
+   `local[6]` / 18 partitions, then 4 / `local[4]` / 12. Keep the three values in sync (partitions = 3 × threads).
 3. `C:\Users\<you>\.wslconfig` – cap the VM at 80 GB and 10 of the 16 logical CPUs, and let the page cache go
    back to Windows:
 
@@ -112,8 +112,8 @@ from most to least important:
    autoMemoryReclaim=gradual
    ```
 
-   then `wsl --shutdown` and restart Docker Desktop. The compose file gives the Spark JVM 6 of these 10 vCPUs
-   (`cpus: "6.0"`, `local[6]`, 18 partitions); Windows keeps ≥ 48 GB and at least 8 threads.
+   then `wsl --shutdown` and restart Docker Desktop. The compose file gives the Spark JVM 8 of these 10 vCPUs
+   (`cpus: "8.0"`, `local[8]`, 24 partitions); Windows keeps ≥ 48 GB.
 4. Power timeouts for the duration of the runs: `powercfg /change monitor-timeout-ac 0`,
    `powercfg /change standby-timeout-ac 0`, `powercfg /change hibernate-timeout-ac 0` (hibernation was set to
    180 min and would kill a long run). Keep the laptop on its own 230 W adapter, not powered through the dock.
@@ -132,8 +132,8 @@ Before the first long run after these changes, start the job for ten minutes and
 continue if it settles below 90 °C. In Docker Desktop → Settings → Resources turn **Resource Saver off** while a
 run is active (it pauses the VM when the UI is idle) and keep the WSL2 backend.
 
-Expect about 1.6× the run times estimated in section 4 with 6 threads and no Turbo Boost (labevents ≈ 19 h
-instead of 12 h, the whole heavy group ≈ 30 h); 4 threads add another ≈ 50 %. Start labevents/emar in the evening; the first chunk
+Expect about 1.4× the run times estimated in section 4 with 8 threads and no Turbo Boost (labevents ≈ 16 h
+instead of 12 h, the whole heavy group ≈ 25 h); 6 threads make it ≈ 1.8×, 4 threads ≈ 2.5×. Start labevents/emar in the evening; the first chunk
 result in the Ignifyr UI appears after 2–3 minutes.
 
 ### 1.2 Put the MIMIC CSVs on the WSL2 ext4 file system
@@ -243,7 +243,7 @@ Measured on a 1-in-20 patient subset of the real data (8 threads, 28 GB heap, wr
 poe ≈ 16 600 rows/s. Extrapolated to the full hosp module: labevents ≈ 12 h, emar ≈ 6 h, prescriptions ≈ 3 h,
 poe ≈ 1 h, all other tasks together ≈ 1.5 h, i.e. ≈ 23 h with writing enabled and less with `--skip-write`.
 Start labevents and emar in the evening. While they run, the
-container stays within its 6 CPUs / 56 GB.
+container stays within its 8 CPUs / 56 GB.
 
 Monitoring during the run:
 
