@@ -15,6 +15,7 @@ Target machine used for the sizing below: Intel i7-11800H (8 cores / 16 threads)
 | `nginx.conf` | Reverse proxy: `http://localhost:6090/dt4h/ignifyr/` (UI), `/dt4h/ignifyr/kibana/` (Kibana) |
 | `run-job.sh` | Starts the job (optionally `--skip-write`, optionally a subset of mapping tasks) through the REST API |
 | `extract_metrics.py` | Turns the `MAPPING_JOB_RESULT` / `MAPPING_COVERAGE` / `MAPPING_RESULT` events into CSV/XLSX tables |
+| `thermal-guard.ps1` | Windows: stops the running execution when the CPU package stays ≥ 95 °C (laptop protection, section 1.1) |
 | `analyze_output.py` | Output quality metrics from the written NDJSON (duplicates, referential integrity, code-system and UCUM shares) |
 | `MIMIC-mapping-analysis.md` | Analysis of the mappings on a 1-in-20 real-data subset: ratios, coverage, output quality, residual gaps |
 
@@ -90,7 +91,12 @@ from most to least important:
    Get-Counter '\Thermal Zone Information(*)\Temperature','\Processor Information(_Total)\% Processor Performance'
    ```
 
-   (temperature in kelvin; 363 K = 90 °C). Re-enable with value 2 (Aggressive) afterwards. Also check in Lenovo
+   (temperature in kelvin; 363 K = 90 °C). Re-enable with value 2 (Aggressive) afterwards. If you prefer to keep
+   Turbo on for speed (≈ 1.4× faster), the laptop needs external cooling (cooling pad, rear lifted, fans on
+   "Performance") **and** the thermal guard running: `thermal-guard.ps1` polls the thermal zone every 10 s and stops
+   the running execution when the package stays ≥ 95 °C for 40 s, so the job dies instead of the machine
+   (`powershell -NoProfile -ExecutionPolicy Bypass -File data-ingestion-suite/docker/mimic-local/thermal-guard.ps1`,
+   log in `%USERPROFILE%\\mimic-thermal-guard.log`). Also check in Lenovo
    Vantage that the thermal mode is "Performance" or "Balanced", not "Quiet", lift the rear of the laptop for
    airflow, and have the fans/heatsink cleaned if the idle temperature is already above 60 °C.
 2. **Spark threads**: the shipped setting is 8 threads (`cpus: "8.0"`, `master = "local[8]"`,
