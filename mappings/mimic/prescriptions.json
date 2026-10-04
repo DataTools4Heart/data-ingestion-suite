@@ -194,7 +194,7 @@
                   }
                 },
                 {
-                  "{{#isRange}}": "{{iif(dose_val_rx.contains('-') and dose_val_rx.split('-').all($this.replace(',','').utl:trim().toDecimal().exists()), true, {})}}",
+                  "{{#isRange}}": "{{iif(dose_val_rx.contains('-') and dose_val_rx.split('-').select($this.replace(',','').utl:trim().toDecimal()).count() = 2, true, {})}}",
                   "{{?}}": {
                     "doseRange": {
                       "low": {

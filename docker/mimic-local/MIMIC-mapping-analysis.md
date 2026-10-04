@@ -214,3 +214,9 @@ Fixes applied after this run (3 Oct 2026):
   contains the African, Asian, Caucasian, Hispanic and Unknown racial groups – report as a CDM limitation.
 
 `microbiologyevents` and `patient-mapping` have to be re-run (≈ 20 minutes) to refresh these numbers.
+
+Full-data prescriptions (3–4 Oct, 20 292 608 resources, 4 h 18 min): 1 invalid row (null `drug`, the same row as in
+medications) and 2 not-mapped rows. The latter had `dose_val_rx = "-"`: the dose-range guard used
+`split('-').all(... toDecimal().exists())`, which is true for the empty split result, so the range block was
+rendered with nothing to aggregate. The guard now requires exactly two parsed numbers; a bare "-" produces a
+MedicationRequest without `doseAndRate` (verified on the sample).
