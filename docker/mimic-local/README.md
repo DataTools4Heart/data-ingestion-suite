@@ -15,7 +15,9 @@ Target machine used for the sizing below: Intel i7-11800H (8 cores / 16 threads)
 | `nginx.conf` | Reverse proxy: `http://localhost:6090/dt4h/ignifyr/` (UI), `/dt4h/ignifyr/kibana/` (Kibana) |
 | `run-job.sh` | Starts the job (optionally `--skip-write`, optionally a subset of mapping tasks) through the REST API |
 | `extract_metrics.py` | Turns the `MAPPING_JOB_RESULT` / `MAPPING_COVERAGE` / `MAPPING_RESULT` events into CSV/XLSX tables |
-| `thermal-guard.ps1` | Windows: stops the running execution when the CPU package stays ≥ 95 °C (laptop protection, section 1.1) |
+| `thermal-guard.ps1` | Windows: pauses/resumes the server container when the CPU package overheats (laptop protection, section 1.1) |
+| `run-tasks.sh` | Runs mapping tasks one execution at a time and waits for each (restart-safe, for servers; section 8) |
+| `docker-compose.ec2.yml`, `ignifyr-server.ec2.conf` | Sizing override for a 32-vCPU / 128 GB Linux VM (section 8) |
 | `analyze_output.py` | Output quality metrics from the written NDJSON (duplicates, referential integrity, code-system and UCUM shares) |
 | `MIMIC-mapping-analysis.md` | Analysis of the mappings on a 1-in-20 real-data subset: ratios, coverage, output quality, residual gaps |
 
@@ -357,3 +359,97 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
   reduce the Spark threads if needed. After a hard reset the execution is gone (no checkpoint for batch CSV
   sources): start the remaining tasks again; nothing was written with `--skip-write`, and the tasks that had
   finished keep their events in Elasticsearch (check the Executions dashboard before re-running them).
+
+## 8. Running on an AWS EC2 instance instead of the laptop
+
+The stack is portable; only the sizing differs. Tested target: **m6i.8xlarge** (32 vCPU, 128 GB), Ubuntu 24.04,
+300 GB gp3, region **us-east-1** (where PhysioNet hosts MIMIC-IV in S3, so the data never leaves AWS). Expected
+cost: 12–16 USD on-demand for the ≈ 6 h the remaining work needs plus setup, under 1 USD for the volume.
+
+### 8.1 Before launching (once)
+
+* PhysioNet → your profile → *Cloud* settings: enter your **AWS account ID**. The MIMIC-IV v3.1 project page then
+  shows the S3 bucket under *Access the files → AWS*; the bucket name follows the pattern
+  `s3://mimiciv-3.1.physionet.org/` (copy the exact name from the page).
+* Have the credentials for SRDC's Docker registry at hand (the four `docker.srdc.com.tr/srdc/*` images), or save the
+  images on your PC and copy the tarball to the instance (step 8.3).
+* A GitHub token or deploy key if `DataTools4Heart/data-ingestion-suite` is private for the instance.
+
+### 8.2 Launch
+
+EC2 → Launch instance: Ubuntu Server 24.04 LTS, `m6i.8xlarge`, key pair, security group with **SSH from your IP
+only**, root volume 300 GB gp3 **encrypted** (default), region us-east-1. On-demand, not spot (a reclaimed spot
+instance would lose labevents halfway). Attach an IAM role with read access to the PhysioNet bucket, or run
+`aws configure` with your own access keys after login.
+
+```bash
+ssh -i <key.pem> ubuntu@<public-ip>
+```
+
+### 8.3 Prepare the machine (≈ 20 minutes, mostly waiting)
+
+```bash
+# Docker + tools
+sudo apt-get update && sudo apt-get install -y docker.io docker-compose-v2 unzip python3 awscli
+sudo usermod -aG docker ubuntu && newgrp docker
+# Elasticsearch refuses to start without this on a plain Linux host
+echo 'vm.max_map_count=262144' | sudo tee /etc/sysctl.d/99-elasticsearch.conf && sudo sysctl --system >/dev/null
+
+# Workspace + suite
+mkdir -p ~/ignifyr-mimic && cd ~/ignifyr-mimic
+git clone https://github.com/DataTools4Heart/data-ingestion-suite.git
+mkdir -p ignifyr-docker-logs/spark-events
+chmod +x data-ingestion-suite/docker/mimic-local/*.sh
+
+# Images: either log in to the registry ...
+docker login docker.srdc.com.tr
+# ... or load the tarball saved on your PC with
+#   docker save docker.srdc.com.tr/srdc/ignifyr-server:latest docker.srdc.com.tr/srdc/ignifyr-web:dt4h \
+#               docker.srdc.com.tr/srdc/ignifyr-fluentd:latest docker.srdc.com.tr/srdc/ignifyr-kibana:latest | gzip > ignifyr-images.tgz
+#   scp -i <key.pem> ignifyr-images.tgz ubuntu@<public-ip>:~/ ; then on the instance: docker load < ~/ignifyr-images.tgz
+
+# MIMIC-IV hosp module from PhysioNet's S3 (same region, no transfer cost; ≈ 10 GB gzip -> ≈ 60 GB CSV)
+mkdir -p ~/mimic-iv-3.1/hosp && aws s3 sync s3://mimiciv-3.1.physionet.org/hosp/ ~/mimic-iv-3.1/hosp/
+ls ~/mimic-iv-3.1/hosp/*.gz | xargs -P 8 -n 1 gunzip        # ≈ 10 min
+ls -la ~/mimic-iv-3.1/hosp | head                            # expect labevents.csv ≈ 18 GB, emar_detail.csv ≈ 8 GB
+```
+
+### 8.4 Start the stack and the tasks
+
+```bash
+cd ~/ignifyr-mimic && export MIMIC_DATA_DIR=$HOME/mimic-iv-3.1
+docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml \
+               -f data-ingestion-suite/docker/mimic-local/docker-compose.ec2.yml \
+               --project-directory . -p mimic-local up -d --wait
+docker ps --format '{{.Names}} {{.Status}}'                  # all Up, server healthy
+```
+
+Run the tasks one execution at a time with the restart-safe runner (metrics only). On 28 Spark threads expect
+labevents ≈ 3.5 h, emar ≈ 1.5 h, prescriptions ≈ 1 h, the eight small tasks ≈ 25 min together:
+
+```bash
+cd ~/ignifyr-mimic && nohup data-ingestion-suite/docker/mimic-local/run-tasks.sh --skip-write \
+  labevents-mapping emar-mapping prescriptions-mapping patient-mapping careunit-mapping admissions-mapping \
+  diagnoses-mapping procedures-mapping omr-mapping microbiologyevents medications-mapping > run-tasks.out 2>&1 &
+tail -f run-tasks.log
+```
+
+To watch the UI from your PC, tunnel the ports instead of opening them in the security group:
+`ssh -i <key.pem> -L 6090:localhost:6090 -L 4040:localhost:4040 ubuntu@<public-ip>` then
+<http://localhost:6090/dt4h/ignifyr/> (executions, coverage) and <http://localhost:4040> (Spark UI).
+
+If the server was started before onFHIR was ready it stays unhealthy at start-up: `docker restart mimic-ignifyr-server`.
+If the runner is interrupted, call it again with the task names that have no result yet (Executions dashboard).
+
+### 8.5 Collect and tear down
+
+```bash
+cd ~/ignifyr-mimic
+python3 data-ingestion-suite/docker/mimic-local/extract_metrics.py --es http://localhost:9200 --out ./metrics-ec2
+tar czf metrics-ec2.tgz metrics-ec2 ignifyr-docker-logs/ignifyr-mappings*.log* ignifyr-docker-logs/spark-events run-tasks.log
+```
+
+On your PC: `scp -i <key.pem> ubuntu@<public-ip>:~/ignifyr-mimic/metrics-ec2.tgz .` — then **terminate the
+instance** (not stop) so that the volume with the MIMIC data is deleted; do not copy the data to an S3 bucket of
+your own. The metrics tarball contains no patient-level data except the source rows of the (very few) erroneous
+records in the audit log.

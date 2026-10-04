@@ -1,0 +1,27 @@
+# Override for a 32-vCPU / 128 GB Linux VM (e.g. AWS m6i.8xlarge, Ubuntu 24.04). Use together with the base file:
+#
+#   docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml \
+#                  -f data-ingestion-suite/docker/mimic-local/docker-compose.ec2.yml \
+#                  --project-directory . -p mimic-local up -d --wait
+#
+# Spark gets 28 of the 32 vCPUs and a 96 GB heap; Elasticsearch, Mongo, onFHIR and the UI share the remaining 4.
+# The server reads ignifyr-server.ec2.conf (local[28], 84 partitions). No WSL, no thermal guard needed on a server.
+services:
+  ignifyr-server:
+    environment:
+      - APP_CONF_FILE=/usr/local/ignifyr/conf/docker/mimic-local/ignifyr-server.ec2.conf
+      - JAVA_OPTIONS=-Xms16g -Xmx96g -XX:+UseG1GC -XX:MaxGCPauseMillis=400 -XX:+ExitOnOutOfMemoryError -Djava.io.tmpdir=/tmp/spark
+    deploy:
+      resources:
+        limits:
+          cpus: "28.0"
+          memory: 110G
+
+  elasticsearch:
+    environment:
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 8G
