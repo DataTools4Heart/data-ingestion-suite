@@ -401,6 +401,7 @@ echo 'vm.max_map_count=262144' | sudo tee /etc/sysctl.d/99-elasticsearch.conf &&
 # Workspace + suite
 mkdir -p ~/ignifyr-mimic && cd ~/ignifyr-mimic
 git clone https://github.com/DataTools4Heart/data-ingestion-suite.git
+git clone https://github.com/DataTools4Heart/common-data-model.git   # onFHIR mounts it (conf + CDM profiles)
 mkdir -p ignifyr-docker-logs/spark-events
 chmod +x data-ingestion-suite/docker/mimic-local/*.sh
 
