@@ -364,7 +364,7 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 
 The stack is portable; only the sizing differs. Tested target: **m6i.8xlarge** (32 vCPU, 128 GB), Ubuntu 24.04,
 300 GB gp3, region **us-east-1** (where PhysioNet hosts MIMIC-IV in S3, so the data never leaves AWS). Expected
-cost: 12–16 USD on-demand for the ≈ 6 h the remaining work needs plus setup, under 1 USD for the volume.
+cost: 12–16 USD on-demand for the ≈ 6 h the remaining work needs plus setup, 1–2 USD for the volume.
 
 ### 8.1 Before launching (once)
 
@@ -378,7 +378,10 @@ cost: 12–16 USD on-demand for the ≈ 6 h the remaining work needs plus setup,
 ### 8.2 Launch
 
 EC2 → Launch instance: Ubuntu Server 24.04 LTS, `m6i.8xlarge`, key pair, security group with **SSH from your IP
-only**, root volume 300 GB gp3 **encrypted** (default), region us-east-1. On-demand, not spot (a reclaimed spot
+only**, root volume 200–300 GB gp3 **encrypted**, with **throughput raised to 1000 MB/s and 6000 IOPS** (the
+default 125 MB/s makes every re-read of labevents.csv take 2.5 minutes; the extra costs ≈ 1 USD per day), region
+us-east-1. The instance needs outbound internet (public IP, or a private subnet with a NAT gateway) for apt, the
+Docker registry, GitHub and S3. On-demand, not spot (a reclaimed spot
 instance would lose labevents halfway). Attach an IAM role with read access to the PhysioNet bucket, or run
 `aws configure` with your own access keys after login.
 

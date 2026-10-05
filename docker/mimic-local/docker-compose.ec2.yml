@@ -4,18 +4,20 @@
 #                  -f data-ingestion-suite/docker/mimic-local/docker-compose.ec2.yml \
 #                  --project-directory . -p mimic-local up -d --wait
 #
-# Spark gets 28 of the 32 vCPUs and a 96 GB heap; Elasticsearch, Mongo, onFHIR and the UI share the remaining 4.
+# Spark gets 28 of the 32 vCPUs and an 80 GB heap; Elasticsearch, Mongo, onFHIR and the UI share the remaining 4.
+# ~25 GB of RAM stay free for the Linux page cache so that labevents.csv (18 GB) is read from memory after the first
+# scan - every chunk re-reads its source file, and a gp3 volume at the default 125 MB/s would otherwise dominate.
 # The server reads ignifyr-server.ec2.conf (local[28], 84 partitions). No WSL, no thermal guard needed on a server.
 services:
   ignifyr-server:
     environment:
       - APP_CONF_FILE=/usr/local/ignifyr/conf/docker/mimic-local/ignifyr-server.ec2.conf
-      - JAVA_OPTIONS=-Xms16g -Xmx96g -XX:+UseG1GC -XX:MaxGCPauseMillis=400 -XX:+ExitOnOutOfMemoryError -Djava.io.tmpdir=/tmp/spark
+      - JAVA_OPTIONS=-Xms16g -Xmx80g -XX:+UseG1GC -XX:MaxGCPauseMillis=400 -XX:+ExitOnOutOfMemoryError -Djava.io.tmpdir=/tmp/spark
     deploy:
       resources:
         limits:
           cpus: "28.0"
-          memory: 110G
+          memory: 96G
 
   elasticsearch:
     environment:
