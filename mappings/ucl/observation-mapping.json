@@ -57,7 +57,7 @@
           } ]
         },
         "valueCodeableConcept" : {
-          "{{#concept}}" : "{{mpp:getConcept(%smokingStatusConceptMap, value_as_concept_id.toString()}}",
+          "{{#concept}}" : "{{mpp:getConcept(%smokingStatusConceptMap, value_as_concept_id.toString())}}",
           "{{?}}" : "{{utl:createFhirCodeableConcept(%concept.target_system, %concept.target_code, %concept.target_display)}}"
         },
         "status" : "final"

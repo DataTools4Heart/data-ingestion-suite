@@ -106,7 +106,7 @@
         "resourceType" : "Observation",
         "category" : {
           "{{#concept}}" : "{{mpp:getConcept(%symptomMappingContext, %symptomCoding.first().code)}}",
-          "{{*}}" : "{{utl:createFhirCodeableConcept(%concept.target_system, %concept.target_code, %concept.target_display).nav:orElse(utl:createFhirCodeableConcept('http://terminology.hl7.org/CodeSystem/observation-category', 'survey', 'Survey')}}"
+          "{{*}}" : "{{utl:createFhirCodeableConcept(%concept.target_system, %concept.target_code, %concept.target_display).nav:orElse(utl:createFhirCodeableConcept('http://terminology.hl7.org/CodeSystem/observation-category', 'survey', 'Survey'))}}"
         },
         "code" : {
           "coding" : [ {
