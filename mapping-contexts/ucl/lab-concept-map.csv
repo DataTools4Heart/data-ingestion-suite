@@ -21,4 +21,10 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 3020564,8749,2160-0,mg/L,Creatinine [Mass/volume] in Serum or Plasma,$this * 0.1131,22550
 3020564,0,2160-0,mg/L,Creatinine [Mass/volume] in Serum or Plasma,$this * 0.1131,2761
 3020779,8753,22664-7,mmol/L,Urea [Moles/volume] in Serum or Plasma,$this,7668
+3020779,8753,14937-7,mmol/L,Urea nitrogen [Moles/volume] in Serum or Plasma,$this,7668
 3026910,8923,2324-2,U/L,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma,$this,93
+3029435,8725,33762-6,pg/mL,Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Serum or Plasma,$this,1949
+3009814,8554,2502-3,%,Iron saturation [Mass Fraction] in Serum or Plasma,$this,978
+3005673,8554,17856-6,%,Hemoglobin A1c/Hemoglobin.total in Blood by HPLC,$this,192
+40762352,9579,59261-8,mmol/mol,Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol,$this,649
+3023602,8753,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this,301

@@ -4,10 +4,12 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 1002325,0,93633-6,ratio,Heart Left ventricular outflow tract/Maximum blood flow aortic valve by US.doppler,$this,1147
 3000526,8582,18085-1,,Left ventricular Internal diameter minor axis systole by US 2D,$this,1263
 3004421,8582,18170-1,cm,Left ventricular outflow tract Blood velocity-time integral by US.doppler,$this,1021
+3007326,8554,18047-1,%,Left ventricular Ejection fraction by US 2D modified biplane,$this,342
 3011096,8582,18152-9,cm,Left ventricular posterior wall Thickness during diastole by US,$this,1330
 3012140,8876,18059-6,mmHg,Mitral valve Mean pressure gradient by US.doppler,$this,136
 3013395,8554,10231-9,%,Right ventricular Ejection fraction,$this,1
 3016047,0,18038-0,,Mitral valve Peak E wave/Peak A wave by US.doppler,$this,663
+3016171,8554,18043-0,%,Left ventricular Ejection fraction by US,$this,251
 3017701,8582,29429-8,cm,Inferior vena cava Diameter by US --inspiration,$this,383
 3022941,8582,18083-6,cm,Left ventricular Internal diameter minor axis diastole by US 2D,$this,1371
 3023614,8582,29468-6,mm,Left atrial Diameter anterior-posterior systole by US 2D,$this * 10,766

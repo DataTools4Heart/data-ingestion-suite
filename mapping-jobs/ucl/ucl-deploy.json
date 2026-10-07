@@ -198,6 +198,26 @@
       }
     }
   }, {
+    "name" : "measurement-mapping-derived-hdl",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/measurement-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "MEASUREMENT.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "preprocessSql" : "SELECT -tc.measurement_id AS measurement_id, tc.person_id, 3023602 AS measurement_concept_id,\n       tc.measurement_date, tc.measurement_datetime, tc.visit_occurrence_id, 8753 AS unit_concept_id,\n       round(tc.value_as_number - nh.value_as_number, 2) AS value_as_number\nFROM omopMeasurement tc JOIN omopMeasurement nh\n  ON nh.person_id = tc.person_id AND nh.measurement_datetime = tc.measurement_datetime\nWHERE tc.measurement_concept_id = 3019900 AND nh.measurement_concept_id = 42868678",
+        "sourceRef" : "ucl-data"
+      },
+      "omopVisit" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "VISIT_OCCURRENCE.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "ucl-data"
+      }
+    }
+  }, {
     "name" : "observation-mapping",
     "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/observation-mapping",
     "sourceBinding" : {

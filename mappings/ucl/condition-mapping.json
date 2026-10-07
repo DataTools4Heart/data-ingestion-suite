@@ -17,6 +17,10 @@
     "symptomMappingContext" : {
       "category" : "concept-map",
       "url" : "$CONTEXT_REPO/ucl/symptom-category.csv"
+    },
+    "conditionCardiomegalyOmopToSnomed" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/ucl/condition-cardiomegaly-omop-to-snomed.csv"
     }
   },
   "variable" : [ {
@@ -27,6 +31,10 @@
     "name" : "symptomCoding",
     "language" : "text/fhirpath",
     "expression" : "trms:translateToCoding(condition_concept_id.toString(), 'https://www.ohdsi.org/omop', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed')"
+  }, {
+    "name" : "snomedConcept",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%conditionCardiomegalyOmopToSnomed, condition_concept_id.toString())"
   }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
@@ -56,6 +64,13 @@
               "system" : "http://hl7.org/fhir/sid/icd-10"
             },
             "@sliceName" : "icd10Code"
+          }, {
+            "{{#snomedCode}}" : "{{%snomedConcept}}",
+            "{{?}}" : {
+              "code" : "{{%snomedCode.target_code}}",
+              "system" : "http://snomed.info/sct",
+              "display" : "{{%snomedCode.target_display}}"
+            }
           } ]
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",

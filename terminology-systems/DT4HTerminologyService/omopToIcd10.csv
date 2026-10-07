@@ -20550,6 +20550,7 @@ https://www.ohdsi.org/omop,197507,http://hl7.org/fhir/sid/icd-10,C63.7,Malignant
 https://www.ohdsi.org/omop,197507,http://hl7.org/fhir/sid/icd-10,C63.7,Malignant neoplasm: Other specified male genital organs
 https://www.ohdsi.org/omop,197507,http://hl7.org/fhir/sid/icd-10,C63.9,"Malignant neoplasm of male genital organ, unspecified"
 https://www.ohdsi.org/omop,197507,http://hl7.org/fhir/sid/icd-10,C63.9,"Malignant neoplasm: Male genital organ, unspecified"
+https://www.ohdsi.org/omop,197508,http://hl7.org/fhir/sid/icd-10,C67.9,"Malignant neoplasm of bladder, unspecified"
 https://www.ohdsi.org/omop,197518,http://hl7.org/fhir/sid/icd-10,D40,Neoplasm of uncertain behavior of male genital organs
 https://www.ohdsi.org/omop,197593,http://hl7.org/fhir/sid/icd-10,K56.4,Other impaction of intestine
 https://www.ohdsi.org/omop,197593,http://hl7.org/fhir/sid/icd-10,K56.49,Other impaction of intestine
@@ -34266,6 +34267,7 @@ https://www.ohdsi.org/omop,4029273,http://hl7.org/fhir/sid/icd-10,E61.2,Magnesiu
 https://www.ohdsi.org/omop,4029277,http://hl7.org/fhir/sid/icd-10,M79.4,Hypertrophy of (infrapatellar) fat pad
 https://www.ohdsi.org/omop,4029280,http://hl7.org/fhir/sid/icd-10,E67.2,Megavitamin-B6 syndrome
 https://www.ohdsi.org/omop,4029280,http://hl7.org/fhir/sid/icd-10,E67.2,Megavitamin-B6syndrome
+https://www.ohdsi.org/omop,4029305,http://hl7.org/fhir/sid/icd-10,E78,Disorders of lipoprotein metabolism and other lipidemias
 https://www.ohdsi.org/omop,4029319,http://hl7.org/fhir/sid/icd-10,B00.7,Disseminated herpesviral disease
 https://www.ohdsi.org/omop,4029329,http://hl7.org/fhir/sid/icd-10,G51.3,Clonic hemifacial spasm
 https://www.ohdsi.org/omop,4029329,http://hl7.org/fhir/sid/icd-10,G51.39,"Clonic hemifacial spasm, unspecified"
@@ -35317,6 +35319,7 @@ https://www.ohdsi.org/omop,40486685,http://hl7.org/fhir/sid/icd-10,A32.7,Listeri
 https://www.ohdsi.org/omop,4048684,http://hl7.org/fhir/sid/icd-10,M47.87,"Other spondylosis, lumbosacral region"
 https://www.ohdsi.org/omop,40486896,http://hl7.org/fhir/sid/icd-10,C24.0,Malignant neoplasm of extrahepatic bile duct
 https://www.ohdsi.org/omop,40486896,http://hl7.org/fhir/sid/icd-10,C24.0,Malignant neoplasm: Extrahepatic bile duct
+https://www.ohdsi.org/omop,40486933,http://hl7.org/fhir/sid/icd-10,I50.3,Diastolic (congestive) heart failure
 https://www.ohdsi.org/omop,40486937,http://hl7.org/fhir/sid/icd-10,T56.7,Toxic effect: Beryllium and its compounds
 https://www.ohdsi.org/omop,40487059,http://hl7.org/fhir/sid/icd-10,A41.1,Sepsis due to other specified staphylococcus
 https://www.ohdsi.org/omop,40487059,http://hl7.org/fhir/sid/icd-10,A41.2,Sepsis due to unspecified staphylococcus
@@ -36847,6 +36850,7 @@ https://www.ohdsi.org/omop,4100979,http://hl7.org/fhir/sid/icd-10,D81.6,Major hi
 https://www.ohdsi.org/omop,4100980,http://hl7.org/fhir/sid/icd-10,D81.7,Major histocompatibility complex class II deficiency
 https://www.ohdsi.org/omop,4100982,http://hl7.org/fhir/sid/icd-10,D82.3,Immunodeficiency following hereditary defective response to Epstein-Barr virus
 https://www.ohdsi.org/omop,4100987,http://hl7.org/fhir/sid/icd-10,D52.1,Drug-induced folate deficiency anaemia
+https://www.ohdsi.org/omop,4101029,http://hl7.org/fhir/sid/icd-10,I51.7,Cardiomegaly
 https://www.ohdsi.org/omop,4101032,http://hl7.org/fhir/sid/icd-10,Q21.13,Coronary sinus atrial septal defect
 https://www.ohdsi.org/omop,4101104,http://hl7.org/fhir/sid/icd-10,K28.9,"Gastrojejunal ulcer, unspecified as acute or chronic, without haemorrhage or perforation"
 https://www.ohdsi.org/omop,4101104,http://hl7.org/fhir/sid/icd-10,K28.9,"Gastrojejunal ulcer, unspecified as acute or chronic, without hemorrhage or perforation"
@@ -36862,6 +36866,7 @@ https://www.ohdsi.org/omop,4101287,http://hl7.org/fhir/sid/icd-10,E64.0,Sequelae
 https://www.ohdsi.org/omop,4101287,http://hl7.org/fhir/sid/icd-10,E64.0,Sequelae of protein-energy malnutrition
 https://www.ohdsi.org/omop,4101289,http://hl7.org/fhir/sid/icd-10,E70.21,Tyrosinemia
 https://www.ohdsi.org/omop,4101305,http://hl7.org/fhir/sid/icd-10,E75.22,Gaucher disease
+https://www.ohdsi.org/omop,4101317,http://hl7.org/fhir/sid/icd-10,I51.7,Cardiomegaly
 https://www.ohdsi.org/omop,4101333,http://hl7.org/fhir/sid/icd-10,G60.1,Refsum disease
 https://www.ohdsi.org/omop,4101333,http://hl7.org/fhir/sid/icd-10,G60.1,Refsum's disease
 https://www.ohdsi.org/omop,4101425,http://hl7.org/fhir/sid/icd-10,M1A.0411,"Idiopathic chronic gout, right hand, with tophus (tophi)"
@@ -36912,6 +36917,7 @@ https://www.ohdsi.org/omop,4102985,http://hl7.org/fhir/sid/icd-10,F51.0,Nonorgan
 https://www.ohdsi.org/omop,4102985,http://hl7.org/fhir/sid/icd-10,F51.09,Other insomnia not due to a substance or known physiological condition
 https://www.ohdsi.org/omop,4102986,http://hl7.org/fhir/sid/icd-10,F88,Other disorders of psychological development
 https://www.ohdsi.org/omop,4102986,http://hl7.org/fhir/sid/icd-10,F89,Unspecified disorder of psychological development
+https://www.ohdsi.org/omop,4103136,http://hl7.org/fhir/sid/icd-10,I51.7,Cardiomegaly
 https://www.ohdsi.org/omop,4103168,http://hl7.org/fhir/sid/icd-10,S72.11,Fracture of greater trochanter of femur
 https://www.ohdsi.org/omop,4103188,http://hl7.org/fhir/sid/icd-10,I07.9,"Tricuspid valve disease, unspecified"
 https://www.ohdsi.org/omop,4103235,http://hl7.org/fhir/sid/icd-10,P14.2,Phrenic nerve paralysis due to birth injury
@@ -37107,6 +37113,7 @@ https://www.ohdsi.org/omop,4109398,http://hl7.org/fhir/sid/icd-10,H47.63,Disorde
 https://www.ohdsi.org/omop,4109399,http://hl7.org/fhir/sid/icd-10,H47.64,Disorders of visual cortex in (due to) vascular disorders
 https://www.ohdsi.org/omop,4109401,http://hl7.org/fhir/sid/icd-10,H36.82,Proliferative sickle-cell retinopathy
 https://www.ohdsi.org/omop,4109410,http://hl7.org/fhir/sid/icd-10,H30.11,Disseminated chorioretinal inflammation of posterior pole
+https://www.ohdsi.org/omop,4109464,http://hl7.org/fhir/sid/icd-10,I77.810,Thoracic aortic ectasia
 https://www.ohdsi.org/omop,4109493,http://hl7.org/fhir/sid/icd-10,Q31.2,Laryngeal hypoplasia
 https://www.ohdsi.org/omop,4109548,http://hl7.org/fhir/sid/icd-10,H26.3,Drug-induced cataract
 https://www.ohdsi.org/omop,4109612,http://hl7.org/fhir/sid/icd-10,Q38.4,Congenital malformations of salivary glands and ducts
@@ -37274,6 +37281,7 @@ https://www.ohdsi.org/omop,4112359,http://hl7.org/fhir/sid/icd-10,J20.4,Acute br
 https://www.ohdsi.org/omop,4112521,http://hl7.org/fhir/sid/icd-10,J20.6,Acute bronchitis due to rhinovirus
 https://www.ohdsi.org/omop,4112534,http://hl7.org/fhir/sid/icd-10,J37,Chronic laryngitis and laryngotracheitis
 https://www.ohdsi.org/omop,4112676,http://hl7.org/fhir/sid/icd-10,J65,Pneumoconiosis associated with tuberculosis
+https://www.ohdsi.org/omop,4112738,http://hl7.org/fhir/sid/icd-10,C34,Malignant neoplasm of bronchus and lung
 https://www.ohdsi.org/omop,4112752,http://hl7.org/fhir/sid/icd-10,C44.41,Basal cell carcinoma of skin of scalp and neck
 https://www.ohdsi.org/omop,4112809,http://hl7.org/fhir/sid/icd-10,O74.0,Aspiration pneumonitis due to anaesthesia during labour and delivery
 https://www.ohdsi.org/omop,4112813,http://hl7.org/fhir/sid/icd-10,J70.4,"Drug-induced interstitial lung disorders, unspecified"
@@ -37286,6 +37294,7 @@ https://www.ohdsi.org/omop,4112839,http://hl7.org/fhir/sid/icd-10,J69.0,Pneumoni
 https://www.ohdsi.org/omop,4112839,http://hl7.org/fhir/sid/icd-10,J69.0,Pneumonitis due to inhalation of food and vomit
 https://www.ohdsi.org/omop,4112851,http://hl7.org/fhir/sid/icd-10,D19,Benign neoplasm of mesothelial tissue
 https://www.ohdsi.org/omop,4112852,http://hl7.org/fhir/sid/icd-10,D17,Benign lipomatous neoplasm
+https://www.ohdsi.org/omop,4112853,http://hl7.org/fhir/sid/icd-10,C50,Malignant neoplasm of breast
 https://www.ohdsi.org/omop,4112931,http://hl7.org/fhir/sid/icd-10,N82.3,Fistula of vagina to large intestine
 https://www.ohdsi.org/omop,4113008,http://hl7.org/fhir/sid/icd-10,S61.41,Laceration without foreign body of hand
 https://www.ohdsi.org/omop,4113009,http://hl7.org/fhir/sid/icd-10,S32.31,Avulsion fracture of ilium
@@ -37402,6 +37411,8 @@ https://www.ohdsi.org/omop,4115991,http://hl7.org/fhir/sid/icd-10,M12.46,"Interm
 https://www.ohdsi.org/omop,4115991,http://hl7.org/fhir/sid/icd-10,M25.46,"Effusion of joint, lower leg"
 https://www.ohdsi.org/omop,4116007,http://hl7.org/fhir/sid/icd-10,M1A.011,"Idiopathic chronic gout, right shoulder"
 https://www.ohdsi.org/omop,4116008,http://hl7.org/fhir/sid/icd-10,M1A.0711,"Idiopathic chronic gout, right ankle and foot, with tophus (tophi)"
+https://www.ohdsi.org/omop,4116071,http://hl7.org/fhir/sid/icd-10,D05,Carcinoma in situ of breast
+https://www.ohdsi.org/omop,4116071,http://hl7.org/fhir/sid/icd-10,C50.9,Malignant neoplasm of breast of unspecified site
 https://www.ohdsi.org/omop,4116142,http://hl7.org/fhir/sid/icd-10,M07.5,Arthropathy in ulcerative colitis
 https://www.ohdsi.org/omop,4116150,http://hl7.org/fhir/sid/icd-10,M05.05,"Felty's syndrome, hip"
 https://www.ohdsi.org/omop,4116150,http://hl7.org/fhir/sid/icd-10,M06.051,"Rheumatoid arthritis without rheumatoid factor, right hip"
@@ -37700,6 +37711,7 @@ https://www.ohdsi.org/omop,4132570,http://hl7.org/fhir/sid/icd-10,D89.2,"Hyperga
 https://www.ohdsi.org/omop,4132810,http://hl7.org/fhir/sid/icd-10,M08.3,Juvenile polyarthritis (seronegative)
 https://www.ohdsi.org/omop,4132811,http://hl7.org/fhir/sid/icd-10,M08.4,Pauciarticular juvenile arthritis
 https://www.ohdsi.org/omop,4132926,http://hl7.org/fhir/sid/icd-10,R07,Pain in throat and chest
+https://www.ohdsi.org/omop,4133004,http://hl7.org/fhir/sid/icd-10,I82,Other venous embolism and thrombosis
 https://www.ohdsi.org/omop,4133009,http://hl7.org/fhir/sid/icd-10,S30.814,Abrasion of vagina and vulva
 https://www.ohdsi.org/omop,4133012,http://hl7.org/fhir/sid/icd-10,S72.14,Intertrochanteric fracture of femur
 https://www.ohdsi.org/omop,4133015,http://hl7.org/fhir/sid/icd-10,S83.51,Sprain of anterior cruciate ligament of knee
@@ -37967,6 +37979,7 @@ https://www.ohdsi.org/omop,4142899,http://hl7.org/fhir/sid/icd-10,M06.30,"Rheuma
 https://www.ohdsi.org/omop,4142905,http://hl7.org/fhir/sid/icd-10,S22.3,Fracture of rib
 https://www.ohdsi.org/omop,4142989,http://hl7.org/fhir/sid/icd-10,S79.011A,"Salter-Harris Type I physeal fracture of upper end of right femur, initial encounter for closed fracture"
 https://www.ohdsi.org/omop,4143024,http://hl7.org/fhir/sid/icd-10,H60.31,Diffuse otitis externa
+https://www.ohdsi.org/omop,4143092,http://hl7.org/fhir/sid/icd-10,J18,"Pneumonia, unspecified organism"
 https://www.ohdsi.org/omop,4143116,http://hl7.org/fhir/sid/icd-10,N46.01,Organic azoospermia
 https://www.ohdsi.org/omop,4143116,http://hl7.org/fhir/sid/icd-10,N46.02,Azoospermia due to extratesticular causes
 https://www.ohdsi.org/omop,4143187,http://hl7.org/fhir/sid/icd-10,O43.1,Malformation of placenta
@@ -38521,6 +38534,7 @@ https://www.ohdsi.org/omop,4161489,http://hl7.org/fhir/sid/icd-10,T38.5X1,"Poiso
 https://www.ohdsi.org/omop,4161682,http://hl7.org/fhir/sid/icd-10,R20.1,Hypoaesthesia of skin
 https://www.ohdsi.org/omop,4161682,http://hl7.org/fhir/sid/icd-10,R20.1,Hypoesthesia of skin
 https://www.ohdsi.org/omop,4161699,http://hl7.org/fhir/sid/icd-10,S11.011,Laceration without foreign body of larynx
+https://www.ohdsi.org/omop,4161701,http://hl7.org/fhir/sid/icd-10,I31.3,Pericardial effusion (noninflammatory)
 https://www.ohdsi.org/omop,4161947,http://hl7.org/fhir/sid/icd-10,N49.3,Fournier gangrene
 https://www.ohdsi.org/omop,4162034,http://hl7.org/fhir/sid/icd-10,T40.711,"Poisoning by cannabis, accidental (unintentional)"
 https://www.ohdsi.org/omop,4162094,http://hl7.org/fhir/sid/icd-10,H44.2D,Degenerative myopia with foveoschisis
@@ -38552,6 +38566,7 @@ https://www.ohdsi.org/omop,4162993,http://hl7.org/fhir/sid/icd-10,C44.70,"Unspec
 https://www.ohdsi.org/omop,4162994,http://hl7.org/fhir/sid/icd-10,C44.60,"Unspecified malignant neoplasm of skin of upper limb, including shoulder"
 https://www.ohdsi.org/omop,4163133,http://hl7.org/fhir/sid/icd-10,A69.1,Other Vincent infections
 https://www.ohdsi.org/omop,4163133,http://hl7.org/fhir/sid/icd-10,A69.1,Other Vincent's infections
+https://www.ohdsi.org/omop,4163261,http://hl7.org/fhir/sid/icd-10,C61,Malignant neoplasm of prostate
 https://www.ohdsi.org/omop,4163266,http://hl7.org/fhir/sid/icd-10,G71.02,Facioscapulohumeral muscular dystrophy
 https://www.ohdsi.org/omop,4163372,http://hl7.org/fhir/sid/icd-10,Q25.44,Congenital dilation of aorta
 https://www.ohdsi.org/omop,4163410,http://hl7.org/fhir/sid/icd-10,H50.1,Divergent concomitant strabismus
@@ -38879,6 +38894,7 @@ https://www.ohdsi.org/omop,4175411,http://hl7.org/fhir/sid/icd-10,T41.3,"Poisoni
 https://www.ohdsi.org/omop,4175420,http://hl7.org/fhir/sid/icd-10,T45.AX3,"Poisoning by immune checkpoint inhibitors and immunostimulant drugs, assault"
 https://www.ohdsi.org/omop,4175440,http://hl7.org/fhir/sid/icd-10,E08.43,Diabetes mellitus due to underlying condition with diabetic autonomic (poly)neuropathy
 https://www.ohdsi.org/omop,4175440,http://hl7.org/fhir/sid/icd-10,E13.43,Other specified diabetes mellitus with diabetic autonomic (poly)neuropathy
+https://www.ohdsi.org/omop,4175485,http://hl7.org/fhir/sid/icd-10,D47.1,Chronic myeloproliferative disease
 https://www.ohdsi.org/omop,4175555,http://hl7.org/fhir/sid/icd-10,Z67.20,"Type B blood, Rh positive"
 https://www.ohdsi.org/omop,4175582,http://hl7.org/fhir/sid/icd-10,Q26.5,Anomalous portal venous connection
 https://www.ohdsi.org/omop,4175583,http://hl7.org/fhir/sid/icd-10,E78.71,Barth syndrome
@@ -39099,6 +39115,7 @@ https://www.ohdsi.org/omop,4181302,http://hl7.org/fhir/sid/icd-10,M25.13,"Fistul
 https://www.ohdsi.org/omop,4181313,http://hl7.org/fhir/sid/icd-10,M14.66,"Charcot's joint, knee"
 https://www.ohdsi.org/omop,4181330,http://hl7.org/fhir/sid/icd-10,C49.3,Malignant neoplasm of connective and soft tissue of thorax
 https://www.ohdsi.org/omop,4181330,http://hl7.org/fhir/sid/icd-10,C49.3,Malignant neoplasm: Connective and soft tissue of thorax
+https://www.ohdsi.org/omop,4181351,http://hl7.org/fhir/sid/icd-10,C56,Malignant neoplasm of ovary
 https://www.ohdsi.org/omop,4181404,http://hl7.org/fhir/sid/icd-10,T67.09,Other heatstroke and sunstroke
 https://www.ohdsi.org/omop,4181427,http://hl7.org/fhir/sid/icd-10,E75.240,Niemann-Pick disease type A
 https://www.ohdsi.org/omop,4181453,http://hl7.org/fhir/sid/icd-10,M12.18,"Kaschin-Beck disease, vertebrae"
@@ -39170,6 +39187,7 @@ https://www.ohdsi.org/omop,4184499,http://hl7.org/fhir/sid/icd-10,Q22.9,"Congeni
 https://www.ohdsi.org/omop,4184626,http://hl7.org/fhir/sid/icd-10,H02.53,Eyelid retraction
 https://www.ohdsi.org/omop,4184657,http://hl7.org/fhir/sid/icd-10,M06.23,"Rheumatoid bursitis, wrist"
 https://www.ohdsi.org/omop,4184657,http://hl7.org/fhir/sid/icd-10,M71.13,"Other infective bursitis, forearm"
+https://www.ohdsi.org/omop,4184746,http://hl7.org/fhir/sid/icd-10,I51.7,Cardiomegaly
 https://www.ohdsi.org/omop,4184754,http://hl7.org/fhir/sid/icd-10,S62.25,Fracture of neck of first metacarpal bone
 https://www.ohdsi.org/omop,4184976,http://hl7.org/fhir/sid/icd-10,C86.5,Angioimmunoblastic T-cell lymphoma
 https://www.ohdsi.org/omop,4184996,http://hl7.org/fhir/sid/icd-10,P21,Birth asphyxia
@@ -39205,6 +39223,7 @@ https://www.ohdsi.org/omop,4185758,http://hl7.org/fhir/sid/icd-10,M96.67,"Fractu
 https://www.ohdsi.org/omop,4185758,http://hl7.org/fhir/sid/icd-10,S82,"Fracture of lower leg, including ankle"
 https://www.ohdsi.org/omop,4185780,http://hl7.org/fhir/sid/icd-10,Z3A.21,21 weeks gestation of pregnancy
 https://www.ohdsi.org/omop,4185800,http://hl7.org/fhir/sid/icd-10,M25.32,"Other instability of joint, upper arm"
+https://www.ohdsi.org/omop,4185932,http://hl7.org/fhir/sid/icd-10,I25.9,"Chronic ischemic heart disease, unspecified"
 https://www.ohdsi.org/omop,4186208,http://hl7.org/fhir/sid/icd-10,L03.317,Cellulitis of buttock
 https://www.ohdsi.org/omop,4186285,http://hl7.org/fhir/sid/icd-10,Q31.0,Web of larynx
 https://www.ohdsi.org/omop,4186433,http://hl7.org/fhir/sid/icd-10,S92.351B,"Displaced fracture of fifth metatarsal bone, right foot, initial encounter for open fracture"
@@ -39657,6 +39676,7 @@ https://www.ohdsi.org/omop,4215019,http://hl7.org/fhir/sid/icd-10,T65.82,Toxic e
 https://www.ohdsi.org/omop,4215117,http://hl7.org/fhir/sid/icd-10,E74.1,Disorders of fructose metabolism
 https://www.ohdsi.org/omop,4215117,http://hl7.org/fhir/sid/icd-10,E74.10,"Disorder of fructose metabolism, unspecified"
 https://www.ohdsi.org/omop,4215117,http://hl7.org/fhir/sid/icd-10,E74.19,Other disorders of fructose metabolism
+https://www.ohdsi.org/omop,4215140,http://hl7.org/fhir/sid/icd-10,I24,Other acute ischemic heart diseases
 https://www.ohdsi.org/omop,4215217,http://hl7.org/fhir/sid/icd-10,M66.55,"Spontaneous rupture of unspecified tendon, pelvic region and thigh"
 https://www.ohdsi.org/omop,4215370,http://hl7.org/fhir/sid/icd-10,Q38,"Other congenital malformations of tongue, mouth and pharynx"
 https://www.ohdsi.org/omop,4215380,http://hl7.org/fhir/sid/icd-10,S42.90XB,"Fracture of unspecified shoulder girdle, part unspecified, initial encounter for open fracture"
@@ -39933,6 +39953,7 @@ https://www.ohdsi.org/omop,4232162,http://hl7.org/fhir/sid/icd-10,N82.0,Vesicova
 https://www.ohdsi.org/omop,4232178,http://hl7.org/fhir/sid/icd-10,D61.02,Shwachman-Diamond syndrome
 https://www.ohdsi.org/omop,4232181,http://hl7.org/fhir/sid/icd-10,K26.4,Chronic or unspecified duodenal ulcer with hemorrhage
 https://www.ohdsi.org/omop,4232181,http://hl7.org/fhir/sid/icd-10,K26.4,"Duodenal ulcer, chronic or unspecified with haemorrhage"
+https://www.ohdsi.org/omop,4232311,http://hl7.org/fhir/sid/icd-10,E87.1,Hypo-osmolality and hyponatremia
 https://www.ohdsi.org/omop,4232324,http://hl7.org/fhir/sid/icd-10,F51.4,Sleep terrors [night terrors]
 https://www.ohdsi.org/omop,4232337,http://hl7.org/fhir/sid/icd-10,I38,"Endocarditis, valve unspecified"
 https://www.ohdsi.org/omop,4232492,http://hl7.org/fhir/sid/icd-10,F18.14,Inhalant abuse with inhalant-induced mood disorder
@@ -40220,6 +40241,7 @@ https://www.ohdsi.org/omop,4247336,http://hl7.org/fhir/sid/icd-10,C30.1,Malignan
 https://www.ohdsi.org/omop,4247348,http://hl7.org/fhir/sid/icd-10,C44.501,Unspecified malignant neoplasm of skin of breast
 https://www.ohdsi.org/omop,4247350,http://hl7.org/fhir/sid/icd-10,C44.2,Malignant neoplasm: Skin of ear and external auricular canal
 https://www.ohdsi.org/omop,4247371,http://hl7.org/fhir/sid/icd-10,S03.3,Dislocation of other and unspecified parts of head
+https://www.ohdsi.org/omop,4247579,http://hl7.org/fhir/sid/icd-10,D56.9,"Thalassemia, unspecified"
 https://www.ohdsi.org/omop,4247597,http://hl7.org/fhir/sid/icd-10,H44.81,Hemophthalmos
 https://www.ohdsi.org/omop,4247710,http://hl7.org/fhir/sid/icd-10,M12.45,"Intermittent hydrarthrosis, pelvic region and thigh"
 https://www.ohdsi.org/omop,4247719,http://hl7.org/fhir/sid/icd-10,C18.2,Malignant neoplasm of ascending colon
@@ -40379,6 +40401,7 @@ https://www.ohdsi.org/omop,42537682,http://hl7.org/fhir/sid/icd-10,M77.82,"Other
 https://www.ohdsi.org/omop,42537685,http://hl7.org/fhir/sid/icd-10,Q71.2,Congenital absence of both forearm and hand
 https://www.ohdsi.org/omop,42537692,http://hl7.org/fhir/sid/icd-10,F12.8,"Mental and behavioural disorders due to use of cannabinoids, other mental and behavioural disorders"
 https://www.ohdsi.org/omop,42537727,http://hl7.org/fhir/sid/icd-10,H35.3,Degeneration of macula and posterior pole
+https://www.ohdsi.org/omop,42537729,http://hl7.org/fhir/sid/icd-10,Z95.1,Presence of aortocoronary bypass graft
 https://www.ohdsi.org/omop,42537742,http://hl7.org/fhir/sid/icd-10,Z94.4,Liver transplant status
 https://www.ohdsi.org/omop,42537743,http://hl7.org/fhir/sid/icd-10,Z94.6,Bone transplant status
 https://www.ohdsi.org/omop,42537748,http://hl7.org/fhir/sid/icd-10,Z89,Acquired absence of limb
@@ -44088,6 +44111,7 @@ https://www.ohdsi.org/omop,4292105,http://hl7.org/fhir/sid/icd-10,E76.21,Morquio
 https://www.ohdsi.org/omop,4292525,http://hl7.org/fhir/sid/icd-10,L53.0,Toxic erythema
 https://www.ohdsi.org/omop,4292547,http://hl7.org/fhir/sid/icd-10,E88.2,"Lipomatosis, not elsewhere classified"
 https://www.ohdsi.org/omop,4292673,http://hl7.org/fhir/sid/icd-10,L98.1,Factitial dermatitis
+https://www.ohdsi.org/omop,4293463,http://hl7.org/fhir/sid/icd-10,J18,"Pneumonia, unspecified organism"
 https://www.ohdsi.org/omop,4293479,http://hl7.org/fhir/sid/icd-10,T20,Burn and corrosion of head and neck
 https://www.ohdsi.org/omop,4294142,http://hl7.org/fhir/sid/icd-10,E76.0,"Mucopolysaccharidosis, type I"
 https://www.ohdsi.org/omop,4294246,http://hl7.org/fhir/sid/icd-10,G43.D,Abdominal migraine
@@ -44509,6 +44533,7 @@ https://www.ohdsi.org/omop,4311246,http://hl7.org/fhir/sid/icd-10,O10.011,"Pre-e
 https://www.ohdsi.org/omop,4311256,http://hl7.org/fhir/sid/icd-10,O26.4,Herpes gestationis
 https://www.ohdsi.org/omop,4311280,http://hl7.org/fhir/sid/icd-10,S26,Injury of heart
 https://www.ohdsi.org/omop,4311402,http://hl7.org/fhir/sid/icd-10,Q77.4,Achondroplasia
+https://www.ohdsi.org/omop,4311437,http://hl7.org/fhir/sid/icd-10,I50,Heart failure
 https://www.ohdsi.org/omop,4311480,http://hl7.org/fhir/sid/icd-10,C17.2,Malignant neoplasm of ileum
 https://www.ohdsi.org/omop,4311480,http://hl7.org/fhir/sid/icd-10,C17.2,Malignant neoplasm: Ileum
 https://www.ohdsi.org/omop,4311484,http://hl7.org/fhir/sid/icd-10,B00.52,Herpesviral keratitis
@@ -44562,6 +44587,7 @@ https://www.ohdsi.org/omop,4313834,http://hl7.org/fhir/sid/icd-10,Q76.8,Other co
 https://www.ohdsi.org/omop,4313834,http://hl7.org/fhir/sid/icd-10,Q76.9,"Congenital malformation of bony thorax, unspecified"
 https://www.ohdsi.org/omop,4313846,http://hl7.org/fhir/sid/icd-10,K75.3,"Granulomatous hepatitis, not elsewhere classified"
 https://www.ohdsi.org/omop,4313871,http://hl7.org/fhir/sid/icd-10,U84.3,Resistance to tuberculostatic drug(s)
+https://www.ohdsi.org/omop,4314042,http://hl7.org/fhir/sid/icd-10,C49,Malignant neoplasm of other connective and soft tissue
 https://www.ohdsi.org/omop,4314075,http://hl7.org/fhir/sid/icd-10,T63.02,Toxic effect of coral snake venom
 https://www.ohdsi.org/omop,4314076,http://hl7.org/fhir/sid/icd-10,T63.11,Toxic effect of venom of gila monster
 https://www.ohdsi.org/omop,4314078,http://hl7.org/fhir/sid/icd-10,T63.01,Toxic effect of rattlesnake venom
@@ -44900,6 +44926,7 @@ https://www.ohdsi.org/omop,432689,http://hl7.org/fhir/sid/icd-10,O03.33,Metaboli
 https://www.ohdsi.org/omop,432695,http://hl7.org/fhir/sid/icd-10,O48,Late pregnancy
 https://www.ohdsi.org/omop,4327030,http://hl7.org/fhir/sid/icd-10,K71.0,Toxic liver disease with cholestasis
 https://www.ohdsi.org/omop,4327033,http://hl7.org/fhir/sid/icd-10,P74.5,Transitory tyrosinaemia of newborn
+https://www.ohdsi.org/omop,4327045,http://hl7.org/fhir/sid/icd-10,D56.9,"Thalassemia, unspecified"
 https://www.ohdsi.org/omop,432716,http://hl7.org/fhir/sid/icd-10,M89.62,"Osteopathy after poliomyelitis, upper arm"
 https://www.ohdsi.org/omop,432719,http://hl7.org/fhir/sid/icd-10,M79.3,"Panniculitis, unspecified"
 https://www.ohdsi.org/omop,432725,http://hl7.org/fhir/sid/icd-10,Q84,Other congenital malformations of integument
@@ -119323,6 +119350,7 @@ https://www.ohdsi.org/omop,45766121,http://hl7.org/fhir/sid/icd-10,I67.84,Cerebr
 https://www.ohdsi.org/omop,45766121,http://hl7.org/fhir/sid/icd-10,I67.848,Other cerebrovascular vasospasm and vasoconstriction
 https://www.ohdsi.org/omop,45766132,http://hl7.org/fhir/sid/icd-10,E26.02,Glucocorticoid-remediable aldosteronism
 https://www.ohdsi.org/omop,45766159,http://hl7.org/fhir/sid/icd-10,M82,Osteoporosis in diseases classified elsewhere
+https://www.ohdsi.org/omop,45766164,http://hl7.org/fhir/sid/icd-10,I50.2,Systolic (congestive) heart failure
 https://www.ohdsi.org/omop,45766199,http://hl7.org/fhir/sid/icd-10,I68.1,Cerebral arteritis in infectious and parasitic diseases classified elsewhere
 https://www.ohdsi.org/omop,45766216,http://hl7.org/fhir/sid/icd-10,Q27.31,Arteriovenous malformation of vessel of upper limb
 https://www.ohdsi.org/omop,45766216,http://hl7.org/fhir/sid/icd-10,Q27.32,Arteriovenous malformation of vessel of lower limb
