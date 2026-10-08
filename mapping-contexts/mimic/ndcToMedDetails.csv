@@ -5008,7 +5008,7 @@
 "00054001021","317541","Oral Tablet","42686","flecainide acetate","MG","50.0","EACH","1.0"
 "00071000740","91058","Chewable Tablet","8183","phenytoin","MG","50.0","EACH","1.0"
 "49281040015","721656","Prefilled Syringe","1300180","Bordetella pertussis filamentous hemagglutinin vaccine, inactivated","MG","0.01","ML","1.0"
-"00054812025","317541","Oral Tablet","1316581","calcium ion","MG","1250.0","EACH","1.0"
+"00054812025","317541","Oral Tablet","1897","calcium carbonate","MG","1250.0","EACH","1.0"
 "25208000203","1649574","Injection","253202","tirofiban hydrochloride","MG","0.05","ML","1.0"
 "00338500341","1649574","Injection","203172","ceftriaxone sodium","MG","2000.0","EACH","1.0"
 "68084035721","316965","Oral Capsule","9384","rifampin","MG","150.0","EACH","1.0"
@@ -9431,3 +9431,4 @@
 "10939003722","","","21406","ubidecarenone","","","",""
 "41388021020","","","508","allantoin","","","",""
 "07610017120","","","1291425","docosaenoic acid","","","",""
+"66689036430","316969","Oral Suspension","6581","magnesium hydroxide","MG","80.0","ML","1.0"

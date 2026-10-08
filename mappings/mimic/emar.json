@@ -38,10 +38,6 @@
     "ndcToMedDetails": {
       "category": "concept-map",
       "url": "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
-    },
-    "atcGroupMap": {
-      "category": "concept-map",
-      "url": "$CONTEXT_REPO/mimic/atc-to-medication-group-concept-map.csv"
     }
   },
   "variable": [
@@ -98,7 +94,7 @@
                         "display": "{{%prescriptionVar.drug}}"
                       },
                       {
-                        "{{#rxn}}": "{{mpp:getConcept(%ndcToMedDetails, %prescriptionVar.ndc.toString()).first().where(activeIngredientRxcui.exists() and activeIngredientRxcui != '')}}",
+                        "{{#rxn}}": "{{mpp:getConcept(%ndcToMedDetails, %ndcForConcept).first().where(activeIngredientRxcui.exists() and activeIngredientRxcui != '')}}",
                         "{{?}}": {
                           "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
                           "code": "{{%rxn.activeIngredientRxcui}}",
@@ -106,21 +102,12 @@
                         }
                       },
                       {
-                        "{{#atc}}": "{{trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, %prescriptionVar.ndc.toString(), 'activeIngredientRxcui'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc')}}",
+                        "{{#atc}}": "{{trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, %ndcForConcept, 'activeIngredientRxcui'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc')}}",
                         "{{*}}": {
                           "system": "http://www.whocc.no/atc",
                           "code": "{{%atc.code}}",
                           "display": "{{? %atc.display}}",
                           "@sliceName": "atcCode"
-                        }
-                      },
-                      {
-                        "{{#grp}}": "{{(trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, %prescriptionVar.ndc.toString(), 'activeIngredientRxcui'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc').code.select($this.substring(0,3) | $this.substring(0,4) | $this.substring(0,5) | $this)).select(mpp:getConcept(%atcGroupMap, $this)).target_code.distinct()}}",
-                        "{{*}}": {
-                          "system": "https://datatools4heart.eu/fhir/CodeSystem/medication-group",
-                          "code": "{{%grp}}",
-                          "display": "{{mpp:getConcept(%atcGroupMap, %grp, 'target_display')}}",
-                          "@sliceName": "atcCodeGroup"
                         }
                       }
                     ],
