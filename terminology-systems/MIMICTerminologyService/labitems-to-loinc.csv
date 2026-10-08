@@ -1402,3 +1402,31 @@ https://mimic.mit.edu/fhir/CodeSystem/labitems,53148,Anti Hbe,http://loinc.org,1
 https://mimic.mit.edu/fhir/CodeSystem/labitems,53149,Anti-hbs,http://loinc.org,5193-8,Hepatitis B virus surface Ab [Units/volume] in Serum or Plasma by Immunoassay
 https://mimic.mit.edu/fhir/CodeSystem/labitems,53150,Anti Hbs,http://loinc.org,10900-9,Hepatitis B virus surface Ab [Presence] in Serum by Immunoassay
 https://mimic.mit.edu/fhir/CodeSystem/labitems,53151,Anti-la,http://loinc.org,8094-5,Sjogrens syndrome-B extractable nuclear Ab [Presence] in Serum
+https://mimic.mit.edu/fhir/CodeSystem/labitems,50934,H,http://loinc.org,46424-8,Hemolysis interference index of Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,51678,L,http://loinc.org,46425-5,Lipemic interference index of Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,50947,I,http://loinc.org,46426-3,Icteric interference index of Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53161,Estimated GFR (CKD- EPI Refit),http://loinc.org,98979-8,"Glomerular filtration rate [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI 2021)/1.73 sq M"
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53180,Estimated GFR (CKD- EPI 2021),http://loinc.org,98979-8,"Glomerular filtration rate [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI 2021)/1.73 sq M"
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53111,N2 GENE CT,http://loinc.org,94510-5,SARS-CoV-2 (COVID-19) N gene [Cycle Threshold #] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53105,E GENE CT,http://loinc.org,94509-7,SARS-related coronavirus E gene [Cycle Threshold #] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53175,RdRP Ct,http://loinc.org,94645-9,SARS-CoV-2 (COVID-19) RdRp gene [Cycle Threshold #] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53153,HIV Screen,http://loinc.org,56888-1,HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53178,Helicobacter pylori Antigen,http://loinc.org,17780-8,Helicobacter pylori Ag [Presence] in Stool by Immunoassay
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53095,Lyme VsIE/PepC10 Antibody,http://loinc.org,100711-1,Borrelia burgdorferi.VlsE1+pepC10 Ab [Units/volume] in Serum by Immunoassay
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53113,Rapid Respiratory Syncytial Virus,http://loinc.org,72885-7,Respiratory syncytial virus Ag [Presence] in Nasopharynx by Rapid immunoassay
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53154,Lactate,http://loinc.org,32693-4,Lactate [Moles/volume] in Blood
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53084,Alanine Aminotransferase,http://loinc.org,1742-6,Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53086,Alkaline Phosphatase,http://loinc.org,6768-6,Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53087,Amylase,http://loinc.org,1798-8,Amylase [Enzymatic activity/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53088,Asparate Aminotransferase,http://loinc.org,1920-8,Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53089,"Bilirubin, Total",http://loinc.org,1975-2,Bilirubin.total [Mass/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53093,Gamma Glutamyltranferase,http://loinc.org,2324-2,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53157,Absolute Lymphocyte Count,http://loinc.org,731-0,Lymphocytes [#/volume] in Blood by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53159,Absolute Neutrophil Count,http://loinc.org,751-8,Neutrophils [#/volume] in Blood by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53164,Neutrophils,http://loinc.org,770-8,Neutrophils/100 leukocytes in Blood by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53188,Lymphocytes,http://loinc.org,736-9,Lymphocytes/100 leukocytes in Blood by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53186,MCH,http://loinc.org,785-6,MCH [Entitic mass] by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53185,MCHC,http://loinc.org,786-4,MCHC [Mass/volume] by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53189,Platelet Count,http://loinc.org,777-3,Platelets [#/volume] in Blood by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53165,RDW-CV,http://loinc.org,788-0,Erythrocyte distribution width [Ratio] by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53166,RDW-SD,http://loinc.org,21000-5,Erythrocyte distribution width [Entitic volume] by Automated count

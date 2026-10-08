@@ -90,3 +90,24 @@ https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,P.O.,http://snomed.
 https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,ng,http://snomed.info/sct,127492001,Nasogastric route
 https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,NGT,http://snomed.info/sct,127492001,Nasogastric route
 https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,OGT,http://snomed.info/sct,418441008,Orogastric route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes, ng,http://snomed.info/sct,127492001,Nasogastric route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,ND,http://snomed.info/sct,46713006,Nasal route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,IT IMPLANTED,http://snomed.info/sct,72607000,Intrathecal route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,SUBDERMAL,http://snomed.info/sct,34206005,Subcutaneous route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,IVS,http://snomed.info/sct,372471009,Intravesical route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,INTRAVESICAL,http://snomed.info/sct,372471009,Intravesical route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,IL,http://snomed.info/sct,372466002,Intralesional route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,IC,http://snomed.info/sct,372463005,Intracoronary route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,PV,http://snomed.info/sct,16857009,Vaginal route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,INTRACORPOREAL,http://snomed.info/sct,372461007,Intracavernous route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,ENTERAL TUBE ONLY – NOT ORAL,http://snomed.info/sct,417985001,Enteral route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,IV FLUSH*,http://snomed.info/sct,47625008,Intravenous route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,DLPICC,http://snomed.info/sct,47625008,Intravenous route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,SIDE PORT,http://snomed.info/sct,47625008,Intravenous route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,AXILLARY,http://snomed.info/sct,372475000,Perineural route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,PEG,http://snomed.info/sct,127490009,Gastrostomy route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,ARTERIAL LINE,http://snomed.info/sct,58100008,Intra-arterial route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,EDPCA,http://snomed.info/sct,404820008,Epidural route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,IU,http://snomed.info/sct,62226000,Intrauterine route
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,FETAL INJECTION,http://snomed.info/sct,372460008,Intracardiac use
+https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes,INTRA-GESTATIONAL SAC,http://snomed.info/sct,372458006,Intraamniotic use

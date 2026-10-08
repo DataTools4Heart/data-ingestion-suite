@@ -76,3 +76,53 @@ https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Echo - Surface,http://snome
 https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Echo - TEE (Transesophageal),http://snomed.info/sct,105376000,Transesophageal echocardiography
 https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Cardiac Cath,http://snomed.info/sct,41976001,Cardiac catheterization
 https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Dialysis,http://snomed.info/sct,108241001,Dialysis procedure
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Activity,http://snomed.info/sct,370864003,Activity care
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Restraints,http://snomed.info/sct,386423001,Physical restraint
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,NPO/Diet for Procedure,http://snomed.info/sct,182923009,Nil by mouth
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Code status,http://snomed.info/sct,423652009,Determination of resuscitation status
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Precautions,http://snomed.info/sct,77248004,Infection control procedure
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,PO fluid restriction,http://snomed.info/sct,444686003,Restriction of oral fluid
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Nursing,http://snomed.info/sct,281099003,Referral to nurse
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Wound/Ostomy,http://snomed.info/sct,736081002,Referral for complex wound care
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Cross-Sectional Interventional Radiology,http://snomed.info/sct,408455009,Interventional radiology - specialty
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Psychiatry,http://snomed.info/sct,308477009,Referral to psychiatrist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Brace and DME Orders,http://snomed.info/sct,308455005,Referral to orthotist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Calorie count,http://snomed.info/sct,710999009,Monitoring food intake
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Interventional Pulmonology,http://snomed.info/sct,306275005,Referral to respiratory physician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Pulmonary,http://snomed.info/sct,306275005,Referral to respiratory physician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Acute Care Surgery,http://snomed.info/sct,308478004,Referral to general surgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Minimally Invasive Surgery,http://snomed.info/sct,308478004,Referral to general surgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Medicine,http://snomed.info/sct,308470006,Referral to general physician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Medicine Procedure Service,http://snomed.info/sct,308470006,Referral to general physician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Medical Procedure Service,http://snomed.info/sct,308470006,Referral to general physician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Urology,http://snomed.info/sct,306318004,Referral to urologist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Hepatology,http://snomed.info/sct,736083004,Referral to liver unit
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Otolaryngology (ENT),http://snomed.info/sct,183544005,"Referral to ear, nose and throat service"
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Orthopedics,http://snomed.info/sct,183545006,Referral to orthopedic service
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Rheumatology,http://snomed.info/sct,306290009,Referral to rheumatologist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Spiritual Care/Chaplaincy,http://snomed.info/sct,710909002,Referral to religious service
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Vascular,http://snomed.info/sct,307777008,Referral to vascular surgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Gerontology,http://snomed.info/sct,308475001,Referral to care of the elderly physician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Gerontology (GIFTS),http://snomed.info/sct,308475001,Referral to care of the elderly physician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Cardiology (Vascular Medicine),http://snomed.info/sct,308471005,Referral to cardiologist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Cardiology (Structural),http://snomed.info/sct,308471005,Referral to cardiologist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Neurosurgery,http://snomed.info/sct,308482002,Referral to neurosurgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Podiatry,http://snomed.info/sct,308451001,Referral to podiatrist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Colorectal Surgery,http://snomed.info/sct,306311005,Referral to colorectal surgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Thoracic Surgery,http://snomed.info/sct,306301003,Referral to thoracic surgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Plastic Surgery,http://snomed.info/sct,306315001,Referral to plastic surgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Transplant Surgery,http://snomed.info/sct,306199002,Referral to surgical transplant service
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Ob/Gyn,http://snomed.info/sct,306297007,Referral to obstetrician and gynecologist
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,CMFM,http://snomed.info/sct,308484001,Referral to obstetrician
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Oral Maxillofacial Surgery (OMFS),http://snomed.info/sct,384711009,Referral to maxillofacial surgery service
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Hepatopancreaticobiliary Surgery,http://snomed.info/sct,306195008,Referral to hepatobiliary surgical service
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Hand Surgery,http://snomed.info/sct,306312003,Referral to hand surgeon
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Sleep,http://snomed.info/sct,438517001,Referral to sleep clinic
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Trauma,http://snomed.info/sct,306200004,Referral to trauma surgery service
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Lactation,http://snomed.info/sct,866223003,Referral to lactation consultant
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Pheresis,http://snomed.info/sct,127788007,Apheresis
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Neuroscience-ICU,http://snomed.info/sct,306106002,Referral to intensive care service
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,PPN,http://snomed.info/sct,230115000,Peripheral line feeding
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Evoked Potential,http://snomed.info/sct,446229003,Evoked potential study
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Neuraxial Procedure <b>(Anesthesia Only)</b>,http://snomed.info/sct,405650006,Neuraxial nerve block
+https://mimic.mit.edu/fhir/CodeSystem/order-subtypes,Access,http://snomed.info/sct,392230005,Catheterization of vein
