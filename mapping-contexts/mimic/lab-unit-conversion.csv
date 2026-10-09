@@ -20,7 +20,7 @@ source_code,source_unit,target_unit,conversion_function,source_display
 50970,mg/dL,mg/dL,$this,Phosphate
 51249,g/dL,g/dL,$this,MCHC
 52172,fL,fL,$this,RDW-SD
-51249,%,%,$this,MCHC
+51249,%,g/dL,$this,MCHC
 50861,IU/L,[IU]/L,$this,Alanine Aminotransferase (ALT)
 50878,IU/L,[IU]/L,$this,Asparate Aminotransferase (AST)
 51237,N/A,{INR},$this,INR(PT)

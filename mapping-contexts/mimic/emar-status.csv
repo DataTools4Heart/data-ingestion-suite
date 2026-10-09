@@ -2,13 +2,13 @@ source_code,target_code
 Stopped - Unscheduled,stopped
 Delayed Stopped,stopped
 Stopped,stopped
-Delayed Restarted,on-hold
+Delayed Restarted,in-progress
 Restarted in Other Location,in-progress
 Delayed Not Stopped,in-progress
 Delayed Removed,stopped
 Started,in-progress
 Assessed in Other Location,unknown
-Delayed Not Flushed,in-progress
+Delayed Not Flushed,not-done
 TPN Rate Not Changed,in-progress
 Removed Existing / Applied New in Other Location,completed
 Documented in O.R. Holding,completed
@@ -36,19 +36,19 @@ Delayed Not Confirmed,not-done
 Delayed Not Assessed,unknown
 Delayed Confirmed,completed
 Delayed Assessed,in-progress
-Delayed Applied,in-progress
+Delayed Applied,completed
 Rate Change in Other Location,in-progress
 Flushed in Other Location,completed
 Not Applied,not-done
 Confirmed in Other Location,completed
 Delayed Rate Change,in-progress
-Delayed Administered,in-progress
+Delayed Administered,completed
 Read,unknown
 Removed,stopped
 Administered Bolus from IV Drip,completed
 Not Read,unknown
 Assessed,unknown
-Partial Administered,in-progress
+Partial Administered,completed
 Infusion Reconciliation,in-progress
 Removed in Other Location,stopped
 Not Removed,in-progress
@@ -56,7 +56,7 @@ Delayed Not Started,not-done
 Not Assessed,unknown
 Applied,completed
 Not Given per Sliding Scale in Other Location,not-done
-Not Flushed,in-progress
+Not Flushed,not-done
 Infusion Reconciliation Not Done,not-done
 Not Given per Sliding Scale,not-done
 Delayed Started,in-progress

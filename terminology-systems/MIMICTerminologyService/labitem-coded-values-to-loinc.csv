@@ -26,19 +26,15 @@ https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,RED,Red,http://snomed
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,PINK,Red,http://snomed.info/sct,720003003,Reddish color urine
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Brown,Brown,http://snomed.info/sct,720002008,Porter color urine (brown)
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Orange,Brown,http://snomed.info/sct,371242008,Orange color
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,SPONTANEOUS,Spontaneous,http://loinc.org,LA12671-6,Assisted ventilation
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CONTROLLED,Controlled,http://loinc.org,LA29246-8,Controlled ventilation
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,IMV,Controlled,http://loinc.org,LA46-8,Other
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,ART,Arterial,http://snomed.info/sct,4635002,Arterial blood
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,VEN,Arterial,http://snomed.info/sct,53130003,Venous blood
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,VEN,Venous,http://snomed.info/sct,53130003,Venous blood
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,MIX,Mix,http://snomed.info/sct,116176007,Mixed venous blood
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CENTRAL VENOUS,Central Venous Blood,http://snomed.info/sct,1201871002,Venous cord blood
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,OCCASIONAL,Occasional,http://loinc.org,LA20948-8,Occasional
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,1+,Occasional,http://loinc.org,LA11841-6,1+
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,2+,Occasional,http://loinc.org,LA11842-4,2+
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,3+,Occasional,http://loinc.org,LA11843-2,3+
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,4+,Occasional,http://loinc.org,LA11844-0,4+
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NORMAL,Normal,http://loinc.org,LA137-2,None
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,RARE,Rare,http://loinc.org,LA15679-6,Rare
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,FEW,Few,http://loinc.org,LA15680-4,Few
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,MOD,Moderate,http://loinc.org,LA6751-7,Moderate
@@ -57,7 +53,6 @@ https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,AMBER,Amber,http://sn
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DkAmb,Dark Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,ORANGE,Orange,http://snomed.info/sct,371242008,Orange color
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Red,Red,http://snomed.info/sct,720003003,Reddish color urine
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,INTUBATED,Intubated,http://snomed.info/sct,112798008,Insertion of endotracheal tube
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THIN SMEAR,Negative,http://loinc.org,LA6577-6,Negative
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Pink,Pink,http://snomed.info/sct,720003003,Reddish color urine
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,BROWN,Brown,http://snomed.info/sct,720002008,Porter color urine (brown)

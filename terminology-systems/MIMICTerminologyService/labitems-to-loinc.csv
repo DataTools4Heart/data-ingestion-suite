@@ -85,7 +85,7 @@ https://mimic.mit.edu/fhir/CodeSystem/labitems,50890,C3,http://loinc.org,4485-9,
 https://mimic.mit.edu/fhir/CodeSystem/labitems,50891,C4,http://loinc.org,4498-2,Complement C4 [Mass/volume] in Serum or Plasma
 https://mimic.mit.edu/fhir/CodeSystem/labitems,50892,CA-125,http://loinc.org,10334-1,Cancer Ag 125 [Units/volume] in Serum or Plasma
 https://mimic.mit.edu/fhir/CodeSystem/labitems,50893,"Calcium, Total",http://loinc.org,17861-6,Calcium [Mass/volume] in Serum or Plasma
-https://mimic.mit.edu/fhir/CodeSystem/labitems,50894,Calculated Free Testosterone,http://loinc.org,96559-0,Testosterone Free [Moles/volume] in Serum or Plasma by calculation
+https://mimic.mit.edu/fhir/CodeSystem/labitems,50894,Calculated Free Testosterone,http://loinc.org,2991-8,Testosterone Free [Mass/volume] in Serum or Plasma
 https://mimic.mit.edu/fhir/CodeSystem/labitems,50895,Calculated TBG,http://loinc.org,3027-0,Thyroxine (T4)/Thyroxine binding globulin [Mass Ratio] in Serum or Plasma
 https://mimic.mit.edu/fhir/CodeSystem/labitems,50896,Calculated Thyroxine (T4) Index,http://loinc.org,32215-6,Thyroxine (T4) free index in Serum or Plasma by calculation
 https://mimic.mit.edu/fhir/CodeSystem/labitems,50898,Cancer Antigen 27.29,http://loinc.org,17842-6,Cancer Ag 27-29 [Units/volume] in Serum or Plasma
@@ -446,8 +446,8 @@ https://mimic.mit.edu/fhir/CodeSystem/labitems,51279,Red Blood Cells,http://loin
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51280,Reptilase Time,http://loinc.org,6683-7,Reptilase time
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51281,Reptilase Time Control,http://loinc.org,5942-8,Reptilase time in Control Platelet poor plasma by Coagulation assay
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51282,"Reticulocyte Count, Absolute",http://loinc.org,14196-0,Reticulocytes [#/volume] in Blood
-https://mimic.mit.edu/fhir/CodeSystem/labitems,51283,"Reticulocyte Count, Automated",http://loinc.org,60474-4,Reticulocytes [#/volume] in Blood by Automated count
-https://mimic.mit.edu/fhir/CodeSystem/labitems,51284,"Reticulocyte Count, Manual",http://loinc.org,40665-2,Reticulocytes [#/volume] in Blood by Manual count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,51283,"Reticulocyte Count, Automated",http://loinc.org,17849-1,Reticulocytes/Erythrocytes in Blood by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,51284,"Reticulocyte Count, Manual",http://loinc.org,4679-7,Reticulocytes/Erythrocytes in Blood
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51285,"Reticulocyte, Cellular Hemoglobin",http://loinc.org,76686-5,Reticulocyte cellular hemoglobin distribution width [Entitic mass] in Blood by calculation
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51286,Ristocetin,http://loinc.org,18975-3,Ristocetin [Susceptibility]
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51287,Schistocytes,http://loinc.org,800-3,Schistocytes [Presence] in Blood by Light microscopy
@@ -604,7 +604,7 @@ https://mimic.mit.edu/fhir/CodeSystem/labitems,51462,Amorphous Crystals,http://l
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51463,Bacteria,http://loinc.org,5769-5,Bacteria [#/area] in Urine sediment by Microscopy high power field
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51464,Bilirubin,http://loinc.org,5770-3,Bilirubin.total [Presence] in Urine by Test strip
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51465,Bilirubin Crystals,http://loinc.org,5771-1,Bilirubin crystals [Presence] in Urine sediment by Light microscopy
-https://mimic.mit.edu/fhir/CodeSystem/labitems,51466,Blood,http://loinc.org,53963-5,Blood [Presence] in Urine by Visual
+https://mimic.mit.edu/fhir/CodeSystem/labitems,51466,Blood,http://loinc.org,5794-3,Hemoglobin [Presence] in Urine by Test strip
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51467,Broad Casts,http://loinc.org,18487-9,Broad casts [#/area] in Urine sediment by Microscopy low power field
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51468,Calcium Carbonate Crystals,http://loinc.org,5773-7,Calcium carbonate crystals [Presence] in Urine sediment by Light microscopy
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51469,Calcium Oxalate Crystals,http://loinc.org,5774-5,Calcium oxalate crystals [Presence] in Urine sediment by Light microscopy
@@ -624,7 +624,7 @@ https://mimic.mit.edu/fhir/CodeSystem/labitems,51482,Hyaline Casts,http://loinc.
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51483,Hyphenated Yeast,http://loinc.org,41865-7,Yeast.hyphae [Presence] in Urine sediment by Light microscopy
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51484,Ketone,http://loinc.org,5797-6,Ketones [Mass/volume] in Urine by Test strip
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51485,Leucine Crystals,http://loinc.org,5798-4,Leucine crystals [Presence] in Urine sediment by Light microscopy
-https://mimic.mit.edu/fhir/CodeSystem/labitems,51486,Leukocytes,http://loinc.org,20455-2,Leukocytes [Presence] in Urine sediment by Light microscopy
+https://mimic.mit.edu/fhir/CodeSystem/labitems,51486,Leukocytes,http://loinc.org,5799-2,Leukocyte esterase [Presence] in Urine by Test strip
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51487,Nitrite,http://loinc.org,5802-4,Nitrite [Presence] in Urine by Test strip
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51488,Non-squamous Epithelial Cells,http://loinc.org,41284-1,Epithelial cells.non-squamous [#/area] in Urine sediment by Microscopy high power field
 https://mimic.mit.edu/fhir/CodeSystem/labitems,51489,NonSquamous Epithelial Cell,http://loinc.org,41284-1,Epithelial cells.non-squamous [#/area] in Urine sediment by Microscopy high power field

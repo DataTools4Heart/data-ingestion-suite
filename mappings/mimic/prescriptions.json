@@ -2,7 +2,7 @@
   "id": "prescriptions",
   "url": "https://mimic.mit.edu/fhir/mappings/prescriptions",
   "name": "prescriptions",
-  "title": "Mapping of prescriptions in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR MedicationRequest resources (HFR-MedicationRequest). Medication codes: NDC from the source, RxNorm ingredient resolved offline (ndcToMedDetails), ATC via the rx-norm-to-atc ConceptMap.",
+  "title": "Mapping of prescriptions in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR MedicationRequest resources (HFR-MedicationRequest). Medication codes: NDC from the source, RxNorm ingredient resolved offline (ndcToMedDetails), ATC via the rx-norm-to-atc ConceptMap. Prescriptions whose medication has no ATC code are skipped (HFR-MedicationRequest requires one).",
   "isDraft": false,
   "source": [
     {
@@ -51,6 +51,11 @@
   ],
   "mapping": [
     {
+      "precondition": {
+        "name": "atcCodeExists",
+        "language": "text/fhirpath",
+        "expression": "%atcCodings.exists()"
+      },
       "expression": {
         "name": "prescriptions-mapping",
         "language": "application/fhir-template+json",

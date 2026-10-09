@@ -2,7 +2,7 @@
   "id" : "procedures-icd",
   "url" : "https://mimic.mit.edu/fhir/mappings/procedures-icd",
   "name" : "procedures-icd",
-  "title" : "Mapping of entries in 'procedures_icd' table joined with 'd_icd_procedures' table restructured as FHIR concept map in MIMIC-IV v3.1 dataset into FHIR Procedure resources. ICD-9-CM (volume 3) procedure codes are translated to ICD-10-PCS through the CMS GEM (exact single-code entries preferred, otherwise the first choice of the first combination scenario); rows whose ICD-9-CM code has no GEM equivalent are skipped because HFR-Procedure requires an ICD-10-PCS coding.",
+  "title" : "Mapping of entries in 'procedures_icd' table joined with 'd_icd_procedures' table restructured as FHIR concept map in MIMIC-IV v3.1 dataset into FHIR Procedure resources. ICD-9-CM (volume 3) procedure codes are translated to ICD-10-PCS through the CMS GEM (all ICD-10-PCS targets listed, including alternatives and combination parts); rows whose ICD-9-CM code has no GEM equivalent are skipped because HFR-Procedure requires an ICD-10-PCS coding.",
   "isDraft" : false,
   "source" : [ {
     "alias" : "procedures",
@@ -20,9 +20,9 @@
     }
   },
   "variable" : [ {
-    "name" : "pcsConcept",
+    "name" : "pcsCodes",
     "language" : "text/fhirpath",
-    "expression" : "iif(icd_version = 9, mpp:getConcept(%icd9to10Map, icd_code).where(no_map='0' and combination='0').last().nav:orElse(mpp:getConcept(%icd9to10Map, icd_code).where(no_map='0' and scenario='1' and choice_list='1').first()), {})"
+    "expression" : "iif(icd_version = 9, mpp:getConcept(%icd9to10Map, icd_code).where(no_map = '0').icd10cm.distinct(), {})"
   }, {
     "name" : "icdDisplay",
     "language" : "text/fhirpath",
@@ -32,14 +32,14 @@
     "precondition" : {
       "name" : "icd10PcsCodeExists",
       "language" : "text/fhirpath",
-      "expression" : "icd_version = 10 or %pcsConcept.exists()"
+      "expression" : "icd_version = 10 or %pcsCodes.exists()"
     },
     "expression" : {
       "name" : "procedure-mapping",
       "language" : "application/fhir-template+json",
       "value" : {
         "resourceType" : "Procedure",
-        "id" : "{{mpp:getHashedId('Procedure', hadm_id.toString() & seq_num.toString())}}",
+        "id" : "{{mpp:getHashedId('Procedure', hadm_id.toString() & seq_num.toString() & '-' & icd_version.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
@@ -47,7 +47,7 @@
         "identifier" : [ {
           "use" : "official",
           "system" : "{{%sourceSystem.sourceUri}}/fhir/procedures_icd_ids",
-          "value" : "{{hadm_id.toString() & '-' & seq_num.toString()}}"
+          "value" : "{{hadm_id.toString() & '-' & seq_num.toString() & '-' & icd_version.toString()}}"
         } ],
         "category" : [ {
           "coding" : [ {
@@ -76,10 +76,10 @@
               "display" : "{{? %icdDisplay}}"
             }
           }, {
-            "{{#gemConcept}}" : "{{%pcsConcept}}",
-            "{{?}}" : {
+            "{{#gemCode}}" : "{{%pcsCodes}}",
+            "{{*}}" : {
               "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
-              "code" : "{{%gemConcept.icd10cm}}"
+              "code" : "{{%gemCode}}"
             },
             "@sliceName" : "icdCode"
           } ],
