@@ -1,7 +1,8 @@
 # How the MIMIC-IV mappings work (simple guide)
 
 A short, example-driven explanation of five mappings: **labevents**, **prescriptions**, **emar**,
-**diagnoses-icd** and **omr**. Every example row below is a real row from MIMIC-IV v3.1.
+**diagnoses-icd** and **omr**. The example rows below are **made up** (same patient as the synthetic files in `test-data/mimic`); they follow the
+shape of real MIMIC-IV v3.1 rows but contain no real patient data, because MIMIC-IV may not be shared publicly.
 Points marked **(open)** are known limitations that are still open; they are listed in the last section.
 
 ---
@@ -107,11 +108,11 @@ Then the template fills:
 
 | # | itemid | value | valuenum | comments | Result |
 |---|---|---|---|---|---|
-| a | 50912 Creatinine | `0.3` | `0.3` | – | `valueQuantity 0.3 mg/dL`, range 0.4–1.1, interpretation **L** (below range) |
+| a | 50912 Creatinine | `0.4` | `0.4` | – | `valueQuantity 0.4 mg/dL`, range 0.5–1.2, interpretation **L** (below range) |
 | b | 51476 Epithelial cells | `<1` | – | – | `valueQuantity` comparator `<`, value 1 |
 | c | 51464 Urine bilirubin | `NEG` | – | – | text `NEG` → map → `valueCodeableConcept LA6577-6 "Negative"` |
 | d | 51508 Urine color | `Yellow` | – | – | `valueCodeableConcept` SNOMED `46800005 "Normal urine color (yellow)"` |
-| e | 51003 Troponin T | `___` | `0.04` | `CTROPNT > 0.10 …` | `valueQuantity 0.04 ng/mL` (valuenum wins over `___`), interpretation **H** (above 0.01) |
+| e | 51003 Troponin T | `___` | `0.05` | `CTROPNT > 0.10 …` | `valueQuantity 0.05 ng/mL` (valuenum wins over `___`), interpretation **H** (above 0.01) |
 | f | 51464 Urine bilirubin | *(empty)* | *(empty)* | `NEG.` | result taken from `comments`: `NEG` → `valueCodeableConcept LA6577-6 "Negative"` |
 | g | 51003 Troponin T | *(empty)* | *(empty)* | `<0.01.  cTropnT > 0.10 …` | result taken from `comments`: `valueQuantity <0.01 ng/mL`, interpretation **N** |
 
@@ -126,10 +127,10 @@ Example **a** as FHIR (shortened):
   "resourceType": "Observation",
   "code": { "coding": [ { "system": "http://loinc.org", "code": "2160-0" },
                         { "system": "https://mimic.mit.edu/fhir/CodeSystem/labitems", "code": "50912" } ] },
-  "effectiveDateTime": "2180-05-06T22:25:00-05:00",
-  "valueQuantity": { "value": 0.3, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL" },
+  "effectiveDateTime": "2163-05-15T05:42:00-05:00",
+  "valueQuantity": { "value": 0.4, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL" },
   "interpretation": [ { "coding": [ { "code": "L", "display": "Low" } ] } ],
-  "referenceRange": [ { "low": { "value": 0.4 }, "high": { "value": 1.1 } } ]
+  "referenceRange": [ { "low": { "value": 0.5 }, "high": { "value": 1.2 } } ]
 }
 ```
 
@@ -147,7 +148,7 @@ for drugs without an ATC code; the MedicationRequest points to it.)
 
 | drug | drug_type | ndc | dose_val_rx | dose_unit_rx | route | starttime | stoptime | doses_per_24_hrs |
 |---|---|---|---|---|---|---|---|---|
-| Metoprolol Tartrate | MAIN | 51079025520 | 25 | mg | PO/NG | 2186-11-29 08:00 | 2186-12-02 19:00 | 2 |
+| Metoprolol Tartrate | MAIN | 51079025520 | 25 | mg | PO/NG | 2163-05-14 20:00 | 2163-05-19 15:00 | 2 |
 
 ### How the drug codes are built (a chain of lookups)
 
@@ -192,7 +193,7 @@ Result (shortened):
   },
   "dosageInstruction": [ {
     "route": { "coding": [ { "code": "PO/NG" }, { "system": "http://snomed.info/sct", "code": "447964005" } ] },
-    "timing": { "repeat": { "boundsPeriod": { "start": "2186-11-29T08:00:00-05:00", "end": "2186-12-02T19:00:00-05:00" },
+    "timing": { "repeat": { "boundsPeriod": { "start": "2163-05-14T20:00:00-05:00", "end": "2163-05-19T15:00:00-05:00" },
                             "frequency": 2, "period": 1, "periodUnit": "d" } },
     "doseAndRate": [ { "doseQuantity": { "value": 25, "unit": "mg", "system": "http://unitsofmeasure.org", "code": "mg" } } ]
   } ]
@@ -202,7 +203,7 @@ Result (shortened):
 ### MAIN and BASE rows
 
 One pharmacy order (`pharmacy_id`) can have several rows: the **drug** (`MAIN`) and its **diluent** (`BASE`).
-Each row is mapped on its own. Example, `pharmacy_id 69938783`:
+Each row is mapped on its own. Example, `pharmacy_id 48210345`:
 
 | drug_type | drug | ndc | dose |
 |---|---|---|---|
@@ -285,10 +286,10 @@ flowchart TD
 
 ### Example: a drug given with its diluent
 
-emar `10047864-160`: *Vancomycin, Administered, 2146-11-28 08:14*
+emar `10000001-31`: *Vancomycin, Administered, 2163-05-16 08:14*
 
 * 1 child dose row: `dose_given 1000 mg`, `product_code VANC1F`, "Vancomycin 1000 mg / 200 mL Dextrose (Premix)"
-* 2 prescription rows on `pharmacy_id 69938783`: **Vancomycin (MAIN)** and **Iso-Osmotic Dextrose (BASE)**
+* 2 prescription rows on `pharmacy_id 48210345`: **Vancomycin (MAIN)** and **Iso-Osmotic Dextrose (BASE)**
 
 The dose's `product_code` `VANC1F` equals the `formulary_drug_cd` of the Vancomycin row, so exactly **one**
 MedicationAdministration is written: Vancomycin, 1000 mg. (Before this change the dose was crossed with
@@ -311,9 +312,9 @@ no numeric dose amount and no description 3.0%; diluent of a drug about 0.001%.
 
 | hadm_id | seq_num | icd_code | icd_version |
 |---|---|---|---|
-| 29713041 | 12 | I480 | 10 |
-| 20975183 | 5 | 42731 | 9 |
-| 20975183 | 7 | 4280 | 9 |
+| 21000003 | 4 | I480 | 10 |
+| 21000001 | 2 | 42731 | 9 |
+| 21000001 | 3 | 4280 | 9 |
 
 `seq_num` is the order of the diagnosis in the billing list (1 = principal diagnosis).
 
@@ -374,8 +375,8 @@ Example `42731` as FHIR (shortened):
     { "system": "http://hl7.org/fhir/sid/icd-9-cm", "code": "427.31", "display": "Atrial fibrillation" },
     { "system": "http://hl7.org/fhir/sid/icd-10", "code": "I48.91" } ] },
   "encounter": { "reference": "Encounter/…" },
-  "onsetDateTime": "2144-11-07T23:01:00-05:00",
-  "recordedDate": "2144-11-09T16:30:00-05:00"
+  "onsetDateTime": "2163-05-14T18:07:00-05:00",
+  "recordedDate": "2163-05-19T14:30:00-05:00"
 }
 ```
 
@@ -390,14 +391,14 @@ or vessels have no ICD-10-PCS equivalent and are skipped (6.6% of ICD-9 procedur
 
 `omr` (Online Medical Record) holds outpatient measurements: **one row = one measurement**, as text.
 
-### Example rows (patient 10000032)
+### Example rows (patient 10000001)
 
 | chartdate | seq_num | result_name | result_value |
 |---|---|---|---|
-| 2180-04-27 | 1 | Blood Pressure | `110/65` |
-| 2180-04-27 | 1 | Weight (Lbs) | `94` |
-| 2180-05-07 | 1 | Height (Inches) | `60` |
-| 2180-05-07 | 1 | BMI (kg/m2) | `18.0` |
+| 2163-04-02 | 1 | Blood Pressure | `128/76` |
+| 2163-04-02 | 1 | Weight (Lbs) | `172` |
+| 2163-04-02 | 1 | Height (Inches) | `68` |
+| 2163-04-02 | 1 | BMI (kg/m2) | `26.2` |
 
 `seq_num` only numbers the measurements of the same day (1st, 2nd, …).
 
@@ -419,20 +420,20 @@ flowchart TD
 
 | result_name | LOINC | Conversion | Example |
 |---|---|---|---|
-| Weight (Lbs) / Weight | 29463-7 Body weight | lb × 0.45359237 → kg | 94 lb → **42.64 kg** |
-| Height (Inches) / Height | 8302-2 Body height | in × 2.54 → cm | 60 in → **152.4 cm** |
-| BMI (kg/m2) / BMI | 39156-5 BMI | none | **18.0 kg/m2** |
-| Blood Pressure … | 8480-6 systolic, 8462-4 diastolic | split at `/` | `110/65` → **110** and **65 mm[Hg]** |
+| Weight (Lbs) / Weight | 29463-7 Body weight | lb × 0.45359237 → kg | 172 lb → **78.02 kg** |
+| Height (Inches) / Height | 8302-2 Body height | in × 2.54 → cm | 68 in → **172.72 cm** |
+| BMI (kg/m2) / BMI | 39156-5 BMI | none | **26.2 kg/m2** |
+| Blood Pressure … | 8480-6 systolic, 8462-4 diastolic | split at `/` | `128/76` → **128** and **76 mm[Hg]** |
 | eGFR | 50384-7 | `>60` → value 60, comparator `>` | |
 
 ### Example: one blood pressure row → two Observations
 
-`Blood Pressure Sitting`, `110/65`:
+`Blood Pressure Sitting`, `128/76`:
 
 | Observation | code | value | extra code |
 |---|---|---|---|
-| 1 | 8480-6 Systolic BP | 110 mm[Hg] | SNOMED `163035008` "Sitting blood pressure" (kept as is) |
-| 2 | 8462-4 Diastolic BP | 65 mm[Hg] | SNOMED `163035008` "Sitting blood pressure" (kept as is) |
+| 1 | 8480-6 Systolic BP | 128 mm[Hg] | SNOMED `163035008` "Sitting blood pressure" (kept as is) |
+| 2 | 8462-4 Diastolic BP | 76 mm[Hg] | SNOMED `163035008` "Sitting blood pressure" (kept as is) |
 
 Every omr Observation also gets an `observation-timeOffset` extension holding `seq_num` (kept as is; strictly,
 the extension definition only allows it on `Observation.component`). Values ≤ 0 are skipped (0.02% of omr rows);
@@ -446,8 +447,8 @@ Weight example as FHIR (shortened):
   "category": [ { "coding": [ { "code": "vital-signs" } ] } ],
   "code": { "coding": [ { "system": "http://loinc.org", "code": "29463-7", "display": "Body weight" } ],
             "text": "Weight (Lbs)" },
-  "effectiveDateTime": "2180-04-27",
-  "valueQuantity": { "value": 42.64, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg" },
+  "effectiveDateTime": "2163-04-02",
+  "valueQuantity": { "value": 78.02, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg" },
   "extension": [ { "url": "http://hl7.org/fhir/StructureDefinition/observation-timeOffset", "valueInteger": 1 } ]
 }
 ```
