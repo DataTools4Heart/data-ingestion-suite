@@ -2,7 +2,7 @@
   "id": "prescriptions",
   "url": "https://mimic.mit.edu/fhir/mappings/prescriptions",
   "name": "prescriptions",
-  "title": "Mapping of prescriptions in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR MedicationRequest resources (HFR-MedicationRequest). Medication codes: NDC from the source, RxNorm ingredient resolved offline (ndcToMedDetails), ATC via the rx-norm-to-atc ConceptMap and the DT4H medication group derived from ATC prefixes.",
+  "title": "Mapping of prescriptions in 'prescriptions' table in MIMIC-IV v3.1 dataset into FHIR MedicationRequest resources (HFR-MedicationRequest). Medication codes: NDC from the source, RxNorm ingredient resolved offline (ndcToMedDetails), ATC via the rx-norm-to-atc ConceptMap. Prescriptions whose medication has no ATC code are skipped (HFR-MedicationRequest requires one).",
   "isDraft": false,
   "source": [
     {
@@ -15,10 +15,6 @@
     "ndcToMedDetails": {
       "category": "concept-map",
       "url": "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
-    },
-    "atcGroupMap": {
-      "category": "concept-map",
-      "url": "$CONTEXT_REPO/mimic/atc-to-medication-group-concept-map.csv"
     }
   },
   "variable": [
@@ -51,15 +47,15 @@
       "name": "atcCodings",
       "language": "text/fhirpath",
       "expression": "iif(%ndcDetails.activeIngredientRxcui.exists() and %ndcDetails.activeIngredientRxcui != '', trms:translateToCoding(%ndcDetails.activeIngredientRxcui, 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc'), {})"
-    },
-    {
-      "name": "atcGroups",
-      "language": "text/fhirpath",
-      "expression": "%atcCodings.code.select($this.substring(0,3) | $this.substring(0,4) | $this.substring(0,5) | $this).select(mpp:getConcept(%atcGroupMap, $this)).target_code.distinct()"
     }
   ],
   "mapping": [
     {
+      "precondition": {
+        "name": "atcCodeExists",
+        "language": "text/fhirpath",
+        "expression": "%atcCodings.exists()"
+      },
       "expression": {
         "name": "prescriptions-mapping",
         "language": "application/fhir-template+json",
@@ -127,15 +123,6 @@
                       "code": "{{%atc.code}}",
                       "display": "{{? %atc.display}}",
                       "@sliceName": "atcCode"
-                    }
-                  },
-                  {
-                    "{{#grp}}": "{{%atcGroups}}",
-                    "{{*}}": {
-                      "system": "https://datatools4heart.eu/fhir/CodeSystem/medication-group",
-                      "code": "{{%grp}}",
-                      "display": "{{mpp:getConcept(%atcGroupMap, %grp, 'target_display')}}",
-                      "@sliceName": "atcCodeGroup"
                     }
                   }
                 ],

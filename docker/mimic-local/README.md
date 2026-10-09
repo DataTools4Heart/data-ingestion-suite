@@ -33,12 +33,12 @@ Mapping/concept-map changes made together with this plan (see the git diff of `m
   ranges use the same unit; coded textual values extended (`labitem-coded-values-to-loinc.csv`).
 * **prescriptions**: the dosage period start/end logic was inverted (start was always the stop time); `basedOn`
   pointed to ServiceRequests that are never generated (medication POEs are excluded); `doses_per_24_hrs` is
-  now an integer (valid `frequency`); medication now carries NDC, RxNorm ingredient, ATC (`atcCode` slice) and
-  the DT4H medication group (`atcCodeGroup` slice, from ATC prefixes); dose units cover all 135 unit strings.
+  now an integer (valid `frequency`); medication now carries NDC, RxNorm ingredient, ATC (`atcCode` slice);
+  dose units cover all 135 unit strings.
 * **emar**: route/site were read from the child `emar_detail` rows where they are always empty – they now come
   from the parent row (fallback: prescription route); typos in the route template (`target_display)`) and the
   use of the whole prescription list instead of the current prescription for the NDC lookup are fixed; dose
-  units are coded; NDC/RxNorm/ATC/medication-group codings added; event text is trimmed before status lookup.
+  units are coded; NDC/RxNorm/ATC codings added; event text is trimmed before status lookup.
 * **ndcToMedDetails.csv** keys are now 11-digit zero-padded like `prescriptions.ndc` and 850 NDCs that were
   missing were resolved through RxNav, so 6 297 of the 6 587 distinct prescription NDCs resolve (previously 2 773).
   `rx-norm-to-atc.csv` was regenerated from RxNav for all ingredient RxCUIs (1 211 of 1 369 now have ATC codes,
@@ -318,10 +318,6 @@ Interpretation notes for `coverage_summary.csv`:
   an ICD-10 code equals the number of failed 3-character probes in `coverage_unmapped.csv` (62 618 of ≈ 2.8 M
   ICD-9 diagnosis rows ⇒ 97.8 % row coverage). The residual rows are GEM "NoDx" codes (E930–E949 adverse
   effects, 707.2x pressure-ulcer stages, V64.41) and category-level codes used by MIMIC (0414, 2841, 9974).
-* `atc-to-medication-group-concept-map.csv` is probed with every ATC prefix (3, 4, 5 and 7 characters) of every
-  ATC code, so its "coverage" is the share of prefix probes that hit one of the 18 DT4H medication groups
-  (≈ 8 % is expected: most drugs are not heart-failure drugs). Report it as "prescriptions tagged with a CDM
-  medication group", not as a terminology gap.
 * `ndcToMedDetails.csv` lookups happen once per prescription/administration row with a non-zero NDC, so the
   coverage is row-weighted (95 % on the sample); the distinct-NDC coverage is 6 297 / 6 587. The CSV carries every
   NDC both zero-padded and unpadded because Spark reads the `ndc` column of prescriptions.csv as a number and the

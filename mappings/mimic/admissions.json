@@ -129,7 +129,7 @@
               } ]
             } ],
             "value" : [ {
-              "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %primary.hadm_id.toString() & %primary.seq_num.toString())}}"
+              "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %primary.hadm_id.toString() & %primary.seq_num.toString() & '-' & %primary.icd_version.toString())}}"
             } ]
           }
         } ],
@@ -137,7 +137,7 @@
           "{{#cond}}" : "{{%diagnoses}}",
           "{{*}}" : {
             "condition" : [ {
-              "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %cond.hadm_id.toString() & %cond.seq_num.toString())}}"
+              "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %cond.hadm_id.toString() & %cond.seq_num.toString() & '-' & %cond.icd_version.toString())}}"
             } ],
             "use" : [ {
               "coding" : [ {
