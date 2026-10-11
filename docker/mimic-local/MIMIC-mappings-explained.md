@@ -324,23 +324,28 @@ no numeric dose amount and no description 3.0%; diluent of a drug about 0.001%.
 
 ### ICD-9 rows: translated to ICD-10
 
-The CDM needs an ICD-10 code, so ICD-9 codes are translated with the official CMS **GEM** table
-(`mapping-contexts/mimic/icd9toicd10cmgem.csv`). The Condition keeps **both** codes.
+The CDM needs an ICD-10 code, so ICD-9 codes are translated with the official CMS **GEM** (General
+Equivalence Mappings) table, simplified into `mapping-contexts/mimic/icd9cm-to-icd10cm.csv`. The Condition keeps
+**both** codes.
 
-GEM columns that matter:
+The simplified file has one row per (ICD-9 code, ICD-10 code), with the ICD-10 code already dotted. ICD-9 codes that
+the GEM marks as "no ICD-10 equivalent" (`NoDx`) are not in the file. It also holds 74 manual rows for codes MIMIC
+uses that are missing from the official GEM (e.g. `0414` → `B96.20`).
 
 | Column | Meaning |
 |---|---|
-| `no_map = 1` | There is no ICD-10 equivalent |
-| `combination = 1` | The ICD-9 code needs **two or more** ICD-10 codes together |
-| several rows, `combination = 0` | Alternative ICD-10 codes; any one of them is acceptable |
+| `source_code` | ICD-9-CM code, without dot (as in MIMIC) |
+| `target_code` | ICD-10-CM code, with dot |
+| `scenario` | `0` = a single code or one of several alternatives; `1`, `2`, … = the ICD-9 code needs **several** ICD-10 codes together (a combination); one scenario is one valid combination |
+| `choice_list` | inside a scenario: which part of the combination this code fills (pick one code per choice list) |
 
-The mapping keeps **every** GEM row with `no_map = 0` and lists all their ICD-10 codes (alternatives and the
-parts of a combination). Codes with only `no_map = 1` rows, or not in the GEM at all, are skipped.
+The mapping lists **all** ICD-10 codes of the ICD-9 code (alternatives and the parts of a combination). ICD-9 codes
+not in the file are skipped. `scenario` / `choice_list` are kept for a possible later change to the CMS
+recommendation for converting stored data: choose **one** ICD-10 code (or one combination) per ICD-9 code.
 
 ```mermaid
 flowchart TD
-    I[ICD-9 code] --> G{GEM rows with<br/>no_map=0}
+    I[ICD-9 code] --> G{rows in<br/>icd9cm-to-icd10cm.csv}
     G -- one or more rows --> O1[list all their ICD-10 codes]
     G -- none --> O3["Condition skipped (open)"]
 ```
@@ -351,7 +356,7 @@ flowchart TD
 | `4280` Heart failure | `I509` | ✅ `I50.9` |
 | `42789` Other dysrhythmia | `I498`, `R001` | both listed: `I49.8`, `R00.1` |
 | `25062` Diabetes with neuropathy | `E1140` + `E1165` (combination = 1) | both listed: `E11.40`, `E11.65` |
-| `E9342` Anticoagulant adverse effect | `NoDx` (no_map = 1) | **skipped** (open: 1.3% of ICD-9 diagnosis rows have no target) |
+| `E9342` Anticoagulant adverse effect | not in the file (GEM: no ICD-10 equivalent) | **skipped** (open: 1.3% of ICD-9 diagnosis rows have no target) |
 
 ### Other fields
 
@@ -380,7 +385,7 @@ Example `42731` as FHIR (shortened):
 }
 ```
 
-`procedures-icd` works the same way (ICD-9 procedure → ICD-10-PCS through `icd9toicd10pcsgem.csv`, id =
+`procedures-icd` works the same way (ICD-9 procedure → ICD-10-PCS through the simplified GEM `icd9-to-icd10pcs.csv`, same columns, id =
 `hadm_id + seq_num + icd_version`, date = `chartdate`). ICD-10-PCS is much more detailed than ICD-9, so an ICD-9
 procedure gets on average about 32 ICD-10-PCS codes (median 6). ICD-9 add-on codes such as the number of stents
 or vessels have no ICD-10-PCS equivalent and are skipped (6.6% of ICD-9 procedure rows).

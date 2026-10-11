@@ -312,8 +312,9 @@ of the CSV files (e.g. `wc -l` or the profiling numbers in the paper folder's `c
 
 Interpretation notes for `coverage_summary.csv`:
 
-* `icd9toicd10cmgem.csv` / `icd9toicd10pcsgem.csv`: when the full ICD-9 code has no usable GEM entry, the mapping
-  retries with the 4- and 3-character prefixes and every attempt is counted. The lookup coverage (95.9 % for
+* `icd9cm-to-icd10cm.csv` (simplified GEM, formerly `icd9toicd10cmgem.csv`) / `icd9-to-icd10pcs.csv` (formerly `icd9toicd10pcsgem.csv`): the figures below
+  are from the earlier run, when the mapping still retried with the 4- and 3-character prefixes and every attempt was
+  counted; the prefix retry has since been removed and the diagnosis mapping now lists all GEM targets. The lookup coverage (95.9 % for
   diagnoses on the full data) therefore understates the row coverage: the number of ICD-9 rows that end without
   an ICD-10 code equals the number of failed 3-character probes in `coverage_unmapped.csv` (62 618 of ≈ 2.8 M
   ICD-9 diagnosis rows ⇒ 97.8 % row coverage). The residual rows are GEM "NoDx" codes (E930–E949 adverse

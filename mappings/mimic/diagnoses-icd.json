@@ -20,13 +20,13 @@
   "context" : {
     "icd9to10Map" : {
       "category" : "concept-map",
-      "url" : "$CONTEXT_REPO/mimic/icd9toicd10cmgem.csv"
+      "url" : "$CONTEXT_REPO/mimic/icd9cm-to-icd10cm.csv"
     }
   },
   "variable" : [ {
     "name" : "icd10Codes",
     "language" : "text/fhirpath",
-    "expression" : "iif(icd_version = 9, mpp:getConcept(%icd9to10Map, icd_code).where(no_map = '0').icd10cm.distinct(), {})"
+    "expression" : "iif(icd_version = 9, mpp:getConcept(%icd9to10Map, icd_code).target_code.distinct(), {})"
   }, {
     "name" : "icdDisplay",
     "language" : "text/fhirpath",
@@ -86,7 +86,7 @@
             "{{#gemCode}}" : "{{%icd10Codes}}",
             "{{*}}" : {
               "system" : "http://hl7.org/fhir/sid/icd-10",
-              "code" : "{{iif(%gemCode.length()>3, %gemCode.substring(0,3) & '.' & %gemCode.substring(3), %gemCode)}}"
+              "code" : "{{%gemCode}}"
             },
             "@sliceName" : "icd10Code"
           } ],
