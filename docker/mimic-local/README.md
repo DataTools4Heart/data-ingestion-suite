@@ -428,13 +428,15 @@ docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml \
 docker ps --format '{{.Names}} {{.Status}}'                  # all Up, server healthy
 ```
 
-Run the tasks one execution at a time with the restart-safe runner (metrics only). On 28 Spark threads expect
-labevents ≈ 3.5 h, emar ≈ 1.5 h, prescriptions ≈ 1 h, the eight small tasks ≈ 25 min together:
+Run the tasks one execution at a time with the restart-safe runner (metrics only). Measured on 5–6 Oct 2026 with
+28 Spark threads (mappings before PR 39): labevents 5 h 05 min, emar 2 h 43 min, prescriptions 1 h 25 min, poe
+22 min, the eight small tasks ≈ 35 min together, ≈ 10 h in all (the runner waits 5 min after each very short task):
 
 ```bash
 cd ~/ignifyr-mimic && nohup data-ingestion-suite/docker/mimic-local/run-tasks.sh --skip-write \
-  labevents-mapping emar-mapping prescriptions-mapping patient-mapping careunit-mapping admissions-mapping \
-  diagnoses-mapping procedures-mapping omr-mapping microbiologyevents medications-mapping > run-tasks.out 2>&1 &
+  labevents-mapping emar-mapping prescriptions-mapping poe-mapping patient-mapping careunit-mapping \
+  admissions-mapping diagnoses-mapping procedures-mapping omr-mapping microbiologyevents medications-mapping \
+  > run-tasks.out 2>&1 &
 tail -f run-tasks.log
 ```
 
