@@ -134,8 +134,6 @@ drugs (also those without NDC).
   no ATC property in RxNav.
 * `ndcToMedDetails`: 4.3 % of prescription rows have an NDC that RxNav cannot resolve to an ingredient
   (290 distinct NDCs, mostly local compounding / repackager codes).
-* `atc-to-medication-group`: by construction ≈ 7 % of prefix probes succeed; report "share of medication
-  resources in a DT4H group" (16 %) instead.
 * Encounter.diagnosis references to the 1 % of ICD-9 diagnoses without ICD-10 equivalent, and
   `ServiceRequest.replaces` references to excluded POE types, are intentionally left dangling.
 * Microbiology Observations without organism / dilution have no `value[x]`; the free text is kept in `note`.

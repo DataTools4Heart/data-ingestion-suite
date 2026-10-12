@@ -32,7 +32,7 @@
     "precondition" : {
       "name" : "isBodyMeasurement",
       "language" : "text/fhirpath",
-      "expression" : "(result_name.startsWith('Blood Pressure') or result_name = 'eGFR').not() and %numericValue.exists() and %resultConcept.exists()"
+      "expression" : "(result_name.startsWith('Blood Pressure') or result_name = 'eGFR').not() and %numericValue.exists() and %numericValue > 0 and %resultConcept.exists()"
     },
     "expression" : {
       "name" : "omr-mapping",
@@ -78,7 +78,7 @@
     "precondition" : {
       "name" : "isBloodPressure",
       "language" : "text/fhirpath",
-      "expression" : "result_name.startsWith('Blood Pressure') and result_value.contains('/') and result_value.utl:split('/').first().utl:trim().toDecimal().exists() and result_value.utl:split('/').last().utl:trim().toDecimal().exists()"
+      "expression" : "result_name.startsWith('Blood Pressure') and result_value.contains('/') and result_value.utl:split('/').first().utl:trim().toDecimal() > 0 and result_value.utl:split('/').last().utl:trim().toDecimal() > 0"
     },
     "expression" : {
       "name" : "bp-mapping",
@@ -138,7 +138,7 @@
     "precondition" : {
       "name" : "eGFRMeasurement",
       "language" : "text/fhirpath",
-      "expression" : "result_name = 'eGFR' and utl:parseFhirQuantityExpression(result_value.utl:trim()).exists()"
+      "expression" : "result_name = 'eGFR' and utl:parseFhirQuantityExpression(result_value.utl:trim()).first() > 0"
     },
     "expression" : {
       "name" : "eGFR-mapping",

@@ -80,13 +80,13 @@ https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/ml,http://unitsof
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/m2,http://unitsofmeasure.org,mg/m2,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/g,http://unitsofmeasure.org,mg/g,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg PE,http://unitsofmeasure.org,mg,
-https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg\ 0 mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg\\ 0 mg,http://unitsofmeasure.org,mg,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/ 0 mg,http://unitsofmeasure.org,mg,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/0mg,http://unitsofmeasure.org,mg,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/0 mg,http://unitsofmeasure.org,mg,
-https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,g\ 0 g,http://unitsofmeasure.org,g,
-https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,units\ 0 units,http://unitsofmeasure.org,U,
-https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcg\ 0 mcg,http://unitsofmeasure.org,ug,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,g\\ 0 g,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,units\\ 0 units,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcg\\ 0 mcg,http://unitsofmeasure.org,ug,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mL/hr,http://unitsofmeasure.org,mL/h,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,ml/hr,http://unitsofmeasure.org,mL/h,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mL/Day,http://unitsofmeasure.org,mL/d,
@@ -141,3 +141,158 @@ https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Units Regular,http:/
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Units Humalog,http://unitsofmeasure.org,U,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Units Insulin Glargine,http://unitsofmeasure.org,U,
 https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,ng,http://unitsofmeasure.org,ng,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg\\ 40mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg\\40 mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg\\960 mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg\\100 mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg\\ 150 mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg /40 mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/40mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/54mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/61mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/100mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/0mgs,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/omg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,/0mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,0/mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg or 92mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mgmg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/2 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/5 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/20 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/3 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/0.3 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/0.5 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/0.67 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/0.6mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/5 mL (5 mL),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/6 mL (6 mL),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/100 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/250 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/250 ml,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/50 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/50 ml,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/500 ml,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/5,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg (1 mL),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg base)/3 mL,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg ER,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/mL (2 %),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/mL (1 %),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg ,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units, mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Mg,http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,PE (Phenytoin Sodium Equivalent),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,"(1,000 mg)",http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(1250 mg),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(500 mg),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(65 mg iron),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(18 mg/3 mL),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(25 mg/2.5gram),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,%(50 mg/5 gram),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(0.6 mg/mL),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(10 mg/mL),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,(4 mg/mL),http://unitsofmeasure.org,mg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg PE/kg,http://unitsofmeasure.org,mg/kg,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/min,http://unitsofmeasure.org,mg/min,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,nanograms/kg/minute,http://unitsofmeasure.org,ng/(kg.min),
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mg/24 hour,http://unitsofmeasure.org,mg/(24.h),
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcg\\150mcg\\250mcg,http://unitsofmeasure.org,ug,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcg/2 mL,http://unitsofmeasure.org,ug,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcg/0.5,http://unitsofmeasure.org,ug,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcq,http://unitsofmeasure.org,ug,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcg/dose,http://unitsofmeasure.org,ug/{Dose},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mcg/spray,http://unitsofmeasure.org,ug/{spray},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,gram/30 mL,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,gram/59 mL,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,-12 gram/160 mL,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,G,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Grams,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,grams ,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,gm ,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,gr,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,gg,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,gmgm,http://unitsofmeasure.org,g,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEq / 500 mL NS,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEq / 500 mL D5W,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEq / 250 mL NS,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEq / 250 mL D5W,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEq / 100 mL SW,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEq/15 mL,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEq/200 mL NS,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mEqmEq,http://unitsofmeasure.org,meq,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,/ 0 Units,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,u,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Units VWF:RCo,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Units Insulin NPH,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Units Insulin 70 / 30,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,-120000 unit,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,"-120,000 unit",http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,180000 unit,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,-60000 unit,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,15000 unit,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,61500 unit,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,-125 unit,http://unitsofmeasure.org,U,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,iu/0iu,http://unitsofmeasure.org,[IU],
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,cc,http://unitsofmeasure.org,mL,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mls,http://unitsofmeasure.org,mL,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,ml ,http://unitsofmeasure.org,mL,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mL/Lumen,http://unitsofmeasure.org,mL,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,mL/Syringe,http://unitsofmeasure.org,mL,
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,DOSE,http://unitsofmeasure.org,{Dose},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Dose ,http://unitsofmeasure.org,{Dose},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,application,http://unitsofmeasure.org,{application},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,ea,http://unitsofmeasure.org,{each},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,tsp,http://unitsofmeasure.org,[tsp_us],
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,INCH,http://unitsofmeasure.org,[in_i],
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,billion cell,http://unitsofmeasure.org,10*9{cells},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,cell,http://unitsofmeasure.org,{cells},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Enemas,http://unitsofmeasure.org,{enema},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,enema,http://unitsofmeasure.org,{enema},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,tube,http://unitsofmeasure.org,{tube},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,packet,http://unitsofmeasure.org,{packet},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,DBTL,http://unitsofmeasure.org,{bottle},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,SBTL,http://unitsofmeasure.org,{bottle},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,CART,http://unitsofmeasure.org,{cassette},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,DEV,http://unitsofmeasure.org,{device},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,JAR,http://unitsofmeasure.org,{jar},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,CAN,http://unitsofmeasure.org,{can},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,CON,http://unitsofmeasure.org,{container},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,RING,http://unitsofmeasure.org,{ring},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,STRP,http://unitsofmeasure.org,{strip},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,NEEDLE,http://unitsofmeasure.org,{needle},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,SPG,http://unitsofmeasure.org,{sponge},
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,TC,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CHEWTAB,Chewable Tablet
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,CAPS,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,caps,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Cap,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,cps,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,cp,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,capsule,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,capsules,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,GEL,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAP,Capsule
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,tablet,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,TAB,Tablet
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,pills,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,TAB,Tablet
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,DROPS,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,DROP,Drops
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,DROPs,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,DROP,Drops
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,Drop,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,DROP,Drops
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,GTT,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,DROP,Drops
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,drop ou,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,DROP,Drops
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,puff,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,PUFF,Puff
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,puffs,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,PUFF,Puff
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,AERO,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,AER,Aerosol
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,AERA,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,AER,Aerosol
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,OINT,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,OINT,Ointment
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,CREA,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CRM,Cream
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,CRE,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CRM,Cream
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,LOT,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,LTN,Lotion
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,SYRP,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,SYRUP,Syrup
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,ELIX,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,ELIXIR,Elixir
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,SOLN,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,SOL,Solution
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,PWDR,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,POWD,Powder
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,powder,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,POWD,Powder
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,SCOOP,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,SCOOP,Scoops
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,scp,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,SCOOP,Scoops
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,PTCHS,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,PATCH,Patch
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,CPT,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,CAPLET,Caplet
+https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units,ERT,http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm,ERTAB,Extended Release Tablet

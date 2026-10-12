@@ -47,7 +47,7 @@
         "active" : true,
         "gender" : "{{iif(gender='M', 'male', 'female')}}",
         "birthDate" : "{{(anchor_year - anchor_age)}}",
-        "deceasedDateTime" : "{{? dod}}",
+        "deceasedDateTime" : "{{? iif(%admissions.where(deathtime.exists()).exists(), %admissions.where(deathtime.exists()).first().deathtime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00'), dod)}}",
         "maritalStatus" : {
           "{{#ms}}" : "{{%lastAdmission.marital_status}}",
           "{{?}}" : {

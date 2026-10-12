@@ -1,172 +1,142 @@
 {
-  "id": "emar",
-  "url": "https://mimic.mit.edu/fhir/mappings/emar",
-  "name": "emar",
-  "title": "Mapping of entries in 'emar' and 'emar_detail' tables (joined with 'prescriptions' on pharmacy_id) in MIMIC-IV v3.1 dataset into FHIR MedicationAdministration resources (HFR-MedicationAdministration). Dose details come from the child emar_detail rows (parent_field_ordinal set), route/site from the parent emar_detail row.",
-  "isDraft": false,
-  "source": [
-    {
-      "alias": "emar",
-      "url": "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar",
-      "joinOn": [
-        "emar_id",
-        "pharmacy_id"
-      ]
+  "id" : "emar",
+  "url" : "https://mimic.mit.edu/fhir/mappings/emar",
+  "name" : "emar",
+  "title" : "Mapping of entries in 'emar' and 'emar_detail' tables (joined with 'prescriptions' on pharmacy_id) in MIMIC-IV v3.1 dataset into FHIR MedicationAdministration resources (HFR-MedicationAdministration). One resource per given dose (child emar_detail row): the prescription row is the one whose formulary_drug_cd equals the dose's product_code, else the MAIN row; doses of the diluent (BASE) are skipped. Doses without a prescription row are mapped when their product_code resolves to an NDC with an ATC code (formulary-drug-to-ndc context). Doses with neither a numeric amount nor a product description, and doses whose medication has no ATC code, are skipped (HFR-MedicationAdministration requires one). Route/site come from the parent emar_detail row.",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "emar",
+    "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar",
+    "joinOn" : [ "emar_id", "pharmacy_id" ]
+  }, {
+    "alias" : "emarDetail",
+    "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar-detail",
+    "joinOn" : [ "emar_id", null ]
+  }, {
+    "alias" : "prescription",
+    "url" : "https://mimic.mit.edu/fhir/StructureDefinition/Ext-prescriptions",
+    "joinOn" : [ null, "pharmacy_id" ]
+  } ],
+  "context" : {
+    "emarStatusConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/mimic/emar-status.csv"
     },
-    {
-      "alias": "emarDetail",
-      "url": "https://mimic.mit.edu/fhir/StructureDefinition/Ext-emar-detail",
-      "joinOn": [
-        "emar_id",
-        null
-      ]
+    "ndcToMedDetails" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
     },
-    {
-      "alias": "prescription",
-      "url": "https://mimic.mit.edu/fhir/StructureDefinition/Ext-prescriptions",
-      "joinOn": [
-        null,
-        "pharmacy_id"
-      ]
-    }
-  ],
-  "context": {
-    "emarStatusConceptMap": {
-      "category": "concept-map",
-      "url": "$CONTEXT_REPO/mimic/emar-status.csv"
-    },
-    "ndcToMedDetails": {
-      "category": "concept-map",
-      "url": "$CONTEXT_REPO/mimic/ndcToMedDetails.csv"
-    },
-    "atcGroupMap": {
-      "category": "concept-map",
-      "url": "$CONTEXT_REPO/mimic/atc-to-medication-group-concept-map.csv"
+    "formularyDrugToNdc" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/mimic/formulary-drug-to-ndc.csv"
     }
   },
-  "variable": [
-    {
-      "name": "linkedPrescriptions",
-      "language": "text/fhirpath",
-      "expression": "%prescription"
-    },
-    {
-      "name": "emarParent",
-      "language": "text/fhirpath",
-      "expression": "%emarDetail.where(parent_field_ordinal.exists().not()).first()"
-    },
-    {
-      "name": "eventStatus",
-      "language": "text/fhirpath",
-      "expression": "iif(event_txt.exists() and event_txt.trim() != '', mpp:getConcept(%emarStatusConceptMap, event_txt.trim(), 'target_code').nav:orElse('unknown'), 'unknown')"
-    }
-  ],
-  "mapping": [
-    {
-      "expression": {
-        "name": "medication-administration-mapping",
-        "language": "application/fhir-template+json",
-        "value": {
-          "{{#emarVar}}": "{{%emarDetail.where(parent_field_ordinal.exists() and (dose_given.exists() or product_amount_given.exists()))}}",
-          "{{*}}": {
-            "{{#prescriptionVar}}": "{{%linkedPrescriptions}}",
-            "{{*}}": {
-              "resourceType": "MedicationAdministration",
-              "id": "{{mpp:getHashedId('MedicationAdministration', emar_id.toString() & %emarVar.parent_field_ordinal.toString() & %prescriptionVar.gsn.toString() & %prescriptionVar.ndc.toString() & %prescriptionVar.formulary_drug_cd )}}",
-              "meta": {
-                "source": "{{%sourceSystem.sourceUri}}",
-                "profile": [
-                  "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration"
-                ]
-              },
-              "identifier": [
-                {
-                  "system": "{{%sourceSystem.sourceUri}}/fhir/emar_ids",
-                  "value": "{{emar_id.toString() & '-' & %emarVar.parent_field_ordinal.toString() & '-' & %prescriptionVar.gsn.toString() & '-' & %prescriptionVar.ndc.toString() & '-' & %prescriptionVar.formulary_drug_cd }}",
-                  "use": "official"
-                }
-              ],
-              "status": "{{%eventStatus}}",
-              "medication": {
-                "concept": {
-                  "{{#ndcForConcept}}": "{{iif(%prescriptionVar.ndc.exists() and %prescriptionVar.ndc.toString() != '0' and %prescriptionVar.ndc.toString() != '00000000000', iif(%prescriptionVar.ndc.toString().length() = 11, %prescriptionVar.ndc.toString(), iif(%prescriptionVar.ndc.toString().length() = 10, '0' & %prescriptionVar.ndc.toString(), iif(%prescriptionVar.ndc.toString().length() = 9, '00' & %prescriptionVar.ndc.toString(), iif(%prescriptionVar.ndc.toString().length() = 8, '000' & %prescriptionVar.ndc.toString(), iif(%prescriptionVar.ndc.toString().length() = 7, '0000' & %prescriptionVar.ndc.toString(), iif(%prescriptionVar.ndc.toString().length() = 6, '00000' & %prescriptionVar.ndc.toString(), iif(%prescriptionVar.ndc.toString().length() = 5, '000000' & %prescriptionVar.ndc.toString(), %prescriptionVar.ndc.toString()))))))), {})}}",
-                  "{{?}}": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/sid/ndc",
-                        "code": "{{%ndcForConcept}}",
-                        "display": "{{%prescriptionVar.drug}}"
-                      },
-                      {
-                        "{{#rxn}}": "{{mpp:getConcept(%ndcToMedDetails, %prescriptionVar.ndc.toString()).first().where(activeIngredientRxcui.exists() and activeIngredientRxcui != '')}}",
-                        "{{?}}": {
-                          "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                          "code": "{{%rxn.activeIngredientRxcui}}",
-                          "display": "{{? %rxn.activeIngredientName}}"
+  "variable" : [ {
+    "name" : "linkedPrescriptions",
+    "language" : "text/fhirpath",
+    "expression" : "%prescription"
+  }, {
+    "name" : "emarParent",
+    "language" : "text/fhirpath",
+    "expression" : "%emarDetail.where(parent_field_ordinal.exists().not()).first()"
+  }, {
+    "name" : "eventStatus",
+    "language" : "text/fhirpath",
+    "expression" : "iif(event_txt.exists() and event_txt.trim() != '', mpp:getConcept(%emarStatusConceptMap, event_txt.trim(), 'target_code').nav:orElse('unknown'), 'unknown')"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "medication-administration-mapping",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#emarVar}}" : "{{%emarDetail.where(parent_field_ordinal.exists() and (product_description.exists() or dose_given.toString().utl:trim().toDecimal().exists() or product_amount_given.utl:trim().toDecimal().exists() or dose_due.utl:trim().toDecimal().exists()))}}",
+        "{{*}}" : {
+          "{{#prescriptionVar}}" : "{{(%linkedPrescriptions.where(formulary_drug_cd = %emarVar.product_code).first().nav:orElse(%linkedPrescriptions.where(drug_type = 'MAIN').first()).nav:orElse(%linkedPrescriptions.first()).nav:orElse(iif(%emarVar.product_code.exists(), mpp:getConcept(%formularyDrugToNdc, %emarVar.product_code).first(), {}))).where(drug_type.exists().not() or drug_type != 'BASE' or %linkedPrescriptions.where(drug_type = 'MAIN').empty())}}",
+          "{{?}}" : {
+            "{{#rawNdc}}" : "{{iif(%prescriptionVar.ndc.exists() and %prescriptionVar.ndc.toString() != '0' and %prescriptionVar.ndc.toString() != '00000000000', %prescriptionVar.ndc.toString(), iif(%emarVar.product_code.exists(), mpp:getConcept(%formularyDrugToNdc, %emarVar.product_code, 'ndc'), {}).nav:orElse(iif(%prescriptionVar.formulary_drug_cd.exists(), mpp:getConcept(%formularyDrugToNdc, %prescriptionVar.formulary_drug_cd, 'ndc'), {})))}}",
+            "{{?}}" : {
+              "{{#ndcForConcept}}" : "{{('00000000000' & %rawNdc).substring(%rawNdc.length())}}",
+              "{{?}}" : {
+                "{{#hasAtc}}" : "{{iif(trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, %ndcForConcept, 'activeIngredientRxcui'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc').exists(), true, {})}}",
+                "{{?}}" : {
+                  "id" : "{{mpp:getHashedId('MedicationAdministration', emar_id.toString() & %emarVar.parent_field_ordinal.toString() & %prescriptionVar.gsn.toString() & %prescriptionVar.ndc.toString() & %prescriptionVar.formulary_drug_cd )}}",
+                  "meta" : {
+                    "source" : "{{%sourceSystem.sourceUri}}",
+                    "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+                  },
+                  "resourceType" : "MedicationAdministration",
+                  "medication" : {
+                    "concept" : {
+                      "coding" : [ {
+                        "system" : "http://hl7.org/fhir/sid/ndc",
+                        "code" : "{{%ndcForConcept}}",
+                        "display" : "{{%prescriptionVar.drug}}"
+                      }, {
+                        "{{#rxn}}" : "{{mpp:getConcept(%ndcToMedDetails, %ndcForConcept).first().where(activeIngredientRxcui.exists() and activeIngredientRxcui != '')}}",
+                        "{{?}}" : {
+                          "system" : "http://www.nlm.nih.gov/research/umls/rxnorm",
+                          "code" : "{{%rxn.activeIngredientRxcui}}",
+                          "display" : "{{? %rxn.activeIngredientName}}"
                         }
-                      },
-                      {
-                        "{{#atc}}": "{{trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, %prescriptionVar.ndc.toString(), 'activeIngredientRxcui'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc')}}",
-                        "{{*}}": {
-                          "system": "http://www.whocc.no/atc",
-                          "code": "{{%atc.code}}",
-                          "display": "{{? %atc.display}}",
-                          "@sliceName": "atcCode"
-                        }
-                      },
-                      {
-                        "{{#grp}}": "{{(trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, %prescriptionVar.ndc.toString(), 'activeIngredientRxcui'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc').code.select($this.substring(0,3) | $this.substring(0,4) | $this.substring(0,5) | $this)).select(mpp:getConcept(%atcGroupMap, $this)).target_code.distinct()}}",
-                        "{{*}}": {
-                          "system": "https://datatools4heart.eu/fhir/CodeSystem/medication-group",
-                          "code": "{{%grp}}",
-                          "display": "{{mpp:getConcept(%atcGroupMap, %grp, 'target_display')}}",
-                          "@sliceName": "atcCodeGroup"
-                        }
+                      }, {
+                        "{{#atc}}" : "{{trms:translateToCoding(mpp:getConcept(%ndcToMedDetails, %ndcForConcept, 'activeIngredientRxcui'), 'http://www.nlm.nih.gov/research/umls/rxnorm', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/rx-norm-to-atc')}}",
+                        "{{*}}" : {
+                          "system" : "http://www.whocc.no/atc",
+                          "code" : "{{%atc.code}}",
+                          "display" : "{{? %atc.display}}"
+                        },
+                        "@sliceName" : "atcCode"
+                      } ],
+                      "text" : "{{medication.nav:orElse(%prescriptionVar.drug)}}"
+                    },
+                    "reference" : {
+                      "{{#medRef}}" : "{{iif(%prescriptionVar.pharmacy_id.exists(), mpp:createFhirReferenceWithHashedId('Medication', %prescriptionVar.drug & %prescriptionVar.gsn.toString() & %prescriptionVar.ndc.toString() & %prescriptionVar.formulary_drug_cd), {})}}",
+                      "{{?}}" : {
+                        "display" : "{{? medication}}",
+                        "reference" : "{{%medRef.reference}}"
                       }
-                    ],
-                    "text": "{{medication.nav:orElse(%prescriptionVar.drug)}}"
-                  }
-                },
-                "reference": {
-                  "reference": "{{mpp:createFhirReferenceWithHashedId('Medication', %prescriptionVar.drug & %prescriptionVar.gsn.toString() & %prescriptionVar.ndc.toString() & %prescriptionVar.formulary_drug_cd).reference}}",
-                  "display": "{{? medication}}"
-                }
-              },
-              "subject": "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
-              "encounter": "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
-              "occurenceDateTime": "{{charttime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
-              "recorded": "{{? storetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
-              "request": "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', %prescriptionVar.pharmacy_id.toString() & %prescriptionVar.gsn.toString() & %prescriptionVar.ndc.toString() & %prescriptionVar.formulary_drug_cd.toString() )}}",
-              "dosage": {
-                "text": "{{? %emarVar.product_description}}",
-                "site": {
-                  "{{#siteVar}}": "{{%emarParent.site.nav:orElse(%emarVar.site)}}",
-                  "{{?}}": {
-                    "text": "{{iif(%emarParent.side.nav:orElse(%emarVar.side).exists(), %emarParent.side.nav:orElse(%emarVar.side) & '-' & %siteVar, %siteVar)}}"
-                  }
-                },
-                "route": {
-                  "{{#rt}}": "{{%emarParent.route.nav:orElse(%emarVar.route).nav:orElse(%prescriptionVar.route)}}",
-                  "{{?}}": {
-                    "coding": [
-                      {
-                        "system": "https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes",
-                        "code": "{{%rt}}",
-                        "display": "{{%rt}}"
-                      },
-                      "{{? trms:translateToCoding(%rt, 'https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-route-codes-to-snomed')}}"
-                    ],
-                    "text": "{{%rt}}"
-                  }
-                },
-                "dose": {
-                  "{{#doseVal}}": "{{iif(%emarVar.dose_given.exists(), %emarVar.dose_given, iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_amount_given.utl:trim().toDecimal(), %emarVar.dose_due.utl:trim().toDecimal()))}}",
-                  "{{?}}": {
-                    "value": "{{%doseVal}}",
-                    "unit": "{{? iif(%emarVar.dose_given.exists(), %emarVar.dose_given_unit, iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_unit, %emarVar.dose_due_unit))}}",
-                    "system": "{{? trms:translateToCoding(iif(%emarVar.dose_given.exists(), %emarVar.dose_given_unit, iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_unit, %emarVar.dose_due_unit)), 'https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-dose-to-orderable-drug-form').first().system}}",
-                    "code": "{{? trms:translateToCoding(iif(%emarVar.dose_given.exists(), %emarVar.dose_given_unit, iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_unit, %emarVar.dose_due_unit)), 'https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-dose-to-orderable-drug-form').first().code}}"
-                  }
+                    }
+                  },
+                  "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', subject_id.toString())}}",
+                  "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', hadm_id.toString())}}",
+                  "occurenceDateTime" : "{{charttime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+                  "dosage" : {
+                    "text" : "{{? %emarVar.product_description}}",
+                    "site" : {
+                      "{{#siteVar}}" : "{{%emarParent.site.nav:orElse(%emarVar.site)}}",
+                      "{{?}}" : {
+                        "text" : "{{iif(%emarParent.side.nav:orElse(%emarVar.side).exists(), %emarParent.side.nav:orElse(%emarVar.side) & '-' & %siteVar, %siteVar)}}"
+                      }
+                    },
+                    "route" : {
+                      "{{#rt}}" : "{{%emarParent.route.nav:orElse(%emarVar.route).nav:orElse(%prescriptionVar.route)}}",
+                      "{{?}}" : {
+                        "coding" : [ {
+                          "system" : "https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes",
+                          "code" : "{{%rt}}",
+                          "display" : "{{%rt}}"
+                        }, "{{? trms:translateToCoding(%rt, 'https://mimic.mit.edu/fhir/CodeSystem/medication-route-codes', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-route-codes-to-snomed')}}" ],
+                        "text" : "{{%rt}}"
+                      }
+                    },
+                    "dose" : {
+                      "{{#doseVal}}" : "{{iif(%emarVar.dose_given.toString().utl:trim().toDecimal().exists(), %emarVar.dose_given.toString().utl:trim().toDecimal(), iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_amount_given.utl:trim().toDecimal(), %emarVar.dose_due.utl:trim().toDecimal()))}}",
+                      "{{?}}" : {
+                        "system" : "{{? trms:translateToCoding(iif(%emarVar.dose_given.toString().utl:trim().toDecimal().exists(), %emarVar.dose_given_unit, iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_unit, %emarVar.dose_due_unit)), 'https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-dose-to-orderable-drug-form').first().system}}",
+                        "code" : "{{? trms:translateToCoding(iif(%emarVar.dose_given.toString().utl:trim().toDecimal().exists(), %emarVar.dose_given_unit, iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_unit, %emarVar.dose_due_unit)), 'https://mimic.mit.edu/fhir/CodeSystem/medication-dose-units', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/medication-dose-to-orderable-drug-form').first().code}}",
+                        "value" : "{{%doseVal}}",
+                        "unit" : "{{? iif(%emarVar.dose_given.toString().utl:trim().toDecimal().exists(), %emarVar.dose_given_unit, iif(%emarVar.product_amount_given.utl:trim().toDecimal().exists(), %emarVar.product_unit, %emarVar.dose_due_unit))}}"
+                      }
+                    }
+                  },
+                  "identifier" : [ {
+                    "system" : "{{%sourceSystem.sourceUri}}/fhir/emar_ids",
+                    "value" : "{{emar_id.toString() & '-' & %emarVar.parent_field_ordinal.toString() & '-' & %prescriptionVar.gsn.toString() & '-' & %prescriptionVar.ndc.toString() & '-' & %prescriptionVar.formulary_drug_cd }}",
+                    "use" : "official"
+                  } ],
+                  "status" : "{{%eventStatus}}",
+                  "recorded" : "{{? storetime.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '-05:00')}}",
+                  "request" : "{{? iif(%prescriptionVar.pharmacy_id.exists(), mpp:createFhirReferenceWithHashedId('MedicationRequest', %prescriptionVar.pharmacy_id.toString() & %prescriptionVar.gsn.toString() & %prescriptionVar.ndc.toString() & %prescriptionVar.formulary_drug_cd.toString()), {})}}"
                 }
               }
             }
@@ -174,5 +144,5 @@
         }
       }
     }
-  ]
+  } ]
 }

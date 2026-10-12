@@ -44,12 +44,6 @@
       "sourceValueSetUrl" : "https://mimic.mit.edu/fhir/ValueSet/discharge-locations",
       "targetValueSetUrl" : "http://hl7.org/fhir/ValueSet/encounter-discharge-disposition"
     }, {
-      "id" : "emar-event-to-medication-administration-status.csv",
-      "name" : "emar-event-to-medication-administration-status.csv",
-      "conceptMapUrl" : "https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/emar-event-to-medication-administration-status",
-      "sourceValueSetUrl" : "https://mimic.mit.edu/fhir/ValueSet/emar-events",
-      "targetValueSetUrl" : "http://terminology.hl7.org/ValueSet/medication-admin-status"
-    }, {
       "id" : "labitem-coded-values-to-loinc.csv",
       "name" : "labitem-coded-values-to-loinc.csv",
       "conceptMapUrl" : "https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/labitem-coded-values-to-other",
@@ -360,7 +354,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "emar_detail.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "inferSchema" : "false"
+        },
         "sourceRef" : "file-system-csv"
       },
       "prescription" : {

@@ -514,3 +514,211 @@ https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90730,BURKHOLDERIA XENOVOR
 https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80243,PORPHYROMONAS SPECIES,http://snomed.info/sct,114154000,"Porphyromonas"
 https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90758,STAPHYLOCOCCUS WARNERI/PASTEURI,http://snomed.info/sct,702996002,"Staphylococcus warneri or Staphylococcus pasteuri"
 https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90773,GEMELLA HAEMOLYSANS,http://snomed.info/sct,37511002,"Gemella haemolysans"
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90885,ACETOBACTER SP.,http://snomed.info/sct,396949003,Acetobacter
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91017,ACIDOVORAX ORYZAE,http://snomed.info/sct,718786003,Acidovorax oryzae
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90829,ACRODONTIUM SALMONEUM,http://snomed.info/sct,28811000087104,Acrodontium salmoneum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90386,ACTINOMYCES NAESLUNDII,http://snomed.info/sct,8940004,Actinomyces naeslundii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90697,ACTINOMYCES TURICENSIS,http://snomed.info/sct,113422006,Schaalia turicensis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80264,ACTINOMYCETE,http://snomed.info/sct,314421007,Actinomycetes
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91000,AGGREGATIBACTER SEGNIS,http://snomed.info/sct,442651004,Aggregatibacter segnis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90735,AGGREGATIBACTER SPECIES,http://snomed.info/sct,441718002,Aggregatibacter
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90457,AGROBACTERIUM RADIOBACTER,http://snomed.info/sct,438107000,Rhizobium radiobacter
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90802,ALACALIGENES SPECIES,http://snomed.info/sct,68571003,Alcaligenes
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90798,ALLOIOCOCCUS OTITIS,http://snomed.info/sct,396454000,Alloiococcus otitis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80123,ANAEROBIC BACTERIA,http://snomed.info/sct,59343002,Anaerobic bacteria
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90302,ANAEROBIC GRAM NEGATIVE COCCI,http://snomed.info/sct,243397003,Anaerobic Gram-negative coccus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90584,ANAEROBIC GRAM POSITIVE BACTERIA,http://snomed.info/sct,8745002,Gram-positive bacteria
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90392,ARCANOBACTERIUM HAEMOLYTICUM,http://snomed.info/sct,44723000,Arcanobacterium haemolyticum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90814,ARTHROGRAPHIS SPECIES,http://snomed.info/sct,112406004,Arthrographis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91001,ASPERGILLUS CREBER,http://snomed.info/sct,29481000087104,Aspergillus creber
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90875,ATOPOBIUM RIMAE,http://snomed.info/sct,113632005,Lancefieldella rimae
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90887,BACILLUS CEREUS/THURINGIENSIS,http://snomed.info/sct,413618005,Bacillus cereus group
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80160,BACILLUS SUBTILIS ,http://snomed.info/sct,83512007,Bacillus subtilis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80205,BACTEROIDES UREOLYTICUS GROUP,http://snomed.info/sct,450602004,Campylobacter ureolyticus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90639,BACTEROIDIES THETAIOTAOMICRON,http://snomed.info/sct,34236001,Bacteroides thetaiotaomicron
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80291,BASIDIOMYCETE,http://snomed.info/sct,106559008,Basidiomycota
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90707,BETA STREP NOT GROUP A OR ANGINOSUS (MILLERI),http://snomed.info/sct,713922006,"Beta-hemolytic Streptococcus, non-Group A"
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90963,BIFIDOBACTERIUM BREVE,http://snomed.info/sct,35011006,Bifidobacterium breve
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90852,BIFIDOBACTERIUM LONGUM,http://snomed.info/sct,19464000,Bifidobacterium longum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90640,BIPOLARIS SPECIES,http://snomed.info/sct,24145000,Bipolaris
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90898,BLASTOMYCES DERMATITIDIS,http://snomed.info/sct,65615007,Blastomyces dermatitidis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90981,BORDETELLA HINZII,http://snomed.info/sct,113495004,Bordetella hinzii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90301,BRUCELLA SPECIES,http://snomed.info/sct,26250004,Brucella
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90351,CAMPYLOBACTER FETUS,http://snomed.info/sct,84210007,Campylobacter fetus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91022,CAMPYLOBACTER HYOINTESTINALIS,http://snomed.info/sct,9041007,Campylobacter hyointestinalis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91023,CAMPYLOBACTER JEJUNI/COLI,http://snomed.info/sct,35408001,Campylobacter
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90596,CAMPYLOBACTER LARI,http://snomed.info/sct,116386003,Campylobacter lari
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90522,CAMPYLOBACTER UPSALIENSIS,http://snomed.info/sct,103427005,Campylobacter upsaliensis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80288,CANDIDA KRUSEI / CANDIDA INCONSPICUA,http://snomed.info/sct,16452009,Pichia kudriavzevii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90993,CAPNOCYTOPHAGA CANIS,http://snomed.info/sct,763638000,Capnocytophaga canis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90379,CAPNOCYTOPHAGA OCHRACEA,http://snomed.info/sct,4256006,Capnocytophaga ochracea
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90696,CARDIOBACTERIUM SPECIES,http://snomed.info/sct,22292007,Cardiobacterium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90891,CIMEX SPECIES (BEDBUG),http://snomed.info/sct,18069005,Cimex
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91021,CITROBACTER WERKMANII,http://snomed.info/sct,114442006,Citrobacter werkmanii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90960,CLOSTRIDIUM CADAVERIS,http://snomed.info/sct,16616000,Clostridium cadaveris
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90352,CLOSTRIDIUM CLOSTRIDIIFORME,http://snomed.info/sct,53220001,Enterocloster clostridioformis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90884,CLOSTRIDIUM SAUDIENSE,http://snomed.info/sct,879880005,Clostridium saudiense
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80083,COCCIDIOIDES IMMITIS,http://snomed.info/sct,23439005,Coccidioides immitis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90811,COCCIDIOIDES IMMITIS/POSADASII,http://snomed.info/sct,8672004,Coccidioides
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90606,CORYNEBACTERIUM ACCOLANS (CDC GROUP 6),http://snomed.info/sct,243254006,Corynebacterium accolens
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90894,CORYNEBACTERIUM GLUCURONOLYTICUM,http://snomed.info/sct,413927008,Corynebacterium glucuronolyticum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90521,CORYNEBACTERIUM MINUTISSIMUM,http://snomed.info/sct,83594007,Corynebacterium minutissimum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90899,CORYNEBACTERIUM PYRUVICIPRODUCENS,http://snomed.info/sct,450383002,Corynebacterium pyruviciproducens
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90998,CORYNEBACTERIUM TUBERCULOSTEARICUM,http://snomed.info/sct,416356007,Corynebacterium tuberculostearicum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91013,CRONOBACTER SPECIES,http://snomed.info/sct,444664004,Cronobacter
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90339,CRYPTOCOCCUS LAURENTII,http://snomed.info/sct,7299008,Papiliotrema laurentii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80077,CRYPTOCOCCUS SPECIES,http://snomed.info/sct,17579001,Cryptococcus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90439,CUNNINGHAMELLA SP.,http://snomed.info/sct,24861001,Cunninghamella
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90716,CUPRIAVIDUS METALLIDURANS,http://snomed.info/sct,423135006,Cupriavidus metallidurans
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90847,CUTIBACTERIUM AVIDUM,http://snomed.info/sct,47473006,Cutibacterium avidum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90643,CYCLOSPORA SPECIES SEEN,http://snomed.info/sct,103560006,Cyclospora
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90608,DERMABACTER HOMINIS,http://snomed.info/sct,413977006,Dermabacter hominis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90512,DERMATOPHYTE,http://snomed.info/sct,115651002,Dermatophyte
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90729,DESULFOVIBRIO DESULFURICANS,http://snomed.info/sct,243394005,Desulfovibrio desulfuricans
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91009,DESULFOVIBRIO FAIRFIELDENSIS,http://snomed.info/sct,443019005,Desulfovibrio fairfieldensis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90854,DESULFOVIBRIO LEGALLII,http://snomed.info/sct,1290426005,Desulfovibrio legallii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90860,DESULFOVIBRIO SP.,http://snomed.info/sct,243393004,Desulfovibrio
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90888,DIALISTER MICRAEROPHILUS,http://snomed.info/sct,446809007,Dialister micraerophilus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90579,DIPHYLLOBOTHRIUM SP.,http://snomed.info/sct,48262003,Diphyllobothrium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90765,DOLOSIGRANULUM PIGRUM,http://snomed.info/sct,363765006,Dolosigranulum pigrum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91005,EGGERTHELLA LENTA,http://snomed.info/sct,414077004,Eggerthella lenta
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90455,ENTEROBACTER AMNIGENUS 1,http://snomed.info/sct,114452005,Enterobacter amnigenus biogroup I
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90665,EPICOCCUM SPECIES,http://snomed.info/sct,7633000,Epicoccum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90444,EPIDERMOPHYTON FLOCCOSUM,http://snomed.info/sct,26403006,Epidermophyton floccosum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90403,ESCHERICHIA VULNERIS,http://snomed.info/sct,53013003,Pseudescherichia vulneris
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90853,EUBACTERIUM LIMOSUM,http://snomed.info/sct,87632000,Eubacterium limosum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91003,FLAVONIFRACTOR PLAUTII,http://snomed.info/sct,447490001,Flavonifractor plautii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90438,FRANCISELLA TULARENSIS,http://snomed.info/sct,51526001,Francisella tularensis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91014,FUSARIUM VETERINARIUM,http://snomed.info/sct,35238009,Fusarium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80142,FUSOBACTERIUM NECROPHORUM,http://snomed.info/sct,27274008,Fusobacterium necrophorum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90411,GIARDIA CYSTS,http://snomed.info/sct,608946009,Genus Giardia cyst
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90668,GLIOCLADIUM SP.,http://snomed.info/sct,28920007,Gliocladium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90739,GLOBICATELLA SPECIES,http://snomed.info/sct,414344008,Globicatella
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90320,GRAM NEGATIVE BACTERIA,http://snomed.info/sct,81325006,Gram-negative bacterium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80003,GRAM NEGATIVE COCCI,http://snomed.info/sct,18383003,Gram-negative coccus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90363,HAEMOPHILUS PARAHAEMOLYTICUS,http://snomed.info/sct,89800007,Haemophilus parahaemolyticus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90989,HAFNIA PARALVEI,http://snomed.info/sct,717644004,Hafnia paralvei
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90361,HEMOPHILUS HEMOLYTICUS,http://snomed.info/sct,54950008,Haemophilus haemolyticus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90429,HERPES SIMPLEX VIRUS,http://snomed.info/sct,19965007,Human herpes simplex virus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90321,HISTOPLASMA CAPSULATUM,http://snomed.info/sct,56596006,Histoplasma capsulatum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90698,HUMICOLA SPECIES,http://snomed.info/sct,601008,Humicola
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90992,IRPEX LACTEUS,http://snomed.info/sct,765227008,Irpex lacteus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90461,KINGELLA SPECIES,http://snomed.info/sct,32017003,Kingella
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90892,KOCURIA SPECIES,http://snomed.info/sct,414328004,Kocuria
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90391,LACTOBACILLUS ACIDOPHILUS,http://snomed.info/sct,45707005,Lactobacillus acidophilus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90864,LACTOBACILLUS CASEI/PARACASEI/ZEAE,http://snomed.info/sct,1217131008,Lacticaseibacillus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90897,LACTOBACILLUS FERMENTUM,http://snomed.info/sct,65506008,Limosilactobacillus fermentum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90980,LACTOCOCCUS GARVIEAE,http://snomed.info/sct,27716002,Lactococcus garvieae
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80202,LEGIONELLA PNEUMOPHILA ,http://snomed.info/sct,80897008,Legionella pneumophila
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90627,LEGIONELLA SPECIES,http://snomed.info/sct,7527002,Legionella
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80307,LEPTOTRICHIA TREVISANII,http://snomed.info/sct,431794003,Leptotrichia trevisanii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90519,LEUCONOSTOC MESENTEROIDES,http://snomed.info/sct,71403009,Leuconostoc mesenteroides
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80209,LISTERIA SPECIES,http://snomed.info/sct,23566007,Listeria
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91025,MAGNUSIOMYCES CAPITATUS,http://snomed.info/sct,67999003,Magnusiomyces capitatus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90752,MALASSEZIA PACHYDERMATIS,http://snomed.info/sct,51257000,Malassezia pachydermatis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90550,MALASSEZIA SPECIES,http://snomed.info/sct,18097004,Malassezia
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90445,MALBRANCHEA SP.,http://snomed.info/sct,87186007,Malbranchea
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90678,MICROBACTERIUM SPECIES,http://snomed.info/sct,114199008,Microbacterium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90462,MICROSPORUM CANIS,http://snomed.info/sct,19018004,Microsporum canis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90450,MORAXELLA NONLIQUIFACIENS ,http://snomed.info/sct,46455003,Moraxella nonliquefaciens
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80153,MORAXELLA OSLOENSIS,http://snomed.info/sct,72401008,Moraxella osloensis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90831,MUCOR IRREGULARIS,http://snomed.info/sct,714009008,Mucor irregularis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90789,MYCOBACTERIUM ABSCESSUS GROUP,http://snomed.info/sct,113838007,Mycobacteroides abscessus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90838,MYCOBACTERIUM ASIATICUM,http://snomed.info/sct,44760001,Mycobacterium asiaticum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90560,MYCOBACTERIUM CELATUM,http://snomed.info/sct,103475000,Mycobacterium celatum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90433,MYCOBACTERIUM FLAVESCENS,http://snomed.info/sct,5885000,Mycobacterium flavescens
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91004,MYCOBACTERIUM IMMUNOGENUM,http://snomed.info/sct,428319005,Mycobacterium immunogenum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90822,MYCOBACTERIUM MAGERITENSE,http://snomed.info/sct,385507005,Mycobacterium mageritense
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90601,MYCOBACTERIUM MALMOENSE,http://snomed.info/sct,73576007,Mycobacterium malmoense
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90862,MYCOBACTERIUM MARSEILLENSE,http://snomed.info/sct,434966321000087109,Mycobacterium marseillense
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90713,MYCOBACTERIUM MUCOGENICUM,http://snomed.info/sct,113856007,Mycobacterium mucogenicum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90979,MYCOBACTERIUM MUCOGENICUM PHOCAICUM GROUP,http://snomed.info/sct,468121000124108,Mycobacterium mucogenicum group
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90900,MYCOBACTERIUM NEOAURUM,http://snomed.info/sct,51459000,Mycobacterium neoaurum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90842,MYCOBACTERIUM PARAGORDONAE,http://snomed.info/sct,708333008,Mycobacterium paragordonae
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91020,MYCOBACTERIUM PORCINUM,http://snomed.info/sct,91336002,Mycobacterium porcinum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91002,MYCOBACTERIUM SMEGMATIS,http://snomed.info/sct,53114006,Mycobacterium smegmatis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90349,MYCOBACTERIUM TERRAE,http://snomed.info/sct,45662006,Mycobacterium terrae
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90971,NEOSCYTALIDIUM DIMIDIATUM,http://snomed.info/sct,715363007,Neoscytalidium dimidiatum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90987,NEUROSPORA SITOPHILA (FORMERLY CHRYSONILLA SITOPHILA),http://snomed.info/sct,531722621000087102,Neurospora sitophila
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90672,NIGROSPORA SPECIES,http://snomed.info/sct,41278006,Nigrospora
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80274,NO GROWTH,http://snomed.info/sct,264868006,No growth
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80067,NOCARDIA ASTEROIDES,http://snomed.info/sct,30092002,Nocardia asteroides
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90564,NOCARDIA BRASILIENSIS,http://snomed.info/sct,58970008,Nocardia brasiliensis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90863,NOCARDIA CYRIACIGEORGICA,http://snomed.info/sct,414866006,Nocardia cyriacigeorgica
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90769,NOCARDIA FARCINICA,http://snomed.info/sct,85516007,Nocardia farcinica
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90543,OLIGELLA URETHRALIS,http://snomed.info/sct,90341001,Oligella urethralis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90893,PAENIBACILLUS SPECIES,http://snomed.info/sct,114086007,Paenibacillus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91032,PAPILIOTREMA FONSECAE (FORMERLY CRYPTOCOCCUS FONSECAE),http://snomed.info/sct,788134007,Papiliotrema
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90835,PARACOCCUS YEEI,http://snomed.info/sct,415033004,Paracoccus yeei
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90879,PENICILLIUM FELLUTANUM,http://snomed.info/sct,785874004,Penicillium fellutanum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90376,PEPTOSTREPTOCOCCUS MICROS,http://snomed.info/sct,434293007,Parvimonas micra
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90883,PERONEUTYPA SCOPARIA,http://snomed.info/sct,1251629007,Peroneutypa
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90719,PHAEOACREMONIUM SPECIES,http://snomed.info/sct,415948008,Phaeoacremonium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91030,PHAEOACREMONIUM VENEZUELENSE,http://snomed.info/sct,415948008,Phaeoacremonium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90994,PHANEROCHAETE CUMULODENTATA,http://snomed.info/sct,758668005,Phanerochaete
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90985,PHIALEMONIUM INFLATUM,http://snomed.info/sct,721918008,Paecilomyces inflatus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91016,PHOMA HERBARUM,http://snomed.info/sct,61790002,Phoma herbarum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80240,PRESUMPTIVE FUSOBACTERIUM MORTIFERUM/VARIUM GROUP,http://snomed.info/sct,33562003,Fusobacterium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80214,PREVOTELLA (BACTEROIDES) BUCCAE,http://snomed.info/sct,114134001,Segatella buccae
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90346,PREVOTELLA MELANINOGENICA,http://snomed.info/sct,114144004,Prevotella melaninogenica
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90590,PREVOTELLA ORALIS,http://snomed.info/sct,114146002,Prevotella oralis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80227,PROBABLE GARDNERELLA VAGINALIS,http://snomed.info/sct,64071004,Gardnerella vaginalis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80226,PROBABLE LACTOBACILLUS SPECIES,http://snomed.info/sct,43690008,Lactobacillus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90995,PROPIONIBACTERIUM NAMNETENSE,http://snomed.info/sct,541461000124103,Cutibacterium namnetense
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80186,PSEUDALLESCHERIA BOYDII ,http://snomed.info/sct,91088000,Pseudallescheria boydii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90332,PSEUDOMONAS ALCALIGENES,http://snomed.info/sct,46247008,Pseudomonas alcaligenes
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91019,PSEUDOMONAS OLEOVORANS,http://snomed.info/sct,53053000,Pseudomonas oleovorans
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90859,RHODATORULA MUCILAGINOSA,http://snomed.info/sct,86724009,Rhodotorula mucilaginosa
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90552,ROSEOMONAS GILARDII,http://snomed.info/sct,113710007,Roseomonas gilardii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90655,ROSEOMONAS MUCOSA,http://snomed.info/sct,415351006,Roseomonas mucosa
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90991,ROTHIA SPECIES,http://snomed.info/sct,90163001,Rothia
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90657,SALMONELLA ANATUM,http://snomed.info/sct,37261005,Salmonella Anatum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90680,SALMONELLA CORVALLIS,http://snomed.info/sct,45548005,Salmonella Corvallis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80131,SALMONELLA HADAR,http://snomed.info/sct,49491006,Salmonella Hadar
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90689,SALMONELLA KIAMBU,http://snomed.info/sct,11901002,Salmonella Kiambu
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90653,SALMONELLA MBANDAKA,http://snomed.info/sct,9506004,Salmonella Mbandaka
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90405,SALMONELLA MONTEVIDEO,http://snomed.info/sct,80268001,Salmonella Montevideo
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90418,SALMONELLA MUENCHEN,http://snomed.info/sct,77584005,Salmonella Muenchen
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90404,SALMONELLA MUENSTER,http://snomed.info/sct,68916009,Salmonella Muenster
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90440,SALMONELLA SCHWARZENGRUND,http://snomed.info/sct,45651006,Salmonella Schwarzengrund
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90507,SALMONELLA STANLEY,http://snomed.info/sct,88091007,Salmonella Stanley
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90669,SALMONELLA TELELKEBIR,http://snomed.info/sct,64636003,Salmonella Telelkebir
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90427,SALMONELLA THOMPSON,http://snomed.info/sct,4361005,Salmonella Thompson
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91006,SCEDOSPORIUM (APIOSPERMUM) SPP. COMPLEX,http://snomed.info/sct,51221000112104,Scedosporium apiospermum complex
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90851,SCEDOSPORIUM APIOSPERMUM COMPLEX,http://snomed.info/sct,51221000112104,Scedosporium apiospermum complex
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90982,SCHAALIA (ACTINOMYCES) ODONTOLYTICA,http://snomed.info/sct,12069003,Schaalia odontolytica
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90961,SERRATIA PLYMUTHICA,http://snomed.info/sct,28955009,Serratia plymuthica
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90375,SHIGELLA SPECIES,http://snomed.info/sct,77352002,Shigella
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90766,SLACKIA EXIGUA,http://snomed.info/sct,434236002,Slackia exigua
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90537,SPHINGOBACTERIUM MULTIVORUM,http://snomed.info/sct,51595006,Sphingobacterium multivorum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90796,SPOROTHRIX SCHENCKII COMPLEX,http://snomed.info/sct,468671000124100,Sporothrix schenckii complex
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80211,STACHYBOTRYS SPP.,http://snomed.info/sct,61175005,Stachybotrys
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90996,STAPHYLOCOCCUS EQUORUM,http://snomed.info/sct,28217008,Staphylococcus equorum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90976,STREPTOCOCCUS CONSTELLATUS SSP. PHARYNGIS,http://snomed.info/sct,415602002,Streptococcus constellatus subspecies pharyngis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90799,STREPTOCOCCUS INFANTARIUS SSP. INFANTARIUS (STREPTOCOCCUS BOVIS),http://snomed.info/sct,432506009,Streptococcus infantarius subspecies infantarius
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90804,STREPTOCOCCUS PORCINUS/PSEUDOPORCINUS,http://snomed.info/sct,58800005,Streptococcus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90978,STREPTOCOCCUS SALIVARIUS SSP. THERMOPHILUS,http://snomed.info/sct,23310006,Streptococcus salivarius subsp. thermophilus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90749,STREPTOCOCCUS SALIVARUS,http://snomed.info/sct,39888004,Streptococcus salivarius
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80051,STREPTOCOCCUS SANGUIS,http://snomed.info/sct,113993000,Streptococcus sanguinis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90360,STREPTOCOCCUS UBERIS,http://snomed.info/sct,13250005,Streptococcus uberis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80190,SYNCEPHALASTRUM SPECIES,http://snomed.info/sct,62678005,Syncephalastrum
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90710,SYTALIDIUM SPECIES,http://snomed.info/sct,12678008,Scytalidium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90420,TAENIA SP.,http://snomed.info/sct,28625000,Taenia
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,91028,TEICHOSPORA SPECIES,http://snomed.info/sct,414561005,Fungi
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90621,TICK NOT CONSISTENT WITH IXODES SPECIES,http://snomed.info/sct,445680003,Ixodida
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90997,TRAMETES HIRSUTA,http://snomed.info/sct,833281003,Trametes hirsuta
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90513,TRICHOMONAS VAGINALIS,http://snomed.info/sct,22417000,Trichomonas vaginalis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90545,TRICHOPHYTON MENTAGROPHYTES,http://snomed.info/sct,55766005,Trichophyton mentagrophytes
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80275,TRICHOSPORON ASAHII,http://snomed.info/sct,243475001,Trichosporon asahii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90667,TRICHOSPORON MUCOIDES,http://snomed.info/sct,243478004,Cutaneotrichosporon mucoides
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90491,ULOCLADIUM SP.,http://snomed.info/sct,65789000,Ulocladium
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90775,USTILAGO SPECIES,http://snomed.info/sct,49086004,Ustilago
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90970,VAGOCOCCUS FLUVIALIS,http://snomed.info/sct,116418005,Vagococcus fluvialis
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90296,VIBRIO ALGINOLYTICUS,http://snomed.info/sct,45749000,Vibrio alginolyticus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90295,VIBRIO CHOLERAE,http://snomed.info/sct,75953000,Vibrio cholerae
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90297,VIBRIO PARAHAEMOLYTICUS,http://snomed.info/sct,11736008,Vibrio parahaemolyticus
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,80033,VIBRIO SPECIES,http://snomed.info/sct,34872001,Vibrio
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90896,WAUTERSIELLA FALSENII,http://snomed.info/sct,450452000,Wautersiella falsenii
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90372,YERSINIA INTERMEDIA,http://snomed.info/sct,10334001,Yersinia intermedia
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90868,YOKENELLA REGENSBURGEI,http://snomed.info/sct,89477001,Yokenella regensburgei
+https://mimic.mit.edu/fhir/CodeSystem/microb-orgitems,90828,ZYGOSACCHAROMYCES FERMENTATI,http://snomed.info/sct,4981000146101,Lachancea fermentati

@@ -20,7 +20,7 @@ source_code,source_unit,target_unit,conversion_function,source_display
 50970,mg/dL,mg/dL,$this,Phosphate
 51249,g/dL,g/dL,$this,MCHC
 52172,fL,fL,$this,RDW-SD
-51249,%,%,$this,MCHC
+51249,%,g/dL,$this,MCHC
 50861,IU/L,[IU]/L,$this,Alanine Aminotransferase (ALT)
 50878,IU/L,[IU]/L,$this,Asparate Aminotransferase (AST)
 51237,N/A,{INR},$this,INR(PT)
@@ -984,3 +984,27 @@ source_code,source_unit,target_unit,conversion_function,source_display
 51826,mg/dL,mg/dL,$this,"Uric Acid, Joint Fluid"
 52032,mm Hg,mm[Hg],$this,P50 of Hemoglobin
 52055,%,%,$this,Hyperseg
+50934,N/A,1,$this,H
+50934,U,1,$this,H
+51678,N/A,1,$this,L
+51678,U,1,$this,L
+50947,N/A,1,$this,I
+50947,U,1,$this,I
+53161,mL/min/1.73m2,mL/min/{1.73_m2},$this,Estimated GFR (CKD- EPI Refit)
+53180,mL/min/1.73m2,mL/min/{1.73_m2},$this,Estimated GFR (CKD- EPI 2021)
+53154,mmol/L,mmol/L,$this,Lactate
+53084,IU/L,[IU]/L,$this,Alanine Aminotransferase
+53086,IU/L,[IU]/L,$this,Alkaline Phosphatase
+53087,IU/L,[IU]/L,$this,Amylase
+53088,IU/L,[IU]/L,$this,Asparate Aminotransferase
+53089,mg/dL,mg/dL,$this,"Bilirubin, Total"
+53093,IU/L,[IU]/L,$this,Gamma Glutamyltranferase
+53157,K/uL,10*3/uL,$this,Absolute Lymphocyte Count
+53159,K/uL,10*3/uL,$this,Absolute Neutrophil Count
+53164,%,%,$this,Neutrophils
+53188,%,%,$this,Lymphocytes
+53186,pg,pg,$this,MCH
+53185,g/dL,g/dL,$this,MCHC
+53189,K/uL,10*3/uL,$this,Platelet Count
+53165,%,%,$this,RDW-CV
+53166,fL,fL,$this,RDW-SD

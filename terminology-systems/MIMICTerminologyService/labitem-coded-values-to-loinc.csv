@@ -26,19 +26,15 @@ https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,RED,Red,http://snomed
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,PINK,Red,http://snomed.info/sct,720003003,Reddish color urine
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Brown,Brown,http://snomed.info/sct,720002008,Porter color urine (brown)
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Orange,Brown,http://snomed.info/sct,371242008,Orange color
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,SPONTANEOUS,Spontaneous,http://loinc.org,LA12671-6,Assisted ventilation
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CONTROLLED,Controlled,http://loinc.org,LA29246-8,Controlled ventilation
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,IMV,Controlled,http://loinc.org,LA46-8,Other
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,ART,Arterial,http://snomed.info/sct,4635002,Arterial blood
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,VEN,Arterial,http://snomed.info/sct,53130003,Venous blood
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,VEN,Venous,http://snomed.info/sct,53130003,Venous blood
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,MIX,Mix,http://snomed.info/sct,116176007,Mixed venous blood
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CENTRAL VENOUS,Central Venous Blood,http://snomed.info/sct,1201871002,Venous cord blood
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,OCCASIONAL,Occasional,http://loinc.org,LA20948-8,Occasional
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,1+,Occasional,http://loinc.org,LA11841-6,1+
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,2+,Occasional,http://loinc.org,LA11842-4,2+
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,3+,Occasional,http://loinc.org,LA11843-2,3+
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,4+,Occasional,http://loinc.org,LA11844-0,4+
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NORMAL,Normal,http://loinc.org,LA137-2,None
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,RARE,Rare,http://loinc.org,LA15679-6,Rare
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,FEW,Few,http://loinc.org,LA15680-4,Few
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,MOD,Moderate,http://loinc.org,LA6751-7,Moderate
@@ -57,5 +53,105 @@ https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,AMBER,Amber,http://sn
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DkAmb,Dark Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,ORANGE,Orange,http://snomed.info/sct,371242008,Orange color
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Red,Red,http://snomed.info/sct,720003003,Reddish color urine
-https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,INTUBATED,Intubated,http://snomed.info/sct,112798008,Insertion of endotracheal tube
 https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THIN SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Pink,Pink,http://snomed.info/sct,720003003,Reddish color urine
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,BROWN,Brown,http://snomed.info/sct,720002008,Porter color urine (brown)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CLOUDY,Cloudy,http://loinc.org,LA19733-7,Cloudy
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,HAZY,Hazy,http://loinc.org,LA19733-7,Cloudy
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,STRAW,Straw,http://snomed.info/sct,46800005,Normal urine color (yellow)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DKAMBER,Dark Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DKYELLOW,Dark Yellow,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Colorless,Colorless,http://loinc.org,LA19059-7,Colorless
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,SLHAZY,Slightly hazy,http://loinc.org,LA19733-7,Cloudy
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,PRESENT,Present,http://loinc.org,LA9633-4,Present
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CLEAR,Clear,http://loinc.org,LA19732-9,Clear
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DKAM,Dark Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,BORDERLINE,Borderline,http://loinc.org,LA4259-3,Borderline
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,MODERATE,Moderate,http://loinc.org,LA6751-7,Moderate
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,TURBID,Turbid,http://snomed.info/sct,167238004,Turbid urine
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA AND EXTRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRACELLULAR AND EXTRACELLULAR PARASITES,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA/EXTRA CELLULAR PARASITE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,INDETERMINATE,Indeterminate,http://loinc.org,LA11884-6,Indeterminate
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THIN AND THICK SMEAR REVIEWED,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NOTDET,Not detected,http://loinc.org,LA11883-8,Not detected
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,YELLO,Yellow,http://snomed.info/sct,46800005,Normal urine color (yellow)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THICK SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CLO,Cloudy,http://loinc.org,LA19733-7,Cloudy
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,SLCLOUDY,Slightly cloudy,http://loinc.org,LA19733-7,Cloudy
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DKBROWN,Dark Brown,http://snomed.info/sct,720002008,Porter color urine (brown)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSTIVE,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,Black,Black,http://snomed.info/sct,88746009,Black urine
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,WHITE,White,http://snomed.info/sct,50935005,Milky urine
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,BLOODY,Bloody,http://snomed.info/sct,167235001,Urine: red - blood
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRACELLULAR AND EXTRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA OR EXTRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,CLOU,Cloudy,http://loinc.org,LA19733-7,Cloudy
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,LTAMBER,Light Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,"NEGATIVE, THIN AND THICK SMEAR REVIEWED",Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,LTAMB,Light Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGAVITE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEG FOR THICK SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DAMBER,Dark Amber,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA/EXTRA CELLULAR PARASITES,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA AND EXTRACELLULARFORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,DRKYELLOW,Dark Yellow,http://snomed.info/sct,720001001,Dark yellow urine (amber)
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,LRG,Large,http://loinc.org,LA8981-8,Large
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THICK SMEAR REVIEWED,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIV,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSTITIVE,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGTAIVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NOTDETECTED,Not detected,http://loinc.org,LA11883-8,Not detected
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THICK SMEAR REVIEW,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THICK SMEAR REVIEW,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA AND EXTRA CELLULAR PARASITES,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THIN AND THICK SMEAR REVIEW,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGOTIVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA NAD EXTRACELLUAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSITIVE FOR INTACELLULAR,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSITI?VE,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,"NEGATIVE, THIN AND THICK SMEARS REVIEWED",Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,"NEGATIVE FOR INTRA AND EXTRACELLULAR FORMS, THICK AND THIN SMEARS REVIEWED, IF HIGH CLINICAL SUSPICION OF MALARIA REPEAT SCREEN EVERY 12-24 HOURS FOR 3 CONSECUTIVE DAYS",Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGARIVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA OR EXTRACELLULAR FORMS ON THIN SMEAR REVIEW,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSITVE,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEG FOR INTRA AND EXTRACELLULAR ORGANISMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA/EXTRA CELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR TICK SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THIN AND THICK SMEARS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THIN AND THICK SMEAR REVIEWED,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGSTIVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEG ON THIN SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSITIVE FOR ANAPLASMA,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THIN AND THICK SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGTIVE FOR INTRACELLULAR AND EXTRACELLULAR PARASITS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THIN AND THICK SMEARS REVIEWED,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THICK AND THIN SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THIN AND THICK SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGAITVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THIN AND THICK,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATVIE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,"POSITIVE, 0",Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA AND EXRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEG FOR INTRA AND EXTRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATATIVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THICK AND THIN SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THIN AND THICK SMEARS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA AND EXTRA CELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGAYIVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOT THICK SMEAR,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEG FOR THE PRESENCE OF MICROFILARIAE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THIN AND THICK SMEAR REVIWED,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,"NEGATIVE FOR INTRA AND EXTRACELLULARFORMS,THIN AND THICK SMEARS REVIEWED",Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR THE PRRESENCE OF MICROFILARIAE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVAE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE THICK SMEARS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POSITIVE 1,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATOVE FOR INTRA AND EXTRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,POS FOR INTRA AND EXTRACELLULAR FORMS,Positive,http://loinc.org,LA6576-8,Positive
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVIE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,"NEG FOR INTRA AND EXTRA CELLULAR FORMS, THICK AND THIN SMEARS REVIEWED",Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOE INTRA AND EXTRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGAITIVE,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGATIVE FOR INTRA SND EXTRACELLULAR FORMS,Negative,http://loinc.org,LA6577-6,Negative
+https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values,NEGTIVE,Negative,http://loinc.org,LA6577-6,Negative

@@ -29,9 +29,19 @@
       "expression": "iif(valueuom.exists() and valueuom.trim() != '' and valueuom.trim() != 'N/A', valueuom.trim(), 'N/A')"
     },
     {
+      "name": "commentResult",
+      "language": "text/fhirpath",
+      "expression": "iif(valuenum.exists().not() and (value.exists().not() or value.trim() = '' or value.trim() = '___') and comments.exists(), comments.replaceMatches('^(.*?)([.]( |$)|[*]).*$', '$1').trim(), {}).where($this != '' and $this.length() <= 25 and $this.contains('___').not() and $this.startsWith('UNABLE TO REPORT').not() and ($this = 'RANDOM' or $this = 'NotDone' or $this = 'NOT DONE' or $this = 'ND' or $this = 'DONE' or $this = 'ERROR').not())"
+    },
+    {
+      "name": "resultValue",
+      "language": "text/fhirpath",
+      "expression": "iif(value.exists() and value.trim() != '' and value.trim() != '___', value, %commentResult)"
+    },
+    {
       "name": "numericValue",
       "language": "text/fhirpath",
-      "expression": "iif(valuenum.exists(), valuenum, iif(value.exists() and value.utl:isFhirQuantityExpression(), utl:parseFhirQuantityExpression(value).first(), {}))"
+      "expression": "iif(valuenum.exists(), valuenum, iif(%resultValue.exists() and (%resultValue.startsWith('>=') or %resultValue.startsWith('<=')) and %resultValue.substring(2).trim().toDecimal().exists(), %resultValue.substring(2).trim().toDecimal(), iif(%resultValue.exists() and %resultValue.utl:isFhirQuantityExpression(), utl:parseFhirQuantityExpression(%resultValue).first(), {})))"
     },
     {
       "name": "quantity",
@@ -41,7 +51,12 @@
     {
       "name": "codedValue",
       "language": "text/fhirpath",
-      "expression": "iif(%convertedLabLoinc.exists() and %numericValue.exists().not() and value.exists() and value.trim() != '' and value.trim() != '___', trms:translateToCoding(value.utl:takeUntil('.' | '*').trim(), 'https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/labitem-coded-values-to-other'), {})"
+      "expression": "iif(%convertedLabLoinc.exists() and %numericValue.exists().not() and %resultValue.exists(), trms:translateToCoding(%resultValue.utl:takeUntil('.' | '*').trim(), 'https://mimic.mit.edu/fhir/CodeSystem/labitem-coded-values', 'https://github.com/srdc/mimic-iv-to-fhir/fhir/ConceptMap/labitem-coded-values-to-other'), {})"
+    },
+    {
+      "name": "interpretationCode",
+      "language": "text/fhirpath",
+      "expression": "iif(%numericValue.exists() and ref_range_lower.exists() and ref_range_upper.exists(), iif(%numericValue > ref_range_upper, 'H', iif(%numericValue < ref_range_lower, 'L', iif(flag.exists() and flag = 'abnormal', 'A', 'N'))), iif(flag.exists() and flag = 'abnormal', 'A', iif(%convertedLabLoinc.where(code = '89579-7' or code = '10839-9' or code = '67151-1' or code = '6598-7').exists(), 'N', {})))"
     }
   ],
   "mapping": [
@@ -49,7 +64,7 @@
       "precondition": {
         "name": "measurementExists",
         "language": "text/fhirpath",
-        "expression": "(valuenum.exists() or (value.exists() and value.trim() != '' and value.trim() != '___')) and %convertedLabLoinc.exists()"
+        "expression": "(valuenum.exists() or %resultValue.exists()) and %convertedLabLoinc.exists()"
       },
       "expression": {
         "name": "labevents-mapping",
@@ -100,7 +115,7 @@
             "{{#q}}": "{{%quantity}}",
             "{{?}}": {
               "value": "{{%q.value}}",
-              "comparator": "{{? iif(valuenum.exists().not() and value.exists() and value.utl:isFhirQuantityExpression(), utl:parseFhirQuantityExpression(value)[1], {})}}",
+              "comparator": "{{? iif(valuenum.exists().not() and %resultValue.exists() and (%resultValue.startsWith('>=') or %resultValue.startsWith('<=')), %resultValue.substring(0,2), iif(valuenum.exists().not() and %resultValue.exists() and %resultValue.utl:isFhirQuantityExpression(), utl:parseFhirQuantityExpression(%resultValue)[1], {}))}}",
               "unit": "{{%q.unit}}",
               "system": "{{%q.system}}",
               "code": "{{%q.code}}"
@@ -110,21 +125,21 @@
             "{{#cv}}": "{{iif(%numericValue.exists().not(), %codedValue, {})}}",
             "{{?}}": {
               "coding": "{{* %cv}}",
-              "text": "{{value}}"
+              "text": "{{%resultValue}}"
             }
           },
-          "valueString": "{{? iif(%numericValue.exists().not() and %codedValue.exists().not() and value.exists(), value, {})}}",
+          "valueString": "{{? iif(%numericValue.exists().not() and %codedValue.exists().not() and %resultValue.exists(), %resultValue, {})}}",
           "interpretation": {
-            "{{#isAbnormal}}": "{{iif(flag.exists() and flag='abnormal', true, {})}}",
+            "{{#interp}}": "{{%interpretationCode}}",
             "{{*}}": {
               "coding": [
                 {
                   "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
-                  "code": "A",
-                  "display": "Abnormal"
+                  "code": "{{%interp}}",
+                  "display": "{{iif(%interp = 'H', 'High', iif(%interp = 'L', 'Low', iif(%interp = 'A', 'Abnormal', 'Normal')))}}"
                 }
               ],
-              "text": "Abnormal"
+              "text": "{{iif(%interp = 'H', 'High', iif(%interp = 'L', 'Low', iif(%interp = 'A', 'Abnormal', 'Normal')))}}"
             }
           },
           "note": {

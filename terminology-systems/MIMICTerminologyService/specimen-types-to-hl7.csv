@@ -155,3 +155,9 @@ https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70084,SWAB,http://snomed.in
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70078,"URINE,PROSTATIC MASSAGE",http://terminology.hl7.org/CodeSystem/v2-0487,UR,Urine
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70078,"URINE,PROSTATIC MASSAGE",http://snomed.info/sct,122575003,Urine specimen
 https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70007,BLOOD BAG FLUID,http://snomed.info/sct,119304001,Specimen from blood bag
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90901,,http://terminology.hl7.org/CodeSystem/v2-0487,BLD,Whole blood
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90901,,http://snomed.info/sct,446131002,Blood specimen obtained for blood culture
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90906,"C, E, & A Screening",http://snomed.info/sct,258528007,Rectal swab
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90921,POST-MORTEM VIRAL CULTURE,http://terminology.hl7.org/CodeSystem/v2-0487,AUTP,Autopsy
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,70086,XXX,http://terminology.hl7.org/CodeSystem/v2-0487,USPEC,"Source, Unspecified"
+https://mimic.mit.edu/fhir/CodeSystem/specimen_types,90922,MICRO PROBLEM PATIENT,http://terminology.hl7.org/CodeSystem/v2-0487,USPEC,"Source, Unspecified"
