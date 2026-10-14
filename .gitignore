@@ -7,3 +7,5 @@ log-service.conf
 **/target
 projects.json
 checkpoint
+# Credentialed MIMIC-IV data (PhysioNet DUA) - never commit
+test-data/mimic-iv-3.1*/
