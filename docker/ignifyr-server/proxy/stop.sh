@@ -1,0 +1,1 @@
+docker compose -f data-ingestion-suite/docker/ignifyr-server/proxy/docker-compose-ignifyr.yml -p dt4h-ignifyr-proxy down
