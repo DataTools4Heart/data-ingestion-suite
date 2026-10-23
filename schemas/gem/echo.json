@@ -4,7 +4,7 @@
   "url" : "https://datatools4heart.eu/fhir/schemas/gem/echo",
   "version" : "latest",
   "name" : "Echo",
-  "description" : "Represents ecocardio table",
+  "description" : "Represents ecocardio table. One row per echocardiography measurement.",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",
@@ -27,8 +27,8 @@
       "min" : 1,
       "max" : "1",
       "type" : [ {
-        "code" : "integer",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/integer" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
       "short" : "Patient ID"
     }, {
@@ -42,325 +42,48 @@
       } ],
       "short" : "Report Date"
     }, {
-      "id" : "Echo.FunzioneDiastolica_RapportoEA",
-      "path" : "Echo.FunzioneDiastolica_RapportoEA",
+      "id" : "Echo.MSSITE",
+      "path" : "Echo.MSSITE",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diastolic Function EA Ratio"
+      "definition" : "E.g. 'Ventricolo sinistro' (left ventricle), 'Funzione Diastolica' (diastolic function), 'Valvola tricuspide' (tricuspid valve).",
+      "short" : "Section of the echo report the measurement belongs to"
     }, {
-      "id" : "Echo.FunzioneDiastolica_RapportoEE",
-      "path" : "Echo.FunzioneDiastolica_RapportoEE",
+      "id" : "Echo.MEASURENAME",
+      "path" : "Echo.MEASURENAME",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diastolic Function EE Ratio"
+      "definition" : "E.g. 'LVEF', 'TAPSE', 'Peak E wave'. Mapped with gem/echo-code-mappings.csv.",
+      "short" : "Measurement name"
     }, {
-      "id" : "Echo.FunzioneDiastolica_VelocitPiccoOndaA",
-      "path" : "Echo.FunzioneDiastolica_VelocitPiccoOndaA",
+      "id" : "Echo.MEASUERVALUE",
+      "path" : "Echo.MEASUERVALUE",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diastolic Function Peak Wave Velocity A"
+      "definition" : "Numeric value kept as text; the mapping converts it to a decimal. The column name is misspelled in the source (MEASUERVALUE).",
+      "short" : "Measurement value"
     }, {
-      "id" : "Echo.FunzioneDiastolica_VelocitPiccoOndaE",
-      "path" : "Echo.FunzioneDiastolica_VelocitPiccoOndaE",
+      "id" : "Echo.category",
+      "path" : "Echo.category",
       "min" : 0,
       "max" : "1",
       "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
+        "code" : "string",
+        "profile" : [ "http://hl7.org/fhir/StructureDefinition/string" ]
       } ],
-      "short" : "Diastolic Function Peak Wave Velocity E"
-    }, {
-      "id" : "Echo.Valvolatricuspide_TAPSE",
-      "path" : "Echo.Valvolatricuspide_TAPSE",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Tricuspid Valve TAPSE"
-    }, {
-      "id" : "Echo.Ventricolosinistro_DiametroDiastolicoIndic",
-      "path" : "Echo.Ventricolosinistro_DiametroDiastolicoIndic",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Diastolic Diameter Indexed"
-    }, {
-      "id" : "Echo.Ventricolosinistro_DiametroSistolicoIndic",
-      "path" : "Echo.Ventricolosinistro_DiametroSistolicoIndic",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Systolic Diameter Indexed"
-    }, {
-      "id" : "Echo.Ventricolosinistro_DiametroTeleDiastolico",
-      "path" : "Echo.Ventricolosinistro_DiametroTeleDiastolico",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle End-Diastolic Diameter"
-    }, {
-      "id" : "Echo.Ventricolosinistro_DiametroTeleSistolico",
-      "path" : "Echo.Ventricolosinistro_DiametroTeleSistolico",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle End-Systolic Diameter"
-    }, {
-      "id" : "Echo.Ventricolosinistro_FrazionediEiezione",
-      "path" : "Echo.Ventricolosinistro_FrazionediEiezione",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Ejection Fraction"
-    }, {
-      "id" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTD",
-      "path" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTD",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Posterior Wall Thickness TD"
-    }, {
-      "id" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTDIndic",
-      "path" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTDIndic",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Posterior Wall Thickness TD Indexed"
-    }, {
-      "id" : "Echo.Ventricolosinistro_SettoInterventricolareSpessoreTD",
-      "path" : "Echo.Ventricolosinistro_SettoInterventricolareSpessoreTD",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Interventricular Septum Thickness TD"
-    }, {
-      "id" : "Echo.Ventricolosinistro_SettointerventricolarespessoreTDIndicM",
-      "path" : "Echo.Ventricolosinistro_SettointerventricolarespessoreTDIndicM",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Interventricular Septum Thickness TD Indic. M"
-    }, {
-      "id" : "Echo.Ventricolosinistro_StrokeVolumeIndex",
-      "path" : "Echo.Ventricolosinistro_StrokeVolumeIndex",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Stroke Volume Index"
-    }, {
-      "id" : "Echo.Ventricolosinistro_VolumeTeleDiastolico",
-      "path" : "Echo.Ventricolosinistro_VolumeTeleDiastolico",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle End Diastolic Volume"
-    }, {
-      "id" : "Echo.Ventricolosinistro_VolumeTeleDiastolicoInd",
-      "path" : "Echo.Ventricolosinistro_VolumeTeleDiastolicoInd",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle End Diastolic Volume Indexed"
-    }, {
-      "id" : "Echo.Ventricolosinistro_VolumeTeleSistolico",
-      "path" : "Echo.Ventricolosinistro_VolumeTeleSistolico",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle End Systolic Volume"
-    }, {
-      "id" : "Echo.Ventricolosinistro_VolumeTeleSistolicoInd",
-      "path" : "Echo.Ventricolosinistro_VolumeTeleSistolicoInd",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle End Systolic Volume Indexed"
-    }, {
-      "id" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTS",
-      "path" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTS",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Posterior Wall Thickness TS"
-    }, {
-      "id" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTSIndic",
-      "path" : "Echo.Ventricolosinistro_ParetePosterioreSpessoreTSIndic",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Posterior Wall Thickness TS Indexed"
-    }, {
-      "id" : "Echo.Ventricolodestro_Accorciamentofrazionale",
-      "path" : "Echo.Ventricolodestro_Accorciamentofrazionale",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Right Ventricle Fractional Shortening"
-    }, {
-      "id" : "Echo.Ventricolosinistro_DiametroInternoTD",
-      "path" : "Echo.Ventricolosinistro_DiametroInternoTD",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Internal Diameter TD"
-    }, {
-      "id" : "Echo.FunzioneDiastolica_VelocitPiccoOndaELATTDI",
-      "path" : "Echo.FunzioneDiastolica_VelocitPiccoOndaELATTDI",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Diastolic Function Peak Wave Velocity ELATTDI"
-    }, {
-      "id" : "Echo.FunzioneDiastolica_VelocitPiccoOndaESETTTDI",
-      "path" : "Echo.FunzioneDiastolica_VelocitPiccoOndaESETTTDI",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Diastolic Function Peak Wave Velocity ESETTTDI"
-    }, {
-      "id" : "Echo.Ventricolosinistro_HeartRate",
-      "path" : "Echo.Ventricolosinistro_HeartRate",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Heart Rate"
-    }, {
-      "id" : "Echo.Ventricolosinistro_SettoInterventricolareSpessoreTS",
-      "path" : "Echo.Ventricolosinistro_SettoInterventricolareSpessoreTS",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Interventricular Septum Thickness TS"
-    }, {
-      "id" : "Echo.VenaCava_DiametroMax",
-      "path" : "Echo.VenaCava_DiametroMax",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Vena Cava Maximum Diameter"
-    }, {
-      "id" : "Echo.VenaCava_DiametroMin",
-      "path" : "Echo.VenaCava_DiametroMin",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Vena Cava Minimum Diameter"
-    }, {
-      "id" : "Echo.Ventricolodestro_DiametroTeleDiastolico",
-      "path" : "Echo.Ventricolodestro_DiametroTeleDiastolico",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Right Ventricle End Diastolic Diameter"
-    }, {
-      "id" : "Echo.Ventricolodestro_DiametroTeleDiastolicoIndic",
-      "path" : "Echo.Ventricolodestro_DiametroTeleDiastolicoIndic",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Right Ventricle End Diastolic Diameter Indexed"
-    }, {
-      "id" : "Echo.VentricolosinistroSettointerventricolarespessoresistolicoIndicM",
-      "path" : "Echo.VentricolosinistroSettointerventricolarespessoresistolicoIndicM",
-      "min" : 0,
-      "max" : "1",
-      "type" : [ {
-        "code" : "decimal",
-        "profile" : [ "http://hl7.org/fhir/StructureDefinition/decimal" ]
-      } ],
-      "short" : "Left Ventricle Interventricular Septum Resistolic Thickness Indexed M"
+      "short" : "Category, e.g. ECOCARDIO_MEASURES"
     } ]
   }
 }

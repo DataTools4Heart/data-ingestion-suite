@@ -1,4 +1,5 @@
 CODICE_SANITARIO,ATC,date,medication_name,medication_component,periodUnit,frequency,dose,medication_combination,medication_id,period,doseUnit
+79301612,C07AA06,2021-12-17,TIMOPTOL,TIMOLOLO,,,,False,,,
 79301612,A02BC05,2019-01-16,,ESOMEPRAZOLO,,,,False,,,
 79301612,B01AC06,2019-11-29,,ACIDO ACETILSALICILICO,,,,False,,,
 79301612,C03CA01,2019-07-17,,FUROSEMIDE,,,,False,,,

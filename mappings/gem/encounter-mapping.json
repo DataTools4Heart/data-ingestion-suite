@@ -69,8 +69,8 @@
         "admission" : {
           "admitSource" : {
             "coding" : [ {
-              "{{#codingVar}}" : "{{NUM_PS.exists() and NOSOGRAFICO.exists()}}",
-              "{{?}}" : "{{ utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/admit-source', 'emb', 'From accident/emergency department') }}"
+              "{{#codingVar}}" : "{{iif(NUM_PS.exists() and NOSOGRAFICO.exists(), true, {})}}",
+              "{{?}}" : "{{ utl:createFhirCoding('http://terminology.hl7.org/CodeSystem/admit-source', 'emd', 'From accident/emergency department') }}"
             } ]
           }
         },

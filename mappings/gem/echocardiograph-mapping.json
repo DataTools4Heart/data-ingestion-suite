@@ -20,16 +20,24 @@
     }
   },
   "variable" : [ {
+    "name" : "encountersInWindow",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(DATA_IN <= %context.DATAREFERTO and DATA_OUT >= %context.DATAREFERTO)"
+  }, {
+    "name" : "prioritizedEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encountersInWindow.where(D_EVENTO = 'Ricovero').nav:orElse(%encountersInWindow.where(D_EVENTO = 'Pronto Soccorso')).nav:orElse(%encountersInWindow.where(D_EVENTO = 'Day Hospital')).nav:orElse(%encountersInWindow)"
+  }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(DATA_IN <= %context.DATAREFERTO and DATA_OUT >= %context.DATAREFERTO).first()"
+    "expression" : "%prioritizedEncounters.aggregate(iif($total.empty(), $this, iif(($this.DATA_IN.toString() & $this.ORA_IN) > ($total.DATA_IN.toString() & $total.ORA_IN), $this, $total)))"
   } ],
   "mapping" : [ {
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS) & DATAREFERTO)}}",
+        "id" : "{{mpp:getHashedId('Observation', codice_sanitario.toString() & DATAREFERTO.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Echocardiograph" ]
         },
@@ -70,7 +78,7 @@
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', codice_sanitario.toString())}}",
         "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS))}}",
         "identifier" : [ {
-          "value" : "{{codice_sanitario.toString() & '-' & %relatedEncounter.NOSOGRAFICO.nav:orElse(%relatedEncounter.NUM_PS) & '-' & DATAREFERTO}}"
+          "value" : "{{codice_sanitario.toString() & '-' & DATAREFERTO.toString()}}"
         } ],
         "status" : "final"
       }

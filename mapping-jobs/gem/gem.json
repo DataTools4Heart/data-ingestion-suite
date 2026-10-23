@@ -24,7 +24,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "ecocardio.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "inferSchema" : "false"
+        },
         "preprocessSql" : "select echo.codice_sanitario, echo.DATAREFERTO, array_agg(CONCAT(echo.MEASURENAME, '|', echo.MEASUERVALUE)) as echodata from echo group by echo.codice_sanitario, echo.DATAREFERTO ",
         "sourceRef" : "gem-source"
       },
@@ -61,7 +63,7 @@
     "sourceBinding" : {
       "labResults" : {
         "jsonClass" : "FileSystemSource",
-        "path" : "observation1.csv",
+        "path" : "observation.csv",
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
@@ -82,7 +84,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "farmaci.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "distinct" : "true"
+        },
         "sourceRef" : "gem-source"
       },
       "encounters" : {
@@ -151,7 +155,9 @@
         "jsonClass" : "FileSystemSource",
         "path" : "dettagliocontatti.csv",
         "contentType" : "csv",
-        "options" : { },
+        "options" : {
+          "inferSchema" : "false"
+        },
         "preprocessSql" : "select CODICE_SANITARIO, NOSOGRAFICO_ADT, DATA_RICOVERO, ORA_RICOVERO, DATA_DIMISSIONE, ORA_DIMISSIONE, DESC_REPARTO_RICOVERO, DIAG1_ICD9CM, DIAG2_ICD9CM, DIAG3_ICD9CM, DIAG4_ICD9CM, DIAG5_ICD9CM, DIAG6_ICD9CM, DIAG7_ICD9CM, ARRAY(PROC1, PROC2, PROC3, PROC4, PROC5, PROC6, PROC7) as PROC, ARRAY(DATAPROC1, DATAPROC2, DATAPROC3, DATAPROC4, DATAPROC5, DATAPROC6, DATAPROC7) as DATAPROC, TIPO from encounterDetails",
         "sourceRef" : "gem-source"
       }

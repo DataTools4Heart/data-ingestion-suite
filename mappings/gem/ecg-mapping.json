@@ -15,9 +15,17 @@
   } ],
   "context" : { },
   "variable" : [ {
+    "name" : "encountersInWindow",
+    "language" : "text/fhirpath",
+    "expression" : "%encounter.where(DATA_IN <= %context.DATA_ESECUZIONE and DATA_OUT >= %context.DATA_ESECUZIONE)"
+  }, {
+    "name" : "prioritizedEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encountersInWindow.where(D_EVENTO = 'Ricovero').nav:orElse(%encountersInWindow.where(D_EVENTO = 'Pronto Soccorso')).nav:orElse(%encountersInWindow.where(D_EVENTO = 'Day Hospital')).nav:orElse(%encountersInWindow)"
+  }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounter.where(DATA_IN <= %context.DATA_ESECUZIONE and DATA_OUT >= %context.DATA_ESECUZIONE).first()"
+    "expression" : "%prioritizedEncounters.aggregate(iif($total.empty(), $this, iif(($this.DATA_IN.toString() & $this.ORA_IN) > ($total.DATA_IN.toString() & $total.ORA_IN), $this, $total)))"
   } ],
   "mapping" : [ {
     "expression" : {
@@ -82,7 +90,7 @@
               } ]
             },
             "valueQuantity" : {
-              "code" : "millisecond",
+              "code" : "ms",
               "system" : "http://unitsofmeasure.org",
               "value" : "{{Q_ONSET}}",
               "unit" : "ms"
@@ -99,7 +107,7 @@
               } ]
             },
             "valueQuantity" : {
-              "code" : "millisecond",
+              "code" : "ms",
               "system" : "http://unitsofmeasure.org",
               "value" : "{{Q_OFFSET}}",
               "unit" : "ms"
@@ -116,7 +124,7 @@
               } ]
             },
             "valueQuantity" : {
-              "code" : "millisecond",
+              "code" : "ms",
               "system" : "http://unitsofmeasure.org",
               "value" : "{{T_OFFSET}}",
               "unit" : "ms"
@@ -133,7 +141,7 @@
               } ]
             },
             "valueQuantity" : {
-              "code" : "millisecond",
+              "code" : "ms",
               "system" : "http://unitsofmeasure.org",
               "value" : "{{P_DURATION}}",
               "unit" : "ms"

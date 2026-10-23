@@ -15,9 +15,17 @@
   } ],
   "context" : { },
   "variable" : [ {
+    "name" : "encountersInWindow",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.date.toDate() and DATA_OUT.toDate() >= %context.date.toDate())"
+  }, {
+    "name" : "prioritizedEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encountersInWindow.where(D_EVENTO = 'Ricovero').nav:orElse(%encountersInWindow.where(D_EVENTO = 'Pronto Soccorso')).nav:orElse(%encountersInWindow.where(D_EVENTO = 'Day Hospital')).nav:orElse(%encountersInWindow)"
+  }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "%encounters.where(DATA_IN.toDate() <= %context.date.toDate() and DATA_OUT.toDate() >= %context.date.toDate()).first()"
+    "expression" : "%prioritizedEncounters.aggregate(iif($total.empty(), $this, iif(($this.DATA_IN.toString() & $this.ORA_IN) > ($total.DATA_IN.toString() & $total.ORA_IN), $this, $total)))"
   } ],
   "mapping" : [ {
     "expression" : {

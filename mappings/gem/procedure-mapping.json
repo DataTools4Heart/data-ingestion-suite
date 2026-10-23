@@ -25,7 +25,7 @@
       "name" : "procedure",
       "language" : "application/fhir-template+json",
       "value" : {
-        "{{#ind}}" : "{{utl:indices(1, 7)}}",
+        "{{#ind}}" : "{{utl:indices(0, 6)}}",
         "{{*}}" : {
           "{{#translatedCodes}}" : "{{ mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString()) }}",
           "{{?}}" : {
@@ -56,7 +56,7 @@
             "reason" : {
               "{{#mainDiagnosisCode}}" : "{{%mainDiagnosisCodes}}",
               "{{*}}" : {
-                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', %mainDiagnosisCode.toString())}}"
+                "reference" : "{{mpp:createFhirReferenceWithHashedId('Condition', NOSOGRAFICO_ADT & %mainDiagnosisCode.toString())}}"
               }
             },
             "identifier" : [ {
