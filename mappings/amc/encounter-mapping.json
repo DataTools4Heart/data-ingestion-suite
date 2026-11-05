@@ -31,6 +31,10 @@
     "name" : "admitSourceCode",
     "language" : "text/fhirpath",
     "expression" : "iif(ViaEmergencyDEP = 1,'emd',admitSource_code)"
+  }, {
+    "name" : "serviceDepartment",
+    "language" : "text/fhirpath",
+    "expression" : "iif(DepartmentAdmission = 'Cardiology' or DepartmentDischarge = 'Cardiology', 'Cardiology', DepartmentAdmission)"
   } ],
   "mapping" : [ {
     "description" : "This mappings should be run after condition mapping. Because this mapping also creates Conditions and it makes Conditions primary diagnoses.",
@@ -89,14 +93,14 @@
         "serviceType" : [ {
           "concept" : {
             "coding" : [ {
-              "{{#serviceCoding}}" : "{{ iif(DepartmentAdmission.exists(), mpp:getConcept(%serviceTypeMap, DepartmentAdmission) ) }}",
+              "{{#serviceCoding}}" : "{{ iif(%serviceDepartment.exists(), mpp:getConcept(%serviceTypeMap, %serviceDepartment) ) }}",
               "{{?}}" : {
                 "system" : "http://snomed.info/sct",
                 "code" : "{{%serviceCoding.snomed}}",
                 "display" : "{{%serviceCoding.display}}"
               }
             } ],
-            "text" : "{{? DepartmentAdmission}}"
+            "text" : "{{? %serviceDepartment}}"
           }
         } ],
         "identifier" : [ {
