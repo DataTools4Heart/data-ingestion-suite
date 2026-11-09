@@ -1008,3 +1008,16 @@ source_code,source_unit,target_unit,conversion_function,source_display
 53189,K/uL,10*3/uL,$this,Platelet Count
 53165,%,%,$this,RDW-CV
 53166,fL,fL,$this,RDW-SD
+53085,g/dL,g/dL,$this,Albumin
+53096,g/dL,g/dL,$this,"Protein, Total"
+53104,N/A,1,$this,"COVID-19, RAPID ANTIGEN"
+53152,N/A,1,$this,HIV FINAL
+53107,N/A,1,$this,FLUA1
+53108,N/A,1,$this,FLUA2
+53109,N/A,1,$this,FLUB1
+53110,N/A,1,$this,FLUB2
+53114,N/A,1,$this,RSV1
+53115,N/A,1,$this,RSV2
+53167,N/A,1,$this,Reflex RPR
+53177,N/A,1,$this,Chlamydia trachomatis
+53179,N/A,1,$this,Neisseria gonorrhoeae

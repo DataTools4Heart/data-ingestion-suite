@@ -1430,3 +1430,16 @@ https://mimic.mit.edu/fhir/CodeSystem/labitems,53185,MCHC,http://loinc.org,786-4
 https://mimic.mit.edu/fhir/CodeSystem/labitems,53189,Platelet Count,http://loinc.org,777-3,Platelets [#/volume] in Blood by Automated count
 https://mimic.mit.edu/fhir/CodeSystem/labitems,53165,RDW-CV,http://loinc.org,788-0,Erythrocyte distribution width [Ratio] by Automated count
 https://mimic.mit.edu/fhir/CodeSystem/labitems,53166,RDW-SD,http://loinc.org,21000-5,Erythrocyte distribution width [Entitic volume] by Automated count
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53085,Albumin,http://loinc.org,1751-7,Albumin [Mass/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53096,"Protein, Total",http://loinc.org,2885-2,Protein [Mass/volume] in Serum or Plasma
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53104,"COVID-19, RAPID ANTIGEN",http://loinc.org,94558-4,SARS-CoV-2 (COVID-19) Ag [Presence] in Respiratory specimen by Rapid immunoassay
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53152,HIV FINAL,http://loinc.org,56888-1,HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53107,FLUA1,http://loinc.org,34487-9,Influenza virus A RNA [Presence] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53108,FLUA2,http://loinc.org,34487-9,Influenza virus A RNA [Presence] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53109,FLUB1,http://loinc.org,40982-1,Influenza virus B RNA [Presence] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53110,FLUB2,http://loinc.org,40982-1,Influenza virus B RNA [Presence] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53114,RSV1,http://loinc.org,40988-8,Respiratory syncytial virus RNA [Presence] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53115,RSV2,http://loinc.org,40988-8,Respiratory syncytial virus RNA [Presence] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53167,Reflex RPR,http://loinc.org,20507-0,Reagin Ab [Presence] in Serum by RPR
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53177,Chlamydia trachomatis,http://loinc.org,43304-5,Chlamydia trachomatis rRNA [Presence] in Specimen by NAA with probe detection
+https://mimic.mit.edu/fhir/CodeSystem/labitems,53179,Neisseria gonorrhoeae,http://loinc.org,43305-2,Neisseria gonorrhoeae rRNA [Presence] in Specimen by NAA with probe detection

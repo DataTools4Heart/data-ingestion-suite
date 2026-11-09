@@ -1650,15 +1650,35 @@ code,display,unit
 53153,HIV Screen,
 53154,Lactate,mmol/L
 53157,Absolute Lymphocyte Count,K/uL
+53158,Absolute MXD Count,
 53159,Absolute Neutrophil Count,K/uL
+53160,CMV CT,
 53161,Estimated GFR (CKD- EPI Refit),
+53162,HCV CT,
+53163,HIV Viral Load Ct,
 53164,Neutrophils,%
 53165,RDW-CV,%
 53166,RDW-SD,fL
+53167,Reflex RPR,
+53169,Ceph-IC,
+53170,CephIC Endpt,
+53171,COV12IC,
+53172,COV12MC,
+53173,COV8IC,
+53174,COV8MC,
 53175,RdRP Ct,
+53176,RdRP Endpt,
+53177,Chlamydia trachomatis,
 53178,Helicobacter pylori Antigen,
+53179,Neisseria gonorrhoeae,
 53180,Estimated GFR (CKD- EPI 2021),mL/min/1.73m2
+53181,CBC Only,
+53182,% Parasitemia,
+53183,Cytospin Review,
+53184,IPT (Clinical Trial),
 53185,MCHC,g/dL
 53186,MCH,pg
+53187,PAN,
 53188,Lymphocytes,%
 53189,Platelet Count,K/uL
+53190,MXD%,
