@@ -201,6 +201,12 @@ git clone /mnt/c/development/dt4h/data-ingestion-suite     # the checkout with t
 git clone /mnt/c/development/dt4h/common-data-model
 chmod +x data-ingestion-suite/docker/mimic-local/run-job.sh
 mkdir -p ignifyr-docker-logs/spark-events     # Spark refuses to start when the event-log directory does not exist
+# Ignifyr Enterprise license (server images since Oct 2026 run in restricted mode without one - every run
+# request answers 403 "execution is disabled until one is installed"). docker-compose.yml points the server at
+# /usr/local/ignifyr/conf/ignifyr.license, i.e. the root of the mounted suite checkout (the default path in
+# application.conf is lost because APP_CONF_FILE replaces that file). Internal runs use the development license
+# of ignifyr-enterprise; it is git-ignored here and must never be committed (this repository is public).
+cp /mnt/c/development/ignifyr/ignifyr-enterprise/conf/ignifyr.license data-ingestion-suite/ignifyr.license
 ```
 
 (`projects.json` in the suite root already contains project `mimic` with the two MIMIC jobs.)
@@ -337,6 +343,9 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
   hang while a task runs**: the Akka dispatcher of the server has one thread per CPU visible to the container and the
   Spark worker threads exhaust it. `ignifyr-server.conf` raises `akka.actor.default-dispatcher` to 32–64 threads;
   keep it above `local[N]` if you change the CPU limit.
+* **`403 ... execution is disabled until one is installed`** on every run request: no Ignifyr Enterprise license in
+  the mounted conf folder (step 1.4). The server reports the license state at start-up (`grep -i license ignifyr-server.log`);
+  `source=none` means no path is configured at all (the `IGNIFYR_LICENSE_FILE` line in docker-compose.yml is missing).
 * **No coverage events / empty Mapping Coverage dashboard**: server jar built without `ignifyr-observability`
   (step 1.3), or Fluentd not reachable (`docker logs mimic-fluentd`). Coverage events are also in
   `ignifyr-docker-logs/ignifyr-mappings.log` thanks to `logback.xml`.
@@ -401,6 +410,8 @@ git clone https://github.com/DataTools4Heart/data-ingestion-suite.git
 git clone https://github.com/DataTools4Heart/common-data-model.git   # onFHIR mounts it (conf + CDM profiles)
 mkdir -p ignifyr-docker-logs/spark-events
 chmod +x data-ingestion-suite/docker/mimic-local/*.sh
+# License (see 1.4): from your PC
+#   scp -i <key.pem> C:/development/ignifyr/ignifyr-enterprise/conf/ignifyr.license ubuntu@<public-ip>:~/ignifyr-mimic/data-ingestion-suite/ignifyr.license
 
 # Images: either log in to the registry ...
 docker login docker.srdc.com.tr
@@ -442,6 +453,10 @@ To watch the UI from your PC, tunnel the ports instead of opening them in the se
 <http://localhost:6090/dt4h/ignifyr/> (executions, coverage) and <http://localhost:4040> (Spark UI).
 
 If the server was started before onFHIR was ready it stays unhealthy at start-up: `docker restart mimic-ignifyr-server`.
+If `run-tasks.log` shows `POST -> execution is disabled until one is installed ... http=403`, the license file is
+missing (8.3): copy it, `docker restart mimic-ignifyr-server`, `pkill -f run-tasks.sh`, delete `run-tasks.log` and
+start the runner again. After `docker compose ... stop` and a reboot the containers do **not** come back by
+themselves (`restart: unless-stopped`): run the `up -d --wait` command above first.
 If the runner is interrupted, call it again with the task names that have no result yet (Executions dashboard).
 
 ### 8.5 Collect and tear down

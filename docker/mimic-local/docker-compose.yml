@@ -79,6 +79,9 @@ services:
       - DATA_FOLDER_PATH=/usr/local/ignifyr/data/mimic-iv-3.1
       - FLUENT_HOST=fluentd
       - CONTEXT_PATH=conf
+      # Ignifyr Enterprise license (restricted mode without it: every run request answers 403). The path must be
+      # given explicitly because APP_CONF_FILE replaces application.conf, which carries the default conf/ignifyr.license.
+      - IGNIFYR_LICENSE_FILE=/usr/local/ignifyr/conf/ignifyr.license
       # Spark runs in local mode inside this JVM, so -Xmx is the Spark memory budget.
       - JAVA_OPTIONS=-Xms8g -Xmx48g -XX:+UseG1GC -XX:MaxGCPauseMillis=400 -XX:+ExitOnOutOfMemoryError -Djava.io.tmpdir=/tmp/spark
     ports:
