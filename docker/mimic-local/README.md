@@ -459,6 +459,17 @@ start the runner again. After `docker compose ... stop` and a reboot the contain
 themselves (`restart: unless-stopped`): run the `up -d --wait` command above first.
 If the runner is interrupted, call it again with the task names that have no result yet (Executions dashboard).
 
+**Clean restart** (fresh logs, empty Elasticsearch, no leftover execution state - do this before a run whose
+metrics go into the paper when anything was started before):
+
+```bash
+cd ~/ignifyr-mimic && pkill -f run-tasks.sh; export MIMIC_DATA_DIR=$HOME/mimic-iv-3.1
+docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml                -f data-ingestion-suite/docker/mimic-local/docker-compose.ec2.yml                --project-directory . -p mimic-local down -v          # -v drops the ES, Mongo and Spark-tmp volumes
+sudo rm -rf ignifyr-docker-logs run-tasks.out run-tasks.log && mkdir -p ignifyr-docker-logs/spark-events
+docker compose ... up -d --wait                                      # same flags as above; onFHIR re-initialises Mongo (2-3 min)
+grep -c "status=Active" ignifyr-docker-logs/ignifyr-server.log       # 1 = licensed
+```
+
 ### 8.5 Collect and tear down
 
 ```bash
