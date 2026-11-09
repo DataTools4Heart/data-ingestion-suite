@@ -103,7 +103,7 @@
               {
                 "system": "https://mimic.mit.edu/fhir/CodeSystem/labitems",
                 "code": "{{itemid.toString()}}",
-                "display": "{{trms:lookupDisplay(itemid.toString(),'https://mimic.mit.edu/fhir/CodeSystem/labitems', {})}}"
+                "display": "{{? trms:lookupDisplay(itemid.toString(),'https://mimic.mit.edu/fhir/CodeSystem/labitems', {})}}"
               }
             ]
           },
