@@ -327,9 +327,13 @@ and route lookups are row-weighted (one lookup per row that reaches the expressi
 * **Lab coded values (89.91 %)**: 65 % of the 1 507 050 misses are the string `NORMAL`, followed by microscopy
   ranges (`0-2`, `3-5`, `6-10`, `11-20`), `DONE`, `Negative` and specimen descriptors
   (`CENTRAL VENOUS`, `SPONTANEOUS`). The textual result is kept; only the coding is missing.
-* **Lab units**: 17 880 lookups miss a conversion row (items 53105 and 53111, 8 167 rows each, and 53175 for the
-  unit `N/A`; 53085 and 53096 are recorded in mg/dL while the row expects g/dL). The quantity then keeps the
-  source unit, so no value is lost.
+* **Lab units (99.99 % in the run, closed afterwards)**: 17 880 lookups missed a conversion row; the quantity
+  kept the source unit, so no value was lost. The rows were added after the run (10 Nov), which brings the unit
+  coverage to 100 % without changing any resource count: the unit-less cycle-threshold items 53105 `E GENE CT`,
+  53111 `N2 GENE CT` (8 167 rows each) and 53175 `RdRP Ct` (1 408), one unit-less row of the eGFR item 53161, and
+  the blood items 53085 `Albumin` (69 rows) and 53096 `Protein, Total` (68 rows). The last two are a source data
+  finding: MIMIC labels them `mg/dL`, but the values (albumin 2.7–4.9, total protein 5.8–8.8) and the reference
+  ranges (3.3–5.5 and 6.4–8.1) are in g/dL, so the conversion row keeps the value and corrects the unit to g/dL.
 * **Order subtypes (poe, 87.90 %)**: 2 383 228 of the 2 418 149 misses are the literal subtype `Other`; the rest
   are local order sets (`Radiology OK to use line`, `Special Procedures`, `COVID-19 Precautions De-escalation`).
 * **Medication (prescriptions / emar)**: 12.6 % of the prescriptions have no NDC and are skipped together with the

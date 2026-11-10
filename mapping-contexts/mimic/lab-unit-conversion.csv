@@ -1021,3 +1021,9 @@ source_code,source_unit,target_unit,conversion_function,source_display
 53167,N/A,1,$this,Reflex RPR
 53177,N/A,1,$this,Chlamydia trachomatis
 53179,N/A,1,$this,Neisseria gonorrhoeae
+53105,N/A,1,$this,E GENE CT
+53111,N/A,1,$this,N2 GENE CT
+53175,N/A,1,$this,RdRP Ct
+53161,N/A,mL/min/{1.73_m2},$this,Estimated GFR (CKD- EPI Refit)
+53085,mg/dL,g/dL,$this,Albumin
+53096,mg/dL,g/dL,$this,"Protein, Total"
