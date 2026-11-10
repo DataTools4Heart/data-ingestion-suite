@@ -12,3 +12,4 @@ test-data/mimic-iv-3.1*/
 # Ignifyr Enterprise license (internal development license, never commit)
 ignifyr.license
 *.license
+ignifyr-db/*

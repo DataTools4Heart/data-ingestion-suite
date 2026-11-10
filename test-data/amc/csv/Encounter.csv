@@ -1,9 +1,0 @@
-PatientContactId,Pseudo_id,ZiekenhuisLocatie,StartDate,EndDate,destination,DepartmentDischarge,DepartmentAdmission,admitSource_code,transport,EncounterStatus,EncounterClassCode,ViaEmergencyDEP,PrimaryEDcompl,PrimaryEDInCompl,PrimaryICDcode
-e1,1,loc,2019-04-06,2019-04-16,,,,,,completed,AMB,,,,w61.62XD
-e2,1,loc,2021-07-04,2021-07-21,,,,,,completed,AMB,,,,I50
-e3,1,loc,2022-01-10,2022-01-15,,Surgery,Cardiology,,,completed,IMP,,,,I50
-e4,1,loc,2022-03-02,2022-03-09,,Cardiology,Surgery,,,completed,IMP,,,,I21
-e5,1,loc,2022-05-12,2022-05-20,,Neurology,Internal medicine,,,completed,IMP,,,,I10
-e6,1,loc,2022-07-01,2022-07-04,,Cardiology,,,,completed,IMP,,,,I48
-e7,1,loc,2022-09-14,2022-09-18,,,Pulmonary diseases,,,completed,IMP,,,,J44
-e8,1,loc,2022-11-20,2022-11-25,,Pediatrics - cardiology,Pediatrics - cardiology,,,completed,IMP,,,,Q21
