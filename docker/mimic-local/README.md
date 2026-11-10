@@ -19,7 +19,7 @@ Target machine used for the sizing below: Intel i7-11800H (8 cores / 16 threads)
 | `run-tasks.sh` | Runs mapping tasks one execution at a time and waits for each (restart-safe, for servers; section 8) |
 | `docker-compose.ec2.yml`, `ignifyr-server.ec2.conf` | Sizing override for a 32-vCPU / 128 GB Linux VM (section 8) |
 | `analyze_output.py` | Output quality metrics from the written NDJSON (duplicates, referential integrity, code-system and UCUM shares) |
-| `MIMIC-mapping-analysis.md` | Analysis of the mappings on a 1-in-20 real-data subset: ratios, coverage, output quality, residual gaps |
+| `MIMIC-mapping-analysis.md` | Analysis of the mappings on a 1-in-20 real-data subset (ratios, coverage, output quality) and the results of the full-data run of 9 Nov 2026 (section 7: counts, durations, coverage, residual gaps) |
 
 ## 0. What is different from the Feb-2026 cluster run
 
@@ -275,7 +275,8 @@ Measured on a 1-in-20 patient subset of the real data (8 threads, 28 GB heap, wr
 poe ≈ 16 600 rows/s. Extrapolated to the full hosp module: labevents ≈ 12 h, emar ≈ 6 h, prescriptions ≈ 3 h,
 poe ≈ 1 h, all other tasks together ≈ 1.5 h, i.e. ≈ 23 h with writing enabled and less with `--skip-write`.
 Start labevents and emar in the evening. While they run, the
-container stays within its 8 CPUs / 56 GB.
+container stays within its 8 CPUs / 56 GB. These are laptop estimates made before the full run; the measured
+full-data durations (28 Spark threads on EC2, `--skip-write`) are in section 6.1.
 
 Monitoring during the run:
 
@@ -316,21 +317,53 @@ in percent; `coverage_unmapped.csv` lists the unmapped source codes/units with t
 for a "residual gaps" table). Input row counts per source table are not emitted by Ignifyr; use the row counts
 of the CSV files (e.g. `wc -l` or the profiling numbers in the paper folder's `coverage-prepass`).
 
-Interpretation notes for `coverage_summary.csv`:
+### 6.1 Results of the full run (9 Nov 2026)
 
-* `icd9cm-to-icd10cm.csv` (simplified GEM, formerly `icd9toicd10cmgem.csv`) / `icd9-to-icd10pcs.csv` (formerly `icd9toicd10pcsgem.csv`): the figures below
-  are from the earlier run, when the mapping still retried with the 4- and 3-character prefixes and every attempt was
-  counted; the prefix retry has since been removed and the diagnosis mapping now lists all GEM targets. The lookup coverage (95.9 % for
-  diagnoses on the full data) therefore understates the row coverage: the number of ICD-9 rows that end without
-  an ICD-10 code equals the number of failed 3-character probes in `coverage_unmapped.csv` (62 618 of ≈ 2.8 M
-  ICD-9 diagnosis rows ⇒ 97.8 % row coverage). The residual rows are GEM "NoDx" codes (E930–E949 adverse
-  effects, 707.2x pressure-ulcer stages, V64.41) and category-level codes used by MIMIC (0414, 2841, 9974).
-* `ndcToMedDetails.csv` lookups happen once per prescription/administration row with a non-zero NDC, so the
-  coverage is row-weighted (95 % on the sample); the distinct-NDC coverage is 6 297 / 6 587. The CSV carries every
-  NDC both zero-padded and unpadded because Spark reads the `ndc` column of prescriptions.csv as a number and the
-  mapping's `ndc.toString()` therefore loses the leading zeros.
-* The `labitems-to-loinc` failures are dominated by the three MIMIC placeholder items `50934 H`, `51678 L`
-  and `50947 I` (≈ 8 M rows in v3.1) that have no clinical meaning; list them separately in the paper.
+Reference run for the paper: all twelve tasks, one execution each, `skipWrite`, AWS m6i.8xlarge (32 vCPU, 128 GB),
+Spark `local[28]`, 84 partitions, 80 GB heap, mappings at commit `f398a16`. Extracts: paper folder
+`metrics/2026-11-09-ec2-full/`. Input rows are the CSV row counts (not emitted by Ignifyr). The 5–6 Oct column is
+the earlier run on the same instance type with the mappings before PR 39 and is superseded.
+
+| task | input rows | resources | ratio | duration | input rows/s | invalid / not mapped | 5–6 Oct: duration, resources |
+|---|---:|---:|---:|---:|---:|---:|---|
+| labevents-mapping | 158 374 764 | 152 015 415 | 0.960 | 8:23:19 | 5 244 | 0 / 0 | 5:04:48, 131 732 211 |
+| emar-mapping | 42 808 594 | 38 831 259 | 0.907 | 2:47:40 | 4 255 | 0 / 0 | 2:43:04, 42 285 138 |
+| prescriptions-mapping | 20 292 611 | 17 357 251 | 0.855 | 1:12:20 | 4 676 | 1 / 0 | 1:24:38, 20 292 610 |
+| poe-mapping | 52 212 109 | 19 991 424 | 0.383 | 0:22:22 | 38 906 | 0 / 0 | 0:22:26, 19 991 424 |
+| procedures-mapping | 859 655 | 828 840 | 0.964 | 0:37:47 | 379 | 0 / 0 | 0:01:52, 828 404 |
+| omr-mapping | 7 753 027 | 10 595 375 | 1.367 | 0:11:01 | 11 729 | 0 / 0 | 0:10:25, 10 597 462 |
+| diagnoses-mapping | 6 364 488 | 6 326 773 | 0.994 | 0:09:24 | 11 285 | 0 / 0 | 0:11:21, 6 301 870 |
+| microbiologyevents | 3 988 224 | 7 836 802 | 1.965 | 0:07:08 | 9 318 | 0 / 0 | 0:07:08, 7 836 802 |
+| admissions-mapping | 546 028 | 546 028 | 1.000 | 0:01:55 | 4 748 | 0 / 0 | 0:01:41, 546 028 |
+| patient-mapping | 364 627 | 364 627 | 1.000 | 0:00:21 | 17 363 | 0 / 0 | 0:00:19, 364 627 |
+| medications-mapping | 25 813 | 25 812 | 1.000 | 0:00:14 | | 1 / 0 | 0:00:14, 25 812 |
+| careunit-mapping | 46 | 46 | 1.000 | 0:00:01 | | 0 / 0 | 0:00:01, 46 |
+| **total** | | **254 719 652** | | **13:53:32** | | 2 / 0 | 10:07:57, 240 802 434 |
+
+The two invalid rows are the same source row (a prescription without a drug name), counted once in prescriptions and
+once in medications. Wall clock from the first start to the last end was 14 h 14 min (the runner waits up to five
+minutes after very short tasks). The full coverage table, the residual gaps and the explanation of the differences
+to October are in `MIMIC-mapping-analysis.md` section 7.
+
+Interpretation notes for `coverage_summary.csv` (figures of the 9 Nov run):
+
+* `icd9cm-to-icd10cm.csv` / `icd9-to-icd10pcs.csv` (simplified GEM files): one lookup per ICD-9 row, so the lookup
+  coverage is the row coverage (the prefix probing of the earlier mapping, which inflated the miss count, is gone).
+  Diagnoses: 98.70 % of the 2 908 741 ICD-9 rows have a target; the 37 715 rows without one are skipped and are
+  mainly E93x–E94x adverse-effect codes, 707.2x pressure-ulcer stages and V64.41. Procedures: 93.43 % of the 469 209
+  ICD-9 rows; the 30 815 skipped rows are adjunct codes that only qualify another procedure code (00.40–00.47
+  number of vessels / stents, 36.06 / 36.07 stent insertion, 81.62 / 81.63, 84.51).
+* `ndcToMedDetails.csv` lookups happen once per prescription / administration row with a non-zero NDC, so the
+  coverage is row-weighted: 98.11 % for prescriptions, 99.53 % for emar; 108 distinct NDCs stay unresolved.
+* `formulary-drug-to-ndc.csv` (emar fallback for rows without an NDC) shows 32.46 %, but 6 045 311 of the 6 355 633
+  misses are the single formulary code `NACLFLUSH` (saline flush, no NDC by nature); without it the coverage is 90.8 %.
+* `labitems-to-loinc`: 98.15 % of the 158 374 764 rows. The 2 929 993 rows without LOINC are bookkeeping items, not
+  results: tube holds (1.74 M), internal slots of send-out panels (`STX*`, `UTX*`, `HPE*`, `PAN*`, 0.85 M),
+  ventilation flags stored in the lab table (0.21 M), voided / problem specimens and PCR internal controls. Report
+  them as non-result rows, not as a terminology gap. The interference indices `50934 H`, `51678 L`, `50947 I`
+  (≈ 8 M rows), which dominated this list before PR 39, are mapped now.
+* `order-subtypes-to-snomed` (poe): 87.90 %; 2 383 228 of the 2 418 149 misses are the literal subtype `Other`.
+* `labitem-coded-values-to-other`: 89.91 % of 14 942 541 textual results; 65 % of the misses are the string `NORMAL`.
 
 Kibana dashboards can be exported as PNG for figures; the Spark event logs under
 `ignifyr-docker-logs/spark-events` can be opened with a Spark History Server
@@ -368,9 +401,12 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
 
 ## 8. Running on an AWS EC2 instance instead of the laptop
 
-The stack is portable; only the sizing differs. Tested target: **m6i.8xlarge** (32 vCPU, 128 GB), Ubuntu 24.04,
-300 GB gp3, region **us-east-1** (where PhysioNet hosts MIMIC-IV in S3, so the data never leaves AWS). Expected
-cost: 12–16 USD on-demand for the ≈ 6 h the remaining work needs plus setup, 1–2 USD for the volume.
+The stack is portable; only the sizing differs. Tested target: **m6i.8xlarge** (32 vCPU, 128 GB), Ubuntu 24.04
+or 26.04, 200 GB gp3. PhysioNet hosts MIMIC-IV in S3 in **us-east-1**; the runs of 5–6 Oct and 9 Nov 2026 used
+**eu-west-1** and read the data through PhysioNet's S3 access point, which the AWS CLI resolves across regions.
+The full run takes ≈ 14 h of mapping (section 6.1); with preparation and collection budget ≈ 17 instance hours,
+i.e. ≈ 30 USD on-demand (1.71 USD/h in eu-west-1) plus 1–2 USD for the volume. Stopping the instance overnight
+between preparation and the run keeps the volume and costs nothing for compute.
 
 ### 8.1 Before launching (once)
 
@@ -399,7 +435,8 @@ ssh -i <key.pem> ubuntu@<public-ip>
 
 ```bash
 # Docker + tools
-sudo apt-get update && sudo apt-get install -y docker.io docker-compose-v2 unzip python3 awscli
+sudo apt-get update && sudo apt-get install -y docker.io docker-compose-v2 unzip python3
+sudo snap install aws-cli --classic      # Ubuntu 26.04 has no awscli apt package; on 24.04 `apt-get install awscli` also works
 sudo usermod -aG docker ubuntu && newgrp docker
 # Elasticsearch refuses to start without this on a plain Linux host
 echo 'vm.max_map_count=262144' | sudo tee /etc/sysctl.d/99-elasticsearch.conf && sudo sysctl --system >/dev/null
@@ -420,8 +457,10 @@ docker login docker.srdc.com.tr
 #               docker.srdc.com.tr/srdc/ignifyr-fluentd:latest docker.srdc.com.tr/srdc/ignifyr-kibana:latest | gzip > ignifyr-images.tgz
 #   scp -i <key.pem> ignifyr-images.tgz ubuntu@<public-ip>:~/ ; then on the instance: docker load < ~/ignifyr-images.tgz
 
-# MIMIC-IV hosp module from PhysioNet's S3 (same region, no transfer cost; ≈ 10 GB gzip -> ≈ 60 GB CSV)
-mkdir -p ~/mimic-iv-3.1/hosp && aws s3 sync s3://mimiciv-3.1.physionet.org/hosp/ ~/mimic-iv-3.1/hosp/
+# MIMIC-IV hosp module from PhysioNet's S3 access point (≈ 10 GB gzip -> ≈ 47 GB CSV). Copy the exact source from
+# the project page (Access the files -> AWS); in Nov 2026 it was the access point below. `aws sts get-caller-identity`
+# must show the IAM identity registered in your PhysioNet cloud settings.
+mkdir -p ~/mimic-iv-3.1/hosp && aws s3 sync s3://arn:aws:s3:us-east-1:724665945834:accesspoint/mimiciv-v3-1-01/mimiciv/3.1/hosp/ ~/mimic-iv-3.1/hosp/
 ls ~/mimic-iv-3.1/hosp/*.gz | xargs -P 8 -n 1 gunzip        # ≈ 10 min
 ls -la ~/mimic-iv-3.1/hosp | head                            # expect labevents.csv ≈ 18 GB, emar_detail.csv ≈ 8 GB
 ```
@@ -436,9 +475,13 @@ docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml \
 docker ps --format '{{.Names}} {{.Status}}'                  # all Up, server healthy
 ```
 
-Run the tasks one execution at a time with the restart-safe runner (metrics only). Measured on 5–6 Oct 2026 with
-28 Spark threads (mappings before PR 39): labevents 5 h 05 min, emar 2 h 43 min, prescriptions 1 h 25 min, poe
-22 min, the eight small tasks ≈ 35 min together, ≈ 10 h in all (the runner waits 5 min after each very short task):
+Run the tasks one execution at a time with the restart-safe runner (metrics only). Measured on 9 Nov 2026 with
+28 Spark threads (commit `f398a16`): labevents 8 h 23 min, emar 2 h 48 min, prescriptions 1 h 12 min, procedures
+38 min, poe 22 min, the seven small tasks ≈ 30 min together, 13 h 54 min of mapping and 14 h 14 min wall clock
+(the runner waits 5 min after each very short task; table in section 6.1). A steady chunk cadence of ≈ 47 s for
+labevents and ≈ 9.5 min for each of the four procedures chunks is normal. The `POST -> ... http=408` line that
+the runner logs for procedures and microbiologyevents is harmless: the HTTP request times out after five minutes
+while the execution continues, and the runner keeps polling until it ends.
 
 ```bash
 cd ~/ignifyr-mimic && nohup data-ingestion-suite/docker/mimic-local/run-tasks.sh --skip-write \
@@ -464,7 +507,9 @@ metrics go into the paper when anything was started before):
 
 ```bash
 cd ~/ignifyr-mimic && pkill -f run-tasks.sh; export MIMIC_DATA_DIR=$HOME/mimic-iv-3.1
-docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml                -f data-ingestion-suite/docker/mimic-local/docker-compose.ec2.yml                --project-directory . -p mimic-local down -v          # -v drops the ES, Mongo and Spark-tmp volumes
+docker compose -f data-ingestion-suite/docker/mimic-local/docker-compose.yml \
+               -f data-ingestion-suite/docker/mimic-local/docker-compose.ec2.yml \
+               --project-directory . -p mimic-local down -v          # -v drops the ES, Mongo and Spark-tmp volumes
 sudo rm -rf ignifyr-docker-logs run-tasks.out run-tasks.log && mkdir -p ignifyr-docker-logs/spark-events
 docker compose ... up -d --wait                                      # same flags as above; onFHIR re-initialises Mongo (2-3 min)
 grep -c "status=Active" ignifyr-docker-logs/ignifyr-server.log       # 1 = licensed
@@ -475,7 +520,8 @@ grep -c "status=Active" ignifyr-docker-logs/ignifyr-server.log       # 1 = licen
 ```bash
 cd ~/ignifyr-mimic
 python3 data-ingestion-suite/docker/mimic-local/extract_metrics.py --es http://localhost:9200 --out ./metrics-ec2
-tar czf metrics-ec2.tgz metrics-ec2 ignifyr-docker-logs/ignifyr-mappings*.log* ignifyr-docker-logs/spark-events run-tasks.log
+sudo chown -R $USER:$USER ignifyr-docker-logs      # the Spark event logs are written by root inside the container
+tar czf metrics-ec2.tgz metrics-ec2 ignifyr-docker-logs/ignifyr-mappings*.log* ignifyr-docker-logs/spark-events run-tasks.log   # ≈ 3 GB
 ```
 
 On your PC: `scp -i <key.pem> ubuntu@<public-ip>:~/ignifyr-mimic/metrics-ec2.tgz .` — then **terminate the

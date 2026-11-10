@@ -6,6 +6,11 @@ changes described in section 3. The analysis is driven by the metrics the paper 
 generated resources, duration, output size) and the metrics the re-execution will add (invalid / not-mapped rows,
 terminology / concept-map / unit-conversion coverage, referential integrity, code-system coverage of the output).
 
+**Reading guide.** Sections 1–6 document the state of October 2026 (subset analysis, first full-data runs on the
+laptop) and are kept as the record of how the mappings evolved. The mappings changed afterwards (PR 39 and the
+fixes of 9 Nov), so their counts and coverage figures are superseded. **Section 7 holds the definitive full-data
+results (9 Nov 2026, commit `f398a16`) and the current list of residual gaps; use it for the paper.**
+
 ## 1. Real-data test: 1-in-20 patient subset
 
 A consistent subset (every table restricted to `subject_id % 20 = 0`, 18 500 patients, 7.9 M lab rows,
@@ -122,6 +127,8 @@ drugs (also those without NDC).
 
 ## 4. Residual gaps to state in the paper (not fixed, by design or data-limited)
 
+(State of October 2026 on the subset. The current figures and gaps are in section 7.3 and 7.4.)
+
 * `labitems-to-loinc`: 7.1 % of lab rows have no LOINC — 70 % of them are the three placeholder items
   `50934 H`, `51678 L`, `50947 I` (≈ 8 M rows, no clinical meaning), the rest are tube-hold / specimen-type
   items (`Green Top Hold`, `Blue Top Hold`, `Uhold`, `UTX*`, `STX*`). These rows cannot become LabResult
@@ -154,6 +161,8 @@ drugs (also those without NDC).
 | output quality | `analyze_output.py` on the NDJSON | duplicates, referential integrity, code-system shares, UCUM share |
 
 ## 6. Full-data run, group 1 (2 Oct 2026, `skipWrite`, execution 1ebca051)
+
+(Laptop run with the mappings of 2 Oct; superseded by section 7.)
 
 Eight tasks in one execution, 8 Spark threads, 48 GB heap (42 GB peak), 80 minutes wall clock, no spills.
 
@@ -218,3 +227,156 @@ medications) and 2 not-mapped rows. The latter had `dose_val_rx = "-"`: the dose
 `split('-').all(... toDecimal().exists())`, which is true for the empty split result, so the range block was
 rendered with nothing to aggregate. The guard now requires exactly two parsed numbers; a bare "-" produces a
 MedicationRequest without `doseAndRate` (verified on the sample).
+
+## 7. Full-data run, all tasks (9 Nov 2026, `skipWrite`) – reference results
+
+### 7.1 Setup
+
+* Mappings, concept maps and job at commit `f398a16` of this repository (PR 39 merged, plus the fixes of 7.5).
+* AWS EC2 m6i.8xlarge (32 vCPU Intel Ice Lake, 128 GB), eu-west-1, Ubuntu 26.04, 200 GB gp3 (6000 IOPS,
+  1000 MB/s), Docker stack of this folder with `docker-compose.ec2.yml`: Spark `local[28]` inside the server JVM,
+  84 partitions, 80 GB heap, `maxChunkSize` 250 000.
+* Twelve executions, one per mapping task, started in sequence by `run-tasks.sh --skip-write` on a fresh stack
+  (empty Elasticsearch, fresh logs). `skipWrite` runs the complete read / join / map / validate pipeline and skips
+  only the sink, so the durations are mapping durations and no patient-level output is produced.
+* Extracts (`extract_metrics.py`): paper folder `metrics/2026-11-09-ec2-full/`; audit and Spark event logs in
+  `metrics/metrics-ec2-2026-11-09.tgz`.
+
+### 7.2 Counts and durations
+
+Input rows are the CSV row counts (for microbiologyevents the raw rows; the mapping aggregates them to 1 924 289
+specimen-level rows). "Chunk" is the median duration of one 250 000-row chunk.
+
+| task | input rows | resources | ratio | duration | input rows/s | chunks | chunk | invalid | not mapped |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| labevents-mapping | 158 374 764 | 152 015 415 | 0.960 | 8:23:19 | 5 244 | 638 | 46.8 s | 0 | 0 |
+| emar-mapping | 42 808 594 | 38 831 259 | 0.907 | 2:47:40 | 4 255 | 177 | 54.7 s | 0 | 0 |
+| prescriptions-mapping | 20 292 611 | 17 357 251 | 0.855 | 1:12:20 | 4 676 | 84 | 51.1 s | 1 | 0 |
+| poe-mapping | 52 212 109 | 19 991 424 | 0.383 | 0:22:22 | 38 906 | 211 | 6.0 s | 0 | 0 |
+| procedures-mapping | 859 655 | 828 840 | 0.964 | 0:37:47 | 379 | 4 | 563 s | 0 | 0 |
+| omr-mapping | 7 753 027 | 10 595 375 | 1.367 | 0:11:01 | 11 729 | 32 | 20.6 s | 0 | 0 |
+| diagnoses-mapping | 6 364 488 | 6 326 773 | 0.994 | 0:09:24 | 11 285 | 26 | 21.5 s | 0 | 0 |
+| microbiologyevents | 3 988 224 | 7 836 802 | 1.965 | 0:07:08 | 9 318 | 8 | 52.9 s | 0 | 0 |
+| admissions-mapping | 546 028 | 546 028 | 1.000 | 0:01:55 | 4 748 | 3 | | 0 | 0 |
+| patient-mapping | 364 627 | 364 627 | 1.000 | 0:00:21 | 17 363 | 2 | | 0 | 0 |
+| medications-mapping | 25 813 | 25 812 | 1.000 | 0:00:14 | | 1 | | 1 | 0 |
+| careunit-mapping | 46 | 46 | 1.000 | 0:00:01 | | 1 | | 0 | 0 |
+| **total** | | **254 719 652** | | **13:53:32** | | 1 187 | | 2 | 0 |
+
+All executions ended with SUCCESS, except prescriptions and medications with PARTIAL_SUCCESS because of one
+invalid input row each: the same prescription without a drug name (`drug` is required by the source schema), a data
+finding. No row failed in a mapping expression. Wall clock from the first start to the last end: 14 h 14 min.
+
+Where the resource count differs from the input count, the difference is fully explained by the lookup counters:
+
+* **labevents**: 2 929 993 rows have no LOINC item (7.4) and 3 429 356 rows of a LOINC-coded item carry no result
+  at all (no numeric value, no text, no usable comment); both are excluded by the precondition.
+* **prescriptions**: 2 552 081 rows have no NDC (mostly IV fluids and flushes), 334 785 have an NDC that does not
+  resolve to an ingredient, 48 493 resolve to an ingredient without ATC code, 1 row is invalid. The CDM profile
+  requires an ATC code, so these rows are skipped: 20 292 611 − 2 935 360 = 17 357 251.
+* **emar**: a MedicationAdministration is created only when the administered drug resolves to an ATC code.
+* **diagnoses / procedures**: ICD-10 rows always map; ICD-9 rows without a GEM target are skipped
+  (37 715 diagnoses, 30 815 procedures): 6 364 488 − 37 715 = 6 326 773 and 859 655 − 30 815 = 828 840.
+* **poe**: only the order types that correspond to a ServiceRequest are mapped (medication and lab orders are
+  represented by the prescriptions and labevents resources). **omr**: blood pressure rows yield two Observations;
+  values ≤ 0 are skipped (2 087 Observations fewer than in October). **microbiologyevents**: DiagnosticReport + Specimen + Observations.
+
+### 7.3 Lookup coverage (MAPPING_COVERAGE events)
+
+| task | type | map | lookups | coverage | distinct unmapped |
+|---|---|---|---:|---:|---:|
+| labevents | TERMINOLOGY | labitems-to-loinc | 158 374 764 | 98.15 % | 99 |
+| labevents | TERMINOLOGY | labitems code system (display) | 152 015 415 | 100 % | 0 |
+| labevents | UNIT | lab-unit-conversion | 137 072 766 | 99.99 % | 6 |
+| labevents | TERMINOLOGY | labitem-coded-values-to-other | 14 942 541 | 89.91 % | 959 |
+| emar | CONCEPT | ndcToMedDetails | 117 122 867 | 99.53 % | 67 |
+| emar | CONCEPT | formulary-drug-to-ndc | 9 410 695 | 32.46 % (90.8 % without `NACLFLUSH`) | 371 |
+| emar | TERMINOLOGY | rx-norm-to-atc | 77 736 607 | 99.90 % | 26 |
+| emar | CONCEPT | emar-status | 42 362 491 | 100 % | 0 |
+| emar | TERMINOLOGY | medication-dose-to-orderable-drug-form | 76 210 600 | 100.00 % (3 440 misses) | 17 |
+| emar | TERMINOLOGY | medication-route-codes-to-snomed | 36 718 398 | 100 % | 0 |
+| prescriptions | CONCEPT | ndcToMedDetails | 17 740 529 | 98.11 % | 108 |
+| prescriptions | TERMINOLOGY | rx-norm-to-atc | 17 405 744 | 99.72 % | 30 |
+| prescriptions | TERMINOLOGY | medication-dose-to-orderable-drug-form | 20 283 262 | 99.97 % | 9 |
+| prescriptions | TERMINOLOGY | medication-route-codes-to-snomed | 17 357 243 | 100.00 % (9 misses) | 4 |
+| poe | TERMINOLOGY | order-subtypes-to-snomed | 19 991 424 | 87.90 % | 17 |
+| poe | TERMINOLOGY | order-types-to-snomed | 19 991 424 | 100 % | 0 |
+| diagnoses | CONCEPT | icd9cm-to-icd10cm | 2 908 741 | 98.70 % | 288 |
+| procedures | CONCEPT | icd9-to-icd10pcs | 469 209 | 93.43 % | 41 |
+| medications | CONCEPT | ndcToMedDetails | 16 541 | 98.11 % | 108 |
+| medications | TERMINOLOGY | rx-norm-to-atc | 16 228 | 98.99 % | 30 |
+| microbiology | TERMINOLOGY | org-itemids-to-snomed | 1 581 957 | 100.00 % (7 misses) | 1 |
+| microbiology | TERMINOLOGY | test-itemids-to-loinc, specimen-types-to-hl7, ab-itemids-to-atc, interpretation | 8 733 029 | 100 % | 0 |
+| patients | CONCEPT / TERMINOLOGY | race-to-ethnicity, language-to-bcp47, marital-status-to-hl7 | 659 641 | 100 % | 0 |
+| admissions | CONCEPT / TERMINOLOGY | admission type, admission / discharge location, services (map and display) | 2 867 637 | 100 % | 0 |
+| omr | CONCEPT / UNIT | omr-result-name-map, omr-unit-conversion | 12 661 071 | 100 % | 0 |
+| careunits, medications | TERMINOLOGY | careunits-to-hl7, medication-units-to-ucum-or-drugform | 60 898 | 100 % | 0 |
+
+The ICD maps are looked up once per ICD-9 row, so their lookup coverage is the row coverage. NDC, ATC, dose-form
+and route lookups are row-weighted (one lookup per row that reaches the expression).
+
+### 7.4 Residual gaps (current)
+
+* **Lab rows without LOINC (1.85 %, 2 929 993 rows, 99 items)** are not results: tube-hold items (`Green / Blue /
+  Light Green / Red Top Hold`, `Uhold`, `Urine tube, held`, `EDTA Hold`: 1.74 M), internal slots of send-out panels
+  (`STX*`, `UTX*`, `HPE*`, `PAN*`, `ARCH-1`, `COV1x`, `EE*`, `UCU*`: 0.85 M), ventilation flags stored in the lab
+  table (`Intubated`, `Assist/Control`: 0.21 M), voided / problem specimens and miscellaneous-fluid markers
+  (0.08 M), PCR internal controls and endpoint-fluorescence values of the COVID panels (≈ 0.05 M). Real tests
+  left without a code because no LOINC concept exists or could be assigned with confidence: Ct values (`CMV CT`,
+  `HCV CT`, `HIV Viral Load Ct`, `HBV VL CT`), `MXD` counts, `% Parasitemia` (together about 2 100 rows).
+* **Lab coded values (89.91 %)**: 65 % of the 1 507 050 misses are the string `NORMAL`, followed by microscopy
+  ranges (`0-2`, `3-5`, `6-10`, `11-20`), `DONE`, `Negative` and specimen descriptors
+  (`CENTRAL VENOUS`, `SPONTANEOUS`). The textual result is kept; only the coding is missing.
+* **Lab units**: 17 880 lookups miss a conversion row (items 53105 and 53111, 8 167 rows each, and 53175 for the
+  unit `N/A`; 53085 and 53096 are recorded in mg/dL while the row expects g/dL). The quantity then keeps the
+  source unit, so no value is lost.
+* **Order subtypes (poe, 87.90 %)**: 2 383 228 of the 2 418 149 misses are the literal subtype `Other`; the rest
+  are local order sets (`Radiology OK to use line`, `Special Procedures`, `COVID-19 Precautions De-escalation`).
+* **Medication (prescriptions / emar)**: 12.6 % of the prescriptions have no NDC and are skipped together with the
+  1.9 % whose NDC does not resolve (108 distinct NDCs, mostly repackager codes) or whose ingredient has no ATC
+  (30 ingredients). This is the price of the CDM rule that every medication carries an ATC code. The emar fallback
+  `formulary-drug-to-ndc` resolves 90.8 % of the NDC-less administrations once the saline flush `NACLFLUSH`
+  (6.05 M rows, no NDC by nature) is set aside. Known modelling limits: an ingredient with several ATC codes
+  gets all of them, combination products are represented by one ingredient.
+* **ICD-9 → ICD-10**: 1.30 % of the ICD-9 diagnosis rows (E93x–E94x adverse-effect codes, 707.2x pressure-ulcer
+  stages, V64.41) and 6.57 % of the ICD-9 procedure rows have no GEM target and are skipped. The procedure misses
+  are adjunct codes that qualify another procedure (00.40–00.47 number of vessels / stents, 36.06 / 36.07,
+  81.62 / 81.63, 84.51). A Condition or Procedure lists all GEM targets of its ICD-9 code, which for procedures
+  means many ICD-10-PCS codings per resource.
+* **Patients**: the MIMIC races `OTHER`, `AMERICAN INDIAN/ALASKA NATIVE`, `NATIVE HAWAIIAN OR OTHER PACIFIC
+  ISLANDER` and `MULTIPLE RACE/ETHNICITY` (4.6 % of patients) are mapped to SNOMED "Unknown racial group" because
+  the CDM value set has no other target; the 100 % coverage therefore hides a CDM limitation.
+* Microbiology Observations without organism or dilution have no `value[x]` (free text kept in `note`); references
+  to skipped ICD-9 diagnoses and to excluded POE types stay dangling (unchanged from section 4).
+
+### 7.5 Differences to the run of 5–6 Oct 2026 (same instance type, mappings before PR 39)
+
+| task | Oct duration | Nov duration | Oct resources | Nov resources | cause |
+|---|---:|---:|---:|---:|---|
+| labevents | 5:04:48 | 8:23:19 | 131 732 211 | 152 015 415 | interference indices H / L / I mapped to LOINC (≈ 8 M rows), results parsed from `comments`, further LOINC items; per-row regular expressions and computed interpretation make a chunk take 47 s instead of 28 s |
+| emar | 2:43:04 | 2:47:40 | 42 285 138 | 38 831 259 | resource only when an ATC code exists; one prescription row per administration (no duplicate ids) |
+| prescriptions | 1:24:38 | 1:12:20 | 20 292 610 | 17 357 251 | rows without ATC code skipped (14.5 %) |
+| procedures | 0:01:52 | 0:37:47 | 828 404 | 828 840 | all ICD-10-PCS targets of an ICD-9 code are emitted as codings; the size of the resources, not their number, drives the duration |
+| diagnoses | 0:11:21 | 0:09:24 | 6 301 870 | 6 326 773 | simplified GEM with manual additions; no prefix probing |
+| omr | 0:10:25 | 0:11:01 | 10 597 462 | 10 595 375 | values ≤ 0 skipped |
+| others | | | | | unchanged counts (poe, microbiology, admissions, patients, medications, careunits) |
+| total | 10:07:57 | 13:53:32 | 240 802 434 | 254 719 652 | |
+
+Coverage moved accordingly: `labitems-to-loinc` 92.97 % → 98.15 %, `ndcToMedDetails` 95.70 % → 98.11 %
+(prescriptions) and 97.38 % → 99.53 % (emar), `rx-norm-to-atc` 93.27 % → 99.72 % and 95.21 % → 99.90 %,
+`order-subtypes-to-snomed` 76.49 % → 87.90 %, `race-to-ethnicity` 95.37 % → 100 %, ICD-9 diagnoses row coverage
+97.8 % → 98.70 %. The ICD-9 procedure figure of October (99.83 %) was a lookup coverage, not a row
+coverage: the number of skipped ICD-9 procedure rows is practically unchanged (31 251 then, 30 815 now), and
+93.43 % is the row coverage.
+
+Two defects were found and fixed on the day of the run, before the reference executions were started:
+
+* **Lab items missing from the code system.** PR 39 had added 39 items to `labitems-to-loinc.csv` without adding
+  them to `labitems-code-system.csv`, and the mapping resolved the display of every item through a non-optional
+  placeholder. Every row of these items (respiratory viral panel, COVID-19 tests, the 531xx duplicates of Lactate,
+  Neutrophils, MCHC, MCH, RDW, Platelet Count, eGFR 2021) failed with a mapping error. The error table of the
+  execution dashboard showed it within minutes of the first start. Fix (`e94867d`, `f398a16`): the code system
+  was completed against `d_labitems` v3.1 (1 683 items; item 53168 has an empty label and is left out), the
+  display is optional, and 13 further items that are real tests were mapped to LOINC.
+* **License.** The server image enforces an Ignifyr Enterprise license since October 2026; the compose file now
+  passes the license file path explicitly (`2fc530e`, README 1.4).
