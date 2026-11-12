@@ -483,6 +483,24 @@
         "sourceRef" : "vhir-source"
       }
     }
+  }, {
+    "name" : "ecg-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/vhir/ecg-mapping",
+    "sourceBinding" : {
+      "omopMeasurement" : {
+        "jsonClass" : "SqlSource",
+        "query" : "SELECT * FROM \"0000000004_DT4H\".MEASUREMENT\r\nWHERE MEASUREMENT_CONCEPT_ID IN (3020660, 3026258, 4064624, 4092015, 4216826, 4218048, 45770409)\r\nAND VALUE_AS_NUMBER IS NOT NULL",
+        "options" : { },
+        "preprocessSql" : "SELECT PERSON_ID, substring(ECG_KEY, 1, 10) AS MEASUREMENT_DATE, CASE WHEN length(ECG_KEY) > 10 THEN ECG_KEY END AS MEASUREMENT_DATETIME, min(MEASUREMENT_ID) AS MEASUREMENT_ID, count(*) AS count,\r\narray_agg(MEASUREMENT_CONCEPT_ID) AS MEASUREMENT_CONCEPT_ID,\r\narray_agg(VALUE_AS_NUMBER) AS VALUE_AS_NUMBER\r\nFROM (\r\n  SELECT PERSON_ID, coalesce(date_format(to_timestamp(MEASUREMENT_DATETIME), 'yyyy-MM-dd HH:mm:ss'), date_format(to_date(MEASUREMENT_DATE), 'yyyy-MM-dd')) AS ECG_KEY, MEASUREMENT_CONCEPT_ID, VALUE_AS_NUMBER, min(MEASUREMENT_ID) AS MEASUREMENT_ID\r\n  FROM omopMeasurement\r\n  GROUP BY PERSON_ID, coalesce(date_format(to_timestamp(MEASUREMENT_DATETIME), 'yyyy-MM-dd HH:mm:ss'), date_format(to_date(MEASUREMENT_DATE), 'yyyy-MM-dd')), MEASUREMENT_CONCEPT_ID, VALUE_AS_NUMBER\r\n)\r\nGROUP BY PERSON_ID, ECG_KEY",
+        "sourceRef" : "vhir-source"
+      },
+      "omopVisit" : {
+        "jsonClass" : "SqlSource",
+        "tableName" : "\"0000000004_DT4H\".VISIT_OCCURRENCE",
+        "options" : { },
+        "sourceRef" : "vhir-source"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,
