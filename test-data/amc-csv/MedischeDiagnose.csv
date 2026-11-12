@@ -1,0 +1,4 @@
+Pseudo_id,PatientContactId,RegistratieDatum,codeType,DiagnoseCode,Specialty,ZiekenhuisLocatie,PatientProbleemstatus
+1001,900001,2024-03-02,Primary,I50.9,Cardiologie,Locatie AMC,active
+1001,,2024-03-02,Secondary,E11.9;I10+,Interne,Locatie AMC,resolved
+1002,900003,2024-04-02,Primary,I48.91,Cardiologie,Locatie AMC,active

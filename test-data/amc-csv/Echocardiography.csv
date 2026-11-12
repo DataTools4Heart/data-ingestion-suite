@@ -1,0 +1,6 @@
+pseudo_id,Accessionnummer,Onderzoeksdatum,ValueQuantity,UNIT,LOINCcode,LOINCdisplay,Status
+1001,ACC1,2024-03-04,"55,5",%,10230-1,Left ventricular Ejection fraction,Completed
+1001,ACC1,2024-03-04,16.6,cm2,17977-0,Left Atrium Area A4C view,Completed
+1001,ACC1,2024-03-04,n.v.t.,mm[Hg],20247-3,Peak Gradient,Completed
+1001,ACC1,2024-03-04,12,mm,,unknown,Completed
+1003,ACC2,2024-05-11,35,%,10230-1,Left ventricular Ejection fraction,Completed

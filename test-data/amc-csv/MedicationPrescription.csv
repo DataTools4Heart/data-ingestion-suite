@@ -1,0 +1,6 @@
+Pseudo_id,PatientContactId,MedicatieArtikelNaam,prescriptionID,Status,ATC_drug,StartDate,StopDate,IsHomeMedication,dosInstr_frequency_value,period,dosInstr_period_unit,dosInstr_asNeeded_display,dosInstr_doseQuantity_value,dosInstr_doseQuantity_unit,Medname,AdministrationRoute,ATC_ingredient
+1001,900001,FUROSEMIDE TABLET 40MG,7001,Stopped,C03CA01,2024-03-02 08:00:00,2024-03-09 08:00:00,Nee,1,1,day,0,40,mg,,,
+1002,900003,"LOSARTAN/HCT TABLET 50/12,5MG",7002,Active,C09DA01,2024-04-02 09:00:00,,Ja,2,1,day,1,"12,5",mg,,,C09CA01
+1002,900003,"LOSARTAN/HCT TABLET 50/12,5MG",7002,Active,C09DA01,2024-04-02 09:00:00,,Ja,2,1,day,1,"12,5",mg,,,C03AA03
+1001,900002,METOPROLOL TABLET 50MG,7003,Active,C07AB02,2024-03-05 10:00:00,2024-03-04 10:00:00,Nee,1,1,once,0,50,mg,,,
+1003,900004,OLD,7004,Stopped,C01AA05,1900-01-01 00:00:00,,Nee,1,1,day,0,1,mg,,,

@@ -1,0 +1,4 @@
+Pseudo_id,MeetDatum,VermoedelijkeDoodsoorzaak,ziekenhuislocatie,Patientcontactid,ICDcode
+1001,,,,,R99
+1002,2025-01-15,cardiaal,,,R99
+1003,2025-06-01,,Locatie AMC,900004,R99

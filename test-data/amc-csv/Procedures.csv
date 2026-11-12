@@ -1,0 +1,4 @@
+Verrichting,pseudo_id,VerrichtingId,Verrichtingdatum,Ziekenhuislocatie,PatientContactId,UitvoerendSpecialisme,ProcedureStatus,ProcedureCategory,ICD10PCS
+PCI,1001,5001,2024-03-03,Locatie AMC,900001,,completed,Surgical procedure,02703ZZ
+Echo,1002,5002,2024-04-02,Locatie AMC,,,completed,Diagnostic procedure,B246ZZZ; B24BZZZ
+Consult,1003,5003,2024-05-11,Locatie AMC,,,completed,Diagnostic procedure,

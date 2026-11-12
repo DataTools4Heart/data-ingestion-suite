@@ -1,0 +1,5 @@
+Pseudo_id,prescriptionID,PatientContactId,AdministrationDateTime,AdministrationRate,AdministrationRateUnit,AdministeredAmount,AdministeredAmountUnit,OrigialMedName,ATCCode,Ziekenhuislocatie,AdministrationStatus,AdministrationRoute
+1001,7001,900001,2024-03-02 09:00:00,,,40,mg,FUROSEMIDE TABLET 40MG,C03CA01,Locatie AMC,Given,oraal
+1001,7001,900001,2024-03-03 09:00:00,5,mL/h,40,mg,FUROSEMIDE TABLET 40MG,C03CA01,Locatie AMC,Given,intraveneus
+1001,7001,900001,2024-03-04 09:00:00,,,,,FUROSEMIDE TABLET 40MG,C03CA01,Locatie AMC,Given,
+1001,7001,900001,2024-03-05 09:00:00,,,40,mg,FUROSEMIDE TABLET 40MG,,Locatie AMC,Given,

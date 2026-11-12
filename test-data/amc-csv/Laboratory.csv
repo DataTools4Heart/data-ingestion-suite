@@ -1,0 +1,5 @@
+BepalingCode,Pseudo_id,UitslagId,MonsterId,Afnamelocatie,MateriaalAfnameDatumTijd,MateriaalSoort,AanvragendeWerkplekAfkorting,Bepaling,UitslagDatumtijd,NormaalwaardeOndergrens,NormaalwaardeBovengrens,UitslagNumeriek,UitslagEenheid,Bron,LOINC_code,LOINC_display,AanvragendeZiekenhuisLocatie
+Albumine,1001,L01,ML01,,2024-03-05 08:00:00,Bloed,,Albumine,2024-03-05 08:00:00,35,<50,40,g/L,LABTRAIN,61152-5,,Locatie AMC
+Kalium,1002,L02,ML02,,2024-04-02 08:00:00,Bloed,,Kalium,2024-04-02 08:00:00,"3,5","5,0",4.2,mmol/L,LABTRAIN,2823-3,,Locatie AMC
+Natrium,1003,L03,ML03,,2024-01-15 08:00:00,Bloed,,Natrium,2024-01-15 08:00:00,,,140,mmol/L,LABTRAIN,2951-2,,Locatie AMC
+Troponine T,1001,L04,ML04,,2024-03-05 08:00:00,Bloed,,Troponine T,2024-03-05 08:00:00,,,0.02,ug/L,LABTRAIN,6598-7,,Locatie AMC
