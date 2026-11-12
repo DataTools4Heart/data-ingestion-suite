@@ -75,7 +75,7 @@
             "distinct" : "true",
             "inferSchema" : "false"
           },
-          "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9' and LOINC_code != '67151-1' and LOINC_code != '6598-7'",
+          "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9'",
           "sourceRef" : "amc-csv"
         },
         "encounters" : {
