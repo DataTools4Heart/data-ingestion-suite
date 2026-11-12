@@ -1,22 +1,19 @@
 source_code,source_unit,target_code,target_unit,target_display,conversion_function
-3004907,44777582,21526-9,10*-3.eq/(24.h),Sodium [Mass/volume] in 24 hour Urine,$this
+3014485,44777582,21526-9,10*-3.eq/(24.h),Sodium [Mass/volume] in 24 hour Urine,$this
 3008152,8753,1960-4,mmol/L,Bicarbonate [Moles/volume] in Arterial blood,$this
 3008598,8817,3024-7,ng/dL,Thyroxine (T4) free [Mass/volume] in Serum or Plasma,$this
 3009609,8753,2026-3,mmol/L,"Carbon dioxide, total [Moles/volume] in Arterial blood",$this
 3010140,8753,2027-1,mmol/L,"Carbon dioxide, total [Moles/volume] in Venous blood",$this
-3011004,8840,14422-0,mg/dL,Bilirubin.total [Mass/volume] in Peritoneal fluid,$this
 3014218,8753,19230-2,mmol/L,Bicarbonate [Moles/volume] standard in Arterial blood,$this
 3015322,8554,2865-4,%,Alpha 1 globulin [Mass/volume] in Serum or Plasma by Electrophoresis,$this
 3015586,8554,30451-9,%,Segmented neutrophils [#/volume] in Blood,$this
-3017732,,26499-4,10*3/uL,Neutrophils [#/volume] in Blood,$this
+3013650,,26499-4,10*3/uL,Neutrophils [#/volume] in Blood,$this
 3019977,,2744-1,pH,pH of Arterial blood,$this
 3021447,8876,2021-4,mmHg,Carbon dioxide [Partial pressure] in Venous blood,$this
-3023386,8840,14447-7,mg/dL,Triglyceride [Mass/volume] in Peritoneal fluid,$this
 3024354,8876,2705-2,mmHg,Oxygen [Partial pressure] in Venous blood,$this
 3029577,8554,51105-5,%,CD19 blasts [Units/volume] in Specimen,$this
 3031266,8840,41651-1,mg/dL,Glucose [Mass/volume] in Arterial blood,$this
 3032080,,34714-6,{INR},INR in Blood by Coagulation assay,$this
-3034207,8840,9619-8,mg/dL,Triglyceride [Mass/volume] in Pleural fluid,$this
 3035285,8753,41649-5,mmol/L,Chloride [Moles/volume] in Venous blood,$this
 3035561,8753,30242-2,mmol/L,Lactate [Mass/volume] in Arterial blood,$this
 3041473,8753,39791-9,mmol/L,Sodium [Moles/volume] in Venous blood,$this
@@ -24,28 +21,23 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 3043723,8554,32730-4,%,Beta 1 globulin [Mass/volume] in Serum or Plasma by Electrophoresis,$this
 3043723,8713,32730-4,g/dL,Beta 1 globulin [Mass/volume] in Serum or Plasma by Electrophoresis,$this
 3047005,0,43223-7,mmol/g,Sodium/Creatinine [Ratio] in Urine,$this
-4012479,8840,22748-8,mmol/L,Cholesterol in LDL [Moles/volume] in Serum or Plasma,$this * 0.0259
-4041556,8840,22748-8,mmol/L,Cholesterol in LDL [Moles/volume] in Serum or Plasma,$this * 0.0259
-4042059,8840,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this * 0.0259
-4097430,,2951-2,mmol/L,Sodium [Moles/volume] in Serum or Plasma,$this
+3028437,8840,22748-8,mmol/L,Cholesterol in LDL [Moles/volume] in Serum or Plasma,$this * 0.0259
+3007070,8840,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this * 0.0259
 4307029,8845,30934-4,pg/mL,Natriuretic peptide B [Mass/volume] in Serum or Plasma,$this
-21490721,,75928-2,mmol/L,Hemoglobin [Moles/volume] in Arterial blood,$this
-37067831,8554,LP384750-8,%,Gamma globulin | Serum or Plasma | Chemistry - non-challenge,$this
+21490721,,75928-2,mmol/L,Hemoglobin [Mass/volume] in Arterial Blood,$this
 40762532,8840,59470-5,mg/dL,Calcium.ionized [Mass/volume] in Arterial blood,$this
-43055372,8554,71679-5,%,Eosinophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
-43055428,8713,72594-5,g/dL,Alpha 1 globulin/Protein.total [Pure mass fraction] in Serum or Plasma by Electrophoresis,$this
-1175183,8840,89872-6,mg/dL,Bilirubin.total [Moles/volume] in Arterial blood,$this
+3010457,8554,71679-5,%,Eosinophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
+3024800,8713,72594-5,g/dL,Alpha 1 globulin/Protein.total [Pure mass fraction] in Serum or Plasma by Electrophoresis,$this
 3000963,,718-7,g/L,Hemoglobin [Mass/volume] in Blood,"iif($this >= 750 and $this <= 2000,$this/10,$this)"
 3003396,8753,1925-7,mmol/L,Base excess in Arterial blood by calculation,$this
-3005491,8753,32133-1,mmol/L,Lactate [Moles/volume] in Plasma venous,$this
+3002106,8753,32133-1,mmol/L,Lactate [Moles/volume] in Plasma venous,$this
 3006407,8842,9811-1,ng/mL,Chromogranin A [Mass/volume] in Serum or Plasma,$this
 3007034,8909,21305-8,mg/(24.h),Glucose [Mass/volume] in 24 hour Urine,$this
 3007628,8753,19232-8,mmol/L,Bicarbonate [Moles/volume] standard in Venous blood,$this
-3010813,,26464-8,10*3/uL,Leukocytes [#/volume] in Blood,$this
+3000905,,26464-8,10*3/uL,Leukocytes [#/volume] in Blood,$this
 3011505,,19926-5,%,FEV1/FVC,$this
-3011544,8713,1748-3,g/dL,Albumin [Mass/volume] in Pleural fluid,$this
 3012544,,2746-6,pH,pH of Venous blood,$this
-3023520,9444,14196-0,10*9/L,Reticulocytes [#/volume] in Blood,$this
+40763528,9444,14196-0,10*9/L,Reticulocytes [#/volume] in Blood,$this
 3027801,8876,2703-7,mmHg,Oxygen [Partial pressure] in Arterial blood,$this
 3027946,8876,2019-8,mmHg,Carbon dioxide [Partial pressure] in Arterial blood,$this
 3028167,,24467-3,/uL,CD3+CD4+ (T4 helper) cells [#/volume] in Blood,$this
@@ -53,30 +45,39 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 3031248,8753,41650-3,mmol/L,Chloride [Moles/volume] in Arterial blood,$this
 3033408,8840,41652-9,mg/dL,Glucose [Mass/volume] in Venous blood,$this
 3038383,8842,38898-3,ng/mL,Fibrin D-dimer [Titer] in Platelet poor plasma,$this
-3040170,44777582,51720-1,10*-3.eq/(24.h),Potassium [Mass/time] in 24 hour Urine,$this
+3016330,44777582,51720-1,10*-3.eq/(24.h),Potassium [Mass/time] in 24 hour Urine,$this
 3041354,8753,39789-3,mmol/L,Potassium [Moles/volume] in Venous blood,$this
-3041706,8840,53138-4,mg/dL,Calcium.ionized [Moles/volume] adjusted to pH 7.4 in Arterial blood,$this
+3041706,8840,53138-4,mmol/L,Calcium.ionized [Moles/volume] adjusted to pH 7.4 in Arterial blood,$this / 4.008
 3043409,8753,32713-0,mmol/L,Potassium [Moles/volume] in Arterial blood,$this
 3043518,0,43222-9,mmol/g,Potassium/Creatinine [Ratio] in Urine,$this
-4101713,,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this
-4150621,8840,2161-8,mg/L,Creatinine [Mass/volume] in Urine,$this * 10
-4172830,,8280-0,cm,Waist Circumference at umbilicus by Tape measure,$this
+3007070,,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this
+3017250,8840,2161-8,mg/L,Creatinine [Mass/volume] in Urine,$this * 10
 21490592,8753,60840-6,mmol/L,Base excess in Extracellular fluid by calculation,$this
-37397915,8842,2276-4,mcg/L,Ferritin [Mass/volume] in Serum or Plasma,$this
+3001122,8842,2276-4,mcg/L,Ferritin [Mass/volume] in Serum or Plasma,$this
 40763574,8554,60520-4,%,Eosinophils [Presence] in Body fluid by Light microscopy,$this
 42868740,8840,70268-8,mg/dL,Cholesterol in pleural fluid/Cholesterol in serum,$this
-43055369,8554,71676-1,%,Neutrophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
-43055373,8554,71680-3,%,Basophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
-4013964,8840,2160-0,mg/dL,"Creatinine measurement, serum",$this
-4021154,8753,2951-2,mmol/L,"Sodium measurement, serum",$this
-4017497,8713,1751-7,g/L,"Albumin measurement, serum",$this * 10
-37208545,8725,89579-7,ng/mL,Cardiac troponin I mass concentration in serum by high sensitivity technique,$this/1000
-37208543,8842,10839-9,ng/mL,Cardiac troponin I mass concentration in plasma,$this
-4189511,8845,33762-6,pg/mL,N terminal pro-brain natriuretic peptide level,$this
-37392563,8840,14927-8,mmol/L,Serum triglycerides level,$this * 0.01129
-37392561,8840,14647-2,mmol/L,Serum cholesterol level,$this * 0.02586
-4048092,8840,1988-5,mg/L,Serum C reactive protein level,$this * 10
-37392171,8753,2823-3,mmol/L,Serum potassium level,$this
-44808279,0,69405-9,ml/min/1.73m2,Estimated glomerular filtration rate using Chronic Kidney Disease Epidemiology Collaboration formula,$this
-40483736,8554,4548-4,%,Ordinal level of hemoglobin A1c,$this
-40480067,8713,718-7,g/L,Measurement of total hemoglobin concentration,"iif($this >= 75 and $this <= 200,$this,$this * 10)"
+3008342,8554,71676-1,%,Neutrophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
+3013869,8554,71680-3,%,Basophils/Leukocytes [Pure number fraction] in Blood by Automated count,$this
+3016723,8840,2160-0,mg/L,Creatinine [Mass/volume] in Serum or Plasma,$this * 10
+3019550,8753,2951-2,mmol/L,Sodium [Moles/volume] in Serum or Plasma,$this
+3024561,8713,1751-7,g/L,Albumin [Mass/volume] in Serum or Plasma,$this * 10
+36306105,8725,89579-7,ng/mL,Troponin I.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method,$this/1000
+37208543,8842,10839-9,ng/mL,Troponin I.cardiac [Mass/volume] in Serum or Plasma,$this
+3029187,8845,33762-6,pg/mL,Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Serum or Plasma,$this
+3022192,8840,14927-8,mmol/L,Triglyceride [Moles/volume] in Serum or Plasma,$this * 0.01129
+3027114,8840,14647-2,mmol/L,Cholesterol [Moles/volume] in Serum or Plasma,$this * 0.02586
+3020460,8840,1988-5,mg/L,C reactive protein [Mass/volume] in Serum or Plasma,$this * 10
+3023103,8753,2823-3,mmol/L,Potassium [Moles/volume] in Serum or Plasma,$this
+44808279,9117,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood",$this
+3004410,8554,4548-4,%,Hemoglobin A1c/Hemoglobin.total in Blood,$this
+3000963,8713,718-7,g/L,Hemoglobin [Mass/volume] in Blood,"iif($this >= 75 and $this <= 200,$this,$this * 10)"
+3001582,,2890-2,mg/g,Protein/Creatinine [Mass Ratio] in Urine,$this
+3004789,8840,3034-6,mg/dL,Transferrin [Mass/volume] in Serum or Plasma,$this
+3012030,,28539-5,pg,MCH [Entitic mass] by Automated count,$this
+3012516,8751,1754-1,mg/L,Albumin [Mass/volume] in Urine,$this
+3034204,8840,3091-6,mg/dL,Urea [Mass/volume] in Serum or Plasma,$this
+3034485,,9318-7,mg/g,Albumin/Creatinine [Mass Ratio] in Urine,$this
+3049187,8795,48642-3,ml/min,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD) among non-black population",$this
+37172285,8725,6598-7,ng/L,Troponin T.cardiac [Mass/volume] in Serum or Plasma,$this
+37172919,8725,6598-7,ng/L,Troponin T.cardiac [Mass/volume] in Serum or Plasma,$this
+40764999,9117,62238-1,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI)",$this

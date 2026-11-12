@@ -60,7 +60,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
         "encounter" : "{{? %relatedEncounter}}",
-        "onsetDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+        "onsetDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd HH:mm:ss.S'))}}",
         "clinicalStatus" : {
           "coding" : [ {
             "code" : "active",
@@ -104,7 +104,7 @@
             }
           } ]
         },
-        "effectiveDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+        "effectiveDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd HH:mm:ss.S'))}}",
         "valueBoolean" : true,
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
         "encounter" : "{{? %relatedEncounter}}",

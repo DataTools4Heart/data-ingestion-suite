@@ -1,0 +1,8 @@
+source_code,source_unit,target_code,target_unit,target_display,conversion_function,slice_name
+3020660,9484,8632-2,deg,QRS axis,$this,rAxis
+3026258,8587,8636-3,ms,Q-T interval corrected,$this,
+4064624,8587,8625-6,ms,Interval P-wave and QRS complex,$this,prInterval
+4092015,9484,8626-4,deg,P-wave axis,$this,pAxis
+4216826,8587,8634-8,ms,Q-T interval,$this,qtInterval
+4218048,8587,8633-0,ms,QRS duration,$this,qrsDuration
+45770409,9484,8638-9,deg,T-wave axis,$this,tAxis
