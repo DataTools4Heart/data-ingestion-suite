@@ -1,0 +1,282 @@
+{
+  "id" : "amc-parquet-test",
+  "name" : "amc-parquet-test",
+  "description" : "Test the AMC mappings against the small parquet test data in test-data/amc. Same source bindings and preprocessSql as amc-parquet, without the year/month/remainder batching; the five laboratory mappings are collapsed into one reading Laboratory1.parquet (the only lab file in the test data; wildcard paths fail on Windows).",
+  "sourceSettings" : {
+    "amc-source" : {
+      "jsonClass" : "FileSystemSourceSettings",
+      "name" : "amc-source",
+      "sourceUri" : "https://datatools4heart.eu/data-ingestion-suite/amc-data",
+      "dataFolderPath" : "test-data/amc",
+      "asStream" : false
+    }
+  },
+  "sinkSettings" : {
+    "jsonClass" : "FhirRepositorySinkSettings",
+    "fhirRepoUrl" : "http://localhost:8080/fhir",
+    "returnMinimal" : true
+  },
+  "mappings" : [
+    {
+      "name" : "vital-sign-bp-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-bp-mapping",
+      "sourceBinding" : {
+        "VitalSignBp" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "BloodPressure.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "vital-sign-length-weight-bmi-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-length-weight-bmi-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "LengthWeightBMI.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "preprocessSql" : "select Pseudo_id,Patientcontactid,MeetDatum,MAX(CASE WHEN LOINCcode = '8302-2' THEN ValueQuantity END) AS Height_cm,MAX(CASE WHEN LOINCcode = '29463-7' THEN ValueQuantity END) AS Weight_kg,MAX(CASE WHEN LOINCcode = '89270-3' THEN ValueQuantity END) AS BMI FROM source GROUP BY Pseudo_id,Patientcontactid,MeetDatum",
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "vital-sign-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/vital-sign-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "VitalSigns.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "laboratory-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/laboratory-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Laboratory1.parquet",
+          "contentType" : "parquet",
+          "options" : {
+            "distinct" : "true"
+          },
+          "preprocessSql" : "select * from source where LOINC_code != '89579-7' and LOINC_code != '10839-9'",
+          "sourceRef" : "amc-source"
+        },
+        "encounters" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Encounters.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "ecg-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/ecg-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "ECG.parquet",
+          "contentType" : "parquet",
+          "options" : {
+            "distinct" : "true"
+          },
+          "preprocessSql" : "select count(*) as count, Pseudo_id, EcgMetingId,\r\narray_agg(EcgAfnameDatumTijd) as EcgAfnameDatumTijd,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere ValueQuantity != 0 AND NOT (LOINCcode = '8633-0' AND ValueQuantity > 300)\r\ngroup by Pseudo_id, EcgMetingId",
+          "sourceRef" : "amc-source"
+        },
+        "encounters" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Encounters.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "preprocessSql" : "select Pseudo_id,PatientContactId,PrimaryICDcode,StartDate,EndDate from encounters;",
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "patient-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/patient-mapping",
+      "sourceBinding" : {
+        "patient" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Patient.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        },
+        "death" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "DeathRegistry.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "smoking-status-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/smoking-status-mapping",
+      "sourceBinding" : {
+        "SmokingStatus" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Tabakgebruik.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "cause-of-death-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/cause-of-death-mapping",
+      "sourceBinding" : {
+        "CauseOfDeath" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "DeathRegistry.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "condition-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/condition-mapping",
+      "sourceBinding" : {
+        "Condition" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "MedischeDiagnose.parquet",
+          "contentType" : "parquet",
+          "options" : {
+            "distinct" : "true"
+          },
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "encounter-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/encounter-mapping",
+      "sourceBinding" : {
+        "Encounter" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Encounters.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "medication-administration-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/medication-administration-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "MedicationAdministration.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "preprocessSql" : "select * \nfrom source\nwhere ATCCode != '' and AdministeredAmount IS NOT NULL",
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "med-prescription-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/med-prescription-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "MedicationPrescription.parquet",
+          "contentType" : "parquet",
+          "options" : {
+            "datetimeRebaseMode" : "CORRECTED"
+          },
+          "preprocessSql" : "select DISTINCT * \nfrom source\nwhere StartDate > '1900-01-01'",
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "nyha-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/nyha-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "NYHA.parquet",
+          "contentType" : "parquet",
+          "options" : {
+            "distinct" : "true"
+          },
+          "preprocessSql" : "select *\r\nfrom source \r\nwhere nyha IN (1, 2, 3, 4)",
+          "sourceRef" : "amc-source"
+        },
+        "encounters" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Encounters.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "echo-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/echo-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Echocardiography.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "preprocessSql" : "select count(*) as count, pseudo_id, Accessionnummer,\r\narray_agg(Onderzoeksdatum) as Onderzoeksdatum,\r\narray_agg(ValueQuantity) as ValueQuantity,\r\narray_agg(UNIT) as UNIT,\r\narray_agg(LOINCcode) as LOINCcode,\r\narray_agg(LOINCdisplay) as LOINCdisplay\r\nfrom source \r\nwhere LOINCcode is not null\r\ngroup by pseudo_id, Accessionnummer",
+          "sourceRef" : "amc-source"
+        },
+        "encounters" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Encounters.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    },
+    {
+      "name" : "procedure-mapping",
+      "mappingRef" : "https://datatools4heart.eu/fhir/mappings/amc/procedure-mapping",
+      "sourceBinding" : {
+        "source" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Procedures.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "preprocessSql" : "select DISTINCT VerrichtingId, pseudo_id, Verrichtingdatum, ICD10PCS, ProcedureCategory from source where ICD10PCS IS NOT NULL",
+          "sourceRef" : "amc-source"
+        },
+        "encounters" : {
+          "jsonClass" : "FileSystemSource",
+          "path" : "Encounters.parquet",
+          "contentType" : "parquet",
+          "options" : {},
+          "sourceRef" : "amc-source"
+        }
+      }
+    }
+  ],
+  "dataProcessingSettings" : {
+    "saveErroneousRecords" : false,
+    "archiveMode" : "off"
+  },
+  "useFhirSinkAsIdentityService" : false
+}
