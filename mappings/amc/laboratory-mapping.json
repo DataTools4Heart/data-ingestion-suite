@@ -24,15 +24,52 @@
     "language" : "text/fhirpath",
     "expression" : "MateriaalAfnameDatumTijd.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd')"
   }, {
+    "name" : "coveringEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and EndDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate)"
+  }, {
+    "name" : "sameDayEncounters",
+    "language" : "text/fhirpath",
+    "expression" : "%encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate)"
+  }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : " %encounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '' and EndDate.substring(0, 10) != '1900-01-01').where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and EndDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '').where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate)).first() "
+    "expression" : "%coveringEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '' and EndDate.substring(0, 10) != '1900-01-01').nav:orElse(%sameDayEncounters.where(PrimaryICDcode.exists() and PrimaryICDcode != '')).first()"
   }, {
     "name" : "relatedEncounterSecondary",
     "language" : "text/fhirpath",
-    "expression" : " iif(%relatedEncounter.empty(), %encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') <= %effectiveDate and EndDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') >= %effectiveDate).nav:orElse(%encounters.where(StartDate.substring(0, 10).utl:toFhirDateTime('yyyy-MM-dd') = %effectiveDate))).first() "
+    "expression" : "%coveringEncounters.nav:orElse(%sameDayEncounters).first()"
+  }, {
+    "name" : "linkedEncounter",
+    "language" : "text/fhirpath",
+    "expression" : "%relatedEncounter.nav:orElse(%relatedEncounterSecondary)"
+  }, {
+    "name" : "labConcept",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%labCodeConversion, LOINC_code).first()"
+  }, {
+    "name" : "labQuantity",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:convertAndReturnQuantity(%labCodeConversion, LOINC_code.toString(), UitslagNumeriek, UitslagEenheid.toString())"
+  }, {
+    "name" : "referenceLow",
+    "language" : "text/fhirpath",
+    "expression" : "iif(NormaalwaardeOndergrens.exists() and NormaalwaardeOndergrens != '', NormaalwaardeOndergrens.replace(',', '.').replaceMatches('[<>]', '').toDecimal())"
+  }, {
+    "name" : "referenceHigh",
+    "language" : "text/fhirpath",
+    "expression" : "iif(NormaalwaardeBovengrens.exists() and NormaalwaardeBovengrens != '', NormaalwaardeBovengrens.replace(',', '.').replaceMatches('[<>]', '').toDecimal())"
+  }, {
+    "name" : "troponinTValueNgL",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%labConcept.target_code in ('6598-7' | '67151-1' | '6597-9'), iif(%labQuantity.code = 'ng/L', %labQuantity.value, iif(%labQuantity.code = 'mcg/L' or %labQuantity.code = 'ug/L', %labQuantity.value * 1000, {})), {})"
+  }, {
+    "name" : "troponinTInterpretation",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%troponinTValueNgL.exists(), iif(%troponinTValueNgL > 14, 'H', 'N'), {})"
   } ],
   "mapping" : [ {
+    "description" : "One HFR-LabResult per Laboratory row. Code, display and value come from lab-result-concept-map.csv (value converted to the target unit). The encounter is the one covering the sample date with a primary ICD code (or one starting that day with a primary ICD code); otherwise any encounter covering or starting on that date. Troponin T (6598-7, 67151-1, 6597-9) gets an interpretation: H if the value is above 14 ng/L, otherwise N.",
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -53,32 +90,33 @@
         "code" : {
           "coding" : [ {
             "system" : "http://loinc.org",
-            "code" : "{{mpp:getConcept(%labCodeConversion, LOINC_code, 'target_code').first()}}",
-            "display" : "{{mpp:getConcept(%labCodeConversion, LOINC_code, 'target_display').first()}}",
+            "code" : "{{%labConcept.target_code}}",
+            "display" : "{{%labConcept.target_display}}",
             "@sliceName" : "loincCode"
           } ]
         },
         "effectiveDateTime" : "{{MateriaalAfnameDatumTijd.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss')}}",
-        "valueQuantity" : {
-          "{{#convertedMea}}" : "{{mpp:convertAndReturnQuantity(%labCodeConversion, LOINC_code.toString(), UitslagNumeriek, UitslagEenheid.toString())}}",
-          "{{?}}" : {
-            "system" : "{{%convertedMea.system}}",
-            "code" : "{{%convertedMea.code}}",
-            "unit" : "{{%convertedMea.unit}}",
-            "value" : "{{%convertedMea.value}}"
-          }
-        },
+        "valueQuantity" : "{{? %labQuantity}}",
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', Pseudo_id.toString())}}",
-        "encounter" : "{{? iif(%relatedEncounter.exists(), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounter.PatientContactId), mpp:createFhirReferenceWithHashedId('Encounter', %relatedEncounterSecondary.PatientContactId) )}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', %linkedEncounter.PatientContactId)}}",
         "identifier" : [ {
           "value" : "{{UitslagId}}"
         } ],
         "referenceRange" : [ {
           "low" : {
-            "value" : "{{? iif(NormaalwaardeOndergrens.exists() and NormaalwaardeOndergrens != '', NormaalwaardeOndergrens.replace(',', '.').replaceMatches('[<>]', '').toDecimal()) }}"
+            "value" : "{{? %referenceLow}}"
           },
           "high" : {
-            "value" : "{{? iif(NormaalwaardeBovengrens.exists() and NormaalwaardeBovengrens != '', NormaalwaardeBovengrens.replace(',', '.').replaceMatches('[<>]', '').toDecimal()) }}"
+            "value" : "{{? %referenceHigh}}"
+          }
+        } ],
+        "interpretation" : [ {
+          "{{#interpretationCode}}" : "{{%troponinTInterpretation}}",
+          "{{?}}" : {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code" : "{{%interpretationCode}}"
+            } ]
           }
         } ]
       }

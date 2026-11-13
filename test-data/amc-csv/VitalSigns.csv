@@ -1,0 +1,3 @@
+Pseudo_id,Patientcontactid,ZiekenhuisLocatie,MeetMoment,ValueQuantity,LOINCcode,LOINCdisplay,Unit
+1001,900001,Locatie AMC,2024-03-02 08:30:00,72,8867-4,Heart rate,bpm
+1001,900001,Locatie AMC,2024-03-02 08:30:00,97,59408-5,SpO2,

@@ -1,0 +1,5 @@
+Pseudo_id,PatientContactId,Ziekenhuislocatie,RegistratieDatum,Werkplek,WerkplekAfkorting,Specialisme,SpecialismeCode,SpecialismeAfkorting,StartDatum,StopDatum,StatusTabakgebruik,TabakgebruikToelichting,SoortTabakgebruik,IsHuidigeRoker,IsVoormaligRoker,HoeveelheidPakjesPerDag,TabakgebruikJaren,Bron
+1001,900001,Locatie AMC,2024-03-02,,,,,,1753-01-01,9999-12-31,Nooit,,,,,,,Epic
+1002,900003,Locatie AMC,2024-04-02,,,,,,2000-01-01,2020-12-31,Stoppen,,,,,,,Epic
+1003,900004,Locatie AMC,2024-05-10,,,,,,1980-01-01,9999-12-31,Ja,,,,,,,Epic
+1003,900004,Locatie AMC,2024-05-10,,,,,,,,Passief,,,,,,,Epic

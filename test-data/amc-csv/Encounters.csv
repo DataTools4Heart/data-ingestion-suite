@@ -1,0 +1,6 @@
+PatientContactId,Pseudo_id,ZiekenhuisLocatie,StartDate,EndDate,destination,DepartmentDischarge,DepartmentAdmission,admitSource_code,transport,EncounterStatus,EncounterClassCode,ViaEmergencyDEP,PrimaryEDcompl,PrimaryEDInCompl,PrimaryICDcode
+900001,1001,Locatie AMC,2024-03-01,2024-03-10,home,Cardiology,Cardiology,gp,,completed,IMP,0,,,I50.9
+900002,1001,Locatie AMC,2024-03-05,2024-03-05,home,Internal medicine,Internal medicine,other,,completed,AMB,0,,,
+900003,1002,Locatie AMC,2024-04-02,2024-04-02,home,,Cardiology,other,,completed,AMB,1,,,I48.91;I10+
+900004,1003,Locatie AMC,2024-05-10,9999-12-31,home,,Pulmonary diseases,mp,,completed,EMER,0,,,
+900005,1003,Locatie AMC,2024-05-20,2024-05-20,home,,,other,,completed,Other,0,,,

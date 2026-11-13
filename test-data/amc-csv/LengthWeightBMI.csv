@@ -1,0 +1,5 @@
+Pseudo_id,Patientcontactid,ZiekenhuisLocatie,MeetDatum,ValueQuantity,Unit,LOINCcode,LOINCdisplay
+1001,900001,Locatie AMC,2024-03-02,165,cm,8302-2,Body height
+1001,900001,Locatie AMC,2024-03-02,70,kg,29463-7,Body weight
+1001,900001,Locatie AMC,2024-03-02,25.7,,89270-3,Body mass index (BMI) [Ratio] Estimated
+1002,900003,Locatie AMC,2024-04-02,80,kg,29463-7,Body weight

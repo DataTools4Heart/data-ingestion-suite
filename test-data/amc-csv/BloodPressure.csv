@@ -1,0 +1,4 @@
+Pseudo_id,Patientcontactid,ZiekenhuisLocatie,MetingBloeddrukId,MeetMoment,ValueQuantity,LOINCcode,LOINCdisplay,ValueUnit
+1001,900001,Locatie AMC,BP1,2024-03-02 08:30:00,125,76534-7,Systolic blood pressure by cuff,mmHg
+1001,900001,Locatie AMC,BP1,2024-03-02 08:30:00,80,76535-4,Diastolic blood pressure by cuff,mmHg
+1002,900003,Locatie AMC,BP2,2024-04-02 10:00:00,110,76215-3 ,Invasive Systolic blood pressure,mmHg
