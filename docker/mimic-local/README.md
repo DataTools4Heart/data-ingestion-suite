@@ -193,6 +193,22 @@ docker pull srdc/onfhir:r5
 Build on Windows (PowerShell) if Maven/Docker are set up there; the images end up in the same Docker Desktop
 daemon either way.
 
+Use a server image built on or after **16 Nov 2026**. It contains the engine fixes for four problems met during
+the full run of 9 Nov 2026, and this folder relies on them:
+
+* the erroneous records of a mapping with joined sources can be saved (the job has `saveErroneousRecords: true`
+  again; before, the write failed with `FIELD_NOT_FOUND`);
+* a csv source with a `preprocessSql` keeps the columns that its schema declares as strings as text, so NDC codes
+  keep their leading zeros (`MIMIC-mappings-explained.md`, "How the engine reads CSV columns");
+* the run request is answered as soon as the execution has started (before, it waited until the source was read
+  and timed out with `408` on big sources);
+* without an `ignifyr.license.file` setting the server reads `conf/ignifyr.license`, also when `APP_CONF_FILE`
+  replaces its configuration.
+
+The `docker.srdc.com.tr/srdc/ignifyr-server:latest` image pushed on 16 Nov 2026 includes them and the
+observability module, so `docker pull docker.srdc.com.tr/srdc/ignifyr-server:latest` can replace the first
+three commands above (Maven build, jar check, `docker/server/build.sh`).
+
 ### 1.4 Create the workspace in WSL
 
 ```bash
@@ -202,9 +218,9 @@ git clone /mnt/c/development/dt4h/common-data-model
 chmod +x data-ingestion-suite/docker/mimic-local/run-job.sh
 mkdir -p ignifyr-docker-logs/spark-events     # Spark refuses to start when the event-log directory does not exist
 # Ignifyr Enterprise license (server images since Oct 2026 run in restricted mode without one - every run
-# request answers 403 "execution is disabled until one is installed"). docker-compose.yml points the server at
-# /usr/local/ignifyr/conf/ignifyr.license, i.e. the root of the mounted suite checkout (the default path in
-# application.conf is lost because APP_CONF_FILE replaces that file). Internal runs use the development license
+# request answers 403 "execution is disabled until one is installed"). The server reads
+# /usr/local/ignifyr/conf/ignifyr.license, i.e. the root of the mounted suite checkout (docker-compose.yml also
+# names the path explicitly for server images older than 16 Nov 2026). Internal runs use the development license
 # of ignifyr-enterprise; it is git-ignored here and must never be committed (this repository is public).
 cp /mnt/c/development/ignifyr/ignifyr-enterprise/conf/ignifyr.license data-ingestion-suite/ignifyr.license
 ```
@@ -378,16 +394,23 @@ with `SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/events`) if per-stage 
   keep it above `local[N]` if you change the CPU limit.
 * **`403 ... execution is disabled until one is installed`** on every run request: no Ignifyr Enterprise license in
   the mounted conf folder (step 1.4). The server reports the license state at start-up (`grep -i license ignifyr-server.log`);
-  `source=none` means no path is configured at all (the `IGNIFYR_LICENSE_FILE` line in docker-compose.yml is missing).
+  with a server image older than 16 Nov 2026, `source=none` means no path is configured at all (the
+  `IGNIFYR_LICENSE_FILE` line in docker-compose.yml is missing).
 * **No coverage events / empty Mapping Coverage dashboard**: server jar built without `ignifyr-observability`
   (step 1.3), or Fluentd not reachable (`docker logs mimic-fluentd`). Coverage events are also in
   `ignifyr-docker-logs/ignifyr-mappings.log` thanks to `logback.xml`.
 * **Elasticsearch stops indexing**: disk watermark (needs ≥ 10 % free on the WSL disk) – free space or set
   `cluster.routing.allocation.disk.threshold_enabled=false` on the ES service; check `curl localhost:9200/_cluster/health`.
-* **`FIELD_NOT_FOUND ... in mainSource` right after a chunk of a multi-source mapping**: appears when
-  `saveErroneousRecords` is true for a mapping with joined sources (engine issue observed with `patient-mapping`
-  on the sample); the job keeps `saveErroneousRecords: false`, the erroneous rows are still logged as
-  `MAPPING_RESULT` events with the source row.
+* **`FIELD_NOT_FOUND ... in mainSource` right after a chunk of a multi-source mapping** (`patient-mapping`, `emar-mapping`
+  …): the server image is older than 16 Nov 2026 and cannot save the erroneous records of a mapping with joined
+  sources. Use a newer image (step 1.3), or set `saveErroneousRecords` to `false` in the job; the erroneous rows are
+  then only logged, as `MAPPING_RESULT` events with the source row. With a current image they are also written as
+  CSV inside the server container, under
+  `/usr/local/ignifyr/erroneous-records-folder/<error-type>/job-<jobId>/execution-<executionId>/<task>/<source>/`
+  (`docker cp mimic-ignifyr-server:/usr/local/ignifyr/erroneous-records-folder .`; they are patient-level data).
+* **`POST -> ... http=408` in `run-tasks.log`, or `run-job.sh` reports no answer**: the server image is older than
+  16 Nov 2026, which answered a run request only after the source of the task had been read. Harmless (the execution
+  continues and the runner keeps polling until it ends), but a newer image answers at once.
 * **Slow reads (minutes before the first chunk)**: data under `/mnt/c` → move to ext4 (step 1.2).
 * **Container killed (exit 137)**: heap + Spark off-heap exceeded 56 GB → lower `-Xmx` to 40g and
   `maxChunkSize` to 150000.
@@ -479,9 +502,10 @@ Run the tasks one execution at a time with the restart-safe runner (metrics only
 28 Spark threads (commit `f398a16`): labevents 8 h 23 min, emar 2 h 48 min, prescriptions 1 h 12 min, procedures
 38 min, poe 22 min, the seven small tasks ≈ 30 min together, 13 h 54 min of mapping and 14 h 14 min wall clock
 (the runner waits 5 min after each very short task; table in section 6.1). A steady chunk cadence of ≈ 47 s for
-labevents and ≈ 9.5 min for each of the four procedures chunks is normal. The `POST -> ... http=408` line that
-the runner logs for procedures and microbiologyevents is harmless: the HTTP request times out after five minutes
-while the execution continues, and the runner keeps polling until it ends.
+labevents and ≈ 9.5 min for each of the four procedures chunks is normal. In that run the runner logged
+`POST -> ... http=408` for procedures and microbiologyevents: the image of the day answered a run request only after
+the source was read, and the request timed out after five minutes while the execution continued. A server image
+built since 16 Nov 2026 answers at once (step 1.3).
 
 ```bash
 cd ~/ignifyr-mimic && nohup data-ingestion-suite/docker/mimic-local/run-tasks.sh --skip-write \
