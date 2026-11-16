@@ -1,0 +1,172 @@
+{
+  "id" : "nlp-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/buch/nlp-mapping",
+  "name" : "nlp-mapping",
+  "title" : "NLP annotations mapping",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://datatools4heart.eu/fhir/schemas/buch/Nlp",
+    "joinOn" : [ ]
+  } ],
+  "context" : { },
+  "variable" : [ {
+    "name" : "patientId",
+    "language" : "text/fhirpath",
+    "expression" : "nlp_output.record_metadata.patient_id"
+  }, {
+    "name" : "admissionId",
+    "language" : "text/fhirpath",
+    "expression" : "nlp_output.record_metadata.admission_id"
+  }, {
+    "name" : "admissionDate",
+    "language" : "text/fhirpath",
+    "expression" : "nlp_output.record_metadata.admission_date"
+  }, {
+    "name" : "recordId",
+    "language" : "text/fhirpath",
+    "expression" : "nlp_output.record_metadata.record_id"
+  } ],
+  "mapping" : [ {
+    "expression" : {
+      "name" : "resultCond",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#annotationsVar}}" : "{{nlp_output.annotations}}",
+        "{{*}}" : {
+          "{{#disease}}" : "{{iif(%annotationsVar.concept_class = 'disorder/disease' and %annotationsVar.controlled_vocabulary_namespace = 'ICD10', true) }}",
+          "{{?}}" : {
+            "id" : "{{mpp:getHashedId('Condition', %recordId & %annotationsVar.start_offset.toString() & %annotationsVar.end_offset.toString() & %annotationsVar.controlled_vocabulary_concept_identifier)}}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
+            },
+            "resourceType" : "Condition",
+            "code" : {
+              "coding" : [ {
+                "code" : "{{%annotationsVar.controlled_vocabulary_concept_identifier}}",
+                "system" : "http://hl7.org/fhir/sid/icd-10",
+                "@sliceName" : "icd10Code"
+              } ]
+            },
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %patientId)}}",
+            "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %admissionId)}}",
+            "onsetDateTime" : "{{%admissionDate}}",
+            "clinicalStatus" : {
+              "coding" : [ {
+                "code" : "active"
+              } ]
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "resultSym",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#annotationsVar}}" : "{{nlp_output.annotations}}",
+        "{{*}}" : {
+          "{{#symptomVar}}" : "{{iif(%annotationsVar.concept_class = 'symptom' and %annotationsVar.controlled_vocabulary_namespace = 'SNOMED CT', true)}}",
+          "{{?}}" : {
+            "id" : "{{mpp:getHashedId('Observation', %recordId & %annotationsVar.start_offset.toString() & %annotationsVar.end_offset.toString() & %annotationsVar.controlled_vocabulary_concept_identifier)}}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom" ]
+            },
+            "resourceType" : "Observation",
+            "category" : [ {
+              "coding" : [ {
+                "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code" : "exam"
+              } ]
+            } ],
+            "code" : {
+              "coding" : [ {
+                "system" : "http://snomed.info/sct",
+                "code" : "{{%annotationsVar.controlled_vocabulary_concept_identifier}}",
+                "@sliceName" : "snomedCode"
+              } ]
+            },
+            "effectiveDateTime" : "{{%admissionDate}}",
+            "valueBoolean" : true,
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %patientId)}}",
+            "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %admissionId)}}",
+            "status" : "final"
+          }
+        }
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "resMedAdmin",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#annotationsVar}}" : "{{nlp_output.annotations}}",
+        "{{*}}" : {
+          "{{#rootVar1}}" : "{{iif(%annotationsVar.concept_class = 'medication' and %annotationsVar.controlled_vocabulary_namespace = 'ATC', true) }}",
+          "{{?}}" : {
+            "id" : "{{mpp:getHashedId('MedicationAdministration', %recordId & %annotationsVar.start_offset.toString() & %annotationsVar.end_offset.toString() & %annotationsVar.controlled_vocabulary_concept_identifier)}}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationAdministration" ]
+            },
+            "resourceType" : "MedicationAdministration",
+            "medication" : {
+              "concept" : {
+                "coding" : [ {
+                  "system" : "http://www.whocc.no/atc",
+                  "code" : "{{%annotationsVar.controlled_vocabulary_concept_identifier}}",
+                  "@sliceName" : "atcCode"
+                } ]
+              }
+            },
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %patientId)}}",
+            "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %admissionId)}}",
+            "occurenceDateTime" : "{{%admissionDate}}",
+            "dosage" : {
+              "text" : "unknown"
+            },
+            "status" : "completed"
+          }
+        }
+      }
+    }
+  }, {
+    "expression" : {
+      "name" : "resultProc",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "{{#proc}}" : "{{nlp_output.annotations.where(concept_class = 'procedure' and (controlled_vocabulary_namespace = 'ICD9' or controlled_vocabulary_namespace = 'ICD10PCS'))}}",
+        "{{*}}" : {
+          "{{#pcsCodes}}" : "{{iif(%proc.controlled_vocabulary_namespace = 'ICD9', trms:translateToCoding(%proc.controlled_vocabulary_concept_identifier, 'http://hl7.org/fhir/sid/icd-9', 'https://datatools4heart.eu/fhir/mappings/ConceptMap/nlp-icd9-to-icd10pcs').code, %proc.controlled_vocabulary_concept_identifier)}}",
+          "{{?}}" : {
+            "id" : "{{mpp:getHashedId('Procedure', %recordId & %proc.start_offset.toString() & %proc.end_offset.toString() & %proc.controlled_vocabulary_concept_identifier)}}",
+            "meta" : {
+              "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
+            },
+            "resourceType" : "Procedure",
+            "category" : [ {
+              "coding" : [ {
+                "system" : "http://snomed.info/sct",
+                "code" : "387713003",
+                "display" : "Surgical procedure (procedure)"
+              } ]
+            } ],
+            "code" : {
+              "coding" : {
+                "{{#pcs}}" : "{{%pcsCodes}}",
+                "{{*}}" : {
+                  "system" : "http://hl7.org/fhir/sid/icd-10-pcs",
+                  "code" : "{{%pcs}}"
+                }
+              }
+            },
+            "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', %patientId)}}",
+            "encounter" : "{{mpp:createFhirReferenceWithHashedId('Encounter', %admissionId)}}",
+            "occurrenceDateTime" : "{{%admissionDate}}",
+            "status" : "completed"
+          }
+        }
+      }
+    }
+  } ]
+}

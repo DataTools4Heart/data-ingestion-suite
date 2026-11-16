@@ -62,6 +62,12 @@
     "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/symptoms-omop-to-snomed",
     "sourceValueSetUrl" : "https://www.ohdsi.org/omop",
     "targetValueSetUrl" : "http://snomed.info/sct"
+  }, {
+    "id" : "nlpIcd9ToIcd10Pcs.csv",
+    "name" : "nlpIcd9ToIcd10Pcs.csv",
+    "conceptMapUrl" : "https://datatools4heart.eu/fhir/mappings/ConceptMap/nlp-icd9-to-icd10pcs",
+    "sourceValueSetUrl" : "http://hl7.org/fhir/sid/icd-9",
+    "targetValueSetUrl" : "http://hl7.org/fhir/sid/icd-10-pcs"
   } ],
   "codeSystems" : [ ]
 }, {
