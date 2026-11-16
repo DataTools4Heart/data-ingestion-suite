@@ -30,7 +30,8 @@ for t in "${TASKS[@]}"; do
        -d "{\"clearCheckpoints\": false, \"skipWrite\": ${SKIP_WRITE}, \"mappingTaskNames\": [\"$t\"]}" 2>&1 | tail -c 200)
   log "POST -> $R"
   sleep 30
-  # wait until the execution has started and finished again (the POST may return before or after the start)
+  # wait until the execution has started and finished again (the POST returns once it has started; a server image
+  # older than 16 Nov 2026 returned only after the source was read, or with 408 on big sources)
   seen=0; idle=0
   while true; do
     if running; then seen=1; idle=0; else idle=$((idle+1)); fi

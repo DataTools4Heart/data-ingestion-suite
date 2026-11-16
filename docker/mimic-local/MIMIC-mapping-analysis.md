@@ -114,9 +114,15 @@ drugs (also those without NDC).
 5. **NDC codes lose their leading zeros**: Spark infers `prescriptions.ndc` as a number, so `ndc.toString()`
    yields e.g. `169750111` instead of `00169750111`. The lookup keys already exist in both forms; the NDC
    *codings* in Medication, MedicationRequest and MedicationAdministration are now left-padded to 11 digits in
-   FHIRPath (explicit length cases; note that a chained call on a parenthesised concatenation such as
-   `('000' & x).substring(n)` is not applied by the engine's FHIRPath evaluator, the padding therefore uses `iif`).
+   FHIRPath (explicit length cases; note that in `('000' & x).substring(x.length())` the FHIRPath library
+   evaluates the argument `x.length()` against the function's input instead of the row, so a column reference
+   there finds nothing; a variable such as `%x` works, as in the emar mapping, and the padding therefore uses `iif`).
    Verified on the sample: 95.4 % of NDC lookups resolve with the padded key, unmapped keys are now 11-digit.
+   *Update 16 Nov 2026:* server images built since then keep columns declared as strings as text, so the NDC
+   arrives with its leading zeros and the padding no longer changes it. Checked on the full v3.1 data: the
+   6 587 distinct NDCs are all 11 digits, the padded code and therefore every lookup is the same with either
+   image, but `ndc.toString()` now differs for 3 055 of them (11.2 M prescription rows), and with it the ids of
+   Medication, MedicationRequest and MedicationAdministration.
 6. **Coverage metrics were inflated by rows that the precondition later drops**: the labevents variables were
    evaluated for every row, so the unit-conversion and coded-value lookups were also counted for the ~8 M
    placeholder rows (items `H`, `L`, `I`, `HOLD` tubes) that have no LOINC and never become resources. The
@@ -384,3 +390,16 @@ Two defects were found and fixed on the day of the run, before the reference exe
   display is optional, and 13 further items that are real tests were mapped to LOINC.
 * **License.** The server image enforces an Ignifyr Enterprise license since October 2026; the compose file now
   passes the license file path explicitly (`2fc530e`, README 1.4).
+
+Four engine and server problems met during the run were fixed in Ignifyr on 16 Nov 2026; server images built
+since then contain the fixes (README 1.3). None of them changes the figures above, which were measured with
+`--skip-write`:
+
+* the erroneous records of a mapping with joined sources could not be saved (`FIELD_NOT_FOUND`), so the job ran
+  with `saveErroneousRecords: false`; it saves them again;
+* csv columns declared as strings were read as numbers when the source has a `preprocessSql`; only
+  `prescriptions.ndc` was affected, see item 5 of the subset analysis;
+* a run request was answered only after the source of the first task had been read, hence the `408` responses
+  for procedures and microbiologyevents;
+* the server did not fall back to `conf/ignifyr.license` when its configuration file was replaced
+  (`APP_CONF_FILE`); the explicit path in the compose file stays for older images.
