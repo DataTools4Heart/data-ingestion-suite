@@ -255,6 +255,21 @@
         "sourceRef" : "ucl-data"
       }
     }
+  }, {
+    "name" : "note-nlp-medication-request-mapping",
+    "mappingRef" : "https://datatools4heart.eu/fhir/mappings/ucl/note-nlp-medication-request-mapping",
+    "sourceBinding" : {
+      "source" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "NOTE_NLP_MEDS_2NOV2026.csv",
+        "contentType" : "csv",
+        "options" : {
+          "multiLine" : "true",
+          "escape" : "\""
+        },
+        "sourceRef" : "ucl-data"
+      }
+    }
   } ],
   "dataProcessingSettings" : {
     "saveErroneousRecords" : false,

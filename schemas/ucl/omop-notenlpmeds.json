@@ -1,0 +1,282 @@
+{
+  "id" : "omop-notenlpmeds",
+  "resourceType" : "StructureDefinition",
+  "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-NoteNlpMeds",
+  "version" : "latest",
+  "name" : "OMOP-NoteNlpMeds",
+  "description" : "UCL NLP-extracted medication mentions from clinical notes (NOTE_NLP_MEDS extract). Numeric dose columns are typed as string because the extract contains malformed values; they are converted in the mapping.",
+  "status" : "draft",
+  "fhirVersion" : "5.0.0",
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "OMOP-NoteNlpMeds",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [
+      {
+        "id" : "OMOP-NoteNlpMeds",
+        "path" : "OMOP-NoteNlpMeds",
+        "min" : 0,
+        "max" : "*",
+        "type" : [
+          {
+            "code" : "Element"
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.drugname",
+        "path" : "OMOP-NoteNlpMeds.drugname",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.snomed_concept_id",
+        "path" : "OMOP-NoteNlpMeds.snomed_concept_id",
+        "min" : 1,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.person_id",
+        "path" : "OMOP-NoteNlpMeds.person_id",
+        "min" : 1,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "integer",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/integer"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.note_id",
+        "path" : "OMOP-NoteNlpMeds.note_id",
+        "min" : 1,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "integer",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/integer"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.visit_occurrence_id",
+        "path" : "OMOP-NoteNlpMeds.visit_occurrence_id",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "integer",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/integer"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.note_datetime",
+        "path" : "OMOP-NoteNlpMeds.note_datetime",
+        "min" : 1,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.dosetext",
+        "path" : "OMOP-NoteNlpMeds.dosetext",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.doseqty",
+        "path" : "OMOP-NoteNlpMeds.doseqty",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.doseunit",
+        "path" : "OMOP-NoteNlpMeds.doseunit",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.dosetimeint",
+        "path" : "OMOP-NoteNlpMeds.dosetimeint",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.dosetimeunit",
+        "path" : "OMOP-NoteNlpMeds.dosetimeunit",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.doseprn",
+        "path" : "OMOP-NoteNlpMeds.doseprn",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.dailydose",
+        "path" : "OMOP-NoteNlpMeds.dailydose",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.ingredient",
+        "path" : "OMOP-NoteNlpMeds.ingredient",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.type",
+        "path" : "OMOP-NoteNlpMeds.type",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.ATCcodes",
+        "path" : "OMOP-NoteNlpMeds.ATCcodes",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.mgstrength",
+        "path" : "OMOP-NoteNlpMeds.mgstrength",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "OMOP-NoteNlpMeds.dailydosemg",
+        "path" : "OMOP-NoteNlpMeds.dailydosemg",
+        "min" : 0,
+        "max" : "1",
+        "type" : [
+          {
+            "code" : "string",
+            "profile" : [
+              "http://hl7.org/fhir/StructureDefinition/string"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

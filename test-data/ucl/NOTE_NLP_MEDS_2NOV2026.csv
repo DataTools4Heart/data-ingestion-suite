@@ -1,0 +1,55 @@
+drugname,snomed_concept_id,person_id,note_id,visit_occurrence_id,note_datetime,dosetext,doseqty,doseunit,dosetimeint,dosetimeunit,doseprn,dailydose,ingredient,type,ATCcodes,mgstrength,dailydosemg
+Air,417696007,61,818702,72174,2013-03-21T09:34:05Z,"",,"",,"",,,,,,,
+Warfarin 4mg tablets,375374009,68,757809,23431,2051-02-23T11:30:07Z,Warfarin INR 2-3 traget 3mg daily 4mg weekends,1,{tbl},1,d,FALSE,1,,,,,
+Air,417696007,272,50050,55562,2044-11-01T01:21:34Z,"",,"",,"",,,,,,,
+Chlorhexidine,96316004,272,50050,55562,2044-11-01T01:21:34Z,"",,"",,"",,,,,,,
+amitriptyline 10mg tablet,321745007,272,322196,47923,2043-04-18T09:44:42Z,amitriptyline 10mg tablet Take ONE tablet 10 mg total by mouth ONCE each day at bedtime . 28 tablet 0,1,{tbl},,"",,1,,,,,
+bisoprolol 2.5mg tablet,318605000,272,322196,47923,2043-04-18T09:44:42Z,bisoprolol 2.5mg tablet Take ONE tablet 2.5 mg total by mouth TWICE each day . 28 tablet 0,1,{tbl},,"",,1,bisoprolol,Beta-blocker,C07AB07,2.5,2.5
+furosemide 20mg tablet,317971007,272,322196,47923,2043-04-18T09:44:42Z,furosemide 20mg tablet Take ONE tablet 20 mg total by mouth ONCE each day. 28 tablet 0,1,{tbl},,"",,1,,,,,
+hydroxychloroquine sulfate 200mg tablet,330037008,272,322196,47923,2043-04-18T09:44:42Z,hydroxychloroquine sulfate 200mg tablet Take ONE tablet 200 mg total by mouth ONCE each day in the morning . 60 tablet 0,1,{tbl},,"",,1,,,,,
+lisinopril 2.5mg tablet,318857003,272,322196,47923,2043-04-18T09:44:42Z,lisinopril 2.5mg tablet Take ONE tablet 2.5 mg total by mouth ONCE each day in the evening . 28 tablet 0,1,{tbl},,"",,1,lisinopril,ACEi,C09AA03,2.5,2.5
+loperamide 2mg capsule,317378005,272,322196,47923,2043-04-18T09:44:42Z,loperamide 2mg capsule Take FOUR capsules to TEN capsules 8-20 mg total by mouth FOUR times each day . 30 capsule 0,,{cap},,"",,,,,,,
+mirtazapine 15mg tablet,375193003,272,322196,47923,2043-04-18T09:44:42Z,mirtazapine 15mg tablet Take THREE tablets 45 mg total by mouth ONCE each day at bedtime . 28 tablet 0,3,{tbl},,"",,3,,,,,
+ondansetron,108418007,272,322196,47923,2043-04-18T09:44:42Z,"ondansetron 4mg2mL ampoules Inject 2 mL 1 ampoule total intravenously TWICE each day . On PN days only 6 days per week 12 ampoule 0
+Homecare TPN HPN Calea
+",1,"",,"",,1,,,,,
+paracetamol 500mg tablet,322236009,272,322196,47923,2043-04-18T09:44:42Z,paracetamol 500mg tablet Take ONE tablet 500 mg total by mouth FOUR times each day . 64 tablet 0,1,{tbl},,"",,1,,,,,
+quinine sulfate 200mg tablet,324919005,272,322196,47923,2043-04-18T09:44:42Z,quinine sulfate 200mg tablet Take ONE tablet 200 mg total by mouth at bedtime when required leg,1,{tbl},,"",,1,,,,,
+salbutamol,91143003,272,322196,47923,2043-04-18T09:44:42Z,salbutamol 100microgramspuff inhaler Inhale ONE puff up to FOUR,1,{puff},,"",,1,,,,,
+spironolactone 25mg tablet,318056008,272,322196,47923,2043-04-18T09:44:42Z,spironolactone 25mg tablet Take ONE tablet 25 mg total by mouth ONCE each day . 28 tablet 0,1,{tbl},,"",,1,spironolactone,MRA,C03DA01,25,25
+tiotropium,407730002,272,322196,47923,2043-04-18T09:44:42Z,tiotropium BRALTUS 10micrograms capsule inhaler Place ONE capsule 10 micrograms total into the device and inhale ONCE each day . 30 capsule 0,1,{cap},,"",,1,,,,,
+water,346712003,272,322196,47923,2043-04-18T09:44:42Z,water and take every HOUR when required Diarrhoeadehydration . 1 each 0,1,"",1,h,TRUE,24,,,,,
+Air,417696007,506,50909,,2053-03-28T13:03:09Z,"",,"",,"",,,,,,,
+amitriptyline 10mg tablets,321745007,506,50909,,2053-03-28T13:03:09Z,amitriptyline tablet 10 mg,1,{tbl},,"",,1,,,,,
+bisoprolol 1mg tablets,318604001,506,50909,,2053-03-28T13:03:09Z,bisoprolol tablet 1.25 mg,1,{tbl},,"",,1,bisoprolol,Beta-blocker,C07AB07,1.25,1.25
+doxazosin 2mg tablet,318782008,506,50909,,2053-03-28T13:03:09Z,doxazosin 2mg tablet Take ONE tablet 2 mg total by mouth ONCE each day .,1,{tbl},,"",,1,,,,,
+enoxaparin,108984007,506,50909,,2053-03-28T13:03:09Z,enoxaparin prefilled syringe 40 mg,40,mg,,"",,40,,,,,40
+furosemide,81609008,506,50909,,2053-03-28T13:03:09Z,"",,"",,"",,,,,,,
+furosemide 20mg tablet,317971007,506,50909,,2053-03-28T13:03:09Z,"furosemide 20mg tablet
+Take ONE tablet 20 mg total by mouth ONCE each day before evening meal . Do not take while on intravenous ",1,{tbl},,"",,1,,,,,
+furosemide 40mg tablet,317972000,506,50909,,2053-03-28T13:03:09Z,furosemide 40mg tablet Take ONE tablet 40 mg total by mouth ONCE each day in the morning . Do not take while on intravenous,1,{tbl},,"",,1,,,,,
+latanoprost,108838001,506,50909,,2053-03-28T13:03:09Z,latanoprost eye drops 1 drop,1,{drops},,"",,1,,,,,
+losartan 100mg tablet,407784004,506,50909,,2053-03-28T13:03:09Z,losartan 100mg tablet Take ONE tablet 100 mg total by mouth ONCE each day .,1,{tbl},,"",,1,losartan,ARB,C09CA01,100,100
+paracetamol 500mg tablet,322236009,506,50909,,2053-03-28T13:03:09Z,paracetamol 500mg tablet Take TWO tablets 1 g total by mouth up to FOUR,2,{tbl},,"",,2,,,,,
+salbutamol,91143003,506,50909,,2053-03-28T13:03:09Z,"salbutamol 100microgramspuff breathactuated inhaler Inhale TWO puffs up to FOUR
+times each day when required for shortness of ",2,{puff},0.25,d,TRUE,8,,,,,
+simvastatin 20mg tablets,319997009,506,50909,,2053-03-28T13:03:09Z,simvastatin tablet 20 mg,1,{tbl},,"",,1,,,,,
+Bisoprolol 10mg tablets,318591005,7232,958842,57451,2052-11-30T18:20:11Z,Bisoprolol 10mg OM,1,{tbl},1,d,FALSE,1,bisoprolol,Beta-blocker,C07AB07,10,10
+Docusate,418528006,7232,958842,57451,2052-11-30T18:20:11Z,Docusate 200mg BD,200,mg,0.5,d,FALSE,400,,,,,400
+Ferrous sulfate 200mg tablets,327438003,7232,958842,57451,2052-11-30T18:20:11Z,Ferrous sulfate 200mg BD,1,{tbl},0.5,d,FALSE,2,,,,,
+Fexofenadine 180mg tablets,320828002,7232,958842,57451,2052-11-30T18:20:11Z,Fexofenadine 180mg PRN,1,{tbl},,"",TRUE,1,,,,,
+Finasteride 5mg tablets,325728006,7232,958842,57451,2052-11-30T18:20:11Z,Finasteride 5mg OM,1,{tbl},1,d,FALSE,1,,,,,
+Hydralazine 25mg tablets,318649003,7232,958842,57451,2052-11-30T18:20:11Z,Hydralazine 25mg TDS,1,{tbl},0.333333333333333,d,FALSE,3,,,,,
+ISMN,1204440004,7232,958842,57451,2052-11-30T18:20:11Z,ISMN 90mg OM,90,mg,1,d,FALSE,90,,,,,90
+Insulin glargine,126212009,7232,958842,57451,2052-11-30T18:20:11Z,"Insulin glargine 18 U OM, 12 U ON",,"",1,d,FALSE,,,,,,
+Lidocaine,82573000,7232,958842,57451,2052-11-30T18:20:11Z,Lidocaine 5 topical for dressing changes,5,"",,"",,5,,,,,
+Methotrexate 10mg tablets,326875008,7232,958842,57451,2052-11-30T18:20:11Z,Methotrexate 10mg weekly Wednesday,1,{tbl},7,d,FALSE,0.142857142857143,,,,,
+Oxycodone,414984009,7232,958842,57451,2052-11-30T18:20:11Z,Oxycodone 1.3mg QDS,1.3,mg,0.25,d,FALSE,5.2,,,,,5.2
+Quinine sulfate 200mg tablets,324919005,7232,958842,57451,2052-11-30T18:20:11Z,Quinine sulfate 200mg ON,1,{tbl},1,d,FALSE,1,,,,,
+Ramipril 1mg tablets,408040007,7232,958842,57451,2052-11-30T18:20:11Z,Ramipril 1.25mg OD,1,{tbl},1,d,FALSE,1,ramipril,ACEi,C09AA05,1.25,1.25
+Salbutamol,91143003,7232,958842,57451,2052-11-30T18:20:11Z,"",,"",,"",,,,,,,
+Senna 15mg tablets,407828006,7232,958842,57451,2052-11-30T18:20:11Z,Senna 15mg ON,1,{tbl},1,d,FALSE,1,,,,,
+sitagliptin 25mg tablets,423962004,7232,958842,57451,2052-11-30T18:20:11Z,sitagliptin 25mg OM,1,{tbl},1,d,FALSE,1,,,,,
+spironolatone 25mg tablets,318056008,7232,958842,57451,2052-11-30T18:20:11Z,spironolatone 25mg OM,1,{tbl},1,d,FALSE,1,spironolactone,MRA,C03DA01,25,25
+tamsulosin,108559004,7232,958842,57451,2052-11-30T18:20:11Z,tamsulosin 400mcg ON,400,mcg,1,d,FALSE,400,,,,,0.4
+travoprost,391664000,7232,958842,57451,2052-11-30T18:20:11Z,travoprost eye drops ON,,"",1,d,FALSE,,,,,,

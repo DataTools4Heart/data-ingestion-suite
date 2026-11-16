@@ -1,0 +1,111 @@
+{
+  "id" : "note-nlp-medication-request-mapping",
+  "url" : "https://datatools4heart.eu/fhir/mappings/ucl/note-nlp-medication-request-mapping",
+  "name" : "note-nlp-medication-request-mapping",
+  "title" : "Mapping of NLP-extracted medication mentions (NOTE_NLP_MEDS) to the DT4H medication request profile (HFR-MedicationRequest). The ATC codes come from the SNOMED CT code via note_nlp_meds_snomed_to_atc.csv; the ATCcodes column of the source is ignored. Rows whose SNOMED CT code has no ATC code are skipped (HFR-MedicationRequest requires one).",
+  "isDraft" : false,
+  "source" : [ {
+    "alias" : "source",
+    "url" : "https://www.ucl.ac.uk/fhir/StructureDefinition/OMOP-NoteNlpMeds",
+    "joinOn" : [ ]
+  } ],
+  "context" : {
+    "snomedToAtcConceptMap" : {
+      "category" : "concept-map",
+      "url" : "$CONTEXT_REPO/ucl/note_nlp_meds_snomed_to_atc.csv"
+    }
+  },
+  "variable" : [ {
+    "name" : "atcCodes",
+    "language" : "text/fhirpath",
+    "expression" : "mpp:getConcept(%snomedToAtcConceptMap, snomed_concept_id.toString())"
+  }, {
+    "name" : "startTime",
+    "language" : "text/fhirpath",
+    "expression" : "note_datetime.replace('T', ' ').replace('Z', '').utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss', '+00:00')"
+  }, {
+    "name" : "interval",
+    "language" : "text/fhirpath",
+    "expression" : "iif(dosetimeint.exists() and (dosetimeunit = 'd' or dosetimeunit = 'h'), dosetimeint.toDecimal().where($this > 0), {})"
+  }, {
+    "name" : "dailyFrequency",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%interval.exists() and dosetimeunit = 'd', iif((%interval - 0.5).abs() < 0.001, 2, iif((%interval - 0.333333).abs() < 0.001, 3, iif((%interval - 0.25).abs() < 0.001, 4, iif((%interval - 0.166667).abs() < 0.001, 6, {})))), {})"
+  }, {
+    "name" : "doseValue",
+    "language" : "text/fhirpath",
+    "expression" : "iif(doseqty.exists(), doseqty.toDecimal(), {})"
+  }, {
+    "name" : "doseUnit",
+    "language" : "text/fhirpath",
+    "expression" : "iif(doseunit.exists() and doseunit.trim() != '', doseunit.trim(), {})"
+  }, {
+    "name" : "doseUcumCode",
+    "language" : "text/fhirpath",
+    "expression" : "iif(%doseUnit = 'mcg', 'ug', iif(%doseUnit = 'ml', 'mL', %doseUnit))"
+  } ],
+  "mapping" : [ {
+    "precondition" : {
+      "name" : "atcCodeExists",
+      "language" : "text/fhirpath",
+      "expression" : "%atcCodes.exists()"
+    },
+    "expression" : {
+      "name" : "result",
+      "language" : "application/fhir-template+json",
+      "value" : {
+        "id" : "{{mpp:getHashedId('MedicationRequest', 'note-nlp-med-' & note_id.toString() & '-' & snomed_concept_id.toString() & '-' & dosetext)}}",
+        "meta" : {
+          "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
+        },
+        "resourceType" : "MedicationRequest",
+        "status" : "unknown",
+        "intent" : "order",
+        "medication" : {
+          "concept" : {
+            "coding" : [ {
+              "{{#atc}}" : "{{%atcCodes}}",
+              "{{*}}" : {
+                "system" : "http://www.whocc.no/atc",
+                "code" : "{{%atc.target_code}}",
+                "display" : "{{? %atc.target_display}}",
+                "@sliceName" : "atcCode"
+              }
+            } ],
+            "text" : "{{? drugname}}"
+          }
+        },
+        "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', person_id.toString())}}",
+        "encounter" : "{{? mpp:createFhirReferenceWithHashedId('Encounter', visit_occurrence_id.toString())}}",
+        "effectiveDosePeriod" : {
+          "start" : "{{%startTime}}"
+        },
+        "dosageInstruction" : [ {
+          "text" : "{{? iif(dosetext.exists() and dosetext.trim() != '', dosetext.trim(), {})}}",
+          "asNeeded" : "{{? iif(doseprn = 'TRUE', true, iif(doseprn = 'FALSE', false, {}))}}",
+          "timing" : {
+            "{{#iv}}" : "{{%interval}}",
+            "{{?}}" : {
+              "repeat" : {
+                "frequency" : "{{iif(%dailyFrequency.exists(), %dailyFrequency, 1)}}",
+                "period" : "{{iif(%dailyFrequency.exists(), 1, %iv)}}",
+                "periodUnit" : "{{dosetimeunit}}"
+              }
+            }
+          },
+          "doseAndRate" : [ {
+            "{{#dq}}" : "{{%doseValue}}",
+            "{{?}}" : {
+              "doseQuantity" : {
+                "value" : "{{%dq}}",
+                "unit" : "{{? %doseUnit}}",
+                "system" : "{{? iif(%doseUnit.exists(), 'http://unitsofmeasure.org', {})}}",
+                "code" : "{{? %doseUcumCode}}"
+              }
+            }
+          } ]
+        } ]
+      }
+    }
+  } ]
+}
