@@ -66,12 +66,7 @@
               "code" : {
                 "coding" : [ "{{utl:createFhirCoding(%echoCode.code_system, %echoCode.target_code, %echoCode.target_display)}}" ]
               },
-              "valueQuantity" : {
-                "system" : "http://unitsofmeasure.org",
-                "code" : "{{%echoCode.unit}}",
-                "value" : "{{%measurement.utl:split('|')[1].toDecimal()}}",
-                "unit" : "{{%echoCode.unit}}"
-              }
+              "valueQuantity" : "{{mpp:convertAndReturnQuantity(%echoCodeMappings, %echoCode.source_code, %measurement.utl:split('|')[1].toDecimal(), %echoCode.source_unit)}}"
             }
           }
         },

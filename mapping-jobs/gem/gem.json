@@ -126,6 +126,13 @@
         "contentType" : "csv",
         "options" : { },
         "sourceRef" : "gem-source"
+      },
+      "encounterDetails" : {
+        "jsonClass" : "FileSystemSource",
+        "path" : "dettagliocontatti.csv",
+        "contentType" : "csv",
+        "options" : { },
+        "sourceRef" : "gem-source"
       }
     }
   }, {

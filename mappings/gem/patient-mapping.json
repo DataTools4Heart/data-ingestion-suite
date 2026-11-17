@@ -7,11 +7,20 @@
   "source" : [ {
     "alias" : "source",
     "url" : "https://datatools4heart.eu/fhir/schemas/gem/patient",
-    "joinOn" : [ ]
+    "joinOn" : [ "CODICE_SANITARIO" ]
+  }, {
+    "alias" : "encounterDetails",
+    "url" : "https://datatools4heart.eu/fhir/schemas/gem/encounterdetails",
+    "joinOn" : [ "CODICE_SANITARIO" ]
   } ],
   "context" : { },
-  "variable" : [ ],
+  "variable" : [ {
+    "name" : "deathDate",
+    "language" : "text/fhirpath",
+    "expression" : "iif(Deceduto = 1, (Data_Out_Ultimo_Contatto | %encounterDetails.DATA_DIMISSIONE).aggregate(iif($total.empty() or $this > $total, $this, $total)))"
+  } ],
   "mapping" : [ {
+    "description" : "For deceased patients (Deceduto = 1) the date of death is the latest of Data_Out_Ultimo_Contatto and the patient's DATA_DIMISSIONE values in dettagliocontatti (as advised by the data provider).",
     "expression" : {
       "name" : "result",
       "language" : "application/fhir-template+json",
@@ -24,7 +33,7 @@
         "resourceType" : "Patient",
         "gender" : "{{ iif(SESSO='M', 'male', 'female') }}",
         "birthDate" : "{{DATA_NASCITA}}",
-        "deceasedDateTime" : "{{? iif(Deceduto = 1, Data_Diagnosi) }}",
+        "deceasedDateTime" : "{{? %deathDate }}",
         "identifier" : [ {
           "value" : "{{CODICE_SANITARIO.toString()}}"
         } ],
@@ -62,7 +71,7 @@
             "@sliceName" : "loincCode"
           } ]
         },
-        "effectiveDateTime" : "{{Data_Diagnosi}}",
+        "effectiveDateTime" : "{{? %deathDate }}",
         "valueCodeableConcept" : {
           "coding" : [ {
             "system" : "http://hl7.org/fhir/sid/icd-10",

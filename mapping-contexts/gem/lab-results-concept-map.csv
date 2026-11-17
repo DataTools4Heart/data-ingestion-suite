@@ -30,3 +30,7 @@
 "5038","14927-8","Triglyceride [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.0113"
 "5071","14927-8","Triglyceride [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.0113"
 "5789","69405-9","Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood","mL/min/1.73m2","mL/min/1.73m2","$this"
+"5112","59261-8","Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol","mmol/mol","mmol/mol","$this"
+"5864","89579-7","Troponin I.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method","ng/L","ng/mL","$this * 0.001"
+"5886","10839-9","Troponin I.cardiac [Mass/volume] in Serum or Plasma","ng/mL","ng/mL","$this"
+"5016","14647-2","Cholesterol [Moles/volume] in Serum or Plasma","mg/dL","mmol/L","$this * 0.02586"

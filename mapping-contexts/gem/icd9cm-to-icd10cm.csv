@@ -729,6 +729,9 @@ source_code,target_system,target_code
 04189,http://hl7.org/fhir/sid/icd-10,B96.89
 0419,http://hl7.org/fhir/sid/icd-10,B96.89
 042,http://hl7.org/fhir/sid/icd-10,B20
+04311,http://hl7.org/fhir/sid/icd-10,U07.1
+04321,http://hl7.org/fhir/sid/icd-10,U07.1
+04322,http://hl7.org/fhir/sid/icd-10,U07.2
 04500,http://hl7.org/fhir/sid/icd-10,A80.39
 04501,http://hl7.org/fhir/sid/icd-10,A80.39
 04502,http://hl7.org/fhir/sid/icd-10,A80.39
@@ -6272,6 +6275,8 @@ source_code,target_system,target_code
 4801,http://hl7.org/fhir/sid/icd-10,J12.1
 4802,http://hl7.org/fhir/sid/icd-10,J12.2
 4803,http://hl7.org/fhir/sid/icd-10,J12.81
+48041,http://hl7.org/fhir/sid/icd-10,U07.1
+48041,http://hl7.org/fhir/sid/icd-10,J12.82
 4808,http://hl7.org/fhir/sid/icd-10,J12.89
 4809,http://hl7.org/fhir/sid/icd-10,J12.9
 481,http://hl7.org/fhir/sid/icd-10,J13
@@ -6472,6 +6477,8 @@ source_code,target_system,target_code
 51883,http://hl7.org/fhir/sid/icd-10,J96.10
 51884,http://hl7.org/fhir/sid/icd-10,J96.20
 51889,http://hl7.org/fhir/sid/icd-10,J98.4
+51891,http://hl7.org/fhir/sid/icd-10,U07.1
+51891,http://hl7.org/fhir/sid/icd-10,J80
 51900,http://hl7.org/fhir/sid/icd-10,J95.00
 51901,http://hl7.org/fhir/sid/icd-10,J95.02
 51902,http://hl7.org/fhir/sid/icd-10,J95.03
@@ -12260,6 +12267,7 @@ source_code,target_system,target_code
 78703,http://hl7.org/fhir/sid/icd-10,R11.12
 78704,http://hl7.org/fhir/sid/icd-10,R11.14
 7871,http://hl7.org/fhir/sid/icd-10,R12
+7872,http://hl7.org/fhir/sid/icd-10,R13.10
 78720,http://hl7.org/fhir/sid/icd-10,R13.0
 78720,http://hl7.org/fhir/sid/icd-10,R13.10
 78721,http://hl7.org/fhir/sid/icd-10,R13.11
@@ -12351,6 +12359,7 @@ source_code,target_system,target_code
 78946,http://hl7.org/fhir/sid/icd-10,R19.36
 78947,http://hl7.org/fhir/sid/icd-10,R19.37
 78949,http://hl7.org/fhir/sid/icd-10,R19.30
+7895,http://hl7.org/fhir/sid/icd-10,R18.8
 78951,http://hl7.org/fhir/sid/icd-10,R18.0
 78959,http://hl7.org/fhir/sid/icd-10,R18.8
 78960,http://hl7.org/fhir/sid/icd-10,R10.819
