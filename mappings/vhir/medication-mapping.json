@@ -25,35 +25,28 @@
     "expression" : "mpp:getConcept(%omopToAtcConceptMap, DRUG_CONCEPT_ID.toString())"
   } ],
   "mapping" : [ {
-    "description" : "VHIR informed that DRUG_EXPOSURE table only have prescription records so we map to MedicationRequest",
+    "description" : "VHIR informed that DRUG_EXPOSURE table only have prescription records so we map to MedicationRequest. SIDIAP_DRUG_EXPOSURE rows (ID_PREFIX 'sidiap', both prescriptions and pharmacy dispensations) are also mapped to MedicationRequest; their DRUG_SOURCE_VALUE is the ATC code, so it is used directly instead of the OMOP-to-ATC concept map.",
     "precondition" : {
       "name" : "atcCodesExist",
       "language" : "text/fhirpath",
-      "expression" : "%atcCodes.exists()"
+      "expression" : "iif(ID_PREFIX = 'sidiap', DRUG_SOURCE_VALUE.exists($this != ''), %atcCodes.exists())"
     },
     "expression" : {
       "name" : "medication-request",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString())}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', ID_PREFIX & DRUG_EXPOSURE_ID.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
         "resourceType" : "MedicationRequest",
         "medication" : {
           "concept" : {
-            "coding" : {
-              "{{#codingVar}}" : "{{%atcCodes}}",
-              "{{*}}" : {
-                "system" : "{{%codingVar.target_system}}",
-                "code" : "{{%codingVar.target_code}}",
-                "display" : "{{%codingVar.target_display}}"
-              }
-            }
+            "coding" : [ "{{* iif(ID_PREFIX = 'sidiap', utl:createFhirCoding('http://www.whocc.no/atc', DRUG_SOURCE_VALUE, {}), %atcCodes.select(utl:createFhirCoding(target_system, target_code, target_display)))}}" ]
           }
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
-        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists($this != ''), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() ) }}",
+        "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() }}",
         "status" : "completed",
         "intent" : "order",
         "effectiveDosePeriod" : {
@@ -91,7 +84,7 @@
       "name" : "firstSubstance",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString() & 'first-substance')}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', ID_PREFIX & DRUG_EXPOSURE_ID.toString() & 'first-substance')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
@@ -100,8 +93,8 @@
           "concept" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc',DRUG_ATC_1 , DRUG_NAME_1)}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
-        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists($this != ''), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() ) }}",
-        "basedOn" : [ "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString())}}" ],
+        "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() }}",
+        "basedOn" : [ "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', ID_PREFIX & DRUG_EXPOSURE_ID.toString())}}" ],
         "status" : "completed",
         "intent" : "order",
         "effectiveDosePeriod" : {
@@ -140,7 +133,7 @@
       "name" : "secondSubstance",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString() & 'second-substance')}}",
+        "id" : "{{mpp:getHashedId('MedicationRequest', ID_PREFIX & DRUG_EXPOSURE_ID.toString() & 'second-substance')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-MedicationRequest" ]
         },
@@ -149,8 +142,8 @@
           "concept" : "{{utl:createFhirCodeableConcept('http://www.whocc.no/atc',DRUG_ATC_2, DRUG_NAME_2)}}"
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
-        "encounter" : "{{? iif(VISIT_OCCURRENCE_ID.exists($this != ''), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() ) }}",
-        "basedOn" : [ "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', DRUG_EXPOSURE_ID.toString())}}" ],
+        "encounter" : "{{? %omopVisit.select(iif($this.VISIT_START_DATE <= %context.DRUG_EXPOSURE_START_DATE and $this.VISIT_END_DATE >= %context.DRUG_EXPOSURE_START_DATE, mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first() }}",
+        "basedOn" : [ "{{mpp:createFhirReferenceWithHashedId('MedicationRequest', ID_PREFIX & DRUG_EXPOSURE_ID.toString())}}" ],
         "status" : "completed",
         "intent" : "order",
         "effectiveDosePeriod" : {

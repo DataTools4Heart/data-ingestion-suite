@@ -1,0 +1,4 @@
+source_code,target_code,target_system,target_display
+"903653","266919005","http://snomed.info/sct","Never smoker"
+"4310250","8517006","http://snomed.info/sct","Former smoker"
+"903657","77176002","http://snomed.info/sct","Smoker, current status unknown"

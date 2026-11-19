@@ -47,7 +47,7 @@
       "name" : "labResults",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', MEASUREMENT_ID.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', ID_PREFIX & MEASUREMENT_ID.toString())}}",
         "meta" : {
           "source" : "{{%sourceSystem.sourceUri}}",
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-LabResult" ]
@@ -98,7 +98,7 @@
       "name" : "vitalSigns",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', MEASUREMENT_ID.toString())}}",
+        "id" : "{{mpp:getHashedId('Observation', ID_PREFIX & MEASUREMENT_ID.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-VitalSign" ]
         },
@@ -143,7 +143,7 @@
       "name" : "nyha",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Observation', MEASUREMENT_ID.toString() & 'nyha')}}",
+        "id" : "{{mpp:getHashedId('Observation', ID_PREFIX & MEASUREMENT_ID.toString() & 'nyha')}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-NYHAAssessment" ]
         },
