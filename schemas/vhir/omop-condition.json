@@ -4,7 +4,7 @@
   "url" : "https://www.vallhebron.com/fhir/StructureDefinition/OMOP-Condition",
   "version" : "latest",
   "name" : "OMOP-Condition",
-  "description" : "OMOP condition_occurrence table v5.3",
+  "description" : "OMOP condition_occurrence table v5.4",
   "status" : "draft",
   "fhirVersion" : "5.0.0",
   "kind" : "logical",

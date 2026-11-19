@@ -30,7 +30,7 @@
   }, {
     "name" : "relatedEncounter",
     "language" : "text/fhirpath",
-    "expression" : "iif(VISIT_OCCURRENCE_ID.exists(), mpp:createFhirReferenceWithHashedId('Encounter', VISIT_OCCURRENCE_ID.toString()), %omopVisit.select(iif($this.VISIT_START_DATE <= %context.CONDITION_START_DATE and $this.VISIT_END_DATE >= %context.CONDITION_START_DATE,mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first())"
+    "expression" : "%omopVisit.select(iif($this.VISIT_START_DATE <= %context.CONDITION_START_DATE and $this.VISIT_END_DATE >= %context.CONDITION_START_DATE,mpp:createFhirReferenceWithHashedId('Encounter', $this.VISIT_OCCURRENCE_ID.toString()),{})).first()"
   } ],
   "mapping" : [ {
     "description" : "Generates a FHIR Condition resource if a condition code is present and does not represent a symptom.",
@@ -43,7 +43,7 @@
       "name" : "result",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Condition', CONDITION_OCCURRENCE_ID.toString())}}",
+        "id" : "{{mpp:getHashedId('Condition', ID_PREFIX & CONDITION_OCCURRENCE_ID.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Condition" ]
         },
@@ -60,7 +60,7 @@
         },
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
         "encounter" : "{{? %relatedEncounter}}",
-        "onsetDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+        "onsetDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd HH:mm:ss.S'))}}",
         "clinicalStatus" : {
           "coding" : [ {
             "code" : "active",
@@ -84,7 +84,7 @@
       "name" : "symptom",
       "language" : "application/fhir-template+json",
       "value" : {
-        "id" : "{{mpp:getHashedId('Condition', CONDITION_OCCURRENCE_ID.toString())}}",
+        "id" : "{{mpp:getHashedId('Condition', ID_PREFIX & CONDITION_OCCURRENCE_ID.toString())}}",
         "meta" : {
           "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Symptom" ]
         },
@@ -104,7 +104,7 @@
             }
           } ]
         },
-        "effectiveDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss'))}}",
+        "effectiveDateTime" : "{{iif(CONDITION_START_DATETIME.empty(), CONDITION_START_DATE, CONDITION_START_DATETIME.utl:toFhirDateTime('yyyy-MM-dd HH:mm:ss' | 'yyyy-MM-dd HH:mm:ss.S'))}}",
         "valueBoolean" : true,
         "subject" : "{{mpp:createFhirReferenceWithHashedId('Patient', PERSON_ID.toString())}}",
         "encounter" : "{{? %relatedEncounter}}",
