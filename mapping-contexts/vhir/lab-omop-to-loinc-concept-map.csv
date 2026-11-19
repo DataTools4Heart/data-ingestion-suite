@@ -22,7 +22,7 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 3043723,8713,32730-4,g/dL,Beta 1 globulin [Mass/volume] in Serum or Plasma by Electrophoresis,$this
 3047005,0,43223-7,mmol/g,Sodium/Creatinine [Ratio] in Urine,$this
 3028437,8840,22748-8,mmol/L,Cholesterol in LDL [Moles/volume] in Serum or Plasma,$this * 0.0259
-3007070,8840,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,$this * 0.0259
+3007070,8840,14646-4,mmol/L,Cholesterol in HDL [Moles/volume] in Serum or Plasma,"iif($this < 5,$this,$this * 0.0259)"
 4307029,8845,30934-4,pg/mL,Natriuretic peptide B [Mass/volume] in Serum or Plasma,$this
 21490721,,75928-2,mmol/L,Hemoglobin [Mass/volume] in Arterial Blood,$this
 40762532,8840,59470-5,mg/dL,Calcium.ionized [Mass/volume] in Arterial blood,$this
@@ -67,7 +67,7 @@ source_code,source_unit,target_code,target_unit,target_display,conversion_functi
 3023103,8753,2823-3,mmol/L,Potassium [Moles/volume] in Serum or Plasma,$this
 44808279,9117,69405-9,ml/min/1.73m2,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood",$this
 3004410,8554,4548-4,%,Hemoglobin A1c/Hemoglobin.total in Blood,$this
-3000963,8713,718-7,g/L,Hemoglobin [Mass/volume] in Blood,"iif($this >= 75 and $this <= 200,$this,$this * 10)"
+3000963,8713,718-7,g/L,Hemoglobin [Mass/volume] in Blood,"iif($this < 30,$this * 10,iif($this <= 250,$this,iif($this <= 2500,$this / 10,$this)))"
 3001582,,2890-2,mg/g,Protein/Creatinine [Mass Ratio] in Urine,$this
 3004789,8840,3034-6,mg/dL,Transferrin [Mass/volume] in Serum or Plasma,$this
 3012030,,28539-5,pg,MCH [Entitic mass] by Automated count,$this
