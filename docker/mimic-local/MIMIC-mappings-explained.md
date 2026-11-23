@@ -43,13 +43,20 @@ flowchart LR
 
 ### How the engine reads CSV columns
 
-When a source has a `preprocessSql` (all MIMIC sources do: they filter by `subject_id` batch), Ignifyr does
-**not** use the schema in `schemas/mimic/` but guesses each column's type from the data. Two consequences:
+When a source has a `preprocessSql` (most MIMIC sources do: they filter by `subject_id` batch), Ignifyr guesses
+each column's type from the data, because the SQL may reshape the file. A column that the schema in
+`schemas/mimic/` declares as a string stays text, though: server images built since 16 Nov 2026 keep such
+columns as they are in the file. Images built before guessed them too, with two consequences that the mappings
+still guard against:
 
-* a code made only of digits becomes a number and loses leading zeros, e.g. NDC `00338355248` → `338355248`.
-  The medication mappings therefore pad the NDC back to 11 digits before looking it up;
-* a text that looks like a decimal number changes, e.g. `parent_field_ordinal` `1.10` → `1.1`. For that reason
-  the `emarDetail` source of the emar task has `"options": { "inferSchema": "false" }`, so the schema (text) is used.
+* a code made only of digits became a number and lost its leading zeros, e.g. NDC `00338355248` → `338355248`.
+  The medication mappings therefore pad the NDC to 11 digits before looking it up; with a current image the NDC
+  is already 11 digits and the padding changes nothing. The NDC also enters the ids of Medication,
+  MedicationRequest and MedicationAdministration (and their identifiers and references), so these ids differ
+  between the two kinds of image: do not load the output of both into one FHIR server;
+* a text that looked like a decimal number changed, e.g. `parent_field_ordinal` `1.10` → `1.1`. The `emarDetail`
+  source of the emar task therefore has `"options": { "inferSchema": "false" }`, so the schema (text) is used with
+  any image.
 
 ---
 
