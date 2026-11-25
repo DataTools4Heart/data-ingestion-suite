@@ -19,17 +19,22 @@
     "name" : "mainDiagnosisCodes",
     "language" : "text/fhirpath",
     "expression" : " DIAG1_ICD9CM.nav:orElse(DIAG2_ICD9CM | DIAG3_ICD9CM | DIAG4_ICD9CM | DIAG5_ICD9CM | DIAG6_ICD9CM | DIAG7_ICD9CM) "
+  }, {
+    "name" : "procedureSlots",
+    "language" : "text/fhirpath",
+    "expression" : "utl:indices(0, 6).select(%context.PROC[$this].toString() & '|' & %context.DATAPROC[$this].toString())"
   } ],
   "mapping" : [ {
+    "description" : "One Procedure per distinct procedure code and date of an admission. procedureSlots holds 'code|date' for PROC1..PROC7, and a slot that repeats the code and date of an earlier slot is skipped, so the id and identifier (admission, date, code) are unique.",
     "expression" : {
       "name" : "procedure",
       "language" : "application/fhir-template+json",
       "value" : {
         "{{#ind}}" : "{{utl:indices(0, 6)}}",
         "{{*}}" : {
-          "{{#translatedCodes}}" : "{{ mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString()) }}",
+          "{{#translatedCodes}}" : "{{ iif(%procedureSlots[%ind] in %procedureSlots.take(%ind), {}, mpp:getConcept(%icd9toIcd10PCS, PROC[%ind].toString())) }}",
           "{{?}}" : {
-            "id" : "{{mpp:getHashedId('Procedure', CODICE_SANITARIO.toString() & '-' & DATA_RICOVERO.toString() & '-' & DATAPROC[%ind].toString() & '-' & PROC[%ind].toString()) }}",
+            "id" : "{{mpp:getHashedId('Procedure', NOSOGRAFICO_ADT.toString() & '-' & DATAPROC[%ind].toString() & '-' & PROC[%ind].toString()) }}",
             "meta" : {
               "profile" : [ "https://datatools4heart.eu/fhir/StructureDefinition/HFR-Procedure" ]
             },
@@ -60,7 +65,7 @@
               }
             },
             "identifier" : [ {
-              "value" : "{{CODICE_SANITARIO.toString() & '-' & DATA_RICOVERO.toString() & '-' & DATAPROC[%ind].toString() & '-' & PROC[%ind].toString()}}"
+              "value" : "{{NOSOGRAFICO_ADT.toString() & '-' & DATAPROC[%ind].toString() & '-' & PROC[%ind].toString()}}"
             } ],
             "status" : "completed"
           }
